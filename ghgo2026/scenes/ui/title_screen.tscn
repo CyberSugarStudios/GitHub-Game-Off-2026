@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://t7qmmk1hf22j"]
+
+[ext_resource type="Script" uid="uid://cui1imxye4xc8" path="res://scripts/ui/title_screen.gd" id="1_eb34j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53m36"]
+bg_color = Color(0.74509805, 0.078431375, 0.078431375, 1)
+
+[node name="TitleScreen" type="CanvasLayer" unique_id=1005364504]
+script = ExtResource("1_eb34j")
+
+[node name="GameTitleAndButtons" type="VBoxContainer" parent="." unique_id=1383451429]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -56.0
+offset_right = 200.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameTitle(WorkingTitle)" type="RichTextLabel" parent="GameTitleAndButtons" unique_id=401937619]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "WT: Ghost Child"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleButtons" type="VBoxContainer" parent="GameTitleAndButtons" unique_id=1948832170]
+layout_mode = 2
+
+[node name="ContinueGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1996352329]
+layout_mode = 2
+disabled = true
+text = "Continue"
+
+[node name="NewGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=534820059]
+layout_mode = 2
+text = "New Game"
+
+[node name="OptionsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=9048306]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1401560807]
+layout_mode = 2
+text = "Credits
+"
+
+[node name="QuitButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=49289049]
+layout_mode = 2
+text = "Quit"
+
+[node name="OptionsMenu" type="CanvasLayer" parent="." unique_id=833037058]
+visible = false
+
+[node name="OptionsMenuBackground" type="ColorRect" parent="OptionsMenu" unique_id=2027269235]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7490196)
+
+[node name="OptionsLabels" type="RichTextLabel" parent="OptionsMenu" unique_id=1918098394]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 60
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="OptionsMenu" unique_id=2027892854]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CloseOptionsButton" type="Button" parent="OptionsMenu" unique_id=946727618]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 65.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_53m36")
+text = "x"
+icon_alignment = 1
+
+[node name="CreditsMenu" type="CanvasLayer" parent="." unique_id=1252186975]
+visible = false
+
+[node name="CreditsMenuBackground" type="ColorRect" parent="CreditsMenu" unique_id=1624638277]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7490196)
+
+[node name="CreditsLabel" type="RichTextLabel" parent="CreditsMenu" unique_id=1565112286]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 60
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseCreditsButton" type="Button" parent="CreditsMenu" unique_id=1487107922]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 65.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_53m36")
+text = "x"
+icon_alignment = 1
+
+[node name="ConfirmClosePopUp" type="CanvasLayer" parent="." unique_id=1987680131]
+visible = false
+
+[node name="ConfirmCloseBackground" type="ColorRect" parent="ConfirmClosePopUp" unique_id=1044828397]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7490196)
+
+[node name="ConfirmCloseLabel" type="RichTextLabel" parent="ConfirmClosePopUp/ConfirmCloseBackground" unique_id=1407825718]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 60
+text = "Confirm?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmCloseButtons" type="VBoxContainer" parent="ConfirmClosePopUp/ConfirmCloseBackground" unique_id=1686402725]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -2.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmCloseButton" type="Button" parent="ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons" unique_id=425881020]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Confirm"
+icon_alignment = 1
+
+[node name="CancelCloseButton" type="Button" parent="ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons" unique_id=408987962]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Cancel"
+icon_alignment = 1
