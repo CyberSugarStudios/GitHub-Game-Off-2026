@@ -8,6 +8,17 @@ bg_color = Color(0.74509805, 0.078431375, 0.078431375, 1)
 [node name="TitleScreen" type="CanvasLayer" unique_id=1005364504]
 script = ExtResource("1_eb34j")
 
+[node name="VersionNumberLabel" type="Label" parent="." unique_id=1088067038]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -48.0
+offset_right = 70.0
+offset_bottom = -25.0
+grow_vertical = 0
+text = "v0.0.1"
+
 [node name="GameTitleAndButtons" type="VBoxContainer" parent="." unique_id=1383451429]
 anchors_preset = 8
 anchor_left = 0.5

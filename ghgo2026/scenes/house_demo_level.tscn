@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://ble1uw6l0y3ld"]
+
+[ext_resource type="Texture2D" uid="uid://ka10tc7cgbjm" path="res://assets/PLACEHOLDER/long_wall.png" id="1_5dlcb"]
+[ext_resource type="Texture2D" uid="uid://bcj28fcym1tyb" path="res://assets/PLACEHOLDER/doorway.png" id="2_21eex"]
+[ext_resource type="Texture2D" uid="uid://mg2n78rhcjfo" path="res://assets/PLACEHOLDER/hall_blank.png" id="3_ch3qi"]
+[ext_resource type="PackedScene" uid="uid://blln5xijelt6k" path="res://assets/PLACEHOLDER/curve_wall4.blend" id="4_mi376"]
+[ext_resource type="Texture2D" uid="uid://blvg8x3ufl07e" path="res://assets/PLACEHOLDER/wood_floor.jpg" id="5_1u57w"]
+[ext_resource type="Script" uid="uid://dsq7hg56b50kv" path="res://scenes/character_body_3d.gd" id="6_21eex"]
+[ext_resource type="PackedScene" uid="uid://csw5ooaepfvav" path="res://assets/PLACEHOLDER/curve_wall_bedroom.glb" id="7_ch3qi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
+size = Vector3(22.7305, 7.351036, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ch3qi"]
+size = Vector3(5.2836914, 5.4940186, 1)
+
+[sub_resource type="Gradient" id="Gradient_ch3qi"]
+colors = PackedColorArray(0.70980394, 0.60784316, 0.54901963, 1, 0.7647059, 0.67058825, 0.6039216, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vkwc4"]
+gradient = SubResource("Gradient_ch3qi")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_q1qk4"]
+diffuse_texture = SubResource("GradientTexture2D_vkwc4")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_53m36"]
+radius = 1.0224609
+height = 4.194519
+
+[node name="HouseDemoLevel" type="Node3D" unique_id=911341921]
+
+[node name="KitchenHall" type="Sprite3D" parent="." unique_id=378911521]
+transform = Transform3D(0.9070351, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+texture = ExtResource("1_5dlcb")
+
+[node name="KitchenHallBody" type="RigidBody3D" parent="KitchenHall" unique_id=333742252]
+
+[node name="KitchenHallCollision" type="CollisionShape3D" parent="KitchenHall/KitchenHallBody" unique_id=1018291979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012207031, -0.0051879883, 0)
+shape = SubResource("BoxShape3D_53m36")
+
+[node name="BedRoomHall" type="Sprite3D" parent="." unique_id=1469698908]
+transform = Transform3D(-2.3567775e-08, 0, 0.99999994, 0, 0.5391678, 0, -0.5391679, 0, -4.371139e-08, 5.9761524, 0, 14.898466)
+texture = ExtResource("2_21eex")
+
+[node name="BedroomHallBody" type="RigidBody3D" parent="BedRoomHall" unique_id=17166519]
+
+[node name="BedroomHallCollision" type="CollisionShape3D" parent="BedRoomHall/BedroomHallBody" unique_id=158143140]
+transform = Transform3D(0.9999993, 0, 0, 0, 0.9999995, 0, -3.4816594e-13, 0, 1, 0.06951904, -0.13548236, 0)
+shape = SubResource("BoxShape3D_53m36")
+
+[node name="HallWall" type="Sprite3D" parent="." unique_id=42021598]
+transform = Transform3D(-1.0693219, 0, -8.7422784e-08, 0, 0.7976313, 0, 9.348309e-08, 0, -1, -5.584875, 0, 6.9804544)
+texture = ExtResource("3_ch3qi")
+
+[node name="HallBody" type="RigidBody3D" parent="HallWall" unique_id=2058611667]
+
+[node name="HallCollision" type="CollisionShape3D" parent="HallWall/HallBody" unique_id=377918054]
+transform = Transform3D(1, 0, 2.4158453e-13, 0, 0.9999999, 0, 0, 0, 1, 0.19068909, -0.081096604, 0)
+shape = SubResource("BoxShape3D_53m36")
+
+[node name="HallWall3" type="Sprite3D" parent="." unique_id=1289571919]
+transform = Transform3D(-4.6741537e-08, 0, 0.99999994, 0, 0.7976312, 0, -1.0693218, 0, -4.37114e-08, -9.410751, 0, 3.8932047)
+texture = ExtResource("3_ch3qi")
+
+[node name="HallBody" type="RigidBody3D" parent="HallWall3" unique_id=1527934957]
+
+[node name="HallCollision" type="CollisionShape3D" parent="HallWall3/HallBody" unique_id=42245501]
+transform = Transform3D(1, 0, 2.4158453e-13, 0, 0.9999999, 0, 0, 0, 1, 0.19068909, -0.081096604, 0)
+shape = SubResource("BoxShape3D_53m36")
+
+[node name="HallWall4" type="Sprite3D" parent="." unique_id=934228303]
+transform = Transform3D(-1.0693218, 0, -8.7422784e-08, 0, 0.79763114, 0, 9.3483074e-08, 0, -0.99999994, 11.621109, 0, 21.254044)
+texture = ExtResource("3_ch3qi")
+
+[node name="HallBody" type="RigidBody3D" parent="HallWall4" unique_id=797663901]
+
+[node name="HallCollision" type="CollisionShape3D" parent="HallWall4/HallBody" unique_id=750483423]
+transform = Transform3D(1, 0, 2.4158453e-13, 0, 0.9999999, 0, 0, 0, 1, 0.19068909, -0.081096604, 0)
+shape = SubResource("BoxShape3D_53m36")
+
+[node name="HallWall2" type="Sprite3D" parent="." unique_id=707741959]
+transform = Transform3D(1.4022461e-07, 0, -0.99999994, 0, 0.79763126, 0, 1.0693218, 0, 1.3113417e-07, 15.626913, 0, 11.385253)
+texture = ExtResource("3_ch3qi")
+
+[node name="HallBody" type="RigidBody3D" parent="HallWall2" unique_id=2099427517]
+
+[node name="HallCollision" type="CollisionShape3D" parent="HallWall2/HallBody" unique_id=656573743]
+transform = Transform3D(1, 0, 2.4158453e-13, 0, 0.9999999, 0, 0, 0, 1, 0.19068909, -0.081096604, 0)
+shape = SubResource("BoxShape3D_53m36")
+
+[node name="curve_wall4" parent="." unique_id=1231628986 instance=ExtResource("4_mi376")]
+transform = Transform3D(4.38714, 0, 0, 0, 5.788869, 0, 0, 0, 1.695756, 8.705425, 0, -0.011892736)
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=1401273147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5034847, 1.8330367, -0.87586164)
+light_color = Color(0.9843137, 0.8392157, 0.67058825, 1)
+light_indirect_energy = 6.703
+light_size = 0.658
+area_range = 2.587
+area_attenuation = 3.178
+
+[node name="AreaLight3D2" type="AreaLight3D" parent="." unique_id=1787511684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.025038, 0.86563945, 0.6655202)
+light_energy = 16.0
+light_indirect_energy = 11.772
+light_volumetric_fog_energy = 1.65
+light_size = 0.41
+light_specular = 0.0
+area_range = 10.492
+area_attenuation = 3.376
+
+[node name="AreaLight3D5" type="AreaLight3D" parent="." unique_id=1155732798]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.615431, 0.86563945, 13.9603195)
+light_energy = 16.0
+light_indirect_energy = 11.772
+light_volumetric_fog_energy = 1.65
+light_size = 0.41
+light_specular = 0.0
+area_range = 10.492
+area_attenuation = 3.376
+
+[node name="AreaLight3D3" type="AreaLight3D" parent="." unique_id=883141121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.434243, 0.86563945, -0.67481184)
+light_energy = 0.5
+light_indirect_energy = 6.703
+light_size = 0.658
+area_range = 2.587
+area_attenuation = 3.178
+
+[node name="AreaLight3D4" type="AreaLight3D" parent="." unique_id=559691669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.363824, 0.86563945, -0.44629622)
+light_energy = 0.5
+light_indirect_energy = 6.703
+light_size = 0.658
+area_range = 2.587
+area_attenuation = 3.178
+
+[node name="Floor" type="Sprite3D" parent="." unique_id=891247613]
+transform = Transform3D(17.800001, 0, 0, 0, -7.4712483e-07, 0.49964184, 0, -17.092224, -2.1840039e-08, 11.267511, -2.6932793, 4.7523117)
+sorting_offset = -10.0
+texture = ExtResource("5_1u57w")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Floor" unique_id=1516864178]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/RigidBody3D" unique_id=2124814194]
+shape = SubResource("BoxShape3D_ch3qi")
+
+[node name="Ceiling" type="Sprite3D" parent="." unique_id=1077515464]
+transform = Transform3D(91.25679, 0, 0, 0, -3.4421967e-06, 0.031756796, 0, -78.74828, -1.3881337e-09, 10.014582, 4.5128536, 5.684288)
+sorting_offset = -10.0
+modulate = Color(0.7529412, 0.6627451, 0.5764706, 1)
+texture = SubResource("CanvasTexture_q1qk4")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=782288317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.69451, 0, 20.84944)
+script = ExtResource("6_21eex")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=2144419865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.69451, -0.12283325, 20.84944)
+top_level = true
+shape = SubResource("CapsuleShape3D_53m36")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=596337816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6740155, 0)
+
+[node name="curve_wall_bedroom" parent="." unique_id=681551472 instance=ExtResource("7_ch3qi")]
+transform = Transform3D(-1.7886612e-07, 0, 1.3234686, 0, 6.018038, 0, -4.09198, 0, -5.7850645e-08, 5.849352, -0.034606934, 14.934998)

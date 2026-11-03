@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 #region - VARS
+@onready var version_number_label = $VersionNumberLabel
+
 @onready var title_and_buttons = $GameTitleAndButtons
 @onready var options_menu = $OptionsMenu
 @onready var credits_menu = $CreditsMenu
@@ -20,6 +22,8 @@ extends CanvasLayer
 #endregion
 
 func _ready() -> void:
+	var app_version = ProjectSettings.get_setting("application/config/version")
+	version_number_label.text = "v" + app_version
 	continue_game_button.disabled = true
 	quit_button.visible = false
 	#if save file exists
