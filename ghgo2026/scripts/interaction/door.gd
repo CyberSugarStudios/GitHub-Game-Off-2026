@@ -9,7 +9,7 @@ signal unlocked
 
 @export_group("Lock")
 @export_range(0, 5) var lock_bars: int = 0
-@export var tranfer_rate: float = 1.5
+@export var transfer_rate: float = 1.5
 @export var unlocked_padlock_texture: Texture2D
 
 @export_group("Lock Bar Look")
@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if not _transferring:
 		return
 	
-	var wanted := minf(tranfer_rate * delta, lock_bars - _progress)
+	var wanted := minf(transfer_rate * delta, lock_bars - _progress)
 	var spent := minf(wanted, GameState.energy)
 	if spent > 0.0:
 		GameState.try_spend(spent)
