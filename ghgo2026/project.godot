@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 [autoload]
 
 GameState="*uid://cmu56bxxnvwt"
+Events="*uid://bmrr1rqe06xum"
 
 [display]
 
@@ -28,7 +29,7 @@ window/stretch/aspect="expand"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Jordon/Downloads/mockup.mp4"
+movie_writer/movie_file="C:/Users/Jordon/Downloads/astral_demo.avi"
 
 [gui]
 
@@ -80,6 +81,12 @@ pause={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="world"
+3d_physics/layer_2="interactable"
+3d_physics/layer_3="player"
 
 [physics]
 

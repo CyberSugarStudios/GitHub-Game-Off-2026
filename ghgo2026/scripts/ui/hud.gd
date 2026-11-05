@@ -1,9 +1,13 @@
 extends CanvasLayer
 
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
+@export var prompt_available_color := Color(1.0, 1.0, 1.0)
+@export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
 
 @onready var astral_filter: ColorRect = $AstralRealmColorFilter
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
+@onready var crosshair: ColorRect = $Crosshair
+@onready var interaction_prompt: Label = $InteractionPrompt
 
 var _bars: Array[ProgressBar] = []
 var _astral_material: ShaderMaterial
@@ -22,16 +26,19 @@ func _ready() -> void:
 	
 	GameState.energy_changed.connect(_on_energy_changed)
 	GameState.plane_changed.connect(_on_plane_changed)
+	Events.interaction_prompt_changed.connect(_on_interaction_prompt_changed)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
-	_on_plane_changed(GameState.in_astral)
+	_on_plane_changed(1.0 if GameState.in_astral else 0.0)
+	_on_interaction_prompt_changed("", false)
 
 func _on_energy_changed(energy: float, max_bars: int) -> void:
 	for i in _bars.size():
 		_bars[i].visible = i < max_bars
 		_bars[i].value = clampf(energy - i, 0.0, 1.0)
 
+#region - ASTRAL EFFECT
 func _on_plane_changed(in_astral: bool) -> void:
 	if _astral_tween:
 		_astral_tween.kill()
@@ -48,3 +55,10 @@ func _set_astral_strength(value: float) -> void:
 	_astral_strength = value
 	_astral_material.set_shader_parameter("strength", value)
 	astral_filter.visible = value > 0.001
+#endregion
+
+func _on_interaction_prompt_changed(text: String, available: bool) -> void:
+	interaction_prompt.visible = text != ""
+	interaction_prompt.text = ("E   " + text) if available else text
+	interaction_prompt.modulate = prompt_available_color if available else prompt_blocked_color
+	crosshair.modulate.a = 1.0 if text != "" else 0.35

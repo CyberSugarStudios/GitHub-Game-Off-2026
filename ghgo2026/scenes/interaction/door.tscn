@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://o0yxjkwwmwob"]
+
+[ext_resource type="Script" uid="uid://ckxeuukdgllw" path="res://scripts/interaction/door.gd" id="1_pdfrb"]
+[ext_resource type="Texture2D" uid="uid://yawdnjlrrxiu" path="res://assets/sprites/padlock.jpeg" id="2_t0o22"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
+size = Vector3(0.9, 2, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_53m36"]
+size = Vector3(0.9, 2, 0.3)
+
+[node name="Door" type="Area3D" unique_id=1087017087]
+script = ExtResource("1_pdfrb")
+prompt_text = "Shift through door"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=374691443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_53m36")
+
+[node name="LockIcon" type="Node3D" parent="." unique_id=997557799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.16)
+
+[node name="BarPips" type="Node3D" parent="LockIcon" unique_id=1279087040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+
+[node name="PadLock" type="Sprite3D" parent="LockIcon" unique_id=707289548]
+pixel_size = 0.0004
+texture = ExtResource("2_t0o22")
+
+[node name="TEMPMeshInstance3D" type="MeshInstance3D" parent="." unique_id=358663508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_53m36")
