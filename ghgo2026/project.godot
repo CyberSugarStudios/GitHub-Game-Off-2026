@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GHGO2026"
-config/version="2026.11.3.0825.0.0.1"
+config/version="2026.11.4.1630.0.0.1"
 run/main_scene="uid://mkfk5y7y41xb"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 #region - VARS
 @onready var version_number_label = $VersionNumberLabel
