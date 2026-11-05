@@ -11,16 +11,7 @@ size = Vector3(0.9, 2, 0.3)
 
 [node name="Door" type="Area3D" unique_id=1087017087]
 script = ExtResource("1_pdfrb")
-lock_bars = null
-tranfer_rate = null
-bar_size = null
-bar_spacing = null
 prompt_text = "Shift through door"
-realm = null
-energy_cost = null
-required_bars = null
-one_shot = null
-story_id = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=374691443]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

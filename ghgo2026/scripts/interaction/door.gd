@@ -13,8 +13,8 @@ signal unlocked
 @export var unlocked_padlock_texture: Texture2D
 
 @export_group("Lock Bar Look")
-@export var bar_size := Vector2(0.04, 0.1)
-@export var bar_spacing: float = 0.07
+@export var bar_size := Vector2(0.16, 0.035)
+@export var bar_spacing: float = 0.05
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
 #region - ONREADY
@@ -108,7 +108,7 @@ func _build_bars() -> void:
 		var bar := MeshInstance3D.new()
 		bar.mesh = quad
 		bar.material_override = material
-		bar.position.x = (i - (lock_bars - 1) / 2.0) * bar_spacing
+		bar.position.y = i * bar_spacing
 		bar_row.add_child(bar)
 		_bar_materials.append(material)
 
