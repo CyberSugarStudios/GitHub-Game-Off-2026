@@ -5,9 +5,6 @@
 [ext_resource type="FontFile" uid="uid://u8yid5ttfx8s" path="res://assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf" id="3_a4ium"]
 [ext_resource type="Theme" uid="uid://81yxjnb27kjl" path="res://resources/interim_main_theme.tres" id="4_a4ium"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53m36"]
-bg_color = Color(0.74509805, 0.078431375, 0.078431375, 1)
-
 [node name="TitleScreen" type="Control" unique_id=677689258]
 layout_mode = 3
 anchors_preset = 15
@@ -49,8 +46,8 @@ grow_vertical = 2
 [node name="GameTitle(WorkingTitle)" type="RichTextLabel" parent="GameTitleAndButtons" unique_id=401937619]
 custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_w8uqo")
-theme_override_font_sizes/normal_font_size = 178
+theme_type_variation = &"TitleText"
+theme_override_font_sizes/normal_font_size = 188
 text = "Interim"
 scroll_active = false
 horizontal_alignment = 1
@@ -105,6 +102,7 @@ anchor_right = 1.0
 anchor_bottom = 0.15400001
 offset_bottom = 0.20799255
 grow_horizontal = 2
+theme_type_variation = &"TitleText"
 theme_override_fonts/normal_font = ExtResource("2_w8uqo")
 theme_override_font_sizes/normal_font_size = 100
 text = "Options"
@@ -133,10 +131,8 @@ offset_top = 15.0
 offset_right = -15.0
 offset_bottom = 65.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_53m36")
+theme_type_variation = &"CloseButton"
 text = "x"
-icon_alignment = 1
 
 [node name="CreditsMenu" type="CanvasLayer" parent="." unique_id=1252186975]
 visible = false
@@ -156,6 +152,7 @@ anchor_right = 1.0
 anchor_bottom = 0.15400001
 offset_bottom = -99.79201
 grow_horizontal = 2
+theme_type_variation = &"TitleText"
 theme_override_fonts/normal_font = ExtResource("2_w8uqo")
 theme_override_font_sizes/normal_font_size = 100
 text = "Credits"
@@ -175,10 +172,9 @@ offset_top = 0.095998764
 offset_right = -0.024047852
 offset_bottom = 0.19999695
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_53m36")
+theme = ExtResource("4_a4ium")
+theme_type_variation = &"CloseButton"
 text = "x"
-icon_alignment = 1
 
 [node name="Label" type="Label" parent="CreditsMenu" unique_id=377700736]
 anchors_preset = -1
@@ -202,15 +198,19 @@ License URL: https://openfontlicense.org"
 visible = false
 
 [node name="ConfirmCloseBackground" type="ColorRect" parent="ConfirmClosePopUp" unique_id=1044828397]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(300, 250)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -125.0
+offset_right = 150.0
+offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.7490196)
+color = Color(0.31764707, 0.2509804, 0.23137255, 1)
 
 [node name="ConfirmCloseLabel" type="RichTextLabel" parent="ConfirmClosePopUp/ConfirmCloseBackground" unique_id=1407825718]
 custom_minimum_size = Vector2(0, 100)
@@ -218,7 +218,8 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 60
+theme_type_variation = &"TitleText"
+theme_override_font_sizes/normal_font_size = 80
 text = "Confirm?"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -23,3 +23,8 @@ mono_crash.*.json
 *.exe
 # Uncomment if your project does not version PCK files as runtime dependencies.
 # *.pck
+
+# Blender backups and autosaves (Blender writes these next to every .blend on save)
+*.blend1
+*.blend2
+*.blend@

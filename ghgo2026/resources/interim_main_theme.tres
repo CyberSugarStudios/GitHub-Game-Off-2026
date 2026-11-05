@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="1_8anr7"]
 [ext_resource type="FontFile" uid="uid://u8yid5ttfx8s" path="res://assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf" id="2_rw08r"]
+[ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="3_7fa6x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rw08r"]
 bg_color = Color(0.31764707, 0.2509804, 0.23137255, 0.49803922)
@@ -17,6 +18,9 @@ bg_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmnfm"]
 bg_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+bg_color = Color(0.74509805, 0.078431375, 0.078431375, 1)
 
 [resource]
 Button/colors/font_color = Color(0.7137255, 0.68235296, 0.6039216, 1)
@@ -34,7 +38,13 @@ Button/styles/focus = SubResource("StyleBoxFlat_7fa6x")
 Button/styles/hover = SubResource("StyleBoxFlat_2lyf0")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_7008c")
 Button/styles/pressed = SubResource("StyleBoxFlat_jmnfm")
+CloseButton/base_type = &"Button"
+CloseButton/colors/font_color = Color(1, 1, 1, 1)
+CloseButton/font_sizes/font_size = 48
+CloseButton/styles/normal = SubResource("StyleBoxFlat_sugp2")
 Label/colors/font_color = Color(0.7137255, 0.68235296, 0.6039216, 1)
 Label/colors/font_outline_color = Color(0.7137255, 0.68235296, 0.6039216, 1)
 Label/constants/outline_size = 2
 Label/fonts/font = ExtResource("2_rw08r")
+TitleText/base_type = &"RichTextLabel"
+TitleText/fonts/normal_font = ExtResource("3_7fa6x")
