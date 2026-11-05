@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cui1imxye4xc8" path="res://scripts/ui/title_screen.gd" id="1_eb34j"]
 [ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="2_w8uqo"]
 [ext_resource type="FontFile" uid="uid://u8yid5ttfx8s" path="res://assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf" id="3_a4ium"]
+[ext_resource type="Theme" uid="uid://81yxjnb27kjl" path="res://resources/interim_main_theme.tres" id="4_a4ium"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53m36"]
 bg_color = Color(0.74509805, 0.078431375, 0.078431375, 1)
@@ -60,6 +61,7 @@ layout_mode = 2
 
 [node name="ContinueGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1996352329]
 layout_mode = 2
+theme = ExtResource("4_a4ium")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_a4ium")
@@ -68,6 +70,7 @@ text = "Continue"
 
 [node name="NewGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=534820059]
 layout_mode = 2
+theme = ExtResource("4_a4ium")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_a4ium")
@@ -75,6 +78,7 @@ text = "New Game"
 
 [node name="OptionsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=9048306]
 layout_mode = 2
+theme = ExtResource("4_a4ium")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_a4ium")
@@ -82,6 +86,7 @@ text = "Options"
 
 [node name="CreditsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1401560807]
 layout_mode = 2
+theme = ExtResource("4_a4ium")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_a4ium")
@@ -90,6 +95,7 @@ text = "Credits
 
 [node name="QuitButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=49289049]
 layout_mode = 2
+theme = ExtResource("4_a4ium")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_a4ium")
@@ -106,13 +112,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7490196)
 
-[node name="OptionsLabels" type="RichTextLabel" parent="OptionsMenu" unique_id=1918098394]
+[node name="OptionsLabel" type="RichTextLabel" parent="OptionsMenu" unique_id=2131748974]
 custom_minimum_size = Vector2(0, 100)
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
+anchor_bottom = 0.15400001
+offset_bottom = 0.20799255
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 60
+theme_override_fonts/normal_font = ExtResource("2_w8uqo")
+theme_override_font_sizes/normal_font_size = 100
 text = "Options"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 

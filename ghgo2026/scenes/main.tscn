@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://mkfk5y7y41xb"]
 
 [ext_resource type="PackedScene" uid="uid://b8u83l3sopplg" path="res://assets/models/hall.glb" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://cyra5s526v5xl" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://cyra5s526v5xl" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://ch2ws6wo0sufh" path="res://scenes/player_first_person.tscn" id="2_0wfyh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
