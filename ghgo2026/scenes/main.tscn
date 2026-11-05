@@ -13,7 +13,7 @@ script = ExtResource("1_sugp2")
 [node name="HallModel" parent="." unique_id=499633457 instance=ExtResource("1_o5qli")]
 
 [node name="PlayerFirstPerson" parent="." unique_id=1491077890 instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9077873, -0.10335493, -5.6196113)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99468, 0, -5.5272307)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=775024507]
 
