@@ -1,4 +1,4 @@
-# \# Interim
+\# Interim
 \*A GitHub Game Off 2026 entry by CyberSugar Studios. Theme: SHIFT.\*
 
 Emily wakes in her home, unable to remember why her parents can't see her.
@@ -8,7 +8,7 @@ Shift between the realms to manipulate your surroundings and listen until the tr
 > If you are struggling: call or text \*\*988\*\* (US) or visit \*\*findahelpline.com\*\*.
  
 
-# \## Play
+\## Play
 \- itch.io: \_link once published\_
 
 \## Controls
@@ -21,12 +21,11 @@ Shift between the realms to manipulate your surroundings and listen until the tr
 | Esc / P | Pause |
  
 
-# \## Built with
+\## Built with
 Godot 4.7.2 (GL Compatibility renderer)
  
-# \## Third-party assets
+\## Third-party assets
 \- Allura and Josefin Sans fonts - SIL Open Font License 1.1
  
-
-# \## License
+\## License
 Code and assets © 2026 CyberSugar Studios and individual contributors. All rights reserved.
