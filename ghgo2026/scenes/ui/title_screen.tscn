@@ -58,47 +58,33 @@ vertical_alignment = 1
 
 [node name="TitleButtons" type="VBoxContainer" parent="GameTitleAndButtons" unique_id=1948832170]
 layout_mode = 2
+theme = ExtResource("4_a4ium")
 
 [node name="ContinueGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1996352329]
 layout_mode = 2
-theme = ExtResource("4_a4ium")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_a4ium")
 disabled = true
 text = "Continue"
 
 [node name="NewGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=534820059]
 layout_mode = 2
-theme = ExtResource("4_a4ium")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_a4ium")
 text = "New Game"
 
 [node name="OptionsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=9048306]
 layout_mode = 2
-theme = ExtResource("4_a4ium")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_a4ium")
 text = "Options"
 
 [node name="CreditsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1401560807]
 layout_mode = 2
-theme = ExtResource("4_a4ium")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_a4ium")
 text = "Credits
 "
 
 [node name="QuitButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=49289049]
 layout_mode = 2
-theme = ExtResource("4_a4ium")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_a4ium")
 text = "Quit"
 
 [node name="OptionsMenu" type="CanvasLayer" parent="." unique_id=833037058]
