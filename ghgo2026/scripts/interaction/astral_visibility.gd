@@ -1,7 +1,7 @@
 class_name AstralVisibility
 extends Node
 
-enum Mode { ANY, ASTRAL_ONLY, LIVING_ONLY }
+enum Mode { ASTRAL_ONLY, LIVING_ONLY, ANY }
 
 @export var mode: Mode = Mode.ASTRAL_ONLY
 
@@ -12,7 +12,10 @@ func _ready() -> void:
 	_apply(GameState.in_astral)
 
 func _apply(in_astral: bool) -> void:
-	if mode == Mode.ASTRAL_ONLY:
-		_target.visible = in_astral
-	else:
-		_target.visible = not in_astral
+	match mode:
+		Mode.ASTRAL_ONLY:
+			_target.visible = in_astral
+		Mode.LIVING_ONLY:
+			_target.visible = not in_astral
+		Mode.ANY:
+			_target.visible = true

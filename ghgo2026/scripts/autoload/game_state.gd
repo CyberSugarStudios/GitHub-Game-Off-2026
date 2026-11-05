@@ -6,6 +6,7 @@ signal energy_changed(energy: float, max_bars: int)
 signal max_bars_changed(max_bars: int)
 signal plane_changed(in_astral: bool)
 signal forced_out_of_astral
+signal flag_set(id: StringName)
 
 #region - CONSTS
 const STARTING_BARS := 1
@@ -18,6 +19,7 @@ const MIN_ENERGY_TO_ENTER_ASTRAL := 1.0 #one full bar recharge required
 var max_bars: int = STARTING_BARS #door check
 var energy: float = STARTING_BARS #powers and astral drains this
 var in_astral: bool = false
+var flags: Dictionary[StringName, bool]  = {}
 #endregion
 #endregion
 #endregion
@@ -84,12 +86,24 @@ func restore_memory() -> void:
 	_set_energy(max_bars)
 #endregion
 
+#region - FLAGS
+func set_flag(id: StringName) -> void:
+	if flags.has(id):
+		return
+	flags[id] = true
+	flag_set.emit(id)
+
+func has_flag(id: StringName) -> bool:
+	return flags.has(id)
+#endregion
+
 func reset() -> void:
 	max_bars = STARTING_BARS
 	in_astral = false
 	max_bars_changed.emit(max_bars)
 	plane_changed.emit(false)
 	_set_energy(max_bars)
+	flags.clear()
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)

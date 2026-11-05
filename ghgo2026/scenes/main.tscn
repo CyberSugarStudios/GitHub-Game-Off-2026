@@ -206,7 +206,7 @@ text = "Astral Realm Only"
 
 [node name="Node" type="Node" parent="TestBoxLivingOnly" unique_id=1421388199]
 script = ExtResource("8_85g3d")
-mode = 2
+mode = 1
 
 [node name="AstralTrace" type="Area3D" parent="." unique_id=6416253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1983471, 0.6703705)
@@ -232,6 +232,7 @@ text = "Living Realm Only"
 script = ExtResource("8_85g3d")
 
 [node name="Door" parent="." unique_id=1087017087 instance=ExtResource("9_choun")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.84173584, 0, -1.516571)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7005005, 0, -1.516571)
 room_id = &"bathroom"
+lock_bars = 2
 required_bars = 2

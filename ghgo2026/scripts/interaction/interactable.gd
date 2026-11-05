@@ -25,6 +25,9 @@ func is_focusable() -> bool:
 		return false
 	return is_visible_in_tree()
 
+func get_prompt_text() -> String:
+	return prompt_text
+
 func get_block_reason() -> String:
 	match realm:
 		Realm.LIVING_ONLY:

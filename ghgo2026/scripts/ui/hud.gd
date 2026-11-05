@@ -30,7 +30,7 @@ func _ready() -> void:
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
-	_on_plane_changed(1.0 if GameState.in_astral else 0.0)
+	_set_astral_strength(1.0 if GameState.in_astral else 0.0)
 	_on_interaction_prompt_changed("", false)
 
 func _on_energy_changed(energy: float, max_bars: int) -> void:

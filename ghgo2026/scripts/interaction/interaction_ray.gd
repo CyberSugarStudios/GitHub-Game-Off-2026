@@ -13,7 +13,7 @@ func _ready() -> void:
 	collide_with_areas = true
 	collide_with_bodies = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var found: Interactable = null
 	if is_colliding():
 		found = get_collider() as Interactable

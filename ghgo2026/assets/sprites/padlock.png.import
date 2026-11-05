@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yawdnjlrrxiu"
-path.s3tc="res://.godot/imported/padlock.jpeg-4101b868889b6dffb929eb304a15af8e.s3tc.ctex"
+uid="uid://bh13o3a18t67f"
+path.s3tc="res://.godot/imported/padlock.png-94bdb9113a2a24706249d7b9010c16d0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/padlock.jpeg"
-dest_files=["res://.godot/imported/padlock.jpeg-4101b868889b6dffb929eb304a15af8e.s3tc.ctex"]
+source_file="res://assets/sprites/padlock.png"
+dest_files=["res://.godot/imported/padlock.png-94bdb9113a2a24706249d7b9010c16d0.s3tc.ctex"]
 
 [params]
 
