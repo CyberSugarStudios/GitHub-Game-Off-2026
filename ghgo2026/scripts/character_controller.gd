@@ -23,16 +23,25 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.0025
 @export var invert_y: bool = false
 @export var max_pitch_degrees: float = 80.0
+
+@export_group("Astral Feel")
+@export var astral_fov_boost: float = 8.0
+@export var fov_transition_time: float = 0.5
 #endregion
 #region - ONREADY
 @onready var camera: Camera3D = $PlayerFirstPersonCamera
 #endregion
 var _last_position: Vector3
+
+var _base_fov: float
+var _fov_tween: Tween
 #endregion
 #endregion
 
 func _ready() -> void:
 	_last_position = global_position
+	_base_fov = camera.fov
+	GameState.plane_changed.connect(_on_plane_changed)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -68,3 +77,11 @@ func _report_distance_moved() -> void:
 	var moved := global_position.distance_to(_last_position)
 	_last_position = global_position
 	GameState.drain_for_movement(moved)
+
+func _on_plane_changed(in_astral: bool) -> void:
+	if _fov_tween:
+		_fov_tween.kill()
+	_fov_tween = create_tween()
+	var target_fov := _base_fov + (astral_fov_boost if in_astral else 0.0)
+	_fov_tween.tween_property(camera, "fov", target_fov, fov_transition_time).set_trans(Tween.TRANS_SINE) \
+	.set_ease(Tween.EASE_OUT)
