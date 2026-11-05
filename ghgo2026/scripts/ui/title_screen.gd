@@ -24,12 +24,12 @@ extends Control
 func _ready() -> void:
 	var app_version = ProjectSettings.get_setting("application/config/version")
 	version_number_label.text = "v" + app_version
+	
+	# Enabled later after save system exists
 	continue_game_button.disabled = true
-	quit_button.visible = false
-	#if save file exists
-		#continue_game_button.disabled = false
-	#if on PC (not HTML)
-		#quit_button.visible = true
+	
+	# Brower can't use quit button
+	quit_button.visible = not OS.has_feature("web")
 	
 	options_button.pressed.connect(on_options_menu_button_pressed)
 	close_options_button.pressed.connect(on_close_options_button_pressed)
@@ -60,7 +60,7 @@ func on_quit_button_pressed() -> void:
 	title_and_buttons.visible = false
 
 func on_confirm_close_button_pressed() -> void:
-	queue_free()
+	get_tree().quit()
 
 func on_cancel_close_button_pressed() -> void:
 	confirm_close_menu.visible = false
