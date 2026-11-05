@@ -11,12 +11,18 @@ config_version=5
 [application]
 
 config/name="Interim"
-config/version="2026.11.4.1645.0.0.1"
+config/version="2026.11.5.1045.0.0.2"
 run/main_scene="uid://t7qmmk1hf22j"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[autoload]
+
+GameState="*uid://cmu56bxxnvwt"
+
 [display]
 
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

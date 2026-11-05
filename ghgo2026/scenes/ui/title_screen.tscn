@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://t7qmmk1hf22j"]
 
 [ext_resource type="Script" uid="uid://cui1imxye4xc8" path="res://scripts/ui/title_screen.gd" id="1_eb34j"]
-[ext_resource type="FontFile" uid="uid://u8yid5ttfx8s" path="res://assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf" id="3_a4ium"]
 
 [node name="TitleScreen" type="Control" unique_id=677689258]
 layout_mode = 3
@@ -66,8 +65,7 @@ text = "Options"
 
 [node name="CreditsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1401560807]
 layout_mode = 2
-text = "Credits
-"
+text = "Credits"
 
 [node name="QuitButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=49289049]
 layout_mode = 2
@@ -82,7 +80,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.7490196)
+color = Color(0.31764707, 0.2509804, 0.23137255, 0.6)
 
 [node name="OptionsLabel" type="RichTextLabel" parent="OptionsMenu" unique_id=2131748974]
 custom_minimum_size = Vector2(0, 100)
@@ -131,7 +129,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.7490196)
+color = Color(0.31764707, 0.2509804, 0.23137255, 0.6)
 
 [node name="CreditsLabel" type="RichTextLabel" parent="CreditsMenu" unique_id=1565112286]
 custom_minimum_size = Vector2(0, 100)
@@ -162,23 +160,22 @@ grow_horizontal = 0
 theme_type_variation = &"CloseButton"
 text = "x"
 
-[node name="Label" type="Label" parent="CreditsMenu" unique_id=377700736]
+[node name="CreditsText" type="Label" parent="CreditsMenu" unique_id=377700736]
 anchors_preset = -1
-anchor_top = 0.804
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 0.0079956055
+anchor_left = 0.011284722
+anchor_top = 0.15432099
+anchor_right = 0.9869792
+anchor_bottom = 0.97993827
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_a4ium")
-theme_override_font_sizes/font_size = 19
-text = "This game uses the Allura and Josefin Sans fonts.
+grow_vertical = 2
+text = "Name - Title - Link
+
+This game uses the Allura and Josefin Sans fonts.
 Copyright 2010 The Allura Project Authors (https://github.com/googlefonts/allura)
 Copyright 2010 The Josefin Sans Project Authors (https://github.com/ThomasJockin/JosefinSansFont-master), with Reserved Font Name \"Josefin Sans\".
 These Font Softwares are licensed under the SIL Open Font License, Version 1.1.
 License URL: https://openfontlicense.org"
+metadata/_edit_use_anchors_ = true
 
 [node name="ConfirmClosePopUp" type="CanvasLayer" parent="." unique_id=1987680131]
 visible = false
@@ -196,7 +193,7 @@ offset_right = 150.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.31764707, 0.2509804, 0.23137255, 1)
+color = Color(0.31764707, 0.2509804, 0.23137255, 0.6)
 
 [node name="ConfirmCloseLabel" type="RichTextLabel" parent="ConfirmClosePopUp/ConfirmCloseBackground" unique_id=1407825718]
 custom_minimum_size = Vector2(0, 100)
@@ -205,8 +202,8 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 theme_type_variation = &"TitleText"
-theme_override_font_sizes/normal_font_size = 80
-text = "Confirm?"
+theme_override_font_sizes/normal_font_size = 57
+text = "Confirm Quit?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -216,7 +213,9 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = 11.0
 offset_top = -2.0
+offset_right = -11.0
 offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2

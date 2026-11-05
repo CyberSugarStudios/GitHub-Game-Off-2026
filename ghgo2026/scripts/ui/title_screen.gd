@@ -1,5 +1,7 @@
 extends Control
 
+#region - INIT
+const GAME_SCENE_PATH := "res://scenes/main.tscn"
 #region - VARS
 @onready var version_number_label = $VersionNumberLabel
 
@@ -20,8 +22,12 @@ extends Control
 @onready var confirm_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/ConfirmCloseButton
 @onready var cancel_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/CancelCloseButton
 #endregion
+#endregion
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	new_game_button.pressed.connect(on_new_game_pressed)
+	
 	var app_version = ProjectSettings.get_setting("application/config/version")
 	version_number_label.text = "v" + app_version
 	
@@ -38,6 +44,10 @@ func _ready() -> void:
 	quit_button.pressed.connect(on_quit_button_pressed)
 	confirm_close_button.pressed.connect(on_confirm_close_button_pressed)
 	cancel_close_button.pressed.connect(on_cancel_close_button_pressed)
+
+func on_new_game_pressed() -> void:
+	GameState.reset()
+	get_tree().change_scene_to_file(GAME_SCENE_PATH)
 
 func on_options_menu_button_pressed() -> void:
 	options_menu.visible = true
