@@ -7,6 +7,7 @@ radius = 0.3
 height = 1.6
 
 [node name="PlayerFirstPerson" type="CharacterBody3D" unique_id=1491077890]
+motion_mode = 1
 script = ExtResource("1_u1uxq")
 
 [node name="PlayerCollider" type="CollisionShape3D" parent="." unique_id=1737941793]

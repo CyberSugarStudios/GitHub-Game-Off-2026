@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	
 	_report_distance_moved()
 
-func _look(relative: Vector3) -> void:
+func _look(relative: Vector2) -> void:
 	rotate_y(-relative.x * mouse_sensitivity)
 	var pitch_direction := 1.0 if invert_y else -1.0
 	camera.rotate_x(pitch_direction * relative.y * mouse_sensitivity)

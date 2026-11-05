@@ -13,8 +13,8 @@ func _ready() -> void:
 			bar.step = 0.0
 			_bars.append(bar)
 	
-	GameState.energy_changed.emit(_on_energy_changed)
-	GameState.plane_changed.emit(_on_plane_changed)
+	GameState.energy_changed.connect(_on_energy_changed)
+	GameState.plane_changed.connect(_on_plane_changed)
 	
 	_on_energy_changed(GameState.energy, GameState.max_bars)
 	_on_plane_changed(GameState.in_astral)

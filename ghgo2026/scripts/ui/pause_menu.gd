@@ -14,13 +14,21 @@ func _ready() -> void:
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if get_tree().paused:
 		return
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_had_mouse_capture = true
 	elif _had_mouse_capture:
 		open()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if get_tree().paused:
+			resume()
+		else:
+			open()
+		get_viewport().set_input_as_handled()
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and not get_tree().paused:
