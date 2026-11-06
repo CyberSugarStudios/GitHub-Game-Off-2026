@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 
 GameState="*uid://cmu56bxxnvwt"
 Events="*uid://bmrr1rqe06xum"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [display]
 
@@ -30,6 +31,10 @@ window/stretch/aspect="expand"
 [editor]
 
 movie_writer/movie_file="C:/Users/Jordon/Downloads/astral_demo.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [gui]
 
