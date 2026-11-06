@@ -168,8 +168,10 @@ anchor_right = 0.9869792
 anchor_bottom = 0.97993827
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 text = "Name - Title - Link
 
+Dialogue Manager by Nathan Hoad - MIT License
 This game uses the Allura and Josefin Sans fonts.
 Copyright 2010 The Allura Project Authors (https://github.com/googlefonts/allura)
 Copyright 2010 The Josefin Sans Project Authors (https://github.com/ThomasJockin/JosefinSansFont-master), with Reserved Font Name \"Josefin Sans\".
