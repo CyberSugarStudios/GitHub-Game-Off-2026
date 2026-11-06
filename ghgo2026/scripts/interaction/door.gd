@@ -6,6 +6,7 @@ signal unlocked
 
 #region - EXPORTS
 @export var room_id: StringName
+@export var exit_distance: float = 0.6
 
 @export_group("Lock")
 @export_range(0, 5) var lock_bars: int = 0
@@ -60,7 +61,7 @@ func _on_interacted() -> void:
 	if is_locked():
 		_transferring = true
 	else:
-		Events.door_opened.emit(room_id)
+		Events.door_opened.emit(room_id, get_exit_transform())
 		print("Door opened > room: ", room_id)
 #endregion
 
@@ -133,6 +134,12 @@ func _play_fail_shake() -> void:
 	for offset in [0.03, -0.03, 0.02, 0.0]:
 		tween.tween_property(lock_icon, "position:x", _icon_rest_position.x + offset, 0.05)
 #endregion
+
+func get_exit_transform() -> Transform3D:
+	var into_hall := global_basis.z.normalized()
+	into_hall.y = 0.0
+	var spot := global_position + into_hall * exit_distance
+	return Transform3D(Basis.looking_at(into_hall, Vector3.UP), spot)
 
 func _unlock_flag() -> StringName:
 	return StringName("door_unlocked_%s" % room_id)

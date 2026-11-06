@@ -17,6 +17,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if get_tree().paused:
 		return
+	if GameState.is_in_room():
+		_had_mouse_capture = false
+		return
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_had_mouse_capture = true
 	elif _had_mouse_capture:

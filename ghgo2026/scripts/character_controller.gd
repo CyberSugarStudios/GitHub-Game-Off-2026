@@ -43,6 +43,7 @@ func _ready() -> void:
 	_base_fov = camera.fov
 	GameState.plane_changed.connect(_on_plane_changed)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Events.returned_to_hall.connect(place_at)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED \
@@ -77,6 +78,14 @@ func _look(relative: Vector2) -> void:
 	camera.rotate_x(pitch_direction * relative.y * mouse_sensitivity)
 	var limit := deg_to_rad(max_pitch_degrees)
 	camera.rotation.x = clampf(camera.rotation.x, -limit, limit)
+
+func place_at(spot: Transform3D) -> void:
+	global_position = spot.origin
+	var forward := -spot.basis.z
+	look_at(global_position + Vector3(forward.x, 0.0, forward.z), Vector3.UP)
+	camera.rotation.x = 0.0
+	velocity = Vector3.ZERO
+	_last_position = global_position
 
 func _report_distance_moved() -> void:
 	var moved := global_position.distance_to(_last_position)

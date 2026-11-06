@@ -22,6 +22,7 @@ var _room_width := 0.0
 var _max_pan := 0.0
 var _pan_x := 0.0
 var _pan_velocity := 0.0
+var _exit_spot := Transform3D.IDENTITY
 
 func _ready() -> void:
 	room_ui.visible = false
@@ -35,12 +36,13 @@ func _exit_tree() -> void:
 	GameState.leave_room()
 
 #region - SHIFTING IN AND OUT OF ROOMS
-func enter_room(room_id: StringName) -> void:
+func enter_room(room_id: StringName, exit_spot: Transform3D) -> void:
 	if _busy or _room:
 		return
 	if not rooms.has(room_id):
 		push_warning("RoomView: no scene for room '%s'. Add it under RoomView > Rooms." % room_id)
 		return
+	_exit_spot = exit_spot
 	_busy = true
 	await _fade_to(1.0)
 	
@@ -68,6 +70,7 @@ func exit_room() -> void:
 	room_ui.visible = false
 	get_viewport().disable_3d = false
 	GameState.leave_room()
+	Events.returned_to_hall.emit(_exit_spot)
 	Events.interaction_prompt_changed.emit("", false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
