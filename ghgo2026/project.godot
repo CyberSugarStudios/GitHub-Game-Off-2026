@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Interim"
-config/version="2026.11.5.1045.0.0.2"
+config/version="2026.11.2.0040.0.0.2"
 run/main_scene="uid://t7qmmk1hf22j"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
@@ -35,7 +35,7 @@ window/stretch/aspect="expand"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Jordon/Downloads/astral_demo.avi"
+movie_writer/movie_file="C:/Users/Jordon/Downloads/audio_room_demo.avi"
 
 [editor_plugins]
 

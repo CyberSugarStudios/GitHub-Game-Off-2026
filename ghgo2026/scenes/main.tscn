@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://o0yxjkwwmwob" path="res://scenes/interaction/door.tscn" id="9_choun"]
 [ext_resource type="Script" uid="uid://c3jcsqsukf1fp" path="res://scripts/rooms/room_view.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
-[ext_resource type="AudioStream" uid="uid://bhjjnh47bcucv" path="res://assets/audio/PLACEHOLDER_test.mp3" id="12_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/Child Ghost Background 2 (D1).mp3" id="12_eb6dy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("5_tefeu")
