@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://b0npf7klgodos"]
+
+[ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_y5w4s"]
+[ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="2_e0elq"]
+[ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
+
+[sub_resource type="Gradient" id="Gradient_y5w4s"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y5w4s"]
+gradient = SubResource("Gradient_y5w4s")
+width = 3200
+height = 900
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_e0elq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0elq"]
+gradient = SubResource("Gradient_e0elq")
+width = 3200
+height = 900
+
+[sub_resource type="Gradient" id="Gradient_dfe1a"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dfe1a"]
+gradient = SubResource("Gradient_dfe1a")
+
+[sub_resource type="Gradient" id="Gradient_8pl6i"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
+gradient = SubResource("Gradient_8pl6i")
+
+[node name="Bathroom" type="Node2D" unique_id=1374467056]
+script = ExtResource("1_y5w4s")
+room_id = &"bathroom"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
+texture = SubResource("GradientTexture2D_y5w4s")
+centered = false
+
+[node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
+texture = SubResource("GradientTexture2D_e0elq")
+centered = false
+
+[node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
+script = ExtResource("2_e0elq")
+
+[node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
+z_index = 10
+
+[node name="Actors" type="Node2D" parent="." unique_id=843174555]
+z_index = 20
+
+[node name="TestParent" type="Sprite2D" parent="Actors" unique_id=1840463723]
+position = Vector2(677.9999, 364.00003)
+scale = Vector2(2.375, 6.09375)
+texture = SubResource("GradientTexture2D_dfe1a")
+
+[node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
+z_index = 30
+
+[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
+position = Vector2(464, 522)
+scale = Vector2(1.6875, 223.5)
+texture = SubResource("GradientTexture1D_8pl6i")
+
+[node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
+z_index = 40
+
+[node name="TestMirror" type="TextureButton" parent="Hotspots" unique_id=311590483]
+offset_left = 254.0
+offset_top = 122.0
+offset_right = 451.0
+offset_bottom = 407.0
+script = ExtResource("3_8pl6i")
+prompt_text = "Look in the mirror"
+story_id = &"bathroom_mirror"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="TestMirrorSmudge" type="TextureButton" parent="Hotspots" unique_id=851927085]
+offset_left = 338.0
+offset_top = 219.0
+offset_right = 409.0
+offset_bottom = 315.0
+script = ExtResource("3_8pl6i")
+prompt_text = "Touch smudge"
+realm = 2
+energy_cost = 0.25
+story_id = &"bathroom_mirror_smudge"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"

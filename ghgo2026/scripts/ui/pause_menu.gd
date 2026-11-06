@@ -21,6 +21,10 @@ func _process(_delta: float) -> void:
 		_had_mouse_capture = true
 	elif _had_mouse_capture:
 		open()
+	
+	if GameState.is_in_room():
+		_had_mouse_capture = false
+		return
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -44,7 +48,7 @@ func open() -> void:
 func resume() -> void:
 	visible = false
 	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if GameState.is_in_room() else Input.MOUSE_MODE_CAPTURED
 
 func _on_settings_pressed() -> void:
 	pass

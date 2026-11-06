@@ -59,6 +59,7 @@ func _set_astral_strength(value: float) -> void:
 
 func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 	interaction_prompt.visible = text != ""
-	interaction_prompt.text = ("E   " + text) if available else text
+	var key_hint := "Click   " if GameState.is_in_room() else "E   "
+	interaction_prompt.text = (key_hint + text) if available else text
 	interaction_prompt.modulate = prompt_available_color if available else prompt_blocked_color
 	crosshair.modulate.a = 1.0 if text != "" else 0.35

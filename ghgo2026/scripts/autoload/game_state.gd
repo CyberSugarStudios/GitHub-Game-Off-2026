@@ -7,6 +7,7 @@ signal max_bars_changed(max_bars: int)
 signal plane_changed(in_astral: bool)
 signal forced_out_of_astral
 signal flag_set(id: StringName)
+signal room_changed(room_id: StringName) #&"" should mean the hall
 
 #region - CONSTS
 const STARTING_BARS := 1
@@ -20,6 +21,7 @@ var max_bars: int = STARTING_BARS #door check
 var energy: float = STARTING_BARS #powers and astral drains this
 var in_astral: bool = false
 var flags: Dictionary[StringName, bool]  = {}
+var current_room: StringName = &""
 #endregion
 #endregion
 #endregion
@@ -97,6 +99,21 @@ func has_flag(id: StringName) -> bool:
 	return flags.has(id)
 #endregion
 
+#region - ROOMS
+func enter_room(room_id: StringName) -> void:
+	current_room = room_id
+	room_changed.emit(room_id)
+
+func leave_room() -> void:
+	if current_room == &"":
+		return
+	current_room = &""
+	room_changed.emit(&"")
+
+func is_in_room() -> bool:
+	return current_room != &""
+#endregion
+
 func reset() -> void:
 	max_bars = STARTING_BARS
 	in_astral = false
@@ -104,6 +121,7 @@ func reset() -> void:
 	plane_changed.emit(false)
 	_set_energy(max_bars)
 	flags.clear()
+	current_room = &""
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)
