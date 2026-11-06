@@ -15,6 +15,10 @@ config/version="2026.11.5.1045.0.0.2"
 run/main_scene="uid://t7qmmk1hf22j"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout="uid://8t32vnqrx8ji"
+
 [autoload]
 
 GameState="*uid://cmu56bxxnvwt"
@@ -86,6 +90,10 @@ pause={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue")
 
 [layer_names]
 

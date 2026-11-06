@@ -1,0 +1,15 @@
+~ portrait_falls
+
+Leanne: Was that you?
+David: Why would I touch it? I don't even look at it anymore.
+Leanne: [wait=0.6]That's the problem, David.
+
+if GameState.has_flag("door_unlocked_bathroom")
+	David: You've been in the bathroom again. You can't keep going in there.
+else
+	David: Just leave it on the floor.
+
+do GameState.set_flag("heard_portrait_argument")
+do GameState.restore_memory()
+
+=> END

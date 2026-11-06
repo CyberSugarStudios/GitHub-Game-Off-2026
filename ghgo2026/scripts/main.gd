@@ -7,10 +7,16 @@ extends Node3D
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
 
 func _ready() -> void:
-	Events.story_event.connect(func(id: StringName) -> void: print("Story event: ", id)) #TEMP
+	Events.story_event.connect(_on_story_event_test) #TEMP
 	
 	fade.color.a = 1.0
 	_warm_up()
+
+func _on_story_event_test(id: StringName) -> void:
+	print("Story event: ", id)
+	if id == &"test_box":
+		var dialogue := load("res://dialogue/test.dialogue")
+		DialogueManager.show_dialogue_balloon(dialogue, "portrait_falls")
 
 func _warm_up() -> void:
 	astral_filter.visible = true
