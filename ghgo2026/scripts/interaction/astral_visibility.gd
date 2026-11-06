@@ -21,7 +21,7 @@ func _apply(in_astral: bool) -> void:
 			should_show = not in_astral
 	_target.set("visible", should_show)
 
-func set_warmp(on: bool) -> void:
+func set_warmup(on: bool) -> void:
 	if on:
 		_target.set("visible", true)
 	else:
