@@ -2,6 +2,7 @@ class_name RoomHotspot
 extends TextureButton
 
 #region - INIT
+@warning_ignore("unused_signal")
 signal interacted
 
 const SHOW_DEBUG_RECTS := true

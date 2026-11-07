@@ -21,7 +21,7 @@ func _ready() -> void:
 		_players.append(player)
 	_set_muffled(false)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var paused := get_tree().paused
 	if paused != _was_paused:
 		_was_paused = paused

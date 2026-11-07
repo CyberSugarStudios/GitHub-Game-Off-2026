@@ -47,6 +47,7 @@ func _ready() -> void:
 
 func on_new_game_pressed() -> void:
 	GameState.reset()
+	GameClock.reset()
 	get_tree().change_scene_to_file(GAME_SCENE_PATH)
 
 func on_options_menu_button_pressed() -> void:

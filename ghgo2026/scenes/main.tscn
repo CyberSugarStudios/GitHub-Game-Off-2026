@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
 [ext_resource type="Script" uid="uid://ceqnyaxgcyvru" path="res://scripts/dialogue/conversation_player.gd" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://beya5d7p54iyv" path="res://scripts/day_night/day_night.gd" id="14_jkv2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("5_tefeu")
@@ -43,6 +44,9 @@ radius = 0.2
 radius = 0.2
 height = 0.4
 
+[sub_resource type="Environment" id="Environment_53m36"]
+ambient_light_source = 2
+
 [node name="Main" type="Node3D" unique_id=666068387]
 script = ExtResource("1_sugp2")
 
@@ -50,10 +54,12 @@ script = ExtResource("1_sugp2")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallModel" unique_id=10455811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.03847, -0.7516125)
+visible = false
 omni_range = 7.734493
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="HallModel" unique_id=634529625]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5465126, 1.154937, -5.7803073)
+visible = false
 omni_range = 7.734493
 
 [node name="PlayerFirstPerson" parent="." unique_id=1491077890 instance=ExtResource("2_0wfyh")]
@@ -337,3 +343,14 @@ character_name = "Leanne"
 [node name="DavidSpeaker" parent="." unique_id=1404298581 instance=ExtResource("14_a8y0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.241333, -2.3076477)
 character_name = "David"
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=244970420]
+transform = Transform3D(0.49999997, -0.43301272, 0.75000006, 0, 0.8660254, 0.50000006, -0.86602545, -0.24999999, 0.43301266, 4.3079224, 5.7391357, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=508525629]
+environment = SubResource("Environment_53m36")
+
+[node name="DayNight" type="Node" parent="." unique_id=1737477729 node_paths=PackedStringArray("sun", "world_environment")]
+script = ExtResource("14_jkv2x")
+sun = NodePath("../Sun")
+world_environment = NodePath("../WorldEnvironment")

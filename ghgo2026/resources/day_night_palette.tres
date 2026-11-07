@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DayNightPalette" format=3 uid="uid://drrpihnn2an2q"]
+
+[ext_resource type="Script" uid="uid://l03wheyc3awe" path="res://scripts/day_night/day_night_palette.gd" id="1_a5rxe"]
+
+[sub_resource type="Gradient" id="Gradient_oshjx"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(0.044960577, 0.06258772, 0.13603415, 1, 0.66778624, 0.41219273, 0.2506106, 1, 0.6971649, 0.6883513, 0.6560349, 1, 0.6237184, 0.31524345, 0.2506106, 1, 0.044960577, 0.06258772, 0.13603415, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="Gradient" id="Gradient_jkv2x"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.8, 1)
+colors = PackedColorArray(0.41568628, 0.4392157, 0.5647059, 1, 0.79021114, 0.48336405, 0.42629424, 1, 1, 1, 1, 1, 0.7921569, 0.48235294, 0.42745098, 1, 0.41568628, 0.4392157, 0.5647059, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="Gradient" id="Gradient_trceg"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 0.9946808)
+colors = PackedColorArray(0.078431375, 0.101960786, 0.2, 1, 0.9098039, 0.5686275, 0.3529412, 1, 0.9490196, 0.9372549, 0.89411765, 1, 0.8509804, 0.4392157, 0.3529412, 1, 0.078431375, 0.101960786, 0.2, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="Curve" id="Curve_a8y0u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.78499997, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[resource]
+script = ExtResource("1_a5rxe")
+sky_color = SubResource("Gradient_trceg")
+sun_energy = SubResource("Curve_a8y0u")
+ambient_color = SubResource("Gradient_oshjx")
+room_tint = SubResource("Gradient_jkv2x")
+metadata/_custom_type_script = "uid://l03wheyc3awe"
