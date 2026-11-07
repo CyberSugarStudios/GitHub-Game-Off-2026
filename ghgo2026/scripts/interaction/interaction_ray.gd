@@ -33,7 +33,7 @@ func _update_prompt() -> void:
 	if current:
 		var reason := current.get_block_reason()
 		available = reason == ""
-		text = current.prompt_text if available else reason
+		text = current.get_prompt_text() if available else reason
 	if text != _last_prompt or available != _last_available:
 		_last_prompt = text
 		_last_available = available
