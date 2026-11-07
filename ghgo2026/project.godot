@@ -25,6 +25,7 @@ general/default_playback_type.web=0
 GameState="*uid://cmu56bxxnvwt"
 Events="*uid://bmrr1rqe06xum"
 DialogueManager="*uid://c3rodes2l3gxb"
+Music="*uid://jwtptgsbl278"
 
 [display]
 

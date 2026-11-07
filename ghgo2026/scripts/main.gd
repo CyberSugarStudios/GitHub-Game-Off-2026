@@ -1,5 +1,7 @@
 extends Node3D
 
+const HALL_MUSIC := preload("res://assets/audio/music/WIP_child_ghost_background_2.mp3")
+
 @export var warmup_frames: int = 10
 @export var fade_in_time: float = 0.6
 
@@ -7,6 +9,7 @@ extends Node3D
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
 
 func _ready() -> void:
+	Music.play(HALL_MUSIC)
 	Events.story_event.connect(_on_story_event_test) #TEMP
 	
 	fade.color.a = 1.0
