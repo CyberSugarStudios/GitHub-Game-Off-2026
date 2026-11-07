@@ -26,6 +26,8 @@ func _warm_up() -> void:
 	get_tree().call_group("astral_visibility", "set_warmup", true)
 	
 	for i in warmup_frames:
+		if not is_inside_tree():
+			return
 		await get_tree().process_frame
 	
 	astral_filter.visible = GameState.in_astral

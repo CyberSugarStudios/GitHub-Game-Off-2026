@@ -32,6 +32,8 @@ func _ready() -> void:
 	Events.conversation_requested.connect(play)
 
 func _exit_tree() -> void:
+	_run_id += 1
+	_running = false
 	GameState.set_controls_locked(false)
 
 #region - PLAYING
@@ -75,7 +77,7 @@ func _play_line(line: DialogueLine, my_id: int) -> void:
 	_last_clarity = -1.0
 	_update_subtitle()
 	
-	while _time_left > 0.0 and my_id == _run_id:
+	while _time_left > 0.0 and my_id == _run_id and is_inside_tree():
 		await get_tree().process_frame
 	
 	if my_id == _run_id:
