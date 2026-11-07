@@ -17,7 +17,7 @@ const VOICE_FOLDER := "res://audio/voice/"
 @export var seconds_per_character: float = 0.06
 @export var min_line_time: float = 1.5
 #endregion
-@onready var flat_voice: AudioStreamPlayer3D = $FlatVoice
+@onready var flat_voice: AudioStreamPlayer = $FlatVoice
 
 var _run_id := 0
 var _running := false

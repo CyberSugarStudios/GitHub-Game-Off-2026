@@ -119,7 +119,7 @@ theme_override_font_sizes/bold_italics_font_size = 32
 theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
 bbcode_enabled = true
-text = "[b]X:[/b] Asdfasdf"
+text = "[b]Character Name:[/b] Dialogue spoken."
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
@@ -325,8 +325,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=722733095]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5737305, 1.128418, 0)
+[node name="MusicTest" type="AudioStreamPlayer3D" parent="." unique_id=722733095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5737305, 1.128418, -1.3267822)
 stream = ExtResource("12_eb6dy")
 autoplay = true
 bus = &"Music"
@@ -334,8 +334,7 @@ bus = &"Music"
 [node name="ConversationPlayer" type="Node" parent="." unique_id=1163992845]
 script = ExtResource("13_trceg")
 
-[node name="FlatVoice" type="AudioStreamPlayer3D" parent="ConversationPlayer" unique_id=1651590968]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4924316, 1.1201782, 0)
+[node name="FlatVoice" type="AudioStreamPlayer" parent="ConversationPlayer" unique_id=1651416059]
 bus = &"Voices"
 
 [node name="LeanneSpeaker" parent="." unique_id=688954707 instance=ExtResource("14_a8y0u")]

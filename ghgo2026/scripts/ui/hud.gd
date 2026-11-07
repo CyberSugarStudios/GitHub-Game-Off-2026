@@ -32,6 +32,7 @@ func _ready() -> void:
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
 	Events.interaction_prompt_changed.connect(_on_interaction_prompt_changed)
 	Events.subtitle_changed.connect(_on_subtitle_changed)
+	GameState.room_changed.connect(func(_room_id: StringName) -> void: _refresh_crosshair())
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
@@ -39,6 +40,7 @@ func _ready() -> void:
 	_on_controls_locked_changed(GameState.controls_locked)
 	_on_interaction_prompt_changed("", false)
 	_on_subtitle_changed("", "", 1.0, false)
+	_refresh_crosshair()
 
 func _on_energy_changed(energy: float, max_bars: int) -> void:
 	for i in _bars.size():
@@ -93,8 +95,11 @@ func _obscure(text: String, clarity: float) -> String:
 func _on_controls_locked_changed(locked: bool) -> void:
 	letterbox_top.visible = locked
 	letterbox_bottom.visible = locked
-	crosshair.visible = not locked
+	_refresh_crosshair()
 #endregion
+
+func _refresh_crosshair() -> void:
+	crosshair.visible = not GameState.is_in_room() and not GameState.controls_locked
 
 func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 	interaction_prompt.visible = text != ""
