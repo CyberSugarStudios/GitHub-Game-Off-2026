@@ -3,20 +3,38 @@
 [ext_resource type="PackedScene" uid="uid://b8u83l3sopplg" path="res://assets/models/hall.glb" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cyra5s526v5xl" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://ch2ws6wo0sufh" path="res://scenes/player_first_person.tscn" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://3ixg3npkrdq1" path="res://scripts/rooms/room_entrance.gd" id="4_jkv2x"]
 [ext_resource type="Script" uid="uid://b4goyvy1yxl23" path="res://scripts/ui/hud.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://dwicwhdedn1ey" path="res://scripts/household/household.gd" id="5_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cphlvw4ugwl31" path="res://scenes/ui/pause_menu.tscn" id="5_tbgi4"]
 [ext_resource type="Shader" uid="uid://bdo730lmi4xh" path="res://shaders/astral_screen.gdshader" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://xd1awdyyt8ud" path="res://scripts/household/parents_schedule.gd" id="6_0ld40"]
+[ext_resource type="Resource" uid="uid://pa3sidr7c6sy" path="res://data/schedules/leanne_stage0.tres" id="7_gqmmt"]
 [ext_resource type="Script" uid="uid://y87d6ngaan1" path="res://scripts/interaction/interactable.gd" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="8_85g3d"]
+[ext_resource type="Resource" uid="uid://bge0dqt1b63w8" path="res://data/schedules/david_stage0.tres" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://o0yxjkwwmwob" path="res://scenes/interaction/door.tscn" id="9_choun"]
 [ext_resource type="Script" uid="uid://c3jcsqsukf1fp" path="res://scripts/rooms/room_view.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
 [ext_resource type="Script" uid="uid://ceqnyaxgcyvru" path="res://scripts/dialogue/conversation_player.gd" id="13_trceg"]
-[ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="14_a8y0u"]
 [ext_resource type="Script" uid="uid://beya5d7p54iyv" path="res://scripts/day_night/day_night.gd" id="14_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://ytva5plunhw8" path="res://scenes/household/hall_parent.tscn" id="15_jkv2x"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_53m36"]
+vertices = PackedVector3Array(-0.4793253, 0.5154266, -5.441748, -0.2293253, 0.5154266, 0.80825186, 0.2706747, 0.5154266, 0.80825186, 0.2706747, 0.5154266, -6.191748, -8.229325, 0.5154266, -6.191748, -8.229325, 0.5154266, -5.441748, -8.729325, 0.5154266, -4.441748, -8.729325, 0.5154266, 0.80825186, -1.2293253, 0.5154266, 0.80825186, -1.2293253, 0.5154266, -4.441748)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7)]
+geometry_parsed_geometry_type = 1
+geometry_source_geometry_mode = 1
+agent_radius = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("5_tefeu")
@@ -62,7 +80,7 @@ sun = NodePath("../Sun")
 world_environment = NodePath("../WorldEnvironment")
 hall_lamps = [NodePath("../HallModel/OmniLight3D"), NodePath("../HallModel/OmniLight3D2")]
 
-[node name="HallModel" parent="." unique_id=499633457 instance=ExtResource("1_o5qli")]
+[node name="HallModel" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallModel" unique_id=10455811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6220455, 1.8147752, -2.984855)
@@ -72,7 +90,64 @@ light_color = Color(1, 0.8509804, 0.65882355, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5465126, 1.8789563, -5.0766816)
 light_color = Color(1, 0.8509804, 0.65882355, 1)
 
-[node name="PlayerFirstPerson" parent="." unique_id=1491077890 instance=ExtResource("2_0wfyh")]
+[node name="RoomEntrances" type="Node" parent="HallModel" unique_id=1924097943]
+
+[node name="EntranceBathroom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1382819321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38836956, 0, -2.411131)
+script = ExtResource("4_jkv2x")
+room_id = &"bathroom"
+
+[node name="EntranceEmilyBedroom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1628187439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5501919, 0, -0.93856037)
+script = ExtResource("4_jkv2x")
+room_id = &"emily_bedroom"
+
+[node name="EntranceKitchen" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1461824847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016183853, 0, -6.2786493)
+script = ExtResource("4_jkv2x")
+room_id = &"kitchen"
+
+[node name="EntranceParentBedroom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=2139407700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.275361, 0, -6.2786493)
+script = ExtResource("4_jkv2x")
+room_id = &"parent_bedroom"
+
+[node name="EntranceLivingRoom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=41340751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.841735, 0, -5.1620855)
+script = ExtResource("4_jkv2x")
+room_id = &"living_room"
+
+[node name="EntranceGarage" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1346914638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.51178, 0, -5.744641)
+script = ExtResource("4_jkv2x")
+room_id = &"garage"
+
+[node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
+script = ExtResource("5_jbj1t")
+schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("8_yc10j")])
+hall_parents = [NodePath("../LeanneHall"), NodePath("../DavidHall")]
+
+[node name="LeanneHall" parent="." unique_id=865967836 instance=ExtResource("15_jkv2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.723938)
+
+[node name="Body" parent="LeanneHall" index="0" unique_id=43792829]
+surface_material_override/0 = SubResource("StandardMaterial3D_jkv2x")
+
+[node name="DavidHall" parent="." unique_id=1897501765 instance=ExtResource("15_jkv2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.741913)
+parent_id = &"david"
+
+[node name="Body" parent="DavidHall" index="0" unique_id=43792829]
+surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
+
+[node name="Speaker" parent="DavidHall" index="2" unique_id=1742774499]
+character_name = "David"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=289804147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.490208, 0)
+navigation_mesh = SubResource("NavigationMesh_53m36")
+
+[node name="Emily" parent="." unique_id=1491077890 instance=ExtResource("2_0wfyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99468, 0, -5.5272307)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=775024507]
@@ -300,7 +375,7 @@ text = "Living Realm Only"
 script = ExtResource("8_85g3d")
 
 [node name="Door" parent="." unique_id=1087017087 instance=ExtResource("9_choun")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7005005, 0, -1.516571)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7005005, 0, -2.3904035)
 room_id = &"bathroom"
 lock_bars = 2
 
@@ -346,10 +421,5 @@ script = ExtResource("13_trceg")
 [node name="FlatVoice" type="AudioStreamPlayer" parent="ConversationPlayer" unique_id=1651416059]
 bus = &"Voices"
 
-[node name="LeanneSpeaker" parent="." unique_id=688954707 instance=ExtResource("14_a8y0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.060791, -3.9350586)
-character_name = "Leanne"
-
-[node name="DavidSpeaker" parent="." unique_id=1404298581 instance=ExtResource("14_a8y0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.241333, -2.3076477)
-character_name = "David"
+[editable path="LeanneHall"]
+[editable path="DavidHall"]

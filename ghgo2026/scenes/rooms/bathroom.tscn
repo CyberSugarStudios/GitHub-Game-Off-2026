@@ -5,11 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/sprites/rooms/PLACEHOLDER_bathroom1.png" id="2_w4rbc"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
 [ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/sprites/rooms/PLACEHOLDER_bathroom2.png" id="3_dfe1a"]
+[ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_dfe1a"]
 
 [sub_resource type="Gradient" id="Gradient_dfe1a"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dfe1a"]
 gradient = SubResource("Gradient_dfe1a")
+fill_from = Vector2(0, 0.0042735045)
+
+[sub_resource type="Gradient" id="Gradient_muy8a"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_muy8a"]
+gradient = SubResource("Gradient_muy8a")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_8pl6i"]
 
@@ -37,10 +46,18 @@ z_index = 10
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
-[node name="TestParent" type="Sprite2D" parent="Actors" unique_id=1840463723]
-position = Vector2(1316.75, 1356.25)
+[node name="TestLeanne" type="Sprite2D" parent="Actors" unique_id=1840463723]
+position = Vector2(2986, 1356)
 scale = Vector2(8.7734375, 25.164064)
 texture = SubResource("GradientTexture2D_dfe1a")
+script = ExtResource("5_dfe1a")
+
+[node name="TestDavid" type="Sprite2D" parent="Actors" unique_id=3675238]
+position = Vector2(5110, 1356)
+scale = Vector2(8.7734375, 25.164064)
+texture = SubResource("GradientTexture2D_muy8a")
+script = ExtResource("5_dfe1a")
+parent_id = &"david"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30

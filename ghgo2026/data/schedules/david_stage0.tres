@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="ParentSchedule" format=3 uid="uid://bge0dqt1b63w8"]
+
+[ext_resource type="Script" uid="uid://dqhcwlmq20tc4" path="res://scripts/household/schedule_entry.gd" id="1_2k5ik"]
+[ext_resource type="Script" uid="uid://xd1awdyyt8ud" path="res://scripts/household/parents_schedule.gd" id="2_y5eni"]
+
+[sub_resource type="Resource" id="Resource_w4l7x"]
+script = ExtResource("1_2k5ik")
+start_time = "06:00"
+location = &"living_room"
+activity = &"sleeping"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_2k5ik"]
+script = ExtResource("1_2k5ik")
+start_time = "07:00"
+location = &"garage"
+activity = &"tinkering"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_y5eni"]
+script = ExtResource("1_2k5ik")
+start_time = "09:00"
+location = &"bathroom"
+activity = &"showering"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_xeqkw"]
+script = ExtResource("1_2k5ik")
+start_time = "09:30"
+activity = &"eating"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_0b7bb"]
+script = ExtResource("1_2k5ik")
+start_time = "10:00"
+location = &"garage"
+activity = &"drinking"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_j1in5"]
+script = ExtResource("1_2k5ik")
+start_time = "12:30"
+activity = &"eating_and_then_cleaning"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_70l0c"]
+script = ExtResource("1_2k5ik")
+start_time = "14:00"
+location = &"living_room"
+activity = &"watching_tv_and_drinkin"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_ypno4"]
+script = ExtResource("1_2k5ik")
+start_time = "15:00"
+location = &"bathroom"
+activity = &"using"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_arkyf"]
+script = ExtResource("1_2k5ik")
+start_time = "15:15"
+location = &"living_room"
+activity = &"watching_tv_and_drinkin"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_2ymkd"]
+script = ExtResource("1_2k5ik")
+start_time = "18:30"
+activity = &"eating_and_then_cleaning"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_r6p2j"]
+script = ExtResource("1_2k5ik")
+start_time = "19:30"
+location = &"living_room"
+activity = &"drinking_and_watching_tv_then_falling_asleep"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[resource]
+script = ExtResource("2_y5eni")
+parent_id = &"david"
+entries = Array[ExtResource("1_2k5ik")]([SubResource("Resource_w4l7x"), SubResource("Resource_2k5ik"), SubResource("Resource_y5eni"), SubResource("Resource_xeqkw"), SubResource("Resource_0b7bb"), SubResource("Resource_j1in5"), SubResource("Resource_70l0c"), SubResource("Resource_ypno4"), SubResource("Resource_arkyf"), SubResource("Resource_2ymkd"), SubResource("Resource_r6p2j")])
+metadata/_custom_type_script = "uid://xd1awdyyt8ud"

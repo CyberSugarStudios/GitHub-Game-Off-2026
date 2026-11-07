@@ -9,6 +9,8 @@ signal forced_out_of_astral
 signal flag_set(id: StringName)
 signal room_changed(room_id: StringName) #&"" should mean the hall
 signal controls_locked_changed(locked: bool)
+signal parent_location_changed(parent_id: StringName, location: StringName)
+signal story_stage_changed(stage: int)
 
 #region - CONSTS
 const STARTING_BARS := 1
@@ -16,6 +18,7 @@ const MAX_POSSIBLE_BARS := 5
 const ASTRAL_DRAIN_PER_METER := 0.04 #0.04 = 25 m
 const LIVING_REGEN_PER_SECOND := 0.1 #regen outside of the stral 0.1 = 10s
 const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
+const HALL := &"hall"
 
 #region - VARS
 var max_bars := STARTING_BARS #door check
@@ -24,6 +27,8 @@ var in_astral: bool = false
 var flags: Dictionary[StringName, bool]  = {}
 var current_room: StringName = &""
 var controls_locked := false
+var parent_locations: Dictionary[StringName, StringName] = {}
+var story_stage := 0
 #endregion
 #endregion
 #endregion
@@ -37,6 +42,25 @@ func _unhandled_input(event: InputEvent) -> void:
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo and \
 	event.keycode == KEY_F1:
 		restore_memory()
+
+#region - HOUSEHOLD
+func set_parent_location(parent_id: StringName, location: StringName) -> void:
+	if parent_locations.get(parent_id, &"") == location:
+		return
+	parent_locations[parent_id] = location
+	if OS.is_debug_build():
+		print("[%s] %s > %s" % [GameClock.get_time_text(), parent_id, location])
+	parent_location_changed.emit(parent_id, &"")
+
+func get_parent_location(parent_id: StringName) -> StringName:
+	return parent_locations.get(parent_id, &"")
+
+func set_story_stage(stage: int) -> void:
+	if story_stage == stage:
+		return
+	story_stage = stage
+	story_stage_changed.emit(stage)
+#endregion
 
 #region - PLANE
 func toggle_plane() -> void:
@@ -131,6 +155,8 @@ func reset() -> void:
 	flags.clear()
 	current_room = &""
 	controls_locked = false
+	parent_locations.clear()
+	story_stage = 0
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)
