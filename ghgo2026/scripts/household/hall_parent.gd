@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	var next := agent.get_next_path_position()
 	var to_next := next - global_position
 	to_next.y = 0.0
-	var step := walk_speed * delta
+	var step := walk_speed * GameClock.world_speed * delta
 	if to_next.length() <= step:
 		global_position = Vector3(next.x, global_position.y, next.z)
 	else:

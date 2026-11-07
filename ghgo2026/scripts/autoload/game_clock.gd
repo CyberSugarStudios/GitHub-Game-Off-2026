@@ -7,14 +7,22 @@ const SECONDS_PER_GAME_MINUTE := 0.5 #0.5 = 1 game hour every real world 30 seco
 const MINUTES_PER_DAY := 1440
 const START_MINUTE := 17 * 60 # 17 = 5PM
 
+const ASTRAL_TIME_SCALE := 0.35
+const TIME_SCALE_EASE := 3.0
+
 var day := 1
 var minute := START_MINUTE
 var _carry := 0.0 #real seconds accumulated towards next game minute
 
+var world_speed := 1.0
+
 func _process(delta: float) -> void:
+	var target_speed := ASTRAL_TIME_SCALE if GameState.in_astral else 1.0
+	world_speed = move_toward(world_speed, target_speed, TIME_SCALE_EASE * delta)
+	
 	if GameState.controls_locked:
 		return
-	_carry += delta
+	_carry += delta * world_speed
 	while _carry >= SECONDS_PER_GAME_MINUTE:
 		_carry -= SECONDS_PER_GAME_MINUTE
 		_advance_minute()
