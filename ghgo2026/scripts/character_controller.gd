@@ -46,6 +46,8 @@ func _ready() -> void:
 	Events.returned_to_hall.connect(place_at)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if GameState.controls_locked:
+		return
 	if event is InputEventMouseButton and event.pressed and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED \
 	and not GameState.is_in_room():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -57,7 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		GameState.toggle_plane()
 
 func _physics_process(delta: float) -> void:
-	if GameState.is_in_room():
+	if GameState.is_in_room() or GameState.controls_locked:
 		velocity = Vector3.ZERO
 		_last_position = global_position
 		return

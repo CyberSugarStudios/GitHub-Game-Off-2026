@@ -78,7 +78,7 @@ func exit_room() -> void:
 	_busy = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _room and not _busy and event.is_action_pressed("move_backward"): # S Key
+	if _room and not _busy and not GameState.controls_locked and event.is_action_pressed("move_backward"): # S Key
 		exit_room()
 		get_viewport().set_input_as_handled()
 
@@ -90,7 +90,7 @@ func _fade_to(alpha: float) -> void:
 
 #region - PANNING
 func _process(delta: float) -> void:
-	if not _room or _busy:
+	if not _room or _busy or GameState.controls_locked:
 		return
 	
 	var direction := Input.get_axis("move_left", "move_right") # A/D keys

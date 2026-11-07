@@ -31,6 +31,8 @@ func get_block_reason() -> String:
 	return InteractionRules.get_block_reason(realm, required_bars, energy_cost)
 
 func try_interact() -> void:
+	if GameState.controls_locked:
+		return
 	if get_block_reason() != "":
 		return
 	if not InteractionRules.try_pay(energy_cost):

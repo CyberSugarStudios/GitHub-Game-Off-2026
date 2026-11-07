@@ -13,3 +13,15 @@ do GameState.set_flag("heard_portrait_argument")
 do GameState.restore_memory()
 
 => END
+
+~ kitchen_murmur
+
+## Tired. Already knows the answer.
+Leanne: Did you call the school back?
+## Not looking up.
+David: I'll do it tomorrow.
+Leanne: You said that yesterday.
+do wait(1.5)
+David: Then I'll do it tomorrow again.
+
+=> END

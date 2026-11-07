@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://c3jcsqsukf1fp" path="res://scripts/rooms/room_view.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/Child Ghost Background 2 (D1).mp3" id="12_eb6dy"]
+[ext_resource type="Script" uid="uid://ceqnyaxgcyvru" path="res://scripts/dialogue/conversation_player.gd" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="14_a8y0u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("5_tefeu")
@@ -86,6 +88,50 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="LetterboxTop" type="ColorRect" parent="UI" unique_id=940281292]
+custom_minimum_size = Vector2(0, 90)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subtitle" type="RichTextLabel" parent="UI" unique_id=921380357]
+custom_minimum_size = Vector2(1400, 60)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -190.0
+offset_right = 20.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="LetterboxBottom" type="ColorRect" parent="UI" unique_id=903002361]
+custom_minimum_size = Vector2(0, 90)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="InteractionPrompt" type="Label" parent="UI" unique_id=1903249116]
 anchors_preset = 7
@@ -273,9 +319,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=722733095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5737305, 1.128418, 0)
 stream = ExtResource("12_eb6dy")
 autoplay = true
 bus = &"Music"
+
+[node name="ConversationPlayer" type="Node" parent="." unique_id=1163992845]
+script = ExtResource("13_trceg")
+
+[node name="FlatVoice" type="AudioStreamPlayer3D" parent="ConversationPlayer" unique_id=1651590968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4924316, 1.1201782, 0)
+bus = &"Voices"
+
+[node name="LeanneSpeaker" parent="." unique_id=688954707 instance=ExtResource("14_a8y0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.060791, -3.9350586)
+character_name = "Leanne"
+
+[node name="DavidSpeaker" parent="." unique_id=1404298581 instance=ExtResource("14_a8y0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.241333, -2.3076477)
+character_name = "David"

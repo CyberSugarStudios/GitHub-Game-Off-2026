@@ -14,9 +14,12 @@ func _ready() -> void:
 
 func _on_story_event_test(id: StringName) -> void:
 	print("Story event: ", id)
-	if id == &"test_box":
-		var dialogue := load("res://dialogue/test.dialogue")
-		DialogueManager.show_dialogue_balloon(dialogue, "portrait_falls")
+	var dialogue := load("res://dialogue/test.dialogue") as DialogueResource
+	match id:
+		&"test_box":
+			Events.conversation_requested.emit(dialogue, "kitchen_murmur", false) # Live
+		&"test_box_living_only":
+			Events.conversation_requested.emit(dialogue, "portrait_falls", true)  # Frozen: grants a memory"
 
 func _warm_up() -> void:
 	astral_filter.visible = true

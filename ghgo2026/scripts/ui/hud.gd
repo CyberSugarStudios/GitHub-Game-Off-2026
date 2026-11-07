@@ -8,6 +8,9 @@ extends CanvasLayer
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
 @onready var crosshair: ColorRect = $Crosshair
 @onready var interaction_prompt: Label = $InteractionPrompt
+@onready var subtitle: RichTextLabel = $Subtitle
+@onready var letterbox_top: ColorRect = $LetterboxTop
+@onready var letterbox_bottom: ColorRect = $LetterboxBottom
 
 var _bars: Array[ProgressBar] = []
 var _astral_material: ShaderMaterial
@@ -26,12 +29,16 @@ func _ready() -> void:
 	
 	GameState.energy_changed.connect(_on_energy_changed)
 	GameState.plane_changed.connect(_on_plane_changed)
+	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
 	Events.interaction_prompt_changed.connect(_on_interaction_prompt_changed)
+	Events.subtitle_changed.connect(_on_subtitle_changed)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
 	_set_astral_strength(1.0 if GameState.in_astral else 0.0)
+	_on_controls_locked_changed(GameState.controls_locked)
 	_on_interaction_prompt_changed("", false)
+	_on_subtitle_changed("", "", 1.0, false)
 
 func _on_energy_changed(energy: float, max_bars: int) -> void:
 	for i in _bars.size():
@@ -55,6 +62,38 @@ func _set_astral_strength(value: float) -> void:
 	_astral_strength = value
 	_astral_material.set_shader_parameter("strength", value)
 	astral_filter.visible = value > 0.001
+#endregion
+
+#region - SUBTITLES
+func _on_subtitle_changed(character: String, text: String, clarity: float, is_thought: bool) -> void:
+	subtitle.visible = text != ""
+	if text == "":
+		return
+	var shown := _obscure(text, clarity).replace("[", "[lb]")
+	if is_thought:
+		shown = "[i]%s[/i]" % shown
+	elif clarity >= 0.5:
+		shown = "[b]%s:[/b] %s" %[character, shown]
+	subtitle.text = shown
+	subtitle.modulate.a = lerpf(0.4, 1.0, clarity)
+
+func _obscure(text: String, clarity: float) -> String:
+	if clarity >= 0.999:
+		return text
+	var result := ""
+	for i in text.length():
+		var letter := text[i]
+		if letter == " ":
+			result += " "
+			continue
+		var threshold := fposmod(sin(float(i) * 12.9898) * 43758.5453, 1.0)
+		result += letter if threshold < clarity else "."
+	return result
+
+func _on_controls_locked_changed(locked: bool) -> void:
+	letterbox_top.visible = locked
+	letterbox_bottom.visible = locked
+	crosshair.visible = not locked
 #endregion
 
 func _on_interaction_prompt_changed(text: String, available: bool) -> void:

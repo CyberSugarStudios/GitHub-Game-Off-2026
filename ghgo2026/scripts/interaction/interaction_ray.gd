@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var found: Interactable = null
-	if is_colliding() and not GameState.is_in_room():
+	if is_colliding() and not GameState.is_in_room() and not GameState.controls_locked:
 		found = get_collider() as Interactable
 	if found and not found.is_focusable():
 		found = null

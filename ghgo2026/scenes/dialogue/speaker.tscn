@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d3o2oif4q4l0l"]
+
+[ext_resource type="Script" uid="uid://ogamwftgnao4" path="res://scripts/dialogue/speaker.gd" id="1_4u8kq"]
+
+[node name="Speaker" type="Node3D" unique_id=688954707]
+script = ExtResource("1_4u8kq")
+
+[node name="Voice" type="AudioStreamPlayer3D" parent="." unique_id=732130297]
+unit_size = 3.0
+max_distance = 14.0
+bus = &"Voices"
+attenuation_filter_cutoff_hz = 2500.0

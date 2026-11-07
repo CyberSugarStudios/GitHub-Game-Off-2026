@@ -8,6 +8,7 @@ signal plane_changed(in_astral: bool)
 signal forced_out_of_astral
 signal flag_set(id: StringName)
 signal room_changed(room_id: StringName) #&"" should mean the hall
+signal controls_locked_changed(locked: bool)
 
 #region - CONSTS
 const STARTING_BARS := 1
@@ -17,11 +18,12 @@ const LIVING_REGEN_PER_SECOND := 0.1 #regen outside of the stral 0.1 = 10s
 const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
 
 #region - VARS
-var max_bars: int = STARTING_BARS #door check
+var max_bars := STARTING_BARS #door check
 var energy: float = STARTING_BARS #powers and astral drains this
 var in_astral: bool = false
 var flags: Dictionary[StringName, bool]  = {}
 var current_room: StringName = &""
+var controls_locked := false
 #endregion
 #endregion
 #endregion
@@ -112,6 +114,12 @@ func leave_room() -> void:
 
 func is_in_room() -> bool:
 	return current_room != &""
+
+func set_controls_locked(locked: bool) -> void:
+	if controls_locked == locked:
+		return
+	controls_locked = locked
+	controls_locked_changed.emit(locked)
 #endregion
 
 func reset() -> void:
@@ -122,6 +130,7 @@ func reset() -> void:
 	_set_energy(max_bars)
 	flags.clear()
 	current_room = &""
+	controls_locked = false
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)
