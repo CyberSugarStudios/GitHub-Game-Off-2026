@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ytva5plunhw8"]
 
 [ext_resource type="Script" uid="uid://dmk4i6jngl2gp" path="res://scripts/household/hall_parent.gd" id="1_2ek4g"]
-[ext_resource type="Script" uid="uid://ogamwftgnao4" path="res://scripts/dialogue/speaker.gd" id="2_notox"]
+[ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="2_notox"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_notox"]
 radius = 0.25
@@ -18,8 +18,5 @@ mesh = SubResource("CapsuleMesh_notox")
 path_desired_distance = 0.3
 target_desired_distance = 0.3
 
-[node name="Speaker" type="Node3D" parent="." unique_id=1742774499]
+[node name="Speaker" parent="." unique_id=688954707 instance=ExtResource("2_notox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-script = ExtResource("2_notox")
-character_name = "Leanne"
-metadata/_custom_type_script = "uid://ogamwftgnao4"

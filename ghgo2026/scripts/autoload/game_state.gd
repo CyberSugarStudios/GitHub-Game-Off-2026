@@ -50,7 +50,7 @@ func set_parent_location(parent_id: StringName, location: StringName) -> void:
 	parent_locations[parent_id] = location
 	if OS.is_debug_build():
 		print("[%s] %s > %s" % [GameClock.get_time_text(), parent_id, location])
-	parent_location_changed.emit(parent_id, &"")
+	parent_location_changed.emit(parent_id, location)
 
 func get_parent_location(parent_id: StringName) -> StringName:
 	return parent_locations.get(parent_id, &"")

@@ -128,19 +128,22 @@ schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("
 hall_parents = [NodePath("../LeanneHall"), NodePath("../DavidHall")]
 
 [node name="LeanneHall" parent="." unique_id=865967836 instance=ExtResource("15_jkv2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.723938)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.447056, 0, -6.144673)
 
 [node name="Body" parent="LeanneHall" index="0" unique_id=43792829]
 surface_material_override/0 = SubResource("StandardMaterial3D_jkv2x")
 
+[node name="Speaker" parent="LeanneHall" index="2" unique_id=688954707]
+character_name = "Leanne"
+
 [node name="DavidHall" parent="." unique_id=1897501765 instance=ExtResource("15_jkv2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.741913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.463238, 0, -5.2921042)
 parent_id = &"david"
 
 [node name="Body" parent="DavidHall" index="0" unique_id=43792829]
 surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
 
-[node name="Speaker" parent="DavidHall" index="2" unique_id=1742774499]
+[node name="Speaker" parent="DavidHall" index="2" unique_id=688954707]
 character_name = "David"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=289804147]

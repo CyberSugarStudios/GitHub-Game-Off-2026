@@ -1,4 +1,4 @@
-class_name HouseHold
+class_name Household
 extends Node
 
 @export var schedules: Array[ParentSchedule] = []
