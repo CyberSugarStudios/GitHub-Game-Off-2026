@@ -13,6 +13,10 @@ func _ready() -> void:
 		_room_id = (node as Room).room_id
 	GameState.parent_location_changed.connect(_on_parent_location_changed)
 	_refresh()
+	
+	var click_area := get_node_or_null("ClickArea") as RoomHotspot
+	if click_area:
+		click_area.interacted.connect(func() -> void: Powers.set_target(parent_id))
 
 func _on_parent_location_changed(id: StringName, _location: StringName) -> void:
 	if id == parent_id:

@@ -52,12 +52,46 @@ scale = Vector2(8.7734375, 25.164064)
 texture = SubResource("GradientTexture2D_dfe1a")
 script = ExtResource("5_dfe1a")
 
+[node name="ClickArea" type="TextureButton" parent="Actors/TestLeanne" unique_id=1550962528]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.29297
+offset_top = -63.314495
+offset_right = -2.7070313
+offset_bottom = -0.6855049
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_8pl6i")
+prompt_text = "Use a power"
+realm = 2
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
 [node name="TestDavid" type="Sprite2D" parent="Actors" unique_id=3675238]
 position = Vector2(5110, 1356)
 scale = Vector2(8.7734375, 25.164064)
 texture = SubResource("GradientTexture2D_muy8a")
 script = ExtResource("5_dfe1a")
 parent_id = &"david"
+
+[node name="ClickArea" type="TextureButton" parent="Actors/TestDavid" unique_id=373960048]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.179
+offset_top = -63.950325
+offset_right = -2.5930634
+offset_bottom = -1.3213329
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_8pl6i")
+prompt_text = "Use a power"
+realm = 2
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
