@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://cciqxhnh173o1"
+path="res://.godot/imported/thoughts.dialogue-8fc2a89cded68e69634290ab84c09d18.tres"
+
+[deps]
+
+source_file="res://dialogue/thoughts.dialogue"
+dest_files=["res://.godot/imported/thoughts.dialogue-8fc2a89cded68e69634290ab84c09d18.tres"]
+
+[params]
+
+defaults=true

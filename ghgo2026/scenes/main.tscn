@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://beya5d7p54iyv" path="res://scripts/day_night/day_night.gd" id="14_jkv2x"]
 [ext_resource type="Script" uid="uid://0bqy0em324wk" path="res://scripts/temp_time_clock.gd" id="14_yc10j"]
 [ext_resource type="PackedScene" uid="uid://ytva5plunhw8" path="res://scenes/household/hall_parent.tscn" id="15_jkv2x"]
+[ext_resource type="Script" uid="uid://cup4c1hbpt1b" path="res://scripts/ui/power_menu.gd" id="15_pm3ni"]
+[ext_resource type="Script" uid="uid://c4vxoy4gjw2cd" path="res://scripts/powers/parent_reactions.gd" id="22_jscy8"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
@@ -204,7 +206,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="LetterboxTop" type="ColorRect" parent="UI" unique_id=940281292]
-visible = false
 custom_minimum_size = Vector2(0, 90)
 anchors_preset = 10
 anchor_right = 1.0
@@ -339,6 +340,20 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0wfyh")
 value = 100.0
 show_percentage = false
 
+[node name="PowerMenu" type="VBoxContainer" parent="UI" unique_id=277718038]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_pm3ni")
+
 [node name="PauseMenu" parent="." unique_id=1351570408 instance=ExtResource("5_tbgi4")]
 visible = false
 
@@ -454,6 +469,10 @@ script = ExtResource("13_trceg")
 
 [node name="FlatVoice" type="AudioStreamPlayer" parent="ConversationPlayer" unique_id=1651416059]
 bus = &"Voices"
+
+[node name="ParentReactions" type="Node" parent="." unique_id=1429764438 node_paths=PackedStringArray("household")]
+script = ExtResource("22_jscy8")
+household = NodePath("../Household")
 
 [editable path="LeanneHall"]
 [editable path="DavidHall"]
