@@ -23,18 +23,21 @@ func _rebuild() -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
-	
+
 	visible = Powers.target != &"" and GameState.in_astral
 	if not visible:
 		return
-	
+
+	var in_room := GameState.is_in_room()
 	var powers := Powers.get_unlocked()
 	for i in powers.size():
 		var power := powers[i]
 		var button := Button.new()
-		button.text = "%d   %s   (%s bars)" % [i + 1, power.display_name, str(power.energy_cost)]
+		button.custom_minimum_size = row_size
+		button.text = "%d   %s" % [i + 1, power.display_name]
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.focus_mode = Control.FOCUS_NONE
+		button.mouse_filter = Control.MOUSE_FILTER_STOP if in_room else Control.MOUSE_FILTER_IGNORE
 		button.pressed.connect(func() -> void:
 			Powers.select(i)
 			Powers.use_selected())

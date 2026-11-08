@@ -70,6 +70,8 @@ func _check_linger() -> void:
 			continue
 		var offset := mark.global_position - global_position
 		offset.y = 0.0
+		if OS.is_debug_build() and offset.length() < 1.5:								# TEMP
+			print("%s near %s: %.2f m" % [parent_id, mark.mark_id, offset.length()])	# TEMP
 		if offset.length() <= LINGER_RADIUS:
 			_passed_marks.append(mark)
 			if randf() < mark.linger_chance:

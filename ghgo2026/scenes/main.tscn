@@ -352,8 +352,6 @@ offset_right = 440.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource("15_pm3ni")
 
 [node name="PauseMenu" parent="." unique_id=1351570408 instance=ExtResource("5_tbgi4")]

@@ -1,7 +1,7 @@
 class_name InteractionRay
 extends RayCast3D
 
-@export var max_reach: float = 2.0
+@export var max_reach: float = 6.0
 
 var current: Interactable = null
 

@@ -11,7 +11,7 @@ func _ready() -> void:
 	GameState.story_stage_changed.connect(func(_stage: int) -> void: _update())
 	for parent in hall_parents:
 		parent.arrived.connect(_on_parent_arrived)
-	call_deferred("place_everyone")
+	_place_everyone.call_deferred()
 
 func send(parent_id: StringName, location: StringName, minutes: int) -> void:
 	_detours[parent_id] = {"location": location, "until": _now() + minutes}
