@@ -2,7 +2,6 @@ class_name RoomHotspot
 extends TextureButton
 
 #region - INIT
-@warning_ignore("unused_signal")
 signal interacted
 
 const SHOW_DEBUG_RECTS := true
@@ -39,6 +38,7 @@ func try_interact() -> void:
 	if not InteractionRules.try_pay(energy_cost):
 		return
 	_used = true
+	interacted.emit()
 	if story_id != &"":
 		Events.story_event.emit(story_id)
 	_refresh()

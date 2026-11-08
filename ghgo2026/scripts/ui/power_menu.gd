@@ -10,6 +10,8 @@ extends VBoxContainer
 var _fill_style: StyleBoxFlat
 
 func _ready() -> void:
+	grow_horizontal = Control.GROW_DIRECTION_END
+	grow_vertical = Control.GROW_DIRECTION_END
 	_fill_style = StyleBoxFlat.new()
 	_fill_style.bg_color = cost_bar_color
 	Powers.target_changed.connect(func(_id: StringName) -> void: _rebuild())
