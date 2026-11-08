@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Power" format=3 uid="uid://25jeref6bwmj"]
+
+[ext_resource type="Script" uid="uid://cv2x7jbb0ontl" path="res://scripts/powers/power.gd" id="1_j3jbn"]
+
+[resource]
+script = ExtResource("1_j3jbn")
+id = &"read_thoughts"
+display_name = "Read Thought"
+energy_cost = 0.25
+metadata/_custom_type_script = "uid://cv2x7jbb0ontl"

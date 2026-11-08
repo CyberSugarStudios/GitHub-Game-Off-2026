@@ -60,7 +60,7 @@ func play(dialogue: DialogueResource, title: String, frozen: bool) -> void:
 
 func _play_line(line: DialogueLine, my_id: int) -> void:
 	_line = line
-	_speaker = null if _frozen else _find_speaker(line.character)
+	_speaker = null if (_frozen or line.has_tag("thought")) else _find_speaker(line.character)
 	
 	var voice := _load_voice(line)
 	if voice:
