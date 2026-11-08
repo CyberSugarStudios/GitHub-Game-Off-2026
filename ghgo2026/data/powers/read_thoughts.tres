@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_j3jbn")
-id = &"read_thoughts"
+id = &"read_thought"
 display_name = "Read Thought"
 energy_cost = 0.25
 metadata/_custom_type_script = "uid://cv2x7jbb0ontl"

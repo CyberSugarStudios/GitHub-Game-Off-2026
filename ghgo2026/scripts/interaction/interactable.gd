@@ -8,7 +8,8 @@ signal interacted
 @export var energy_cost: float = 0.0 #energy spent on task, measured in bars (0.25 = 1/4 bar, 0 = free)
 @export_range(0, 5) var required_bars: int = 0 
 @export var one_shot: bool = false #can only be used once
-@export var story_id: StringName 
+@export var story_id: StringName
+@export var reach: float = 2.0
 
 var _used := false
 

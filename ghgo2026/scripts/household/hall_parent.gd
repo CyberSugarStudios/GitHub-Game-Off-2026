@@ -72,7 +72,7 @@ func _check_linger() -> void:
 		offset.y = 0.0
 		if offset.length() <= LINGER_RADIUS:
 			_passed_marks.append(mark)
-			if randf() < mark.longer_chance:
+			if randf() < mark.linger_chance:
 				_linger_left = mark.linger_seconds
 				return
 

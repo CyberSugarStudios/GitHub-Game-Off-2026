@@ -1,7 +1,7 @@
 class_name InteractionRay
 extends RayCast3D
 
-@export var reach: float = 2.0
+@export var max_reach: float = 2.0
 
 var current: Interactable = null
 
@@ -9,7 +9,7 @@ var _last_prompt := ""
 var _last_available := false
 
 func _ready() -> void:
-	target_position = Vector3(0.0, 0.0, -reach)
+	target_position = Vector3(0.0, 0.0, -max_reach)
 	collide_with_areas = true
 	collide_with_bodies = true
 
@@ -17,6 +17,8 @@ func _physics_process(_delta: float) -> void:
 	var found: Interactable = null
 	if is_colliding() and not GameState.is_in_room() and not GameState.controls_locked:
 		found = get_collider() as Interactable
+		if found and global_position.distance_to(get_collision_point()) > found.reach:
+			found = null
 	if found and not found.is_focusable():
 		found = null
 	current = found
