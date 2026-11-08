@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 	current = found
 	if not GameState.is_in_room():
 		var parent_target := current as ParentTarget
-		Powers.set_target(parent_target.parent_id if parent_target else &"")
+		Powers.set_target(parent_target.parent_id if parent_target and GameState.in_astral else &"")
 	_update_prompt()
 
 func _unhandled_input(event: InputEvent) -> void:
