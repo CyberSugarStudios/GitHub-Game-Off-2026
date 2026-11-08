@@ -94,7 +94,7 @@ func _process(delta: float) -> void:
 		return
 	
 	var direction := Input.get_axis("move_left", "move_right") # A/D keys
-	if direction == 0.0:
+	if direction == 0.0 and _mouse_may_pan():
 		direction = _mouse_pan_direction()
 	
 	_pan_velocity = move_toward(_pan_velocity, direction * pan_speed, pan_acceleration * delta)
@@ -102,6 +102,12 @@ func _process(delta: float) -> void:
 	if (_pan_x <= 0.0 and _pan_velocity < 0.0) or (_pan_x >= _max_pan and _pan_velocity > 0.0):
 		_pan_velocity = 0.0
 	_apply_pan()
+
+func _mouse_may_pan() -> bool:
+	if Powers.target != &"":
+		return false
+	var hovered := get_viewport().gui_get_hovered_control()
+	return hovered == null or hovered.mouse_filter == Control.MOUSE_FILTER_IGNORE
 
 func _mouse_pan_direction() -> float:
 	var screen_width := get_viewport().get_visible_rect().size.x
