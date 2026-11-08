@@ -83,3 +83,9 @@ func _find_spot(location: StringName) -> Node3D:
 		if (node as HallMark).mark_id == location:
 			return node
 	return null
+
+func get_hall_parent(parent_id: StringName) -> HallParent:
+	for parent in hall_parents:
+		if parent.parent_id == parent_id:
+			return parent
+	return null

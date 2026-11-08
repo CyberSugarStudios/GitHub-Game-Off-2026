@@ -2,6 +2,7 @@ class_name HallParent
 extends Node3D
 
 signal arrived(parent_id: StringName, room_id: StringName)
+signal linger_started(parent_id: StringName, mark_id: StringName)
 
 const LINGER_RADIUS := 0.6
 
@@ -10,6 +11,8 @@ const LINGER_RADIUS := 0.6
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 @onready var target_shape: CollisionShape3D = $Target/CollisionShape3D
+
+var current_linger: HallMark = null	
 
 var _destination: StringName = &""
 var _stay_visible := false
@@ -44,6 +47,8 @@ func _physics_process(delta: float) -> void:
 	
 	if _linger_left > 0.0:
 		_linger_left -= delta * GameClock.world_speed
+		if _linger_left <= 0.0:
+			current_linger = null
 		return
 	
 	if agent.is_navigation_finished():
@@ -78,6 +83,8 @@ func _check_linger() -> void:
 			_passed_marks.append(mark)
 			if randf() < mark.linger_chance:
 				_linger_left = mark.linger_seconds
+				current_linger = mark
+				linger_started.emit(parent_id, mark.mark_id)
 				return
 
 func _set_present(present: bool) -> void:

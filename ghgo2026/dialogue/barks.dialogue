@@ -10,3 +10,13 @@
 % David: Leanne needs to stop touching the thermostat.
 % David: Maybe the thermostat wiring is shot?
 => END
+
+~ david_linger_school_photo
+% David: Hey, kiddo.
+% David: *clenches his fists*
+=> END
+
+~ leanne_linger_school_photo
+% Leanne: My baby...
+% Leanne: *sobs and sniffles*
+=> END

@@ -37,6 +37,9 @@ func _exit_tree() -> void:
 	GameState.set_controls_locked(false)
 
 #region - PLAYING
+func is_running() -> bool:
+	return _running
+
 func play(dialogue: DialogueResource, title: String, frozen: bool) -> void:
 	if _running and _frozen:
 		return
