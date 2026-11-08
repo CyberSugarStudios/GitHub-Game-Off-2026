@@ -13,7 +13,3 @@ const MIDDLE_HALL_WEST: float = 0.0 #middle of west hallway X
 
 func _ready() -> void:
 	add_to_group("hall_marks")
-	if global_position.x > MIDDLE_HALL_WEST:
-		global_position.z = MIDDLE_HALL_NORTH
-	else:
-		global_position.x = MIDDLE_HALL_WEST

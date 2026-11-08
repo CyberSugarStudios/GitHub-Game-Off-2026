@@ -142,8 +142,8 @@ mark_id = &"linen_closet"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5.8)
 script = ExtResource("5_gqmmt")
 mark_id = &"school_photo"
-linger_chance = 0.6
-linger_seconds = 4.0
+linger_chance = 0.05
+linger_seconds = 2.0
 
 [node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
 script = ExtResource("5_jbj1t")

@@ -53,6 +53,10 @@ func _physics_process(delta: float) -> void:
 		arrived.emit(parent_id, location)
 		return
 	
+	_check_linger()
+	if _linger_left > 0.0:
+		return
+	
 	var next := agent.get_next_path_position()
 	var to_next := next - global_position
 	to_next.y = 0.0
@@ -70,8 +74,6 @@ func _check_linger() -> void:
 			continue
 		var offset := mark.global_position - global_position
 		offset.y = 0.0
-		if OS.is_debug_build() and offset.length() < 1.5:								# TEMP
-			print("%s near %s: %.2f m" % [parent_id, mark.mark_id, offset.length()])	# TEMP
 		if offset.length() <= LINGER_RADIUS:
 			_passed_marks.append(mark)
 			if randf() < mark.linger_chance:
