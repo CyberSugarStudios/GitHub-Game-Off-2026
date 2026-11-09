@@ -11,13 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://cphlvw4ugwl31" path="res://scenes/ui/pause_menu.tscn" id="5_tbgi4"]
 [ext_resource type="Shader" uid="uid://bdo730lmi4xh" path="res://shaders/astral_screen.gdshader" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://xd1awdyyt8ud" path="res://scripts/household/parents_schedule.gd" id="6_0ld40"]
-[ext_resource type="PackedScene" uid="uid://jd4f6hndmxh8" path="res://scenes/interaction/door_way.tscn" id="7_2wyq8"]
+[ext_resource type="PackedScene" uid="uid://jd4f6hndmxh8" path="res://scenes/interaction/doorway.tscn" id="7_2wyq8"]
 [ext_resource type="Resource" uid="uid://pa3sidr7c6sy" path="res://data/schedules/leanne_stage0.tres" id="7_gqmmt"]
 [ext_resource type="Script" uid="uid://y87d6ngaan1" path="res://scripts/interaction/interactable.gd" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://dgjlh3m243b5g" path="res://assets/textures/house/hall/decals/cut_out_vent.webp" id="7_og1vs"]
+[ext_resource type="PackedScene" uid="uid://vnb6bjdisn6w" path="res://scenes/rooms/kitchen.tscn" id="8_2f3dj"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="8_85g3d"]
 [ext_resource type="Resource" uid="uid://bge0dqt1b63w8" path="res://data/schedules/david_stage0.tres" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://o0yxjkwwmwob" path="res://scenes/interaction/door.tscn" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://qa6vvk1yg7xa" path="res://scenes/rooms/living_room.tscn" id="9_yq6so"]
 [ext_resource type="Script" uid="uid://c3jcsqsukf1fp" path="res://scripts/rooms/room_view.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
 [ext_resource type="Script" uid="uid://ceqnyaxgcyvru" path="res://scripts/dialogue/conversation_player.gd" id="13_trceg"]
@@ -29,12 +31,6 @@
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_vxglm"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_2wyq8"]
-viewport_path = NodePath("SubViewport")
 
 [sub_resource type="QuadMesh" id="QuadMesh_53m36"]
 size = Vector2(1.76, 2.2)
@@ -171,25 +167,20 @@ room_id = &"parent_bedroom"
 lock_bars = 4
 transfer_rate = 6.25
 
-[node name="KitchenDoorWay" parent="HallModel/RoomEntrances" unique_id=2031556042 instance=ExtResource("7_2wyq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.523926)
+[node name="KitchenDoorway" parent="HallModel/RoomEntrances" unique_id=1825177568 instance=ExtResource("7_2wyq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
 room_id = &"kitchen"
 
-[node name="RoomCam" parent="HallModel/RoomEntrances/KitchenDoorWay/SubViewport" parent_id_path=PackedInt32Array(2031556042, 195229202) index="0" unique_id=2091950828]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -8.035645)
+[node name="DoorwayView" parent="HallModel/RoomEntrances/KitchenDoorway" index="2" unique_id=1184228109]
+room_scene = ExtResource("8_2f3dj")
 
-[node name="DoorView" parent="HallModel/RoomEntrances/KitchenDoorWay" index="3" unique_id=688131768]
-texture = SubResource("ViewportTexture_vxglm")
-
-[node name="LivingRoomDoorWay" parent="HallModel/RoomEntrances" unique_id=1595372754 instance=ExtResource("7_2wyq8")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.8356953, 0, -4.982048)
+[node name="LivingRoomDoorway" parent="HallModel/RoomEntrances" unique_id=1747982636 instance=ExtResource("7_2wyq8")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.8404174, 0, -4.982)
 room_id = &"living_room"
+prompt_text = "Enter living room"
 
-[node name="RoomCam" parent="HallModel/RoomEntrances/LivingRoomDoorWay/SubViewport" parent_id_path=PackedInt32Array(1595372754, 195229202) index="0" unique_id=2091950828]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -8.035645)
-
-[node name="DoorView" parent="HallModel/RoomEntrances/LivingRoomDoorWay" index="3" unique_id=688131768]
-texture = SubResource("ViewportTexture_2wyq8")
+[node name="DoorwayView" parent="HallModel/RoomEntrances/LivingRoomDoorway" index="2" unique_id=1184228109]
+room_scene = ExtResource("9_yq6so")
 
 [node name="HallMarks" type="Node" parent="HallModel" unique_id=654693850]
 
@@ -546,7 +537,7 @@ household = NodePath("../Household")
 conversation_player = NodePath("../ConversationPlayer")
 
 [editable path="HallModel"]
-[editable path="HallModel/RoomEntrances/KitchenDoorWay"]
-[editable path="HallModel/RoomEntrances/LivingRoomDoorWay"]
+[editable path="HallModel/RoomEntrances/KitchenDoorway"]
+[editable path="HallModel/RoomEntrances/LivingRoomDoorway"]
 [editable path="LeanneHall"]
 [editable path="DavidHall"]
