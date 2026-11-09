@@ -44,6 +44,8 @@ func try_interact() -> void:
 	_refresh()
 
 func _refresh() -> void:
+	if not is_inside_tree():
+		return
 	var in_main_view := get_viewport() == get_tree().root
 	visible = in_main_view and InteractionRules.realm_matches(realm) and not (one_shot and _used)
 	if _hovered:
