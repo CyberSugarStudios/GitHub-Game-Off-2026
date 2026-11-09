@@ -155,7 +155,7 @@ transfer_rate = 6.25
 
 [node name="EmilyBedroomDoor" parent="HallModel/RoomEntrances" unique_id=164378420 instance=ExtResource("9_choun")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.7478981, 0, -0.7071645)
-room_id = &"emily_bedroom_door"
+room_id = &"emily_bedroom"
 lock_bars = 5
 transfer_rate = 6.25
 
