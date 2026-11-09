@@ -11,7 +11,6 @@ signal unlocked
 @export_group("Lock")
 @export_range(0, 5) var lock_bars: int = 0
 @export var transfer_rate: float = 1.5
-@export var unlocked_padlock_texture: Texture2D
 
 @export_group("Lock Bar Look")
 @export var bar_size := Vector2(0.16, 0.035)
@@ -19,9 +18,8 @@ signal unlocked
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
 #region - ONREADY
-@onready var lock_icon: Node3D = $LockIcon
-@onready var padlock: Sprite3D = $LockIcon/PadLock
-@onready var bar_row: Node3D = $LockIcon/BarPips
+@onready var lock_icon: Node3D = get_node_or_null("LockIcon")
+@onready var bar_row: Node3D = get_node_or_null("LockIcon/BarPips")
 #endregion
 var _bar_materials: Array[ShaderMaterial] = []
 var _progress := 0.0
@@ -31,7 +29,9 @@ var _icon_rest_position: Vector3
 
 func _ready() -> void:
 	super()
-	#_icon_rest_position = lock_icon.position
+	if lock_icon == null:
+		return
+	_icon_rest_position = lock_icon.position
 	_build_bars()
 	if is_locked():
 		_set_progress(0.0)
@@ -119,8 +119,6 @@ func _set_progress(value: float) -> void:
 		_bar_materials[i].set_shader_parameter("fill", clampf(_progress - i, 0.0, 1.0))
 
 func _play_unlock_animation() -> void:
-	if unlocked_padlock_texture:
-		padlock.texture = unlocked_padlock_texture
 	var tween := create_tween()
 	tween.tween_interval(0.25)
 	tween.tween_property(lock_icon, "scale", Vector3.ONE * 1.25, 0.15).set_trans(Tween.TRANS_BACK) \

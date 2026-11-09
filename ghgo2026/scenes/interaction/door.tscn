@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://o0yxjkwwmwob"]
 
 [ext_resource type="Script" uid="uid://ckxeuukdgllw" path="res://scripts/interaction/door.gd" id="1_pdfrb"]
-[ext_resource type="Texture2D" uid="uid://bh13o3a18t67f" path="res://assets/sprites/padlock.png" id="2_t0o22"]
 [ext_resource type="Texture2D" uid="uid://bmybhllukh5yy" path="res://assets/textures/house/doors/door_1_int.webp" id="3_sapc1"]
 [ext_resource type="Texture2D" uid="uid://cxldrekaa0rha" path="res://assets/textures/house/doors/door_frame.webp" id="4_xqlk0"]
 
@@ -41,12 +40,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033, 1.5, 0.012)
 
 [node name="BarPips" type="Node3D" parent="LockIcon" unique_id=1279087040]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
-
-[node name="PadLock" type="Sprite3D" parent="LockIcon" unique_id=707289548]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-visible = false
-pixel_size = 0.0005
-texture = ExtResource("2_t0o22")
 
 [node name="DoorArt" type="MeshInstance3D" parent="." unique_id=463790496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03, 0.01)
