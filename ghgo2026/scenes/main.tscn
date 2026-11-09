@@ -168,7 +168,7 @@ lock_bars = 4
 transfer_rate = 6.25
 
 [node name="KitchenDoorway" parent="HallModel/RoomEntrances" unique_id=1825177568 instance=ExtResource("7_2wyq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
+transform = Transform3D(0.9656005, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
 room_id = &"kitchen"
 
 [node name="DoorwayView" parent="HallModel/RoomEntrances/KitchenDoorway" index="2" unique_id=1184228109]
@@ -181,6 +181,9 @@ prompt_text = "Enter living room"
 
 [node name="DoorwayView" parent="HallModel/RoomEntrances/LivingRoomDoorway" index="2" unique_id=1184228109]
 room_scene = ExtResource("9_yq6so")
+room_depth = 2.5
+depth_zoom = false
+reference_distance = 1.5
 
 [node name="HallMarks" type="Node" parent="HallModel" unique_id=654693850]
 
