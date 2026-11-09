@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://qa6vvk1yg7xa" path="res://scenes/rooms/living_room.tscn" id="9_yq6so"]
 [ext_resource type="Script" uid="uid://c3jcsqsukf1fp" path="res://scripts/rooms/room_view.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://dffnolbo2comu" path="res://assets/textures/house/wall_decor/emily_and_leanne_pumpkins.webp" id="12_yq6so"]
 [ext_resource type="Script" uid="uid://ceqnyaxgcyvru" path="res://scripts/dialogue/conversation_player.gd" id="13_trceg"]
 [ext_resource type="Script" uid="uid://beya5d7p54iyv" path="res://scripts/day_night/day_night.gd" id="14_jkv2x"]
 [ext_resource type="Script" uid="uid://0bqy0em324wk" path="res://scripts/temp_time_clock.gd" id="14_yc10j"]
@@ -40,6 +41,12 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("7_og1vs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f3dj"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("12_yq6so")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
 albedo_color = Color(1, 0, 1, 1)
@@ -198,7 +205,7 @@ script = ExtResource("5_gqmmt")
 mark_id = &"linen_closet"
 
 [node name="LingerSchoolPhoto" type="Marker3D" parent="HallModel/HallMarks" unique_id=859201201]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7813568, 0, -5.5777636)
 script = ExtResource("5_gqmmt")
 mark_id = &"school_photo"
 linger_chance = 1.0
@@ -210,6 +217,11 @@ linger_seconds = 2.0
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.117724, 1.0054932)
 mesh = SubResource("QuadMesh_53m36")
 surface_material_override/0 = SubResource("StandardMaterial3D_2lwwf")
+
+[node name="HallPhoto_EmilyAndLeannePumpkins" type="MeshInstance3D" parent="HallModel/HallDecor" unique_id=1547321972]
+transform = Transform3D(-0.63247633, 0, 8.742278e-08, 0, 0.63247633, 0, -5.5292837e-08, 0, -1, -1.773941, 1.7239022, -4.995178)
+mesh = SubResource("QuadMesh_53m36")
+surface_material_override/0 = SubResource("StandardMaterial3D_2f3dj")
 
 [node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
 script = ExtResource("5_jbj1t")
@@ -495,7 +507,9 @@ script = ExtResource("8_85g3d")
 [node name="RoomView" type="Node" parent="." unique_id=1658057070]
 script = ExtResource("10_choun")
 rooms = Dictionary[StringName, PackedScene]({
-&"bathroom": ExtResource("11_ya4ey")
+&"bathroom": ExtResource("11_ya4ey"),
+&"kitchen": ExtResource("8_2f3dj"),
+&"living_room": ExtResource("9_yq6so")
 })
 
 [node name="RoomLayer" type="CanvasLayer" parent="RoomView" unique_id=533120226]
