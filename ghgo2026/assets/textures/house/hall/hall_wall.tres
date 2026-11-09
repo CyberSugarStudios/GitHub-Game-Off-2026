@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d2q0ypeona71l"]
+
+[ext_resource type="Texture2D" uid="uid://d4d5fnifsaw64" path="res://assets/textures/house/hall/hallway_1.webp" id="1_q7ksw"]
+
+[resource]
+albedo_texture = ExtResource("1_q7ksw")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.496, 0.397, 1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 20.09576
+uv1_world_triplanar = true

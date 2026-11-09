@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_y5w4s"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="2_e0elq"]
-[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/sprites/rooms/PLACEHOLDER_bathroom1.png" id="2_w4rbc"]
+[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_w4rbc"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
-[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/sprites/rooms/PLACEHOLDER_bathroom2.png" id="3_dfe1a"]
+[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_dfe1a"]
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_dfe1a"]
 
 [sub_resource type="Gradient" id="Gradient_dfe1a"]

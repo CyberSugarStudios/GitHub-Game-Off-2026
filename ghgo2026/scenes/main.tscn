@@ -5,13 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://ch2ws6wo0sufh" path="res://scenes/player_first_person.tscn" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://3ixg3npkrdq1" path="res://scripts/rooms/room_entrance.gd" id="4_jkv2x"]
 [ext_resource type="Script" uid="uid://b4goyvy1yxl23" path="res://scripts/ui/hud.gd" id="4_jyhfs"]
+[ext_resource type="Material" uid="uid://d2q0ypeona71l" path="res://assets/textures/house/hall/hall_wall.tres" id="4_y6deb"]
 [ext_resource type="Script" uid="uid://boq4lgbp0eypn" path="res://scripts/household/hall_mark.gd" id="5_gqmmt"]
 [ext_resource type="Script" uid="uid://dwicwhdedn1ey" path="res://scripts/household/household.gd" id="5_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cphlvw4ugwl31" path="res://scenes/ui/pause_menu.tscn" id="5_tbgi4"]
 [ext_resource type="Shader" uid="uid://bdo730lmi4xh" path="res://shaders/astral_screen.gdshader" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://xd1awdyyt8ud" path="res://scripts/household/parents_schedule.gd" id="6_0ld40"]
+[ext_resource type="PackedScene" uid="uid://jd4f6hndmxh8" path="res://scenes/interaction/door_way.tscn" id="7_2wyq8"]
 [ext_resource type="Resource" uid="uid://pa3sidr7c6sy" path="res://data/schedules/leanne_stage0.tres" id="7_gqmmt"]
 [ext_resource type="Script" uid="uid://y87d6ngaan1" path="res://scripts/interaction/interactable.gd" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dgjlh3m243b5g" path="res://assets/textures/house/hall/decals/cut_out_vent.webp" id="7_og1vs"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="8_85g3d"]
 [ext_resource type="Resource" uid="uid://bge0dqt1b63w8" path="res://data/schedules/david_stage0.tres" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://o0yxjkwwmwob" path="res://scenes/interaction/door.tscn" id="9_choun"]
@@ -26,6 +29,21 @@
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vxglm"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2wyq8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="QuadMesh" id="QuadMesh_53m36"]
+size = Vector2(1.76, 2.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lwwf"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("7_og1vs")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
 albedo_color = Color(1, 0, 1, 1)
@@ -86,45 +104,92 @@ hall_lamps = [NodePath("../HallModel/OmniLight3D"), NodePath("../HallModel/OmniL
 
 [node name="HallModel" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
+[node name="hall" parent="HallModel" index="0" unique_id=137619233]
+material_override = ExtResource("4_y6deb")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="HallModel" unique_id=10455811]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6220455, 1.8147752, -2.984855)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6220455, 1.8147752, -3.3724892)
 light_color = Color(1, 0.8509804, 0.65882355, 1)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="HallModel" unique_id=634529625]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5465126, 1.8789563, -5.0766816)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.8789563, -5.0766816)
 light_color = Color(1, 0.8509804, 0.65882355, 1)
 
 [node name="RoomEntrances" type="Node" parent="HallModel" unique_id=1924097943]
 
 [node name="EntranceBathroom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1382819321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38836956, 0, -2.411131)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56275773, 0, -2.411131)
 script = ExtResource("4_jkv2x")
 room_id = &"bathroom"
 
 [node name="EntranceEmilyBedroom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1628187439]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5501919, 0, -0.93856037)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6112573, 0, -0.72505176)
 script = ExtResource("4_jkv2x")
 room_id = &"emily_bedroom"
 
 [node name="EntranceKitchen" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1461824847]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016183853, 0, -6.2786493)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016183853, 0, -6.3235373)
 script = ExtResource("4_jkv2x")
 room_id = &"kitchen"
 
 [node name="EntranceParentBedroom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=2139407700]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.275361, 0, -6.2786493)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3190765, 0, -6.3867373)
 script = ExtResource("4_jkv2x")
 room_id = &"parent_bedroom"
 
 [node name="EntranceLivingRoom" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=41340751]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.841735, 0, -5.1620855)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.841735, 0, -5.0681243)
 script = ExtResource("4_jkv2x")
 room_id = &"living_room"
 
 [node name="EntranceGarage" type="Marker3D" parent="HallModel/RoomEntrances" unique_id=1346914638]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.51178, 0, -5.744641)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5828085, 0, -5.744641)
 script = ExtResource("4_jkv2x")
 room_id = &"garage"
+
+[node name="BathroomDoor" parent="HallModel/RoomEntrances" unique_id=1087017087 instance=ExtResource("9_choun")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.76089096, 0, -2.3904035)
+room_id = &"bathroom"
+lock_bars = 2
+transfer_rate = 6.25
+
+[node name="EmilyBedroomDoor" parent="HallModel/RoomEntrances" unique_id=164378420 instance=ExtResource("9_choun")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.7478981, 0, -0.7071645)
+room_id = &"emily_bedroom_door"
+lock_bars = 5
+transfer_rate = 6.25
+
+[node name="GarageDoor" parent="HallModel/RoomEntrances" unique_id=1967805906 instance=ExtResource("9_choun")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -8.71323, 0, -5.7376056)
+room_id = &"garage"
+lock_bars = 3
+transfer_rate = 6.25
+
+[node name="ParentBedroomDoor" parent="HallModel/RoomEntrances" unique_id=1955474854 instance=ExtResource("9_choun")]
+transform = Transform3D(1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 1, -5.4099407, 0, -6.512325)
+room_id = &"parent_bedroom"
+lock_bars = 4
+transfer_rate = 6.25
+
+[node name="KitchenDoorWay" parent="HallModel/RoomEntrances" unique_id=2031556042 instance=ExtResource("7_2wyq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.523926)
+room_id = &"kitchen"
+
+[node name="RoomCam" parent="HallModel/RoomEntrances/KitchenDoorWay/SubViewport" parent_id_path=PackedInt32Array(2031556042, 195229202) index="0" unique_id=2091950828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -8.035645)
+
+[node name="DoorView" parent="HallModel/RoomEntrances/KitchenDoorWay" index="3" unique_id=688131768]
+texture = SubResource("ViewportTexture_vxglm")
+
+[node name="LivingRoomDoorWay" parent="HallModel/RoomEntrances" unique_id=1595372754 instance=ExtResource("7_2wyq8")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.8356953, 0, -4.982048)
+room_id = &"living_room"
+
+[node name="RoomCam" parent="HallModel/RoomEntrances/LivingRoomDoorWay/SubViewport" parent_id_path=PackedInt32Array(1595372754, 195229202) index="0" unique_id=2091950828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -8.035645)
+
+[node name="DoorView" parent="HallModel/RoomEntrances/LivingRoomDoorWay" index="3" unique_id=688131768]
+texture = SubResource("ViewportTexture_2wyq8")
 
 [node name="HallMarks" type="Node" parent="HallModel" unique_id=654693850]
 
@@ -144,6 +209,13 @@ script = ExtResource("5_gqmmt")
 mark_id = &"school_photo"
 linger_chance = 1.0
 linger_seconds = 2.0
+
+[node name="HallDecor" type="Node" parent="HallModel" unique_id=1302355487]
+
+[node name="CentralAirIntake" type="MeshInstance3D" parent="HallModel/HallDecor" unique_id=1223813579]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.117724, 1.0054932)
+mesh = SubResource("QuadMesh_53m36")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lwwf")
 
 [node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
 script = ExtResource("5_jbj1t")
@@ -358,7 +430,8 @@ script = ExtResource("15_pm3ni")
 visible = false
 
 [node name="TestBox" type="Area3D" parent="." unique_id=1481515878]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4636302, 0, 0.6688707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4636302, 0, 4.20228)
+visible = false
 script = ExtResource("7_o6xl0")
 prompt_text = "Touch the box"
 story_id = &"test_box"
@@ -377,7 +450,8 @@ pixel_size = 0.001
 text = "Any Realm"
 
 [node name="TestBoxLivingOnly" type="Area3D" parent="." unique_id=532615948]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45677996, 0, 0.6688707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45677996, 0, 4.20228)
+visible = false
 script = ExtResource("7_o6xl0")
 prompt_text = "Touch the box"
 realm = 1
@@ -401,7 +475,8 @@ script = ExtResource("8_85g3d")
 mode = 1
 
 [node name="AstralTrace" type="Area3D" parent="." unique_id=6416253]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1983471, 0.6703705)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1983471, 4.2037797)
+visible = false
 script = ExtResource("7_o6xl0")
 prompt_text = "Read the trace"
 realm = 2
@@ -422,11 +497,6 @@ text = "Living Realm Only"
 
 [node name="Node" type="Node" parent="AstralTrace" unique_id=1114960001]
 script = ExtResource("8_85g3d")
-
-[node name="Door" parent="." unique_id=1087017087 instance=ExtResource("9_choun")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7005005, 0, -2.3904035)
-room_id = &"bathroom"
-lock_bars = 2
 
 [node name="RoomView" type="Node" parent="." unique_id=1658057070]
 script = ExtResource("10_choun")
@@ -475,5 +545,8 @@ script = ExtResource("22_jscy8")
 household = NodePath("../Household")
 conversation_player = NodePath("../ConversationPlayer")
 
+[editable path="HallModel"]
+[editable path="HallModel/RoomEntrances/KitchenDoorWay"]
+[editable path="HallModel/RoomEntrances/LivingRoomDoorWay"]
 [editable path="LeanneHall"]
 [editable path="DavidHall"]

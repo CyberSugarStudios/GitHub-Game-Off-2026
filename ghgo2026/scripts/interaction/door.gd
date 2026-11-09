@@ -31,12 +31,12 @@ var _icon_rest_position: Vector3
 
 func _ready() -> void:
 	super()
-	_icon_rest_position = lock_icon.position
+	#_icon_rest_position = lock_icon.position
 	_build_bars()
 	if is_locked():
 		_set_progress(0.0)
-	else:
-		lock_icon.visible = false
+	#else:
+		#lock_icon.visible = false
 
 func is_locked() -> bool:
 	return lock_bars > 0 and not GameState.has_flag(_unlock_flag())
