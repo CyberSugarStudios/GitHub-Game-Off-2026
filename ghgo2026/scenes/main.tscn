@@ -32,6 +32,8 @@
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
+fog_enabled = true
+fog_light_energy = 2.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_53m36"]
 size = Vector2(1.76, 2.2)
@@ -112,7 +114,7 @@ material_override = ExtResource("4_y6deb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallModel" unique_id=10455811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6220455, 1.8147752, -3.3724892)
-light_color = Color(1, 0.8509804, 0.65882355, 1)
+light_color = Color(1, 0.851, 0.659, 1)
 light_energy = 0.5
 omni_range = 4.7829776
 
@@ -274,7 +276,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 1, 1, 0.24705882)
+color = Color(1, 1, 1, 0.24705882)
 
 [node name="Crosshair" type="ColorRect" parent="UI" unique_id=1610593568]
 custom_minimum_size = Vector2(4, 4)
