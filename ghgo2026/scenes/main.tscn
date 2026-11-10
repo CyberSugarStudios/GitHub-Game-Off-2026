@@ -113,10 +113,14 @@ material_override = ExtResource("4_y6deb")
 [node name="OmniLight3D" type="OmniLight3D" parent="HallModel" unique_id=10455811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6220455, 1.8147752, -3.3724892)
 light_color = Color(1, 0.8509804, 0.65882355, 1)
+light_energy = 0.5
+omni_range = 4.7829776
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="HallModel" unique_id=634529625]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.8789563, -5.0766816)
 light_color = Color(1, 0.8509804, 0.65882355, 1)
+light_energy = 0.5
+omni_range = 5.551603
 
 [node name="RoomEntrances" type="Node" parent="HallModel" unique_id=1924097943]
 
@@ -175,11 +179,15 @@ lock_bars = 4
 transfer_rate = 6.25
 
 [node name="KitchenDoorway" parent="HallModel/RoomEntrances" unique_id=1825177568 instance=ExtResource("7_2wyq8")]
-transform = Transform3D(0.9656005, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
 room_id = &"kitchen"
+
+[node name="FrameArt" parent="HallModel/RoomEntrances/KitchenDoorway" index="1" unique_id=677153208]
+transform = Transform3D(0.955833, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03, 0.012)
 
 [node name="DoorwayView" parent="HallModel/RoomEntrances/KitchenDoorway" index="2" unique_id=1184228109]
 room_scene = ExtResource("8_2f3dj")
+opening_size = Vector2(1.4, 2.04)
 
 [node name="LivingRoomDoorway" parent="HallModel/RoomEntrances" unique_id=1747982636 instance=ExtResource("7_2wyq8")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.8404174, 0, -4.982)

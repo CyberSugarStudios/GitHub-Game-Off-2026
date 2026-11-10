@@ -25,9 +25,9 @@ fill_to = Vector2(0, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
 gradient = SubResource("Gradient_8pl6i")
 
-[node name="Bathroom" type="Node2D" unique_id=1374467056]
+[node name="LivingRoom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_oy7wu")
-room_id = &"bathroom"
+room_id = &"living_room"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 texture = ExtResource("2_5s50e")
