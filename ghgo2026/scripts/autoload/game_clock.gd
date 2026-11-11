@@ -3,9 +3,9 @@ extends Node
 signal minute_changed(day: int, minute: int)
 signal hour_changed(day: int, hour: int)
 
-const SECONDS_PER_GAME_MINUTE := 1.0 #0.5 = 1 game hour every real world 30 seconds
+const SECONDS_PER_GAME_MINUTE := 1.0 #1.0 = 1 game hour = 1 real world minute
 const MINUTES_PER_DAY := 1440
-const START_MINUTE := 9 * 60 # 17 = 5PM
+const START_MINUTE := 17 * 60 # 17 = 5PM
 
 const ASTRAL_TIME_SCALE := 0.15
 const TIME_SCALE_EASE := 3.0

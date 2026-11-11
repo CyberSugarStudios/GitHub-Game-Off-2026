@@ -36,12 +36,14 @@ func _update_prompt() -> void:
 	var text := ""
 	var available := false
 	if current:
-		if GameState.in_astral or current.realm == InteractionRules.Realm.LIVING_ONLY:
+		if InteractionRules.realm_matches(current.realm):
 			var reason := current.get_block_reason()
 			available = reason == ""
 			text = current.get_prompt_text() if available else reason
-		else:
+		elif not GameState.in_astral:
 			text = current.get_living_label()
+		else:
+			text = current.get_block_reason()
 	if text != _last_prompt or available != _last_available:
 		_last_prompt = text
 		_last_available = available

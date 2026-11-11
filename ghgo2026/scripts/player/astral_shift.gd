@@ -1,70 +1,43 @@
 class_name AstralShift
 extends Node
 
-@export var hold_seconds: float = 0.5
-
 var _held := 0.0
-var _wait_for_release := false
 var _focus_seconds := 0.0
-var _flicker_windows: Array[Vector2] = []
-var _flickering := false
 
-func start_focus(seconds: float, flicker_windows: Array[Vector2]) -> void:
+func start_focus(seconds: float = 6.0) -> void:
 	_focus_seconds = seconds
-	_flicker_windows = flicker_windows
 
 func is_focus_armed() -> bool:
 	return _focus_seconds > 0.0
 
 func _process(delta: float) -> void:
-	var holding := Input.is_action_pressed("enter_astral_plane")
-	if _wait_for_release:
-		if not holding:
-			_wait_for_release = false
-		return
-	
-	var blocked := not GameState.shift_allowed or GameState.controls_locked
-	if GameState.in_astral:
-		if holding and not blocked:
-			_wait_for_release = true
-			GameState.toggle_plane()
-		return
-	if not holding or blocked:
+	if not GameState.shift_allowed or GameState.controls_locked:
 		if _held > 0.0:
 			_reset_hold()
 		return
 	
+	if not is_focus_armed():
+		if Input.is_action_just_pressed("enter_astral_plane"):
+			GameState.toggle_plane()
+		return
+	
+	if not Input.is_action_pressed("enter_astral_plane"):
+		if _held > 0.0:
+			_reset_hold()
+		return
 	_held += delta
-	var needed := _focus_seconds if is_focus_armed() else hold_seconds
-	Events.shift_charge_changed.emit(clampf(_held / needed, 0.0, 1.0))
-	_set_flicker(_in_flicker_window(_held))
-	if _held >= needed:
-		_complete()
-
-func _complete() -> void:
-	var was_focus := is_focus_armed()
-	_focus_seconds = 0.0
-	_flicker_windows.clear()
-	_reset_hold()
-	_wait_for_release = true
-	GameState.toggle_plane()
-	if was_focus:
+	Events.shift_charge_changed.emit(clampf(_held / _focus_seconds, 0.0, 1.0))
+	if _held >= _focus_seconds:
+		_focus_seconds = 0.0
+		_reset_hold()
+		GameState.toggle_plane()
 		Events.story_event.emit(&"first_focus_complete")
 
 func _reset_hold() -> void:
 	_held = 0.0
-	_set_flicker(false)
 	Events.shift_charge_changed.emit(0.0)
 
-func _in_flicker_window(seconds: float) -> bool:
-	if not  is_focus_armed():
-		return false
-	for window in _flicker_windows:
-		if seconds  >= window.x and seconds < window.y:
-			return true
-	return false
-
-func _set_flicker(on: bool) -> void:
-	if on != _flickering:
-		_flickering = on
-		Events.shift_flicker.emit(on)
+func _unhandled_input(event: InputEvent) -> void:
+	if OS.is_debug_build() and event is InputEventKey and event.pressed \
+			and not event.echo and event.keycode == KEY_F3:
+		start_focus(6.0)

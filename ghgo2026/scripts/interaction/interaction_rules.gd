@@ -3,7 +3,7 @@ extends RefCounted
 
 enum Realm { ANY, LIVING_ONLY, ASTRAL_ONLY }
 
-const ACTIONS_NEED_ASTRAL := true
+const ACTIONS_NEED_ASTRAL := false
 
 static func realm_matches(realm: Realm) -> bool:
 	match realm:

@@ -1,5 +1,12 @@
 shader_type canvas_item;
 
+group_uniforms Focus;
+uniform float reach : hint_range(0.0, 1.0) = 1.0;
+uniform float wave_mix : hint_range(0.0, 1.0) = 1.0;
+uniform float aberration_mix : hint_range(0.0, 1.0) = 1.0;
+uniform float grain_mix : hint_range(0.0, 1.0) = 1.0;
+group_uniforms;
+
 uniform float strength : hint_range(0.0, 1.0) = 1.0;
 
 uniform sampler2D screen_texture : hint_screen_texture, filter_linear;
@@ -28,6 +35,8 @@ void fragment() {
 	vec2 uv = SCREEN_UV;
 	vec2 from_center = uv - 0.5;
 	float edge = length(from_center) * 2.0;
+	float r = reach * 1.25;
+	float mask = smoothstep(1.0 - r, 1.0 - r + 0.25, clamp(edge / 1.4142, 0.0, 1.0));
 	
 	//wobble visuals near the edges
 	vec2 wave = vec2(

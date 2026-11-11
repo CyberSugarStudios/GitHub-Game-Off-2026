@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+@export_group("Focus crossing")
+@export var focus_peak_reach: float = 0.75
+
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
 @export var prompt_available_color := Color(1.0, 1.0, 1.0)
 @export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
@@ -20,8 +23,6 @@ var _astral_material: ShaderMaterial
 var _astral_strength := 0.0
 var _astral_tween: Tween
 var _full_for := 0.0
-var _shift_charge := 0.0
-var _flickering := false
 
 func _ready() -> void:
 	for child in spirit_bars_container.get_children():
@@ -37,7 +38,6 @@ func _ready() -> void:
 	Events.subtitle_changed.connect(_on_subtitle_changed)
 	GameState.room_changed.connect(func(_room_id: StringName) -> void: _refresh_crosshair())
 	Events.shift_charge_changed.connect(_on_shift_charge_changed)
-	Events.shift_flicker.connect(_on_shift_flicker)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
@@ -76,17 +76,26 @@ func _on_plane_changed(in_astral: bool) -> void:
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _on_shift_charge_changed(amount: float) -> void:
-	_shift_charge = amount
 	if _astral_tween and _astral_tween.is_running():
 		return
-	var resting := 1.0 if GameState.in_astral else 0.0
-	var other := 1.0 - resting
-	_set_astral_strength(other if _flickering else lerpf(resting, other, amount * \
-		shift_preview))
+	if amount <= 0.0:
+		_set_focus_look(1.0, 1.0, 1.0, 1.0) # Normal full-screen effect again.
+		_set_astral_strength(1.0 if GameState.in_astral else 0.0)
+		return
+	var creep := _ramp(amount, 0.0, 0.6)
+	var retreat := _ramp(amount, 0.6, 0.97)
+	var reach := focus_peak_reach * creep * (1.0 - 0.85 * retreat)
+	_set_focus_look(reach, 1.0, _ramp(amount, 0.2, 0.35), _ramp(amount, 0.4, 0.5))
+	_set_astral_strength(1.0)
 
-func _on_shift_flicker(on: bool) -> void:
-	_flickering = on
-	_on_shift_charge_changed(_shift_charge)
+func _set_focus_look(reach: float, wave: float, aberration: float, grain: float) -> void:
+	_astral_material.set_shader_parameter("reach", reach)
+	_astral_material.set_shader_parameter("wave_mix", wave)
+	_astral_material.set_shader_parameter("aberration_mix", aberration)
+	_astral_material.set_shader_parameter("grain_mix", grain)
+
+static func _ramp(x: float, from: float, to: float) -> float:
+	return clampf((x - from) / (to - from), 0.0, 1.0)
 
 func _set_astral_strength(value: float) -> void:
 	_astral_strength = value

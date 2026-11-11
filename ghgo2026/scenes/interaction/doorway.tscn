@@ -22,6 +22,7 @@ texture_filter = 5
 script = ExtResource("1_q7jd8")
 transfer_rate = 2.0
 prompt_text = "Enter"
+realm = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=374691443]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031787157, 1.039978, 0)
