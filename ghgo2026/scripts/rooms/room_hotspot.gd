@@ -23,8 +23,12 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	
-	GameState.plane_changed.connect(func(_in_astral: bool) -> void: _refresh())
-	GameState.energy_changed.connect(func(_energy: float, _max_bars: int) -> void: _refresh())
+	GameState.plane_changed.connect(
+		func(_in_astral: bool) -> void:
+			_refresh())
+	GameState.energy_changed.connect(
+		func(_energy: float, _max_bars: int) -> void:
+			_refresh())
 	_refresh()
 
 func get_block_reason() -> String:

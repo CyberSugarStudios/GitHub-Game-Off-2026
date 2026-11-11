@@ -4,7 +4,7 @@ extends CharacterBody3D
 #   WASD      - move
 #   Mouse     - look
 #   E / F     - interact
-#   Shift     - hold to enter astral plane
+#   Shift     - press to enter astral plane
 #   Space     - struggle out of the monster's grasp (mash)
 #   Esc / P   - pause (browsers eat Esc, so P is required)
 
@@ -44,6 +44,15 @@ func _ready() -> void:
 	GameState.plane_changed.connect(_on_plane_changed)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Events.returned_to_hall.connect(place_at)
+	Events.shift_charge_changed.connect(_on_shift_charge_changed)
+
+func _on_shift_charge_changed(amount: float) -> void:
+	if amount <= 0.0:
+		_on_plane_changed(GameState.in_astral)
+		return
+	if _fov_tween:
+		_fov_tween.kill()
+	camera.fov = _base_fov + astral_fov_boost * amount
 
 func _unhandled_input(event: InputEvent) -> void:
 	if GameState.controls_locked:

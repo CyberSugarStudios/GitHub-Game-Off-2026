@@ -10,11 +10,21 @@ extends VBoxContainer
 func _ready() -> void:
 	grow_horizontal = Control.GROW_DIRECTION_END
 	grow_vertical = Control.GROW_DIRECTION_END
-	Powers.target_changed.connect(func(_id: StringName) -> void: _rebuild())
-	Powers.selection_changed.connect(func(_index: int) -> void: _refresh())
-	GameState.plane_changed.connect(func(_astral: bool) -> void: _rebuild())
-	GameState.max_bars_changed.connect(func(_bars: int) -> void: _rebuild())
-	GameState.energy_changed.connect(func(_e: float, _m: int) -> void: _refresh())
+	Powers.target_changed.connect(
+		func(_id: StringName) -> void:
+			_rebuild())
+	Powers.selection_changed.connect(
+		func(_index: int) -> void:
+			_refresh())
+	GameState.plane_changed.connect(
+		func(_astral: bool) -> void:
+			_rebuild())
+	GameState.max_bars_changed.connect(
+		func(_bars: int) -> void:
+			_rebuild())
+	GameState.energy_changed.connect(
+		func(_e: float, _m: int) -> void:
+			_refresh())
 	_rebuild()
 
 func _rebuild() -> void:
@@ -36,9 +46,10 @@ func _rebuild() -> void:
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.focus_mode = Control.FOCUS_NONE
 		button.mouse_filter = Control.MOUSE_FILTER_STOP if in_room else Control.MOUSE_FILTER_IGNORE
-		button.pressed.connect(func() -> void:
-			Powers.select(i)
-			Powers.use_selected())
+		button.pressed.connect(
+			func() -> void:
+				Powers.select(i)
+				Powers.use_selected())
 		button.add_child(_make_cost_bars(power.energy_cost))
 		add_child(button)
 	_refresh()

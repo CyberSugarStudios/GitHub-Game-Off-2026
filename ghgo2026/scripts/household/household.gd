@@ -7,8 +7,12 @@ extends Node
 var _detours: Dictionary[StringName, Dictionary] = {}
 
 func _ready() -> void:
-	GameClock.minute_changed.connect(func(_day: int, _minute: int) -> void: _update())
-	GameState.story_stage_changed.connect(func(_stage: int) -> void: _update())
+	GameClock.minute_changed.connect(
+		func(_day: int, _minute: int) -> void:
+			_update())
+	GameState.story_stage_changed.connect(
+		func(_stage: int) -> void:
+			_update())
 	for parent in hall_parents:
 		parent.arrived.connect(_on_parent_arrived)
 	_place_everyone.call_deferred()

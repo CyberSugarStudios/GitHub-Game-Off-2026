@@ -31,6 +31,7 @@ static var astral_amount := 0.0
 
 var _astral := 0.0
 var _astral_light_energy: Dictionary[Light3D, float] = {}
+var _preview := 0.0
 
 func _ready() -> void:
 	_astral = 1.0 if GameState.in_astral else 0.0
@@ -39,10 +40,15 @@ func _ready() -> void:
 	for light in astral_only_lights:
 		if is_instance_valid(light):
 			_astral_light_energy[light] = light.light_energy
+	
+	Events.shift_charge_changed.connect(
+		func(amount: float) -> void:
+			_preview = amount)
 
 func _process(delta: float) -> void:
 	var target := 1.0 if GameState.in_astral else 0.0
 	_astral = move_toward(_astral, target, delta / maxf(astral_transition_time, 0.01))
+	_astral = maxf(_astral, _preview)
 	astral_amount = _astral
 	
 	var t := GameClock.get_day_fraction()

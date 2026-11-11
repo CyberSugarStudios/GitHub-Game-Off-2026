@@ -1,8 +1,5 @@
 extends CanvasLayer
 
-@export_group("Focus crossing")
-@export var focus_peak_reach: float = 0.75
-
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
 @export var prompt_available_color := Color(1.0, 1.0, 1.0)
 @export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
@@ -35,7 +32,9 @@ func _ready() -> void:
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
 	Events.interaction_prompt_changed.connect(_on_interaction_prompt_changed)
 	Events.subtitle_changed.connect(_on_subtitle_changed)
-	GameState.room_changed.connect(func(_room_id: StringName) -> void: _refresh_crosshair())
+	GameState.room_changed.connect(
+		func(_room_id: StringName) -> void:
+			_refresh_crosshair())
 	Events.shift_charge_changed.connect(_on_shift_charge_changed)
 	
 	#current state instantly on load
@@ -75,17 +74,19 @@ func _on_plane_changed(in_astral: bool) -> void:
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _on_shift_charge_changed(amount: float) -> void:
-	if _astral_tween and _astral_tween.is_running():
-		return
 	if amount <= 0.0:
-		_set_focus_look(1.0, 1.0, 1.0, 1.0) # Normal full-screen effect again.
-		_set_astral_strength(1.0 if GameState.in_astral else 0.0)
+		_on_plane_changed(GameState.in_astral)
+		_astral_tween.tween_callback(_set_focus_look.bind(1.0, 1.0, 1.0, 1.0))
 		return
-	var creep := _ramp(amount, 0.0, 0.6)
-	var retreat := _ramp(amount, 0.6, 0.97)
-	var reach := focus_peak_reach * creep * (1.0 - 0.85 * retreat)
-	_set_focus_look(reach, 1.0, _ramp(amount, 0.2, 0.35), _ramp(amount, 0.4, 0.5))
-	_set_astral_strength(1.0)
+	if _astral_tween:
+		_astral_tween.kill()
+	_set_focus_look(
+		_ramp(amount, 0.0, 0.9),	# reach: edges -> whole screen
+		_ramp(amount, 0.0, 0.3),	# wave
+		_ramp(amount, 0.25, 0.55),	# chrom abb
+		_ramp(amount, 0.5, 0.8)		# grain
+	)
+	_set_astral_strength(amount)
 
 func _set_focus_look(reach: float, wave: float, aberration: float, grain: float) -> void:
 	_astral_material.set_shader_parameter("reach", reach)

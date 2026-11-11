@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://cup4c1hbpt1b" path="res://scripts/ui/power_menu.gd" id="15_pm3ni"]
 [ext_resource type="Script" uid="uid://c4vxoy4gjw2cd" path="res://scripts/powers/parent_reactions.gd" id="22_jscy8"]
 [ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
+[ext_resource type="Script" uid="uid://oonra37m55uk" path="res://scripts/ui/focus_ring.gd" id="27_pibwh"]
 [ext_resource type="PackedScene" uid="uid://iurbh1d578i1" path="res://scenes/rooms/emily_bedroom.tscn" id="30_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://djn85cwfw380d" path="res://scenes/rooms/parent_bedroom.tscn" id="31_j8jky"]
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
@@ -328,6 +329,22 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.24705882)
+
+[node name="FocusRing" type="Control" parent="UI" unique_id=1170378649]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("27_pibwh")
 
 [node name="Crosshair" type="ColorRect" parent="UI" unique_id=1610593568]
 custom_minimum_size = Vector2(4, 4)

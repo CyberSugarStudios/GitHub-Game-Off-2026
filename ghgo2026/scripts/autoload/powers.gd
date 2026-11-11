@@ -12,10 +12,13 @@ var target: StringName = &""
 var selected := 0
 
 func _ready() -> void:
-	GameState.room_changed.connect(func(_room: StringName) -> void: set_target(&""))
-	GameState.plane_changed.connect(func(in_astral: bool) -> void:
-		if not in_astral:
+	GameState.room_changed.connect(
+		func(_room: StringName) -> void:
 			set_target(&""))
+	GameState.plane_changed.connect(
+		func(in_astral: bool) -> void:
+			if not in_astral:
+				set_target(&""))
 
 func get_unlocked() -> Array[Power]:
 	var result: Array[Power] = []
