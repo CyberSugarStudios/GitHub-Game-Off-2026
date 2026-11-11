@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://3ixg3npkrdq1" path="res://scripts/rooms/room_entrance.gd" id="4_jkv2x"]
 [ext_resource type="Script" uid="uid://b4goyvy1yxl23" path="res://scripts/ui/hud.gd" id="4_jyhfs"]
 [ext_resource type="Material" uid="uid://d2q0ypeona71l" path="res://assets/textures/house/hall/hall_wall.tres" id="4_y6deb"]
+[ext_resource type="Texture2D" uid="uid://cy0aqhskkxkfi" path="res://assets/textures/temp_floor.png" id="5_fuf3a"]
 [ext_resource type="Script" uid="uid://boq4lgbp0eypn" path="res://scripts/household/hall_mark.gd" id="5_gqmmt"]
 [ext_resource type="Script" uid="uid://dwicwhdedn1ey" path="res://scripts/household/household.gd" id="5_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cphlvw4ugwl31" path="res://scenes/ui/pause_menu.tscn" id="5_tbgi4"]
@@ -40,6 +41,13 @@
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
 fog_sky_affect = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fuf3a"]
+albedo_color = Color(0.5803922, 0.5137255, 0.5019608, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcjdw"]
+albedo_color = Color(0.50140655, 0.5014065, 0.5014065, 1)
+albedo_texture = ExtResource("5_fuf3a")
 
 [sub_resource type="QuadMesh" id="QuadMesh_53m36"]
 size = Vector2(1.76, 2.2)
@@ -122,6 +130,12 @@ astral_only_lights = [NodePath("../HallModel/UnderTone"), NodePath("../HallModel
 
 [node name="hall" parent="HallModel" index="0" unique_id=137619233]
 material_override = ExtResource("4_y6deb")
+
+[node name="hallCeiling" parent="HallModel" index="1" unique_id=1270299963]
+surface_material_override/0 = SubResource("StandardMaterial3D_fuf3a")
+
+[node name="hallFloor" parent="HallModel" index="2" unique_id=1360151445]
+surface_material_override/0 = SubResource("StandardMaterial3D_gcjdw")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallModel" unique_id=10455811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003976822, 1.5908678, -3.3724892)
