@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://cy365m571xhg4" path="res://assets/textures/house/wall_decor/emily_and_leanne_pumpkins_emission_map.webp" id="13_fv21b"]
 [ext_resource type="Script" uid="uid://ceqnyaxgcyvru" path="res://scripts/dialogue/conversation_player.gd" id="13_trceg"]
 [ext_resource type="Script" uid="uid://beya5d7p54iyv" path="res://scripts/day_night/day_night.gd" id="14_jkv2x"]
+[ext_resource type="Script" uid="uid://cyejh6mcmid73" path="res://scripts/interaction/astral_glow.gd" id="14_tel4y"]
 [ext_resource type="Script" uid="uid://0bqy0em324wk" path="res://scripts/temp_time_clock.gd" id="14_yc10j"]
 [ext_resource type="PackedScene" uid="uid://ytva5plunhw8" path="res://scenes/household/hall_parent.tscn" id="15_jkv2x"]
 [ext_resource type="Script" uid="uid://cup4c1hbpt1b" path="res://scripts/ui/power_menu.gd" id="15_pm3ni"]
@@ -49,7 +50,6 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("12_yq6so")
-emission_enabled = true
 emission = Color(0.4392157, 0.6862745, 0.6392157, 1)
 emission_operator = 1
 emission_texture = ExtResource("13_fv21b")
@@ -247,9 +247,13 @@ mesh = SubResource("QuadMesh_53m36")
 surface_material_override/0 = SubResource("StandardMaterial3D_2lwwf")
 
 [node name="HallPhoto_EmilyAndLeannePumpkins" type="MeshInstance3D" parent="HallModel/HallDecor" unique_id=1547321972]
-transform = Transform3D(-0.63247633, 0, 8.742278e-08, 0, 0.63247633, 0, -5.5292837e-08, 0, -1, -1.773941, 1.7239022, -4.995178)
+transform = Transform3D(-0.63239634, -0.01005899, 8.742278e-08, -0.01005899, 0.63239634, 0, -5.5285845e-08, -8.793848e-10, -1, -1.773941, 1.7239022, -4.995178)
 mesh = SubResource("QuadMesh_53m36")
 surface_material_override/0 = SubResource("StandardMaterial3D_2f3dj")
+
+[node name="AstralGlow" type="Node" parent="HallModel/HallDecor/HallPhoto_EmilyAndLeannePumpkins" unique_id=597389869]
+script = ExtResource("14_tel4y")
+glow_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 
 [node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
 script = ExtResource("5_jbj1t")

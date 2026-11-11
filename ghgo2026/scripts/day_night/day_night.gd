@@ -23,8 +23,6 @@ const PALETTE := preload("res://resources/day_night_palette.tres")
 @export var astral_ambient_energy: float = 0.35
 @export var astral_fog_energy: float = 0.5
 
-@onready var painting: MeshInstance3D = $"../HallModel/HallDecor/HallPhoto_EmilyAndLeannePumpkins"
-
 static var astral_amount := 0.0
 
 var _astral := 0.0
@@ -42,9 +40,6 @@ func _process(delta: float) -> void:
 	var sky := PALETTE.sky_color.sample(t)
 	var daylight := PALETTE.sun_energy.sample(t)
 	var living := 1.0 - _astral
-	
-	if painting:
-		painting.get_active_material(0).emission_enabled = true if GameState.in_astral else false
 	
 	if sun:
 		sun.light_color = sky
