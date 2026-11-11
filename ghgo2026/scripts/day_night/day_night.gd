@@ -24,13 +24,21 @@ const PALETTE := preload("res://resources/day_night_palette.tres")
 @export var astral_ambient_energy: float = 0.35
 @export var astral_fog_energy: float = 0.5
 
+@export_group("Astral-only Lights")
+@export var astral_only_lights: Array[Light3D] = []
+
 static var astral_amount := 0.0
 
 var _astral := 0.0
+var _astral_light_energy: Dictionary[Light3D, float] = {}
 
 func _ready() -> void:
 	_astral = 1.0 if GameState.in_astral else 0.0
 	astral_amount = _astral
+	
+	for light in astral_only_lights:
+		if is_instance_valid(light):
+			_astral_light_energy[light] = light.light_energy
 
 func _process(delta: float) -> void:
 	var target := 1.0 if GameState.in_astral else 0.0
@@ -66,3 +74,7 @@ func _process(delta: float) -> void:
 		if is_instance_valid(lamp):
 			lamp.light_energy = energy
 			lamp.light_color = color
+	for light in astral_only_lights:
+		if is_instance_valid(light):
+			light.light_energy = _astral_light_energy.get(light, 1.0) * _astral
+			light.visible = _astral > 0.001
