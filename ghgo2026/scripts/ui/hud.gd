@@ -46,11 +46,14 @@ func _ready() -> void:
 	_on_interaction_prompt_changed("", false)
 	_on_subtitle_changed("", "", 1.0, false)
 	_refresh_crosshair()
+	
+	_full_for = full_fade_delay
+	spirit_bars_container.modulate.a = 0.0
 
 func _process(delta: float) -> void:
 	var full := GameState.energy >= GameState.max_bars - 0.001
 	_full_for = _full_for + delta if full else 0.0
-	var want := 1.0 if (GameState.in_astral and _full_for < full_fade_delay) else 0.0
+	var want := 1.0 if _full_for < full_fade_delay else 0.0
 	spirit_bars_container.modulate.a = move_toward(spirit_bars_container.modulate.a, want,\
 		bar_fade_speed * delta)
 

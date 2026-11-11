@@ -1,7 +1,7 @@
 class_name AstralShift
 extends Node
 
-@export var hold_seconds: float = 1.5
+@export var hold_seconds: float = 0.5
 
 var _held := 0.0
 var _wait_for_release := false
@@ -24,6 +24,11 @@ func _process(delta: float) -> void:
 		return
 	
 	var blocked := not GameState.shift_allowed or GameState.controls_locked
+	if GameState.in_astral:
+		if holding and not blocked:
+			_wait_for_release = true
+			GameState.toggle_plane()
+		return
 	if not holding or blocked:
 		if _held > 0.0:
 			_reset_hold()
