@@ -32,7 +32,6 @@ func _process(delta: float) -> void:
 		if GameState.enter_astral():
 			_focus_seconds = 0.0
 			Events.story_event.emit(&"first_focus_complete")
-		GameState.toggle_plane()
 
 func _reset_hold() -> void:
 	_held = 0.0

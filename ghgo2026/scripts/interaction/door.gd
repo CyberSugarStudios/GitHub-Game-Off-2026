@@ -12,7 +12,7 @@ signal unlocked
 @export var room_id: StringName
 @export var room_label: String = ""
 @export var exit_distance: float = 0.6
-@export var pass_cost: float = 0.25
+@export var pass_cost: float = 0.0
 
 @export_group("Lock")
 @export_range(0, 5) var lock_bars: int = 0
