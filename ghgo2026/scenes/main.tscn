@@ -112,6 +112,7 @@ sun = NodePath("../Sun")
 world_environment = NodePath("../WorldEnvironment")
 max_sun_energy = 0.35
 hall_lamps = [NodePath("../HallModel/OmniLight3D"), NodePath("../HallModel/OmniLight3D2")]
+lamps_in_living_plane = true
 astral_lamp_energy = 0.9
 astral_only_lights = [NodePath("../HallModel/UnderTone"), NodePath("../HallModel/UnderTone2")]
 

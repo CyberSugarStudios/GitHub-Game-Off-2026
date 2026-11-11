@@ -20,7 +20,7 @@ func _ready() -> void:
 	
 	_material.emission_enabled = true
 	_material.emission = glow_color
-	if _material.emmission_texture == null and glow_uses_texture:
+	if _material.emission_texture == null and glow_uses_texture:
 		_material.emission_texture = _material.albedo_texture
 	_material.emission_energy_multiplier = 0.0
 	mesh.material_override = _material
