@@ -13,8 +13,8 @@ signal unlocked
 @export var transfer_rate: float = 1.5
 
 @export_group("Lock Bar Look")
-@export var bar_size := Vector2(0.07, 0.035)
-@export var bar_spacing: float = 0.085
+@export var bar_size := Vector2(0.09, 0.045)
+@export var bar_spacing: float = 0.105
 @export var bar_texture: Texture2D = preload("res://assets/textures/astral_door_lock_bar.jpg")
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")

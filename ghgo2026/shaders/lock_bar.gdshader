@@ -1,12 +1,13 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled, fog_disabled, blend_mix;
 
-uniform float fill : hint_range(0.0, 1.0) = 0.0; // 0 empty, 1 full (fills left to right)
+uniform float fill : hint_range(0.0, 1.0) = 0.0;
 uniform sampler2D fill_texture : source_color, filter_linear_mipmap;
 uniform vec4 fill_tint : source_color = vec4(1.0);
-uniform vec4 outline_color : source_color = vec4(0.85, 0.82, 0.95, 0.55);
+uniform vec4 outline_color : source_color = vec4(00.8, 0.804, 0.769, 1.0); //#CCCDC4
 uniform float outline_width : hint_range(0.0, 0.3) = 0.08;
-uniform float aspect = 2.0;uniform float flash : hint_range(0.0, 1.0) = 0.0;
+uniform float aspect = 2.0;
+uniform float flash : hint_range(0.0, 1.0) = 0.0;
 uniform float opacity : hint_range(0.0, 1.0) = 1.0;
 
 float rounded_box(vec2 p, vec2 half_size, float radius) {
@@ -22,14 +23,14 @@ void fragment() {
 		discard;
 	}
 
-	vec3 color;
-	float alpha;
-	if (UV.x <= fill) {
+	vec3 color = vec3(0.0);
+	float alpha = 0.0;
+	if (d > -outline_width) {
+		color = outline_color.rgb;
+		alpha = outline_color.a;
+	} else if (UV.x <= fill) {
 		color = texture(fill_texture, UV).rgb * fill_tint.rgb;
 		alpha = 1.0;
-	} else {
-		color = outline_color.rgb;
-		alpha = (d > -outline_width) ? outline_color.a : 0.0;
 	}
 	color = mix(color, vec3(1.0), flash * 0.7);
 	ALBEDO = color;
