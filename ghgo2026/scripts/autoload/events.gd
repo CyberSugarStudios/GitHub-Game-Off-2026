@@ -9,4 +9,5 @@ signal conversation_requested(dialogue: DialogueResource, title: String, frozen:
 signal subtitle_changed(character: String, text: String, clarity: float, is_thought: bool)
 signal conversation_finished(title: String)
 signal power_used(power_id: StringName, parent_id: StringName)
+signal door_unlock_failed(room_id: StringName)
 @warning_ignore_restore("unused_signal")

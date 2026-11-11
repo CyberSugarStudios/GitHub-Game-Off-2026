@@ -2,6 +2,9 @@ class_name Door
 extends Interactable
 
 #region - INIT
+const DOOR_LINES := preload("res://dialogue/doors.dialogue")
+const FEEDBACK_SECONDS := 1.5
+
 signal unlocked
 
 #region - EXPORTS
@@ -26,6 +29,7 @@ var _bar_materials: Array[ShaderMaterial] = []
 var _progress := 0.0
 var _transferring := false
 var _icon_rest_position: Vector3
+var _feedback_left := 0.0
 #endregion
 
 func _ready() -> void:
@@ -39,23 +43,24 @@ func _ready() -> void:
 	#else:
 		#lock_icon.visible = false
 
+func _process(delta: float) -> void:
+	if _bar_materials.is_empty():
+		return
+	_feedback_left = maxf(_feedback_left - delta, 0.0)
+	var shown := 1.0 if (_transferring or _feedback_left > 0.0) else DayNight.astral_amount
+	for material in _bar_materials:
+		material.set_shader_parameter("visibility", shown)
+
 func is_locked() -> bool:
 	return lock_bars > 0 and not GameState.has_flag(_unlock_flag())
 
 #region - INTERACT OVERRIDES
-func get_prompt_text() -> String:
-	if is_locked():
-		return "Unlock (%d bars)" % lock_bars
-	return prompt_text
-
 func get_block_reason() -> String:
 	if _transferring:
 		return "Unlocking..."
 	var reason := super()
 	if reason != "":
 		return reason
-	if is_locked() and GameState.energy <= 0.0:
-		return "No energy to unlock"
 	return ""
 
 func _on_interacted() -> void:
@@ -83,6 +88,7 @@ func _physics_process(delta: float) -> void:
 		_fail_unlock()
 
 func _finish_unlock() -> void:
+	_feedback_left = FEEDBACK_SECONDS
 	_transferring = false
 	_set_progress(lock_bars)
 	GameState.set_flag(_unlock_flag())
@@ -91,11 +97,21 @@ func _finish_unlock() -> void:
 
 func _fail_unlock() -> void:
 	_transferring = false
+	_feedback_left = FEEDBACK_SECONDS
 	_play_fail_shake()
-	
 	var drain := create_tween()
 	drain.tween_interval(0.3)
-	drain.tween_method(_set_progress, _progress, 0.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	drain.tween_method(_set_progress, _progress, 0.0, 0.5).set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN)
+	_play_fail_line()
+
+func _play_fail_line() -> void:
+	var cues := DOOR_LINES.get_cues()
+	var cue := "%s_locked" % room_id
+	if not cue in cues:
+		cue = "locked"
+	if cue in cues:
+		Events.conversation_requested.emit(DOOR_LINES, cue, false)
 #endregion
 
 #region - VISUALS
