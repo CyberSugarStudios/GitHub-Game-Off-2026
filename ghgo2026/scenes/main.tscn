@@ -83,10 +83,6 @@ agent_radius = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("5_tefeu")
-shader_parameter/reach = 1.0
-shader_parameter/wave_mix = 1.0
-shader_parameter/aberration_mix = 1.0
-shader_parameter/grain_mix = 1.0
 shader_parameter/strength = 1.0
 shader_parameter/astral_tint = Color(0.35, 0.75, 0.85, 1)
 shader_parameter/tint_amount = 0.0
@@ -97,6 +93,10 @@ shader_parameter/wave_frequency = 12.0
 shader_parameter/aberration = 0.008
 shader_parameter/vignette_amount = 1.1
 shader_parameter/grain_amount = 0.04
+shader_parameter/reach = 1.0
+shader_parameter/wave_mix = 1.0
+shader_parameter/aberration_mix = 1.0
+shader_parameter/grain_mix = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
 size = Vector3(0.4, 0.4, 0.4)
@@ -421,7 +421,6 @@ vertical_alignment = 1
 script = ExtResource("14_yc10j")
 
 [node name="SpiritBars" type="HBoxContainer" parent="UI" unique_id=2077483971]
-custom_minimum_size = Vector2(100, 25)
 offset_left = 20.0
 offset_top = 40.0
 offset_right = 120.0
@@ -431,7 +430,6 @@ mouse_filter = 2
 [node name="SpiritBar" type="ColorRect" parent="UI/SpiritBars" unique_id=1108018222]
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
 script = ExtResource("24_j8jky")
@@ -440,7 +438,6 @@ script = ExtResource("24_j8jky")
 visible = false
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
 script = ExtResource("24_j8jky")
@@ -449,7 +446,6 @@ script = ExtResource("24_j8jky")
 visible = false
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
 script = ExtResource("24_j8jky")
@@ -458,7 +454,6 @@ script = ExtResource("24_j8jky")
 visible = false
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
 script = ExtResource("24_j8jky")
@@ -467,7 +462,6 @@ script = ExtResource("24_j8jky")
 visible = false
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
 script = ExtResource("24_j8jky")
@@ -576,13 +570,16 @@ layer = 0
 layer = 2
 
 [node name="ExitButton" type="Button" parent="RoomView/RoomUI" unique_id=1970652737]
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -52.0
-offset_right = 128.0
+offset_left = -70.5
+offset_top = -60.0
+offset_right = 70.5
 offset_bottom = -20.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Leave (S)"

@@ -8,7 +8,6 @@ extends CanvasLayer
 @export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
 @export var full_fade_delay: float = 1.0
 @export var bar_fade_speed: float = 4.0
-@export var shift_preview: float = 0.25
 
 @onready var astral_filter: ColorRect = $AstralRealmColorFilter
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
@@ -53,7 +52,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var full := GameState.energy >= GameState.max_bars - 0.001
 	_full_for = _full_for + delta if full else 0.0
-	var want := 1.0 if _full_for < full_fade_delay else 0.0
+	var want := 1.0 if (GameState.in_astral or _full_for < full_fade_delay) else 0.0
 	spirit_bars_container.modulate.a = move_toward(spirit_bars_container.modulate.a, want,\
 		bar_fade_speed * delta)
 

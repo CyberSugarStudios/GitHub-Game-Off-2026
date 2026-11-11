@@ -28,10 +28,11 @@ func _process(delta: float) -> void:
 	_held += delta
 	Events.shift_charge_changed.emit(clampf(_held / _focus_seconds, 0.0, 1.0))
 	if _held >= _focus_seconds:
-		_focus_seconds = 0.0
 		_reset_hold()
+		if GameState.enter_astral():
+			_focus_seconds = 0.0
+			Events.story_event.emit(&"first_focus_complete")
 		GameState.toggle_plane()
-		Events.story_event.emit(&"first_focus_complete")
 
 func _reset_hold() -> void:
 	_held = 0.0
