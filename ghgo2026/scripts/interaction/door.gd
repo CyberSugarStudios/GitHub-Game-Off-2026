@@ -13,8 +13,9 @@ signal unlocked
 @export var transfer_rate: float = 1.5
 
 @export_group("Lock Bar Look")
-@export var bar_size := Vector2(0.16, 0.035)
-@export var bar_spacing: float = 0.05
+@export var bar_size := Vector2(0.07, 0.035)
+@export var bar_spacing: float = 0.085
+@export var bar_texture: Texture2D = preload("res://assets/textures/astral_door_lock_bar.jpg")
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
 #region - ONREADY
@@ -105,11 +106,13 @@ func _build_bars() -> void:
 		
 		var material := ShaderMaterial.new()
 		material.shader = LOCK_BAR_SHADER
+		material.set_shader_parameter("fill_texture", bar_texture)
+		material.set_shader_parameter("aspect", bar_size.x / bar_size.y)
 		
 		var bar := MeshInstance3D.new()
 		bar.mesh = quad
 		bar.material_override = material
-		bar.position.y = i * bar_spacing
+		bar.position.x = (i - (lock_bars - 1) / 2.0) * bar_spacing
 		bar_row.add_child(bar)
 		_bar_materials.append(material)
 
@@ -119,13 +122,19 @@ func _set_progress(value: float) -> void:
 		_bar_materials[i].set_shader_parameter("fill", clampf(_progress - i, 0.0, 1.0))
 
 func _play_unlock_animation() -> void:
-	var tween := create_tween()
-	tween.tween_interval(0.25)
-	tween.tween_property(lock_icon, "scale", Vector3.ONE * 1.25, 0.15).set_trans(Tween.TRANS_BACK) \
-	.set_ease(Tween.EASE_OUT)
-	tween.tween_property(lock_icon, "scale", Vector3.ONE * 0.01, 0.3).set_trans(Tween.TRANS_BACK) \
-	.set_ease(Tween.EASE_IN)
-	tween.tween_callback(lock_icon.hide)
+	var tween := create_tween().set_parallel()
+	for i in _bar_materials.size():
+		var material := _bar_materials[i]
+		var start := 0.15 + i * 0.08
+		tween.tween_method(func(v: float) -> void:
+			material.set_shader_parameter("flash", v), 0.0, 1.0, 0.12).set_delay(start)
+		tween.tween_method(func(v: float) -> void:
+			material.set_shader_parameter("flash", v), 1.0, 0.0, 0.4).set_delay(start + 0.12)
+		tween.tween_method(func(v: float) -> void:
+			material.set_shader_parameter("opacity", v), 1.0, 0.0, 0.5).set_delay(start + 0.12)
+	tween.tween_property(lock_icon, "position:y", _icon_rest_position.y + 0.04, 0.9) \
+			.set_delay(0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.chain().tween_callback(lock_icon.hide)
 
 func _play_fail_shake() -> void:
 	var tween := create_tween()

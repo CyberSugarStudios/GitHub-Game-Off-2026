@@ -13,6 +13,7 @@ const PALETTE := preload("res://resources/day_night_palette.tres")
 @export var hall_lamps: Array[Light3D] = []
 @export var max_lamp_energy: float = 1.2
 @export var lamp_color := Color(1.0, 0.851, 0.659)
+@export var lamps_in_living_plane: bool = false
 
 @export_group("Astral")
 @export var astral_transition_time: float = 0.6
@@ -58,7 +59,8 @@ func _process(delta: float) -> void:
 		environment.fog_light_energy = astral_fog_energy
 		environment.fog_density = astral_fog_density * _astral
 	
-	var energy := lerpf((1.0 - daylight) * max_lamp_energy, astral_lamp_energy, _astral)
+	var living_energy := (1.0 - daylight) * max_lamp_energy if lamps_in_living_plane else 0.0
+	var energy := lerpf(living_energy, astral_lamp_energy, _astral)
 	var color := lamp_color.lerp(astral_lamp_color, _astral)
 	for lamp in hall_lamps:
 		if is_instance_valid(lamp):

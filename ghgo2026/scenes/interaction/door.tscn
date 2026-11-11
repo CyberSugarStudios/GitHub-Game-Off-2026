@@ -36,10 +36,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031787157, 1.039978, 0)
 shape = SubResource("BoxShape3D_53m36")
 
 [node name="LockIcon" type="Node3D" parent="." unique_id=997557799]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033, 1.5, 0.012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033, 1.1, 0.012)
 
 [node name="BarPips" type="Node3D" parent="LockIcon" unique_id=1279087040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
 
 [node name="DoorArt" type="MeshInstance3D" parent="." unique_id=463790496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03, 0.01)
