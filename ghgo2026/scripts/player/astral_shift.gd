@@ -26,7 +26,7 @@ func _may_cross_instantly() -> bool:
 	and not _wait_for_release
 
 func _process(delta: float) -> void:
-	var holding := Input.is_action_just_pressed("enter_astral_plane")
+	var holding := Input.is_action_pressed("enter_astral_plane")
 	if _wait_for_release:
 		if not holding:
 			_wait_for_release = false
