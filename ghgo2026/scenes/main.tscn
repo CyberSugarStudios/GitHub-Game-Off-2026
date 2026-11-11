@@ -31,6 +31,11 @@
 [ext_resource type="PackedScene" uid="uid://ytva5plunhw8" path="res://scenes/household/hall_parent.tscn" id="15_jkv2x"]
 [ext_resource type="Script" uid="uid://cup4c1hbpt1b" path="res://scripts/ui/power_menu.gd" id="15_pm3ni"]
 [ext_resource type="Script" uid="uid://c4vxoy4gjw2cd" path="res://scripts/powers/parent_reactions.gd" id="22_jscy8"]
+[ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
+[ext_resource type="PackedScene" uid="uid://iurbh1d578i1" path="res://scenes/rooms/emily_bedroom.tscn" id="30_dgi5k"]
+[ext_resource type="PackedScene" uid="uid://djn85cwfw380d" path="res://scenes/rooms/parent_bedroom.tscn" id="31_j8jky"]
+[ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
+[ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
@@ -80,9 +85,6 @@ shader_parameter/wave_frequency = 12.0
 shader_parameter/aberration = 0.008
 shader_parameter/vignette_amount = 1.1
 shader_parameter/grain_amount = 0.04
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
-bg_color = Color(0, 0.6, 0.6, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
 size = Vector3(0.4, 0.4, 0.4)
@@ -180,30 +182,35 @@ room_id = &"garage"
 [node name="BathroomDoor" parent="HallModel/RoomEntrances" unique_id=1087017087 instance=ExtResource("9_choun")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.76089096, 0, -2.3904035)
 room_id = &"bathroom"
+room_label = "Bathroom"
 lock_bars = 2
 transfer_rate = 6.25
 
 [node name="EmilyBedroomDoor" parent="HallModel/RoomEntrances" unique_id=164378420 instance=ExtResource("9_choun")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.7478981, 0, -0.7071645)
 room_id = &"emily_bedroom"
+room_label = "My Bedroom"
 lock_bars = 5
 transfer_rate = 6.25
 
 [node name="GarageDoor" parent="HallModel/RoomEntrances" unique_id=1967805906 instance=ExtResource("9_choun")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -8.71323, 0, -5.7376056)
 room_id = &"garage"
+room_label = "Garage"
 lock_bars = 3
 transfer_rate = 6.25
 
 [node name="ParentBedroomDoor" parent="HallModel/RoomEntrances" unique_id=1955474854 instance=ExtResource("9_choun")]
 transform = Transform3D(1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 1, -5.4099407, 0, -6.512325)
 room_id = &"parent_bedroom"
+room_label = "Mom and Dad's Room"
 lock_bars = 4
 transfer_rate = 6.25
 
 [node name="KitchenDoorway" parent="HallModel/RoomEntrances" unique_id=1825177568 instance=ExtResource("7_2wyq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
 room_id = &"kitchen"
+room_label = "Kitchen"
 
 [node name="FrameArt" parent="HallModel/RoomEntrances/KitchenDoorway" index="1" unique_id=677153208]
 transform = Transform3D(0.955833, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03, 0.012)
@@ -215,6 +222,7 @@ opening_size = Vector2(1.4, 2.04)
 [node name="LivingRoomDoorway" parent="HallModel/RoomEntrances" unique_id=1747982636 instance=ExtResource("7_2wyq8")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.8404174, 0, -4.982)
 room_id = &"living_room"
+room_label = "Living Room"
 prompt_text = "Enter living room"
 
 [node name="DoorwayView" parent="HallModel/RoomEntrances/LivingRoomDoorway" index="2" unique_id=1184228109]
@@ -382,6 +390,18 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TEMP_TimeClock" type="RichTextLabel" parent="UI" unique_id=1594175034]
+custom_minimum_size = Vector2(150, 0)
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 155.0
+offset_bottom = 30.0
+theme_override_constants/outline_size = 3
+text = "Day: X Time: XX:XX"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("14_yc10j")
+
 [node name="SpiritBars" type="HBoxContainer" parent="UI" unique_id=2077483971]
 custom_minimum_size = Vector2(100, 25)
 offset_left = 5.0
@@ -390,68 +410,49 @@ offset_right = 55.0
 offset_bottom = 30.0
 mouse_filter = 2
 
-[node name="TEMP_TimeClock" type="RichTextLabel" parent="UI/SpiritBars" unique_id=1594175034]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_constants/outline_size = 3
-text = "Day: X Time: XX:XX"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("14_yc10j")
-
-[node name="SpiritBar" type="ProgressBar" parent="UI/SpiritBars" unique_id=648579607]
-custom_minimum_size = Vector2(100, 10)
+[node name="SpiritBar" type="ColorRect" parent="UI/SpiritBars" unique_id=1108018222]
+custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_0wfyh")
-value = 100.0
-show_percentage = false
+script = ExtResource("24_j8jky")
 
-[node name="SpiritBar2" type="ProgressBar" parent="UI/SpiritBars" unique_id=1578982971]
+[node name="SpiritBar2" type="ColorRect" parent="UI/SpiritBars" unique_id=1470562903]
 visible = false
-custom_minimum_size = Vector2(100, 10)
+custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_0wfyh")
-value = 100.0
-show_percentage = false
+script = ExtResource("24_j8jky")
 
-[node name="SpiritBar3" type="ProgressBar" parent="UI/SpiritBars" unique_id=1419553970]
+[node name="SpiritBar3" type="ColorRect" parent="UI/SpiritBars" unique_id=1427585112]
 visible = false
-custom_minimum_size = Vector2(100, 10)
+custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_0wfyh")
-value = 100.0
-show_percentage = false
+script = ExtResource("24_j8jky")
 
-[node name="SpiritBar4" type="ProgressBar" parent="UI/SpiritBars" unique_id=322973205]
+[node name="SpiritBar4" type="ColorRect" parent="UI/SpiritBars" unique_id=373471201]
 visible = false
-custom_minimum_size = Vector2(100, 10)
+custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_0wfyh")
-value = 100.0
-show_percentage = false
+script = ExtResource("24_j8jky")
 
-[node name="SpiritBar5" type="ProgressBar" parent="UI/SpiritBars" unique_id=901311412]
+[node name="SpiritBar5" type="ColorRect" parent="UI/SpiritBars" unique_id=530478259]
 visible = false
-custom_minimum_size = Vector2(100, 10)
+custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_0wfyh")
-value = 100.0
-show_percentage = false
+script = ExtResource("24_j8jky")
 
 [node name="PowerMenu" type="VBoxContainer" parent="UI" unique_id=277718038]
 anchors_preset = 8
@@ -543,8 +544,11 @@ script = ExtResource("8_85g3d")
 script = ExtResource("10_choun")
 rooms = Dictionary[StringName, PackedScene]({
 &"bathroom": ExtResource("11_ya4ey"),
+&"emily_bedroom": ExtResource("30_dgi5k"),
+&"garage": ExtResource("32_kmb1v"),
 &"kitchen": ExtResource("8_2f3dj"),
-&"living_room": ExtResource("9_yq6so")
+&"living_room": ExtResource("9_yq6so"),
+&"parent_bedroom": ExtResource("31_j8jky")
 })
 
 [node name="RoomLayer" type="CanvasLayer" parent="RoomView" unique_id=533120226]
@@ -587,6 +591,9 @@ bus = &"Voices"
 script = ExtResource("22_jscy8")
 household = NodePath("../Household")
 conversation_player = NodePath("../ConversationPlayer")
+
+[node name="AstralShift" type="Node" parent="." unique_id=1708356995]
+script = ExtResource("36_kmb1v")
 
 [editable path="HallModel"]
 [editable path="HallModel/RoomEntrances/KitchenDoorway"]

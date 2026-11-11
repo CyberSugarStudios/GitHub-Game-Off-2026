@@ -3,6 +3,9 @@ extends CanvasLayer
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
 @export var prompt_available_color := Color(1.0, 1.0, 1.0)
 @export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
+@export var full_fade_delay: float = 1.0
+@export var bar_fade_speed: float = 4.0
+@export var shift_preview: float = 0.25
 
 @onready var astral_filter: ColorRect = $AstralRealmColorFilter
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
@@ -12,18 +15,18 @@ extends CanvasLayer
 @onready var letterbox_top: ColorRect = $LetterboxTop
 @onready var letterbox_bottom: ColorRect = $LetterboxBottom
 
-var _bars: Array[ProgressBar] = []
+var _bars: Array[PillBar] = []
 var _astral_material: ShaderMaterial
 var _astral_strength := 0.0
 var _astral_tween: Tween
+var _full_for := 0.0
+var _shift_charge := 0.0
+var _flickering := false
 
 func _ready() -> void:
 	for child in spirit_bars_container.get_children():
-		if child is ProgressBar:
-			var bar := child as ProgressBar
-			bar.max_value = 1.0
-			bar.step = 0.0
-			_bars.append(bar)
+		if child is PillBar:
+			_bars.append(child)
 	
 	_astral_material = astral_filter.material as ShaderMaterial
 	
@@ -33,6 +36,8 @@ func _ready() -> void:
 	Events.interaction_prompt_changed.connect(_on_interaction_prompt_changed)
 	Events.subtitle_changed.connect(_on_subtitle_changed)
 	GameState.room_changed.connect(func(_room_id: StringName) -> void: _refresh_crosshair())
+	Events.shift_charge_changed.connect(_on_shift_charge_changed)
+	Events.shift_flicker.connect(_on_shift_flicker)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
@@ -41,6 +46,13 @@ func _ready() -> void:
 	_on_interaction_prompt_changed("", false)
 	_on_subtitle_changed("", "", 1.0, false)
 	_refresh_crosshair()
+
+func _process(delta: float) -> void:
+	var full := GameState.energy >= GameState.max_bars - 0.001
+	_full_for = _full_for + delta if full else 0.0
+	var want := 1.0 if (GameState.in_astral and _full_for < full_fade_delay) else 0.0
+	spirit_bars_container.modulate.a = move_toward(spirit_bars_container.modulate.a, want,\
+		bar_fade_speed * delta)
 
 func _on_energy_changed(energy: float, max_bars: int) -> void:
 	for i in _bars.size():
@@ -59,6 +71,19 @@ func _on_plane_changed(in_astral: bool) -> void:
 	else:
 		_astral_tween.tween_method(_set_astral_strength, _astral_strength, 0.0, transition_time) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func _on_shift_charge_changed(amount: float) -> void:
+	_shift_charge = amount
+	if _astral_tween and _astral_tween.is_running():
+		return
+	var resting := 1.0 if GameState.in_astral else 0.0
+	var other := 1.0 - resting
+	_set_astral_strength(other if _flickering else lerpf(resting, other, amount * \
+		shift_preview))
+
+func _on_shift_flicker(on: bool) -> void:
+	_flickering = on
+	_on_shift_charge_changed(_shift_charge)
 
 func _set_astral_strength(value: float) -> void:
 	_astral_strength = value

@@ -4,7 +4,7 @@ extends CharacterBody3D
 #   WASD      - move
 #   Mouse     - look
 #   E / F     - interact
-#   Shift     - toggle astral plane (tap, never mash: Windows Sticky Keys)
+#   Shift     - hold to enter astral plane
 #   Space     - struggle out of the monster's grasp (mash)
 #   Esc / P   - pause (browsers eat Esc, so P is required)
 
@@ -55,8 +55,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_look(event.screen_relative)
-	elif event.is_action_pressed("enter_astral_plane"):
-		GameState.toggle_plane()
 
 func _physics_process(delta: float) -> void:
 	if GameState.is_in_room() or GameState.controls_locked:

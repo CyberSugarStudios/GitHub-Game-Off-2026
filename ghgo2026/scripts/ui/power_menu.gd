@@ -3,17 +3,13 @@ extends VBoxContainer
 
 @export var dim_alpha: float = 0.5
 @export var row_size := Vector2(300, 40)
-@export var cost_bar_size := Vector2(36, 10)
+@export var cost_bar_size := Vector2(36, 18)
 @export var cost_bar_gap: float = 4.0
-@export var cost_bar_color := Color(0.0, 0.6, 0.6)
 
-var _fill_style: StyleBoxFlat
 
 func _ready() -> void:
 	grow_horizontal = Control.GROW_DIRECTION_END
 	grow_vertical = Control.GROW_DIRECTION_END
-	_fill_style = StyleBoxFlat.new()
-	_fill_style.bg_color = cost_bar_color
 	Powers.target_changed.connect(func(_id: StringName) -> void: _rebuild())
 	Powers.selection_changed.connect(func(_index: int) -> void: _refresh())
 	GameState.plane_changed.connect(func(_astral: bool) -> void: _rebuild())
@@ -66,16 +62,11 @@ func _make_cost_bars(cost: float) -> Control:
 	
 	var remaining := cost
 	for i in count:
-		var bar := ProgressBar.new()
+		var bar := PillBar.new()
 		bar.custom_minimum_size = cost_bar_size
 		bar.size = cost_bar_size
 		bar.position = Vector2(i * (cost_bar_size.x + cost_bar_gap), 0.0)
-		bar.max_value = 1.0
-		bar.step = 0.0
 		bar.value = clampf(remaining, 0.0, 1.0)
-		bar.show_percentage = false
-		bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		bar.add_theme_stylebox_override("fill", _fill_style)
 		holder.add_child(bar)
 		remaining -= 1.0
 	return holder

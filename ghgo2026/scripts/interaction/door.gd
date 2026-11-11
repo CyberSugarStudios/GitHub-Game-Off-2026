@@ -8,8 +8,11 @@ const FEEDBACK_SECONDS := 1.5
 signal unlocked
 
 #region - EXPORTS
+@export_group("Room Base")
 @export var room_id: StringName
+@export var room_label: String = ""
 @export var exit_distance: float = 0.6
+@export var pass_cost: float = 0.25
 
 @export_group("Lock")
 @export_range(0, 5) var lock_bars: int = 0
@@ -61,14 +64,20 @@ func get_block_reason() -> String:
 	var reason := super()
 	if reason != "":
 		return reason
+	if not is_locked() and not GameState.can_afford(pass_cost):
+		return "Not enough energy"
 	return ""
+
+func get_living_label() -> String:
+	return room_label
 
 func _on_interacted() -> void:
 	if is_locked():
 		_transferring = true
 	else:
+		if not GameState.try_spend(pass_cost):
+			return
 		Events.door_opened.emit(room_id, get_exit_transform())
-		print("Door opened > room: ", room_id)
 #endregion
 
 #region - ENERGY

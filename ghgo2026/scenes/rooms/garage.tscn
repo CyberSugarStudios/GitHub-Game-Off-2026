@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://cpggs5yrbbe4x"]
+
+[ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_nl2ye"]
+[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_371gr"]
+[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_o0bpy"]
+[ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_lynjs"]
+[ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_0yego"]
+[ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_a2xk5"]
+
+[sub_resource type="Gradient" id="Gradient_dfe1a"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dfe1a"]
+gradient = SubResource("Gradient_dfe1a")
+fill_from = Vector2(0, 0.0042735045)
+
+[sub_resource type="Gradient" id="Gradient_muy8a"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_muy8a"]
+gradient = SubResource("Gradient_muy8a")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_8pl6i"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
+gradient = SubResource("Gradient_8pl6i")
+
+[node name="Kitchen" type="Node2D" unique_id=1374467056]
+script = ExtResource("1_nl2ye")
+room_id = &"garage"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
+texture = ExtResource("2_371gr")
+centered = false
+
+[node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
+texture = ExtResource("3_o0bpy")
+centered = false
+
+[node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
+script = ExtResource("4_lynjs")
+
+[node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
+z_index = 10
+
+[node name="Actors" type="Node2D" parent="." unique_id=843174555]
+z_index = 20
+
+[node name="TestLeanne" type="Sprite2D" parent="Actors" unique_id=1840463723]
+position = Vector2(2986, 1356)
+scale = Vector2(8.7734375, 25.164064)
+texture = SubResource("GradientTexture2D_dfe1a")
+script = ExtResource("5_0yego")
+
+[node name="ClickArea" type="TextureButton" parent="Actors/TestLeanne" unique_id=1550962528]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("6_a2xk5")
+prompt_text = "Use a power"
+realm = 2
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="TestDavid" type="Sprite2D" parent="Actors" unique_id=3675238]
+position = Vector2(5110, 1356)
+scale = Vector2(8.7734375, 25.164064)
+texture = SubResource("GradientTexture2D_muy8a")
+script = ExtResource("5_0yego")
+parent_id = &"david"
+
+[node name="ClickArea" type="TextureButton" parent="Actors/TestDavid" unique_id=373960048]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("6_a2xk5")
+prompt_text = "Use a power"
+realm = 2
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
+z_index = 30
+
+[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
+position = Vector2(682.75, 1841.5625)
+scale = Vector2(5.298828, 702.875)
+texture = SubResource("GradientTexture1D_8pl6i")
+
+[node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
+z_index = 40
+
+[node name="TestMirror" type="TextureButton" parent="Hotspots" unique_id=311590483]
+offset_left = 276.0
+offset_top = 366.0
+offset_right = 829.0
+offset_bottom = 1306.0
+script = ExtResource("6_a2xk5")
+prompt_text = "Look in the mirror"
+story_id = &"bathroom_mirror"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="TestFaucet" type="TextureButton" parent="Hotspots" unique_id=851927085]
+offset_left = 4281.0
+offset_top = 957.0
+offset_right = 4573.0
+offset_bottom = 1345.0
+script = ExtResource("6_a2xk5")
+prompt_text = "Turn on water"
+realm = 2
+energy_cost = 0.25
+story_id = &"bathroom_shower_faucet"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"

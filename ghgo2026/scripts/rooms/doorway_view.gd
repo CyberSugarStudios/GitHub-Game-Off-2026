@@ -78,3 +78,6 @@ func _build_window() -> void:
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_texture = viewport.get_texture()
 	window.material_override = material
+
+func _exit_tree() -> void:
+	window.material_override = null

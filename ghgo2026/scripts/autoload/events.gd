@@ -10,4 +10,6 @@ signal subtitle_changed(character: String, text: String, clarity: float, is_thou
 signal conversation_finished(title: String)
 signal power_used(power_id: StringName, parent_id: StringName)
 signal door_unlock_failed(room_id: StringName)
+signal shift_charge_changed(amount: float)
+signal shift_flicker(on: bool)
 @warning_ignore_restore("unused_signal")

@@ -30,6 +30,9 @@ func get_prompt_text() -> String:
 func get_block_reason() -> String:
 	return InteractionRules.get_block_reason(realm, required_bars, energy_cost)
 
+func get_living_label() -> String:
+	return ""
+
 func try_interact() -> bool:
 	if get_block_reason() != "":
 		return false

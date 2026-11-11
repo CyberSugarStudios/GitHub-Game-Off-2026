@@ -29,6 +29,7 @@ var current_room: StringName = &""
 var controls_locked := false
 var parent_locations: Dictionary[StringName, StringName] = {}
 var story_stage := 0
+var shift_allowed := true
 #endregion
 #endregion
 #endregion

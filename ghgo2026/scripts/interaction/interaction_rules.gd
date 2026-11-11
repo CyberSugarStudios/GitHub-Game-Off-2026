@@ -3,13 +3,15 @@ extends RefCounted
 
 enum Realm { ANY, LIVING_ONLY, ASTRAL_ONLY }
 
+const ACTIONS_NEED_ASTRAL := true
+
 static func realm_matches(realm: Realm) -> bool:
 	match realm:
 		Realm.LIVING_ONLY:
 			return not GameState.in_astral
 		Realm.ASTRAL_ONLY:
 			return GameState.in_astral
-	return true
+	return GameState.in_astral if ACTIONS_NEED_ASTRAL else true
 
 static func get_block_reason(realm: Realm, required_bars: int, energy_cost: float) -> String:
 	if not realm_matches(realm):
