@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://c3jcsqsukf1fp" path="res://scripts/rooms/room_view.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://dffnolbo2comu" path="res://assets/textures/house/wall_decor/emily_and_leanne_pumpkins.webp" id="12_yq6so"]
+[ext_resource type="Texture2D" uid="uid://cy365m571xhg4" path="res://assets/textures/house/wall_decor/emily_and_leanne_pumpkins_emission_map.webp" id="13_fv21b"]
 [ext_resource type="Script" uid="uid://ceqnyaxgcyvru" path="res://scripts/dialogue/conversation_player.gd" id="13_trceg"]
 [ext_resource type="Script" uid="uid://beya5d7p54iyv" path="res://scripts/day_night/day_night.gd" id="14_jkv2x"]
 [ext_resource type="Script" uid="uid://0bqy0em324wk" path="res://scripts/temp_time_clock.gd" id="14_yc10j"]
@@ -48,6 +49,10 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("12_yq6so")
+emission_enabled = true
+emission = Color(0.4392157, 0.6862745, 0.6392157, 1)
+emission_operator = 1
+emission_texture = ExtResource("13_fv21b")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
 albedo_color = Color(1, 0, 1, 1)
@@ -106,8 +111,7 @@ sun = NodePath("../Sun")
 world_environment = NodePath("../WorldEnvironment")
 max_sun_energy = 0.35
 hall_lamps = [NodePath("../HallModel/OmniLight3D"), NodePath("../HallModel/OmniLight3D2")]
-astral_fog_color = Color(1.4439225e-06, 0.5135217, 0.6630836, 1)
-astral_lamp_color = Color(0.7593196, 0.45493275, 0.8771099, 1)
+astral_lamp_energy = 0.9
 
 [node name="HallModel" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
@@ -115,15 +119,27 @@ astral_lamp_color = Color(0.7593196, 0.45493275, 0.8771099, 1)
 material_override = ExtResource("4_y6deb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallModel" unique_id=10455811]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6220455, 1.8147752, -3.3724892)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054433823, 1.8147752, -3.3724892)
 light_color = Color(1, 0.851, 0.659, 1)
 light_energy = 0.5
 omni_range = 4.7829776
 
+[node name="UnderTone" type="OmniLight3D" parent="HallModel" unique_id=2107431311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6220455, 1.8147752, -3.3724892)
+light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
+light_energy = 0.6
+omni_range = 4.7829776
+
 [node name="OmniLight3D2" type="OmniLight3D" parent="HallModel" unique_id=634529625]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.8789563, -5.0766816)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.8789563, -5.9770417)
 light_color = Color(1, 0.8509804, 0.65882355, 1)
 light_energy = 0.5
+omni_range = 5.551603
+
+[node name="UnderTone2" type="OmniLight3D" parent="HallModel" unique_id=2070479431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.8789563, -5.0766816)
+light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
+light_energy = 0.6
 omni_range = 5.551603
 
 [node name="RoomEntrances" type="Node" parent="HallModel" unique_id=1924097943]

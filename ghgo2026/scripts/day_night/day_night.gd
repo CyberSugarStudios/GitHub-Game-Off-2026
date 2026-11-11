@@ -16,21 +16,35 @@ const PALETTE := preload("res://resources/day_night_palette.tres")
 
 @export_group("Astral")
 @export var astral_transition_time: float = 0.6
-@export var astral_fog_color := Color(0.25, 0.4, 0.75)
-@export var astral_fog_density: float = 0.12
-@export var astral_lamp_color := Color(0.6, 0.3, 0.9)
+@export var astral_fog_color := Color(0.0, 0.243, 0.322)
+@export var astral_fog_density: float = 0.35
+@export var astral_lamp_color := Color(0.0, 0.553, 0.71)
 @export var astral_lamp_energy: float = 0.8
+@export var astral_ambient_energy: float = 0.35
+@export var astral_fog_energy: float = 0.5
+
+@onready var painting: MeshInstance3D = $"../HallModel/HallDecor/HallPhoto_EmilyAndLeannePumpkins"
+
+static var astral_amount := 0.0
 
 var _astral := 0.0
+
+func _ready() -> void:
+	_astral = 1.0 if GameState.in_astral else 0.0
+	astral_amount = _astral
 
 func _process(delta: float) -> void:
 	var target := 1.0 if GameState.in_astral else 0.0
 	_astral = move_toward(_astral, target, delta / maxf(astral_transition_time, 0.01))
+	astral_amount = _astral
 	
 	var t := GameClock.get_day_fraction()
 	var sky := PALETTE.sky_color.sample(t)
 	var daylight := PALETTE.sun_energy.sample(t)
 	var living := 1.0 - _astral
+	
+	if painting:
+		painting.get_active_material(0).emission_enabled = true if GameState.in_astral else false
 	
 	if sun:
 		sun.light_color = sky
@@ -41,9 +55,12 @@ func _process(delta: float) -> void:
 	
 	if world_environment and world_environment.environment:
 		var environment := world_environment.environment
-		environment.ambient_light_color = PALETTE.ambient_color.sample(t)
+		var night_ambient := PALETTE.ambient_color.sample(0.0)
+		environment.ambient_light_color = PALETTE.ambient_color.sample(t).lerp(night_ambient, _astral)
+		environment.ambient_light_energy = lerpf(1.0, astral_ambient_energy, _astral)
 		environment.fog_enabled = _astral > 0.001
 		environment.fog_light_color = astral_fog_color
+		environment.fog_light_energy = astral_fog_energy
 		environment.fog_density = astral_fog_density * _astral
 	
 	var energy := lerpf((1.0 - daylight) * max_lamp_energy, astral_lamp_energy, _astral)
