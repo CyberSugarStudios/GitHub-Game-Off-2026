@@ -14,7 +14,11 @@ func is_focus_armed() -> bool:
 func _unhandled_input(event: InputEvent) -> void:
 	if OS.is_debug_build() and event is InputEventKey and event.pressed \
 			and not event.echo and event.keycode == KEY_F3:
-		start_focus(6.0)
+		if is_focus_armed():
+			_focus_seconds = 0.0
+			_reset_hold()
+		else:
+			start_focus(6.0)
 		return
 	
 	if event.is_action_pressed("enter_astral_plane") and _may_cross_instantly():
