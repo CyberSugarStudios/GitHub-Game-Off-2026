@@ -15,14 +15,16 @@ func _ready() -> void:
 			_update())
 	for parent in hall_parents:
 		parent.arrived.connect(_on_parent_arrived)
-	_place_everyone.call_deferred()
+	place_everyone.call_deferred()
 
 func send(parent_id: StringName, location: StringName, minutes: int) -> void:
 	_detours[parent_id] = {"location": location, "until": _now() + minutes}
 	_update()
 
-func _place_everyone() -> void:
+func place_everyone() -> void:
+	_detours.clear()
 	for parent in hall_parents:
+		parent.stop()
 		var target := _target_location(parent.parent_id)
 		if target == &"":
 			continue

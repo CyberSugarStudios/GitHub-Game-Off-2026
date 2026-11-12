@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var subtitle: RichTextLabel = $Subtitle
 @onready var letterbox_top: ColorRect = $LetterboxTop
 @onready var letterbox_bottom: ColorRect = $LetterboxBottom
+@onready var story_prompt: Label = $StoryPrompt
 
 var _bars: Array[PillBar] = []
 var _astral_material: ShaderMaterial
@@ -37,6 +38,7 @@ func _ready() -> void:
 		func(_room_id: StringName) -> void:
 			_refresh_crosshair())
 	Events.shift_charge_changed.connect(_on_shift_charge_changed)
+	Events.story_prompt_changed.connect(_on_story_prompt_changed)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
@@ -45,6 +47,7 @@ func _ready() -> void:
 	_on_interaction_prompt_changed("", false)
 	_on_subtitle_changed("", "", 1.0, false)
 	_refresh_crosshair()
+	_on_story_prompt_changed("")
 	
 	_full_for = full_fade_delay
 	spirit_bars_container.modulate.a = 0.0
@@ -149,3 +152,7 @@ func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 	interaction_prompt.text = (key_hint + text) if available else text
 	interaction_prompt.modulate = prompt_available_color if available else prompt_blocked_color
 	crosshair.modulate.a = 1.0 if text != "" else 0.35
+
+func _on_story_prompt_changed(text: String) -> void:
+	story_prompt.text = text
+	story_prompt.visible = text != ""

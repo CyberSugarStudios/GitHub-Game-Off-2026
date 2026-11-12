@@ -12,6 +12,10 @@ const SHOW_DEBUG_RECTS := true
 @export_range(0, 5) var required_bars: int = 0
 @export var one_shot: bool = false
 @export var story_id: StringName
+
+@export_group("Story")
+@export var requires_flag: StringName
+@export var hidden_after_flag: StringName
 #endregion
 var _used := false
 var _hovered := false
@@ -30,6 +34,10 @@ func _ready() -> void:
 		func(_energy: float, _max_bars: int) -> void:
 			_refresh())
 	_refresh()
+	GameState.flag_set.connect(
+		func(_id: StringName) -> void:
+			_refresh()
+	)
 
 func get_block_reason() -> String:
 	return InteractionRules.get_block_reason(realm, required_bars, energy_cost)
@@ -51,7 +59,8 @@ func _refresh() -> void:
 	if not is_inside_tree():
 		return
 	var in_main_view := get_viewport() == get_tree().root
-	visible = in_main_view and InteractionRules.realm_matches(realm) and not (one_shot and _used)
+	visible = in_main_view and InteractionRules.realm_matches(realm) and not (one_shot and _used) \
+		and InteractionRules.story_open(requires_flag, hidden_after_flag)
 	if _hovered:
 		if visible:
 			_send_prompt()

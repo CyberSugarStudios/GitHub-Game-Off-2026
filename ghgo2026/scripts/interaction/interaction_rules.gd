@@ -26,3 +26,8 @@ static func get_block_reason(realm: Realm, required_bars: int, energy_cost: floa
 
 static func try_pay(energy_cost: float) -> bool:
 	return energy_cost <= 0.0 or GameState.try_spend(energy_cost)
+
+static func story_open(requires_flag: StringName, hidden_after_flag: StringName) -> bool:
+	if requires_flag != &"" and not GameState.has_flag(requires_flag):
+		return false
+	return hidden_after_flag == &"" or not GameState.has_flag(hidden_after_flag)

@@ -158,6 +158,7 @@ func reset() -> void:
 	controls_locked = false
 	parent_locations.clear()
 	story_stage = 0
+	shift_allowed = true
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)

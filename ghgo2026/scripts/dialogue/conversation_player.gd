@@ -26,6 +26,7 @@ var _line: DialogueLine = null
 var _speaker: Speaker = null
 var _time_left := 0.0
 var _last_clarity := -1.0
+var _title := ""
 #endregion
 
 func _ready() -> void:
@@ -44,6 +45,7 @@ func play(dialogue: DialogueResource, title: String, frozen: bool) -> void:
 	if _running and _frozen:
 		return
 	_stop_current()
+	_title = title
 	_run_id += 1
 	var my_id := _run_id
 	_running = true
@@ -113,6 +115,7 @@ func _stop_current() -> void:
 	_time_left = 0.0
 	if _running:
 		Events.subtitle_changed.emit("", "", 1.0, false)
+		Events.conversation_finished.emit.call_deferred(_title)
 	_running = false
 
 func _stop_audio() -> void:

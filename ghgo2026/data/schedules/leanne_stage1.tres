@@ -71,5 +71,6 @@ metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 
 [resource]
 script = ExtResource("2_ljdyi")
+stage = 1
 entries = Array[ExtResource("1_h6tkg")]([SubResource("Resource_twnmf"), SubResource("Resource_w4l7x"), SubResource("Resource_2211y"), SubResource("Resource_b2g3l"), SubResource("Resource_v5cxn"), SubResource("Resource_r652j"), SubResource("Resource_eb2b5"), SubResource("Resource_qut8p"), SubResource("Resource_p63eb"), SubResource("Resource_kpmfd")])
 metadata/_custom_type_script = "uid://xd1awdyyt8ud"

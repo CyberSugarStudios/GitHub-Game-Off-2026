@@ -1,0 +1,30 @@
+# INTRO
+
+~ intro_wake
+Emily: Ugh... I must have fallen asleep. I don't even remember getting home. [#thought]
+=> END
+
+~ intro_clock
+Emily: Is Dad already home? [#thought]
+=> END
+
+~ intro_david_garage
+David: Come on... where did I put the...
+do wait(4.0)
+David: Of course. Of course it's that one.
+=> END
+
+~ intro_garage_handle
+Emily: What the fuck? [#thought]
+do wait(1.5)
+Emily: Is the door stuck? [#thought]
+=> END
+
+~ intro_astral_panic
+Emily: What is this... [#thought]
+=> END
+
+~ intro_back
+Emily: What the actual fuck... Oh my god... Mom was right. Weed does make you hallucinate. I am not qualified to deal with this. [#thought]
+Emily: Dad?! Dad!
+=> END

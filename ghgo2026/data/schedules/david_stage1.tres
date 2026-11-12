@@ -80,5 +80,6 @@ metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 [resource]
 script = ExtResource("2_y5eni")
 parent_id = &"david"
+stage = 1
 entries = Array[ExtResource("1_2k5ik")]([SubResource("Resource_w4l7x"), SubResource("Resource_2k5ik"), SubResource("Resource_y5eni"), SubResource("Resource_xeqkw"), SubResource("Resource_0b7bb"), SubResource("Resource_j1in5"), SubResource("Resource_70l0c"), SubResource("Resource_ypno4"), SubResource("Resource_arkyf"), SubResource("Resource_2ymkd"), SubResource("Resource_r6p2j")])
 metadata/_custom_type_script = "uid://xd1awdyyt8ud"

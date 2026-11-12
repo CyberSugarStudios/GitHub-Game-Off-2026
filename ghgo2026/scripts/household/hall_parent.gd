@@ -32,6 +32,12 @@ func stand_at(spot: Node3D) -> void:
 	global_position = spot.global_position
 	_set_present(true)
 
+func stop() -> void:
+	_destination = &""
+	_linger_left = 0.0
+	current_linger = null
+	_set_present(false)
+
 func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> void:
 	if not visible and from:
 		global_position = from.global_position

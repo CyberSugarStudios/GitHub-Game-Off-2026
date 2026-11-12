@@ -2,7 +2,6 @@ extends Node3D
 
 const HALL_MUSIC := preload("res://assets/audio/music/WIP_child_ghost_background_2.mp3")
 
-@export var fade_in_time: float = 0.6
 @export var warmup_turn_steps: int = 8
 @export var warmup_frames_per_step: int = 2
 
@@ -10,6 +9,7 @@ const HALL_MUSIC := preload("res://assets/audio/music/WIP_child_ghost_background
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
 @onready var day_night: DayNight = $DayNight
 @onready var player: Node3D = $Emily
+@onready var story: StoryDirector = $StoryDirector
 
 func _ready() -> void:
 	Music.play(HALL_MUSIC)
@@ -47,5 +47,8 @@ func _warm_up() -> void:
 	get_tree().call_group("astral_visibility", "set_warmup", false)
 	await get_tree().process_frame
 	
+	var reveal_time := story.prepare()
 	var tween := create_tween()
-	tween.tween_property(fade, "color:a", 0.0, fade_in_time)
+	tween.tween_property(fade, "color:a", 0.0, reveal_time)
+	await tween.finished
+	story.start()

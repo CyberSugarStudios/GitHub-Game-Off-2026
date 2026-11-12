@@ -23,6 +23,11 @@ var _max_pan := 0.0
 var _pan_x := 0.0
 var _pan_velocity := 0.0
 var _exit_spot := Transform3D.IDENTITY
+var exit_locked := false:
+	set(value):
+		exit_locked = value
+		if exit_button:
+			exit_button.visible = not value
 
 func _ready() -> void:
 	room_ui.visible = false
@@ -42,9 +47,16 @@ func enter_room(room_id: StringName, exit_spot: Transform3D) -> void:
 	if not rooms.has(room_id):
 		push_warning("RoomView: no scene for room '%s'. Add it under RoomView > Rooms." % room_id)
 		return
-	_exit_spot = exit_spot
 	_busy = true
 	await _fade_to(1.0)
+	
+	_open(room_id, exit_spot)
+	
+	await _fade_to(0.0)
+	_busy = false
+
+func _open(room_id: StringName, exit_spot: Transform3D) -> void:
+	_exit_spot = exit_spot
 	
 	_room = rooms[room_id].instantiate() as Room
 	room_layer.add_child(_room)
@@ -55,12 +67,14 @@ func enter_room(room_id: StringName, exit_spot: Transform3D) -> void:
 	_max_pan = 0.0
 	_pan_velocity = 0.0
 	_fit_room()
-	
-	await _fade_to(0.0)
-	_busy = false
+
+func open_now(room_id: StringName, exit_spot: Transform3D) -> void:
+	if _room or not rooms.has(room_id):
+		return
+	_open(room_id, exit_spot)
 
 func exit_room() -> void:
-	if _busy or not _room:
+	if _busy or not _room or exit_locked or GameState.controls_locked:
 		return
 	_busy = true
 	await _fade_to(1.0)
@@ -101,6 +115,21 @@ func _process(delta: float) -> void:
 	_pan_x = clampf(_pan_x + _pan_velocity * delta, 0.0, _max_pan)
 	if (_pan_x <= 0.0 and _pan_velocity < 0.0) or (_pan_x >= _max_pan and _pan_velocity > 0.0):
 		_pan_velocity = 0.0
+	_apply_pan()
+
+func set_pan(ratio: float) -> void:
+	_set_pan_x(_max_pan * clampf(ratio,  0.0, 1.0))
+
+func pan_to(ratio: float, seconds: float) -> void:
+	if not _room:
+		return
+	_pan_velocity = 0.0
+	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_method(_set_pan_x, _pan_x, _max_pan * clampf(ratio, 0.0, 1.0), seconds)
+	await tween.finished
+
+func _set_pan_x(x: float) -> void:
+	_pan_x = x
 	_apply_pan()
 
 func _mouse_may_pan() -> bool:

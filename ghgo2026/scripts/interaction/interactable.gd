@@ -11,6 +11,10 @@ signal interacted
 @export var story_id: StringName
 @export var reach: float = 2.0
 
+@export_group("Story")
+@export var requires_flag: StringName
+@export var hidden_after_flag: StringName
+
 var _used := false
 
 func _ready() -> void:
@@ -18,11 +22,22 @@ func _ready() -> void:
 	set_collision_layer_value(2, true) # Layer 2 = interactable
 	collision_mask = 0
 	monitoring = false
+	
+	GameState.flag_set.connect(
+		func(_id: StringName) -> void:
+			_refresh_story_gate()
+	)
 
 func is_focusable() -> bool:
 	if one_shot and _used:
 		return false
-	return is_visible_in_tree()
+	return is_story_open() and is_visible_in_tree()
+
+func is_story_open()  -> bool:
+	return InteractionRules.story_open(requires_flag, hidden_after_flag)
+
+func _refresh_story_gate() -> void:
+	set_collision_layer_value(2, is_story_open())
 
 func get_prompt_text() -> String:
 	return prompt_text
