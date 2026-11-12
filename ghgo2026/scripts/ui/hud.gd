@@ -19,6 +19,7 @@ var _astral_material: ShaderMaterial
 var _astral_strength := 0.0
 var _astral_tween: Tween
 var _full_for := 0.0
+var _warmup := false
 
 func _ready() -> void:
 	for child in spirit_bars_container.get_children():
@@ -47,11 +48,15 @@ func _ready() -> void:
 	
 	_full_for = full_fade_delay
 	spirit_bars_container.modulate.a = 0.0
+	add_to_group("astral_visibility")
+
+func set_warmup(on: bool) -> void:
+	_warmup = on
 
 func _process(delta: float) -> void:
 	var full := GameState.energy >= GameState.max_bars - 0.001
 	_full_for = _full_for + delta if full else 0.0
-	var want := 1.0 if (GameState.in_astral or _full_for < full_fade_delay) else 0.0
+	var want := 1.0 if (_warmup or GameState.in_astral or _full_for < full_fade_delay) else 0.0
 	spirit_bars_container.modulate.a = move_toward(spirit_bars_container.modulate.a, want,\
 		bar_fade_speed * delta)
 

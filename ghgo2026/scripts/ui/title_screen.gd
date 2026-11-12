@@ -44,11 +44,21 @@ func _ready() -> void:
 	quit_button.pressed.connect(on_quit_button_pressed)
 	confirm_close_button.pressed.connect(on_confirm_close_button_pressed)
 	cancel_close_button.pressed.connect(on_cancel_close_button_pressed)
+	
+	ResourceLoader.load_threaded_request(GAME_SCENE_PATH)
 
 func on_new_game_pressed() -> void:
+	new_game_button.disabled = true
+	new_game_button.text = "Loading..."
 	GameState.reset()
 	GameClock.reset()
-	get_tree().change_scene_to_file(GAME_SCENE_PATH)
+	while ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		await get_tree().process_frame
+	var scene := ResourceLoader.load_threaded_get(GAME_SCENE_PATH) as PackedScene
+	if scene:
+		get_tree().change_scene_to_packed(scene)
+	else:
+		get_tree().change_scene_to_file(GAME_SCENE_PATH)
 
 func on_options_menu_button_pressed() -> void:
 	options_menu.visible = true
