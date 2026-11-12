@@ -35,7 +35,7 @@ func _warm_up() -> void:
 	for astral in [1.0, 0.0]:
 		day_night.forced_astral = astral
 		for step in warmup_turn_steps:
-			player.rotation.y = start_yaw + TAU * step / warmup_frames_per_step
+			player.rotation.y = start_yaw + TAU * step / warmup_turn_steps
 			for i in warmup_frames_per_step:
 				if not is_inside_tree():
 					return
