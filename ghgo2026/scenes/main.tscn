@@ -58,6 +58,9 @@ clearcoat = 0.25
 clearcoat_roughness = 0.95
 uv1_triplanar = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
+size = Vector3(0.4, 1.8478028, 1.1893555)
+
 [sub_resource type="QuadMesh" id="QuadMesh_53m36"]
 size = Vector2(1.76, 2.2)
 
@@ -106,9 +109,6 @@ shader_parameter/reach = 1.0
 shader_parameter/wave_mix = 1.0
 shader_parameter/aberration_mix = 1.0
 shader_parameter/grain_mix = 1.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
-size = Vector3(0.4, 1.8478028, 1.1893555)
 
 [node name="Main" type="Node3D" unique_id=666068387]
 script = ExtResource("1_sugp2")
@@ -223,23 +223,25 @@ transfer_rate = 6.25
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
 character_name = "David"
 
+[node name="GarageDoorTrigger" type="Area3D" parent="Hall/RoomEntrances/GarageDoor" unique_id=1481515878]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.030388355, 1.1511819, -1.3283172e-09)
+script = ExtResource("7_o6xl0")
+prompt_text = "Open"
+realm = 1
+one_shot = true
+story_id = &"garage_handle"
+reach = 1.0
+hidden_after_flag = &"garage_handle_tried"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hall/RoomEntrances/GarageDoor/GarageDoorTrigger" unique_id=1553411129]
+shape = SubResource("BoxShape3D_53m36")
+
 [node name="ParentBedroomDoor" parent="Hall/RoomEntrances" unique_id=1955474854 instance=ExtResource("9_choun")]
 transform = Transform3D(1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 1, -6.4535427, 0, -6.512325)
 room_id = &"parent_bedroom"
 room_label = "Mom and Dad's Room"
 lock_bars = 4
 transfer_rate = 6.25
-
-[node name="FrontDoor" parent="Hall/RoomEntrances" unique_id=241038733 instance=ExtResource("9_choun")]
-transform = Transform3D(1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 1, -3.4328518, 0, -6.5123243)
-room_id = &"front_door"
-room_label = "Front Door"
-pass_cost = 5.0
-lock_bars = 5
-transfer_rate = 6.25
-
-[node name="FrontDoorSound" type="AudioStreamPlayer3D" parent="Hall/RoomEntrances/FrontDoor" unique_id=662055244]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0382514, 1.1945355, -0.2830615)
 
 [node name="KitchenDoorway" parent="Hall/RoomEntrances" unique_id=1825177568 instance=ExtResource("7_2wyq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
@@ -269,6 +271,9 @@ reference_distance = 1.5
 transform = Transform3D(-2.1855693e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855693e-07, 0, 1.6, -1)
 visible = false
 character_name = "Leanne"
+
+[node name="FrontDoorSound" type="AudioStreamPlayer3D" parent="Hall/RoomEntrances/LivingRoomDoorway" unique_id=662055244]
+transform = Transform3D(-1, 0, 1.7682974e-07, 0, 1, 0, -1.7682974e-07, 0, -1, 0.08739699, 1.1945355, -1.5871773)
 
 [node name="HallMarks" type="Node" parent="Hall" unique_id=654693850]
 
@@ -381,6 +386,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="TEMP_TimeClock" type="RichTextLabel" parent="UI" unique_id=1594175034]
+custom_minimum_size = Vector2(150, 0)
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 155.0
+offset_bottom = 30.0
+theme_override_constants/outline_size = 3
+text = "Day: X Time: XX:XX"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("14_yc10j")
+
 [node name="LetterboxTop" type="ColorRect" parent="UI" unique_id=940281292]
 custom_minimum_size = Vector2(0, 90)
 anchors_preset = 10
@@ -444,18 +461,6 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="TEMP_TimeClock" type="RichTextLabel" parent="UI" unique_id=1594175034]
-custom_minimum_size = Vector2(150, 0)
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 155.0
-offset_bottom = 30.0
-theme_override_constants/outline_size = 3
-text = "Day: X Time: XX:XX"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("14_yc10j")
 
 [node name="SpiritBars" type="HBoxContainer" parent="UI" unique_id=2077483971]
 offset_left = 20.0
@@ -534,20 +539,6 @@ horizontal_alignment = 1
 
 [node name="PauseMenu" parent="." unique_id=1351570408 instance=ExtResource("5_tbgi4")]
 visible = false
-
-[node name="TEMP_GarageDoorTrigger" type="Area3D" parent="." unique_id=1481515878]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.744407, -0.3581425, -6.2439766)
-script = ExtResource("7_o6xl0")
-prompt_text = "Open"
-realm = 1
-one_shot = true
-story_id = &"garage_handle"
-reach = 1.0
-hidden_after_flag = &"garage_handle_tried"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TEMP_GarageDoorTrigger" unique_id=1553411129]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5138916, 0.48637724)
-shape = SubResource("BoxShape3D_53m36")
 
 [node name="RoomView" type="Node" parent="." unique_id=1658057070]
 script = ExtResource("10_choun")
@@ -628,7 +619,7 @@ fade = NodePath("../RoomView/FadeLayer/Fade")
 wake_doorway = NodePath("../Hall/RoomEntrances/LivingRoomDoorway")
 garage_voice = NodePath("../Hall/RoomEntrances/GarageDoor/GarageVoice")
 living_room_voice = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/LivingRoomVoice")
-front_door_sound = NodePath("../Hall/RoomEntrances/FrontDoor/FrontDoorSound")
+front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSound")
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
 
 [editable path="Hall"]

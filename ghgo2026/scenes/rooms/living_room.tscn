@@ -91,10 +91,10 @@ texture = SubResource("GradientTexture1D_8pl6i")
 z_index = 40
 
 [node name="Clock" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 1912.0
-offset_top = 528.0
-offset_right = 2465.0
-offset_bottom = 1468.0
+offset_left = 6511.0
+offset_top = 756.0
+offset_right = 7064.0
+offset_bottom = 1696.0
 script = ExtResource("6_e86kh")
 prompt_text = "Look at the clock"
 story_id = &"living_room_clock"
