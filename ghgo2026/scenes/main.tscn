@@ -530,11 +530,14 @@ horizontal_alignment = 1
 visible = false
 
 [node name="TestBox" type="Area3D" parent="." unique_id=1481515878]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4636302, 0, 4.20228)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.744407, -0.3581425, -6.2439766)
 script = ExtResource("7_o6xl0")
-prompt_text = "Touch the box"
-story_id = &"test_box"
+prompt_text = "Open"
+realm = 1
+one_shot = true
+story_id = &"garage_handle"
+reach = 1.0
+hidden_after_flag = &"garage_handle_tried"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox" unique_id=1553411129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)

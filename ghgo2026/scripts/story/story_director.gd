@@ -54,6 +54,10 @@ func prepare() -> float:
 	_setup_intro()
 	return wake_fade_time
 
+func start() -> void:
+	if not GameState.has_flag(INTRO_DONE):
+		_run_intro()
+
 func _setup_intro() -> void:
 	GameClock.set_time(1, _to_minutes(intro_time))
 	GameState.set_story_stage(0)

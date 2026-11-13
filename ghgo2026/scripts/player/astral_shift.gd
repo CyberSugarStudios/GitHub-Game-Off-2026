@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 		if entered:
 			_focus_seconds = 0.0
 			_wait_for_release = true
-			Events.story_event.emit(&"first_focus_complete")
+			Events.story_event.emit(&"fist_shift_complete")
 
 func _reset_hold() -> void:
 	_held = 0.0

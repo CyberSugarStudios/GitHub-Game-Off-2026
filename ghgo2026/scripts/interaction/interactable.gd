@@ -27,6 +27,7 @@ func _ready() -> void:
 		func(_id: StringName) -> void:
 			_refresh_story_gate()
 	)
+	_refresh_story_gate()
 
 func is_focusable() -> bool:
 	if one_shot and _used:
