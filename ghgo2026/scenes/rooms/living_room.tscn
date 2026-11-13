@@ -129,15 +129,11 @@ metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="BarRow" type="HBoxContainer" parent="Hotspots/FrontDoor" unique_id=1862674132]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -19.5
-offset_top = -350.5
-offset_right = 20.5
-offset_bottom = -310.5
+anchors_preset = -1
+anchor_top = 0.31145778
+anchor_right = 1.0
+anchor_bottom = 0.33297473
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+metadata/_edit_use_anchors_ = true
