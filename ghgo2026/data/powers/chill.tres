@@ -6,4 +6,5 @@
 script = ExtResource("1_os3us")
 id = &"chill"
 display_name = "Chill"
+requires_flag = &"intro_done"
 metadata/_custom_type_script = "uid://cv2x7jbb0ontl"

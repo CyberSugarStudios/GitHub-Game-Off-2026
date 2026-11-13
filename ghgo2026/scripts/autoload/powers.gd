@@ -23,8 +23,9 @@ func _ready() -> void:
 func get_unlocked() -> Array[Power]:
 	var result: Array[Power] = []
 	for power in all_powers:
-		if GameState.has_unlocked_bars(power.required_bars):
-			result.append(power)
+		if GameState.has_unlocked_bars(power.required_bars) \
+			and InteractionRules.story_open(power.requires_flag, &""):
+				result.append(power)
 	return result
 
 func get_selected() -> Power:

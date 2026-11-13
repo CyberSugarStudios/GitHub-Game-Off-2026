@@ -37,6 +37,9 @@ func _thought_cue(parent_id: StringName) -> String:
 		var specific := "%s_%s" % [general, hall_parent.current_linger.mark_id]
 		if _has_cue(THOUGHTS, specific):
 			return specific
+	var for_stage := "%s_stage%d" % [general, GameState.story_stage]
+	if _has_cue(THOUGHTS, for_stage):
+		return for_stage
 	return general
 
 func _on_linger_started(parent_id: StringName, mark_id: StringName) -> void:

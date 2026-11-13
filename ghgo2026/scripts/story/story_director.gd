@@ -9,6 +9,12 @@ signal seen_room(room_id: StringName)
 
 const INTRO := preload("res://dialogue/intro.dialogue")
 const INTRO_DONE := &"intro_done"
+const INTRO_FLAGS: Array[StringName] = [
+	&"garage_handle_tried",
+	&"leanne_home",
+	&"mom_ignored",
+	&"read_mom_thoughts"
+]
 #region - EXPORTS
 @export var play_intro: bool = true
 
@@ -19,6 +25,9 @@ const INTRO_DONE := &"intro_done"
 @export var fade: ColorRect
 @export var wake_doorway: Door
 @export var garage_voice: Speaker
+@export var living_room_voice: Speaker
+@export var front_door_sound: AudioStreamPlayer3D
+@export var title_card: CanvasItem
 
 @export_group("Intro")
 @export var intro_time: String = "16:40"
@@ -28,6 +37,8 @@ const INTRO_DONE := &"intro_done"
 @export var wake_pan_seconds: float = 6.0
 @export var focus_seconds: float = 6.0
 @export var end_fade_time: float = 2.0
+@export var title_fade_seconds: float = 1.5
+@export var title_hold_seconds: float = 3.0
 
 @export_group("Morning")
 @export var morning_time: String = "07:30"
@@ -41,6 +52,8 @@ func _ready() -> void:
 	Events.conversation_finished.connect(_on_conversation_finished)
 	GameState.plane_changed.connect(seen_plane.emit)
 	GameState.room_changed.connect(seen_room.emit)
+	if title_card:
+		title_card.modulate.a = 0.0
 
 func _exit_tree() -> void:
 	Events.story_prompt_changed.emit("")
@@ -70,6 +83,8 @@ func _setup_intro() -> void:
 
 func _setup_morning() -> void:
 	GameState.set_flag(INTRO_DONE)
+	for flag in INTRO_FLAGS:
+		GameState.set_flag(flag)
 	GameState.shift_allowed = true
 	if garage_voice:
 		garage_voice.visible = false
@@ -110,6 +125,29 @@ func _run_intro() -> void:
 	GameState.shift_allowed = false
 	await say("intro_back")
 	
+	if front_door_sound and front_door_sound.stream:
+		front_door_sound.play()
+	await wait(1.0)
+	GameState.set_parent_location(&"leanne", &"living_room")
+	living_room_voice.visible  = false
+	household.send(&"leanne", &"kitchen",  24 * 60)
+	GameState.set_flag(&"leanne_home")
+	
+	for i in 4:
+		await wait_event(&"talk_to_mom")
+		await say(&"intro_mom_%s" % (i + 1))
+	GameState.set_flag(&"mom_ignored")
+	
+	GameState.shift_allowed = true
+	prompt("Try harder   [SHIFT]")
+	await wait_plane(true)
+	prompt("")
+	await wait_said("thoughts_leanne_stage0")
+	GameState.set_flag(&"read_mom_thoughts")
+	
+	await wait_event(&"memorial_pamphlet")
+	await say(&"intro_pamphlet", true)
+	
 	_end_intro()
 
 func _end_intro() -> void:
@@ -117,6 +155,10 @@ func _end_intro() -> void:
 	var tween := create_tween()
 	tween.tween_property(fade,"color:a", 1.0, end_fade_time)
 	await tween.finished
+	if title_card:
+		await _fade_item(title_card, 1.0, title_fade_seconds)
+		await  wait(title_hold_seconds)
+		await _fade_item(title_card, 0.0, title_fade_seconds)
 	_restart_as_morning()
 
 func _restart_as_morning() -> void:
@@ -136,6 +178,11 @@ func say(cue: String, frozen: bool = false) -> void:
 func say_in_background(cue: String) -> void:
 	Events.conversation_requested.emit(INTRO, cue, false)
 
+func wait_said(title: String) -> void:
+	_finished.erase(title)
+	while not _finished.has(title):
+		await seen_conversation_end
+
 func wait_event(id: StringName) -> void:
 	var seen: StringName = &""
 	while seen != id:
@@ -151,6 +198,11 @@ func wait_room(room_id: StringName) -> void:
 
 func wait(seconds: float) -> void:
 	await create_tween().tween_interval(seconds).finished
+
+func _fade_item(item: CanvasItem, alpha: float, seconds: float) -> void:
+	var tween := create_tween()
+	tween.tween_property(item, "modulate:a", alpha, seconds)
+	await tween.finished
 
 func prompt(text: String) -> void:
 	Events.story_prompt_changed.emit(text)

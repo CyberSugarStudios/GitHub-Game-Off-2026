@@ -62,6 +62,18 @@ prompt_text = "Use a power"
 realm = 2
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
+[node name="TalkArea" type="TextureButton" parent="Actors/TestLeanne" unique_id=733262076]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("6_fiuqx")
+prompt_text = "\"Mom?\""
+realm = 1
+story_id = &"talk_to_mom"
+hidden_after_flag = &"mom_ignored"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
 [node name="TestDavid" type="Sprite2D" parent="Actors" unique_id=3675238]
 position = Vector2(5110, 1356)
 scale = Vector2(8.7734375, 25.164064)
@@ -90,24 +102,13 @@ texture = SubResource("GradientTexture1D_8pl6i")
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
-[node name="TestMirror" type="TextureButton" parent="Hotspots" unique_id=311590483]
+[node name="Pamphlet" type="TextureButton" parent="Hotspots" unique_id=311590483]
 offset_left = 276.0
 offset_top = 366.0
 offset_right = 829.0
 offset_bottom = 1306.0
 script = ExtResource("6_fiuqx")
-prompt_text = "Look in the mirror"
-story_id = &"bathroom_mirror"
-metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
-
-[node name="TestFaucet" type="TextureButton" parent="Hotspots" unique_id=851927085]
-offset_left = 4281.0
-offset_top = 957.0
-offset_right = 4573.0
-offset_bottom = 1345.0
-script = ExtResource("6_fiuqx")
-prompt_text = "Turn on water"
-realm = 2
-energy_cost = 0.25
-story_id = &"bathroom_shower_faucet"
+prompt_text = "Look at pamphlet"
+story_id = &"memorial_pamphlet"
+requires_flag = &"read_mom_thoughts"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"

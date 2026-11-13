@@ -28,3 +28,27 @@ Emily: What is this... [#thought]
 Emily: What the actual fuck... Oh my god... Mom was right. Weed does make you hallucinate. I am not qualified to deal with this. [#thought]
 Emily: Dad?! Dad!
 => END
+
+~ intro_leanne_home
+Leanne: God dammit, David. You said you were going to replace the wipers three fucking weeks ago.
+=> END
+
+~ intro_mom_1
+Emily: Mom, I think I'm... sick.
+=> END
+
+~ intro_mom_2
+Emily: Mom!
+=> END
+
+~ intro_mom_3
+Emily: Mom!!
+=> END
+
+~ intro_mom_4
+Emily: What the actual fuck is happening oh my god.
+=> END
+
+~ intro_pamphlet
+Emily: No... no... how? [#thought]
+=> END
