@@ -11,6 +11,7 @@ signal room_changed(room_id: StringName) #&"" should mean the hall
 signal controls_locked_changed(locked: bool)
 signal parent_location_changed(parent_id: StringName, location: StringName)
 signal story_stage_changed(stage: int)
+signal monster_level_changed(level: int)
 
 #region - CONSTS
 const STARTING_BARS := 1
@@ -29,6 +30,7 @@ var current_room: StringName = &""
 var controls_locked := false
 var parent_locations: Dictionary[StringName, StringName] = {}
 var story_stage := 0
+var monster_level := 0
 var shift_allowed := true
 #endregion
 #endregion
@@ -61,6 +63,12 @@ func set_story_stage(stage: int) -> void:
 		return
 	story_stage = stage
 	story_stage_changed.emit(stage)
+
+func set_monster_level(level: int) -> void:
+	if monster_level == level:
+		return
+	monster_level = level
+	monster_level_changed.emit(level)
 #endregion
 
 #region - PLANE
@@ -88,12 +96,18 @@ func exit_astral() -> void:
 
 #region - ASTRAL BARS
 func drain_for_movement(meters: float) -> void:
-	if not in_astral or meters <= 0.0:
+	drain(meters * ASTRAL_DRAIN_PER_METER)
+
+func drain(amount: float) -> void:
+	if not in_astral or amount <= 0.0:
 		return
-	_set_energy(energy - meters * ASTRAL_DRAIN_PER_METER)
+	_set_energy(energy - amount)
 	if energy <= 0.0:
 		exit_astral()
-		forced_out_of_astral.emit()
+		forced_out_of_astral.emit() 
+
+func refill_energy() -> void:
+	_set_energy(max_bars)
 
 func has_unlocked_bars(required: int) -> bool:
 	return max_bars >= required
@@ -158,6 +172,7 @@ func reset() -> void:
 	controls_locked = false
 	parent_locations.clear()
 	story_stage = 0
+	monster_level = 0
 	shift_allowed = true
 
 func _set_energy(value: float) -> void:
