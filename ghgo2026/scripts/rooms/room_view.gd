@@ -33,6 +33,7 @@ func _ready() -> void:
 	room_ui.visible = false
 	fade_rect.color.a = 0.0
 	Events.door_opened.connect(enter_room)
+	Events.room_door_opened.connect(change_room)
 	exit_button.pressed.connect(exit_room)
 	get_viewport().size_changed.connect(_fit_room)
 
@@ -72,6 +73,20 @@ func open_now(room_id: StringName, exit_spot: Transform3D) -> void:
 	if _room or not rooms.has(room_id):
 		return
 	_open(room_id, exit_spot)
+
+func change_room(room_id: StringName) -> void:
+	if _busy or not _room:
+		return
+	if not rooms.has(room_id):
+		push_warning("RoomView: no scene for room '%s'. Add it under RoomView > Rooms." % room_id)
+		return
+	_busy = true
+	await _fade_to(1.0)
+	_room.queue_free()
+	_room = null
+	_open(room_id, _exit_spot)
+	await _fade_to(0.0)
+	_busy = false
 
 func exit_room() -> void:
 	if _busy or not _room or exit_locked or GameState.controls_locked:

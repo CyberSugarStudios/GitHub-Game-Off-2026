@@ -2,9 +2,6 @@ class_name Door
 extends Interactable
 
 #region - INIT
-const DOOR_LINES := preload("res://dialogue/doors.dialogue")
-const FEEDBACK_SECONDS := 1.5
-
 signal unlocked
 
 #region - EXPORTS
@@ -28,38 +25,40 @@ const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
 @onready var lock_icon: Node3D = get_node_or_null("LockIcon")
 @onready var bar_row: Node3D = get_node_or_null("LockIcon/BarPips")
 #endregion
+var lock: DoorLock
+
 var _bar_materials: Array[ShaderMaterial] = []
-var _progress := 0.0
-var _transferring := false
 var _icon_rest_position: Vector3
-var _feedback_left := 0.0
 #endregion
 
 func _ready() -> void:
 	super()
+	lock = DoorLock.new()
+	lock.setup(room_id, lock_bars, transfer_rate)
+	add_child(lock)
+	lock.progress_changed.connect(_show_progress)
+	lock.unlocked.connect(_on_unlocked)
+	lock.failed.connect(_play_fail_shake)
 	if lock_icon == null:
 		return
 	_icon_rest_position = lock_icon.position
 	_build_bars()
 	if is_locked():
-		_set_progress(0.0)
-	#else:
-		#lock_icon.visible = false
+		_show_progress(0.0)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _bar_materials.is_empty():
 		return
-	_feedback_left = maxf(_feedback_left - delta, 0.0)
-	var shown := 1.0 if (_transferring or _feedback_left > 0.0) else DayNight.astral_amount
+	var shown := 1.0 if lock.is_showing_feedback() else DayNight.astral_amount
 	for material in _bar_materials:
 		material.set_shader_parameter("visibility", shown)
 
 func is_locked() -> bool:
-	return lock_bars > 0 and not GameState.has_flag(_unlock_flag())
+	return lock.is_locked()
 
 #region - INTERACT OVERRIDES
 func get_block_reason() -> String:
-	if _transferring:
+	if lock.transferring:
 		return "Unlocking..."
 	var reason := super()
 	if reason != "":
@@ -73,54 +72,17 @@ func get_living_label() -> String:
 
 func _on_interacted() -> void:
 	if is_locked():
-		_transferring = true
+		lock.start()
 	else:
 		if not GameState.try_spend(pass_cost):
 			return
 		Events.door_opened.emit(room_id, get_exit_transform())
 #endregion
 
-#region - ENERGY
-func _physics_process(delta: float) -> void:
-	if not _transferring:
-		return
-	
-	var wanted := minf(transfer_rate * delta, lock_bars - _progress)
-	var spent := minf(wanted, GameState.energy)
-	if spent > 0.0:
-		GameState.try_spend(spent)
-		_set_progress(_progress +  spent)
-	
-	if _progress >= lock_bars - 0.0001:
-		_finish_unlock()
-	elif spent < wanted:
-		_fail_unlock()
-
-func _finish_unlock() -> void:
-	_feedback_left = FEEDBACK_SECONDS
-	_transferring = false
-	_set_progress(lock_bars)
-	GameState.set_flag(_unlock_flag())
+#region - LOCK
+func _on_unlocked() -> void:
 	unlocked.emit()
 	_play_unlock_animation()
-
-func _fail_unlock() -> void:
-	_transferring = false
-	_feedback_left = FEEDBACK_SECONDS
-	_play_fail_shake()
-	var drain := create_tween()
-	drain.tween_interval(0.3)
-	drain.tween_method(_set_progress, _progress, 0.0, 0.5).set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_IN)
-	_play_fail_line()
-
-func _play_fail_line() -> void:
-	var cues := DOOR_LINES.get_cues()
-	var cue := "%s_locked" % room_id
-	if not cue in cues:
-		cue = "locked"
-	if cue in cues:
-		Events.conversation_requested.emit(DOOR_LINES, cue, false)
 #endregion
 
 #region - VISUALS
@@ -141,10 +103,9 @@ func _build_bars() -> void:
 		bar_row.add_child(bar)
 		_bar_materials.append(material)
 
-func _set_progress(value: float) -> void:
-	_progress = clampf(value, 0.0, lock_bars)
+func _show_progress(progress: float) -> void:
 	for i in _bar_materials.size():
-		_bar_materials[i].set_shader_parameter("fill", clampf(_progress - i, 0.0, 1.0))
+		_bar_materials[i].set_shader_parameter("fill", clampf(progress - i, 0.0, 1.0))
 
 func _play_unlock_animation() -> void:
 	var tween := create_tween().set_parallel()

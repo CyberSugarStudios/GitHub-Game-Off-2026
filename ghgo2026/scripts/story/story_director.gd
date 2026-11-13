@@ -129,8 +129,9 @@ func _run_intro() -> void:
 		front_door_sound.play()
 	await wait(1.0)
 	GameState.set_parent_location(&"leanne", &"living_room")
+	living_room_voice.visible = true
 	await say("intro_leanne_home")
-	living_room_voice.visible  = false
+	living_room_voice.visible = false
 	household.send(&"leanne", &"kitchen",  24 * 60)
 	GameState.set_flag(&"leanne_home")
 	

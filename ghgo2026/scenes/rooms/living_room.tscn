@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_g005p"]
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_0vv3f"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
+[ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
 
 [sub_resource type="Gradient" id="Gradient_dfe1a"]
 
@@ -99,3 +100,23 @@ script = ExtResource("6_e86kh")
 prompt_text = "Look at the clock"
 story_id = &"living_room_clock"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="FrontDoor" type="TextureButton" parent="Hotspots" unique_id=1201229799]
+offset_left = 6511.0
+offset_top = 756.0
+offset_right = 7064.0
+offset_bottom = 1696.0
+script = ExtResource("7_5s50e")
+door_id = &"front_door"
+leads_to = &"end_credits_scene"
+lock_bars = 5
+prompt_text = "Shift through door"
+realm = 2
+story_id = &"living_room_clock"
+requires_flag = &"intro_done"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="BarRow" type="HBoxContainer" parent="Hotspots/FrontDoor" unique_id=1862674132]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -53,7 +53,11 @@ func try_interact() -> void:
 	interacted.emit()
 	if story_id != &"":
 		Events.story_event.emit(story_id)
+	_on_interacted()
 	_refresh()
+
+func _on_interacted() -> void:
+	pass
 
 func _refresh() -> void:
 	if not is_inside_tree():
