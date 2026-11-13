@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_2cxqs"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_g005p"]
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_0vv3f"]
+[ext_resource type="Texture2D" uid="uid://bmybhllukh5yy" path="res://assets/textures/house/doors/door_1_int.webp" id="5_2cxqs"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
 
@@ -43,6 +44,10 @@ script = ExtResource("4_g005p")
 
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
+
+[node name="FrontDoor" type="Sprite2D" parent="BackProps" unique_id=766239739]
+position = Vector2(1967, 1071)
+texture = ExtResource("5_2cxqs")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
@@ -92,31 +97,46 @@ texture = SubResource("GradientTexture1D_8pl6i")
 z_index = 40
 
 [node name="Clock" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 6511.0
-offset_top = 756.0
-offset_right = 7064.0
-offset_bottom = 1696.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 571.0
+offset_top = 282.0
+offset_right = 1124.0
+offset_bottom = 1222.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("6_e86kh")
 prompt_text = "Look at the clock"
 story_id = &"living_room_clock"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="FrontDoor" type="TextureButton" parent="Hotspots" unique_id=1201229799]
-offset_left = 6511.0
-offset_top = 756.0
-offset_right = 7064.0
-offset_bottom = 1696.0
+offset_left = 1520.0
+offset_top = 173.0
+offset_right = 2484.0
+offset_bottom = 2032.0
 script = ExtResource("7_5s50e")
 door_id = &"front_door"
 leads_to = &"end_credits_scene"
 lock_bars = 5
 prompt_text = "Shift through door"
 realm = 2
-story_id = &"living_room_clock"
 requires_flag = &"intro_done"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="BarRow" type="HBoxContainer" parent="Hotspots/FrontDoor" unique_id=1862674132]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -350.5
+offset_right = 20.5
+offset_bottom = -310.5
+grow_horizontal = 2
+grow_vertical = 2

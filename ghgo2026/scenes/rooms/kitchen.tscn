@@ -103,10 +103,10 @@ texture = SubResource("GradientTexture1D_8pl6i")
 z_index = 40
 
 [node name="Pamphlet" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 6275.0
-offset_top = 626.0
-offset_right = 6828.0
-offset_bottom = 1566.0
+offset_left = 797.0
+offset_top = 1350.0
+offset_right = 1350.0
+offset_bottom = 1639.0
 script = ExtResource("6_fiuqx")
 prompt_text = "Look at pamphlet"
 story_id = &"memorial_pamphlet"

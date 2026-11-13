@@ -23,7 +23,7 @@ func _ready() -> void:
 	lock = DoorLock.new()
 	lock.setup(door_id, lock_bars, transfer_rate)
 	add_child(lock)
-	lock.progress_change.connect(_show_progress)
+	lock.progress_changed.connect(_show_progress)
 	lock.unlocked.connect(_on_unlocked)
 	lock.failed.connect(_play_fail_shake)
 	super()
@@ -31,6 +31,7 @@ func _ready() -> void:
 		bar_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		bar_row.add_theme_constant_override("separation", bar_spacing)
 		_bar_rest_x = bar_row.position.x
+		_build_bars()
 		if lock.is_locked():
 			_show_progress(0.0)
 
@@ -47,7 +48,9 @@ func _on_interacted() -> void:
 	if lock.is_locked():
 		lock.start()
 	else:
-		Events.room_door_opened.emit(leads_to)
+		Events.story_event.emit(StringName("%s_opened" % door_id))
+		if leads_to != &"":
+			Events.room_door_opened.emit(leads_to)
 
 func _build_bars() -> void:
 	for i in lock_bars:
@@ -67,9 +70,9 @@ func _on_unlocked() -> void:
 		var bar_material := _bars[i].material as ShaderMaterial
 		var start := 0.15 + i * 0.08
 		tween.tween_property(bar_material, "shader_parameter/flash", 1.0, 0.12).set_delay(start)
-		tween.tween_property(bar_material, "shader_parameter/flash", 1.0, 0.4).set_delay(start + 0.12)
-		tween.tween_property(bar_material, "shader_parameter/flash", 1.0, 0.5).set_delay(start + 0.12)
-		tween.chain().tween_callback(bar_row.hide)
+		tween.tween_property(bar_material, "shader_parameter/flash", 0.0, 0.4).set_delay(start + 0.12)
+		tween.tween_property(bar_material, "shader_parameter/opacity", 0.0, 0.5).set_delay(start + 0.12)
+	tween.chain().tween_callback(bar_row.hide)
 
 func _play_fail_shake() -> void:
 	var tween := create_tween()

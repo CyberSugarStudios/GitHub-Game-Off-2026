@@ -62,6 +62,7 @@ func _fail() -> void:
 	_feedback_left = FEEDBACK_SECONDS
 	failed.emit()
 	var drain := create_tween()
+	drain.tween_interval(0.3)
 	drain.tween_method(_set_progress, progress, 0.0, 0.5).set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN)
 	_play_fail_line()
