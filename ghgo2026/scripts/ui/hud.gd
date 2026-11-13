@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
 @export var full_fade_delay: float = 1.0
 @export var bar_fade_speed: float = 4.0
+@export var struggle_shake := Vector2(2.0, 14.0)
 
 @onready var astral_filter: ColorRect = $AstralRealmColorFilter
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
@@ -21,6 +22,8 @@ var _astral_strength := 0.0
 var _astral_tween: Tween
 var _full_for := 0.0
 var _warmup := false
+var _prompt_rest := Vector2.ZERO
+var _shake_tween: Tween
 
 func _ready() -> void:
 	for child in spirit_bars_container.get_children():
@@ -39,6 +42,7 @@ func _ready() -> void:
 			_refresh_crosshair())
 	Events.shift_charge_changed.connect(_on_shift_charge_changed)
 	Events.story_prompt_changed.connect(_on_story_prompt_changed)
+	Events.struggle_changed.connect(_on_struggle_changed)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
@@ -156,3 +160,18 @@ func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 func _on_story_prompt_changed(text: String) -> void:
 	story_prompt.text = text
 	story_prompt.visible = text != ""
+
+func _on_struggle_changed(progress: float) -> void:
+	if _shake_tween and _shake_tween.is_running():
+		_shake_tween.kill()
+		story_prompt.position = _prompt_rest
+	else:
+		_prompt_rest = story_prompt.position
+	if progress <= 0.0:
+		return
+	var strength := lerpf(struggle_shake.x, struggle_shake.y, progress)
+	_shake_tween = create_tween()
+	for i in 4:
+		var shake_offset := Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * strength
+		_shake_tween.tween_property(story_prompt, "position", _prompt_rest + shake_offset, 0.03)
+	_shake_tween.tween_property(story_prompt, "position", _prompt_rest, 0.03)

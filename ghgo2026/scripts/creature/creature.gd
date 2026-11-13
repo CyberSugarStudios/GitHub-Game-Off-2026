@@ -5,7 +5,7 @@ extends Node3D
 enum State { HIDDEN, LURKING, HUNTING, GRABBING }
 
 const WORLD_LAYER := 1
-const EYE_HEIGHT := 1.5
+const EYE_HEIGHT := 1.4
 #region - EXPORTS
 @export var player: Player
 @export var spots: Node
@@ -62,7 +62,7 @@ func set_warmup(on: bool) -> void:
 	visible = on
 
 #region - STATES
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if _state == State.GRABBING:
 		_process_grab(delta)
 		return
@@ -140,6 +140,7 @@ func _start_grab() -> void:
 	GameState.set_controls_locked(true)
 	_play(grab_sound)
 	Events.story_prompt_changed.emit("Struggle!   [SPACE]")
+	Events.struggle_changed.emit(0.001)
 
 func _process_grab(delta: float) -> void:
 	GameState.drain(grab_drain_per_second * delta)
@@ -150,6 +151,7 @@ func _process_grab(delta: float) -> void:
 func _escape() -> void:
 	_play(free_sound)
 	Events.story_prompt_changed.emit("")
+	Events.struggle_changed.emit(0.0)
 	GameState.set_controls_locked(false)
 	_vanish(escape_cooldown)
 
@@ -157,6 +159,7 @@ func _consume() -> void:
 	_vanish(escape_cooldown)
 	_play(consume_sound)
 	Events.story_prompt_changed.emit("")
+	Events.struggle_changed.emit(0.0)
 	var tween := create_tween()
 	tween.tween_property(fade, "color:a", 1.0, 0.6)
 	await tween.finished
@@ -174,6 +177,7 @@ func _consume() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if _state == State.GRABBING and event.is_action_pressed("struggle"):
 		_presses += 1
+		Events.struggle_changed.emit(float(_presses) / struggle_presses)
 		if _presses >= struggle_presses:
 			_escape()
 		get_viewport().set_input_as_handled()
@@ -238,9 +242,8 @@ func _player_can_see(point: Vector3) -> bool:
 	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 func _move_along_path(delta: float) -> void:
-	if agent.is_navigation_finished():
-		return
-	var next := agent.get_next_path_position()
+	var next := player.global_position if agent.is_navigation_finished() else \
+		agent.get_next_path_position()
 	var to_next := next - global_position
 	to_next.y = 0.0
 	var step := hunt_speed * delta

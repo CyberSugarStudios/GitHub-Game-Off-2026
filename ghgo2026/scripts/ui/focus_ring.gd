@@ -14,6 +14,7 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	modulate.a = 0.0
 	Events.shift_charge_changed.connect(_on_shift_charge_changed)
+	Events.struggle_changed.connect(_on_shift_charge_changed)
 
 func _on_shift_charge_changed(amount: float) -> void:
 	_showing = amount > 0.0
