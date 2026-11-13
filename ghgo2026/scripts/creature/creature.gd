@@ -56,6 +56,8 @@ func _ready() -> void:
 	add_to_group("astral_visibility")
 	GameState.plane_changed.connect(_on_plane_changed)
 	GameState.monster_level_changed.connect(_on_monster_level_changed)
+	agent.path_desired_distance = 0.25
+	agent.target_desired_distance = grab_distance * 0.5
 	_timer = _lurk_delay()
 
 func set_warmup(on: bool) -> void:
@@ -242,8 +244,9 @@ func _player_can_see(point: Vector3) -> bool:
 	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 func _move_along_path(delta: float) -> void:
-	var next := player.global_position if agent.is_navigation_finished() else \
-		agent.get_next_path_position()
+	if agent.is_navigation_finished():
+		return
+	var next := agent.get_next_path_position()
 	var to_next := next - global_position
 	to_next.y = 0.0
 	var step := hunt_speed * delta

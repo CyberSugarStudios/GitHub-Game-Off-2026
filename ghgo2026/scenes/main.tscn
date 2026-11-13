@@ -606,6 +606,14 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Leave (S)"
 
+[node name="InputBlocker" type="ColorRect" parent="RoomView/RoomUI" unique_id=190377554]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
 [node name="FadeLayer" type="CanvasLayer" parent="RoomView" unique_id=646292699]
 layer = 5
 

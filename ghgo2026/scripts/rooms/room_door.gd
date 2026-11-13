@@ -68,10 +68,14 @@ func _on_unlocked() -> void:
 	var tween := create_tween().set_parallel()
 	for i in _bars.size():
 		var bar_material := _bars[i].material as ShaderMaterial
+		var set_flash := func(v: float) -> void:
+			bar_material.set_shader_parameter("flash", v)
+		var set_opacity := func(v: float) -> void:
+			bar_material.set_shader_parameter("opacity", v)
 		var start := 0.15 + i * 0.08
-		tween.tween_property(bar_material, "shader_parameter/flash", 1.0, 0.12).set_delay(start)
-		tween.tween_property(bar_material, "shader_parameter/flash", 0.0, 0.4).set_delay(start + 0.12)
-		tween.tween_property(bar_material, "shader_parameter/opacity", 0.0, 0.5).set_delay(start + 0.12)
+		tween.tween_method(set_flash, 0.0, 1.0, 0.12).set_delay(start)
+		tween.tween_method(set_flash, 1.0, 0.0, 0.4).set_delay(start + 0.12)
+		tween.tween_method(set_opacity, 1.0, 0.0, 0.5).set_delay(start + 0.12)
 	tween.chain().tween_callback(bar_row.hide)
 
 func _play_fail_shake() -> void:

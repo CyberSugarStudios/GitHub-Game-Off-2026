@@ -15,6 +15,7 @@ extends Node
 @onready var room_ui: CanvasLayer = $RoomUI
 @onready var exit_button: Button = $RoomUI/ExitButton
 @onready var fade_rect: ColorRect = $FadeLayer/Fade
+@onready var input_blocker: ColorRect = $RoomUI/InputBlocker
 
 var _room: Room = null
 var _busy := false # guard against double-triggers
@@ -36,6 +37,11 @@ func _ready() -> void:
 	Events.room_door_opened.connect(change_room)
 	exit_button.pressed.connect(exit_room)
 	get_viewport().size_changed.connect(_fit_room)
+	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
+	_on_controls_locked_changed(GameState.controls_locked)
+
+func _on_controls_locked_changed(locked: bool) -> void:
+	input_blocker.visible = locked
 
 func _exit_tree() -> void:
 	get_viewport().disable_3d = false
