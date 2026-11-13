@@ -16,7 +16,7 @@ signal story_stage_changed(stage: int)
 const STARTING_BARS := 1
 const MAX_POSSIBLE_BARS := 5
 const ASTRAL_DRAIN_PER_METER := 0.04 #0.04 = 25 m
-const LIVING_REGEN_PER_SECOND := 0.1 #regen outside of the stral 0.1 = 10s
+const LIVING_REGEN_PER_SECOND := 0.5 #regen outside of the stral 0.1 = 10s
 const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
 const HALL := &"hall"
 
