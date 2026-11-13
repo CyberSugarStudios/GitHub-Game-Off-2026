@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dw6ulots2gxv"]
+
+[ext_resource type="Script" uid="uid://cjvvts07a43o6" path="res://scripts/creature/creature.gd" id="1_irgav"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irgav"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_53m36"]
+material = SubResource("StandardMaterial3D_irgav")
+radius = 0.25
+
+[node name="Creature" type="Node3D" unique_id=275844227]
+script = ExtResource("1_irgav")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2087990428]
+transform = Transform3D(0.85, 0, 0, 0, 1.15, 0, 0, 0, 0.85, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_53m36")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1812698749]
+
+[node name="Presence" type="AudioStreamPlayer3D" parent="." unique_id=696892252]
+unit_size = 3.0
+
+[node name="Stinger" type="AudioStreamPlayer" parent="." unique_id=317460124]

@@ -90,6 +90,7 @@ func _setup_morning() -> void:
 		garage_voice.visible = false
 	GameClock.set_time(2, _to_minutes(morning_time))
 	GameState.set_story_stage(1)
+	GameState.set_monster_level(1)
 	household.place_everyone()
 #endregion
 

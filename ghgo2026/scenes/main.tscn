@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://0bqy0em324wk" path="res://scripts/temp_time_clock.gd" id="14_yc10j"]
 [ext_resource type="PackedScene" uid="uid://ytva5plunhw8" path="res://scenes/household/hall_parent.tscn" id="15_jkv2x"]
 [ext_resource type="Script" uid="uid://cup4c1hbpt1b" path="res://scripts/ui/power_menu.gd" id="15_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://dw6ulots2gxv" path="res://scenes/creature/creature.tscn" id="19_2cjbq"]
 [ext_resource type="Script" uid="uid://c4vxoy4gjw2cd" path="res://scripts/powers/parent_reactions.gd" id="22_jscy8"]
 [ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
 [ext_resource type="Script" uid="uid://oonra37m55uk" path="res://scripts/ui/focus_ring.gd" id="27_pibwh"]
@@ -58,6 +59,12 @@ clearcoat = 0.25
 clearcoat_roughness = 0.95
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
+albedo_color = Color(0, 1, 1, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
 size = Vector3(0.4, 1.8478028, 1.1893555)
 
@@ -79,12 +86,6 @@ emission_enabled = true
 emission = Color(0.4392157, 0.6862745, 0.6392157, 1)
 emission_operator = 1
 emission_texture = ExtResource("13_fv21b")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
-albedo_color = Color(1, 0, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
-albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_53m36"]
 vertices = PackedVector3Array(-0.4793253, 0.5154266, -5.441748, -0.2293253, 0.5154266, 0.80825186, 0.2706747, 0.5154266, 0.80825186, 0.2706747, 0.5154266, -6.191748, -8.229325, 0.5154266, -6.191748, -8.229325, 0.5154266, -5.441748, -8.729325, 0.5154266, -4.441748, -8.729325, 0.5154266, 0.80825186, -1.2293253, 0.5154266, 0.80825186, -1.2293253, 0.5154266, -4.441748)
@@ -166,6 +167,25 @@ light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
 light_energy = 0.6
 omni_range = 5.551603
 
+[node name="LeanneHall" parent="Hall" unique_id=865967836 instance=ExtResource("15_jkv2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.447056, 0, -6.144673)
+
+[node name="Body" parent="Hall/LeanneHall" index="0" unique_id=43792829]
+surface_material_override/0 = SubResource("StandardMaterial3D_jkv2x")
+
+[node name="Speaker" parent="Hall/LeanneHall" index="2" unique_id=688954707]
+character_name = "Leanne"
+
+[node name="DavidHall" parent="Hall" unique_id=1897501765 instance=ExtResource("15_jkv2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.463238, 0, -5.2921042)
+parent_id = &"david"
+
+[node name="Body" parent="Hall/DavidHall" index="0" unique_id=43792829]
+surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
+
+[node name="Speaker" parent="Hall/DavidHall" index="2" unique_id=688954707]
+character_name = "David"
+
 [node name="RoomEntrances" type="Node" parent="Hall" unique_id=1924097943]
 
 [node name="EntranceBathroom" type="Marker3D" parent="Hall/RoomEntrances" unique_id=1382819321]
@@ -219,7 +239,7 @@ room_label = "Garage"
 lock_bars = 3
 transfer_rate = 6.25
 
-[node name="GarageVoice" parent="Hall/RoomEntrances/GarageDoor" unique_id=688954707 instance=ExtResource("9_5he1u")]
+[node name="GarageVoice" parent="Hall/RoomEntrances/GarageDoor" unique_id=467822995 instance=ExtResource("9_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
 character_name = "David"
 
@@ -310,29 +330,43 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2f3dj")
 script = ExtResource("14_tel4y")
 glow_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 
+[node name="Creature" parent="Hall" unique_id=275844227 node_paths=PackedStringArray("player", "spots", "respawn_spot", "fade") instance=ExtResource("19_2cjbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.012436)
+player = NodePath("../../Emily")
+spots = NodePath("../CreatureSpots")
+respawn_spot = NodePath("../RespawnSpot")
+fade = NodePath("../../RoomView/FadeLayer/Fade")
+
+[node name="CreatureSpots" type="Node" parent="Hall" unique_id=1621709190]
+
+[node name="Marker3D" type="Marker3D" parent="Hall/CreatureSpots" unique_id=1907478711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6720581)
+
+[node name="Marker3D2" type="Marker3D" parent="Hall/CreatureSpots" unique_id=553225175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3598175, 0, -4.763076)
+
+[node name="Marker3D3" type="Marker3D" parent="Hall/CreatureSpots" unique_id=653440573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9847622, 0, -5.3312087)
+
+[node name="Marker3D4" type="Marker3D" parent="Hall/CreatureSpots" unique_id=56871986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.351546, 0, -5.672088)
+
+[node name="Marker3D5" type="Marker3D" parent="Hall/CreatureSpots" unique_id=1260563615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15150261, 0, -6.0319057)
+
+[node name="Marker3D6" type="Marker3D" parent="Hall/CreatureSpots" unique_id=370465169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -2.660987)
+
+[node name="Marker3D7" type="Marker3D" parent="Hall/CreatureSpots" unique_id=1335039147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3178053, 0, -5.785715)
+
+[node name="RespawnSpot" type="Marker3D" parent="Hall" unique_id=1558285948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9861517, 0, -5.3307323)
+
 [node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
 script = ExtResource("5_jbj1t")
 schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("8_yc10j")])
-hall_parents = [NodePath("../LeanneHall"), NodePath("../DavidHall")]
-
-[node name="LeanneHall" parent="." unique_id=865967836 instance=ExtResource("15_jkv2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.447056, 0, -6.144673)
-
-[node name="Body" parent="LeanneHall" index="0" unique_id=43792829]
-surface_material_override/0 = SubResource("StandardMaterial3D_jkv2x")
-
-[node name="Speaker" parent="LeanneHall" index="2" unique_id=688954707]
-character_name = "Leanne"
-
-[node name="DavidHall" parent="." unique_id=1897501765 instance=ExtResource("15_jkv2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.463238, 0, -5.2921042)
-parent_id = &"david"
-
-[node name="Body" parent="DavidHall" index="0" unique_id=43792829]
-surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
-
-[node name="Speaker" parent="DavidHall" index="2" unique_id=688954707]
-character_name = "David"
+hall_parents = [NodePath("../Hall/LeanneHall"), NodePath("../Hall/DavidHall")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=289804147]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.490208, 0)
@@ -623,7 +657,7 @@ front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSo
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
 
 [editable path="Hall"]
+[editable path="Hall/LeanneHall"]
+[editable path="Hall/DavidHall"]
 [editable path="Hall/RoomEntrances/KitchenDoorway"]
 [editable path="Hall/RoomEntrances/LivingRoomDoorway"]
-[editable path="LeanneHall"]
-[editable path="DavidHall"]
