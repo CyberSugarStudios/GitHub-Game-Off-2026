@@ -8,6 +8,9 @@ signal seen_plane(is_astral: bool)
 signal seen_room(room_id: StringName)
 
 const INTRO := preload("res://dialogue/intro.dialogue")
+const PUZZLE_1 := preload("res://dialogue/puzzle_1.dialogue")
+#const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
+#const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
 const INTRO_DONE := &"intro_done"
 const INTRO_FLAGS: Array[StringName] = [
 	&"garage_handle_tried",
@@ -70,6 +73,8 @@ func prepare() -> float:
 func start() -> void:
 	if not GameState.has_flag(INTRO_DONE):
 		_run_intro()
+	else:
+		_run_story()
 
 func _setup_intro() -> void:
 	GameClock.set_time(1, _to_minutes(intro_time))
@@ -89,8 +94,9 @@ func _setup_morning() -> void:
 	if garage_voice:
 		garage_voice.visible = false
 	GameClock.set_time(2, _to_minutes(morning_time))
-	GameState.set_story_stage(1)
-	GameState.set_monster_level(1)
+	if GameState.story_stage < 1:
+		GameState.set_story_stage(1)
+		GameState.set_monster_level(1)
 	household.place_everyone()
 #endregion
 
@@ -171,10 +177,26 @@ func _restart_as_morning() -> void:
 	get_tree().reload_current_scene()
 #endregion
 
+#region - STORY
+func _run_story() -> void:
+	match GameState.story_stage:
+		1:
+			await _run_puzzle_1()
+
+func _run_puzzle_1()  -> void:
+	await wait_event(&"hall_painting_fell")
+	await say("p1_painting_fight", true, PUZZLE_1)
+	household.send(&"leanne", &"parent_bedroom", 90)
+	household.send(&"david", &"garage", 90)
+	GameState.restore_memory()
+	await say("p1_after", false, PUZZLE_1)
+	GameState.set_story_stage(2)
+#endregion
+
 #region - BEAT HELPERS
-func say(cue: String, frozen: bool = false) -> void:
+func say(cue: String, frozen: bool = false, dialogue: DialogueResource = INTRO) -> void:
 	_finished.erase(cue)
-	Events.conversation_requested.emit(INTRO, cue, frozen)
+	Events.conversation_requested.emit(dialogue, cue, frozen)
 	while not _finished.has(cue):
 		await seen_conversation_end
 

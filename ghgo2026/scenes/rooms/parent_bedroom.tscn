@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_dymt4"]
 [ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_db7fa"]
+[ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_db7fa"]
 [ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_ubuay"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_1y1r8"]
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_lgaq2"]
@@ -32,6 +33,12 @@ room_id = &"parent_bedroom"
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 texture = ExtResource("2_db7fa")
 centered = false
+
+[node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1681639418]
+position = Vector2(0, 19)
+scale = Vector2(6, 6)
+energy = 2.5
+script = ExtResource("3_db7fa")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
 texture = ExtResource("3_ubuay")

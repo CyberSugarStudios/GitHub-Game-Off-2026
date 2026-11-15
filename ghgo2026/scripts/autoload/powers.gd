@@ -5,10 +5,12 @@ signal selection_changed(index: int)
 
 var all_powers: Array[Power] = [
 	preload("res://data/powers/read_thoughts.tres"),
-	preload("res://data/powers/chill.tres")
+	preload("res://data/powers/chill.tres"),
+	preload("res://data/powers/nudge.tres")
 ]
 
 var target: StringName = &""
+var target_accepts: Array[StringName] = []
 var selected := 0
 
 func _ready() -> void:
@@ -29,26 +31,27 @@ func get_unlocked() -> Array[Power]:
 	return result
 
 func get_selected() -> Power:
-	var unlocked := get_unlocked()
-	if unlocked.is_empty():
+	var usable := get_usable()
+	if usable.is_empty():
 		return null
-	return unlocked[clampi(selected, 0, unlocked.size() - 1)]
+	return usable[clampi(selected, 0, usable.size() - 1)]
 
-func set_target(parent_id: StringName) -> void:
-	if target == parent_id:
+func set_target(id: StringName, accepts: Array[StringName] = []) -> void:
+	if target == id and target_accepts == accepts:
 		return
-	target = parent_id
-	target_changed.emit(parent_id)
+	target = id
+	target_accepts = accepts
+	target_changed.emit(id)
 
 func select(index: int) -> void:
-	var count := get_unlocked().size()
+	var count := get_usable().size()
 	if count == 0:
 		return
 	selected = clampi(index, 0, count - 1)
 	selection_changed.emit(selected)
 
 func cycle(step: int) -> void:
-	var count := get_unlocked().size()
+	var count := get_usable().size()
 	if count > 0:
 		select(posmod(selected + step, count))
 

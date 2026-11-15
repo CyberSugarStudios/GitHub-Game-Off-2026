@@ -6,7 +6,6 @@ extends VBoxContainer
 @export var cost_bar_size := Vector2(36, 18)
 @export var cost_bar_gap: float = 4.0
 
-
 func _ready() -> void:
 	grow_horizontal = Control.GROW_DIRECTION_END
 	grow_vertical = Control.GROW_DIRECTION_END
@@ -37,7 +36,7 @@ func _rebuild() -> void:
 		return
 
 	var in_room := GameState.is_in_room()
-	var powers := Powers.get_unlocked()
+	var powers := Powers.get_usable()
 	for i in powers.size():
 		var power := powers[i]
 		var button := Button.new()
@@ -55,7 +54,7 @@ func _rebuild() -> void:
 	_refresh()
 
 func _refresh() -> void:
-	var powers := Powers.get_unlocked()
+	var powers := Powers.get_usable()
 	for i in get_child_count():
 		var button := get_child(i) as Button
 		button.disabled = not GameState.can_afford(powers[i].energy_cost)

@@ -19,6 +19,8 @@ func _ready() -> void:
 			parent.linger_started.connect(_on_linger_started)
 
 func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
+	if household and household.get_hall_parent(parent_id) == null:
+		return
 	match power_id:
 		&"read_thought":
 			Events.conversation_requested.emit(THOUGHTS, _thought_cue(parent_id), false)

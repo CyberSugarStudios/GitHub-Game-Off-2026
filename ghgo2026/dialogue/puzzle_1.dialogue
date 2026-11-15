@@ -1,0 +1,13 @@
+~ p1_painting_fight
+Leanne: Don't. Don't touch it. You don't get to touch her.
+David: She was my daughter too, Lee.
+Leanne: Then where were you? Every night it's the bills, the bank, the overtime—
+David: Somebody had to keep the lights on in this house.
+Leanne: She needed you here. Not the lights.
+David: Don't put this on me. You know what you said to her that night.
+=> END
+
+~ p1_after
+Emily: That night...? What did Mom say to me? [#thought]
+Emily: The garage... I think I can get in now. [#thought]
+=> END

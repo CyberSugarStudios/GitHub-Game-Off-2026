@@ -7,3 +7,4 @@ extends Resource
 @export_range(1, 5) var required_bars: int = 1
 @export var requires_flag: StringName
 @export_multiline var description: String = ""
+@export var on_parents: bool = true

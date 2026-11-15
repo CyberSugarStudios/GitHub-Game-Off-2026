@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Power" format=3 uid="uid://cducqfq76cp8j"]
+
+[ext_resource type="Script" uid="uid://cv2x7jbb0ontl" path="res://scripts/powers/power.gd" id="1_mgqqy"]
+
+[resource]
+script = ExtResource("1_mgqqy")
+id = &"nudge"
+display_name = "Nudge"
+energy_cost = 0.5
+requires_flag = &"intro_done"
+on_parents = false
+metadata/_custom_type_script = "uid://cv2x7jbb0ontl"
