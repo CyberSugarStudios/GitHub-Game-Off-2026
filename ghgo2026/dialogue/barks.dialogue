@@ -31,3 +31,13 @@ David: She looked so happy in that picture.
 ~ leanne_stage1_hint3
 Leanne: Every time I walk past that photo, I can't breathe.
 => END
+
+~ leanne_linger_pumpkin_photo_broken
+% Leanne: ...
+% Leanne: Don't. Just keep walking.
+=> END
+
+~ david_linger_pumpkin_photo_broken
+% David: *stares at the glass*
+% David: I'll get it later.
+=> END

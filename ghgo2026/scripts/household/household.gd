@@ -73,10 +73,12 @@ func _target_location(parent_id: StringName) -> StringName:
 	return entry.location if entry else &""
 
 func _current_entry(parent_id: StringName) -> ScheduleEntry:
+	var best: ParentSchedule = null
 	for schedule in schedules:
-		if schedule.parent_id == parent_id and schedule.stage == GameState.story_stage:
-			return schedule.get_entry_at(GameClock.minute)
-	return null
+		if schedule.parent_id == parent_id and schedule.stage <= GameState.story_stage and \
+		(best == null or schedule.stage > best.stage):
+			best = schedule
+	return best.get_entry_at(GameClock.minute) if best else null
 
 func _now() -> int:
 	return GameClock.get_total_minutes()

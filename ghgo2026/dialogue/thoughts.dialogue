@@ -49,3 +49,11 @@ David: Lee won't even walk past that photo if I'm in the hall. [#thought]
 ~ thoughts_david_stage1_hint3
 David: If that picture came down, she'd have to talk to me. [#thought]
 => END
+
+~ thoughts_leanne_pumpkin_photo_broken
+Leanne: I can't pick it up. If I touch it, it's real. [#thought]
+=> END
+
+~ thoughts_david_pumpkin_photo_broken
+David: She'll expect me to clean it. I can't even look at it. [#thought]
+=> END

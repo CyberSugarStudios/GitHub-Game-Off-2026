@@ -12,7 +12,8 @@ const LINGER_RADIUS := 0.6
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 @onready var target_shape: CollisionShape3D = $Target/CollisionShape3D
 
-var current_linger: HallMark = null	
+var current_linger: HallMark = null
+var speed_scale := 1.0
 
 var _destination: StringName = &""
 var _stay_visible := false
@@ -60,6 +61,7 @@ func _physics_process(delta: float) -> void:
 	if agent.is_navigation_finished():
 		var location := _destination
 		_destination = &""
+		speed_scale = 1.0
 		_set_present(_stay_visible)
 		arrived.emit(parent_id, location)
 		return
@@ -71,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	var next := agent.get_next_path_position()
 	var to_next := next - global_position
 	to_next.y = 0.0
-	var step := walk_speed * GameClock.world_speed * delta
+	var step := walk_speed * speed_scale * GameClock.world_speed * delta
 	if to_next.length() <= step:
 		global_position = Vector3(next.x, global_position.y, next.z)
 	else:

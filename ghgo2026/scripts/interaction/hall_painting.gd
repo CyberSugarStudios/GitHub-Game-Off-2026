@@ -4,7 +4,8 @@ extends PowerTarget
 const GRAVITY := 9.8
 
 @export var household: Household
-@export var inspect_mark_id: StringName = &"pumpkin_photo"
+@export var inspect_mark: HallMark
+@export var broken_mark_id: StringName = &"pumpkin_photo_broken"
 @export var crooked_degrees: float = 7.0
 @export var fall_distance: float = 1.2
 @export var fall_story_event: StringName = &"hall_painting_fell"
@@ -57,7 +58,7 @@ func _knock_crooked() -> void:
 	tween.tween_property(frame, "rotation:z", tilt, 0.15)
 
 func _on_linger_started(_parent_id: StringName, mark_id: StringName) -> void:
-	if mark_id != inspect_mark_id or not _crooked or _fallen:
+	if mark_id != inspect_mark.mark_id or not _crooked or _fallen:
 		return
 	_crooked = false
 	var tween := create_tween()
@@ -85,6 +86,7 @@ func _show_fallen() -> void:
 	set_collision_layer_value(2, false)
 	frame.visible = false
 	broken_glass.visible = true
+	inspect_mark.mark_id = broken_mark_id
 
 func _play(stream:AudioStream) -> void:
 	if stream:

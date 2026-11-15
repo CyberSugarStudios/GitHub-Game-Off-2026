@@ -7,6 +7,8 @@ signal seen_conversation_end(title: String)
 signal seen_plane(is_astral: bool)
 signal seen_room(room_id: StringName)
 
+const MOM := &"leanne"
+const DAD := &"david"
 const INTRO := preload("res://dialogue/intro.dialogue")
 const PUZZLE_1 := preload("res://dialogue/puzzle_1.dialogue")
 #const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
@@ -46,6 +48,13 @@ const INTRO_FLAGS: Array[StringName] = [
 @export_group("Morning")
 @export var morning_time: String = "07:30"
 @export var morning_fade_time: float = 0.6
+
+@export_group("Puzzle 1")
+@export var p1_storms_to: StringName = &"parent_bedroom"
+@export var p1_storm_pace: float = 1.6
+@export var p1_lingers_seconds: float = 4.0
+@export var p1_lingers_then_to: StringName = &"kitchen"
+@export var p1_apart_minutes: int = 90
 #endregion
 var _finished: Dictionary[String, bool] = {}
 #endregion
@@ -80,7 +89,7 @@ func _setup_intro() -> void:
 	GameClock.set_time(1, _to_minutes(intro_time))
 	GameState.set_story_stage(0)
 	GameState.shift_allowed = false
-	GameState.set_parent_location(&"david", &"garage")
+	GameState.set_parent_location(DAD, &"garage")
 	GameState.set_controls_locked(true)
 	room_view.open_now(&"living_room", wake_doorway.get_exit_transform())
 	room_view.set_pan(wake_pan_from)
@@ -135,11 +144,11 @@ func _run_intro() -> void:
 	if front_door_sound and front_door_sound.stream:
 		front_door_sound.play()
 	await wait(1.0)
-	GameState.set_parent_location(&"leanne", &"living_room")
+	GameState.set_parent_location(MOM, &"living_room")
 	living_room_voice.visible = true
 	await say("intro_leanne_home")
 	living_room_voice.visible = false
-	household.send(&"leanne", &"kitchen",  24 * 60)
+	household.send(MOM, &"kitchen",  24 * 60)
 	GameState.set_flag(&"leanne_home")
 	
 	for i in 4:
@@ -186,9 +195,10 @@ func _run_story() -> void:
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
 	await say("p1_painting_fight", true, PUZZLE_1)
-	household.send(&"leanne", &"parent_bedroom", 90)
-	household.send(&"david", &"garage", 90)
+	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
+	household.send(MOM, p1_storms_to, p1_apart_minutes)
 	GameState.restore_memory()
+	household.send(DAD, p1_lingers_then_to, p1_apart_minutes)
 	await say("p1_after", false, PUZZLE_1)
 	GameState.set_story_stage(2)
 #endregion
