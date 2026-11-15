@@ -222,21 +222,21 @@ room_id = &"garage"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.76089096, 0, -2.3904035)
 room_id = &"bathroom"
 room_label = "Bathroom"
-lock_bars = 2
+lock_bars = 1
 transfer_rate = 6.25
 
 [node name="EmilyBedroomDoor" parent="Hall/RoomEntrances" unique_id=164378420 instance=ExtResource("9_choun")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.7478981, 0, -0.7071645)
 room_id = &"emily_bedroom"
 room_label = "My Bedroom"
-lock_bars = 5
+lock_bars = 4
 transfer_rate = 6.25
 
 [node name="GarageDoor" parent="Hall/RoomEntrances" unique_id=1967805906 instance=ExtResource("9_choun")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -8.71323, 0, -5.7376056)
 room_id = &"garage"
 room_label = "Garage"
-lock_bars = 3
+lock_bars = 2
 transfer_rate = 6.25
 
 [node name="GarageVoice" parent="Hall/RoomEntrances/GarageDoor" unique_id=467822995 instance=ExtResource("9_5he1u")]

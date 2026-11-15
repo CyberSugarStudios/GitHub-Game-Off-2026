@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_y5w4s"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="2_e0elq"]
-[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_w4rbc"]
+[ext_resource type="Texture2D" uid="uid://dlfuq3n4knr3s" path="res://assets/textures/rooms/bathroom.png" id="2_w4rbc"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
-[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_dfe1a"]
+[ext_resource type="Texture2D" uid="uid://cni08aja4or2b" path="res://assets/textures/rooms/bathroom_astral.png" id="3_dfe1a"]
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_dfe1a"]
 
 [sub_resource type="Gradient" id="Gradient_dfe1a"]
@@ -30,12 +30,18 @@ script = ExtResource("1_y5w4s")
 room_id = &"bathroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
+scale = Vector2(6, 6)
 texture = ExtResource("2_w4rbc")
 centered = false
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
+position = Vector2(0, 19)
+scale = Vector2(6, 6)
 texture = ExtResource("3_dfe1a")
 centered = false
+
+[node name="AstralLight" type="DirectionalLight2D" parent="AstralBackground" unique_id=1618521346]
+energy = 2.5
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
 script = ExtResource("2_e0elq")
@@ -83,28 +89,28 @@ metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 z_index = 30
 
 [node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(682.75, 1841.5625)
-scale = Vector2(5.298828, 702.875)
+position = Vector2(705.125, 1885.7188)
+scale = Vector2(5.7041016, 747.4373)
 texture = SubResource("GradientTexture1D_8pl6i")
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
 [node name="TestMirror" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 276.0
-offset_top = 366.0
-offset_right = 829.0
-offset_bottom = 1306.0
+offset_left = 2.0
+offset_top = 122.0
+offset_right = 355.0
+offset_bottom = 1484.0
 script = ExtResource("3_8pl6i")
 prompt_text = "Look in the mirror"
 story_id = &"bathroom_mirror"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="TestFaucet" type="TextureButton" parent="Hotspots" unique_id=851927085]
-offset_left = 4281.0
-offset_top = 957.0
-offset_right = 4573.0
-offset_bottom = 1345.0
+offset_left = 4525.0
+offset_top = 1262.0
+offset_right = 4686.0
+offset_bottom = 1433.0
 script = ExtResource("3_8pl6i")
 prompt_text = "Turn on water"
 realm = 2
