@@ -323,10 +323,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18981934, 0, -3.5)
 script = ExtResource("5_gqmmt")
 mark_id = &"linen_closet"
 
-[node name="LingerSchoolPhoto" type="Marker3D" parent="Hall/HallMarks" unique_id=859201201]
+[node name="LingerPumpkinPhoto" type="Marker3D" parent="Hall/HallMarks" unique_id=859201201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7813568, 0, -5.5777636)
 script = ExtResource("5_gqmmt")
-mark_id = &"school_photo"
+mark_id = &"pumpkin_photo"
 linger_chance = 1.0
 linger_seconds = 2.0
 

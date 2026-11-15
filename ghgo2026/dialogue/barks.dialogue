@@ -1,3 +1,25 @@
+~ leanne_chilled
+% Leanne: It's freezing in here.
+% Leanne: Did David leave a window open?
+% Leanne: I need a blanket.
+=> END
+
+~ david_chilled
+% David: Christ, it's cold.
+% David: Leanne needs to stop touching the thermostat.
+% David: Maybe the thermostat wiring is shot?
+=> END
+
+~ david_linger_school_photo
+% David: Hey, kiddo.
+% David: *clenches his fists*
+=> END
+
+~ leanne_linger_school_photo
+% Leanne: My baby...
+% Leanne: *sobs and sniffles*
+=> END
+
 ~ leanne_stage1_hint1
 Leanne: Why is it always freezing in this hallway?
 => END

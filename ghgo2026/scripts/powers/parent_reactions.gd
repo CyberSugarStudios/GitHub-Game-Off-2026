@@ -23,9 +23,15 @@ func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
 		return
 	match power_id:
 		&"read_thought":
-			Events.conversation_requested.emit(THOUGHTS, _thought_cue(parent_id), false)
+			var cue := _thought_cue(parent_id)
+			if cue == "":
+				push_warning("ParentReactions: no thought written for %s" % parent_id)
+				return
+			Events.conversation_requested.emit(THOUGHTS, cue, false)
 		&"chill":
-			Events.conversation_requested.emit(BARKS, "%s_chilled" % parent_id, false)
+			var bark := "%s_chilled" % parent_id
+			if _has_cue(BARKS, bark):
+				Events.conversation_requested.emit(BARKS, bark, false)
 			var destination: StringName = chill_destinations.get(parent_id, &"")
 			if destination != &"" and household:
 				household.send(parent_id, destination, chill_minutes)
@@ -46,7 +52,7 @@ func _thought_cue(parent_id: StringName) -> String:
 			return hinted
 	if _has_cue(THOUGHTS, for_stage):
 		return for_stage
-	return general
+	return general if _has_cue(THOUGHTS, general) else ""
 
 func _on_linger_started(parent_id: StringName, mark_id: StringName) -> void:
 	var cue := "%s_linger_%s" % [parent_id, mark_id]

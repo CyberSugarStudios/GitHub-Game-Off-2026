@@ -81,7 +81,7 @@ func set_monster_level(level: int) -> void:
 	monster_level_changed.emit(level)
 
 func get_hint_level() -> int:
-	var hours = (GameClock.get_total_minutes() - _stage_started_at) / 60.0
+	var hours := (GameClock.get_total_minutes() - _stage_started_at) / 60.0
 	return clampi(floori(hours / HINT_HOURS_PER_LEVEL + _hint_bonus), 0, 3)
 
 func add_near_miss() -> void:
