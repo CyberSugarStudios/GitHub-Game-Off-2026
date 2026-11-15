@@ -51,6 +51,7 @@ func set_target(id: StringName, accepts: Array[StringName] = []) -> void:
 		return
 	target = id
 	target_accepts = accepts
+	selected = 0
 	target_changed.emit(id)
 
 func select(index: int) -> void:

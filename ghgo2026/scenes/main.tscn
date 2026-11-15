@@ -43,6 +43,7 @@
 [ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
 [ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="37_5poiv"]
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
+[ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
@@ -232,6 +233,14 @@ room_label = "Bathroom"
 lock_bars = 1
 transfer_rate = 6.25
 
+[node name="ClosetDoor" parent="Hall/RoomEntrances" unique_id=6168542 instance=ExtResource("9_choun")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.73361593, 0, -3.4970624)
+room_id = &"linen_closet"
+room_label = "Linen Closet"
+transfer_rate = 6.25
+prompt_text = "Linen Closet"
+realm = 1
+
 [node name="EmilyBedroomDoor" parent="Hall/RoomEntrances" unique_id=164378420 instance=ExtResource("9_choun")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.7478981, 0, -0.7071645)
 room_id = &"emily_bedroom"
@@ -310,7 +319,7 @@ script = ExtResource("5_gqmmt")
 mark_id = &"thermostat"
 
 [node name="MarkLinenCloset" type="Marker3D" parent="Hall/HallMarks" unique_id=1884637413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18981934, 0, -3.5)
 script = ExtResource("5_gqmmt")
 mark_id = &"linen_closet"
 
@@ -346,6 +355,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2f3dj")
 [node name="AstralGlow" type="Node" parent="Hall/HallDecor/HallPainting/Frame/HallPhoto_EmilyAndLeannePumpkins" unique_id=597389869]
 script = ExtResource("14_tel4y")
 glow_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
+hint_stage = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hall/HallDecor/HallPainting" unique_id=1822057700]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7624941, 1.8053758, -4.98569)
@@ -355,6 +365,8 @@ shape = SubResource("BoxShape3D_2lwwf")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.735, 0.01, -5.26)
 mesh = SubResource("QuadMesh_2lwwf")
 surface_material_override/0 = ExtResource("4_y6deb")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Hall/HallDecor/HallPainting" unique_id=565091145]
 
 [node name="Creature" parent="Hall" unique_id=275844227 node_paths=PackedStringArray("player", "spots", "respawn_spot", "fade") instance=ExtResource("19_2cjbq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.012436)
@@ -693,6 +705,11 @@ garage_voice = NodePath("../Hall/RoomEntrances/GarageDoor/GarageVoice")
 living_room_voice = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/LivingRoomVoice")
 front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSound")
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
+
+[node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player")]
+script = ExtResource("44_cjqg0")
+household = NodePath("../Household")
+conversation_player = NodePath("../ConversationPlayer")
 
 [editable path="Hall"]
 [editable path="Hall/LeanneHall"]

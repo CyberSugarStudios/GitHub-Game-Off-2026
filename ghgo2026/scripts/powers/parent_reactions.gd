@@ -40,6 +40,10 @@ func _thought_cue(parent_id: StringName) -> String:
 		if _has_cue(THOUGHTS, specific):
 			return specific
 	var for_stage := "%s_stage%d" % [general, GameState.story_stage]
+	for level in range(GameState.get_hint_level(), -1, -1):
+		var hinted := "%s_hint%d" % [for_stage, level]
+		if _has_cue(THOUGHTS, hinted):
+			return hinted
 	if _has_cue(THOUGHTS, for_stage):
 		return for_stage
 	return general

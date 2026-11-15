@@ -20,6 +20,8 @@ const ASTRAL_DRAIN_PER_METER := 0.04 #0.04 = 25 m
 const LIVING_REGEN_PER_SECOND := 0.5 #regen outside of the astral | 0.1 = 10s, 0.5 = 2s, 0.25 = 4s
 const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
 const HALL := &"hall"
+const HINT_HOURS_PER_LEVEL := 3.0
+const HINT_PER_NEAR_MISS := 0.5
 
 #region - VARS
 var max_bars := STARTING_BARS #door check
@@ -31,6 +33,8 @@ var controls_locked := false
 var parent_locations: Dictionary[StringName, StringName] = {}
 var story_stage := 0
 var monster_level := 0
+var _stage_started_at := 0
+var _hint_bonus := 0.0
 var shift_allowed := true
 #endregion
 #endregion
@@ -45,6 +49,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo and \
 	event.keycode == KEY_F1:
 		restore_memory()
+	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo and \
+	event.keycode == KEY_F6:
+		_hint_bonus += 1.0
+		print("Hint level: ", get_hint_level())
 
 #region - HOUSEHOLD
 func set_parent_location(parent_id: StringName, location: StringName) -> void:
@@ -62,6 +70,8 @@ func set_story_stage(stage: int) -> void:
 	if story_stage == stage:
 		return
 	story_stage = stage
+	_stage_started_at = GameClock.get_total_minutes()
+	_hint_bonus = 0.0
 	story_stage_changed.emit(stage)
 
 func set_monster_level(level: int) -> void:
@@ -69,6 +79,13 @@ func set_monster_level(level: int) -> void:
 		return
 	monster_level = level
 	monster_level_changed.emit(level)
+
+func get_hint_level() -> int:
+	var hours = (GameClock.get_total_minutes() - _stage_started_at) / 60.0
+	return clampi(floori(hours / HINT_HOURS_PER_LEVEL + _hint_bonus), 0, 3)
+
+func add_near_miss() -> void:
+	_hint_bonus += HINT_PER_NEAR_MISS
 #endregion
 
 #region - PLANE
@@ -173,6 +190,7 @@ func reset() -> void:
 	parent_locations.clear()
 	story_stage = 0
 	monster_level = 0
+	_hint_bonus = 0.0
 	shift_allowed = true
 
 func _set_energy(value: float) -> void:

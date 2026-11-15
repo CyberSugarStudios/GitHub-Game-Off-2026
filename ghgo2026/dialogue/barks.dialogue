@@ -1,22 +1,11 @@
-# PLACEHOLDER barks.
-
-~ leanne_chilled
-% Leanne: It's freezing in here.
-% Leanne: Did David leave a window open?
-% Leanne: I need a blanket.
-
-~ david_chilled
-% David: Christ, it's cold.
-% David: Leanne needs to stop touching the thermostat.
-% David: Maybe the thermostat wiring is shot?
+~ leanne_stage1_hint1
+Leanne: Why is it always freezing in this hallway?
 => END
 
-~ david_linger_school_photo
-% David: Hey, kiddo.
-% David: *clenches his fists*
+~ david_stage1_hint2
+David: She looked so happy in that picture.
 => END
 
-~ leanne_linger_school_photo
-% Leanne: My baby...
-% Leanne: *sobs and sniffles*
+~ leanne_stage1_hint3
+Leanne: Every time I walk past that photo, I can't breathe.
 => END

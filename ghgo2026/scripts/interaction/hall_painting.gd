@@ -49,6 +49,7 @@ func _both_parents_in_hall() -> bool:
 func _knock_crooked() -> void:
 	_crooked = true
 	_play(wobble_sound)
+	GameState.add_near_miss()
 	var tilt := deg_to_rad(crooked_degrees) * (1.0 if randf() < 0.5 else -1.0)
 	var tween := create_tween()
 	tween.tween_property(frame, "rotation:z", tilt * 1.6, 0.08)

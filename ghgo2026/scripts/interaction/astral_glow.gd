@@ -4,6 +4,7 @@ extends Node
 @export var glow_color := Color(1.0, 1.0, 1.0)
 @export var glow_energy: float = 1.5
 @export var glow_uses_texture: bool = true
+@export var hint_stage: int = -1
 
 var _mesh: MeshInstance3D
 var _material: StandardMaterial3D
@@ -29,7 +30,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if _material:
-		_material.emission_energy_multiplier = glow_energy * DayNight.astral_amount
+		var strength := glow_energy
+		if hint_stage >= 0 and GameState.story_stage == hint_stage:
+			var level := GameState.get_hint_level()
+			strength *= 1.0 + 0.5 * level
+			if level >= 3:
+				strength *= 0.75 + 0.25 * sin(Time.get_ticks_msec() / 250.0)
+		_material.emission_energy_multiplier = strength * DayNight.astral_amount
 
 func _exit_tree() -> void:
 	set_process(false)

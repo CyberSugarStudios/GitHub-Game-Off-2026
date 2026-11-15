@@ -39,6 +39,9 @@ func get_time_text() -> String:
 	@warning_ignore("integer_division")
 	return "%d:%02d" % [minute / 60, minute % 60]
 
+func get_total_minutes() -> int:
+	return day * MINUTES_PER_DAY + minute
+
 func set_time(new_day: int, new_minute: int) -> void:
 	@warning_ignore("integer_division")
 	day = new_day + new_minute / MINUTES_PER_DAY

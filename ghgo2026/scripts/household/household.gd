@@ -79,7 +79,7 @@ func _current_entry(parent_id: StringName) -> ScheduleEntry:
 	return null
 
 func _now() -> int:
-	return GameClock.day * GameClock.MINUTES_PER_DAY + GameClock.minute
+	return GameClock.get_total_minutes()
 
 func _find_spot(location: StringName) -> Node3D:
 	for node in get_tree().get_nodes_in_group("room_entrances"):

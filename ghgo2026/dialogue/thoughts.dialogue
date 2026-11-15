@@ -1,21 +1,31 @@
-# PLACEHOLDER thoughts.
-
-~ thoughts_leanne
-Leanne: Where did I put that blanket? [#thought]
+~ thoughts_leanne_stage1_hint0
+Leanne: This house is always so cold now. [#thought]
 => END
 
-~ thoughts_david
-David: Thermostat's acting up again. [#thought]
+~ thoughts_leanne_stage1_hint1
+Leanne: Where did I put that blanket... the hall closet. [#thought]
 => END
 
-~ thoughts_leanne_school_photo
-Leanne: I miss her. [#thought]
+~ thoughts_leanne_stage1_hint2
+Leanne: We haven't stood in front of her picture together in months. [#thought]
 => END
 
-~ thoughts_david_school_photo
-David: She hated this picture. Said her smile looked fake. [#thought]
+~ thoughts_leanne_stage1_hint3
+Leanne: If he'd just stand in that hall with me, by her picture. Just once. [#thought]
 => END
 
-~ thoughts_leanne_stage0
-Leanne: What's the point of cooking if it's not for her? God knows it's not for David. [#thought]
+~ thoughts_david_stage1_hint0
+David: Another past-due notice. Can't even open them anymore. [#thought]
+=> END
+
+~ thoughts_david_stage1_hint1
+David: Feels like ice in here. I'll bump the thermostat. [#thought]
+=> END
+
+~ thoughts_david_stage1_hint2
+David: Lee won't even walk past that photo if I'm in the hall. [#thought]
+=> END
+
+~ thoughts_david_stage1_hint3
+David: If that picture came down, she'd have to talk to me. [#thought]
 => END
