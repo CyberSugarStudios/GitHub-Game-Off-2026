@@ -18,7 +18,9 @@ const STARTING_BARS := 1
 const MAX_POSSIBLE_BARS := 5
 const ASTRAL_DRAIN_PER_METER := 0.04 #0.04 = 25 m
 const LIVING_REGEN_PER_SECOND := 0.5 #regen outside of the astral | 0.1 = 10s, 0.5 = 2s, 0.25 = 4s
+const ASTRAL_REGEN_PER_SECOND := 0.05 #slow tricking in the astral
 const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
+const ENERGY_EPSILON := 0.001
 const HALL := &"hall"
 const HINT_HOURS_PER_LEVEL := 3.0
 const HINT_PER_NEAR_MISS := 0.5
@@ -36,14 +38,17 @@ var monster_level := 0
 var _stage_started_at := 0
 var _hint_bonus := 0.0
 var shift_allowed := true
+var regen_paused := false
 #endregion
 #endregion
 #endregion
 #endregion
 
 func _process(delta: float) -> void:
-	if not in_astral and energy < max_bars:
-		_set_energy(energy + LIVING_REGEN_PER_SECOND * delta)
+	if energy >= max_bars or regen_paused:
+		return
+	var rate := ASTRAL_REGEN_PER_SECOND if in_astral else LIVING_REGEN_PER_SECOND
+	_set_energy(energy + rate * delta)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo and \
@@ -130,7 +135,7 @@ func has_unlocked_bars(required: int) -> bool:
 	return max_bars >= required
 
 func can_afford(cost: float) -> bool:
-	return energy >= cost
+	return energy >= cost - ENERGY_EPSILON
 
 func try_spend(cost: float) -> bool:
 	if not can_afford(cost):
@@ -192,10 +197,13 @@ func reset() -> void:
 	monster_level = 0
 	_hint_bonus = 0.0
 	shift_allowed = true
+	regen_paused = false
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)
-	if is_equal_approx(clamped, energy):
+	if clamped > max_bars - ENERGY_EPSILON:
+		clamped = max_bars
+	if clamped == energy:
 		return
 	energy = clamped
 	energy_changed.emit(energy, max_bars)

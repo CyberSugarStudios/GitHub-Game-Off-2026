@@ -45,9 +45,9 @@ func _physics_process(delta: float) -> void:
 	if spent > 0.0:
 		GameState.try_spend(spent)
 		_set_progress(progress + spent)
-	if progress >= lock_bars - 0.0001:
+	if progress >= lock_bars - GameState.ENERGY_EPSILON:
 		_finish()
-	elif spent < wanted:
+	elif spent < wanted - GameState.ENERGY_EPSILON:
 		_fail()
 
 func _finish() -> void:

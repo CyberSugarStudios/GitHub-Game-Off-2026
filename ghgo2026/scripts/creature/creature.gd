@@ -25,7 +25,7 @@ const EYE_HEIGHT := 1.4
 @export var hunt_spawn_min_distance: float = 8.0
 @export var hunt_speed: float = 3.0
 @export var presence_radius: float = 4.0
-@export var presence_drain_per_second: float = 0.08
+@export var presence_drain_per_second: float = 0.13
 @export var grab_distance: float = 0.9
 
 @export_group("Struggle")
@@ -140,6 +140,7 @@ func _start_grab() -> void:
 	_state = State.GRABBING
 	_presses = 0
 	GameState.set_controls_locked(true)
+	GameState.regen_paused = true
 	_play(grab_sound)
 	Events.story_prompt_changed.emit("Struggle!   [SPACE]")
 	Events.struggle_changed.emit(0.001)
@@ -155,9 +156,11 @@ func _escape() -> void:
 	Events.story_prompt_changed.emit("")
 	Events.struggle_changed.emit(0.0)
 	GameState.set_controls_locked(false)
+	GameState.regen_paused = false
 	_vanish(escape_cooldown)
 
 func _consume() -> void:
+	GameState.regen_paused = false
 	_vanish(escape_cooldown)
 	_play(consume_sound)
 	Events.story_prompt_changed.emit("")
