@@ -51,6 +51,7 @@ fog_sky_affect = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6pm6"]
 albedo_texture = ExtResource("5_c6pm6")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcjdw"]
 albedo_texture = ExtResource("6_5he1u")
@@ -237,9 +238,8 @@ transfer_rate = 6.25
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.73361593, 0, -3.4970624)
 room_id = &"linen_closet"
 room_label = "Linen Closet"
+enterable = false
 transfer_rate = 6.25
-prompt_text = "Linen Closet"
-realm = 1
 
 [node name="EmilyBedroomDoor" parent="Hall/RoomEntrances" unique_id=164378420 instance=ExtResource("9_choun")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.7478981, 0, -0.7071645)
@@ -254,6 +254,7 @@ room_id = &"garage"
 room_label = "Garage"
 lock_bars = 2
 transfer_rate = 6.25
+requires_flag = &""
 
 [node name="GarageVoice" parent="Hall/RoomEntrances/GarageDoor" unique_id=467822995 instance=ExtResource("9_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
@@ -283,6 +284,7 @@ transfer_rate = 6.25
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030182838, 0, -6.524)
 room_id = &"kitchen"
 room_label = "Kitchen"
+prompt_text = "Enter kitchen"
 
 [node name="FrameArt" parent="Hall/RoomEntrances/KitchenDoorway" index="1" unique_id=677153208]
 transform = Transform3D(0.955833, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03, 0.012)

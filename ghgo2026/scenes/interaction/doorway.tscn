@@ -20,6 +20,7 @@ texture_filter = 5
 
 [node name="Doorway" type="Area3D" unique_id=1087017087]
 script = ExtResource("1_q7jd8")
+observe_in_living = false
 transfer_rate = 2.0
 prompt_text = "Enter"
 

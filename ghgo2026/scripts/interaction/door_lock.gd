@@ -69,11 +69,10 @@ func _fail() -> void:
 
 func _play_fail_line() -> void:
 	var cues := DOOR_LINES.get_cues()
-	var cue := "%s_locked" % door_id
-	if not cue in cues:
-		cue = "locked"
-	if cue in cues:
-		Events.conversation_requested.emit(DOOR_LINES, cue, false)
+	for cue in ["%s_locked_stage%d" % [door_id, GameState.story_stage], "%s_locked" % door_id, "locked"]:
+		if cue in cues:
+			Events.conversation_requested.emit(DOOR_LINES, cue, false)
+			return
 
 func _set_progress(value: float) -> void:
 	progress = clampf(value, 0.0, lock_bars)

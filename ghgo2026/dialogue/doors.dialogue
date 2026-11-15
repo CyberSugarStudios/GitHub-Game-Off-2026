@@ -8,3 +8,32 @@
 ~ emily_bedroom_locked
 Emily: My room... why can't I get in? [#thought]
 => END
+
+~ linen_closet_observe
+% Emily: Towels. Sheets. The blanket Mom's always looking for. [#thought]
+% Emily: Still smells like the same detergent. [#thought]
+=> END
+
+~ garage_observe_stage0
+Emily: Dad's in there. I can hear him. [#thought]
+=> END
+
+~ garage_observe
+Emily: Dad's garage. Oil and old cardboard. [#thought]
+=> END
+
+~ garage_locked_stage0
+Emily: Dad? Dad, why won't it open? [#thought]
+=> END
+
+~ bathroom_observe
+Emily: That faucet still drips. [#thought]
+=> END
+
+~ parent_bedroom_observe
+Emily: Mom and Dad's room. [#thought]
+=> END
+
+~ emily_bedroom_observe
+Emily: My room... [#thought]
+=> END

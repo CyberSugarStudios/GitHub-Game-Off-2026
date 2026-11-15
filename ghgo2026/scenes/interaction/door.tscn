@@ -30,7 +30,6 @@ texture_filter = 5
 script = ExtResource("1_pdfrb")
 transfer_rate = 2.0
 prompt_text = "Shift through door"
-realm = 2
 requires_flag = &"intro_done"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=374691443]

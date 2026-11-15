@@ -11,6 +11,10 @@ signal unlocked
 @export var exit_distance: float = 0.6
 @export var pass_cost: float = 0.0
 
+@export_group("Living Plane")
+@export var observe_in_living: bool = true
+@export var enterable: bool = true
+
 @export_group("Lock")
 @export_range(0, 5) var lock_bars: int = 0
 @export var transfer_rate: float = 1.5
@@ -57,9 +61,16 @@ func is_locked() -> bool:
 	return lock.is_locked()
 
 #region - INTERACT OVERRIDES
+func get_prompt_text() -> String:
+	return room_label if _observing() else prompt_text
+
 func get_block_reason() -> String:
+	if _observing():
+		return "" if _observe_cue() != "" else room_label
+	if not enterable:
+		return room_label
 	if lock.transferring:
-		return "Unlocking..."
+		return "Using energy..."
 	var reason := super()
 	if reason != "":
 		return reason
@@ -71,12 +82,25 @@ func get_living_label() -> String:
 	return room_label
 
 func _on_interacted() -> void:
+	if _observing():
+		Events.conversation_requested.emit(DoorLock.DOOR_LINES, _observe_cue(), false)
+		return
 	if is_locked():
 		lock.start()
 	else:
 		if not GameState.try_spend(pass_cost):
 			return
 		Events.door_opened.emit(room_id, get_exit_transform())
+
+func _observing() -> bool:
+	return observe_in_living and not GameState.in_astral
+
+func _observe_cue() -> String:
+	var cues := DoorLock.DOOR_LINES.get_cues()
+	for cue in ["%s_observe_stage%d" % [room_id, GameState.story_stage], "%s_observe" % room_id]:
+		if cue in cues:
+			return cue
+	return ""
 #endregion
 
 #region - LOCK
