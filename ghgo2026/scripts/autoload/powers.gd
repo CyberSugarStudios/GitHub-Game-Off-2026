@@ -30,6 +30,16 @@ func get_unlocked() -> Array[Power]:
 				result.append(power)
 	return result
 
+func get_usable() -> Array[Power]:
+	var result: Array[Power] = []
+	for power in get_unlocked():
+		if target_accepts.is_empty():
+			if power.on_parents:
+				result.append(power)
+		elif power.id in target_accepts:
+			result.append(power)
+	return result
+
 func get_selected() -> Power:
 	var usable := get_usable()
 	if usable.is_empty():
