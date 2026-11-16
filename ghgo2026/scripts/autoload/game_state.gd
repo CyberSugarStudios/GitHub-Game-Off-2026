@@ -216,7 +216,7 @@ func reset() -> void:
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)
-	if clamped > max_bars - ENERGY_EPSILON:
+	if value > energy and clamped > max_bars - ENERGY_EPSILON:
 		clamped = max_bars
 	if clamped == energy:
 		return

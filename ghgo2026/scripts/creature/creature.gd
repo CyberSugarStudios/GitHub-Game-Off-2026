@@ -165,7 +165,7 @@ func _start_grab() -> void:
 	Events.struggle_changed.emit(0.001)
 
 func _process_grab(delta: float) -> void:
-	GameState.drain(grab_drain_per_second * delta)
+	GameState.drain(grab_drain_per_second * delta, true)
 	_face_player()
 	if GameState.energy <= GameState.ENERGY_EPSILON:
 		_consume()
