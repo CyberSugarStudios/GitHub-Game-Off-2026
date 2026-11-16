@@ -12,7 +12,7 @@
 
 [node name="ParentCloset" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_jyksk")
-room_id = &"parent_bedroom"
+room_id = &"parent_closet"
 exits_to = &"parent_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
