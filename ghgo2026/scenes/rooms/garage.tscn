@@ -29,7 +29,7 @@ fill_to = Vector2(0, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
 gradient = SubResource("Gradient_8pl6i")
 
-[node name="Kitchen" type="Node2D" unique_id=1374467056]
+[node name="Garage" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_nl2ye")
 room_id = &"garage"
 
@@ -80,8 +80,6 @@ near_miss_anim = 3
 art = NodePath("..")
 prompt_text = "Flicker"
 realm = 2
-energy_cost = 0.5
-required_bars = 2
 
 [node name="KeepsakeBox" type="Sprite2D" parent="BackProps" unique_id=815889840]
 position = Vector2(916.00024, 236)
@@ -109,8 +107,6 @@ done_reveal = NodePath("../../KeepsakeBoxSpilled")
 hint_stage = 2
 prompt_text = "Nudge"
 realm = 2
-energy_cost = 0.25
-required_bars = 2
 
 [node name="KeepsakeBoxSpilled" type="Sprite2D" parent="BackProps" unique_id=1938192627]
 position = Vector2(916.00024, 236)

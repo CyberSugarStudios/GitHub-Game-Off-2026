@@ -80,8 +80,6 @@ success_anim = 1
 art = NodePath("..")
 prompt_text = "Shock"
 realm = 2
-energy_cost = 0.5
-required_bars = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
@@ -165,8 +163,6 @@ near_miss_anim = 2
 art = NodePath("..")
 prompt_text = "Nudge"
 realm = 2
-energy_cost = 0.25
-required_bars = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]

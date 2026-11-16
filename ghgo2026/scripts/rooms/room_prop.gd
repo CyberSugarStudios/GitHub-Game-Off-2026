@@ -19,6 +19,7 @@ enum Anim { NONE, WOBBLE, TIP_OVER, FLICKER, FALL }
 @export var art: Node2D
 @export var done_reveal: CanvasItem
 @export var fall_distance: float = 300.0
+@export var fit_to_art: bool = true
 
 @export_group("Hints")
 @export var hint_stage: int = -1
@@ -45,6 +46,8 @@ func _ready() -> void:
 	if art:
 		_rest_position = art.position
 		_rest_rotation = art.rotation
+	if fit_to_art:
+		_fit_to_art()
 	if done_reveal:
 		done_reveal.visible = false
 	_sound = AudioStreamPlayer.new()
@@ -54,7 +57,6 @@ func _ready() -> void:
 		_animate(success_anim, true)
 		if done_reveal:
 			done_reveal.visible = true
-	_draw()
 
 func _process(_delta: float) -> void:
 	if art == null or hint_stage < 0:
@@ -93,6 +95,17 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 
 func _is_done() -> bool:
 	return done_flag != &"" and GameState.has_flag(done_flag)
+
+func _fit_to_art() -> void:
+	var sprite := art as Sprite2D
+	var parent := get_parent() as CanvasItem
+	if sprite == null or parent == null:
+		return
+	var art_to_parent := parent.get_global_transform().affine_inverse() * sprite.get_global_transform()
+	var rect := art_to_parent * sprite.get_rect()
+	set_anchors_preset(Control.PRESET_TOP_LEFT)
+	position = rect.position
+	size = rect.size
 
 func _parents_here() -> bool:
 	for parent_id in needs_parents:
