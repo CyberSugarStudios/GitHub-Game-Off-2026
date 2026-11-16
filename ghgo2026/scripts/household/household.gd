@@ -20,9 +20,11 @@ func _ready() -> void:
 		parent.arrived.connect(_on_parent_arrived)
 	place_everyone.call_deferred()
 
-func send(parent_id: StringName, location: StringName, minutes: int, then: Array = []) -> void:
-	_detours[parent_id] = {"location": location, "until": _now() + minutes, "then": then}
-	_update()
+func send(parent_id: StringName, location: StringName, minutes: int, then: Array = [], \
+	activity: StringName = &"") -> void:
+		_detours[parent_id] = {"location": location, "until": _now() + minutes, "then": then, \
+			"activity": activity}
+		_update()
 
 func has_errand(parent_id: StringName) -> bool:
 	if not _detours.has(parent_id):
@@ -40,6 +42,7 @@ func place_everyone() -> void:
 		var spot := _find_spot(target)
 		if spot is HallMark:
 			parent.stand_at(spot)
+		GameState.set_parent_activity(parent.parent_id, _target_activity(parent.parent_id))
 		GameState.set_parent_location(parent.parent_id, target)
 
 func _update() -> void:
@@ -47,6 +50,7 @@ func _update() -> void:
 		var target := _target_location(parent.parent_id)
 		if target == &"":
 			continue
+		var activity := _target_activity(parent.parent_id)
 	
 		if parent.is_walking():
 			if parent.get_destination() != target:
@@ -57,8 +61,10 @@ func _update() -> void:
 		
 		var current := GameState.get_parent_location(parent.parent_id)
 		if current == target:
+			GameState.set_parent_activity(parent.parent_id, activity)
 			continue
 		if _are_linked(current, target):
+			GameState.set_parent_activity(parent.parent_id, activity)
 			GameState.set_parent_location(parent.parent_id, target)
 			continue
 		
@@ -66,6 +72,7 @@ func _update() -> void:
 		if to == null:
 			push_warning("Household: no RoomEntrance or HallMark for '%s'; placing %s there directly." % \
 			[target, parent.parent_id])
+			GameState.set_parent_activity(parent.parent_id, activity)
 			GameState.set_parent_location(parent.parent_id, target)
 			continue
 		
@@ -73,6 +80,7 @@ func _update() -> void:
 		parent.walk(_find_spot(current), to, target, to is HallMark)
 
 func _on_parent_arrived(parent_id: StringName, room_id: StringName) -> void:
+	GameState.set_parent_activity(parent_id, _target_activity(parent_id))
 	GameState.set_parent_location(parent_id, room_id)
 
 func _target_location(parent_id: StringName) -> StringName:
@@ -83,11 +91,18 @@ func _target_location(parent_id: StringName) -> StringName:
 		var then: Array = detour.get("then", [])
 		if not then.is_empty():
 			var stop: Array = then[0]
-			_detours[parent_id] = {"location": stop[0], "until": _now() + stop[1], "then": then.slice(1)}
+			_detours[parent_id] = {"location": stop[0], "until": _now() + stop[1], \
+				"then": then.slice(1), "activity": stop[2] if stop.size() > 2 else &""}
 			return stop[0]
 		_detours.erase(parent_id)
 	var entry := _current_entry(parent_id)
 	return entry.location if entry else &""
+
+func _target_activity(parent_id: StringName) -> StringName:
+	if _detours.has(parent_id):
+		return _detours[parent_id].get("activity", &"")
+	var entry := _current_entry(parent_id)
+	return entry.activity if entry else &""
 
 func _current_entry(parent_id: StringName) -> ScheduleEntry:
 	var best: ParentSchedule = null

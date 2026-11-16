@@ -14,6 +14,8 @@ enum Anim { NONE, WOBBLE, TIP_OVER, FLICKER, FALL }
 @export var done_flag: StringName
 @export var success_anim: Anim = Anim.TIP_OVER
 @export var near_miss_anim: Anim = Anim.WOBBLE
+@export var only_during: StringName
+@export var works_during: StringName
 
 @export_group("Art")
 @export var art: Node2D
@@ -38,12 +40,12 @@ func _ready() -> void:
 	realm = InteractionRules.Realm.ASTRAL_ONLY
 	if done_flag != &"":
 		hidden_after_flag = done_flag
-	super()
 	var node := get_parent()
 	while node and not node is Room:
 		node = node.get_parent()
 	if node:
 		_room_id = (node as Room).room_id
+	super()
 	if art:
 		_rest_position = art.position
 		_rest_rotation = art.rotation
@@ -60,6 +62,10 @@ func _ready() -> void:
 		_animate(success_anim, true)
 		if done_reveal:
 			done_reveal.visible = true
+		if art:
+			art.visible = _exists()
+		GameState.parent_activity_changed.connect(_on_parent_changed)
+		GameState.parent_location_changed.connect(_on_parent_changed)
 
 func _process(_delta: float) -> void:
 	if art == null or hint_stage < 0:
@@ -123,7 +129,26 @@ func _parents_here() -> bool:
 	for parent_id in needs_parents:
 		if GameState.get_parent_location(parent_id) != _room_id:
 			return false
+		if works_during != &"" and GameState.get_parent_activity(parent_id) != works_during:
+			return false
 	return true
+
+func _on_parent_changed(_id: StringName, _value: StringName) -> void:
+	_refresh()
+	if art:
+		art.visible = _exists()
+
+func _is_available() -> bool:
+	return _exists()
+
+func _exists() -> bool:
+	if only_during == &"":
+		return true
+	for parent_id in GameState.parent_activities:
+		if GameState.parent_activities[parent_id] == only_during \
+			and GameState.get_parent_location(parent_id) == _room_id:
+				return true
+	return false
 
 func _animate(anim: Anim, instant: bool) -> void:
 	if art == null or anim == Anim.NONE:

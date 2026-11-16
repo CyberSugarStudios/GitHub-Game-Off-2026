@@ -7,6 +7,7 @@ extends AnimatedSprite3D
 @export var front_animation: StringName = &"walk_front"
 @export var side_animation: StringName = &"walk_side"
 @export var back_animation: StringName = &"walk_back"
+@export var idle_animation: StringName = &"idle"
 
 @onready var parent := get_parent() as HallParent
 
@@ -33,6 +34,11 @@ func _process(_delta: float) -> void:
 	var linger := parent.current_linger
 	if linger and sprite_frames.has_animation(linger.linger_activity):
 		_play(linger.linger_activity)
+		flip_h = false
+		speed_scale = GameClock.world_speed
+		return
+	if not parent.is_moving and sprite_frames.has_animation(idle_animation):
+		_play(idle_animation)
 		flip_h = false
 		speed_scale = GameClock.world_speed
 		return

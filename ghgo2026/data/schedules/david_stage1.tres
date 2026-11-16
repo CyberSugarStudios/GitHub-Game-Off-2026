@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 script = ExtResource("1_2k5ik")
 start_time = "14:00"
 location = &"living_room"
-activity = &"watching_tv_and_drinkin"
+activity = &"watching_tv_and_drinking"
 metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 
 [sub_resource type="Resource" id="Resource_ypno4"]
@@ -61,7 +61,7 @@ metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 script = ExtResource("1_2k5ik")
 start_time = "15:15"
 location = &"living_room"
-activity = &"watching_tv_and_drinkin"
+activity = &"watching_tv_and_drinking"
 metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 
 [sub_resource type="Resource" id="Resource_2ymkd"]

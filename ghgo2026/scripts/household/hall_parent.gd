@@ -18,6 +18,7 @@ var facing := Vector3.FORWARD
 var is_moving := false
 
 var _present := false
+var _warming := false
 var _destination: StringName = &""
 var _stay_visible := false
 var _linger_left := 0.0
@@ -44,6 +45,7 @@ func stop() -> void:
 	_set_present(false)
 
 func set_warmup(on: bool) -> void:
+	_warming = on
 	visible = on or _present
 
 func play_action(anim: StringName) -> void:
@@ -112,5 +114,5 @@ func _check_linger() -> void:
 
 func _set_present(present: bool) -> void:
 	_present = present
-	visible = present
+	visible = present or _warming
 	target_shape.set_deferred("disabled", not present)

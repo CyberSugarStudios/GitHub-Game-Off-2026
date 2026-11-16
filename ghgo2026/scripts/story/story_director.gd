@@ -58,7 +58,8 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p1_apart_minutes: int = 90
 
 @export_group("Puzzle 2")
-@export var p2_coffee_minutes: int = 45
+@export var p2_coffee_make_minutes: int = 10
+@export var p2_coffee_drink_minutes: int = 35
 @export var p2_change_minutes: int = 10
 @export var p2_laundry_minutes: int = 30
 @export var p2_breaker_minutes: int = 20
@@ -238,7 +239,6 @@ func _run_story() -> void:
 
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
-	household.get_hall_parent(MOM).play_action(&"picture_fall")
 	await say("p1_painting_fight", true, PUZZLE_1)
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
 	household.send(MOM, p1_storms_to, p1_apart_minutes)
@@ -268,14 +268,16 @@ func _on_puzzle_2_event(id: StringName) -> void:
 	match id:
 		&"coffee_on_leanne":
 			say_in_background("p2_leanne_coffee", PUZZLE_2)
-			household.send(MOM, &"parent_bedroom", p2_change_minutes, [[&"garage", p2_laundry_minutes]])
+			household.send(MOM, &"parent_bedroom", p2_change_minutes, \
+				[[&"garage", p2_laundry_minutes, &"laundry"]], &"changing")
 		&"david_checks_breaker":
 			say_in_background("p2_david_breaker", PUZZLE_2)
-			household.send(DAD, &"garage", p2_breaker_minutes)
+			household.send(DAD, &"garage", p2_breaker_minutes, [], &"checking_breaker")
 
 func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> void:
 	if parent_id == DAD and location == &"garage" and not household.has_errand(MOM):
-		household.send(MOM, &"kitchen", p2_coffee_minutes)
+		household.send(MOM, &"kitchen", p2_coffee_make_minutes, [[&"kitchen", \
+			p2_coffee_drink_minutes, &"drinking_coffee"]], &"making_coffee")
 #endregion
 #region - PUZZLE 3
 func _run_puzzle_3() -> void:

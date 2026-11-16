@@ -12,6 +12,7 @@ signal controls_locked_changed(locked: bool)
 signal parent_location_changed(parent_id: StringName, location: StringName)
 signal story_stage_changed(stage: int)
 signal monster_level_changed(level: int)
+signal parent_activity_changed(parent_id: StringName, activity: StringName)
 
 #region - CONSTS
 const STARTING_BARS := 1
@@ -33,6 +34,7 @@ var flags: Dictionary[StringName, bool]  = {}
 var current_room: StringName = &""
 var controls_locked := false
 var parent_locations: Dictionary[StringName, StringName] = {}
+var parent_activities: Dictionary[StringName, StringName] = {}
 var story_stage := 0
 var monster_level := 0
 var _stage_started_at := 0
@@ -70,6 +72,15 @@ func set_parent_location(parent_id: StringName, location: StringName) -> void:
 
 func get_parent_location(parent_id: StringName) -> StringName:
 	return parent_locations.get(parent_id, &"")
+
+func set_parent_activity(parent_id: StringName, activity: StringName) -> void:
+	if parent_activities.get(parent_id, &"") == activity:
+		return
+	parent_activities[parent_id] = activity
+	parent_activity_changed.emit(parent_id, activity)
+
+func get_parent_activity(parent_id: StringName) -> StringName:
+	return parent_activities.get(parent_id, &"")
 
 func set_story_stage(stage: int) -> void:
 	if story_stage == stage:
@@ -196,6 +207,7 @@ func reset() -> void:
 	current_room = &""
 	controls_locked = false
 	parent_locations.clear()
+	parent_activities.clear()
 	story_stage = 0
 	monster_level = 0
 	_hint_bonus = 0.0

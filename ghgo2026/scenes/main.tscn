@@ -183,6 +183,8 @@ omni_range = 5.551603
 
 [node name="LeanneHall" parent="Hall" unique_id=865967836 instance=ExtResource("15_jkv2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.447056, 0, -6.144673)
+parent_id = &"leanne"
+walk_speed = 1.1
 
 [node name="Body" parent="Hall/LeanneHall" index="0" unique_id=43792829]
 surface_material_override/0 = SubResource("StandardMaterial3D_jkv2x")
@@ -193,6 +195,7 @@ character_name = "Leanne"
 [node name="DavidHall" parent="Hall" unique_id=1897501765 instance=ExtResource("15_jkv2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.463238, 0, -5.2921042)
 parent_id = &"david"
+walk_speed = 1.1
 
 [node name="Body" parent="Hall/DavidHall" index="0" unique_id=43792829]
 surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
@@ -341,7 +344,7 @@ script = ExtResource("5_gqmmt")
 mark_id = &"pumpkin_photo"
 linger_chance = 1.0
 linger_seconds = 2.0
-linger_activity = &"idle_sad"
+linger_activity = &"idle"
 
 [node name="HallDecor" type="Node" parent="Hall" unique_id=1302355487]
 

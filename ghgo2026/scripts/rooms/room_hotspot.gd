@@ -70,12 +70,15 @@ func _refresh() -> void:
 		return
 	var in_main_view := get_viewport() == get_tree().root
 	visible = in_main_view and InteractionRules.realm_matches(realm) and not (one_shot and _used) \
-		and InteractionRules.story_open(requires_flag, hidden_after_flag)
+		and InteractionRules.story_open(requires_flag, hidden_after_flag) and _is_available()
 	if _hovered:
 		if visible:
 			_send_prompt()
 		else:
 			_on_mouse_exited()
+
+func _is_available() -> bool:
+	return true
 
 func _on_mouse_entered() -> void:
 	_hovered = true

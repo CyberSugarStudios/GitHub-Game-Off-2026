@@ -6,20 +6,8 @@
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
 [ext_resource type="Texture2D" uid="uid://cni08aja4or2b" path="res://assets/textures/rooms/bathroom_astral.png" id="3_dfe1a"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_muy8a"]
-[ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_dfe1a"]
-
-[sub_resource type="Gradient" id="Gradient_dfe1a"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dfe1a"]
-gradient = SubResource("Gradient_dfe1a")
-fill_from = Vector2(0, 0.0042735045)
-
-[sub_resource type="Gradient" id="Gradient_muy8a"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_muy8a"]
-gradient = SubResource("Gradient_muy8a")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0, 0)
+[ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_nc0wo"]
+[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_won8x"]
 
 [sub_resource type="Gradient" id="Gradient_8pl6i"]
 
@@ -38,7 +26,7 @@ centered = false
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1618521346]
 position = Vector2(0, 19)
 scale = Vector2(6, 6)
-energy = 2.5
+energy = 0.0
 script = ExtResource("3_muy8a")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
@@ -56,38 +44,13 @@ z_index = 10
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
-[node name="TestLeanne" type="Sprite2D" parent="Actors" unique_id=1840463723]
-position = Vector2(2986, 1356)
-scale = Vector2(8.7734375, 25.164064)
-texture = SubResource("GradientTexture2D_dfe1a")
-script = ExtResource("5_dfe1a")
+[node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_nc0wo")]
+position = Vector2(2860, 2142)
+frames = ExtResource("7_won8x")
 
-[node name="ClickArea" type="TextureButton" parent="Actors/TestLeanne" unique_id=1550962528]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-script = ExtResource("3_8pl6i")
-prompt_text = "Use a power"
-realm = 2
-metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
-
-[node name="TestDavid" type="Sprite2D" parent="Actors" unique_id=3675238]
-position = Vector2(5110, 1356)
-scale = Vector2(8.7734375, 25.164064)
-texture = SubResource("GradientTexture2D_muy8a")
-script = ExtResource("5_dfe1a")
+[node name="David" parent="Actors" unique_id=326045226 instance=ExtResource("6_nc0wo")]
+position = Vector2(3583, 2146)
 parent_id = &"david"
-
-[node name="ClickArea" type="TextureButton" parent="Actors/TestDavid" unique_id=373960048]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-script = ExtResource("3_8pl6i")
-prompt_text = "Use a power"
-realm = 2
-metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
