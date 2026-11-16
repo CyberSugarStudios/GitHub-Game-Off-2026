@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_lynjs"]
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_0yego"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_a2xk5"]
+[ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_o0bpy"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
 [sub_resource type="Gradient" id="Gradient_dfe1a"]
 
@@ -37,10 +40,11 @@ centered = false
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1121189894]
 position = Vector2(0, 19)
 scale = Vector2(6, 6)
-energy = 2.5
+energy = 0.0
 script = ExtResource("3_371gr")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
+visible = false
 texture = ExtResource("3_o0bpy")
 centered = false
 
@@ -49,6 +53,69 @@ script = ExtResource("4_lynjs")
 
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
+
+[node name="GarageLight" type="Sprite2D" parent="BackProps" unique_id=1697325592]
+position = Vector2(3952, 236)
+scale = Vector2(790.5, 473.5)
+texture = SubResource("CanvasTexture_53m36")
+
+[node name="GarageLightProp" type="TextureButton" parent="BackProps/GarageLight" unique_id=1157490583 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -0.5
+offset_right = -0.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_o0bpy")
+target_id = &"garage_light"
+accepts = Array[StringName]([&"static"])
+needs_parents = Array[StringName]([&"david"])
+success_event = &"david_checks_breaker"
+near_miss_event = &"garage_light_flicker"
+success_anim = 3
+near_miss_anim = 3
+art = NodePath("..")
+prompt_text = "Flicker"
+realm = 2
+energy_cost = 0.5
+required_bars = 2
+
+[node name="KeepsakeBox" type="Sprite2D" parent="BackProps" unique_id=815889840]
+position = Vector2(916.00024, 236)
+scale = Vector2(790.5, 473.5)
+texture = SubResource("CanvasTexture_53m36")
+
+[node name="KeepsakeBoxProp" type="TextureButton" parent="BackProps/KeepsakeBox" unique_id=430818175 node_paths=PackedStringArray("art", "done_reveal")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -0.5
+offset_right = -0.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_o0bpy")
+target_id = &"keepsake_box"
+accepts = Array[StringName]([&"nudge"])
+needs_parents = Array[StringName]([&"david", &"leanne"])
+success_event = &"keepsake_box_fell"
+done_flag = &"keepsake_box_fell"
+art = NodePath("..")
+done_reveal = NodePath("../../KeepsakeBoxSpilled")
+hint_stage = 2
+prompt_text = "Nudge"
+realm = 2
+energy_cost = 0.25
+required_bars = 2
+
+[node name="KeepsakeBoxSpilled" type="Sprite2D" parent="BackProps" unique_id=1938192627]
+position = Vector2(916.00024, 236)
+scale = Vector2(790.5, 473.5)
+texture = SubResource("CanvasTexture_53m36")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20

@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="ParentSchedule" format=3 uid="uid://ho2y34hkaur"]
+
+[ext_resource type="Script" uid="uid://dqhcwlmq20tc4" path="res://scripts/household/schedule_entry.gd" id="1_icj7t"]
+[ext_resource type="Script" uid="uid://xd1awdyyt8ud" path="res://scripts/household/parents_schedule.gd" id="2_v8s8j"]
+
+[sub_resource type="Resource" id="Resource_w4l7x"]
+script = ExtResource("1_icj7t")
+start_time = "06:00"
+location = &"living_room"
+activity = &"sleeping"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_2k5ik"]
+script = ExtResource("1_icj7t")
+start_time = "07:00"
+activity = &"eating"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_y5eni"]
+script = ExtResource("1_icj7t")
+start_time = "08:00"
+location = &"garage"
+activity = &"tinkering"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_xeqkw"]
+script = ExtResource("1_icj7t")
+start_time = "11:00"
+location = &"living_room"
+activity = &"watching_tv"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_0b7bb"]
+script = ExtResource("1_icj7t")
+start_time = "12:30"
+activity = &"eating"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_j1in5"]
+script = ExtResource("1_icj7t")
+start_time = "13:00"
+location = &"garage"
+activity = &"tinkering"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_70l0c"]
+script = ExtResource("1_icj7t")
+start_time = "15:00"
+location = &"living_room"
+activity = &"watching_tv"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_ypno4"]
+script = ExtResource("1_icj7t")
+start_time = "18:30"
+activity = &"eating"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_arkyf"]
+script = ExtResource("1_icj7t")
+start_time = "19:30"
+location = &"living_room"
+activity = &"drinking_and_tv"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[resource]
+script = ExtResource("2_v8s8j")
+parent_id = &"david"
+stage = 2
+entries = Array[ExtResource("1_icj7t")]([SubResource("Resource_w4l7x"), SubResource("Resource_2k5ik"), SubResource("Resource_y5eni"), SubResource("Resource_xeqkw"), SubResource("Resource_0b7bb"), SubResource("Resource_j1in5"), SubResource("Resource_70l0c"), SubResource("Resource_ypno4"), SubResource("Resource_arkyf")])
+metadata/_custom_type_script = "uid://xd1awdyyt8ud"

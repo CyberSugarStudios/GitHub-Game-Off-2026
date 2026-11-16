@@ -11,7 +11,7 @@ const MOM := &"leanne"
 const DAD := &"david"
 const INTRO := preload("res://dialogue/intro.dialogue")
 const PUZZLE_1 := preload("res://dialogue/puzzle_1.dialogue")
-#const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
+const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
 #const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
 const INTRO_DONE := &"intro_done"
 const INTRO_FLAGS: Array[StringName] = [
@@ -55,6 +55,16 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p1_lingers_seconds: float = 4.0
 @export var p1_lingers_then_to: StringName = &"kitchen"
 @export var p1_apart_minutes: int = 90
+
+@export_group("Puzzle 2")
+@export var p2_coffee_minutes: int = 45
+@export var p2_change_minutes: int = 10
+@export var p2_laundry_minutes: int = 30
+@export var p2_breaker_minutes: int = 20
+@export var p2_storms_to: StringName = &"living_room"
+@export var p2_lingers_seconds: float = 5.0
+@export var p2_lingers_then_to: StringName = &"parent_bedroom"
+@export var p2_apart_minutes: int = 90
 #endregion
 var _finished: Dictionary[String, bool] = {}
 #endregion
@@ -191,6 +201,8 @@ func _run_story() -> void:
 	match GameState.story_stage:
 		1:
 			await _run_puzzle_1()
+		2:
+			await _run_puzzle_2()
 
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
@@ -201,6 +213,34 @@ func _run_puzzle_1()  -> void:
 	household.send(DAD, p1_lingers_then_to, p1_apart_minutes)
 	await say("p1_after", false, PUZZLE_1)
 	GameState.set_story_stage(2)
+
+func _run_puzzle_2() -> void:
+	Events.story_event.connect(_on_puzzle_2_event)
+	GameState.parent_location_changed.connect(_on_puzzle_2_parent_moved)
+	await wait_event(&"keepsake_box_fell")
+	Events.story_event.disconnect(_on_puzzle_2_event)
+	GameState.parent_location_changed.disconnect(_on_puzzle_2_parent_moved)
+	await say("p2_box_fight", true, PUZZLE_2)
+	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
+	household.send(DAD, p2_storms_to, p2_apart_minutes)
+	GameState.restore_memory()
+	await wait(p2_lingers_seconds)
+	household.send(MOM, p2_lingers_then_to, p2_apart_minutes)
+	await say("p2_after", false, PUZZLE_2)
+	GameState.set_story_stage(3)
+
+func _on_puzzle_2_event(id: StringName) -> void:
+	match id:
+		&"coffee_on_leanne":
+			say_in_background("p2_leanne_coffee", PUZZLE_2)
+			household.send(MOM, &"parent_bedroom", p2_change_minutes, [[&"garage", p2_laundry_minutes]])
+		&"david_checks_breaker":
+			say_in_background("p2_david_breaker", PUZZLE_2)
+			household.send(DAD, &"garage", p2_breaker_minutes)
+
+func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> void:
+	if parent_id == DAD and location == &"garage" and not household.has_errand(MOM):
+		household.send(MOM, &"kitchen", p2_coffee_minutes)
 #endregion
 
 #region - BEAT HELPERS
@@ -210,8 +250,8 @@ func say(cue: String, frozen: bool = false, dialogue: DialogueResource = INTRO) 
 	while not _finished.has(cue):
 		await seen_conversation_end
 
-func say_in_background(cue: String) -> void:
-	Events.conversation_requested.emit(INTRO, cue, false)
+func say_in_background(cue: String, dialogue: DialogueResource = INTRO) -> void:
+	Events.conversation_requested.emit(dialogue, cue, false)
 
 func wait_said(title: String) -> void:
 	_finished.erase(title)

@@ -1,0 +1,25 @@
+~ p2_leanne_coffee
+Leanne: Oh— that's hot. Great. Perfect.
+Leanne: I need to change. And wash this.
+=> END
+
+~ p2_david_breaker
+David: Again? This whole house is falling apart.
+David: Breaker. Again.
+=> END
+
+~ p2_box_fight
+Leanne: These are hers. Why are these— David. What is this?
+David: Lee, leave it.
+Leanne: Ear protection. In her size. You were going to take her shooting?
+David: I was going to teach her to respect it. To be safe around it. Somebody had to teach her something.
+Leanne: She was thirteen!
+David: And you were never home long enough to notice what she needed.
+Leanne: Don't you dare. You were out here every night with your bills—
+David: Somebody had to keep this family from going under!
+=> END
+
+~ p2_after
+Emily: Dad has a gun...? [#thought]
+Emily: Mom and Dad's room... I think I can get in now. [#thought]
+=> END

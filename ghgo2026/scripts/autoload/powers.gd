@@ -6,7 +6,8 @@ signal selection_changed(index: int)
 var all_powers: Array[Power] = [
 	preload("res://data/powers/read_thoughts.tres"),
 	preload("res://data/powers/chill.tres"),
-	preload("res://data/powers/nudge.tres")
+	preload("res://data/powers/nudge.tres"),
+	preload("res://data/powers/electrify.tres")
 ]
 
 var target: StringName = &""

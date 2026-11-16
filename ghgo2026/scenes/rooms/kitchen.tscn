@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_m75iv"]
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_78330"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_fiuqx"]
+[ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_n5en3"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sltsg"]
 
 [sub_resource type="Gradient" id="Gradient_dfe1a"]
 
@@ -26,6 +29,8 @@ fill_to = Vector2(0, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
 gradient = SubResource("Gradient_8pl6i")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_n5en3"]
+
 [node name="Kitchen" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_njvo0")
 room_id = &"kitchen"
@@ -37,7 +42,7 @@ centered = false
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1068842481]
 position = Vector2(0, 19)
 scale = Vector2(6, 6)
-energy = 2.5
+energy = 0.0
 script = ExtResource("3_581re")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
@@ -49,6 +54,35 @@ script = ExtResource("4_m75iv")
 
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
+
+[node name="CoffeeMaker" type="Sprite2D" parent="BackProps" unique_id=29446814]
+position = Vector2(399.00003, 1082)
+scale = Vector2(603.25, 863.2499)
+texture = SubResource("CanvasTexture_sltsg")
+
+[node name="CoffeeMakerProp" type="TextureButton" parent="BackProps/CoffeeMaker" unique_id=1598904164 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -0.5
+offset_right = -0.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_n5en3")
+target_id = &"coffee_maker"
+accepts = Array[StringName]([&"static"])
+needs_parents = Array[StringName]([&"leanne"])
+success_event = &"coffee_on_leanne"
+near_miss_event = &"coffee_maker_sputter"
+success_anim = 1
+art = NodePath("..")
+prompt_text = "Shock"
+realm = 2
+energy_cost = 0.5
+required_bars = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
@@ -102,17 +136,46 @@ metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 z_index = 30
 
 [node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(682.75, 1841.5625)
-scale = Vector2(5.298828, 702.875)
+position = Vector2(1195.75, 1841.5625)
+scale = Vector2(9.306642, 702.875)
 texture = SubResource("GradientTexture1D_8pl6i")
+
+[node name="CoffeeCup" type="Sprite2D" parent="FrontProps" unique_id=1009143108]
+position = Vector2(2104, 1355)
+scale = Vector2(269.75012, 318.25)
+texture = SubResource("CanvasTexture_n5en3")
+
+[node name="CoffeeCupProp" type="TextureButton" parent="FrontProps/CoffeeCup" unique_id=805160077 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -0.5
+offset_right = -0.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_n5en3")
+target_id = &"coffee_cup"
+accepts = Array[StringName]([&"nudge"])
+needs_parents = Array[StringName]([&"leanne"])
+success_event = &"coffee_on_leanne"
+near_miss_event = &"coffee_spilled"
+near_miss_anim = 2
+art = NodePath("..")
+prompt_text = "Nudge"
+realm = 2
+energy_cost = 0.25
+required_bars = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
 [node name="Pamphlet" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 797.0
+offset_left = 1106.0
 offset_top = 1350.0
-offset_right = 1350.0
+offset_right = 1659.0
 offset_bottom = 1639.0
 script = ExtResource("6_fiuqx")
 prompt_text = "Look at pamphlet"

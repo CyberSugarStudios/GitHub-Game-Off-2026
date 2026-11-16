@@ -41,3 +41,11 @@ Leanne: Every time I walk past that photo, I can't breathe.
 % David: *stares at the glass*
 % David: I'll get it later.
 => END
+
+~ leanne_stage2_hint2
+Leanne: I should finally do something with her things in the garage.
+=> END
+
+~ david_stage2_hint3
+David: That breaker's going to give out for good one of these days.
+=> END

@@ -7,7 +7,14 @@
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="5_0vv3f"]
 [ext_resource type="Texture2D" uid="uid://bmybhllukh5yy" path="res://assets/textures/house/doors/door_1_int.webp" id="5_2cxqs"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
+[ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_g005p"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
+
+[sub_resource type="Gradient" id="Gradient_g005p"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e86kh"]
+gradient = SubResource("Gradient_g005p")
 
 [sub_resource type="Gradient" id="Gradient_dfe1a"]
 
@@ -39,7 +46,7 @@ centered = false
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=631333398]
 position = Vector2(0, 19)
 scale = Vector2(6, 6)
-energy = 2.5
+energy = 0.0
 script = ExtResource("3_2cxqs")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
@@ -57,11 +64,36 @@ z_index = 10
 position = Vector2(511, 1034)
 texture = ExtResource("5_2cxqs")
 
+[node name="TV" type="Sprite2D" parent="BackProps" unique_id=1232032568]
+position = Vector2(1557.6002, 1107.5625)
+scale = Vector2(2.6593738, 596.8749)
+texture = SubResource("GradientTexture1D_e86kh")
+
+[node name="TvProp" type="TextureButton" parent="BackProps/TV" unique_id=220055467 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -0.5
+offset_right = -128.0
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_g005p")
+target_id = &"tv"
+accepts = Array[StringName]([&"static"])
+needs_parents = Array[StringName]([&"david"])
+success_event = &"david_checks_breaker"
+near_miss_event = &"tv_static"
+success_anim = 3
+near_miss_anim = 3
+art = NodePath("..")
+
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
 [node name="TestLeanne" type="Sprite2D" parent="Actors" unique_id=1840463723]
-position = Vector2(2986, 1356)
+position = Vector2(1073.0004, 1356)
 scale = Vector2(8.7734375, 25.164064)
 texture = SubResource("GradientTexture2D_dfe1a")
 script = ExtResource("5_0vv3f")
@@ -77,7 +109,7 @@ realm = 2
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="TestDavid" type="Sprite2D" parent="Actors" unique_id=3675238]
-position = Vector2(5110, 1356)
+position = Vector2(5208.0005, 1356)
 scale = Vector2(8.7734375, 25.164064)
 texture = SubResource("GradientTexture2D_muy8a")
 script = ExtResource("5_0vv3f")
@@ -97,8 +129,8 @@ metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 z_index = 30
 
 [node name="TestCofeeTable" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(4512.8755, 2127.7188)
-scale = Vector2(4.2978506, 719.43756)
+position = Vector2(4988.8755, 2127.7188)
+scale = Vector2(8.016602, 719.43756)
 texture = SubResource("GradientTexture1D_8pl6i")
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]

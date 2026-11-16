@@ -17,9 +17,15 @@ func _ready() -> void:
 		parent.arrived.connect(_on_parent_arrived)
 	place_everyone.call_deferred()
 
-func send(parent_id: StringName, location: StringName, minutes: int) -> void:
-	_detours[parent_id] = {"location": location, "until": _now() + minutes}
+func send(parent_id: StringName, location: StringName, minutes: int, then: Array = []) -> void:
+	_detours[parent_id] = {"location": location, "until": _now() + minutes, "then": then}
 	_update()
+
+func has_errand(parent_id: StringName) -> bool:
+	if not _detours.has(parent_id):
+		return false
+	var detour: Dictionary = _detours[parent_id]
+	return _now() < detour["until"] or not detour.get("then", []).is_empty()
 
 func place_everyone() -> void:
 	_detours.clear()
@@ -68,6 +74,11 @@ func _target_location(parent_id: StringName) -> StringName:
 		var detour: Dictionary = _detours[parent_id]
 		if _now() < detour["until"]:
 			return detour["location"]
+		var then: Array = detour.get("then", [])
+		if not then.is_empty():
+			var stop: Array = then[0]
+			_detours[parent_id] = {"location": stop[0], "until": _now() + stop[1], "then": then.slice(1)}
+			return stop[0]
 		_detours.erase(parent_id)
 	var entry := _current_entry(parent_id)
 	return entry.location if entry else &""

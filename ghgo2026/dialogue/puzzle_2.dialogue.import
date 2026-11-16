@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://qfgbjsgpt2k"
+path="res://.godot/imported/puzzle_2.dialogue-21c287d834b65d39c0ea66d75b8d9e85.tres"
+
+[deps]
+
+source_file="res://dialogue/puzzle_2.dialogue"
+dest_files=["res://.godot/imported/puzzle_2.dialogue-21c287d834b65d39c0ea66d75b8d9e85.tres"]
+
+[params]
+
+defaults=true

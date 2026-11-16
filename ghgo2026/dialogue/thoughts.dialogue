@@ -57,3 +57,35 @@ Leanne: I can't pick it up. If I touch it, it's real. [#thought]
 ~ thoughts_david_pumpkin_photo_broken
 David: She'll expect me to clean it. I can't even look at it. [#thought]
 => END
+
+~ thoughts_leanne_stage2_hint0
+Leanne: I can't be in the same room as him right now. [#thought]
+=> END
+
+~ thoughts_leanne_stage2_hint1
+Leanne: He'll go hide in the garage eventually. Then I can get my coffee in peace. [#thought]
+=> END
+
+~ thoughts_leanne_stage2_hint2
+Leanne: Her box is up on that garage shelf. I can't bring myself to open it. [#thought]
+=> END
+
+~ thoughts_leanne_stage2_hint3
+Leanne: If he's out there while I'm doing laundry... we'd both be standing under her box. [#thought]
+=> END
+
+~ thoughts_david_stage2_hint0
+David: Bills. It's always the bills. [#thought]
+=> END
+
+~ thoughts_david_stage2_hint1
+David: If the power cuts out one more time, I'm going straight to the breaker. [#thought]
+=> END
+
+~ thoughts_david_stage2_hint2
+David: I put her things in a box in the garage. Lee doesn't know what's in it. [#thought]
+=> END
+
+~ thoughts_david_stage2_hint3
+David: If Lee ever saw what's in that box, with me standing right there... [#thought]
+=> END
