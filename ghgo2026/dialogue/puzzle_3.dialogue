@@ -8,6 +8,12 @@
 % Leanne: I'll be awake all night. If he comes crashing in here with that thing from the closet again...
 => END
 
+~ p3_noise_daytime
+## A crash from the garage, in daylight. David barely looks up.
+% David: What was that? ...House settling. Probably.
+% David: Hear that at night and I'd be reaching for the safe.
+=> END
+
 ~ p3_david_passed_out
 David: *snores*
 => END

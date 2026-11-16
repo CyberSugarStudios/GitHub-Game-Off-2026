@@ -324,6 +324,8 @@ func _p3_new_day() -> void:
 
 func _p3_try_night() -> bool:
 	if not _is_night():
+		say_in_background("p3_noise_daytime", PUZZLE_3)
+		GameState.add_near_miss()
 		return false
 	if _p3_drinks >= p3_drunk_at:
 		say_in_background("p3_david_passed_out", PUZZLE_3)
