@@ -1,0 +1,12 @@
+~ p4_room_reveal
+Emily: Why is there... tape? In my room? [#thought]
+Emily: Those little signs. Like on TV. [#thought]
+Emily: My diary's still on the desk. [#thought]
+=> END
+
+~ p4_after
+Emily: It wasn't Mom. It wasn't Dad. [#thought]
+Emily: It was me. [#thought]
+Emily: ...I remember now. [#thought]
+Emily: The front door. I think I can finally leave. [#thought]
+=> END

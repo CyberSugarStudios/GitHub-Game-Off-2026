@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DiaryPages" format=3 uid="uid://b6vliqvwjabhv"]
+
+[ext_resource type="Script" uid="uid://da3bhldqy5jpx" path="res://scripts/story/diary_pages.gd" id="1_mh00m"]
+
+[resource]
+script = ExtResource("1_mh00m")
+pages = Array[String](["An ordinary day. School, parents, friends drifting.", "Mom and Dad are fighting about money again.", "Bullying starts at school.", "Dad said he'd take me to the gun range and gave me the code to the safe. He said \"just in case\" a lot.", "Burnout, grades declining, feeling invisible.", "Mom found my weed. Called me stupid, spoiled, a lot cause.", "As many more entries as needed to convey story, decline, and trauma.", "Last entry. Handle with care. :("])
+metadata/_custom_type_script = "uid://da3bhldqy5jpx"

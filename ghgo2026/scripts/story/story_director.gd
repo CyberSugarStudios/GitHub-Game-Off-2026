@@ -14,6 +14,7 @@ const INTRO := preload("res://dialogue/intro.dialogue")
 const PUZZLE_1 := preload("res://dialogue/puzzle_1.dialogue")
 const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
 const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
+const PUZZLE_4 := preload("res://dialogue/puzzle_4.dialogue")
 const INTRO_DONE := &"intro_done"
 const INTRO_FLAGS: Array[StringName] = [
 	&"garage_handle_tried",
@@ -232,8 +233,8 @@ func _run_story() -> void:
 		await _run_puzzle_2()
 	if GameState.story_stage == 3:
 		await _run_puzzle_3()
-#	if GameState.story_stage == 4:
-#		await _run_puzzle_4()
+	if GameState.story_stage == 4:
+		await _run_puzzle_4()
 #	if GameState.story_stage == 5:
 #		await _run_puzzle_5()
 
@@ -360,6 +361,14 @@ static func _crossed(from: int, to: int, at: int) -> bool:
 		return at > from and at <= to
 	return at > from or at <= to
 #endregion
+func _run_puzzle_4() -> void:
+	GameState.set_monster_level(3)
+	await wait_room(&"emily_bedroom")
+	await say("p4_room_reveal", true, PUZZLE_4)
+	await wait_event(&"diary_finished")
+	GameState.restore_memory()
+	await  say("p4_after", false, PUZZLE_4)
+	GameState.set_story_stage(5)
 
 func _on_any_story_event(id: StringName) -> void:
 	if id == &"wait_hour":

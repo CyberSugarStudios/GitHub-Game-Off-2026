@@ -50,24 +50,12 @@ texture = SubResource("GradientTexture1D_8pl6i")
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
-[node name="TestMirror" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 276.0
-offset_top = 366.0
-offset_right = 829.0
-offset_bottom = 1306.0
+[node name="Diary" type="TextureButton" parent="Hotspots" unique_id=184838228]
+offset_left = 961.0
+offset_top = 1029.0
+offset_right = 1340.0
+offset_bottom = 1762.0
 script = ExtResource("6_0hvy4")
-prompt_text = "Look in the mirror"
-story_id = &"bathroom_mirror"
-metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
-
-[node name="TestFaucet" type="TextureButton" parent="Hotspots" unique_id=851927085]
-offset_left = 4281.0
-offset_top = 957.0
-offset_right = 4573.0
-offset_bottom = 1345.0
-script = ExtResource("6_0hvy4")
-prompt_text = "Turn on water"
-realm = 2
-energy_cost = 0.25
-story_id = &"bathroom_shower_faucet"
+prompt_text = "Read the diary"
+story_id = &"open_diary"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"

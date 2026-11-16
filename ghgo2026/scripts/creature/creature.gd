@@ -2,7 +2,7 @@ class_name Creature
 extends Node3D
 
 #region - INIT
-enum State { HIDDEN, LURKING, HUNTING, GRABBING }
+enum State { HIDDEN, LURKING, HUNTING, GRABBING, GUARDING }
 
 const WORLD_LAYER := 1
 const EYE_HEIGHT := 1.4
@@ -32,6 +32,11 @@ const EYE_HEIGHT := 1.4
 @export var struggle_presses: int = 12
 @export var grab_drain_per_second: float = 0.25
 @export var escape_cooldown: float = 20.0
+
+@export_group("Guarding")
+@export var guard_spot: Node3D
+@export var guard_radius: float = 6.0
+@export var guard_charge_distance: float = 1.5
 
 @export_group("Sounds")
 @export var sting_sound: AudioStream
@@ -81,11 +86,15 @@ func _physics_process(delta: float) -> void:
 			_process_lurk(delta)
 		State.HUNTING:
 			_process_hunt(delta)
+		State.GUARDING:
+			_process_guard()
 
 func _process_hidden(delta: float) -> void:
 	_timer -= delta
 	if _timer > 0.0:
 		return
+	if _should_guard():
+		_appear(guard_spot.global_position, State.GUARDING)
 	if GameState.in_astral and GameState.monster_level >= 2:
 		_start_hunt()
 	else:
@@ -135,6 +144,20 @@ func _process_hunt(delta: float) -> void:
 		GameState.drain(presence_drain_per_second * delta)
 	_move_along_path(delta)
 	_face_player()
+
+func _should_guard() -> bool:
+	if GameState.monster_level < 3 or not GameState.in_astral or guard_spot == null:
+		return false
+	var offset := player.global_position - guard_spot.global_position
+	return offset.length() <= guard_radius
+
+func _process_guard() -> void:
+	_face_player()
+	if _distance_to_player() <= guard_charge_distance:
+		_state = State.HUNTING
+		_repath = 0.0
+	elif not _should_guard():
+		_vanish(2.0)
 
 func _start_grab() -> void:
 	_state = State.GRABBING
@@ -190,7 +213,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
 		and event.keycode == KEY_F5:
-			GameState.set_monster_level((GameState.monster_level + 1) % 3)
+			GameState.set_monster_level((GameState.monster_level + 1) % 4)
 			print("Creature level: ", GameState.monster_level)
 
 func _on_plane_changed(in_astral: bool) -> void:
