@@ -1,0 +1,21 @@
+C:/Program Files/Krita (x64)/bin/ffmpeg.exe -hide_banner -y -y -r 30 -start_number 0 -start_number_range 1 -i C:/Users/skipp/Downloads/Mum/Animations/Walk-Front/frame%04d.png -i C:/Users/skipp/Downloads/Mum/Animations/Walk-Front/KritaTempPalettegen_%06d.png -lavfi scale=w=700:h=2000:flags=bicubic[0:v];[0:v][1:v]paletteuse=dither=sierra2_4a:diff_mode=none -f gif -loop 0 -gifflags +transdiff C:/Users/skipp/Downloads/Mum/Animations/Walk-Front/walk-front.gif
+=====================================================
+Input #0, image2, from 'C:/Users/skipp/Downloads/Mum/Animations/Walk-Front/frame%04d.png':
+  Duration: 00:00:01.24, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: png, rgba64be(pc, gbr/unknown/unknown), 1400x4000 [SAR 5669:5669 DAR 7:20], 25 fps, 25 tbr, 25 tbn
+Input #1, image2, from 'C:/Users/skipp/Downloads/Mum/Animations/Walk-Front/KritaTempPalettegen_%06d.png':
+  Duration: 00:00:00.04, start: 0.000000, bitrate: N/A
+  Stream #1:0: Video: png, rgba(pc, gbr/unknown/unknown), 16x16 [SAR 1:1 DAR 1:1], 25 fps, 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 (png) -> scale:default
+  Stream #1:0 (png) -> paletteuse
+  paletteuse:default -> Stream #0:0 (gif)
+Press [q] to stop, [?] for help
+Output #0, gif, to 'C:/Users/skipp/Downloads/Mum/Animations/Walk-Front/walk-front.gif':
+  Metadata:
+    encoder         : Lavf61.7.100
+  Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 700x2000 [SAR 1:1 DAR 7:20], q=2-31, 200 kb/s, 30 fps, 100 tbn
+      Metadata:
+        encoder         : Lavc61.19.101 gif
+frame=    5 fps=0.0 q=-0.0 size=     512KiB time=00:00:00.16 bitrate=25165.8kbits/s speed=0.333x    frame=   16 fps= 16 q=-0.0 size=    3072KiB time=00:00:00.53 bitrate=47185.9kbits/s speed=0.533x    frame=   27 fps= 18 q=-0.0 size=    5376KiB time=00:00:00.90 bitrate=48933.5kbits/s speed=0.595x    [out#0/gif @ 0000022627f7ad00] video:6939KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000281%
+frame=   31 fps= 19 q=-0.0 Lsize=    6939KiB time=00:00:01.03 bitrate=55006.8kbits/s speed=0.624x    

@@ -1,0 +1,21 @@
+C:/Program Files/Krita (x64)/bin/ffmpeg.exe -hide_banner -y -y -r 30 -start_number 0 -start_number_range 1 -i C:/Users/skipp/Downloads/Mum/Animations/Picture-Fall/frame%04d.png -i C:/Users/skipp/Downloads/Mum/Animations/Picture-Fall/KritaTempPalettegen_%06d.png -lavfi [0:v][1:v]paletteuse=dither=sierra2_4a:diff_mode=none -f gif -loop 0 -gifflags +transdiff C:/Users/skipp/Downloads/Mum/Animations/Picture-Fall/picture-fall.gif
+=====================================================
+Input #0, image2, from 'C:/Users/skipp/Downloads/Mum/Animations/Picture-Fall/frame%04d.png':
+  Duration: 00:00:01.60, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: png, rgba64be(pc, gbr/unknown/unknown), 800x2000 [SAR 5669:5669 DAR 2:5], 25 fps, 25 tbr, 25 tbn
+Input #1, image2, from 'C:/Users/skipp/Downloads/Mum/Animations/Picture-Fall/KritaTempPalettegen_%06d.png':
+  Duration: 00:00:00.04, start: 0.000000, bitrate: N/A
+  Stream #1:0: Video: png, rgba(pc, gbr/unknown/unknown), 16x16 [SAR 1:1 DAR 1:1], 25 fps, 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 (png) -> paletteuse
+  Stream #1:0 (png) -> paletteuse
+  paletteuse:default -> Stream #0:0 (gif)
+Press [q] to stop, [?] for help
+Output #0, gif, to 'C:/Users/skipp/Downloads/Mum/Animations/Picture-Fall/picture-fall.gif':
+  Metadata:
+    encoder         : Lavf61.7.100
+  Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 800x2000 [SAR 1:1 DAR 2:5], q=2-31, 200 kb/s, 30 fps, 100 tbn
+      Metadata:
+        encoder         : Lavc61.19.101 gif
+frame=    9 fps=0.0 q=-0.0 size=    1280KiB time=00:00:00.30 bitrate=34952.5kbits/s speed=0.591x    frame=   21 fps= 21 q=-0.0 size=    4096KiB time=00:00:00.70 bitrate=47934.9kbits/s speed=0.693x    frame=   35 fps= 23 q=-0.0 size=    6912KiB time=00:00:01.16 bitrate=48534.1kbits/s speed=0.764x    [out#0/gif @ 000001f0d558a500] video:8651KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000226%
+frame=   40 fps= 24 q=-0.0 Lsize=    8651KiB time=00:00:01.33 bitrate=53154.5kbits/s speed=0.794x    
