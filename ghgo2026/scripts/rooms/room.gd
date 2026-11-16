@@ -11,6 +11,7 @@ const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 @export var room_id: StringName
 
 @export_range(0.0, 1.0) var start_pan: float = 0.5
+@export var exits_to: StringName
 
 @onready var background: Sprite2D = $Background
 

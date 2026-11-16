@@ -24,6 +24,12 @@ David: Who's there? ...Garage. Kitchen. Nothing.
 David: Lee didn't even stir. Those pills.
 => END
 
+~ p3_david_wakes
+## Night. The crash wakes him. Heard as he gets up off the couch.
+David: Who's there? ...Lee? Somebody's in the garage.
+David: Hang on. Hang on.
+=> END
+
 ~ p3_safe_fight
 Emily: Zero... four... one... seven. [#thought]
 Emily: That's my birthday. [#thought]

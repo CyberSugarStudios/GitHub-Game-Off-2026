@@ -3,6 +3,9 @@ extends Node
 
 @export var schedules: Array[ParentSchedule] = []
 @export var hall_parents: Array[HallParent] = []
+@export var inner_rooms: Dictionary[StringName, StringName] = {
+	&"parent_closet": &"parent_bedroom"
+}
 
 var _detours: Dictionary[StringName, Dictionary] = {}
 
@@ -54,6 +57,9 @@ func _update() -> void:
 		
 		var current := GameState.get_parent_location(parent.parent_id)
 		if current == target:
+			continue
+		if _are_linked(current, target):
+			GameState.set_parent_location(parent.parent_id, target)
 			continue
 		
 		var to := _find_spot(target)
@@ -108,3 +114,6 @@ func get_hall_parent(parent_id: StringName) -> HallParent:
 		if parent.parent_id == parent_id:
 			return parent
 	return null
+
+func _are_linked(a: StringName, b: StringName) -> bool:
+	return inner_rooms.get(a, &"") == b or inner_rooms.get(b, &"") == a
