@@ -19,3 +19,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_rre6o")
 prompt_text = "Use a power"
+realm = 2

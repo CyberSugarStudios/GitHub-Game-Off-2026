@@ -52,15 +52,18 @@ texture = SubResource("CanvasTexture_sltsg")
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_m75iv")]
-position = Vector2(891, 2069)
+position = Vector2(1021, 2110)
 frames = ExtResource("7_78330")
 
 [node name="ClickArea2" type="TextureButton" parent="Actors/Leanne" unique_id=1550962528]
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_fiuqx")
-prompt_text = "Use a power"
-realm = 2
+prompt_text = "Talk to mom"
+realm = 1
+story_id = &"talk_to_mom"
+requires_flag = &"leanne_home"
+hidden_after_flag = &"mom_ignored"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 metadata/_edit_use_anchors_ = true
 

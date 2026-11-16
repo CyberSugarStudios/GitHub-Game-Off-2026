@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://y87d6ngaan1" path="res://scripts/interaction/interactable.gd" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://dgjlh3m243b5g" path="res://assets/textures/house/hall/decals/cut_out_vent.webp" id="7_og1vs"]
 [ext_resource type="PackedScene" uid="uid://vnb6bjdisn6w" path="res://scenes/rooms/kitchen.tscn" id="8_2f3dj"]
+[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="8_j2jfr"]
 [ext_resource type="Resource" uid="uid://bge0dqt1b63w8" path="res://data/schedules/david_stage1.tres" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="9_5he1u"]
 [ext_resource type="PackedScene" uid="uid://o0yxjkwwmwob" path="res://scenes/interaction/door.tscn" id="9_choun"]
@@ -192,6 +193,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jkv2x")
 [node name="Speaker" parent="Hall/LeanneHall" index="2" unique_id=688954707]
 character_name = "Leanne"
 
+[node name="Sprite" parent="Hall/LeanneHall" index="4" unique_id=426285732]
+sprite_frames = ExtResource("8_j2jfr")
+animation = &"walk_front"
+
 [node name="DavidHall" parent="Hall" unique_id=1897501765 instance=ExtResource("15_jkv2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.463238, 0, -5.2921042)
 parent_id = &"david"
@@ -202,6 +207,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
 
 [node name="Speaker" parent="Hall/DavidHall" index="2" unique_id=688954707]
 character_name = "David"
+
+[node name="Sprite" parent="Hall/DavidHall" index="4" unique_id=426285732]
+animation = &""
 
 [node name="RoomEntrances" type="Node" parent="Hall" unique_id=1924097943]
 

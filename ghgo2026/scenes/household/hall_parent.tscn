@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dmk4i6jngl2gp" path="res://scripts/household/hall_parent.gd" id="1_2ek4g"]
 [ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="2_notox"]
 [ext_resource type="Script" uid="uid://bs58mgqqsx51k" path="res://scripts/powers/parent_target.gd" id="3_cqwst"]
-[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="4_xttn8"]
 [ext_resource type="Script" uid="uid://cnkb82njg3q00" path="res://scripts/household/parent_sprite.gd" id="5_mdgke"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_notox"]
@@ -39,6 +38,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CapsuleShape3D_53m36")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=426285732]
-sprite_frames = ExtResource("4_xttn8")
 animation = &"walk_side"
 script = ExtResource("5_mdgke")
