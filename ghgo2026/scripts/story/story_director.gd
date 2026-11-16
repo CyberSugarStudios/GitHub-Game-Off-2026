@@ -100,10 +100,15 @@ func _ready() -> void:
 	Events.conversation_finished.connect(_on_conversation_finished)
 	GameState.plane_changed.connect(seen_plane.emit)
 	GameState.room_changed.connect(seen_room.emit)
+	GameState.story_stage_changed.connect(_on_story_stage_changed)
 	GameState.parent_location_changed.connect(seen_parent_moved.emit)
 	Events.story_event.connect(_on_any_story_event)
 	if title_card:
 		title_card.modulate.a = 0.0
+
+func _on_story_stage_changed(stage: int) -> void:
+	if stage >= 1:
+		GameState.set_monster_level(stage)
 
 func _exit_tree() -> void:
 	Events.story_prompt_changed.emit("")
@@ -143,7 +148,7 @@ func _setup_morning() -> void:
 	GameClock.set_time(2, _to_minutes(morning_time))
 	if GameState.story_stage < 1:
 		GameState.set_story_stage(1)
-		GameState.set_monster_level(1)
+	GameState.set_monster_level(GameState.story_stage)
 	household.place_everyone()
 #endregion
 
@@ -362,7 +367,6 @@ static func _crossed(from: int, to: int, at: int) -> bool:
 	return at > from or at <= to
 #endregion
 func _run_puzzle_4() -> void:
-	GameState.set_monster_level(3)
 	await wait_room(&"emily_bedroom")
 	await say("p4_room_reveal", true, PUZZLE_4)
 	await wait_event(&"diary_finished")

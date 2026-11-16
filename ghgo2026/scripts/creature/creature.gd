@@ -21,7 +21,7 @@ const EYE_HEIGHT := 1.4
 @export var stare_seconds: float = 0.4
 
 @export_group("Hunting")
-@export var hunt_delay := Vector2(4.0, 10.0)
+@export var hunt_delay := Vector2(3.0, 6.0)
 @export var hunt_spawn_min_distance: float = 8.0
 @export var hunt_speed: float = 3.0
 @export var presence_radius: float = 4.0
@@ -29,7 +29,8 @@ const EYE_HEIGHT := 1.4
 @export var grab_distance: float = 0.9
 
 @export_group("Struggle")
-@export var struggle_presses: int = 12
+@export var struggle_presses: int = 9
+@export var presses_per_bar: int = 3
 @export var grab_drain_per_second: float = 0.25
 @export var escape_cooldown: float = 20.0
 
@@ -37,6 +38,7 @@ const EYE_HEIGHT := 1.4
 @export var guard_spot: Node3D
 @export var guard_radius: float = 6.0
 @export var guard_charge_distance: float = 1.5
+@export var guard_return_delay: float = 8.0
 
 @export_group("Sounds")
 @export var sting_sound: AudioStream
@@ -73,11 +75,11 @@ func _physics_process(delta: float) -> void:
 	if _state == State.GRABBING:
 		_process_grab(delta)
 		return
-	if GameState.monster_level <= 0 or GameState.controls_locked:
+	if GameState.monster_level <= 0 or GameState.monster_level >= 5 or GameState.controls_locked:
 		return
 	if GameState.is_in_room():
 		if _state != State.HIDDEN:
-			_vanish(_lurk_delay())
+			_vanish(_return_delay())
 		return
 	match _state:
 		State.HIDDEN:
@@ -93,9 +95,11 @@ func _process_hidden(delta: float) -> void:
 	_timer -= delta
 	if _timer > 0.0:
 		return
-	if _should_guard():
-		_appear(guard_spot.global_position, State.GUARDING)
-	if GameState.in_astral and GameState.monster_level >= 2:
+	if GameState.monster_level == 4:
+		if guard_spot:
+			_appear(guard_spot.global_position, State.GUARDING)
+			return
+	if _hunts_now():
 		_start_hunt()
 	else:
 		_start_lurk()
@@ -145,19 +149,11 @@ func _process_hunt(delta: float) -> void:
 	_move_along_path(delta)
 	_face_player()
 
-func _should_guard() -> bool:
-	if GameState.monster_level < 3 or not GameState.in_astral or guard_spot == null:
-		return false
-	var offset := player.global_position - guard_spot.global_position
-	return offset.length() <= guard_radius
-
 func _process_guard() -> void:
 	_face_player()
 	if _distance_to_player() <= guard_charge_distance:
 		_state = State.HUNTING
 		_repath = 0.0
-	elif not _should_guard():
-		_vanish(2.0)
 
 func _start_grab() -> void:
 	_state = State.GRABBING
@@ -171,7 +167,7 @@ func _start_grab() -> void:
 func _process_grab(delta: float) -> void:
 	GameState.drain(grab_drain_per_second * delta)
 	_face_player()
-	if not GameState.in_astral:
+	if GameState.energy <= GameState.ENERGY_EPSILON:
 		_consume()
 
 func _escape() -> void:
@@ -205,8 +201,8 @@ func _consume() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if _state == State.GRABBING and event.is_action_pressed("struggle"):
 		_presses += 1
-		Events.struggle_changed.emit(float(_presses) / struggle_presses)
-		if _presses >= struggle_presses:
+		Events.struggle_changed.emit(float(_presses) / _presses_needed())
+		if _presses >= _presses_needed():
 			_escape()
 		get_viewport().set_input_as_handled()
 		return
@@ -217,13 +213,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			print("Creature level: ", GameState.monster_level)
 
 func _on_plane_changed(in_astral: bool) -> void:
-	if in_astral and GameState.monster_level >= 2:
+	if GameState.monster_level != 2:
+		return
+	if in_astral:
 		if _state == State.LURKING:
 			_state = State.HUNTING
 			_repath = 0.0
 		elif _state == State.HIDDEN:
 			_timer = minf(_timer, randf_range(hunt_delay.x, hunt_delay.y))
-	elif not in_astral and _state == State.HUNTING:
+	elif _state == State.HUNTING:
 		_vanish(_lurk_delay())
 
 func _on_monster_level_changed(_level: int) -> void:
@@ -294,6 +292,16 @@ func _distance_to_player() -> float:
 
 func _lurk_delay() -> float:
 	return randf_range(lurk_interval.x, lurk_interval.y)
+
+func _hunts_now() -> bool:
+	var level := GameState.monster_level
+	return level == 3 or (level == 2 and GameState.in_astral)
+
+func _presses_needed() -> int:
+	return struggle_presses + presses_per_bar * GameState.max_bars
+
+func _return_delay() -> float:
+	return guard_return_delay if GameState.monster_level == 4 else _lurk_delay()
 
 func _play(stream: AudioStream) -> void:
 	if stream:

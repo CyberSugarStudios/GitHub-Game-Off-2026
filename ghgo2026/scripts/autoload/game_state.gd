@@ -131,11 +131,11 @@ func exit_astral() -> void:
 func drain_for_movement(meters: float) -> void:
 	drain(meters * ASTRAL_DRAIN_PER_METER)
 
-func drain(amount: float) -> void:
-	if not in_astral or amount <= 0.0:
+func drain(amount: float, any_plane: bool = false) -> void:
+	if (not in_astral and not any_plane) or amount <= 0.0:
 		return
 	_set_energy(energy - amount)
-	if energy <= 0.0:
+	if energy <= 0.0 and in_astral:
 		exit_astral()
 		forced_out_of_astral.emit() 
 
