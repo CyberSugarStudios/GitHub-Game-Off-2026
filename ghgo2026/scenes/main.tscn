@@ -36,7 +36,9 @@
 [ext_resource type="Script" uid="uid://bjq72crji2awk" path="res://scripts/interaction/hall_painting.gd" id="19_chjal"]
 [ext_resource type="Script" uid="uid://c4vxoy4gjw2cd" path="res://scripts/powers/parent_reactions.gd" id="22_jscy8"]
 [ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
+[ext_resource type="Resource" uid="uid://chr3tvgwur0og" path="res://data/schedules/leanne_stage2.tres" id="26_txyw0"]
 [ext_resource type="Script" uid="uid://oonra37m55uk" path="res://scripts/ui/focus_ring.gd" id="27_pibwh"]
+[ext_resource type="Resource" uid="uid://ho2y34hkaur" path="res://data/schedules/david_stage2.tres" id="27_vc5cj"]
 [ext_resource type="PackedScene" uid="uid://iurbh1d578i1" path="res://scenes/rooms/emily_bedroom.tscn" id="30_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://djn85cwfw380d" path="res://scenes/rooms/parent_bedroom.tscn" id="31_j8jky"]
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
@@ -406,7 +408,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9861517, 0, -5.3307323)
 
 [node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
 script = ExtResource("5_jbj1t")
-schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("8_yc10j")])
+schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("8_yc10j"), ExtResource("26_txyw0"), ExtResource("27_vc5cj")])
 hall_parents = [NodePath("../Hall/LeanneHall"), NodePath("../Hall/DavidHall")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=289804147]

@@ -69,26 +69,6 @@ position = Vector2(1557.6002, 1107.5625)
 scale = Vector2(2.6593738, 596.8749)
 texture = SubResource("GradientTexture1D_e86kh")
 
-[node name="TvProp" type="TextureButton" parent="BackProps/TV" unique_id=220055467 node_paths=PackedStringArray("art")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -0.5
-offset_right = -128.0
-offset_bottom = -0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_g005p")
-target_id = &"tv"
-accepts = Array[StringName]([&"static"])
-needs_parents = Array[StringName]([&"david"])
-success_event = &"david_checks_breaker"
-near_miss_event = &"tv_static"
-success_anim = 3
-near_miss_anim = 3
-art = NodePath("..")
-
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
@@ -177,3 +157,23 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="TvProp" type="TextureButton" parent="Hotspots" unique_id=220055467 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1217.2004
+offset_top = 809.12506
+offset_right = 1217.2004
+offset_bottom = 809.12506
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_g005p")
+target_id = &"tv"
+accepts = Array[StringName]([&"static"])
+needs_parents = Array[StringName]([&"david"])
+success_event = &"david_checks_breaker"
+near_miss_event = &"tv_static"
+success_anim = 3
+near_miss_anim = 3
+art = NodePath("../../BackProps/TV")

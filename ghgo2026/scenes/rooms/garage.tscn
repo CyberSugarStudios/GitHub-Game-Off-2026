@@ -59,54 +59,10 @@ position = Vector2(3952, 236)
 scale = Vector2(790.5, 473.5)
 texture = SubResource("CanvasTexture_53m36")
 
-[node name="GarageLightProp" type="TextureButton" parent="BackProps/GarageLight" unique_id=1157490583 node_paths=PackedStringArray("art")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -0.5
-offset_right = -0.5
-offset_bottom = -0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_o0bpy")
-target_id = &"garage_light"
-accepts = Array[StringName]([&"static"])
-needs_parents = Array[StringName]([&"david"])
-success_event = &"david_checks_breaker"
-near_miss_event = &"garage_light_flicker"
-success_anim = 3
-near_miss_anim = 3
-art = NodePath("..")
-prompt_text = "Flicker"
-realm = 2
-
 [node name="KeepsakeBox" type="Sprite2D" parent="BackProps" unique_id=815889840]
 position = Vector2(916.00024, 236)
 scale = Vector2(790.5, 473.5)
 texture = SubResource("CanvasTexture_53m36")
-
-[node name="KeepsakeBoxProp" type="TextureButton" parent="BackProps/KeepsakeBox" unique_id=430818175 node_paths=PackedStringArray("art", "done_reveal")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -0.5
-offset_right = -0.5
-offset_bottom = -0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_o0bpy")
-target_id = &"keepsake_box"
-accepts = Array[StringName]([&"nudge"])
-needs_parents = Array[StringName]([&"david", &"leanne"])
-success_event = &"keepsake_box_fell"
-done_flag = &"keepsake_box_fell"
-art = NodePath("..")
-done_reveal = NodePath("../../KeepsakeBoxSpilled")
-hint_stage = 2
-prompt_text = "Nudge"
-realm = 2
 
 [node name="KeepsakeBoxSpilled" type="Sprite2D" parent="BackProps" unique_id=1938192627]
 position = Vector2(916.00024, 236)
@@ -181,3 +137,47 @@ realm = 2
 energy_cost = 0.25
 story_id = &"bathroom_shower_faucet"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="GarageLightProp" type="TextureButton" parent="Hotspots" unique_id=1157490583 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3556.75
+offset_top = -0.75
+offset_right = 3556.75
+offset_bottom = -0.75
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_o0bpy")
+target_id = &"garage_light"
+accepts = Array[StringName]([&"static"])
+needs_parents = Array[StringName]([&"david"])
+success_event = &"david_checks_breaker"
+near_miss_event = &"garage_light_flicker"
+success_anim = 3
+near_miss_anim = 3
+art = NodePath("../../BackProps/GarageLight")
+prompt_text = "Flicker"
+realm = 2
+
+[node name="KeepsakeBoxProp" type="TextureButton" parent="Hotspots" unique_id=430818175 node_paths=PackedStringArray("art", "done_reveal")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 520.75024
+offset_top = -0.75
+offset_right = 520.75024
+offset_bottom = -0.75
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_o0bpy")
+target_id = &"keepsake_box"
+accepts = Array[StringName]([&"nudge"])
+needs_parents = Array[StringName]([&"david", &"leanne"])
+success_event = &"keepsake_box_fell"
+done_flag = &"keepsake_box_fell"
+art = NodePath("../../BackProps/KeepsakeBox")
+done_reveal = NodePath("../../BackProps/KeepsakeBoxSpilled")
+hint_stage = 2
+prompt_text = "Nudge"
+realm = 2

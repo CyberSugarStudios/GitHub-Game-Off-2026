@@ -60,28 +60,6 @@ position = Vector2(399.00003, 1082)
 scale = Vector2(603.25, 863.2499)
 texture = SubResource("CanvasTexture_sltsg")
 
-[node name="CoffeeMakerProp" type="TextureButton" parent="BackProps/CoffeeMaker" unique_id=1598904164 node_paths=PackedStringArray("art")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -0.5
-offset_right = -0.5
-offset_bottom = -0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_n5en3")
-target_id = &"coffee_maker"
-accepts = Array[StringName]([&"static"])
-needs_parents = Array[StringName]([&"leanne"])
-success_event = &"coffee_on_leanne"
-near_miss_event = &"coffee_maker_sputter"
-success_anim = 1
-art = NodePath("..")
-prompt_text = "Shock"
-realm = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
@@ -143,28 +121,6 @@ position = Vector2(2104, 1355)
 scale = Vector2(269.75012, 318.25)
 texture = SubResource("CanvasTexture_n5en3")
 
-[node name="CoffeeCupProp" type="TextureButton" parent="FrontProps/CoffeeCup" unique_id=805160077 node_paths=PackedStringArray("art")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -0.5
-offset_right = -0.5
-offset_bottom = -0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_n5en3")
-target_id = &"coffee_cup"
-accepts = Array[StringName]([&"nudge"])
-needs_parents = Array[StringName]([&"leanne"])
-success_event = &"coffee_on_leanne"
-near_miss_event = &"coffee_spilled"
-near_miss_anim = 2
-art = NodePath("..")
-prompt_text = "Nudge"
-realm = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
@@ -178,3 +134,47 @@ prompt_text = "Look at pamphlet"
 story_id = &"memorial_pamphlet"
 requires_flag = &"read_mom_thoughts"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="CoffeeMakerProp" type="TextureButton" parent="Hotspots" unique_id=1598904164 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.37503
+offset_top = 650.37506
+offset_right = 97.37503
+offset_bottom = 650.37506
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_n5en3")
+target_id = &"coffee_maker"
+accepts = Array[StringName]([&"static"])
+needs_parents = Array[StringName]([&"leanne"])
+success_event = &"coffee_on_leanne"
+near_miss_event = &"coffee_maker_sputter"
+success_anim = 1
+art = NodePath("../../BackProps/CoffeeMaker")
+prompt_text = "Shock"
+realm = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CoffeeCupProp" type="TextureButton" parent="Hotspots" unique_id=805160077 node_paths=PackedStringArray("art")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1969.125
+offset_top = 1195.875
+offset_right = 1969.125
+offset_bottom = 1195.875
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_n5en3")
+target_id = &"coffee_cup"
+accepts = Array[StringName]([&"nudge"])
+needs_parents = Array[StringName]([&"leanne"])
+success_event = &"coffee_on_leanne"
+near_miss_event = &"coffee_spilled"
+near_miss_anim = 2
+art = NodePath("../../FrontProps/CoffeeCup")
+prompt_text = "Nudge"
+realm = 2
+metadata/_edit_use_anchors_ = true

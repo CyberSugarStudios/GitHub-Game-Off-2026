@@ -198,11 +198,16 @@ func _restart_as_morning() -> void:
 
 #region - STORY
 func _run_story() -> void:
-	match GameState.story_stage:
-		1:
-			await _run_puzzle_1()
-		2:
-			await _run_puzzle_2()
+	if GameState.story_stage == 1:
+		await _run_puzzle_1()
+	if GameState.story_stage == 2:
+		await _run_puzzle_2()
+#	if GameState.story_stage == 3:
+#		await _run_puzzle_3()
+#	if GameState.story_stage == 4:
+#		await _run_puzzle_4()
+#	if GameState.story_stage == 5:
+#		await _run_puzzle_5()
 
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
@@ -210,6 +215,7 @@ func _run_puzzle_1()  -> void:
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
 	household.send(MOM, p1_storms_to, p1_apart_minutes)
 	GameState.restore_memory()
+	await wait(p1_lingers_seconds)
 	household.send(DAD, p1_lingers_then_to, p1_apart_minutes)
 	await say("p1_after", false, PUZZLE_1)
 	GameState.set_story_stage(2)
