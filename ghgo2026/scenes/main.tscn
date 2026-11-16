@@ -208,9 +208,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
 [node name="Speaker" parent="Hall/DavidHall" index="2" unique_id=688954707]
 character_name = "David"
 
-[node name="Sprite" parent="Hall/DavidHall" index="4" unique_id=426285732]
-animation = &""
-
 [node name="RoomEntrances" type="Node" parent="Hall" unique_id=1924097943]
 
 [node name="EntranceBathroom" type="Marker3D" parent="Hall/RoomEntrances" unique_id=1382819321]
