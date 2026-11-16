@@ -6,13 +6,14 @@ signal seen_story_event(id: StringName)
 signal seen_conversation_end(title: String)
 signal seen_plane(is_astral: bool)
 signal seen_room(room_id: StringName)
+signal seen_parent_moved(parent_id: StringName, location: StringName)
 
 const MOM := &"leanne"
 const DAD := &"david"
 const INTRO := preload("res://dialogue/intro.dialogue")
 const PUZZLE_1 := preload("res://dialogue/puzzle_1.dialogue")
 const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
-#const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
+const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
 const INTRO_DONE := &"intro_done"
 const INTRO_FLAGS: Array[StringName] = [
 	&"garage_handle_tried",
@@ -38,9 +39,9 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var intro_time: String = "16:40"
 @export var wake_fade_time: float = 3.0
 @export_range(0.0, 1.0) var wake_pan_from: float = 0.0
-@export_range(0.0, 1.0) var wake_pan_to: float = 0.5
+@export_range(0.0, 1.0) var wake_pan_to: float = 1.0
 @export var wake_pan_seconds: float = 6.0
-@export var focus_seconds: float = 6.0
+@export var focus_seconds: float = 3.0
 @export var end_fade_time: float = 2.0
 @export var title_fade_seconds: float = 1.5
 @export var title_hold_seconds: float = 3.0
@@ -65,8 +66,30 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p2_lingers_seconds: float = 5.0
 @export var p2_lingers_then_to: StringName = &"parent_bedroom"
 @export var p2_apart_minutes: int = 90
+
+@export_group("Puzzle 3")
+@export var p3_drink_times: Array[String] = [
+	"17:00",
+	"19:00",
+	"21:00"
+]
+@export var p3_beer_cans: Array[StringName] = [
+	&"beer_can_1",
+	&"beer_can_2",
+	&"beer_can_3"
+]
+@export var p3_drunk_at: int = 2
+@export var p3_pill_time: String = "21:30"
+@export var p3_night_starts: String = "23:00"
+@export var p3_night_ends: String = "06:00"
+@export var p3_new_day_hour: int = 7
+@export var wait_fade_time: float = 0.4
 #endregion
 var _finished: Dictionary[String, bool] = {}
+var _waiting := false
+var _p3_drinks := 0
+var _p3_medicated := false
+var _p3_last_minute := -1
 #endregion
 
 func _ready() -> void:
@@ -74,6 +97,8 @@ func _ready() -> void:
 	Events.conversation_finished.connect(_on_conversation_finished)
 	GameState.plane_changed.connect(seen_plane.emit)
 	GameState.room_changed.connect(seen_room.emit)
+	GameState.parent_location_changed.connect(seen_parent_moved.emit)
+	Events.story_event.connect(_on_any_story_event)
 	if title_card:
 		title_card.modulate.a = 0.0
 
@@ -122,6 +147,7 @@ func _setup_morning() -> void:
 #region - INTRO
 func _run_intro() -> void:
 	await room_view.pan_to(wake_pan_to, wake_pan_seconds)
+	await room_view.pan_to(wake_pan_to / 2.0, wake_pan_seconds / 2.0)
 	await say("intro_wake", true)
 	GameState.set_controls_locked(false)
 	
@@ -202,8 +228,8 @@ func _run_story() -> void:
 		await _run_puzzle_1()
 	if GameState.story_stage == 2:
 		await _run_puzzle_2()
-#	if GameState.story_stage == 3:
-#		await _run_puzzle_3()
+	if GameState.story_stage == 3:
+		await _run_puzzle_3()
 #	if GameState.story_stage == 4:
 #		await _run_puzzle_4()
 #	if GameState.story_stage == 5:
@@ -220,6 +246,7 @@ func _run_puzzle_1()  -> void:
 	await say("p1_after", false, PUZZLE_1)
 	GameState.set_story_stage(2)
 
+#region - PUZZLE 2
 func _run_puzzle_2() -> void:
 	Events.story_event.connect(_on_puzzle_2_event)
 	GameState.parent_location_changed.connect(_on_puzzle_2_parent_moved)
@@ -247,6 +274,104 @@ func _on_puzzle_2_event(id: StringName) -> void:
 func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> void:
 	if parent_id == DAD and location == &"garage" and not household.has_errand(MOM):
 		household.send(MOM, &"kitchen", p2_coffee_minutes)
+#endregion
+#region - PUZZLE 3
+func _run_puzzle_3() -> void:
+	_p3_last_minute = GameClock.minute
+	GameClock.minute_changed.connect(_on_puzzle_3_minute)
+	while true:
+		await wait_event(&"night_noise")
+		if await _p3_try_night():
+			break
+	GameClock.minute_changed.disconnect(_on_puzzle_3_minute)
+	GameState.set_story_stage(4)
+
+func _on_puzzle_3_minute(_day: int, minute: int) -> void:
+	var previous := _p3_last_minute
+	_p3_last_minute = minute
+	if _crossed(previous, minute, p3_new_day_hour * 60):
+		_p3_new_day()
+	for time_text in p3_drink_times:
+		if _crossed(previous, minute, _to_minutes(time_text)):
+			_p3_drink_time()
+	if _crossed(previous, minute, _to_minutes(p3_pill_time)):
+		_p3_pill_time()
+
+func _p3_drink_time() -> void:
+	if GameState.get_parent_location(DAD) != &"living_room":
+		return
+	for can in p3_beer_cans:
+		if not GameState.has_flag(can):
+			GameState.set_flag(can)
+			_p3_drinks += 1
+			return
+	say_in_background("p3_david_no_beer", PUZZLE_3)
+
+func _p3_pill_time() -> void:
+	if GameState.get_parent_location(MOM) != &"parent_bedroom":
+		return
+	if GameState.has_flag(&"pills_hidden"):
+		say_in_background("p3_leanne_no_pills", PUZZLE_3)
+	else:
+		_p3_medicated = true
+
+func _p3_new_day() -> void:
+	_p3_drinks = 0
+	_p3_medicated = false
+	for can in p3_beer_cans:
+		GameState.clear_flag(can)
+	GameState.clear_flag(&"pills_hidden")
+
+func _p3_try_night() -> bool:
+	if not _is_night():
+		return false
+	if _p3_drinks >= p3_drunk_at:
+		say_in_background("p3_david_passed_out", PUZZLE_3)
+		GameState.add_near_miss()
+		return false
+	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
+	household.send(DAD, &"parent_closet", 30)
+	await wait_parent(DAD, &"parent_closet")
+	if _p3_medicated:
+		await say("p3_safe_alone", true, PUZZLE_3)
+		GameState.add_near_miss()
+		household.send(DAD, &"living_room", 60)
+		return false
+	await say("p3_safe_fight", true, PUZZLE_3)
+	household.send(DAD, &"living_room", 120)
+	GameState.restore_memory()
+	await say("p3_after", false, PUZZLE_3)
+	return true
+
+func _is_night() -> bool:
+	var now := GameClock.minute
+	return now >= _to_minutes(p3_night_starts) or now < _to_minutes(p3_night_ends)
+
+static func _crossed(from: int, to: int, at: int) -> bool:
+	if to >= from:
+		return at > from and at <= to
+	return at > from or at <= to
+#endregion
+
+func _on_any_story_event(id: StringName) -> void:
+	if id == &"wait_hour":
+		_wait_an_hour()
+
+func _wait_an_hour() -> void:
+	if _waiting:
+		return
+	_waiting = true
+	GameState.set_controls_locked(true)
+	var tween := create_tween()
+	tween.tween_property(fade, "color:a", 1.0, wait_fade_time)
+	await tween.finished
+	GameClock.set_time(GameClock.day, GameClock.minute + 60)
+	await wait(0.3)
+	tween = create_tween()
+	tween.tween_property(fade, "color:a", 0.0, wait_fade_time)
+	await tween.finished
+	GameState.set_controls_locked(false)
+	_waiting = false
 #endregion
 
 #region - BEAT HELPERS
@@ -276,6 +401,10 @@ func wait_plane(astral: bool) -> void:
 func wait_room(room_id: StringName) -> void:
 	while GameState.current_room != room_id:
 		await seen_room
+
+func wait_parent(parent_id: StringName, location: StringName) -> void:
+	while GameState.get_parent_location(parent_id) != location:
+		await seen_parent_moved
 
 func wait(seconds: float) -> void:
 	await create_tween().tween_interval(seconds).finished

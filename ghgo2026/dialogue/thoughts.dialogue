@@ -89,3 +89,35 @@ David: I put her things in a box in the garage. Lee doesn't know what's in it. [
 ~ thoughts_david_stage2_hint3
 David: If Lee ever saw what's in that box, with me standing right there... [#thought]
 => END
+
+~ thoughts_david_stage3_hint0
+David: Long day. Couple of cold ones and I'm out. [#thought]
+=> END
+
+~ thoughts_david_stage3_hint1
+David: Can't sleep without a few. Too quiet otherwise. [#thought]
+=> END
+
+~ thoughts_david_stage3_hint2
+David: Sober, I'd hear a pin drop in that garage. [#thought]
+=> END
+
+~ thoughts_david_stage3_hint3
+David: If someone broke in tonight I'd go straight for the safe. If I could wake up. [#thought]
+=> END
+
+~ thoughts_leanne_stage3_hint0
+Leanne: One pill. Just enough to stop thinking. [#thought]
+=> END
+
+~ thoughts_leanne_stage3_hint1
+Leanne: Nine-thirty. Pill, then sleep. Same as every night. [#thought]
+=> END
+
+~ thoughts_leanne_stage3_hint2
+Leanne: Without them I hear everything. Every creak. Him. [#thought]
+=> END
+
+~ thoughts_leanne_stage3_hint3
+Leanne: If he ever went for that safe in the night, I'd want to be awake for it. [#thought]
+=> END

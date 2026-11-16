@@ -160,6 +160,9 @@ func set_flag(id: StringName) -> void:
 
 func has_flag(id: StringName) -> bool:
 	return flags.has(id)
+
+func clear_flag(id: StringName) -> void:
+	flags.erase(id)
 #endregion
 
 #region - ROOMS

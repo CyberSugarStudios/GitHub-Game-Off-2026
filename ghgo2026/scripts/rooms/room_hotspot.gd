@@ -16,6 +16,10 @@ const SHOW_DEBUG_RECTS := true
 @export_group("Story")
 @export var requires_flag: StringName
 @export var hidden_after_flag: StringName
+
+@export_group("Observe")
+@export var observe_dialogue: DialogueResource
+@export var observe_cue: String
 #endregion
 var _used := false
 var _hovered := false
@@ -53,6 +57,8 @@ func try_interact() -> void:
 	interacted.emit()
 	if story_id != &"":
 		Events.story_event.emit(story_id)
+	if observe_dialogue and observe_cue != "":
+		Events.conversation_requested.emit(observe_dialogue, observe_cue, false)
 	_on_interacted()
 	_refresh()
 

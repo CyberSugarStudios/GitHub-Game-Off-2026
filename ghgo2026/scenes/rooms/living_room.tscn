@@ -16,6 +16,8 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_e86kh"]
 gradient = SubResource("Gradient_g005p")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
+
 [sub_resource type="Gradient" id="Gradient_dfe1a"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dfe1a"]
@@ -68,6 +70,21 @@ texture = ExtResource("5_2cxqs")
 position = Vector2(1557.6002, 1107.5625)
 scale = Vector2(2.6593738, 596.8749)
 texture = SubResource("GradientTexture1D_e86kh")
+
+[node name="BeerCan1" type="Sprite2D" parent="BackProps" unique_id=714885831]
+position = Vector2(4683.5, 1415)
+scale = Vector2(44.999836, 74.00002)
+texture = SubResource("CanvasTexture_53m36")
+
+[node name="BeerCan2" type="Sprite2D" parent="BackProps" unique_id=833751683]
+position = Vector2(4752.25, 1423.5)
+scale = Vector2(49.500095, 87.00008)
+texture = SubResource("CanvasTexture_53m36")
+
+[node name="BeerCan3" type="Sprite2D" parent="BackProps" unique_id=2322645]
+position = Vector2(4822, 1428)
+scale = Vector2(49.500095, 87.00008)
+texture = SubResource("CanvasTexture_53m36")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
@@ -131,6 +148,25 @@ grow_vertical = 2
 script = ExtResource("6_e86kh")
 prompt_text = "Look at the clock"
 story_id = &"living_room_clock"
+hidden_after_flag = &"intro_done"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="WaitClock" type="TextureButton" parent="Hotspots" unique_id=2012588446]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3672.0
+offset_top = 309.0
+offset_right = 3984.0
+offset_bottom = 625.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_e86kh")
+prompt_text = "Wait an hour"
+story_id = &"wait_hour"
+requires_flag = &"intro_done"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="FrontDoor" type="TextureButton" parent="Hotspots" unique_id=1201229799]
@@ -177,3 +213,39 @@ near_miss_event = &"tv_static"
 success_anim = 3
 near_miss_anim = 3
 art = NodePath("../../BackProps/TV")
+
+[node name="BeerCanProp1" type="TextureButton" parent="Hotspots" unique_id=773842213 node_paths=PackedStringArray("art")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_g005p")
+target_id = &"beer_can_1"
+accepts = Array[StringName]([&"nudge"])
+success_event = &"beer_spilled"
+done_flag = &"beer_can_1"
+art = NodePath("../../BackProps/BeerCan1")
+hint_stage = 3
+prompt_text = "Nudge"
+
+[node name="BeerCanProp2" type="TextureButton" parent="Hotspots" unique_id=742954849 node_paths=PackedStringArray("art")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_g005p")
+target_id = &"beer_can_2"
+accepts = Array[StringName]([&"nudge"])
+success_event = &"beer_spilled"
+done_flag = &"beer_can_2"
+art = NodePath("../../BackProps/BeerCan2")
+hint_stage = 3
+prompt_text = "Nudge"
+
+[node name="BeerCanProp3" type="TextureButton" parent="Hotspots" unique_id=417001425 node_paths=PackedStringArray("art")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_g005p")
+target_id = &"beer_can_3"
+accepts = Array[StringName]([&"nudge"])
+success_event = &"beer_spilled"
+done_flag = &"beer_can_3"
+art = NodePath("../../BackProps/BeerCan3")
+hint_stage = 3
+prompt_text = "Nudge"

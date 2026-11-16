@@ -1,0 +1,37 @@
+~ p3_david_no_beer
+% David: Where'd my— are you kidding me? Fine. I'll sit here and listen to the house creak.
+% David: Stone sober. Every sound in this place... somebody so much as touches the garage, I'll hear it.
+=> END
+
+~ p3_leanne_no_pills
+% Leanne: Where are my pills? ...Of course. Of course I can't even have that.
+% Leanne: I'll be awake all night. If he comes crashing in here with that thing from the closet again...
+=> END
+
+~ p3_david_passed_out
+David: *snores*
+=> END
+
+~ p3_safe_alone
+Emily: Zero... four... one... seven. [#thought]
+David: Who's there? ...Garage. Kitchen. Nothing.
+David: Lee didn't even stir. Those pills.
+=> END
+
+~ p3_safe_fight
+Emily: Zero... four... one... seven. [#thought]
+Emily: That's my birthday. [#thought]
+Leanne: David? What are you— is that— put that away!
+David: Someone's in the house. I heard the garage.
+Leanne: Not in this house. Not with that. Not after—
+David: ...There's no one.
+Leanne: Of course there's no one. There's never anyone. Just you and that thing.
+David: You wanted it here! "Just in case," Lee. Your words. In case someone broke in while I was at work.
+Leanne: I wanted her safe! You gave her the code!
+David: Because you asked me to!
+=> END
+
+~ p3_after
+Emily: My birthday... Dad gave me the... no. [#thought]
+Emily: My room... I think I can get in now. [#thought]
+=> END

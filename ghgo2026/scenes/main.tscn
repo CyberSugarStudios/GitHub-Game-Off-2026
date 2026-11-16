@@ -39,12 +39,15 @@
 [ext_resource type="Resource" uid="uid://chr3tvgwur0og" path="res://data/schedules/leanne_stage2.tres" id="26_txyw0"]
 [ext_resource type="Script" uid="uid://oonra37m55uk" path="res://scripts/ui/focus_ring.gd" id="27_pibwh"]
 [ext_resource type="Resource" uid="uid://ho2y34hkaur" path="res://data/schedules/david_stage2.tres" id="27_vc5cj"]
+[ext_resource type="Resource" uid="uid://dcg0fmjpspw6b" path="res://data/schedules/leanne_stage3.tres" id="28_nvyfr"]
+[ext_resource type="Resource" uid="uid://b515ujda0udwp" path="res://data/schedules/david_stage3.tres" id="29_ty1g6"]
 [ext_resource type="PackedScene" uid="uid://iurbh1d578i1" path="res://scenes/rooms/emily_bedroom.tscn" id="30_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://djn85cwfw380d" path="res://scenes/rooms/parent_bedroom.tscn" id="31_j8jky"]
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
 [ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
 [ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="37_5poiv"]
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
+[ext_resource type="PackedScene" uid="uid://cl31wyaoetcvt" path="res://scenes/rooms/parent_closet.tscn" id="43_ty1g6"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
@@ -408,7 +411,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9861517, 0, -5.3307323)
 
 [node name="Household" type="Node" parent="." unique_id=1616511289 node_paths=PackedStringArray("hall_parents")]
 script = ExtResource("5_jbj1t")
-schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("8_yc10j"), ExtResource("26_txyw0"), ExtResource("27_vc5cj")])
+schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("8_yc10j"), ExtResource("26_txyw0"), ExtResource("27_vc5cj"), ExtResource("28_nvyfr"), ExtResource("29_ty1g6")])
 hall_parents = [NodePath("../Hall/LeanneHall"), NodePath("../Hall/DavidHall")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=289804147]
@@ -629,7 +632,8 @@ rooms = Dictionary[StringName, PackedScene]({
 &"garage": ExtResource("32_kmb1v"),
 &"kitchen": ExtResource("8_2f3dj"),
 &"living_room": ExtResource("9_yq6so"),
-&"parent_bedroom": ExtResource("31_j8jky")
+&"parent_bedroom": ExtResource("31_j8jky"),
+&"parent_closet": ExtResource("43_ty1g6")
 })
 
 [node name="RoomLayer" type="CanvasLayer" parent="RoomView" unique_id=533120226]

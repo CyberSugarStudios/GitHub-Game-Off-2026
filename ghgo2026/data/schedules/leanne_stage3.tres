@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="ParentSchedule" format=3 uid="uid://dcg0fmjpspw6b"]
+
+[ext_resource type="Script" uid="uid://dqhcwlmq20tc4" path="res://scripts/household/schedule_entry.gd" id="1_vguct"]
+[ext_resource type="Script" uid="uid://xd1awdyyt8ud" path="res://scripts/household/parents_schedule.gd" id="2_dfqjf"]
+
+[sub_resource type="Resource" id="Resource_3xv2a"]
+script = ExtResource("1_vguct")
+start_time = "06:00"
+location = &"parent_bedroom"
+activity = &"sleeping"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_efvcb"]
+script = ExtResource("1_vguct")
+start_time = "08:30"
+activity = &"cooking"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_t5w71"]
+script = ExtResource("1_vguct")
+start_time = "10:00"
+location = &"parent_bedroom"
+activity = &"reading"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_3gu56"]
+script = ExtResource("1_vguct")
+start_time = "18:00"
+activity = &"cooking_and_eating"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_6euky"]
+script = ExtResource("1_vguct")
+start_time = "19:00"
+location = &"parent_bedroom"
+activity = &"reading"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_cpoeb"]
+script = ExtResource("1_vguct")
+start_time = "21:30"
+location = &"parent_bedroom"
+activity = &"taking_pill"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[sub_resource type="Resource" id="Resource_yejek"]
+script = ExtResource("1_vguct")
+start_time = "22:00"
+location = &"parent_bedroom"
+activity = &"sleeping"
+metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
+
+[resource]
+script = ExtResource("2_dfqjf")
+stage = 3
+entries = Array[ExtResource("1_vguct")]([SubResource("Resource_3xv2a"), SubResource("Resource_efvcb"), SubResource("Resource_t5w71"), SubResource("Resource_3gu56"), SubResource("Resource_6euky"), SubResource("Resource_cpoeb"), SubResource("Resource_yejek")])
+metadata/_custom_type_script = "uid://xd1awdyyt8ud"

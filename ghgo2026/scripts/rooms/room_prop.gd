@@ -32,6 +32,7 @@ var _room_id: StringName
 var _rest_position := Vector2.ZERO
 var _rest_rotation := 0.0
 var _sound: AudioStreamPlayer
+var _done_shown := false
 
 func _ready() -> void:
 	realm = InteractionRules.Realm.ASTRAL_ONLY
@@ -53,7 +54,9 @@ func _ready() -> void:
 	_sound = AudioStreamPlayer.new()
 	add_child(_sound)
 	Events.power_used.connect(_on_power_used)
+	GameState.flag_set.connect(_on_flag_set)
 	if _is_done():
+		_done_shown = true
 		_animate(success_anim, true)
 		if done_reveal:
 			done_reveal.visible = true
@@ -79,6 +82,7 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 		return
 	if _parents_here():
 		_play(success_sound)
+		_done_shown = true
 		if done_flag != &"":
 			GameState.set_flag(done_flag)
 		await _animate(success_anim, false)
@@ -92,6 +96,14 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 		if near_miss_event != &"":
 			Events.story_event.emit(near_miss_event)
 		await _animate(near_miss_anim, false)
+
+func _on_flag_set(id: StringName) -> void:
+	if id != done_flag or _done_shown:
+		return
+	_done_shown = true
+	await _animate(success_anim, false)
+	if done_reveal:
+		done_reveal.visible = true
 
 func _is_done() -> bool:
 	return done_flag != &"" and GameState.has_flag(done_flag)
