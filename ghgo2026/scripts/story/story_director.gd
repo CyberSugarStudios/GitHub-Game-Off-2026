@@ -238,6 +238,7 @@ func _run_story() -> void:
 
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
+	household.get_hall_parent(MOM).play_action(&"picture_fall")
 	await say("p1_painting_fight", true, PUZZLE_1)
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
 	household.send(MOM, p1_storms_to, p1_apart_minutes)

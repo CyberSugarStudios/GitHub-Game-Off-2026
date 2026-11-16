@@ -14,13 +14,17 @@ const LINGER_RADIUS := 0.6
 
 var current_linger: HallMark = null
 var speed_scale := 1.0
+var facing := Vector3.FORWARD
+var is_moving := false
 
+var _present := false
 var _destination: StringName = &""
 var _stay_visible := false
 var _linger_left := 0.0
 var _passed_marks: Array[HallMark] = []
 
 func _ready() -> void:
+	add_to_group("astral_visibility")
 	_set_present(false)
 
 func is_walking() -> bool:
@@ -39,6 +43,14 @@ func stop() -> void:
 	current_linger = null
 	_set_present(false)
 
+func set_warmup(on: bool) -> void:
+	visible = on or _present
+
+func play_action(anim: StringName) -> void:
+	var sprite := get_node_or_null("Sprite") as ParentSprite
+	if sprite:
+		sprite.play_action(anim)
+
 func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> void:
 	if not visible and from:
 		global_position = from.global_position
@@ -49,6 +61,7 @@ func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> vo
 	_set_present(true)
 
 func _physics_process(delta: float) -> void:
+	is_moving = false
 	if not is_walking() or GameState.controls_locked:
 		return
 	
@@ -74,11 +87,13 @@ func _physics_process(delta: float) -> void:
 	var to_next := next - global_position
 	to_next.y = 0.0
 	var step := walk_speed * speed_scale * GameClock.world_speed * delta
+	if to_next.length() > 0.001:
+		facing = to_next.normalized()
+		is_moving = true
 	if to_next.length() <= step:
 		global_position = Vector3(next.x, global_position.y, next.z)
 	else:
 		global_position += to_next.normalized() * step
-
 
 func _check_linger() -> void:
 	for node in get_tree().get_nodes_in_group("hall_marks"):
@@ -96,5 +111,6 @@ func _check_linger() -> void:
 				return
 
 func _set_present(present: bool) -> void:
+	_present = present
 	visible = present
 	target_shape.set_deferred("disabled", not present)

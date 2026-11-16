@@ -341,6 +341,7 @@ script = ExtResource("5_gqmmt")
 mark_id = &"pumpkin_photo"
 linger_chance = 1.0
 linger_seconds = 2.0
+linger_activity = &"idle_sad"
 
 [node name="HallDecor" type="Node" parent="Hall" unique_id=1302355487]
 
