@@ -9,6 +9,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_lgaq2"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="8_ubuay"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="9_1y1r8"]
+[ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="9_lgaq2"]
 
 [sub_resource type="Gradient" id="Gradient_8pl6i"]
 
@@ -80,6 +81,9 @@ accepts = Array[StringName]([&"nudge"])
 success_event = &"pills_hidden"
 done_flag = &"pills_hidden"
 success_anim = 4
+guarded_by = Array[StringName]([&"leanne"])
+caught_dialogue = ExtResource("9_lgaq2")
+caught_cue = "p3_leanne_catches_pills"
 art = NodePath("../../BackProps/PillBottle")
 hint_stage = 3
 prompt_text = "Nudge"

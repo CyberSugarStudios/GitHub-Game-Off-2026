@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_g005p"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_e86kh"]
+[ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="11_e86kh"]
 
 [sub_resource type="Gradient" id="Gradient_g005p"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
@@ -185,6 +186,9 @@ target_id = &"beer_can_1"
 accepts = Array[StringName]([&"nudge"])
 success_event = &"beer_spilled"
 done_flag = &"beer_can_1"
+guarded_by = Array[StringName]([&"david"])
+caught_dialogue = ExtResource("11_e86kh")
+caught_cue = "p3_david_catches_can"
 art = NodePath("../../BackProps/BeerCan1")
 hint_stage = 3
 prompt_text = "Nudge"
@@ -197,6 +201,9 @@ target_id = &"beer_can_2"
 accepts = Array[StringName]([&"nudge"])
 success_event = &"beer_spilled"
 done_flag = &"beer_can_2"
+guarded_by = Array[StringName]([&"david"])
+caught_dialogue = ExtResource("11_e86kh")
+caught_cue = "p3_david_catches_can"
 art = NodePath("../../BackProps/BeerCan2")
 hint_stage = 3
 prompt_text = "Nudge"
@@ -209,6 +216,9 @@ target_id = &"beer_can_3"
 accepts = Array[StringName]([&"nudge"])
 success_event = &"beer_spilled"
 done_flag = &"beer_can_3"
+guarded_by = Array[StringName]([&"david"])
+caught_dialogue = ExtResource("11_e86kh")
+caught_cue = "p3_david_catches_can"
 art = NodePath("../../BackProps/BeerCan3")
 hint_stage = 3
 prompt_text = "Nudge"

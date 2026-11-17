@@ -256,10 +256,8 @@ func _run_puzzle_1()  -> void:
 
 #region - PUZZLE 2
 func _run_puzzle_2() -> void:
-	Events.story_event.connect(_on_puzzle_2_event)
 	GameState.parent_location_changed.connect(_on_puzzle_2_parent_moved)
 	await wait_event(&"keepsake_box_fell")
-	Events.story_event.disconnect(_on_puzzle_2_event)
 	GameState.parent_location_changed.disconnect(_on_puzzle_2_parent_moved)
 	await say("p2_box_fight", true, PUZZLE_2)
 	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
@@ -269,16 +267,6 @@ func _run_puzzle_2() -> void:
 	household.send(MOM, p2_lingers_then_to, p2_apart_minutes)
 	await say("p2_after", false, PUZZLE_2)
 	GameState.set_story_stage(3)
-
-func _on_puzzle_2_event(id: StringName) -> void:
-	match id:
-		&"coffee_on_leanne":
-			say_in_background("p2_leanne_coffee", PUZZLE_2)
-			household.send(MOM, &"parent_bedroom", p2_change_minutes, \
-				[[&"garage", p2_laundry_minutes, &"laundry"]], &"changing")
-		&"david_checks_breaker":
-			say_in_background("p2_david_breaker", PUZZLE_2)
-			household.send(DAD, &"garage", p2_breaker_minutes, [], &"checking_breaker")
 
 func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> void:
 	if parent_id == DAD and location == &"garage" and not household.has_errand(MOM):
@@ -375,8 +363,16 @@ func _run_puzzle_4() -> void:
 	GameState.set_story_stage(5)
 
 func _on_any_story_event(id: StringName) -> void:
-	if id == &"wait_hour":
-		_wait_an_hour()
+	match id:
+		&"wait_hour":
+			_wait_an_hour()
+		&"coffee_on_leanne":
+			say_in_background("p2_leanne_coffee", PUZZLE_2)
+			household.send(MOM, &"parent_bedroom", p2_change_minutes, [[&"garage", \
+				p2_laundry_minutes, &"laundry"]], &"changing")
+		&"david_checks_breaker":
+			say_in_background("p2_david_breaker", PUZZLE_2)
+			household.send(DAD,  &"garage", p2_breaker_minutes, [], &"checking_breaker")
 
 func _wait_an_hour() -> void:
 	if _waiting:
