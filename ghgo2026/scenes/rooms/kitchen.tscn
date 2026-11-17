@@ -162,10 +162,19 @@ metadata/_custom_type_script = "uid://26eyobriow6j"
 script = ExtResource("10_fiuqx")
 
 [node name="BackWallTopLeft" type="Marker2D" parent="RoomDepth" unique_id=2133864345]
-position = Vector2(769, 56)
+position = Vector2(768, 51)
 
 [node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=412605725]
 position = Vector2(3094, 825)
 
-[node name="VanishingPoint" type="Marker2D" parent="RoomDepth" unique_id=1039131478]
-position = Vector2(1974, 178)
+[node name="CeilingLeft" type="Marker2D" parent="RoomDepth" unique_id=2069521807]
+position = Vector2(-53, -49)
+
+[node name="CeilingRight" type="Marker2D" parent="RoomDepth" unique_id=349850408]
+position = Vector2(4206, -45)
+
+[node name="FloorLeft" type="Marker2D" parent="RoomDepth" unique_id=1671078475]
+position = Vector2(-44, 1172)
+
+[node name="FloorRight" type="Marker2D" parent="RoomDepth" unique_id=1294863362]
+position = Vector2(4186, 1176)

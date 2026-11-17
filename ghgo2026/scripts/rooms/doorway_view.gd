@@ -41,7 +41,9 @@ var _room_size := Vector2.ZERO
 var _wall := Rect2()
 var _px_per_meter := 1.0
 var _box := Vector3.ZERO
-var _eye := Vector3.ZERO
+var _floor_map := Basis()
+var _floor_unmap := Basis()
+var _supports: Dictionary[CanvasItem, CanvasItem] = {}
 
 func _ready() -> void:
 	_build_window()
@@ -78,20 +80,16 @@ func _fit_box() -> void:
 	var depth := _room.get_node_or_null("RoomDepth") as RoomDepth
 	assert(depth != null, "DoorwayView: %s has no RoomDepth node" % room_scene.resource_path)
 	_wall = depth.get_back_wall()
-	var vp := depth.get_vanishing_point()
-
 	_px_per_meter = _wall.size.y / depth.room_height
 	_box = Vector3(_wall.size.x / _px_per_meter, depth.room_height, depth.room_depth)
 
-	var spread := minf(vp.x / (vp.x - _wall.position.x), (_room_size.x - vp.x) / (_wall.end.x - vp.x))
-	_eye = Vector3(
-		(vp.x - _wall.get_center().x) / _px_per_meter,
-		(_wall.end.y - vp.y) / _px_per_meter,
-		_box.z / maxf(spread - 1.0, 0.05))
-
+	var to_uv := Basis.from_scale(Vector3(1.0 / _room_size.x, 1.0 / _room_size.y, 1.0))
+	var surfaces := depth.get_surfaces()
+	for surface in surfaces:
+		_material.set_shader_parameter("%s_map" % surface, to_uv * RoomDepth.quad_map(surfaces[surface]))
 	_material.set_shader_parameter("box_size", _box)
-	_material.set_shader_parameter("paint_eye", _eye)
-	_material.set_shader_parameter("wall_rect", _to_uv(_wall))
+	_floor_map = RoomDepth.quad_map(surfaces[&"floor"])
+	_floor_unmap = _floor_map.inverse()
 
 func _split_layers(view_scale: float) -> void:
 	for node_name in WALL_ART:
@@ -143,6 +141,10 @@ func _build_cards() -> void:
 			var art := _art_of(child)
 			if art:
 				_cards[art] = _make_card()
+	for art in _cards:
+		var support := _find_support(art)
+		if support:
+			_supports[art] = support
 
 func _art_of(node: Node) -> CanvasItem:
 	if node is Sprite2D or node is AnimatedSprite2D:
@@ -150,6 +152,16 @@ func _art_of(node: Node) -> CanvasItem:
 	var sprite := node.get_node_or_null("Sprite")
 	if sprite is Sprite2D or sprite is AnimatedSprite2D:
 		return sprite as CanvasItem
+	return null
+
+func _find_support(art: CanvasItem) -> CanvasItem:
+	if _is_actor(art):
+		return null
+	var base := _base_of(art) - Vector2(0.0, 2.0)
+	for other in _cards:
+		if other != art and not _is_actor(other) and _rect_of(other).has_point(base) \
+			and _base_of(other).y > base.y:
+				return other
 	return null
 
 func _make_card() -> MeshInstance3D:
@@ -171,8 +183,12 @@ func _update_cards(camera: Vector3) -> void:
 		if not card.visible:
 			continue
 		var rect := _rect_of(art)
-		var base := _paint_to_room(Vector2(rect.get_center().x, rect.end.y))
-		var size := rect.size * _meters_per_pixel(base)
+		var support: CanvasItem = _supports.get(art)
+		var depth := _depth_of(_base_of(support) if support else _base_of(art))
+		var base := _stand_at(_base_of(art), depth)
+		if support:
+			base += Vector3(camera.x - base.x, 0.0, camera.z - base.z).normalized() * 0.03
+		var size := rect.size / _px_per_meter_at(depth)
 		card.position = base
 		card.rotation.y = atan2(camera.x - base.x, camera.z - base.z)
 		card.scale = Vector3(size.x, size.y, 1.0)
@@ -182,19 +198,30 @@ func _rect_of(art: CanvasItem) -> Rect2:
 	var local: Rect2 = (art as Sprite2D).get_rect() if art is Sprite2D else (art as AnimatedSprite2D).get_rect()
 	return art.get_global_transform() * local
 
-func _paint_to_room(point: Vector2) -> Vector3:
-	var on_wall := Vector3(
-		(point.x - _wall.get_center().x) / _px_per_meter,
-		(_wall.end.y - point.y) / _px_per_meter,
-		-_box.z)
-	var spot := on_wall
-	if on_wall.y < 0.0:
-		spot = _eye + (on_wall - _eye) * (_eye.y / (_eye.y - on_wall.y))
-	spot.z = clampf(spot.z, -_box.z + 0.02, -min_card_depth)
-	return spot
+func _base_of(art: CanvasItem) -> Vector2:
+	var rect := _rect_of(art)
+	return Vector2(rect.get_center().x, rect.end.y)
 
-func _meters_per_pixel(spot: Vector3) -> float:
-	return (_eye.z - spot.z) / (_eye.z + _box.z) / _px_per_meter
+func _row(v: float) -> PackedVector2Array:
+	return PackedVector2Array([
+		RoomDepth.apply_map(_floor_map, Vector2(0.0, v)),
+		RoomDepth.apply_map(_floor_map, Vector2(1.0, v))
+	])
+
+func _stand_at(point: Vector2, v: float) -> Vector3:
+	var row := _row(v)
+	var u := inverse_lerp(row[0].x, row[1].x, point.x)
+	var floor_y := lerpf(row[0].y, row[1].y, u)
+	var lift := maxf(floor_y - point.y, 0.0) / _px_per_meter_at(v)
+	return Vector3(
+		(u - 0.5) * _box.x,
+		lift,
+		(v - 1.0) * _box.z
+	)
+
+func _px_per_meter_at(v: float) -> float:
+	var row := _row(v)
+	return (row[1].x - row[0].x) / _box.x
 
 func _to_uv(rect: Rect2) -> Vector4:
 	return Vector4(rect.position.x / _room_size.x, rect.position.y / _room_size.y,

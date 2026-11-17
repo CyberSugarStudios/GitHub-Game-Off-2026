@@ -3,9 +3,12 @@ render_mode unshaded, cull_back;
 
 uniform sampler2D room_view : source_color, filter_linear, repeat_disable;
 uniform vec3 box_size = vec3(6.0, 2.6, 3.0);
-uniform vec3 paint_eye = vec3(0.0, 1.5, 4.0);
-uniform vec4 wall_rect = vec4(0.2, 0.05, 0.8, 0.75);
 uniform float floor_offset = 1.02;
+uniform mat3 back_map;
+uniform mat3 floor_map;
+uniform mat3 ceiling_map;
+uniform mat3 left_map;
+uniform mat3 right_map;
 
 uniform float corner_shadow : hint_range(0.0, 1.0) = 0.35;
 uniform float corner_width = 0.4;
@@ -27,20 +30,33 @@ void fragment() {
 	vec3 lo = vec3(-box_size.x * 0.5, 0.0, -box_size.z);
 	vec3 hi = vec3(box_size.x * 0.5, box_size.y, 0.0);
 	vec3 exits = (mix(lo, hi, step(0.0, ray)) - pos) / ray;
-	vec3 hit = pos + ray * min(exits.x, min(exits.y, exits.z));
+	float t = min(exits.x, min(exits.y, exits.z));
+	vec3 hit = pos + ray * t;
 
-	float spread = (paint_eye.z + box_size.z) / (paint_eye.z - hit.z);
-	vec2 wall = paint_eye.xy + (hit.xy - paint_eye.xy) * spread;
-	vec2 uv = vec2(
-		mix(wall_rect.x, wall_rect.z, wall.x / box_size.x + 0.5),
-		mix(wall_rect.w, wall_rect.y, wall.y / box_size.y));
-	vec3 color = texture(room_view, clamp(uv, 0.0, 1.0)).rgb;
+	vec3 n = (hit - lo) / box_size;	// x: left to right, y: floor to ceiling, z: back wall to doorway
+	vec3 mapped;
+	bool on_ceiling = false;
+	if (t == exits.z) {
+		mapped = back_map * vec3(n.x, 1.0 - n.y, 1.0);
+	} else if (t == exits.y) {
+		on_ceiling = ray.y > 0.0;
+		if (on_ceiling) {
+			mapped = ceiling_map * vec3(n.x, n.z, 1.0);
+		} else {
+			mapped = floor_map * vec3(n.x, n.z, 1.0);
+		}
+	} else if (ray.x < 0.0) {
+		mapped = left_map * vec3(n.z, 1.0 - n.y, 1.0);
+	} else {
+		mapped = right_map * vec3(n.z, 1.0 - n.y, 1.0);
+	}
+	vec3 color = texture(room_view, clamp(mapped.xy / mapped.z, 0.0, 1.0)).rgb;
 
 	vec3 gaps = min(hit - lo, hi - hit);
 	gaps.z = hit.z - lo.z;
 	float corner = max(min(gaps.x, gaps.y), min(max(gaps.x, gaps.y), gaps.z));
 	color *= mix(1.0 - corner_shadow, 1.0, smoothstep(0.0, corner_width, corner));
-	if (hit.y > box_size.y - 0.01) {
+	if (on_ceiling) {
 		color *= ceiling_shade;
 	}
 
@@ -48,12 +64,12 @@ void fragment() {
 	float top = smoothstep(0.0, edge_width * 0.6, UV.y);
 	color *= mix(1.0 - edge_shadow, 1.0, sides * top);
 	ALBEDO = color;
-	
+
 	vec4 clip = PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * vec4(hit - vec3(0.0, floor_offset, 0.0), 1.0);
 	float ndc = clip.z / clip.w;
-	#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
-		DEPTH = ndc * 0.5 + 0.5;
-	#else
-		DEPTH = ndc;
-	#endif
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+	DEPTH = ndc * 0.5 + 0.5;
+#else
+	DEPTH = ndc;
+#endif
 }

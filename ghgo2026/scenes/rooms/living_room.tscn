@@ -224,14 +224,23 @@ script = ExtResource("12_8llds")
 facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
-[node name="RoomDepth" type="Node2D" parent="." unique_id=64758312]
+[node name="RoomDepth" type="Node2D" parent="." unique_id=845349053]
 script = ExtResource("12_a5o1a")
 
-[node name="BackWallTopLeft" type="Marker2D" parent="RoomDepth" unique_id=91152284]
-position = Vector2(766, 50)
+[node name="BackWallTopLeft" type="Marker2D" parent="RoomDepth" unique_id=1356782965]
+position = Vector2(768, 51)
 
-[node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=951044129]
-position = Vector2(3092, 844)
+[node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=1411946600]
+position = Vector2(3094, 825)
 
-[node name="VanishingPoint" type="Marker2D" parent="RoomDepth" unique_id=322127400]
-position = Vector2(1994, 149)
+[node name="CeilingLeft" type="Marker2D" parent="RoomDepth" unique_id=1947222752]
+position = Vector2(-53, -49)
+
+[node name="CeilingRight" type="Marker2D" parent="RoomDepth" unique_id=2090409027]
+position = Vector2(4206, -45)
+
+[node name="FloorLeft" type="Marker2D" parent="RoomDepth" unique_id=511612702]
+position = Vector2(-44, 1172)
+
+[node name="FloorRight" type="Marker2D" parent="RoomDepth" unique_id=1047169625]
+position = Vector2(4186, 1176)
