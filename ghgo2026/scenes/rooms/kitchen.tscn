@@ -44,7 +44,7 @@ script = ExtResource("4_m75iv")
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
 
-[node name="CoffeeMaker" type="Sprite2D" parent="BackProps" unique_id=29446814]
+[node name="CoffeeMaker" type="Sprite2D" parent="BackProps" unique_id=29446814 groups=["hidden_in_doorway"]]
 position = Vector2(399.00003, 1082)
 scale = Vector2(603.25, 863.2499)
 texture = SubResource("CanvasTexture_sltsg")
@@ -52,7 +52,7 @@ texture = SubResource("CanvasTexture_sltsg")
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
-[node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_m75iv")]
+[node name="Leanne" parent="Actors" unique_id=1712821977 groups=["hidden_in_doorway"] instance=ExtResource("6_m75iv")]
 position = Vector2(1021, 2110)
 frames = ExtResource("7_78330")
 
@@ -75,12 +75,12 @@ parent_id = &"david"
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
-[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
+[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908 groups=["hidden_in_doorway"]]
 position = Vector2(1195.75, 1841.5625)
 scale = Vector2(9.306642, 702.875)
 texture = SubResource("GradientTexture1D_8pl6i")
 
-[node name="CoffeeCup" type="Sprite2D" parent="FrontProps" unique_id=1009143108]
+[node name="CoffeeCup" type="Sprite2D" parent="FrontProps" unique_id=1009143108 groups=["hidden_in_doorway"]]
 position = Vector2(2104, 1355)
 scale = Vector2(269.75012, 318.25)
 texture = SubResource("CanvasTexture_n5en3")

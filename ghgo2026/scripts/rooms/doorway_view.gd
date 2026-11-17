@@ -16,7 +16,8 @@ const WINDOW_SHADER := preload("res://shaders/doorway_window.gdshader")
 @export var min_view_distance: float = 0.35
 
 @export_group("Depth")
-@export var inset: float = 0.15
+@export var inset: float = 0.0
+@export var view_margin: float = 820.0
 @export var layer_depths: Dictionary[String, float] = {
 	"BackProps": 2.5,
 	"Actors": 1.8,
@@ -51,6 +52,9 @@ func _ready() -> void:
 		if layer:
 			_layer_depth[layer] = layer_depths[layer_name]
 			_layer_base[layer] = layer.position
+	for node in _room.find_children("*", "CanvasItem", true, false):
+		if node.is_in_group("hidden_in_doorway"):
+			(node as CanvasItem).visible = false
 
 func _process(_delta: float) -> void:
 	if _room == null:
@@ -76,7 +80,8 @@ func _project(eye: Vector3) -> void:
 
 	var pixels_per_meter_room := _room_size.y / room_height_meters
 	var zoom := viewport.size.x / (view_width_m * pixels_per_meter_room)
-	zoom = maxf(zoom, maxf(viewport.size.x / _room_size.x, viewport.size.y / _room_size.y))
+	var usable_width := maxf(_room_size.x - view_margin * 2.0, 1.0)
+	zoom = maxf(zoom, maxf(viewport.size.x / usable_width, viewport.size.y / _room_size.y))
 
 	var half_view := Vector2(viewport.size) / zoom / 2.0
 	var target := Vector2(
@@ -86,9 +91,12 @@ func _project(eye: Vector3) -> void:
 	camera_2d.position = Vector2(
 		clampf(target.x, half_view.x, _room_size.x - half_view.x),
 		clampf(target.y, half_view.y, _room_size.y - half_view.y))
+	var view_left := camera_2d.position.x - half_view.x
+	var view_right := camera_2d.position.x + half_view.x
 	for layer in _layer_depth:
-		var shift_m := -eye.x * (room_depth - _layer_depth[layer]) / distance
-		layer.position.x = _layer_base[layer].x + shift_m * pixels_per_meter_room
+		var shift := -eye.x * (room_depth - _layer_depth[layer]) / distance * pixels_per_meter_room
+		shift = clampf(shift, view_right - (_room_size.x - view_margin), view_left - view_margin)
+		layer.position.x = _layer_base[layer].x + shift
 
 func _build_window() -> void:
 	var quad := QuadMesh.new()
