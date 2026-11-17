@@ -81,16 +81,18 @@ func _build_window() -> void:
 	var quad := QuadMesh.new()
 	quad.size = opening_size
 	window.mesh = quad
+	window.position = Vector3(0.0, opening_size.y / 2.0, 0.0)
 	
 	_material = ShaderMaterial.new()
 	_material.shader = WINDOW_SHADER
 	_material.set_shader_parameter("room_view", viewport.get_texture())
 	_material.set_shader_parameter("floor_offset", opening_size.y / 2.0)
 	_material.set_shader_parameter("corner_shadow", corner_shadow)
-	_material.set_shader_parameter("ceiling_width", corner_width)
+	_material.set_shader_parameter("corner_width", corner_width)
+	_material.set_shader_parameter("ceiling_shade", ceiling_shade)
 	_material.set_shader_parameter("edge_shadow", edge_shadow)
 	_material.set_shader_parameter("edge_width", edge_width)
 	window.material_override = _material
 
-func _enter_tree() -> void:
+func _exit_tree() -> void:
 	window.material_override = null
