@@ -231,7 +231,7 @@ script = ExtResource("12_a5o1a")
 position = Vector2(768, 51)
 
 [node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=1411946600]
-position = Vector2(3094, 825)
+position = Vector2(3092, 849)
 
 [node name="CeilingLeft" type="Marker2D" parent="RoomDepth" unique_id=1947222752]
 position = Vector2(-53, -49)

@@ -22,7 +22,7 @@ func get_back_wall() -> Rect2:
 func get_surfaces() -> Dictionary[StringName, PackedVector2Array]:
 	var wall := get_back_wall()
 	var tl := wall.position
-	var tr := Vector2(wall.end.x, wall.position.y)
+	var top_right := Vector2(wall.end.x, wall.position.y)
 	var br := wall.end
 	var bl := Vector2(wall.position.x, wall.end.y)
 	var cl := position + ceiling_left.position
@@ -30,11 +30,11 @@ func get_surfaces() -> Dictionary[StringName, PackedVector2Array]:
 	var fl := position + floor_left.position
 	var fr := position + floor_right.position
 	return {
-		&"back": PackedVector2Array([tl, tr, br, bl]),
+		&"back": PackedVector2Array([tl, top_right, br, bl]),
 		&"floor": PackedVector2Array([bl, br, fr, fl]),
-		&"ceiling": PackedVector2Array([tl, tr, cr, cl]),
+		&"ceiling": PackedVector2Array([tl, top_right, cr, cl]),
 		&"left": PackedVector2Array([tl, cl, fl, bl]),
-		&"right": PackedVector2Array([tr, cr, fr, br]),
+		&"right": PackedVector2Array([top_right, cr, fr, br]),
 	}
 
 static func quad_map(corners: PackedVector2Array) -> Basis:

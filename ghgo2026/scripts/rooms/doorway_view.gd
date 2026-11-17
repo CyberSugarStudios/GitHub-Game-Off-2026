@@ -164,6 +164,9 @@ func _find_support(art: CanvasItem) -> CanvasItem:
 				return other
 	return null
 
+func _is_actor(art: CanvasItem) -> bool:
+	return art.get_parent() is RoomActor
+
 func _make_card() -> MeshInstance3D:
 	var card_material := ShaderMaterial.new()
 	card_material.shader = CARD_SHADER
@@ -201,6 +204,16 @@ func _rect_of(art: CanvasItem) -> Rect2:
 func _base_of(art: CanvasItem) -> Vector2:
 	var rect := _rect_of(art)
 	return Vector2(rect.get_center().x, rect.end.y)
+
+func _depth_of(point: Vector2) -> float:
+	var v := 0.0
+	if point.y > _wall.end.y:
+		v = RoomDepth.apply_map(_floor_unmap, point).y
+	return clampf(
+		v,
+		0.02 / _box.z,
+		1.0 - min_card_depth / _box.z
+	)
 
 func _row(v: float) -> PackedVector2Array:
 	return PackedVector2Array([
