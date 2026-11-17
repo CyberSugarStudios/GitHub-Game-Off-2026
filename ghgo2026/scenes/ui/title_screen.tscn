@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://t7qmmk1hf22j"]
 
 [ext_resource type="Script" uid="uid://cui1imxye4xc8" path="res://scripts/ui/title_screen.gd" id="1_eb34j"]
-[ext_resource type="Texture2D" uid="uid://dkjixxc08318j" path="res://assets/textures/rooms/living_room.png" id="2_aqpy5"]
+[ext_resource type="Texture2D" uid="uid://cs78elmrh0fk8" path="res://assets/textures/rooms/emily_room.webp" id="2_aqpy5"]
 
 [node name="TitleScreen" type="Control" unique_id=677689258]
 layout_mode = 3
@@ -13,8 +13,8 @@ grow_vertical = 2
 script = ExtResource("1_eb34j")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1707387708]
-position = Vector2(1578.4532, 450.25003)
-scale = Vector2(2.3900807, 2.3900805)
+position = Vector2(-21, 429)
+scale = Vector2(2, 2)
 texture = ExtResource("2_aqpy5")
 
 [node name="VersionNumberLabel" type="Label" parent="." unique_id=1088067038]

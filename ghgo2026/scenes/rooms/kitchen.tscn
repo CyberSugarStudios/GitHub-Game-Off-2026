@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_n5en3"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_78330"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="10_78330"]
+[ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="10_fiuqx"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sltsg"]
 
@@ -153,3 +154,15 @@ position = Vector2(1661, 1024)
 script = ExtResource("10_78330")
 facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"
+
+[node name="RoomDepth" type="Node2D" parent="." unique_id=1088972780]
+script = ExtResource("10_fiuqx")
+
+[node name="BackWallTopLeft" type="Marker2D" parent="RoomDepth" unique_id=2133864345]
+position = Vector2(769, 56)
+
+[node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=412605725]
+position = Vector2(3094, 825)
+
+[node name="VanishingPoint" type="Marker2D" parent="RoomDepth" unique_id=1039131478]
+position = Vector2(1974, 178)

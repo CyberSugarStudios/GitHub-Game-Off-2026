@@ -45,6 +45,9 @@ func _process(_delta: float) -> void:
 		flip_h = _flip_toward(look)
 		speed_scale = GameClock.world_speed
 		return
+	var settled := not parent.is_walking() or parent.current_linger != null
+	if settled and not parent.is_moving and sprite_frames.has_animation(idle_animation):
+		_play(idle_animation)
 	var camera := get_viewport().get_camera_3d()
 	if camera == null:
 		return

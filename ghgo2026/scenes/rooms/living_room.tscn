@@ -11,6 +11,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_e86kh"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="11_e86kh"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="12_8llds"]
+[ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="12_a5o1a"]
 
 [sub_resource type="Gradient" id="Gradient_g005p"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
@@ -222,3 +223,15 @@ position = Vector2(2694, 1008)
 script = ExtResource("12_8llds")
 facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"
+
+[node name="RoomDepth" type="Node2D" parent="." unique_id=64758312]
+script = ExtResource("12_a5o1a")
+
+[node name="BackWallTopLeft" type="Marker2D" parent="RoomDepth" unique_id=91152284]
+position = Vector2(770, 59)
+
+[node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=951044129]
+position = Vector2(3104, 818)
+
+[node name="VanishingPoint" type="Marker2D" parent="RoomDepth" unique_id=322127400]
+position = Vector2(1985, 221)

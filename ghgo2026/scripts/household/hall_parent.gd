@@ -99,7 +99,8 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	_check_linger()
-	if _linger_left > 0.0 or _linger_target:
+	if _linger_target:
+		_step_toward(_linger_target.global_position, delta)
 		return
 	
 	_step_toward(agent.get_next_path_position(), delta)
