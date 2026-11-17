@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://bge0dqt1b63w8" path="res://data/schedules/david_stage1.tres" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="9_5he1u"]
 [ext_resource type="PackedScene" uid="uid://o0yxjkwwmwob" path="res://scenes/interaction/door.tscn" id="9_choun"]
+[ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/mom/david_frames.tres" id="9_o7ddy"]
 [ext_resource type="PackedScene" uid="uid://qa6vvk1yg7xa" path="res://scenes/rooms/living_room.tscn" id="9_yq6so"]
 [ext_resource type="Script" uid="uid://c3jcsqsukf1fp" path="res://scripts/rooms/room_view.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://b0npf7klgodos" path="res://scenes/rooms/bathroom.tscn" id="11_ya4ey"]
@@ -228,6 +229,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
 [node name="Speaker" parent="Hall/DavidHall" index="2" unique_id=688954707]
 character_name = "David"
 
+[node name="Sprite" parent="Hall/DavidHall" index="4" unique_id=426285732]
+sprite_frames = ExtResource("9_o7ddy")
+animation = &"walk_front"
+
 [node name="RoomEntrances" type="Node" parent="Hall" unique_id=1924097943]
 
 [node name="EntranceBathroom" type="Marker3D" parent="Hall/RoomEntrances" unique_id=1382819321]
@@ -339,9 +344,6 @@ prompt_text = "Enter living room"
 
 [node name="DoorwayView" parent="Hall/RoomEntrances/LivingRoomDoorway" index="2" unique_id=1184228109]
 room_scene = ExtResource("9_yq6so")
-room_depth = 2.5
-depth_zoom = false
-reference_distance = 1.5
 
 [node name="LivingRoomVoice" parent="Hall/RoomEntrances/LivingRoomDoorway" unique_id=2107743797 instance=ExtResource("9_5he1u")]
 transform = Transform3D(-2.1855693e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855693e-07, 0, 1.6, -1)

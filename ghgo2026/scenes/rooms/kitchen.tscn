@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_m75iv"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_n5en3"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_78330"]
+[ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/mom/david_frames.tres" id="8_fiuqx"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="10_78330"]
 [ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="10_fiuqx"]
 
@@ -54,10 +55,11 @@ texture = SubResource("CanvasTexture_sltsg")
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
-[node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_m75iv")]
+[node name="Leanne" parent="Actors" unique_id=1712821977 node_paths=PackedStringArray("spots") instance=ExtResource("6_m75iv")]
 position = Vector2(607, 1016)
 scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_78330")
+spots = NodePath("../../RoomSpots")
 
 [node name="ClickArea2" type="TextureButton" parent="Actors/Leanne" unique_id=1550962528]
 grow_horizontal = 2
@@ -75,6 +77,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(3599, 1017)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
+frames = ExtResource("8_fiuqx")
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30

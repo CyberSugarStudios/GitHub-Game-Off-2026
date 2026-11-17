@@ -17,6 +17,8 @@ extends Node2D
 var _room_id: StringName
 var _target := Vector2.ZERO
 var _walking := false
+var _leanne_frames := preload("res://assets/sprites/Animations/mom/leanne_frames.tres")
+var _david_frames := preload("res://assets/sprites/Animations/mom/david_frames.tres")
 
 func _ready() -> void:
 	var node := get_parent()
@@ -24,6 +26,10 @@ func _ready() -> void:
 		node = node.get_parent()
 	if node:
 		_room_id = (node as Room).room_id
+	if parent_id == &"leanne":
+		frames = _leanne_frames
+	else:
+		frames = _david_frames
 	sprite.sprite_frames = frames
 	sprite.visible = frames != null
 	if placeholder:
