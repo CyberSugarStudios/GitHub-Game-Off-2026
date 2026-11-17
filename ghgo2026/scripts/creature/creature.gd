@@ -64,6 +64,7 @@ func _ready() -> void:
 	add_to_group("astral_visibility")
 	GameState.plane_changed.connect(_on_plane_changed)
 	GameState.monster_level_changed.connect(_on_monster_level_changed)
+	Events.door_opened.connect(_on_door_opened)
 	agent.path_desired_distance = 0.25
 	agent.target_desired_distance = grab_distance * 0.5
 	_timer = _lurk_delay()
@@ -82,7 +83,7 @@ func _physics_process(delta: float) -> void:
 		if GameState.monster_level == 4 and guard_spot:
 			if _state != State.GUARDING:
 				_appear(guard_spot.global_position, State.GUARDING)
-		if _state != State.HIDDEN:
+		elif _state != State.HIDDEN:
 			_vanish(_lurk_delay())
 		return
 	match _state:
@@ -213,7 +214,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
 		and event.keycode == KEY_F5:
-			GameState.set_monster_level((GameState.monster_level + 1) % 4)
+			GameState.set_monster_level((GameState.monster_level + 1) % 6)
 			print("Creature level: ", GameState.monster_level)
 
 func _on_plane_changed(in_astral: bool) -> void:
@@ -226,6 +227,10 @@ func _on_plane_changed(in_astral: bool) -> void:
 		elif _state == State.HIDDEN:
 			_timer = minf(_timer, randf_range(hunt_delay.x, hunt_delay.y))
 	elif _state == State.HUNTING:
+		_vanish(_lurk_delay())
+
+func _on_door_opened(_room_id: StringName, _exit_spot: Transform3D) -> void:
+	if _state == State.HUNTING:
 		_vanish(_lurk_delay())
 
 func _on_monster_level_changed(_level: int) -> void:

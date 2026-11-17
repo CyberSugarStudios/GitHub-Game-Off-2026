@@ -48,4 +48,12 @@ void fragment() {
 	float top = smoothstep(0.0, edge_width * 0.6, UV.y);
 	color *= mix(1.0 - edge_shadow, 1.0, sides * top);
 	ALBEDO = color;
+	
+	vec4 clip = PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * vec4(hit - vec3(0.0, floor_offset, 0.0), 1.0);
+	float ndc = clip.z / clip.w;
+	#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+		DEPTH = ndc * 0.5 + 0.5;
+	#else
+		DEPTH = ndc;
+	#endif
 }

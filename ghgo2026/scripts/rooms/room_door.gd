@@ -13,7 +13,7 @@ signal unlocked
 @export var bar_size := Vector2(120, 60)
 @export var bar_spacing: int = 20
 
-@onready var bar_row: HBoxContainer = get_node_or_null("BarRow")
+@onready var bar_row: BoxContainer = get_node_or_null("BarRow")
 
 var lock: DoorLock
 var _bars: Array[PillBar] = []

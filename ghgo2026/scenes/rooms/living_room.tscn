@@ -146,16 +146,16 @@ realm = 2
 requires_flag = &"intro_done"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
-[node name="BarRow" type="HBoxContainer" parent="Hotspots/FrontDoor" unique_id=1862674132]
+[node name="BarRow" type="VBoxContainer" parent="Hotspots/FrontDoor" unique_id=2077875782]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.31145778
-anchor_right = 1.0
-anchor_bottom = 0.33297473
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="TvProp" type="TextureButton" parent="Hotspots" unique_id=220055467 node_paths=PackedStringArray("art")]
 anchors_preset = 15
@@ -228,10 +228,10 @@ metadata/_custom_type_script = "uid://26eyobriow6j"
 script = ExtResource("12_a5o1a")
 
 [node name="BackWallTopLeft" type="Marker2D" parent="RoomDepth" unique_id=91152284]
-position = Vector2(770, 59)
+position = Vector2(766, 50)
 
 [node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=951044129]
-position = Vector2(3104, 818)
+position = Vector2(3092, 844)
 
 [node name="VanishingPoint" type="Marker2D" parent="RoomDepth" unique_id=322127400]
-position = Vector2(1985, 221)
+position = Vector2(1994, 149)
