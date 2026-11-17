@@ -1,23 +1,18 @@
 [gd_scene format=3 uid="uid://iurbh1d578i1"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_kdc1v"]
-[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_fa2v7"]
-[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_41fqi"]
+[ext_resource type="Texture2D" uid="uid://ifigi2yg7hua" path="res://assets/textures/rooms/emily_bedroom.png" id="2_6ri0t"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_fa2v7"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_n0mbq"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_0hvy4"]
-
-[sub_resource type="Gradient" id="Gradient_8pl6i"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
-gradient = SubResource("Gradient_8pl6i")
 
 [node name="EmilyBedroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_kdc1v")
 room_id = &"emily_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-texture = ExtResource("2_fa2v7")
+scale = Vector2(6, 6)
+texture = ExtResource("2_6ri0t")
 centered = false
 
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1130689782]
@@ -27,7 +22,8 @@ energy = 0.0
 script = ExtResource("3_fa2v7")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-texture = ExtResource("3_41fqi")
+scale = Vector2(6, 6)
+texture = ExtResource("2_6ri0t")
 centered = false
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
@@ -42,20 +38,25 @@ z_index = 20
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
-[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(682.75, 1841.5625)
-scale = Vector2(5.298828, 702.875)
-texture = SubResource("GradientTexture1D_8pl6i")
-
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
 [node name="Diary" type="TextureButton" parent="Hotspots" unique_id=184838228]
-offset_left = 961.0
-offset_top = 1029.0
-offset_right = 1340.0
-offset_bottom = 1762.0
+offset_left = 1411.0
+offset_top = 1026.0
+offset_right = 1713.0
+offset_bottom = 1171.0
 script = ExtResource("6_0hvy4")
 prompt_text = "Read the diary"
 story_id = &"open_diary"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="MP3Player" type="TextureButton" parent="Hotspots" unique_id=1849474790]
+offset_left = 2422.0
+offset_top = 1789.0
+offset_right = 2552.0
+offset_bottom = 1860.0
+script = ExtResource("6_0hvy4")
+prompt_text = "MP3 Player"
+story_id = &"listen_mp3"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"

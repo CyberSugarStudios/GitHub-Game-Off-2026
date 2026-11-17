@@ -40,7 +40,9 @@ func _process(_delta: float) -> void:
 		return
 	if not parent.is_moving and sprite_frames.has_animation(idle_animation):
 		_play(idle_animation)
-		flip_h = _flip_toward(parent.facing)
+		var look := parent.standing_at.get_look_direction(global_position) if parent.standing_at \
+			else parent.facing
+		flip_h = _flip_toward(look)
 		speed_scale = GameClock.world_speed
 		return
 	var camera := get_viewport().get_camera_3d()

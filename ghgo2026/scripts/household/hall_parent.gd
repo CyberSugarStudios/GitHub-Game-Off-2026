@@ -13,6 +13,7 @@ const LINGER_RADIUS := 0.6
 @onready var target_shape: CollisionShape3D = $Target/CollisionShape3D
 
 var current_linger: HallMark = null
+var standing_at: HallMark = null
 var speed_scale := 1.0
 var facing := Vector3.FORWARD
 var is_moving := false
@@ -20,6 +21,7 @@ var is_moving := false
 var _present := false
 var _warming := false
 var _destination: StringName = &""
+var _walk_target: Node3D = null
 var _stay_visible := false
 var _linger_left := 0.0
 var _linger_target: HallMark = null
@@ -37,12 +39,14 @@ func get_destination() -> StringName:
 
 func stand_at(spot: Node3D) -> void:
 	global_position = spot.global_position
+	standing_at = spot as HallMark
 	_set_present(true)
 
 func stop() -> void:
 	_destination = &""
 	_linger_left = 0.0
 	_linger_target = null
+	standing_at = null
 	current_linger = null
 	_set_present(false)
 
@@ -60,6 +64,8 @@ func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> vo
 		global_position = from.global_position
 	_destination = to_id
 	_stay_visible = stay_visible
+	_walk_target = to
+	standing_at = null
 	agent.target_position = to.global_position
 	_passed_marks.clear()
 	_linger_target = null
@@ -87,6 +93,7 @@ func _physics_process(delta: float) -> void:
 		var location := _destination
 		_destination = &""
 		speed_scale = 1.0
+		standing_at = _walk_target as HallMark
 		_set_present(_stay_visible)
 		arrived.emit(parent_id, location)
 		return

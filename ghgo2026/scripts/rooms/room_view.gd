@@ -15,6 +15,8 @@ extends Node
 @onready var exit_button: Button = $RoomUI/ExitButton
 @onready var fade_rect: ColorRect = $FadeLayer/Fade
 @onready var input_blocker: ColorRect = $RoomUI/InputBlocker
+@onready var pan_left_label: Label = $RoomUI/PanLeftLabel
+@onready var pan_right_label: Label = $RoomUI/PanRightLabel
 
 var _room: Room = null
 var _busy := false # guard against double-triggers
@@ -27,7 +29,7 @@ var exit_locked := false:
 	set(value):
 		exit_locked = value
 		if exit_button:
-			exit_button.visible = not value
+			exit_button.visible = not value and not GameState.controls_locked
 
 func _ready() -> void:
 	room_ui.visible = false
@@ -41,6 +43,9 @@ func _ready() -> void:
 
 func _on_controls_locked_changed(locked: bool) -> void:
 	input_blocker.visible = locked
+	exit_button.visible = not locked and not exit_locked
+	pan_left_label.visible = not locked
+	pan_right_label.visible = not locked
 
 func _exit_tree() -> void:
 	get_viewport().disable_3d = false
