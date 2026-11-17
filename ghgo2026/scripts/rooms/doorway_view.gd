@@ -1,6 +1,8 @@
 class_name DoorwayView
 extends Node3D
 
+const WINDOW_SHADER := preload("res://shaders/doorway_window.gdshader")
+
 @export var room_scene: PackedScene
 @export var opening_size := Vector2(1.12, 2.04)
 @export var pixels_per_meter: float = 480.0
@@ -13,6 +15,16 @@ extends Node3D
 @export var reference_distance: float = 2.0
 @export var min_view_distance: float = 0.35
 
+@export_group("Depth")
+@export var inset: float = 0.15
+@export var layer_depths: Dictionary[String, float] = {
+	"BackProps": 2.5,
+	"Actors": 1.8,
+	"FrontProps": 1.1
+}
+@export_range(0.0, 1.0) var edge_shadow: float = 0.55
+@export_range(0.0, 0.5) var edge_width: float = 0.18
+
 @export_group("Performance")
 @export var render_distance: float = 12.0
 
@@ -22,6 +34,8 @@ extends Node3D
 
 var _room: Room
 var _room_size := Vector2.ZERO
+var _layer_depth: Dictionary[Node2D, float] = {}
+var _layer_base: Dictionary[Node2D, Vector2] = {}
 
 func _ready() -> void:
 	viewport.size = Vector2i(opening_size * pixels_per_meter)
@@ -32,6 +46,11 @@ func _ready() -> void:
 	_room = room_scene.instantiate() as Room
 	viewport.add_child(_room)
 	_room_size = _room.get_room_size()
+	for layer_name in layer_depths:
+		var layer := _room.get_node_or_null(layer_name) as Node2D
+		if layer:
+			_layer_depth[layer] = layer_depths[layer_name]
+			_layer_base[layer] = layer.position
 
 func _process(_delta: float) -> void:
 	if _room == null:
@@ -46,7 +65,7 @@ func _process(_delta: float) -> void:
 func _project(eye: Vector3) -> void:
 	var w := opening_size.x
 	var h := opening_size.y
-	var distance := maxf(eye.z, min_view_distance)
+	var distance := maxf(eye.z + inset, min_view_distance)
 
 	var k_shift := room_depth / distance # Always the real distance: sideways parallax.
 	var k_zoom := k_shift if depth_zoom else room_depth / reference_distance
@@ -67,16 +86,21 @@ func _project(eye: Vector3) -> void:
 	camera_2d.position = Vector2(
 		clampf(target.x, half_view.x, _room_size.x - half_view.x),
 		clampf(target.y, half_view.y, _room_size.y - half_view.y))
+	for layer in _layer_depth:
+		var shift_m := -eye.x * (room_depth - _layer_depth[layer]) / distance
+		layer.position.x = _layer_base[layer].x + shift_m * pixels_per_meter_room
 
 func _build_window() -> void:
 	var quad := QuadMesh.new()
 	quad.size = opening_size
 	window.mesh = quad
-	window.position.y = opening_size.y / 2.0
+	window.position = Vector3(0.0, opening_size.y / 2.0, -inset)
 
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_texture = viewport.get_texture()
+	var material := ShaderMaterial.new()
+	material.shader = WINDOW_SHADER
+	material.set_shader_parameter("room_view", viewport.get_texture())
+	material.set_shader_parameter("edge_shadow", edge_shadow)
+	material.set_shader_parameter("edge_width", edge_width)
 	window.material_override = material
 
 func _exit_tree() -> void:

@@ -111,12 +111,25 @@ geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 agent_radius = 0.25
 
+[sub_resource type="Gradient" id="Gradient_bu4jf"]
+offsets = PackedFloat32Array(0, 0.3, 0.6, 0.8, 1)
+colors = PackedColorArray(0.019607844, 0.08627451, 0.11372549, 1, 0.043137256, 0.2901961, 0.36078432, 1, 0.08627451, 0.5647059, 0.56078434, 1, 0.27058825, 0.8392157, 0.78431374, 1, 0.7607843, 1, 0.9607843, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o7ddy"]
+gradient = SubResource("Gradient_bu4jf")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("5_tefeu")
 shader_parameter/strength = 1.0
-shader_parameter/astral_tint = Color(0.35, 0.75, 0.85, 1)
-shader_parameter/tint_amount = 0.0
-shader_parameter/desaturation = 0.250000011875
+shader_parameter/grade_ramp = SubResource("GradientTexture1D_o7ddy")
+shader_parameter/grade_amount = 0.85
+shader_parameter/accent_keep = 0.8
+shader_parameter/haze_color = Color(0.1, 0.38, 0.42, 1)
+shader_parameter/haze_amount = 0.3
+shader_parameter/glow_amount = 0.6
+shader_parameter/glow_threshold = 0.55
+shader_parameter/glow_radius = 0.004
 shader_parameter/wave_amount = 0.004
 shader_parameter/wave_speed = 1.5
 shader_parameter/wave_frequency = 12.0
@@ -144,7 +157,11 @@ world_environment = NodePath("../WorldEnvironment")
 max_sun_energy = 0.35
 hall_lamps = [NodePath("../Hall/Lights/OmniLight3D"), NodePath("../Hall/Lights/OmniLight3D2")]
 lamps_in_living_plane = true
+astral_fog_color = Color(0.09019608, 0.36078432, 0.4, 1)
+astral_fog_density = 0.18
+astral_lamp_color = Color(0.24705882, 0.8784314, 0.8235294, 1)
 astral_lamp_energy = 0.9
+astral_fog_energy = 1.2
 astral_only_lights = [NodePath("../Hall/Lights/UnderTone"), NodePath("../Hall/Lights/UnderTone2")]
 
 [node name="Hall" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
@@ -452,7 +469,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 1, 0.99735785, 1)
 
 [node name="FocusRing" type="Control" parent="UI" unique_id=1170378649]
 custom_minimum_size = Vector2(64, 64)

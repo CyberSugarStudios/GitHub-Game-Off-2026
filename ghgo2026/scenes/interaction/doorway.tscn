@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ckxeuukdgllw" path="res://scripts/interaction/door.gd" id="1_q7jd8"]
 [ext_resource type="Script" uid="uid://du23xjh2iam54" path="res://scripts/rooms/doorway_view.gd" id="3_wbafv"]
 [ext_resource type="Texture2D" uid="uid://cxldrekaa0rha" path="res://assets/textures/house/doors/door_frame.webp" id="4_1epyt"]
+[ext_resource type="Material" uid="uid://d2q0ypeona71l" path="res://assets/textures/house/hall/hall_wall.tres" id="4_sb1vc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_53m36"]
 size = Vector3(1.2118164, 2.079956, 0.05)
@@ -17,6 +18,12 @@ alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("4_1epyt")
 metallic_specular = 0.0
 texture_filter = 5
+
+[sub_resource type="QuadMesh" id="QuadMesh_2lwwf"]
+size = Vector2(0.15, 2.04)
+
+[sub_resource type="QuadMesh" id="QuadMesh_s7ii7"]
+size = Vector2(1.12, 0.15)
 
 [node name="Doorway" type="Area3D" unique_id=1087017087]
 script = ExtResource("1_q7jd8")
@@ -43,3 +50,21 @@ script = ExtResource("3_wbafv")
 disable_3d = true
 
 [node name="Camera2D" type="Camera2D" parent="DoorwayView/SubViewport" unique_id=1983843878]
+
+[node name="JambLeft" type="MeshInstance3D" parent="." unique_id=463547172]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.56, 1.02, -0.075)
+visible = false
+mesh = SubResource("QuadMesh_2lwwf")
+surface_material_override/0 = ExtResource("4_sb1vc")
+
+[node name="JambRight" type="MeshInstance3D" parent="." unique_id=160204000]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.56, 1.02, -0.075)
+visible = false
+mesh = SubResource("QuadMesh_2lwwf")
+surface_material_override/0 = ExtResource("4_sb1vc")
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=1853201117]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.04, -0.075)
+visible = false
+mesh = SubResource("QuadMesh_s7ii7")
+surface_material_override/0 = ExtResource("4_sb1vc")
