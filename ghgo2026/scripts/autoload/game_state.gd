@@ -41,6 +41,7 @@ var _stage_started_at := 0
 var _hint_bonus := 0.0
 var shift_allowed := true
 var regen_paused := false
+var guarded_room: StringName = &""
 #endregion
 #endregion
 #endregion
@@ -213,6 +214,7 @@ func reset() -> void:
 	_hint_bonus = 0.0
 	shift_allowed = true
 	regen_paused = false
+	guarded_room = &""
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)

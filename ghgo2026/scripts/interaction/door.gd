@@ -69,6 +69,8 @@ func get_block_reason() -> String:
 		return "" if _observe_cue() != "" else room_label
 	if not enterable:
 		return room_label
+	if GameState.guarded_room == room_id:
+		return "It won't let me near..."
 	if lock.transferring:
 		return "Using energy..."
 	var reason := super()

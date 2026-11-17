@@ -36,8 +36,9 @@ const EYE_HEIGHT := 1.4
 
 @export_group("Guarding")
 @export var guard_spot: Node3D
+@export var guard_room: StringName = &"emily_bedroom"
 @export var guard_radius: float = 6.0
-@export var guard_charge_distance: float = 1.5
+@export var guard_charge_distance: float = 5.0
 @export var guard_return_delay: float = 8.0
 
 @export_group("Sounds")
@@ -78,8 +79,11 @@ func _physics_process(delta: float) -> void:
 	if GameState.monster_level <= 0 or GameState.monster_level >= 5 or GameState.controls_locked:
 		return
 	if GameState.is_in_room():
+		if GameState.monster_level == 4 and guard_spot:
+			if _state != State.GUARDING:
+				_appear(guard_spot.global_position, State.GUARDING)
 		if _state != State.HIDDEN:
-			_vanish(_return_delay())
+			_vanish(_lurk_delay())
 		return
 	match _state:
 		State.HIDDEN:
@@ -234,6 +238,8 @@ func _appear(at: Vector3, state: State) -> void:
 	global_position = at
 	_state = state
 	visible = true
+	if state == State.GUARDING:
+		GameState.guarded_room = guard_room
 	_face_player()
 	if presence.stream:
 		presence.play()
@@ -242,6 +248,7 @@ func _vanish(next_in: float) -> void:
 	_state = State.HIDDEN
 	visible = false
 	presence.stop()
+	GameState.guarded_room = &""
 	_timer = next_in
 
 func _pick_spot(min_distance: float, max_distance: float, out_of_sight: bool) ->  Node3D:
@@ -299,9 +306,6 @@ func _hunts_now() -> bool:
 
 func _presses_needed() -> int:
 	return struggle_presses + presses_per_bar * GameState.max_bars
-
-func _return_delay() -> float:
-	return guard_return_delay if GameState.monster_level == 4 else _lurk_delay()
 
 func _play(stream: AudioStream) -> void:
 	if stream:
