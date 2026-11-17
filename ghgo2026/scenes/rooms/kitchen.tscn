@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://vnb6bjdisn6w"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_njvo0"]
-[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_581re"]
+[ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_m75iv"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_581re"]
-[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_n5en3"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_m75iv"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_fiuqx"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_m75iv"]
@@ -25,7 +24,8 @@ script = ExtResource("1_njvo0")
 room_id = &"kitchen"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-texture = ExtResource("2_581re")
+scale = Vector2(2, 2)
+texture = ExtResource("2_m75iv")
 centered = false
 
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1068842481]
@@ -35,7 +35,8 @@ energy = 0.0
 script = ExtResource("3_581re")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-texture = ExtResource("3_n5en3")
+scale = Vector2(2, 2)
+texture = ExtResource("2_m75iv")
 centered = false
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
@@ -45,15 +46,16 @@ script = ExtResource("4_m75iv")
 z_index = 10
 
 [node name="CoffeeMaker" type="Sprite2D" parent="BackProps" unique_id=29446814]
-position = Vector2(399.00003, 1082)
-scale = Vector2(603.25, 863.2499)
+position = Vector2(248, 573)
+scale = Vector2(309.62448, 392.6251)
 texture = SubResource("CanvasTexture_sltsg")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_m75iv")]
-position = Vector2(1021, 2110)
+position = Vector2(607, 1016)
+scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_78330")
 
 [node name="ClickArea2" type="TextureButton" parent="Actors/Leanne" unique_id=1550962528]
@@ -69,30 +71,31 @@ metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 metadata/_edit_use_anchors_ = true
 
 [node name="David" parent="Actors" unique_id=348760919 instance=ExtResource("6_m75iv")]
-position = Vector2(6153, 2054)
+position = Vector2(3599, 1017)
+scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
 [node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(1195.75, 1841.5625)
-scale = Vector2(9.306642, 702.875)
+position = Vector2(763, 955.71875)
+scale = Vector2(5.9609375, 383.43753)
 texture = SubResource("GradientTexture1D_8pl6i")
 
 [node name="CoffeeCup" type="Sprite2D" parent="FrontProps" unique_id=1009143108]
-position = Vector2(2104, 1355)
-scale = Vector2(269.75012, 318.25)
+position = Vector2(1447.4379, 723.56256)
+scale = Vector2(90.87579, 127.125175)
 texture = SubResource("CanvasTexture_n5en3")
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
 [node name="Pamphlet" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 1106.0
-offset_top = 1350.0
-offset_right = 1659.0
-offset_bottom = 1639.0
+offset_left = 971.0
+offset_top = 699.0
+offset_right = 1218.0
+offset_bottom = 805.0
 script = ExtResource("6_fiuqx")
 prompt_text = "Look at pamphlet"
 story_id = &"memorial_pamphlet"
@@ -103,10 +106,6 @@ metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 97.37503
-offset_top = 650.37506
-offset_right = 97.37503
-offset_bottom = 650.37506
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_n5en3")
@@ -126,10 +125,6 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1969.125
-offset_top = 1195.875
-offset_right = 1969.125
-offset_bottom = 1195.875
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_n5en3")
@@ -148,7 +143,13 @@ metadata/_edit_use_anchors_ = true
 [node name="RoomSpots" type="Node2D" parent="." unique_id=795046590]
 
 [node name="CoffeeMachineSpot" type="Marker2D" parent="RoomSpots" unique_id=1914006059]
-position = Vector2(1026, 2116)
+position = Vector2(607, 1016)
+script = ExtResource("10_78330")
+facing = 1
+metadata/_custom_type_script = "uid://26eyobriow6j"
+
+[node name="CoffeeDrinkingSpot" type="Marker2D" parent="RoomSpots" unique_id=1336229315]
+position = Vector2(1661, 1024)
 script = ExtResource("10_78330")
 facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"

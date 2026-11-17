@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://iurbh1d578i1"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_kdc1v"]
-[ext_resource type="Texture2D" uid="uid://ifigi2yg7hua" path="res://assets/textures/rooms/emily_bedroom.png" id="2_6ri0t"]
+[ext_resource type="Texture2D" uid="uid://cs78elmrh0fk8" path="res://assets/textures/rooms/emily_room.webp" id="2_6ri0t"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_fa2v7"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_n0mbq"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_0hvy4"]
@@ -11,7 +11,7 @@ script = ExtResource("1_kdc1v")
 room_id = &"emily_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(6, 6)
+scale = Vector2(2, 2)
 texture = ExtResource("2_6ri0t")
 centered = false
 
@@ -22,7 +22,7 @@ energy = 0.0
 script = ExtResource("3_fa2v7")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-scale = Vector2(6, 6)
+scale = Vector2(2, 2)
 texture = ExtResource("2_6ri0t")
 centered = false
 
@@ -42,20 +42,20 @@ z_index = 30
 z_index = 40
 
 [node name="Diary" type="TextureButton" parent="Hotspots" unique_id=184838228]
-offset_left = 1411.0
-offset_top = 1026.0
-offset_right = 1713.0
-offset_bottom = 1171.0
+offset_left = 729.0
+offset_top = 536.0
+offset_right = 881.0
+offset_bottom = 603.0
 script = ExtResource("6_0hvy4")
 prompt_text = "Read the diary"
 story_id = &"open_diary"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="MP3Player" type="TextureButton" parent="Hotspots" unique_id=1849474790]
-offset_left = 2422.0
-offset_top = 1789.0
-offset_right = 2552.0
-offset_bottom = 1860.0
+offset_left = 1250.0
+offset_top = 928.0
+offset_right = 1320.0
+offset_bottom = 968.0
 script = ExtResource("6_0hvy4")
 prompt_text = "MP3 Player"
 story_id = &"listen_mp3"

@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cl31wyaoetcvt"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_jyksk"]
-[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_2ny38"]
+[ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_jyksk"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_anpgo"]
-[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="4_m17ma"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="5_jwgii"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_2ny38"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_anpgo"]
@@ -16,7 +15,8 @@ room_id = &"parent_closet"
 exits_to = &"parent_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-texture = ExtResource("2_2ny38")
+scale = Vector2(2, 2)
+texture = ExtResource("2_jyksk")
 centered = false
 
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1681639418]
@@ -26,7 +26,8 @@ energy = 0.0
 script = ExtResource("3_anpgo")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-texture = ExtResource("4_m17ma")
+scale = Vector2(2, 2)
+texture = ExtResource("2_jyksk")
 centered = false
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
@@ -39,11 +40,13 @@ z_index = 10
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_2ny38")]
-position = Vector2(3686, 1991)
+position = Vector2(2399, 963)
+scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_anpgo")
 
 [node name="David" parent="Actors" unique_id=1746033090 instance=ExtResource("6_2ny38")]
-position = Vector2(2124, 1998)
+position = Vector2(1591, 925)
+scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
@@ -53,10 +56,10 @@ z_index = 30
 z_index = 40
 
 [node name="GunSafe" type="TextureButton" parent="Hotspots" unique_id=431638243]
-offset_left = 2480.0
-offset_top = 501.0
-offset_right = 3351.0
-offset_bottom = 1610.0
+offset_left = 1799.0
+offset_top = 597.0
+offset_right = 2174.0
+offset_bottom = 855.0
 script = ExtResource("7_yr0wb")
 prompt_text = "Look at safe"
 observe_dialogue = ExtResource("8_jyksk")

@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://qa6vvk1yg7xa"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_oy7wu"]
-[ext_resource type="Texture2D" uid="uid://dkjixxc08318j" path="res://assets/textures/rooms/living_room.png" id="2_5s50e"]
+[ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_e86kh"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_2cxqs"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_g005p"]
-[ext_resource type="Texture2D" uid="uid://bmybhllukh5yy" path="res://assets/textures/house/doors/door_1_int.webp" id="5_2cxqs"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_0vv3f"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_g005p"]
@@ -31,8 +30,8 @@ script = ExtResource("1_oy7wu")
 room_id = &"living_room"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(6, 6)
-texture = ExtResource("2_5s50e")
+scale = Vector2(2, 2)
+texture = ExtResource("2_e86kh")
 centered = false
 
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=631333398]
@@ -42,8 +41,8 @@ energy = 0.0
 script = ExtResource("3_2cxqs")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-scale = Vector2(6, 6)
-texture = ExtResource("2_5s50e")
+scale = Vector2(2, 2)
+texture = ExtResource("2_e86kh")
 centered = false
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
@@ -52,47 +51,45 @@ script = ExtResource("4_g005p")
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
 
-[node name="FrontDoor" type="Sprite2D" parent="BackProps" unique_id=766239739]
-position = Vector2(511, 1034)
-texture = ExtResource("5_2cxqs")
-
 [node name="TV" type="Sprite2D" parent="BackProps" unique_id=1232032568]
-position = Vector2(1557.6002, 1107.5625)
-scale = Vector2(2.6593738, 596.8749)
+position = Vector2(804.8001, 566.03125)
+scale = Vector2(1.3765615, 301.9374)
 texture = SubResource("GradientTexture1D_e86kh")
 
 [node name="BeerCan1" type="Sprite2D" parent="BackProps" unique_id=714885831]
-position = Vector2(4683.5, 1415)
-scale = Vector2(44.999836, 74.00002)
+position = Vector2(2421.75, 731)
+scale = Vector2(20.499899, 37.999947)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="BeerCan2" type="Sprite2D" parent="BackProps" unique_id=833751683]
-position = Vector2(4752.25, 1423.5)
-scale = Vector2(49.500095, 87.00008)
+position = Vector2(2455.5, 733)
+scale = Vector2(22.99978, 40.00005)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="BeerCan3" type="Sprite2D" parent="BackProps" unique_id=2322645]
-position = Vector2(4822, 1428)
-scale = Vector2(49.500095, 87.00008)
+position = Vector2(2493.5, 735.50006)
+scale = Vector2(26.999899, 46.99997)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
-position = Vector2(1436, 2102)
+position = Vector2(1039, 1015)
+scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_e86kh")
 
 [node name="David" parent="Actors" unique_id=1491821632 instance=ExtResource("6_0vv3f")]
-position = Vector2(5225, 1924)
+position = Vector2(2694, 1008)
+scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
 [node name="TestCofeeTable" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(4988.8755, 2127.7188)
-scale = Vector2(8.016602, 719.43756)
+position = Vector2(2582.4377, 1049.6406)
+scale = Vector2(4.145018, 238.71867)
 texture = SubResource("GradientTexture1D_8pl6i")
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
@@ -104,10 +101,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 3672.0
-offset_top = 309.0
-offset_right = 3984.0
-offset_bottom = 625.0
+offset_left = 1910.0
+offset_top = 163.0
+offset_right = 2049.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_e86kh")
@@ -122,10 +119,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 3672.0
-offset_top = 309.0
-offset_right = 3984.0
-offset_bottom = 625.0
+offset_left = 1910.0
+offset_top = 163.0
+offset_right = 2049.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_e86kh")
@@ -135,10 +132,10 @@ requires_flag = &"intro_done"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="FrontDoor" type="TextureButton" parent="Hotspots" unique_id=1201229799]
-offset_left = 65.0
-offset_top = 133.0
-offset_right = 1029.0
-offset_bottom = 1992.0
+offset_left = 4.0
+offset_top = 70.0
+offset_right = 297.0
+offset_bottom = 1037.0
 script = ExtResource("7_5s50e")
 door_id = &"front_door"
 leads_to = &"end_credits_scene"
@@ -180,8 +177,6 @@ near_miss_anim = 3
 art = NodePath("../../BackProps/TV")
 
 [node name="BeerCanProp1" type="TextureButton" parent="Hotspots" unique_id=773842213 node_paths=PackedStringArray("art")]
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("6_g005p")
 target_id = &"beer_can_1"
 accepts = Array[StringName]([&"nudge"])
@@ -195,8 +190,6 @@ hint_stage = 3
 prompt_text = "Nudge"
 
 [node name="BeerCanProp2" type="TextureButton" parent="Hotspots" unique_id=742954849 node_paths=PackedStringArray("art")]
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("6_g005p")
 target_id = &"beer_can_2"
 accepts = Array[StringName]([&"nudge"])
@@ -210,8 +203,6 @@ hint_stage = 3
 prompt_text = "Nudge"
 
 [node name="BeerCanProp3" type="TextureButton" parent="Hotspots" unique_id=417001425 node_paths=PackedStringArray("art")]
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("6_g005p")
 target_id = &"beer_can_3"
 accepts = Array[StringName]([&"nudge"])
@@ -227,7 +218,7 @@ prompt_text = "Nudge"
 [node name="RoomSpots" type="Node2D" parent="." unique_id=50306253]
 
 [node name="DavidWatchingTVSpot" type="Marker2D" parent="RoomSpots" unique_id=1372252472]
-position = Vector2(5222, 1924)
+position = Vector2(2694, 1008)
 script = ExtResource("12_8llds")
 facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"

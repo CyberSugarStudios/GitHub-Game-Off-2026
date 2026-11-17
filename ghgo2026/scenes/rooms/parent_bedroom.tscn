@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://djn85cwfw380d"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_dymt4"]
-[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_db7fa"]
+[ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_1y1r8"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_db7fa"]
-[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_ubuay"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_1y1r8"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_1y1r8"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_lgaq2"]
@@ -11,19 +10,20 @@
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="9_1y1r8"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="9_lgaq2"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
+
 [sub_resource type="Gradient" id="Gradient_8pl6i"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
 gradient = SubResource("Gradient_8pl6i")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
 [node name="ParentBedroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_dymt4")
 room_id = &"parent_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-texture = ExtResource("2_db7fa")
+scale = Vector2(2, 2)
+texture = ExtResource("2_1y1r8")
 centered = false
 
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1681639418]
@@ -33,7 +33,8 @@ energy = 0.0
 script = ExtResource("3_db7fa")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-texture = ExtResource("3_ubuay")
+scale = Vector2(2, 2)
+texture = ExtResource("2_1y1r8")
 centered = false
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
@@ -42,29 +43,31 @@ script = ExtResource("4_1y1r8")
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
 
-[node name="TestCounter" type="Sprite2D" parent="BackProps" unique_id=855732908]
-position = Vector2(5082, 1409.4063)
-scale = Vector2(2.9765632, 735.18756)
-texture = SubResource("GradientTexture1D_8pl6i")
-
 [node name="PillBottle" type="Sprite2D" parent="BackProps" unique_id=1232314537]
-position = Vector2(4896.2505, 919.25)
-scale = Vector2(155.5, 310.50003)
+position = Vector2(2728, 479.99994)
+scale = Vector2(105.00034, 185.49995)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_1y1r8")]
-position = Vector2(4415, 1955)
+position = Vector2(1876, 946)
+scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_lgaq2")
 
 [node name="David" parent="Actors" unique_id=2141659692 instance=ExtResource("6_1y1r8")]
-position = Vector2(1375, 2095)
+position = Vector2(476, 978)
+scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
+
+[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
+position = Vector2(2819.9998, 755)
+scale = Vector2(1.5206714, 375.5938)
+texture = SubResource("GradientTexture1D_8pl6i")
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
@@ -89,9 +92,9 @@ hint_stage = 3
 prompt_text = "Nudge"
 
 [node name="ClosetDoor" type="TextureButton" parent="Hotspots" unique_id=169749607]
-offset_top = 253.0
-offset_right = 871.0
-offset_bottom = 1974.0
+offset_top = 49.0
+offset_right = 308.0
+offset_bottom = 1041.0
 script = ExtResource("9_1y1r8")
 door_id = &"parent_closet"
 leads_to = &"parent_closet"

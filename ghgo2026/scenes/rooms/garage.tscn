@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cpggs5yrbbe4x"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_nl2ye"]
-[ext_resource type="Texture2D" uid="uid://dldqcvjlaoxk5" path="res://assets/textures/rooms/PLACEHOLDER_bathroom1.png" id="2_371gr"]
+[ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_371gr"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_371gr"]
-[ext_resource type="Texture2D" uid="uid://b7ube7b3flifm" path="res://assets/textures/rooms/PLACEHOLDER_bathroom2.png" id="3_o0bpy"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_lynjs"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_lynjs"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_o0bpy"]
@@ -21,6 +20,7 @@ script = ExtResource("1_nl2ye")
 room_id = &"garage"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
+scale = Vector2(2, 2)
 texture = ExtResource("2_371gr")
 centered = false
 
@@ -32,7 +32,8 @@ script = ExtResource("3_371gr")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
 visible = false
-texture = ExtResource("3_o0bpy")
+scale = Vector2(2, 2)
+texture = ExtResource("2_371gr")
 centered = false
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
@@ -42,42 +43,44 @@ script = ExtResource("4_lynjs")
 z_index = 10
 
 [node name="GarageLight" type="Sprite2D" parent="BackProps" unique_id=1697325592]
-position = Vector2(3952, 236)
-scale = Vector2(790.5, 473.5)
+position = Vector2(1978.0004, 90)
+scale = Vector2(180.24995, 180.75)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="ToolShelf" type="Sprite2D" parent="BackProps" unique_id=858577032]
-position = Vector2(6882.125, 1316.5)
-scale = Vector2(986.2501, 1687)
+position = Vector2(3796.75, 608.7499)
+scale = Vector2(465.5, 937.49976)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="KeepsakeBox" type="Sprite2D" parent="BackProps" unique_id=815889840]
-position = Vector2(916.00024, 236)
-scale = Vector2(790.5, 473.5)
+position = Vector2(696.3751, 162.625)
+scale = Vector2(351.24973, 326.75)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="KeepsakeBoxSpilled" type="Sprite2D" parent="BackProps" unique_id=1938192627]
-position = Vector2(916.00024, 236)
-scale = Vector2(790.5, 473.5)
+position = Vector2(737, 228)
+scale = Vector2(433.24973, 196.74998)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_lynjs")]
-position = Vector2(2950, 2069)
+position = Vector2(1664, 1019)
+scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_0yego")
 
 [node name="David" parent="Actors" unique_id=1359733094 instance=ExtResource("6_lynjs")]
-position = Vector2(5884, 2103)
+position = Vector2(3312, 1045)
+scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
 [node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(682.75, 1841.5625)
-scale = Vector2(5.298828, 702.875)
+position = Vector2(503, 791.99994)
+scale = Vector2(1.7998046, 474.9376)
 texture = SubResource("GradientTexture1D_8pl6i")
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
