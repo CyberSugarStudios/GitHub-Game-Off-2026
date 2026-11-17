@@ -8,6 +8,7 @@ extends AnimatedSprite3D
 @export var side_animation: StringName = &"walk_side"
 @export var back_animation: StringName = &"walk_back"
 @export var idle_animation: StringName = &"idle"
+@export var idle_faces_right: bool = false
 
 @onready var parent := get_parent() as HallParent
 
@@ -34,12 +35,12 @@ func _process(_delta: float) -> void:
 	var linger := parent.current_linger
 	if linger and sprite_frames.has_animation(linger.linger_activity):
 		_play(linger.linger_activity)
-		flip_h = false
+		flip_h = _flip_toward(linger.get_look_direction(global_position))
 		speed_scale = GameClock.world_speed
 		return
 	if not parent.is_moving and sprite_frames.has_animation(idle_animation):
 		_play(idle_animation)
-		flip_h = false
+		flip_h = _flip_toward(parent.facing)
 		speed_scale = GameClock.world_speed
 		return
 	var camera := get_viewport().get_camera_3d()
@@ -70,6 +71,13 @@ func play_action(anim: StringName) -> void:
 	speed_scale = 1.0
 	flip_h = false
 	_fit_height(anim)
+
+func _flip_toward(direction: Vector3) -> bool:
+	var camera := get_viewport().get_camera_3d()
+	if camera == null or direction.length() < 0.001:
+		return flip_h
+	var looks_screen_right := direction.dot(camera.global_basis.x) > 0.0
+	return looks_screen_right != idle_faces_right
 
 func _play(anim: StringName) -> void:
 	if animation == anim and is_playing():

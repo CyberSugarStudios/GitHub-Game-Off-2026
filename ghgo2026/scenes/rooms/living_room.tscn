@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_e86kh"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="11_e86kh"]
+[ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="12_8llds"]
 
 [sub_resource type="Gradient" id="Gradient_g005p"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
@@ -222,3 +223,11 @@ caught_cue = "p3_david_catches_can"
 art = NodePath("../../BackProps/BeerCan3")
 hint_stage = 3
 prompt_text = "Nudge"
+
+[node name="RoomSpots" type="Node2D" parent="." unique_id=50306253]
+
+[node name="DavidWatchingTVSpot" type="Marker2D" parent="RoomSpots" unique_id=1372252472]
+position = Vector2(5222, 1924)
+script = ExtResource("12_8llds")
+facing = 1
+metadata/_custom_type_script = "uid://26eyobriow6j"

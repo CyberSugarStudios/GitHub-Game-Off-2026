@@ -7,6 +7,7 @@ extends Node2D
 @export var height: float = 1500.0
 @export var walk_speed: float = 500.0
 @export var side_faces_right: bool = false
+@export var idle_faces_right: bool = false
 @export var walk_animation: StringName = &"walk_side"
 @export var idle_animation: StringName = &"idle"
 
@@ -71,32 +72,47 @@ func _process(delta: float) -> void:
 		_stand()
 		return
 	position += to_target.normalized() * step
-	_animate(walk_animation, to_target.x)
+	_animate(walk_animation, (to_target.x > 0.0) != side_faces_right)
 
 func _stand() -> void:
 	var activity := GameState.get_parent_activity(parent_id)
 	var anim := activity if frames and frames.has_animation(activity) else idle_animation
-	_animate(anim, 0.0)
+	_animate(anim, _standing_flip(activity))
 
-func _animate(anim: StringName, dx: float) -> void:
+func _animate(anim: StringName, flip: float) -> void:
 	if frames == null or not frames.has_animation(anim):
 		return
 	if sprite.animation != anim or not sprite.is_playing():
 		sprite.play(anim)
-	sprite.flip_h = (dx > 0.0) != side_faces_right if dx != 0.0 else false
+	sprite.flip_h = flip
 	sprite.speed_scale = GameClock.world_speed
 	var texture := frames.get_frame_texture(anim, 0)
 	if texture:
 		sprite.scale = Vector2.ONE * (height / texture.get_height())
 		sprite.position.y = -height * 0.5
 
-func _spot(spot_name: StringName, fallback: Vector2) -> Vector2:
+func _spot_node(spot_name: StringName) -> Node2D:
 	if spots == null or spot_name == &"":
-		return fallback
-	var marker := spots.get_node_or_null(NodePath(spot_name)) as Node2D
+		return null
+	return spots.get_node_or_null(NodePath(spot_name)) as Node2D
+
+func _spot(spot_name: StringName, fallback: Vector2) -> Vector2:
+	var marker := _spot_node(spot_name)
 	if marker == null:
 		return fallback
 	return (get_parent() as Node2D).to_local(marker.global_position)
+
+func _standing_flip(activity: StringName) -> bool:
+	var spot := _spot_node(activity)
+	if spot == null:
+		spot = _spot_node(&"default")
+	var facing := (spot as RoomSpot).facing if spot is RoomSpot else RoomSpot.Facing.EITHER
+	match facing:
+		RoomSpot.Facing.LEFT:
+			return idle_faces_right
+		RoomSpot.Facing.RIGHT:
+			return not idle_faces_right
+	return randf() < 0.5
 
 func _fit_click_areas() -> void:
 	var width := height * 0.35

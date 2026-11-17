@@ -51,6 +51,7 @@
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
 [ext_resource type="PackedScene" uid="uid://cl31wyaoetcvt" path="res://scenes/rooms/parent_closet.tscn" id="43_ty1g6"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
+[ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="46_bu4jf"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
@@ -197,6 +198,7 @@ character_name = "Leanne"
 [node name="Sprite" parent="Hall/LeanneHall" index="4" unique_id=426285732]
 sprite_frames = ExtResource("8_j2jfr")
 animation = &"walk_front"
+idle_faces_right = true
 
 [node name="DavidHall" parent="Hall" unique_id=1897501765 instance=ExtResource("15_jkv2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.463238, 0, -5.2921042)
@@ -344,13 +346,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18981934, 0, -3.5)
 script = ExtResource("5_gqmmt")
 mark_id = &"linen_closet"
 
-[node name="LingerPumpkinPhoto" type="Marker3D" parent="Hall/HallMarks" unique_id=859201201]
+[node name="LingerPumpkinPhoto" type="Marker3D" parent="Hall/HallMarks" unique_id=859201201 node_paths=PackedStringArray("look_target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7813568, 0, -5.5777636)
 script = ExtResource("5_gqmmt")
 mark_id = &"pumpkin_photo"
 linger_chance = 1.0
 linger_seconds = 2.0
 linger_activity = &"idle"
+look_target = NodePath("../../HallDecor/HallPainting")
 
 [node name="HallDecor" type="Node" parent="Hall" unique_id=1302355487]
 
@@ -674,6 +677,42 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Leave (S)"
+
+[node name="PanRightLabel" type="Label" parent="RoomView/RoomUI" unique_id=679566168]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 84.0
+offset_top = -60.0
+offset_right = 286.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("46_bu4jf")
+theme_override_font_sizes/font_size = 32
+text = "Look Right (D)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanLeftLabel" type="Label" parent="RoomView/RoomUI" unique_id=1702669614]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -282.0
+offset_top = -59.0
+offset_right = -85.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("46_bu4jf")
+theme_override_font_sizes/font_size = 32
+text = "Look Left  (A)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InputBlocker" type="ColorRect" parent="RoomView/RoomUI" unique_id=190377554]
 anchors_preset = 15

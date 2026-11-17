@@ -6,7 +6,6 @@ extends Node
 @export_group("Panning")
 @export var pan_speed: float = 900.0
 @export var pan_acceleration: float = 4000.0
-@export_range(0.0, 0.95) var mouse_deadzone: float = 0.5
 
 @export_group("Transition")
 @export var fade_time: float = 0.35
@@ -132,8 +131,6 @@ func _process(delta: float) -> void:
 		return
 	
 	var direction := Input.get_axis("move_left", "move_right") # A/D keys
-	if direction == 0.0 and _mouse_may_pan():
-		direction = _mouse_pan_direction()
 	
 	_pan_velocity = move_toward(_pan_velocity, direction * pan_speed, pan_acceleration * delta)
 	_pan_x = clampf(_pan_x + _pan_velocity * delta, 0.0, _max_pan)
@@ -155,21 +152,6 @@ func pan_to(ratio: float, seconds: float) -> void:
 func _set_pan_x(x: float) -> void:
 	_pan_x = x
 	_apply_pan()
-
-func _mouse_may_pan() -> bool:
-	if Powers.target != &"":
-		return false
-	var hovered := get_viewport().gui_get_hovered_control()
-	return hovered == null or hovered.mouse_filter == Control.MOUSE_FILTER_IGNORE
-
-func _mouse_pan_direction() -> float:
-	var screen_width := get_viewport().get_visible_rect().size.x
-	var mouse_x := get_viewport().get_mouse_position().x
-	var from_center := clampf(mouse_x / screen_width * 2.0 - 1.0, -1.0, 1.0)
-	var beyond_deadzone := absf(from_center) - mouse_deadzone
-	if beyond_deadzone <= 0.0:
-		return 0.0
-	return signf(from_center) * beyond_deadzone / (1.0 - mouse_deadzone)
 
 func _fit_room() -> void:
 	if not _room:

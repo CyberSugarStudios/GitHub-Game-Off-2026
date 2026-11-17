@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_m75iv"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_n5en3"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_78330"]
+[ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="10_78330"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sltsg"]
 
@@ -143,3 +144,11 @@ art = NodePath("../../FrontProps/CoffeeCup")
 prompt_text = "Nudge"
 realm = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="RoomSpots" type="Node2D" parent="." unique_id=795046590]
+
+[node name="CoffeeMachineSpot" type="Marker2D" parent="RoomSpots" unique_id=1914006059]
+position = Vector2(1026, 2116)
+script = ExtResource("10_78330")
+facing = 1
+metadata/_custom_type_script = "uid://26eyobriow6j"

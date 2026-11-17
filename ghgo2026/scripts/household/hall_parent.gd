@@ -22,6 +22,7 @@ var _warming := false
 var _destination: StringName = &""
 var _stay_visible := false
 var _linger_left := 0.0
+var _linger_target: HallMark = null
 var _passed_marks: Array[HallMark] = []
 
 func _ready() -> void:
@@ -41,6 +42,7 @@ func stand_at(spot: Node3D) -> void:
 func stop() -> void:
 	_destination = &""
 	_linger_left = 0.0
+	_linger_target = null
 	current_linger = null
 	_set_present(false)
 
@@ -60,6 +62,7 @@ func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> vo
 	_stay_visible = stay_visible
 	agent.target_position = to.global_position
 	_passed_marks.clear()
+	_linger_target = null
 	_set_present(true)
 
 func _physics_process(delta: float) -> void:
@@ -72,6 +75,13 @@ func _physics_process(delta: float) -> void:
 		if _linger_left <= 0.0:
 			current_linger = null
 		return
+	if _linger_target:
+		if _step_toward(_linger_target.global_position, delta):
+			_linger_left = _linger_target.linger_seconds
+			current_linger = _linger_target
+			linger_started.emit(parent_id, _linger_target.mark_id)
+			_linger_target = null
+		return
 	
 	if agent.is_navigation_finished():
 		var location := _destination
@@ -82,20 +92,10 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	_check_linger()
-	if _linger_left > 0.0:
+	if _linger_left > 0.0 or _linger_target:
 		return
 	
-	var next := agent.get_next_path_position()
-	var to_next := next - global_position
-	to_next.y = 0.0
-	var step := walk_speed * speed_scale * GameClock.world_speed * delta
-	if to_next.length() > 0.001:
-		facing = to_next.normalized()
-		is_moving = true
-	if to_next.length() <= step:
-		global_position = Vector3(next.x, global_position.y, next.z)
-	else:
-		global_position += to_next.normalized() * step
+	_step_toward(agent.get_next_path_position(), delta)
 
 func _check_linger() -> void:
 	for node in get_tree().get_nodes_in_group("hall_marks"):
@@ -107,10 +107,21 @@ func _check_linger() -> void:
 		if offset.length() <= LINGER_RADIUS:
 			_passed_marks.append(mark)
 			if randf() < mark.linger_chance:
-				_linger_left = mark.linger_seconds
-				current_linger = mark
-				linger_started.emit(parent_id, mark.mark_id)
+				_linger_target = mark
 				return
+
+func _step_toward(point: Vector3, delta: float) -> bool:
+	var to_point := point - global_position
+	to_point.y = 0.0
+	var step := walk_speed * speed_scale * GameClock.world_speed * delta
+	if to_point.length() > 0.001:
+		facing = to_point.normalized()
+		is_moving = true
+	if to_point.length() <= step:
+		global_position = Vector3(point.x, global_position.y, point.z)
+		return true
+	global_position += to_point.normalized() * step
+	return false
 
 func _set_present(present: bool) -> void:
 	_present = present
