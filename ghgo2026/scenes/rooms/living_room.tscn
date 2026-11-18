@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_g005p"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
+[ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/mom/david_frames.tres" id="7_a5o1a"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_e86kh"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="11_e86kh"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="12_8llds"]
@@ -73,6 +74,7 @@ scale = Vector2(26.999899, 46.99997)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
+visible = false
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
@@ -84,8 +86,10 @@ frames = ExtResource("7_e86kh")
 position = Vector2(2694, 1008)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
+frames = ExtResource("7_a5o1a")
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
+visible = false
 z_index = 30
 
 [node name="TestCofeeTable" type="Sprite2D" parent="FrontProps" unique_id=855732908]

@@ -29,8 +29,8 @@ const EYE_HEIGHT := 1.4
 @export var grab_distance: float = 0.9
 
 @export_group("Struggle")
-@export var struggle_presses: int = 9
-@export var presses_per_bar: int = 3
+@export var struggle_presses: int = 12
+@export var presses_per_bar: int = 4
 @export var grab_drain_per_second: float = 0.25
 @export var escape_cooldown: float = 20.0
 
@@ -40,6 +40,7 @@ const EYE_HEIGHT := 1.4
 @export var guard_radius: float = 6.0
 @export var guard_charge_distance: float = 5.0
 @export var guard_return_delay: float = 8.0
+@export var guard_exit_grace: float = 2.5
 
 @export_group("Sounds")
 @export var sting_sound: AudioStream
@@ -57,6 +58,7 @@ var _timer := 0.0
 var _stared := 0.0
 var _presses := 0
 var _repath := 0.0
+var _grace := 0.0
 #endregion
 
 func _ready() -> void:
@@ -65,6 +67,7 @@ func _ready() -> void:
 	GameState.plane_changed.connect(_on_plane_changed)
 	GameState.monster_level_changed.connect(_on_monster_level_changed)
 	Events.door_opened.connect(_on_door_opened)
+	Events.returned_to_hall.connect(_on_returned_to_hall)
 	agent.path_desired_distance = 0.25
 	agent.target_desired_distance = grab_distance * 0.5
 	_timer = _lurk_delay()
@@ -81,7 +84,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if GameState.is_in_room():
 		if GameState.monster_level == 4 and guard_spot:
-			if _state != State.GUARDING:
+			if _state == State.HIDDEN:
+				_timer -= delta
+				if _timer <= 0.0:
+					_appear(guard_spot.global_position, State.GUARDING)
+			elif _state != State.GUARDING:
 				_appear(guard_spot.global_position, State.GUARDING)
 		elif _state != State.HIDDEN:
 			_vanish(_lurk_delay())
@@ -94,7 +101,7 @@ func _physics_process(delta: float) -> void:
 		State.HUNTING:
 			_process_hunt(delta)
 		State.GUARDING:
-			_process_guard()
+			_process_guard(delta)
 
 func _process_hidden(delta: float) -> void:
 	_timer -= delta
@@ -154,9 +161,10 @@ func _process_hunt(delta: float) -> void:
 	_move_along_path(delta)
 	_face_player()
 
-func _process_guard() -> void:
+func _process_guard(delta: float) -> void:
 	_face_player()
-	if _distance_to_player() <= guard_charge_distance:
+	_grace -= delta
+	if _grace <= 0.0 and _distance_to_player() <= guard_charge_distance:
 		_state = State.HUNTING
 		_repath = 0.0
 
@@ -232,6 +240,9 @@ func _on_plane_changed(in_astral: bool) -> void:
 func _on_door_opened(_room_id: StringName, _exit_spot: Transform3D) -> void:
 	if _state == State.HUNTING:
 		_vanish(_lurk_delay())
+
+func _on_returned_to_hall(_exit_spot: Transform3D) -> void:
+	_grace = guard_exit_grace
 
 func _on_monster_level_changed(_level: int) -> void:
 	if _state != State.GRABBING:

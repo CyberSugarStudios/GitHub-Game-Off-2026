@@ -231,7 +231,7 @@ character_name = "David"
 
 [node name="Sprite" parent="Hall/DavidHall" index="4" unique_id=426285732]
 sprite_frames = ExtResource("9_o7ddy")
-animation = &"walk_front"
+animation = &"walk_side"
 
 [node name="RoomEntrances" type="Node" parent="Hall" unique_id=1924097943]
 

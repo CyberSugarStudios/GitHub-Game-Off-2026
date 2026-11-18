@@ -358,9 +358,9 @@ func _run_puzzle_4() -> void:
 	await wait_room(&"emily_bedroom")
 	await say("p4_room_reveal", true, PUZZLE_4)
 	await wait_event(&"diary_finished")
-	GameState.restore_memory()
-	await  say("p4_after", false, PUZZLE_4)
 	GameState.set_story_stage(5)
+	GameState.restore_memory()
+	await say("p4_after", false, PUZZLE_4)
 
 func _on_any_story_event(id: StringName) -> void:
 	match id:
