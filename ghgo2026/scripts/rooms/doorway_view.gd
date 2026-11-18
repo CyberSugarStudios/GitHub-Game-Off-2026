@@ -198,8 +198,19 @@ func _update_cards(camera: Vector3) -> void:
 		(card.material_override as ShaderMaterial).set_shader_parameter("region", _to_uv(rect))
 
 func _rect_of(art: CanvasItem) -> Rect2:
-	var local: Rect2 = (art as Sprite2D).get_rect() if art is Sprite2D else (art as AnimatedSprite2D).get_rect()
+	var local: Rect2
+	if art is Sprite2D:
+		local = (art as Sprite2D).get_rect()
+	else:
+		local = _frame_rect(art as AnimatedSprite2D)
 	return art.get_global_transform() * local
+
+func _frame_rect(sprite: AnimatedSprite2D) -> Rect2:
+	var texture := sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame) \
+		if sprite.sprite_frames else null
+	var size := texture.get_size() if texture else Vector2.ONE
+	var top_left := sprite.offset - (size / 2.0 if sprite.centered else Vector2.ZERO)
+	return Rect2(top_left, size)
 
 func _base_of(art: CanvasItem) -> Vector2:
 	var rect := _rect_of(art)
