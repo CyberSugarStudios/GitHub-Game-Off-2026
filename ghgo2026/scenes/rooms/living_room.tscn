@@ -74,7 +74,6 @@ scale = Vector2(26.999899, 46.99997)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
-visible = false
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
@@ -89,7 +88,6 @@ parent_id = &"david"
 frames = ExtResource("7_a5o1a")
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
-visible = false
 z_index = 30
 
 [node name="TestCofeeTable" type="Sprite2D" parent="FrontProps" unique_id=855732908]

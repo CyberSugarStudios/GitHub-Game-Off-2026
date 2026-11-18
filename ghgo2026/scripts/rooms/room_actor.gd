@@ -86,10 +86,18 @@ func _stand() -> void:
 	_animate(anim, _standing_flip(activity))
 
 func _animate(anim: StringName, flip: float) -> void:
-	if frames == null or not frames.has_animation(anim):
+	if frames == null:
 		return
-	if sprite.animation != anim or not sprite.is_playing():
+	if frames.has_animation(anim):
+		if sprite.animation != anim or not sprite.is_playing():
+			sprite.play(anim)
+	elif frames.has_animation(walk_animation):
+		anim = walk_animation
 		sprite.play(anim)
+		sprite.pause()
+		sprite.frame = 0
+	else:
+		return
 	sprite.flip_h = flip
 	sprite.speed_scale = GameClock.world_speed
 	var texture := frames.get_frame_texture(anim, 0)
