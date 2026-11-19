@@ -21,19 +21,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Roll" type="VBoxContainer" parent="." unique_id=253727541]
+[node name="CreditsText" type="RichTextLabel" parent="." unique_id=2000140420]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 16492.0
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 684.0
 grow_horizontal = 2
-offset_transform_enabled = true
-metadata/_edit_use_anchors_ = true
-
-[node name="CreditsText" type="RichTextLabel" parent="Roll" unique_id=2000140420]
-unique_name_in_owner = true
-layout_mode = 2
+grow_vertical = 2
 bbcode_enabled = true
 text = "[center][font=res://assets/fonts/Allura-Regular.ttf][font_size=240]Interim[/font_size][/font]
 Made for GitHub Game Off 2026
@@ -61,9 +55,12 @@ Allura, Caveat, Josefin Sans, and ReenieBeanie — SIL Open Font License
 fit_content = true
 horizontal_alignment = 1
 
-[node name="HelpText" type="RichTextLabel" parent="Roll" unique_id=457808753]
+[node name="HelpText" type="RichTextLabel" parent="." unique_id=457808753]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_top = 688.0
+offset_right = 1600.0
+offset_bottom = 972.0
 bbcode_enabled = true
 text = "[center][font_size=28]If this story touched something in you[/font_size]
 

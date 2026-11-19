@@ -9,11 +9,16 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @export var scroll_speed: float = 70.0
 @export var music: AudioStream
 @export var prompt_delay: float = 3.0
+@export var gap: float = 160.
 
-@onready var roll: Control = %Roll
+@onready var credits_text: Control = %CreditsText
 @onready var help_text: Control = %HelpText
 @onready var continue_prompt: CanvasItem = %ContinuePrompt
 
+var _scrolled := 0.0
+var _credits_start := 0.0
+var _help_start := 0.0
+var _help_rest := 0.0
 var _tween: Tween
 var _waiting_on_help := false
 var _leaving := false
@@ -26,9 +31,14 @@ func _ready() -> void:
 		Music.play(music)
 	await get_tree().process_frame
 	await get_tree().process_frame
-	roll.position.y = size.y
+	_credits_start = size.y
+	_help_start = _credits_start + credits_text.size.y + gap
+	_help_rest = (size.y - help_text.size.y) * 0.5
+	_set_scrolled(0.0)
 
-	await _scroll_to(size.y * 0.5 - (help_text.position.y + help_text.size.y * 0.5))
+	var credits_gone := _credits_start + credits_text.size.y
+	var help_settled := _help_start - _help_rest
+	await _scroll_to(maxf(credits_gone, help_settled))
 
 	_waiting_on_help = true
 	var prompt_tween := create_tween()
@@ -38,13 +48,21 @@ func _ready() -> void:
 	prompt_tween.kill()
 	create_tween().tween_property(continue_prompt, "modulate:a", 0.0, 0.4)
 
-	await _scroll_to(-roll.size.y)
+	_tween = create_tween()
+	_tween.tween_property(help_text, "position:y", -help_text.size.y,
+		(help_text.position.y + help_text.size.y) / scroll_speed)
+	await _tween.finished
 	finished.emit()
 	_back_to_title()
 
-func _scroll_to(y: float) -> void:
+func _set_scrolled(value: float) -> void:
+	_scrolled = value
+	credits_text.position.y = _credits_start - value
+	help_text.position.y = maxf(_help_start - value, _help_rest)
+
+func _scroll_to(target: float) -> void:
 	_tween = create_tween()
-	_tween.tween_property(roll, "position:y", y, absf(roll.position.y - y) / scroll_speed)
+	_tween.tween_method(_set_scrolled, _scrolled, target, absf(target - _scrolled) / scroll_speed)
 	await _tween.finished
 
 func _unhandled_input(event: InputEvent) -> void:
