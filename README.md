@@ -23,7 +23,7 @@ itch.io:
 Godot 4.7.2 (GL Compatibility renderer)
  
 # Third-party assets
-Allura and Josefin Sans fonts - SIL Open Font License 1.1
+Allura, Caveat, Josefin Sans, and Reenie Beanie fonts - SIL Open Font License 1.1
 
 Dialogue Manager by Nathan Hoad - MIT License
  
