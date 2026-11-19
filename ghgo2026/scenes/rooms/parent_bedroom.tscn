@@ -75,6 +75,17 @@ texture = SubResource("GradientTexture1D_8pl6i")
 [node name="RoomSpots" type="Node2D" parent="." unique_id=1505264964]
 
 [node name="OpeningSafe" type="Marker2D" parent="RoomSpots" unique_id=1202598024]
+position = Vector2(473, 974)
+script = ExtResource("7_jpf7g")
+facing = 1
+
+[node name="FightGunDavid" type="Marker2D" parent="RoomSpots" unique_id=158532727]
+position = Vector2(480, 970)
+script = ExtResource("7_jpf7g")
+facing = 2
+
+[node name="FightGunLeanne" type="Marker2D" parent="RoomSpots" unique_id=951712411]
+position = Vector2(1036, 974)
 script = ExtResource("7_jpf7g")
 facing = 1
 

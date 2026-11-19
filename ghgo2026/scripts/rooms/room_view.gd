@@ -9,6 +9,7 @@ extends Node
 
 @export_group("Transition")
 @export var fade_time: float = 0.35
+@export var staged_pan_time: float = 1.2
 
 @onready var room_layer: CanvasLayer = $RoomLayer
 @onready var room_ui: CanvasLayer = $RoomUI
@@ -36,6 +37,10 @@ func _ready() -> void:
 	fade_rect.color.a = 0.0
 	Events.door_opened.connect(enter_room)
 	Events.room_door_opened.connect(change_room)
+	Events.room_pan_requested.connect(
+		func(ratio: float) -> void:
+			pan_to(ratio, staged_pan_time)
+	)
 	exit_button.pressed.connect(exit_room)
 	get_viewport().size_changed.connect(_fit_room)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)

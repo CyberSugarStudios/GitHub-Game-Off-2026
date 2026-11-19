@@ -7,6 +7,7 @@ extends Node
 
 #region - INIT
 const VOICE_FOLDER := "res://audio/voice/"
+const STAGED_PARENTS: Array[String] = ["leanne", "david"]
 #region - EXPORTS
 @export_group("Live Listening")
 @export var clear_distance: float = 4.0
@@ -65,6 +66,7 @@ func play(dialogue: DialogueResource, title: String, frozen: bool) -> void:
 
 func _play_line(line: DialogueLine, my_id: int) -> void:
 	_line = line
+	_stage(line)
 	_speaker = null if (_frozen or line.has_tag("thought")) else _find_speaker(line.character)
 	
 	var voice := _load_voice(line)
@@ -108,6 +110,15 @@ func _finish(title: String) -> void:
 	_frozen = false
 	Events.subtitle_changed.emit("", "", 1.0, false)
 	Events.conversation_finished.emit(title)
+
+func _stage(line: DialogueLine) -> void:
+	for parent_id in STAGED_PARENTS:
+		var spot := line.get_tag_value(parent_id)
+		if spot != "":
+			Events.parents_staged.emit(StringName(parent_id), StringName(spot))
+	var pan := line.get_tag_value("pan")
+	if pan != "":
+		Events.room_pan_requested.emit(pan.to_float())
 
 func _stop_current() -> void:
 	_stop_audio()

@@ -73,11 +73,12 @@ hidden_after_flag = &"mom_ignored"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 metadata/_edit_use_anchors_ = true
 
-[node name="David" parent="Actors" unique_id=348760919 instance=ExtResource("6_m75iv")]
+[node name="David" parent="Actors" unique_id=348760919 node_paths=PackedStringArray("spots") instance=ExtResource("6_m75iv")]
 position = Vector2(3599, 1017)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 frames = ExtResource("8_fiuqx")
+spots = NodePath("../../RoomSpots")
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
@@ -146,13 +147,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="RoomSpots" type="Node2D" parent="." unique_id=795046590]
 
-[node name="CoffeeMachineSpot" type="Marker2D" parent="RoomSpots" unique_id=1914006059]
+[node name="MakingCoffee" type="Marker2D" parent="RoomSpots" unique_id=1914006059]
 position = Vector2(607, 1016)
 script = ExtResource("10_78330")
 facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
-[node name="CoffeeDrinkingSpot" type="Marker2D" parent="RoomSpots" unique_id=1336229315]
+[node name="DrinkingCoffee" type="Marker2D" parent="RoomSpots" unique_id=1336229315]
 position = Vector2(1661, 1024)
 script = ExtResource("10_78330")
 facing = 1

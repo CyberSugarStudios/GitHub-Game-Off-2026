@@ -26,6 +26,7 @@ var _stay_visible := false
 var _linger_left := 0.0
 var _linger_target: HallMark = null
 var _passed_marks: Array[HallMark] = []
+var _stage_target: HallMark = null
 
 func _ready() -> void:
 	add_to_group("astral_visibility")
@@ -43,6 +44,7 @@ func stand_at(spot: Node3D) -> void:
 	_set_present(true)
 
 func stop() -> void:
+	_stage_target = null
 	_destination = &""
 	_linger_left = 0.0
 	_linger_target = null
@@ -59,7 +61,15 @@ func play_action(anim: StringName) -> void:
 	if sprite:
 		sprite.play_action(anim)
 
+func stage_to(mark: HallMark) -> void:
+	_stage_target = mark
+	standing_at = null
+	_linger_left = 0.0
+	_linger_target = null
+	current_linger = null
+
 func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> void:
+	_stage_target = null
 	if not visible and from:
 		global_position = from.global_position
 	_destination = to_id
@@ -73,6 +83,11 @@ func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> vo
 
 func _physics_process(delta: float) -> void:
 	is_moving = false
+	if _stage_target:
+		if _step_toward(_stage_target.global_position, delta):
+			standing_at = _stage_target
+			_stage_target = null
+		return
 	if not is_walking() or GameState.controls_locked:
 		return
 	

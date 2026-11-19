@@ -1,8 +1,8 @@
 ~ p1_painting_fight
-Leanne: Don't. Don't touch it. You don't get to touch her.
+Leanne: Don't. Don't touch it. You don't get to touch her. [#leanne=fight_painting_leanne]
 David: She was my daughter too, Lee.
 Leanne: Then where were you? Every night it's the bills, the bank, the overtime—
-David: Somebody had to keep the lights on in this house.
+David: Somebody had to keep the lights on in this house. [#david=fight_painting_david]
 Leanne: She needed you here. Not the lights.
 David: Don't put this on me. You know what you said to her that night.
 => END

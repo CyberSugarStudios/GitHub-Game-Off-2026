@@ -13,6 +13,7 @@ extends Node2D
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var placeholder: CanvasItem = get_node_or_null("Placeholder")
+@onready var room_spots: Node2D = $"RoomSpots"
 
 var _room_id: StringName
 var _target := Vector2.ZERO
@@ -43,6 +44,7 @@ func _ready() -> void:
 		)
 	GameState.parent_location_changed.connect(_on_parent_changed)
 	GameState.parent_activity_changed.connect(_on_parent_changed)
+	spots = room_spots
 	_refresh(false)
 
 func _on_parent_changed(id: StringName, _value: StringName) -> void:
@@ -68,7 +70,7 @@ func _refresh(walk_in: bool) -> void:
 		_stand()
 
 func _process(delta: float) -> void:
-	if not visible or not _walking or GameState.controls_locked:
+	if not visible or not _walking:
 		return
 	var to_target := _target - position
 	var step := walk_speed * GameClock.world_speed * delta

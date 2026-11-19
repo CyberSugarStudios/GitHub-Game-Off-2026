@@ -16,6 +16,7 @@ func _ready() -> void:
 			_update())
 	for parent in hall_parents:
 		parent.arrived.connect(_on_parent_arrived)
+	Events.parents_staged.connect(_on_parent_staged)
 	place_everyone.call_deferred()
 
 func send(parent_id: StringName, location: StringName, minutes: int, then: Array = [], \
@@ -80,6 +81,18 @@ func _update() -> void:
 func _on_parent_arrived(parent_id: StringName, room_id: StringName) -> void:
 	GameState.set_parent_activity(parent_id, _target_activity(parent_id))
 	GameState.set_parent_location(parent_id, room_id)
+
+func _on_parent_staged(parent_id: StringName, spot: StringName) -> void:
+	var hall_parent := get_hall_parent(parent_id)
+	if hall_parent and hall_parent.visible:
+		for node in get_tree().get_nodes_in_group("hall_marks"):
+			var mark := node as HallMark
+			if mark.mark_id == spot:
+				hall_parent.stage_to(mark)
+				return
+		push_warning("Household: no HallMark '%s' to stage %s to." % [spot, parent_id])
+		return
+	GameState.set_parent_activity(parent_id, spot)
 
 func _target_location(parent_id: StringName) -> StringName:
 	if _detours.has(parent_id):

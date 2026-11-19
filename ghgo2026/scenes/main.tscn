@@ -393,6 +393,22 @@ linger_seconds = 2.0
 linger_activity = &"idle"
 look_target = NodePath("../../HallDecor/HallPainting")
 
+[node name="FightPaintingLeanne" type="Marker3D" parent="Hall/HallMarks" unique_id=465143463 node_paths=PackedStringArray("look_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1570206, 0, -5.5777636)
+script = ExtResource("5_gqmmt")
+mark_id = &"pumpkin_photo"
+linger_seconds = 2.0
+linger_activity = &"idle"
+look_target = NodePath("../FightPaintingDavid")
+
+[node name="FightPaintingDavid" type="Marker3D" parent="Hall/HallMarks" unique_id=506970461 node_paths=PackedStringArray("look_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3295288, 0, -5.5777636)
+script = ExtResource("5_gqmmt")
+mark_id = &"pumpkin_photo"
+linger_seconds = 2.0
+linger_activity = &"idle"
+look_target = NodePath("../FightPaintingLeanne")
+
 [node name="HallDecor" type="Node" parent="Hall" unique_id=1302355487]
 
 [node name="CentralAirIntake" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=1223813579]

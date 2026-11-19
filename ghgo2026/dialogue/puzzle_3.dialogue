@@ -41,10 +41,10 @@ David: Hang on. Hang on.
 => END
 
 ~ p3_safe_fight
-Emily: Zero... four... one... seven. [#thought]
+Emily: Zero... four... one... seven. [#thought, #pan=0]
 Emily: That's my birthday. [#thought]
 Leanne: David? What are you— is that— put that away!
-David: Someone's in the house. I heard the garage.
+David: Someone's in the house. I heard the garage. [#leanne=fight_gun_leanne]
 Leanne: Not in this house. Not with that. Not after—
 David: ...There's no one.
 Leanne: Of course there's no one. There's never anyone. Just you and that thing.

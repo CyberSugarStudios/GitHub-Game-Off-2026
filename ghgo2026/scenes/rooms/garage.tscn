@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_lynjs"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_o0bpy"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_0yego"]
+[ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="7_o0bpy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
@@ -82,6 +83,20 @@ z_index = 30
 position = Vector2(503, 791.99994)
 scale = Vector2(1.7998046, 474.9376)
 texture = SubResource("GradientTexture1D_8pl6i")
+
+[node name="RoomSpots" type="Node2D" parent="." unique_id=1047220437]
+
+[node name="FightBoxLeanne" type="Marker2D" parent="RoomSpots" unique_id=632896223]
+position = Vector2(1070, 1012)
+script = ExtResource("7_o0bpy")
+facing = 2
+metadata/_custom_type_script = "uid://26eyobriow6j"
+
+[node name="FightBoxDavid" type="Marker2D" parent="RoomSpots" unique_id=2038087898]
+position = Vector2(1666, 1008)
+script = ExtResource("7_o0bpy")
+facing = 1
+metadata/_custom_type_script = "uid://26eyobriow6j"
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
