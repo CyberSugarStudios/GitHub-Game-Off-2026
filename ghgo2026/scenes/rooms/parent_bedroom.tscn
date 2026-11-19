@@ -5,10 +5,12 @@
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_db7fa"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_1y1r8"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_1y1r8"]
+[ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="7_jpf7g"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_lgaq2"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="8_ubuay"]
-[ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="9_1y1r8"]
+[ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="9_jpf7g"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="9_lgaq2"]
+[ext_resource type="Resource" uid="uid://dps2dkhdur8ec" path="res://dialogue/objects.dialogue" id="10_crvc2"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
@@ -52,14 +54,15 @@ texture = SubResource("CanvasTexture_53m36")
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_1y1r8")]
-position = Vector2(1876, 946)
+position = Vector2(2442, 956)
 scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_lgaq2")
 
-[node name="David" parent="Actors" unique_id=2141659692 instance=ExtResource("6_1y1r8")]
+[node name="David" parent="Actors" unique_id=2141659692 node_paths=PackedStringArray("spots") instance=ExtResource("6_1y1r8")]
 position = Vector2(476, 978)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
+spots = NodePath("../../RoomSpots")
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
@@ -68,6 +71,12 @@ z_index = 30
 position = Vector2(2819.9998, 755)
 scale = Vector2(1.5206714, 375.5938)
 texture = SubResource("GradientTexture1D_8pl6i")
+
+[node name="RoomSpots" type="Node2D" parent="." unique_id=1505264964]
+
+[node name="OpeningSafe" type="Marker2D" parent="RoomSpots" unique_id=1202598024]
+script = ExtResource("7_jpf7g")
+facing = 1
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
@@ -91,12 +100,12 @@ art = NodePath("../../BackProps/PillBottle")
 hint_stage = 3
 prompt_text = "Nudge"
 
-[node name="ClosetDoor" type="TextureButton" parent="Hotspots" unique_id=169749607]
-offset_top = 49.0
-offset_right = 308.0
-offset_bottom = 1041.0
-script = ExtResource("9_1y1r8")
-door_id = &"parent_closet"
-leads_to = &"parent_closet"
-prompt_text = "Shift into closet"
-realm = 2
+[node name="GunSafe" type="TextureButton" parent="Hotspots" unique_id=1681047351]
+offset_left = 24.0
+offset_top = 768.0
+offset_right = 295.0
+offset_bottom = 1026.0
+script = ExtResource("9_jpf7g")
+prompt_text = "Look at safe"
+observe_dialogue = ExtResource("10_crvc2")
+observe_cue = "gun_safe"

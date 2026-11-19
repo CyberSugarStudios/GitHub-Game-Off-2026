@@ -34,7 +34,7 @@ func _ready() -> void:
 		func(value: float) -> void:
 			audio.volume_linear = value
 	)
-	audio.finished.connect(skip)
+	audio.finished.connect(_on_song_ended)
 	for button in [back_button, play_button, skip_button, close_button]:
 		button.focus_mode = Control.FOCUS_NONE
 	_show_track()
@@ -48,8 +48,6 @@ func open() -> void:
 		return
 	visible = true
 	GameState.set_controls_locked(true)
-	if not _started:
-		_play_index(_index)
 
 func close() -> void:
 	if not visible:
@@ -65,16 +63,30 @@ func toggle_play() -> void:
 	_after_change()
 
 func skip() -> void:
-	_play_index(_index + 1)
+	_select(_index + 1)
 
 func back() -> void:
 	if _started and audio.get_playback_position() > restart_after:
 		_play_index(_index)
 	else:
-		_play_index(_index - 1)
+		_select(_index - 1)
 
 func is_playing() -> bool:
 	return _started and not audio.stream_paused
+
+func _select(index: int) -> void:
+	if tracks.is_empty():
+		return
+	if is_playing():
+		_play_index(index)
+		return
+	_index = wrapi(index, 0, tracks.size())
+	audio.stop()
+	_started = false
+	_after_change()
+
+func _on_song_ended() -> void:
+	_play_index(_index + 1)
 
 func _play_index(index: int) -> void:
 	if tracks.is_empty():
@@ -97,10 +109,10 @@ func _show_track() -> void:
 	play_button.text = "Pause" if is_playing() else "Play"
 
 func _process(_delta: float) -> void:
-	if not visible or not _started or audio.stream == null:
+	if not visible or tracks.is_empty() or tracks[_index].stream == null:
 		return
-	var length := audio.stream.get_length()
-	var at := audio.get_playback_position()
+	var length := tracks[_index].stream.get_length()
+	var at := audio.get_playback_position() if _started else 0.0
 	progress.value = at / length if length > 0.0 else 0.0
 	time_label.text = "%s / %s" % [_clock(at), _clock(length)]
 

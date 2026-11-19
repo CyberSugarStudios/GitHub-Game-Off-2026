@@ -53,7 +53,6 @@
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
 [ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="42_dnhof"]
 [ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/WIP_child_ghost_background_2.mp3" id="43_1v6qk"]
-[ext_resource type="PackedScene" uid="uid://cl31wyaoetcvt" path="res://scenes/rooms/parent_closet.tscn" id="43_ty1g6"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="46_bu4jf"]
 
@@ -278,11 +277,6 @@ room_id = &"kitchen"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.462862, 0, -6.3867373)
 script = ExtResource("4_jkv2x")
 room_id = &"parent_bedroom"
-
-[node name="EntranceParentCloset" type="Marker3D" parent="Hall/RoomEntrances" unique_id=759426479]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.462862, 0, -6.3867373)
-script = ExtResource("4_jkv2x")
-room_id = &"parent_closet"
 
 [node name="EntranceLivingRoom" type="Marker3D" parent="Hall/RoomEntrances" unique_id=41340751]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.841735, 0, -5.0681243)
@@ -698,8 +692,7 @@ rooms = Dictionary[StringName, PackedScene]({
 &"garage": ExtResource("32_kmb1v"),
 &"kitchen": ExtResource("8_2f3dj"),
 &"living_room": ExtResource("9_yq6so"),
-&"parent_bedroom": ExtResource("31_j8jky"),
-&"parent_closet": ExtResource("43_ty1g6")
+&"parent_bedroom": ExtResource("31_j8jky")
 })
 
 [node name="RoomLayer" type="CanvasLayer" parent="RoomView" unique_id=533120226]

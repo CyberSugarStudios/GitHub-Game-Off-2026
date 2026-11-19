@@ -3,7 +3,7 @@ extends Node
 const DEFAULT_FADE := 1.5
 const PAUSE_FILTER_EFFECT := 0
 const DUCK_EFFECT := 1
-const DUCK_DB := -18.0
+const DUCK_DB := -80.0
 
 var _players: Array[AudioStreamPlayer] = []
 var _active := 0

@@ -336,7 +336,7 @@ func _p3_try_night() -> bool:
 	await wait_room(&"")
 	await wait(p3_wake_delay)
 	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
-	household.send(DAD, &"parent_closet", p3_safe_minutes)
+	household.send(DAD, &"parent_bedroom", p3_safe_minutes, [], &"opening_safe")
 	say_in_background("p3_david_wakes", PUZZLE_3)
 	await wait_parent(DAD, &"parent_closet")
 	await wait_room(&"parent_closet")
@@ -403,6 +403,8 @@ func _wait_an_hour() -> void:
 
 #region - BEAT HELPERS
 func say(cue: String, frozen: bool = false, dialogue: DialogueResource = INTRO) -> void:
+	if frozen:
+		GameState.exit_astral()
 	_finished.erase(cue)
 	Events.conversation_requested.emit(dialogue, cue, frozen)
 	while not _finished.has(cue):

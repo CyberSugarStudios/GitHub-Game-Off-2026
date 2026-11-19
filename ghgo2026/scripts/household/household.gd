@@ -3,9 +3,7 @@ extends Node
 
 @export var schedules: Array[ParentSchedule] = []
 @export var hall_parents: Array[HallParent] = []
-@export var inner_rooms: Dictionary[StringName, StringName] = {
-	&"parent_closet": &"parent_bedroom"
-}
+@export var inner_rooms: Dictionary[StringName, StringName] = {}
 
 var _detours: Dictionary[StringName, Dictionary] = {}
 
