@@ -13,7 +13,7 @@ extends Node2D
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var placeholder: CanvasItem = get_node_or_null("Placeholder")
-@onready var room_spots: Node2D = $"RoomSpots"
+@onready var room_spots: Node2D = $"../../RoomSpots"
 
 var _room_id: StringName
 var _target := Vector2.ZERO
