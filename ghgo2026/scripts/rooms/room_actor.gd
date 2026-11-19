@@ -108,6 +108,10 @@ func _animate(anim: StringName, flip: float) -> void:
 func _spot_node(spot_name: StringName) -> Node2D:
 	if spots == null or spot_name == &"":
 		return null
+	for child in spots.get_children():
+		var spot := child as RoomSpot
+		if spot and spot.get_spot_id() == spot_name:
+			return spot
 	return spots.get_node_or_null(NodePath(spot_name)) as Node2D
 
 func _spot(spot_name: StringName, fallback: Vector2) -> Vector2:

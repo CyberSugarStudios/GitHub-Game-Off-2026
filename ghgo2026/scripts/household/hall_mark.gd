@@ -10,6 +10,8 @@ extends Marker3D
 @export var look_target: Node3D
 
 func _ready() -> void:
+	if mark_id == &"":
+		mark_id = StringName(String(name).to_snake_case())
 	add_to_group("hall_marks")
 
 func get_look_direction(from: Vector3) -> Vector3:
