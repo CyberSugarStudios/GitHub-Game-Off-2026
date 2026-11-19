@@ -33,6 +33,7 @@ const EYE_HEIGHT := 1.4
 @export var presses_per_bar: int = 4
 @export var grab_drain_per_second: float = 0.25
 @export var escape_cooldown: float = 20.0
+@export var grab_look_height: float = 1.3
 
 @export_group("Guarding")
 @export var guard_spot: Node3D
@@ -173,6 +174,7 @@ func _start_grab() -> void:
 	_presses = 0
 	GameState.set_controls_locked(true)
 	GameState.regen_paused = true
+	player.face_toward(global_position + Vector3.UP * grab_look_height, 0.25)
 	_play(grab_sound)
 	Events.story_prompt_changed.emit("Struggle!   [SPACE]")
 	Events.struggle_changed.emit(0.001)

@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_fa2v7"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_n0mbq"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_0hvy4"]
+[ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_41fqi"]
+[ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="7_n0mbq"]
+[ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="8_fqoov"]
 
 [node name="EmilyBedroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_kdc1v")
@@ -60,3 +63,549 @@ script = ExtResource("6_0hvy4")
 prompt_text = "MP3 Player"
 story_id = &"listen_mp3"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="TurnOnStringLights" type="TextureButton" parent="Hotspots" unique_id=624255428]
+offset_left = 1470.0
+offset_top = 539.0
+offset_right = 1500.0
+offset_bottom = 584.0
+script = ExtResource("6_41fqi")
+target_id = &"Turn on lights"
+accepts = Array[StringName]([&"shock"])
+caught_anim = 0
+prompt_text = "MP3 Player"
+realm = 2
+energy_cost = 0.25
+required_bars = 3
+story_id = &"turn_on_string_lights"
+requires_flag = &"gun_fight"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="RoomLights" type="Node2D" parent="." unique_id=1205551720]
+
+[node name="StringLightPoints" type="Node2D" parent="RoomLights" unique_id=494393948]
+
+[node name="StringLightPoint" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=259432823]
+position = Vector2(1476, 510)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint2" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=424105499]
+position = Vector2(1477, 489)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint3" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=193650840]
+position = Vector2(1480, 461)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint4" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1060780296]
+position = Vector2(1496, 429)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint5" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=613889706]
+position = Vector2(1478, 415)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint6" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=383206757]
+position = Vector2(1477, 373)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint7" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=562558125]
+position = Vector2(1476, 333)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint8" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=497041073]
+position = Vector2(1482, 298)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint9" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1925376883]
+position = Vector2(1482, 272)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint10" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1150968213]
+position = Vector2(1483, 247)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint11" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1609760178]
+position = Vector2(1485, 221)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint12" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1403881222]
+position = Vector2(1477, 188)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint13" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1094562595]
+position = Vector2(1498, 172)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint14" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=73514723]
+position = Vector2(1479, 156)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint15" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=39851075]
+position = Vector2(1478, 121)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint16" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1900327586]
+position = Vector2(1475, 101)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint17" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1877963788]
+position = Vector2(1494, 92)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint18" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=565881769]
+position = Vector2(1473, 76)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint19" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1144122596]
+position = Vector2(1511, 93)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint20" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=632975008]
+position = Vector2(1534, 91)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint21" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1291267548]
+position = Vector2(1572, 96)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint22" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=437509308]
+position = Vector2(1599, 93)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint23" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=234135930]
+position = Vector2(1649, 91)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint24" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1692940939]
+position = Vector2(1689, 90)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint25" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1039857866]
+position = Vector2(1711, 94)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint26" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=475196016]
+position = Vector2(1744, 91)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint27" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=525263040]
+position = Vector2(1778, 87)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint28" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=2115172694]
+position = Vector2(1840, 71)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint29" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=2095315887]
+position = Vector2(1885, 77)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint30" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=345663838]
+position = Vector2(1902, 83)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint31" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1517704313]
+position = Vector2(1923, 85)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint32" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1024863369]
+position = Vector2(1959, 85)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint33" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=676208303]
+position = Vector2(1991, 89)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint34" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=267913977]
+position = Vector2(2039, 92)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint35" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=786604488]
+position = Vector2(2069, 90)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint36" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1695216386]
+position = Vector2(2112, 84)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint37" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1921146091]
+position = Vector2(2148, 80)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint38" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=230750037]
+position = Vector2(2174, 78)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint39" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1965697793]
+position = Vector2(2201, 68)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint40" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1852203908]
+position = Vector2(2227, 89)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint41" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=809421606]
+position = Vector2(2268, 95)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint42" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1269442419]
+position = Vector2(2311, 97)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint43" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=9821260]
+position = Vector2(2345, 99)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint44" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=722289089]
+position = Vector2(2389, 92)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint45" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=138166540]
+position = Vector2(2424, 93)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint46" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1743647820]
+position = Vector2(2456, 89)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint47" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1505545052]
+position = Vector2(2494, 87)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint48" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=586194487]
+position = Vector2(2528, 76)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint49" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=796523432]
+position = Vector2(2583, 88)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint50" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1727715127]
+position = Vector2(2613, 94)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint51" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=89145922]
+position = Vector2(2642, 101)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint52" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1151571483]
+position = Vector2(2676, 103)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint53" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1058380903]
+position = Vector2(2719, 109)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint54" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1540596158]
+position = Vector2(2766, 104)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint55" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=504575192]
+position = Vector2(2790, 106)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint56" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1442109064]
+position = Vector2(2817, 106)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint57" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1447291505]
+position = Vector2(2839, 86)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint58" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1432244996]
+position = Vector2(2867, 101)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint59" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=257504416]
+position = Vector2(2916, 77)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint60" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1249972018]
+position = Vector2(2969, 97)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint61" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1294056124]
+position = Vector2(3021, 109)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint62" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1417744938]
+position = Vector2(3100, 120)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint63" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1397848785]
+position = Vector2(3136, 118)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint64" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=138606411]
+position = Vector2(3151, 110)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint65" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=370446723]
+position = Vector2(3209, 96)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint66" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=496394569]
+position = Vector2(3220, 139)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint67" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1140465760]
+position = Vector2(3197, 183)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint68" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1517227291]
+position = Vector2(3199, 218)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint69" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1953465190]
+position = Vector2(3201, 283)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint70" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1848381479]
+position = Vector2(3202, 344)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint71" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1717691778]
+position = Vector2(3196, 380)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint72" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=177919374]
+position = Vector2(3199, 399)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint73" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=2041255129]
+position = Vector2(3201, 437)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightPoint74" type="PointLight2D" parent="RoomLights/StringLightPoints" unique_id=1890317921]
+position = Vector2(3206, 484)
+texture = ExtResource("7_n0mbq")
+texture_scale = 0.03
+script = ExtResource("8_fqoov")
+needs_activity = "turn_on_string_light"
+
+[node name="StringLightGlobalIllumination" type="PointLight2D" parent="RoomLights" unique_id=1922637412]
+position = Vector2(2048, 576)
+scale = Vector2(2, 0.5625)
+texture = ExtResource("7_n0mbq")
+texture_scale = 2.0
+script = ExtResource("8_fqoov")

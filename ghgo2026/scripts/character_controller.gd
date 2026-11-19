@@ -89,6 +89,15 @@ func _look(relative: Vector2) -> void:
 	var limit := deg_to_rad(max_pitch_degrees)
 	camera.rotation.x = clampf(camera.rotation.x, -limit, limit)
 
+func face_toward(point: Vector3, seconds: float) -> void:
+	var to_point := point - camera.global_position
+	var yaw := atan2(-to_point.x, -to_point.z)
+	var pitch := atan2(to_point.y, Vector2(to_point.x, to_point.z).length())
+	var limit := deg_to_rad(max_pitch_degrees)
+	var tween := create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "rotation:y", rotation.y + wrapf(yaw - rotation.y, -PI, PI), seconds)
+	tween.tween_property(camera, "rotation:x", clampf(pitch, -limit, limit), seconds)
+
 func place_at(spot: Transform3D) -> void:
 	global_position = spot.origin
 	var forward := -spot.basis.z

@@ -85,6 +85,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p3_night_starts: String = "23:00"
 @export var p3_night_ends: String = "06:00"
 @export var p3_safe_minutes: int = 240
+@export var p3_wake_delay: float = 1.5
 @export var p3_new_day_hour: int = 7
 @export var wait_fade_time: float = 0.4
 #endregion
@@ -329,6 +330,8 @@ func _p3_try_night() -> bool:
 		say_in_background("p3_david_passed_out", PUZZLE_3)
 		GameState.add_near_miss()
 		return false
+	await wait_room(&"")
+	await wait(p3_wake_delay)
 	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
 	household.send(DAD, &"parent_closet", p3_safe_minutes)
 	say_in_background("p3_david_wakes", PUZZLE_3)

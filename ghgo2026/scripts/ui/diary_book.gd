@@ -52,7 +52,7 @@ func close() -> void:
 		Events.story_event.emit(finished_event)
 
 func turn(step: int) -> void:
-	var next := clampf(_spread + step, 0, _last_spread())
+	var next := clampi(_spread + step, 0, _last_spread())
 	if next == _spread or _turning:
 		return
 	_turning = true
@@ -79,7 +79,7 @@ func _show_spread() -> void:
 	right_page.text = _page(_spread * 2 + 1)
 	page_number.text = "%d / %d" %[_spread + 1, _last_spread() + 1]
 	prev_button.disabled = _spread == 0
-	next_button.disabled = _last_spread()
+	next_button.disabled = _spread == _last_spread()
 	if _spread == _last_spread():
 		_reached_end = true
 
