@@ -87,6 +87,9 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p3_safe_minutes: int = 240
 @export var p3_wake_delay: float = 1.5
 @export var p3_new_day_hour: int = 7
+
+@export var p4_lights_settle: float = 2.0
+
 @export var wait_fade_time: float = 0.4
 #endregion
 var _finished: Dictionary[String, bool] = {}
