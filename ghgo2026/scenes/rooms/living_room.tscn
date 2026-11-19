@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="12_8llds"]
 [ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="12_a5o1a"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="14_eokjc"]
+[ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="15_mnsc7"]
 
 [sub_resource type="Gradient" id="Gradient_g005p"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
@@ -253,17 +254,25 @@ position = Vector2(4186, 1176)
 [node name="LampLeft" type="PointLight2D" parent="RoomLights" unique_id=1058687670]
 position = Vector2(1538, 429)
 color = Color(1, 0.8509804, 0.65882355, 1)
-energy = 1.25
 texture = ExtResource("14_eokjc")
+script = ExtResource("15_mnsc7")
+lit_hours = Vector2(17, 23.5)
 
 [node name="LampRight" type="PointLight2D" parent="RoomLights" unique_id=2021425120]
 position = Vector2(2377, 277)
 color = Color(1, 0.8509804, 0.65882355, 1)
-energy = 1.25
 texture = ExtResource("14_eokjc")
+script = ExtResource("15_mnsc7")
+lit_hours = Vector2(17, 23.5)
 
 [node name="TVGlow" type="PointLight2D" parent="RoomLights" unique_id=827338684]
 position = Vector2(806, 550)
 color = Color(0.51584375, 0.85105014, 0.6591482, 1)
 energy = 2.0
 texture = ExtResource("14_eokjc")
+script = ExtResource("15_mnsc7")
+on_energy = 1.8
+day_strength = 0.9
+needs_activity = "watching_tv"
+tv_flicker = true
+power_target = &"tv"
