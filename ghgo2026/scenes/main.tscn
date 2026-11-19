@@ -682,6 +682,7 @@ visible = false
 [node name="DiaryBook" parent="." unique_id=1162472160 instance=ExtResource("39_bjg73")]
 
 [node name="MP3Player" parent="." unique_id=548456274 instance=ExtResource("41_0loja")]
+layer = 10
 tracks = Array[ExtResource("42_dnhof")]([SubResource("Resource_ids8r"), SubResource("Resource_dnhof"), SubResource("Resource_1v6qk")])
 
 [node name="RoomView" type="Node" parent="." unique_id=1658057070]
