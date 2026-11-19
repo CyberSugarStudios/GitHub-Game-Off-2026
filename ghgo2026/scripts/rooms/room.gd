@@ -20,6 +20,7 @@ const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 @onready var background: Sprite2D = $Background
 
 var _night_tint: CanvasModulate
+var light_fill := Color.TRANSPARENT
 
 func _ready() -> void:
 	_night_tint = CanvasModulate.new()
@@ -27,7 +28,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if keep_dark:
-		_night_tint.color = dark_tint
+		var tint := dark_tint + light_fill
+		tint.a = 1.0
+		_night_tint.color = tint
 		return
 	var tint := DAY_NIGHT.room_tint.sample(GameClock.get_day_fraction())
 	_night_tint.color = tint.lerp(DAY_NIGHT.room_tint.sample(0.0), DayNight.astral_amount)

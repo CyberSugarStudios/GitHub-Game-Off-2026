@@ -27,6 +27,7 @@ const LIGHT_LIMIT := 16
 
 @export_group("Room Glow")
 @export var glow_strength: float = 0.1
+@export var room_fill: float = 0.035
 
 @onready var glow: PointLight2D = $Glow
 
@@ -44,8 +45,13 @@ var _ripple_clock := 0.0
 var _ripple_length := 0.0
 var _wait := 0.0
 var _powering_on := false
+var _room: Room
 
 func _ready() -> void:
+	var node := get_parent()
+	while node and not node is Room:
+		node = node.get_parent()
+	_room = node as Room
 	for child in get_children():
 		var bulb := child as PointLight2D
 		if bulb and bulb != glow:
@@ -137,4 +143,7 @@ func _apply(delta: float) -> void:
 		glow.color = Color(color_sum.r / energy_sum, color_sum.g / energy_sum, color_sum.b / energy_sum)
 	glow.energy = glow_strength * energy_sum
 	glow.visible = glow.energy > 0.001
+	
+	if _room:
+		_room.light_fill = glow.color * (room_fill * energy_sum)
 #endregion

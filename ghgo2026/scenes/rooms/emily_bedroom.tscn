@@ -12,7 +12,6 @@
 [node name="EmilyBedroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_kdc1v")
 room_id = &"emily_bedroom"
-keep_dark = true
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
