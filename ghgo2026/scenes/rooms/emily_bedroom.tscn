@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_41fqi"]
 [ext_resource type="Script" uid="uid://6l1etsyla5f1" path="res://scripts/rooms/string_lights.gd" id="7_fqoov"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="7_n0mbq"]
-[ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="8_fqoov"]
 
 [node name="EmilyBedroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_kdc1v")
@@ -75,6 +74,7 @@ script = ExtResource("6_41fqi")
 target_id = &"string_lights"
 accepts = Array[StringName]([&"static"])
 success_event = &"string_lights_on"
+done_flag = &"string_lights_on"
 success_anim = 0
 caught_anim = 0
 fit_to_art = false
@@ -464,4 +464,3 @@ position = Vector2(2048, 576)
 scale = Vector2(2, 0.5625)
 texture = ExtResource("7_n0mbq")
 texture_scale = 2.0
-script = ExtResource("8_fqoov")
