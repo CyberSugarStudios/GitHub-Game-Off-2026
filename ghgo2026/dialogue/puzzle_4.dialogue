@@ -1,11 +1,16 @@
 ~ p4_too_dark
 Emily: It's so dark in here. I can't see anything. [#thought]
 Emily: My string lights... if I could just get them on. [#thought]
+Emily: Or I could come back when it's light out. [#thought]
+=> END
+
+~ p4_still_dark
+Emily: Still too dark to look around. [#thought]
 => END
 
 ~ p4_room_reveal
-Emily: Why is there... tape? In my room? [#thought]
-Emily: Those little signs. Like on TV. [#thought]
+Emily: Why is there... tape in my room? [#thought]
+Emily: What a mess under the desk, is that... blood? [#thought]
 Emily: My diary's still on the desk. [#thought]
 => END
 

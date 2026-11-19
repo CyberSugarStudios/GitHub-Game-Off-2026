@@ -32,8 +32,11 @@ func _process(_delta: float) -> void:
 		tint.a = 1.0
 		_night_tint.color = tint
 		return
-	var tint := DAY_NIGHT.room_tint.sample(GameClock.get_day_fraction())
-	_night_tint.color = tint.lerp(DAY_NIGHT.room_tint.sample(0.0), DayNight.astral_amount)
+	var day := GameClock.get_day_fraction()
+	var tint := DAY_NIGHT.room_tint.sample(day).lerp(DAY_NIGHT.room_tint.sample(0.0), DayNight.astral_amount)
+	tint += light_fill * (1.0 - DAY_NIGHT.sun_energy.sample(day))
+	tint.a = 1.0
+	_night_tint.color = tint
 
 func get_room_size() -> Vector2:
 	return background.get_rect().size * background.scale

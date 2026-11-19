@@ -15,6 +15,7 @@ const PUZZLE_1 := preload("res://dialogue/puzzle_1.dialogue")
 const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
 const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
 const PUZZLE_4 := preload("res://dialogue/puzzle_4.dialogue")
+const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 const INTRO_DONE := &"intro_done"
 const INTRO_FLAGS: Array[StringName] = [
 	&"garage_handle_tried",
@@ -88,7 +89,9 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p3_wake_delay: float = 1.5
 @export var p3_new_day_hour: int = 7
 
+@export_group("Puzzle 4")
 @export var p4_lights_settle: float = 2.0
+@export_range(0.0, 1.0) var p4_light_enough: float = 0.3
 
 @export var wait_fade_time: float = 0.4
 #endregion
@@ -360,18 +363,40 @@ static func _crossed(from: int, to: int, at: int) -> bool:
 		return at > from and at <= to
 	return at > from or at <= to
 #endregion
+#region - PUZZLE 4
 func _run_puzzle_4() -> void:
-	await wait_room(&"emily_bedroom")
-	if not GameState.has_flag(&"string_lights_on"):
-		await say("p4_too_dark", true, PUZZLE_4)
-		await wait_event(&"string_lights_on")
-		await wait(p4_lights_settle)
+	var told := false
+	while true:
+		await wait_room(&"emily_bedroom")
+		if _p4_can_see():
+			break
+		if told:
+			say_in_background("p4_still_dark", PUZZLE_4)
+		else:
+			await say("p4_too_dark", true, PUZZLE_4)
+			told = true
+		if await _p4_wait_for_light():
+			await wait(p4_lights_settle)
+			break
 	await say("p4_room_reveal", true, PUZZLE_4)
+	await wait_room(&"emily_bedroom")
 	await wait_event(&"diary_finished")
 	GameState.set_story_stage(5)
 	GameState.restore_memory()
 	await say("p4_after", false, PUZZLE_4)
 
+func _p4_can_see() -> bool:
+	if GameState.has_flag(&"string_lights_on"):
+		return true
+	return DAY_NIGHT.sun_energy.sample(GameClock.get_day_fraction()) >= p4_light_enough
+
+func _p4_wait_for_light() -> bool:
+	while GameState.current_room == &"emily_bedroom":
+		if _p4_can_see():
+			return true
+		await get_tree().process_frame
+	return false
+#endregion
 func _on_any_story_event(id: StringName) -> void:
 	match id:
 		&"wait_hour":
