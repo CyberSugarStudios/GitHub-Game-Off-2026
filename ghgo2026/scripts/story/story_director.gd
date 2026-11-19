@@ -338,8 +338,8 @@ func _p3_try_night() -> bool:
 	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
 	household.send(DAD, &"parent_bedroom", p3_safe_minutes, [], &"opening_safe")
 	say_in_background("p3_david_wakes", PUZZLE_3)
-	await wait_parent(DAD, &"parent_closet")
-	await wait_room(&"parent_closet")
+	await wait_parent(DAD, &"parent_bedroom")
+	await wait_room(&"parent_bedroom")
 	if _p3_medicated:
 		await say("p3_safe_alone", true, PUZZLE_3)
 		GameState.add_near_miss()
