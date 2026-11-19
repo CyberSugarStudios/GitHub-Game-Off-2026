@@ -462,5 +462,6 @@ texture_scale = 0.03
 [node name="Glow" type="PointLight2D" parent="RoomLights/StringLights" unique_id=1922637412]
 position = Vector2(2048, 576)
 scale = Vector2(2, 0.5625)
+energy = 0.0
 texture = ExtResource("7_n0mbq")
 texture_scale = 2.0
