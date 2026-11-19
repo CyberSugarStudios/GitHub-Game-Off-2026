@@ -49,7 +49,10 @@
 [ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
 [ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="37_5poiv"]
 [ext_resource type="PackedScene" uid="uid://bpyjxvjn83tjr" path="res://scenes/ui/diary_book.tscn" id="39_bjg73"]
+[ext_resource type="PackedScene" uid="uid://cvbp0nfglxkyt" path="res://scenes/ui/mp3_player.tscn" id="41_0loja"]
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
+[ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="42_dnhof"]
+[ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/WIP_child_ghost_background_2.mp3" id="43_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://cl31wyaoetcvt" path="res://scenes/rooms/parent_closet.tscn" id="43_ty1g6"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="46_bu4jf"]
@@ -141,6 +144,27 @@ shader_parameter/reach = 1.0
 shader_parameter/wave_mix = 1.0
 shader_parameter/aberration_mix = 1.0
 shader_parameter/grain_mix = 1.0
+
+[sub_resource type="Resource" id="Resource_ids8r"]
+script = ExtResource("42_dnhof")
+title = "Test1"
+artist = "Testa1"
+stream = ExtResource("43_1v6qk")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_dnhof"]
+script = ExtResource("42_dnhof")
+title = "Test2"
+artist = "Testa2"
+stream = ExtResource("43_1v6qk")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_1v6qk"]
+script = ExtResource("42_dnhof")
+title = "Test3"
+artist = "Testa3"
+stream = ExtResource("43_1v6qk")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [node name="Main" type="Node3D" unique_id=666068387]
 script = ExtResource("1_sugp2")
@@ -662,6 +686,9 @@ horizontal_alignment = 1
 visible = false
 
 [node name="DiaryBook" parent="." unique_id=1162472160 instance=ExtResource("39_bjg73")]
+
+[node name="MP3Player" parent="." unique_id=548456274 instance=ExtResource("41_0loja")]
+tracks = Array[ExtResource("42_dnhof")]([SubResource("Resource_ids8r"), SubResource("Resource_dnhof"), SubResource("Resource_1v6qk")])
 
 [node name="RoomView" type="Node" parent="." unique_id=1658057070]
 script = ExtResource("10_choun")
