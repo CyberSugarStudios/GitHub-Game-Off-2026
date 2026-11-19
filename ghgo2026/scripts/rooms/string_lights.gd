@@ -2,6 +2,7 @@ class_name StringLights
 extends Node2D
 
 const LIGHT_LIMIT := 16
+const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 
 @export var on_flag: StringName = &"string_lights_on"
 @export var bulb_colors := PackedColorArray([
@@ -28,6 +29,7 @@ const LIGHT_LIMIT := 16
 @export_group("Room Glow")
 @export var glow_strength: float = 0.1
 @export var room_fill: float = 0.035
+@export_range(0.0, 1.0) var day_strength: float = 0.15
 
 @onready var glow: PointLight2D = $Glow
 
@@ -140,10 +142,16 @@ func _apply(delta: float) -> void:
 		energy_sum += bulb.energy
 
 	if energy_sum > 0.001:
-		glow.color = Color(color_sum.r / energy_sum, color_sum.g / energy_sum, color_sum.b / energy_sum)
-	glow.energy = glow_strength * energy_sum
+		glow.color = Color(
+			color_sum.r / energy_sum,
+			color_sum.g / energy_sum,
+			color_sum.b / energy_sum
+		)
+	var daylight := DAY_NIGHT.sun_energy.sample(GameClock.get_day_fraction())
+	var wash := energy_sum * lerpf(1.0, day_strength, daylight)
+	glow.energy = glow_strength * wash
 	glow.visible = glow.energy > 0.001
 	
 	if _room:
-		_room.light_fill = glow.color * (room_fill * energy_sum)
+		_room.light_fill = glow.color * (room_fill * wash)
 #endregion
