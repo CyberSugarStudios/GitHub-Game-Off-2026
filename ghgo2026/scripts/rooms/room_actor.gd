@@ -13,7 +13,6 @@ extends Node2D
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var placeholder: CanvasItem = get_node_or_null("Placeholder")
-@onready var room_spots: Node2D = $"../../RoomSpots"
 
 var _room_id: StringName
 var _target := Vector2.ZERO
@@ -27,6 +26,8 @@ func _ready() -> void:
 		node = node.get_parent()
 	if node:
 		_room_id = (node as Room).room_id
+	if spots == null and node:
+		spots = node.get_node_or_null("RoomSpots") as Node2D
 	if parent_id == &"leanne":
 		frames = _leanne_frames
 	else:
@@ -44,7 +45,6 @@ func _ready() -> void:
 		)
 	GameState.parent_location_changed.connect(_on_parent_changed)
 	GameState.parent_activity_changed.connect(_on_parent_changed)
-	spots = room_spots
 	_refresh(false)
 
 func _on_parent_changed(id: StringName, _value: StringName) -> void:
