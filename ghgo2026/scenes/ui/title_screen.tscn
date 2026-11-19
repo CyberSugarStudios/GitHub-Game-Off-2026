@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cui1imxye4xc8" path="res://scripts/ui/title_screen.gd" id="1_eb34j"]
 [ext_resource type="Texture2D" uid="uid://cs78elmrh0fk8" path="res://assets/textures/rooms/emily_room.webp" id="2_aqpy5"]
+[ext_resource type="PackedScene" uid="uid://dq3toj3revkli" path="res://scenes/ui/credits_roll.tscn" id="3_w8uqo"]
 
 [node name="TitleScreen" type="Control" unique_id=677689258]
 layout_mode = 3
@@ -166,24 +167,8 @@ grow_horizontal = 0
 theme_type_variation = &"CloseButton"
 text = "x"
 
-[node name="CreditsText" type="Label" parent="CreditsMenu" unique_id=377700736]
-anchors_preset = -1
-anchor_left = 0.011284722
-anchor_top = 0.15432099
-anchor_right = 0.9869792
-anchor_bottom = 0.97993827
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Name - Title - Link
-
-Dialogue Manager by Nathan Hoad - MIT License
-This game uses the Allura and Josefin Sans fonts.
-Copyright 2010 The Allura Project Authors (https://github.com/googlefonts/allura)
-Copyright 2010 The Josefin Sans Project Authors (https://github.com/ThomasJockin/JosefinSansFont-master), with Reserved Font Name \"Josefin Sans\".
-These Font Softwares are licensed under the SIL Open Font License, Version 1.1.
-License URL: https://openfontlicense.org"
-metadata/_edit_use_anchors_ = true
+[node name="CreditsRoll" parent="CreditsMenu" unique_id=1954314595 instance=ExtResource("3_w8uqo")]
+ending = false
 
 [node name="ConfirmClosePopUp" type="CanvasLayer" parent="." unique_id=1987680131]
 visible = false

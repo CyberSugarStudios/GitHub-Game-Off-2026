@@ -8,6 +8,7 @@ const GAME_SCENE_PATH := "res://scenes/main.tscn"
 @onready var title_and_buttons = $GameTitleAndButtons
 @onready var options_menu = $OptionsMenu
 @onready var credits_menu = $CreditsMenu
+@onready var credits_roll: CreditsRoll = $CreditsMenu/CreditsRoll
 @onready var confirm_close_menu = $ConfirmClosePopUp
 
 @onready var continue_game_button = $GameTitleAndButtons/TitleButtons/ContinueGameButton
@@ -71,6 +72,7 @@ func on_close_options_button_pressed() -> void:
 func on_credits_menu_button_pressed() -> void:
 	credits_menu.visible = true
 	title_and_buttons.visible = false
+	credits_roll.start()
 
 func on_close_credits_button_pressed() -> void:
 	credits_menu.visible = false

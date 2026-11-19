@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dq3toj3revkli"]
+
+[ext_resource type="Script" uid="uid://qcv2lxcjf3hg" path="res://scripts/ui/credits_roll.gd" id="1_c18oi"]
+
+[node name="CreditsRoll" type="Control" unique_id=1954314595]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c18oi")
+scroll_speed = 35.0
+ending = true
+loop = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=1350559219]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CreditsText" type="RichTextLabel" parent="." unique_id=2000140420]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][font=res://assets/fonts/Allura-Regular.ttf][font_size=240]Interim[/font_size][/font]
+Made for GitHub Game Off 2026
+
+
+[font_size=40]Team[/font_size]
+
+[Moniker] — [Title]
+[Moniker] — [Title]
+[Moniker] — [Title]
+[Moniker] — [Title]
+[Moniker] — [Title]
+
+
+[font_size=40]Built With[/font_size]
+
+Godot Engine — godotengine.org/license
+Dialogue Manager by Nathan Hoad (MIT License)
+Allura, Caveat, Josefin Sans, and ReenieBeanie — SIL Open Font License
+
+
+
+
+[font_size=28]If this story touched something in you[/font_size]
+
+Emily's story is fiction, but the feelings in it are real for a lot of people.
+If you are thinking about suicide, or you are worried about someone, please reach out.
+You are not a burden, and you are not alone.
+
+United States — call or text 988, or text HOME or HOLA to 741741
+Canada — call or text 988
+UK & Ireland — call Samaritans, 116-123
+Australia — call Lifeline at 13-11-14, text 0477-13-11-14, or visit lifeline.org.au
+Anywhere else — findahelpline.com
+
+If you are in immediate danger, call your local emergency number.
+If there is a gun in your home, storing it locked, unloaded, and apart from ammunition saves lives.
+
+
+Thank you for playing.[/center]"
+fit_content = true
+horizontal_alignment = 1

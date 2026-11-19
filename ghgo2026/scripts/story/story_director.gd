@@ -359,6 +359,10 @@ static func _crossed(from: int, to: int, at: int) -> bool:
 #endregion
 func _run_puzzle_4() -> void:
 	await wait_room(&"emily_bedroom")
+	if not GameState.has_flag(&"string_lights_on"):
+		await say("p4_too_dark", true, PUZZLE_4)
+		await wait_event(&"string_lights_on")
+		await wait(p4_lights_settle)
 	await say("p4_room_reveal", true, PUZZLE_4)
 	await wait_event(&"diary_finished")
 	GameState.set_story_stage(5)

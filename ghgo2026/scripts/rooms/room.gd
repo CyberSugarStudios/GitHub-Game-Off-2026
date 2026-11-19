@@ -13,6 +13,10 @@ const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 @export_range(0.0, 1.0) var start_pan: float = 0.5
 @export var exits_to: StringName
 
+@export_group("Lighting")
+@export var keep_dark: bool = false
+@export var dark_tint := Color(0.04, 0.04, 0.06)
+
 @onready var background: Sprite2D = $Background
 
 var _night_tint: CanvasModulate
@@ -22,6 +26,9 @@ func _ready() -> void:
 	add_child(_night_tint)
 
 func _process(_delta: float) -> void:
+	if keep_dark:
+		_night_tint.color = dark_tint
+		return
 	var tint := DAY_NIGHT.room_tint.sample(GameClock.get_day_fraction())
 	_night_tint.color = tint.lerp(DAY_NIGHT.room_tint.sample(0.0), DayNight.astral_amount)
 

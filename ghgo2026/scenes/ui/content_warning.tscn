@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bl6ydrcg5uvk1"]
+
+[ext_resource type="Script" uid="uid://dg3pxrdbyk4i8" path="res://scripts/ui/content_warning.gd" id="1_a3yub"]
+[ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="2_tg2ho"]
+
+[node name="ContentWarning" type="Control" unique_id=2072267025]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a3yub")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1582167090]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=330249201]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="Heading" type="Label" parent="VBoxContainer" unique_id=55785756]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tg2ho")
+theme_override_font_sizes/font_size = 56
+text = "Content Warning"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Body" type="Label" parent="VBoxContainer" unique_id=2041091957]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tg2ho")
+theme_override_font_sizes/font_size = 28
+text = "Interim is a story about the loss of a teenager. It includes suicide, a firearm, grief, family conflict, alcohol and prescription drug misuse, drug use, and bullying.
+
+Some moments may be upsetting. Please play at your own pace, and step away whenever you need to.
+
+If you are struggling or thinking about suicide, you are not alone. In the US, call or text 988. Anywhere else, visit findahelpline.com."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=387117786]
+unique_name_in_owner = true
+layout_mode = 2
+text = "I understand, continue"
