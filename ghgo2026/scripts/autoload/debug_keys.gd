@@ -9,7 +9,7 @@ const KEYS: Array[String] = [
 	"F5   Creature level +1",
 	"F6   Hint level +1",
 	"F7   Next story stage",
-	"F8   Jump to the finale",
+	"End  Jump to the finale",
 	"`    Toggle this list",
 ]
 

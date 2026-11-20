@@ -452,7 +452,7 @@ func _play_ending() -> void:
 	GameState.set_controls_locked(false)
 	get_tree().change_scene_to_file(CREDITS_SCENE)
 
-func _depug_jump_to_finale() -> void:
+func _debug_jump_to_finale() -> void:
 	while GameState.max_bars < 5:
 		GameState.restore_memory()
 	GameState.set_story_stage(5)
@@ -561,9 +561,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
-	and event.keycode == KEY_F8 and GameState.has_flag(INTRO_DONE):
+	and event.keycode == KEY_END and GameState.has_flag(INTRO_DONE):
 		get_viewport().set_input_as_handled()
-		_depug_jump_to_finale()
+		_debug_jump_to_finale()
 	
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
 	and event.keycode == KEY_F7 and GameState.has_flag(INTRO_DONE):
