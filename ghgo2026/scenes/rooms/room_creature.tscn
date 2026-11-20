@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dmf8if323xntg"]
+
+[ext_resource type="Script" uid="uid://cocgtvycevni1" path="res://scripts/rooms/room_creature.gd" id="1_tjiwa"]
+[ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/creature_frames.tres" id="2_a2ts7"]
+[ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="2_db64d"]
+
+[node name="RoomCreature" type="Node2D" unique_id=1712821977]
+script = ExtResource("1_tjiwa")
+frames = ExtResource("2_a2ts7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1828615581]
+
+[node name="Placeholder" type="ColorRect" parent="." unique_id=1708442570]
+offset_left = -250.0
+offset_top = -1500.0
+offset_right = 250.0
+mouse_filter = 2
+
+[node name="ClickArea" type="TextureButton" parent="." unique_id=716037555]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_db64d")
+prompt_text = "Face it"
+story_id = &"creature_faced"

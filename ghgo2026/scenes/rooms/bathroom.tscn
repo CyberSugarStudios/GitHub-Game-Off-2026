@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_muy8a"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_nc0wo"]
-[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_won8x"]
+[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_won8x"]
 
 [sub_resource type="Gradient" id="Gradient_8pl6i"]
 

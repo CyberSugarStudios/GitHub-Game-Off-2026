@@ -1,0 +1,1165 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cv88o0lj250y1"]
+
+[ext_resource type="Texture2D" uid="uid://ciow21xkwf412" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_00.png" id="1_iumt2"]
+[ext_resource type="Texture2D" uid="uid://cxa3fpohen6ju" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_00.png" id="1_jgtqn"]
+[ext_resource type="Texture2D" uid="uid://cu13baj46krxn" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_01.png" id="2_4alk0"]
+[ext_resource type="Texture2D" uid="uid://div0m8ladtsh8" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_01.png" id="2_it00a"]
+[ext_resource type="Texture2D" uid="uid://b4kp3dr8o5be" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_02.png" id="3_6v7x4"]
+[ext_resource type="Texture2D" uid="uid://blpwown4ifnvr" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_02.png" id="3_ji8yr"]
+[ext_resource type="Texture2D" uid="uid://b6042ug2bjqnr" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_03.png" id="4_l3kwi"]
+[ext_resource type="Texture2D" uid="uid://dd0tyl332s3e5" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_03.png" id="4_sj8ka"]
+[ext_resource type="Texture2D" uid="uid://bsqfpiadsk5hb" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_04.png" id="5_oswjs"]
+[ext_resource type="Texture2D" uid="uid://ct0h13a74ss2j" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_04.png" id="5_wlgo7"]
+[ext_resource type="Texture2D" uid="uid://c168ucjlqyolo" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_05.png" id="6_7lyw7"]
+[ext_resource type="Texture2D" uid="uid://ckenbktb3kjrw" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_05.png" id="6_rf547"]
+[ext_resource type="Texture2D" uid="uid://bcyb2r052x18r" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_06.png" id="7_v0u3e"]
+[ext_resource type="Texture2D" uid="uid://5cplu1dtk60f" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_06.png" id="7_xam2r"]
+[ext_resource type="Texture2D" uid="uid://blgotqmu868k7" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_07.png" id="8_nro1j"]
+[ext_resource type="Texture2D" uid="uid://cldh6lmkaauc6" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_07.png" id="8_s2dw6"]
+[ext_resource type="Texture2D" uid="uid://dlw5et1rn6xcb" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_08.png" id="9_aer7o"]
+[ext_resource type="Texture2D" uid="uid://vio8mtfyphwy" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_08.png" id="9_pmatv"]
+[ext_resource type="Texture2D" uid="uid://bq3l6biaioobn" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_09.png" id="10_1rc2w"]
+[ext_resource type="Texture2D" uid="uid://jcxlmdgba326" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_09.png" id="10_tgusf"]
+[ext_resource type="Texture2D" uid="uid://b5cobbui6sv73" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_10.png" id="11_sgemt"]
+[ext_resource type="Texture2D" uid="uid://bfh46q0bvd4aj" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_10.png" id="11_w2eel"]
+[ext_resource type="Texture2D" uid="uid://cwkoyademcej3" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_11.png" id="12_11mfn"]
+[ext_resource type="Texture2D" uid="uid://fmoscs011gak" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_11.png" id="12_g7rb8"]
+[ext_resource type="Texture2D" uid="uid://de31m6wqewl2v" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_12.png" id="13_5c78l"]
+[ext_resource type="Texture2D" uid="uid://bbyv05l44mbhw" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_12.png" id="13_wqldr"]
+[ext_resource type="Texture2D" uid="uid://bi33kvlvadusx" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_13.png" id="14_mbp8p"]
+[ext_resource type="Texture2D" uid="uid://cf2wwodb3hu3m" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_13.png" id="14_w2u2v"]
+[ext_resource type="Texture2D" uid="uid://drasxfhjjg70j" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_14.png" id="15_2rqxp"]
+[ext_resource type="Texture2D" uid="uid://de7pibgieilew" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_14.png" id="15_jl44q"]
+[ext_resource type="Texture2D" uid="uid://bhrq5rpxrrd2d" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_15.png" id="16_3pncf"]
+[ext_resource type="Texture2D" uid="uid://b30suj0w8quil" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_15.png" id="16_ededl"]
+[ext_resource type="Texture2D" uid="uid://cdpkvmrbkin15" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_16.png" id="17_d5u84"]
+[ext_resource type="Texture2D" uid="uid://bde80tf1jmgbs" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_16.png" id="17_f0mbm"]
+[ext_resource type="Texture2D" uid="uid://djwcjtnk70x1y" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_17.png" id="18_1ctxk"]
+[ext_resource type="Texture2D" uid="uid://bi7v55r0jmrcx" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_17.png" id="18_r476x"]
+[ext_resource type="Texture2D" uid="uid://ok6bagbvhtdn" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_18.png" id="19_k6bxx"]
+[ext_resource type="Texture2D" uid="uid://d4lrf0a0t7s5k" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_18.png" id="19_s00ks"]
+[ext_resource type="Texture2D" uid="uid://dliofyhbne8c3" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_19.png" id="20_jdjdk"]
+[ext_resource type="Texture2D" uid="uid://ddwp65ee5ikow" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_19.png" id="20_y2skr"]
+[ext_resource type="Texture2D" uid="uid://byo8pdjs2j7vu" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_20.png" id="21_hygqg"]
+[ext_resource type="Texture2D" uid="uid://5om5b1r84v6" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_20.png" id="21_uta7t"]
+[ext_resource type="Texture2D" uid="uid://cmgvclc7o26fp" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_21.png" id="22_2moyd"]
+[ext_resource type="Texture2D" uid="uid://d2n18csmmeam" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_21.png" id="22_5ptqo"]
+[ext_resource type="Texture2D" uid="uid://dn26hvc061n6" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_22.png" id="23_4566t"]
+[ext_resource type="Texture2D" uid="uid://ooaengnix0ic" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_22.png" id="23_qjopc"]
+[ext_resource type="Texture2D" uid="uid://bjabvv38ib4sx" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_23.png" id="24_8nkp2"]
+[ext_resource type="Texture2D" uid="uid://cyp6fh746bn78" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_23.png" id="24_fkbhb"]
+[ext_resource type="Texture2D" uid="uid://b8rat0sdq3ay1" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_24.png" id="25_ib4c5"]
+[ext_resource type="Texture2D" uid="uid://do8755ma1hk1y" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_24.png" id="25_xhid7"]
+[ext_resource type="Texture2D" uid="uid://c1or6f6pm57k7" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_25.png" id="26_khyu8"]
+[ext_resource type="Texture2D" uid="uid://chospyvyxxf7j" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_25.png" id="26_wcxl0"]
+[ext_resource type="Texture2D" uid="uid://dapauxxdmycp5" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_26.png" id="27_jsoq3"]
+[ext_resource type="Texture2D" uid="uid://bkhqp80xyn1s5" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_26.png" id="27_qjnvc"]
+[ext_resource type="Texture2D" uid="uid://d3dpa47sp64nr" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_27.png" id="28_t0fap"]
+[ext_resource type="Texture2D" uid="uid://x1c81ft0whv2" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_27.png" id="28_txtsu"]
+[ext_resource type="Texture2D" uid="uid://dj58spiwiijnv" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_28.png" id="29_naqc0"]
+[ext_resource type="Texture2D" uid="uid://cfm2oyyg6cswj" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_28.png" id="29_naw05"]
+[ext_resource type="Texture2D" uid="uid://biv2wpsuu05ax" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_29.png" id="30_avofw"]
+[ext_resource type="Texture2D" uid="uid://cyrhq8lbdiqfd" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_29.png" id="30_x5o55"]
+[ext_resource type="Texture2D" uid="uid://b217qykkm34py" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_30.png" id="31_lxmnh"]
+[ext_resource type="Texture2D" uid="uid://c6hmborjbuggo" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_30.png" id="31_une46"]
+[ext_resource type="Texture2D" uid="uid://bukyfrhgj41v8" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_31.png" id="32_sqldk"]
+[ext_resource type="Texture2D" uid="uid://dvp66a1mtrrn0" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_31.png" id="32_vyitd"]
+[ext_resource type="Texture2D" uid="uid://d2wkqef11j5p1" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_32.png" id="33_i3php"]
+[ext_resource type="Texture2D" uid="uid://wwh26chc6uoi" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_32.png" id="33_temsc"]
+[ext_resource type="Texture2D" uid="uid://drpd3qa8l54jr" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_33.png" id="34_0nik0"]
+[ext_resource type="Texture2D" uid="uid://e0nu4b20q88i" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_33.png" id="34_scdiv"]
+[ext_resource type="Texture2D" uid="uid://dg467u5748vfr" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_34.png" id="35_1y8im"]
+[ext_resource type="Texture2D" uid="uid://c5tjnvo315ac7" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_34.png" id="35_yct3w"]
+[ext_resource type="Texture2D" uid="uid://bl2n02yac4aaf" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_35.png" id="36_7qhtw"]
+[ext_resource type="Texture2D" uid="uid://cge1wqtv8085b" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_35.png" id="36_p7uka"]
+[ext_resource type="Texture2D" uid="uid://dru4518ih1mjc" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_36.png" id="37_nntr6"]
+[ext_resource type="Texture2D" uid="uid://bkvba0axb8ma2" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_36.png" id="37_sqm1b"]
+[ext_resource type="Texture2D" uid="uid://cyiue40h5krha" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_37.png" id="38_anvq5"]
+[ext_resource type="Texture2D" uid="uid://b1dbyacg0ijbl" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_37.png" id="38_q5ghw"]
+[ext_resource type="Texture2D" uid="uid://but1vcpct184y" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_38.png" id="39_7d60a"]
+[ext_resource type="Texture2D" uid="uid://bps4rtdfquro4" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_38.png" id="39_fj8ro"]
+[ext_resource type="Texture2D" uid="uid://wfeiykrl6xp" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_39.png" id="40_jiw5v"]
+[ext_resource type="Texture2D" uid="uid://b5uaas76j00b5" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_39.png" id="40_sbaj1"]
+[ext_resource type="Texture2D" uid="uid://dhba3ervsrq10" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_40.png" id="41_2ccmh"]
+[ext_resource type="Texture2D" uid="uid://c7fncqinygr3x" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_40.png" id="41_6obed"]
+[ext_resource type="Texture2D" uid="uid://cw5k1sb34h0ir" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_41.png" id="42_k5qff"]
+[ext_resource type="Texture2D" uid="uid://c0y5ujq00jbv3" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_41.png" id="42_qcesf"]
+[ext_resource type="Texture2D" uid="uid://dwguen6fkpy3x" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_42.png" id="43_x1g74"]
+[ext_resource type="Texture2D" uid="uid://cuw47kpilacer" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_42.png" id="43_ypicm"]
+[ext_resource type="Texture2D" uid="uid://b68rcqwx4qyvg" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_43.png" id="44_5dit7"]
+[ext_resource type="Texture2D" uid="uid://d2bkx8mnhnglm" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_43.png" id="44_wxr4l"]
+[ext_resource type="Texture2D" uid="uid://cqho50i4ss1e8" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_44.png" id="45_6vr6a"]
+[ext_resource type="Texture2D" uid="uid://dfmkaqen1m76c" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_44.png" id="45_finwm"]
+[ext_resource type="Texture2D" uid="uid://dfjploiym7ev6" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_45.png" id="46_ec5y0"]
+[ext_resource type="Texture2D" uid="uid://c8i2xxsge3170" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_45.png" id="46_otddf"]
+[ext_resource type="Texture2D" uid="uid://gy7pl08hd8js" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_46.png" id="47_uevuj"]
+[ext_resource type="Texture2D" uid="uid://c81frei1kjiqx" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_46.png" id="47_vilkt"]
+[ext_resource type="Texture2D" uid="uid://6pujhts82182" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_47.png" id="48_gdg37"]
+[ext_resource type="Texture2D" uid="uid://d01e3yl1mu6tr" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_47.png" id="48_j3plb"]
+[ext_resource type="Texture2D" uid="uid://dg0wjwebc34yp" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_48.png" id="49_i5b4n"]
+[ext_resource type="Texture2D" uid="uid://dibne70f3o2eu" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_48.png" id="49_sv4hy"]
+[ext_resource type="Texture2D" uid="uid://dxompv6rf5c4v" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_49.png" id="50_4bi2u"]
+[ext_resource type="Texture2D" uid="uid://dcqqudieoyd5w" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_49.png" id="50_esvmy"]
+[ext_resource type="Texture2D" uid="uid://bsnvxwnsts685" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_50.png" id="51_e3mrv"]
+[ext_resource type="Texture2D" uid="uid://cdsseqr0snkr1" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_50.png" id="51_wtrj1"]
+[ext_resource type="Texture2D" uid="uid://5sqopslumd7y" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_51.png" id="52_ejq36"]
+[ext_resource type="Texture2D" uid="uid://dl4a2dsp0yrkq" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_51.png" id="52_l60kd"]
+[ext_resource type="Texture2D" uid="uid://78g7sxfiaqgo" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_52.png" id="53_0ttml"]
+[ext_resource type="Texture2D" uid="uid://cf2ve7w04msan" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_52.png" id="53_qm4sn"]
+[ext_resource type="Texture2D" uid="uid://brx8qm51lg6dn" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_53.png" id="54_fhxj6"]
+[ext_resource type="Texture2D" uid="uid://bokoo222pch8n" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_53.png" id="54_vpse6"]
+[ext_resource type="Texture2D" uid="uid://bx0ebt5mmiahy" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_54.png" id="55_7apkg"]
+[ext_resource type="Texture2D" uid="uid://dacxj3d0xy5ua" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_54.png" id="55_j3w8t"]
+[ext_resource type="Texture2D" uid="uid://cc0kkqxvpcjud" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_55.png" id="56_kb27b"]
+[ext_resource type="Texture2D" uid="uid://bn7cil0w4mcnt" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_55.png" id="56_nxqa4"]
+[ext_resource type="Texture2D" uid="uid://s4bce0g1vart" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_56.png" id="57_iehaw"]
+[ext_resource type="Texture2D" uid="uid://cfmm3atvu7xjq" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_56.png" id="57_pwl3q"]
+[ext_resource type="Texture2D" uid="uid://bqsqr52oc8uyi" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_57.png" id="58_koo4u"]
+[ext_resource type="Texture2D" uid="uid://yn7kaym8cisu" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_57.png" id="58_qpew2"]
+[ext_resource type="Texture2D" uid="uid://dhkcaqvmvxe2w" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_58.png" id="59_3ggi6"]
+[ext_resource type="Texture2D" uid="uid://bt5pjjsnrjfmf" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_58.png" id="59_ehcxh"]
+[ext_resource type="Texture2D" uid="uid://130bhcgppid" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_59.png" id="60_ase5t"]
+[ext_resource type="Texture2D" uid="uid://d2sbk78tdb70m" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_59.png" id="60_decox"]
+[ext_resource type="Texture2D" uid="uid://d4h3f1d81ck4v" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_60.png" id="61_a44iy"]
+[ext_resource type="Texture2D" uid="uid://qgvcdtqw6q5f" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_60.png" id="61_cl5a6"]
+[ext_resource type="Texture2D" uid="uid://bpl51h2e2ss36" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_61.png" id="62_guum8"]
+[ext_resource type="Texture2D" uid="uid://d14n3ix4iwt4v" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_61.png" id="62_xmm5o"]
+[ext_resource type="Texture2D" uid="uid://d1cj3r22ojsk" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_62.png" id="63_ovnu0"]
+[ext_resource type="Texture2D" uid="uid://d0ymrsmrxsch" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_62.png" id="63_pj2rn"]
+[ext_resource type="Texture2D" uid="uid://bs08pmt1hmnrn" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_63.png" id="64_0ppxk"]
+[ext_resource type="Texture2D" uid="uid://dqn118dwgt48p" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_63.png" id="64_16lx8"]
+[ext_resource type="Texture2D" uid="uid://pvimigj16shx" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_64.png" id="65_8vfxu"]
+[ext_resource type="Texture2D" uid="uid://bcu5j165yk2ye" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_64.png" id="65_vukg5"]
+[ext_resource type="Texture2D" uid="uid://jscvfcm1wge" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_65.png" id="66_r3m13"]
+[ext_resource type="Texture2D" uid="uid://126chj12tut1" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_65.png" id="66_xsgdq"]
+[ext_resource type="Texture2D" uid="uid://cfysrwxm8u0f4" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_66.png" id="67_54prj"]
+[ext_resource type="Texture2D" uid="uid://dpoxwrv8oc75x" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_66.png" id="67_dufyh"]
+[ext_resource type="Texture2D" uid="uid://b8luwhk6dm4n" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_67.png" id="68_fen6n"]
+[ext_resource type="Texture2D" uid="uid://c1laqyojdms58" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_67.png" id="68_rts2n"]
+[ext_resource type="Texture2D" uid="uid://cp4ltbedmxqg6" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_68.png" id="69_0gr2w"]
+[ext_resource type="Texture2D" uid="uid://drk7av1w2lvxi" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_68.png" id="69_ddho0"]
+[ext_resource type="Texture2D" uid="uid://gkk32ueb578b" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_69.png" id="70_0w5m8"]
+[ext_resource type="Texture2D" uid="uid://upx31ads8jvp" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_69.png" id="70_bt0tf"]
+[ext_resource type="Texture2D" uid="uid://da2aqy6hx8kkc" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_70.png" id="71_e3npv"]
+[ext_resource type="Texture2D" uid="uid://5kftrqmwxg3a" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_70.png" id="71_jrgdr"]
+[ext_resource type="Texture2D" uid="uid://bwlis2lyl35w3" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_71.png" id="72_08tsm"]
+[ext_resource type="Texture2D" uid="uid://dhbiir3hv3tga" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_71.png" id="72_dl7en"]
+[ext_resource type="Texture2D" uid="uid://desdgxgpg401h" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_72.png" id="73_3811l"]
+[ext_resource type="Texture2D" uid="uid://do0pw42b5niqh" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_72.png" id="73_pscs6"]
+[ext_resource type="Texture2D" uid="uid://c7pm6prfk2jbb" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_73.png" id="74_budai"]
+[ext_resource type="Texture2D" uid="uid://d2a5gmd2otkga" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_73.png" id="74_jer0d"]
+[ext_resource type="Texture2D" uid="uid://ddoa171yhguch" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_74.png" id="75_plsy4"]
+[ext_resource type="Texture2D" uid="uid://bnhgp3pcg2n44" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_74.png" id="75_xbhyf"]
+[ext_resource type="Texture2D" uid="uid://5m3kfijqqgj" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_75.png" id="76_jgtqn"]
+[ext_resource type="Texture2D" uid="uid://d1f7qoi7d5bqe" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_75.png" id="76_qiejm"]
+[ext_resource type="Texture2D" uid="uid://cvp2jhsdrkg03" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_76.png" id="77_206tg"]
+[ext_resource type="Texture2D" uid="uid://c0ol7q740khc1" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_76.png" id="77_it00a"]
+[ext_resource type="Texture2D" uid="uid://dd3rqpuceljo8" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_77.png" id="78_6v7x4"]
+[ext_resource type="Texture2D" uid="uid://wpiwkns64w7x" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_77.png" id="78_lcfig"]
+[ext_resource type="Texture2D" uid="uid://d0vb8yw8gtc1f" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_78.png" id="79_gqm1j"]
+[ext_resource type="Texture2D" uid="uid://ceo4qr4towl8e" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_78.png" id="79_sj8ka"]
+[ext_resource type="Texture2D" uid="uid://dn4myj2qr17ao" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_79.png" id="80_3wfn2"]
+[ext_resource type="Texture2D" uid="uid://chibkbhb0ylkm" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_79.png" id="80_oswjs"]
+[ext_resource type="Texture2D" uid="uid://dcmf13ryp7hli" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_80.png" id="81_rf547"]
+[ext_resource type="Texture2D" uid="uid://dlyfjshd82glf" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_80.png" id="81_xhg55"]
+[ext_resource type="Texture2D" uid="uid://crr6l5r6jfjdu" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_81.png" id="82_37ilm"]
+[ext_resource type="Texture2D" uid="uid://dsvdboj37ls2d" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_81.png" id="82_xam2r"]
+[ext_resource type="Texture2D" uid="uid://bglq108awhwrt" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_82.png" id="83_nro1j"]
+[ext_resource type="Texture2D" uid="uid://kgiwgom2nhtv" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_82.png" id="83_wh6on"]
+[ext_resource type="Texture2D" uid="uid://dnmf5lr0y1adl" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_83.png" id="84_2ajla"]
+[ext_resource type="Texture2D" uid="uid://co07h3mhdln78" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_83.png" id="84_pmatv"]
+[ext_resource type="Texture2D" uid="uid://6vjdek2sc1eg" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_84.png" id="85_1rc2w"]
+[ext_resource type="Texture2D" uid="uid://cwuilmwymkvfr" path="res://assets/sprites/Animations/creature/Manifestation-chase-loop/Mom_manifestation_rig-Chase-loop_84.png" id="85_6dwat"]
+[ext_resource type="Texture2D" uid="uid://cmpw0x3y55k8w" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_00.png" id="86_cnm37"]
+[ext_resource type="Texture2D" uid="uid://cwlr43plpm0gp" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_85.png" id="86_w2eel"]
+[ext_resource type="Texture2D" uid="uid://cn41netwwk83p" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_86.png" id="87_11mfn"]
+[ext_resource type="Texture2D" uid="uid://8ss64xapq44y" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_01.png" id="87_ogucc"]
+[ext_resource type="Texture2D" uid="uid://dqqgd06hfla7w" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_87.png" id="88_5c78l"]
+[ext_resource type="Texture2D" uid="uid://cplxnl22t7wpg" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_02.png" id="88_elc0y"]
+[ext_resource type="Texture2D" uid="uid://dgd73b0m1hfm3" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_03.png" id="89_4mtdc"]
+[ext_resource type="Texture2D" uid="uid://dsx4angitk3lm" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_88.png" id="89_w2u2v"]
+[ext_resource type="Texture2D" uid="uid://ce5iat2hnnhuv" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_04.png" id="90_6dnqv"]
+[ext_resource type="Texture2D" uid="uid://br4qiienclfku" path="res://assets/sprites/Animations/creature/Manifestation-idle/Mom_manifestation_rig-Idle_89.png" id="90_jl44q"]
+[ext_resource type="Texture2D" uid="uid://cxk1tf2py4o8t" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_05.png" id="91_76brs"]
+[ext_resource type="Texture2D" uid="uid://i5u5r5icd0w3" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_06.png" id="92_cr1kh"]
+[ext_resource type="Texture2D" uid="uid://haopq3yubqfs" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_07.png" id="93_8b6ls"]
+[ext_resource type="Texture2D" uid="uid://dfed7luig1q6i" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_08.png" id="94_iaqg5"]
+[ext_resource type="Texture2D" uid="uid://bjjfx62mqrsne" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_09.png" id="95_ydvfv"]
+[ext_resource type="Texture2D" uid="uid://cuyhl464rcnho" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_10.png" id="96_4klt6"]
+[ext_resource type="Texture2D" uid="uid://75eugb524wvw" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_11.png" id="97_lrwgw"]
+[ext_resource type="Texture2D" uid="uid://isxjmpupc0ry" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_12.png" id="98_h1can"]
+[ext_resource type="Texture2D" uid="uid://b82x4gxom1dht" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_13.png" id="99_v18xo"]
+[ext_resource type="Texture2D" uid="uid://dgbkcryanms2t" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_14.png" id="100_qb1al"]
+[ext_resource type="Texture2D" uid="uid://crt2v2ego5017" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_15.png" id="101_53c8h"]
+[ext_resource type="Texture2D" uid="uid://cbexymaknmbi1" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_16.png" id="102_mxkcb"]
+[ext_resource type="Texture2D" uid="uid://bk3q2a03jcknm" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_17.png" id="103_8wpdw"]
+[ext_resource type="Texture2D" uid="uid://drfsio7ex3irk" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_18.png" id="104_40217"]
+[ext_resource type="Texture2D" uid="uid://b5nxh7bmejq20" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_19.png" id="105_3a01a"]
+[ext_resource type="Texture2D" uid="uid://dluui3eo7n8mm" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_20.png" id="106_vvy5q"]
+[ext_resource type="Texture2D" uid="uid://dknvg1xldcsgm" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_21.png" id="107_shbgk"]
+[ext_resource type="Texture2D" uid="uid://7lffbc3jwj0m" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_22.png" id="108_gwgvp"]
+[ext_resource type="Texture2D" uid="uid://c22ub53quuc7v" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_23.png" id="109_hw04g"]
+[ext_resource type="Texture2D" uid="uid://be8d0v784csfi" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_24.png" id="110_m3fof"]
+[ext_resource type="Texture2D" uid="uid://y6eu04cowbaw" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_25.png" id="111_34iqx"]
+[ext_resource type="Texture2D" uid="uid://cor1c4wyap24i" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_26.png" id="112_onsw6"]
+[ext_resource type="Texture2D" uid="uid://131ejy7hawnd" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_27.png" id="113_yq13q"]
+[ext_resource type="Texture2D" uid="uid://2s4y8m2kuvy0" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_28.png" id="114_xdb4n"]
+[ext_resource type="Texture2D" uid="uid://ct55eyqgtcbj8" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_29.png" id="115_22t70"]
+[ext_resource type="Texture2D" uid="uid://cy3bcq7t3x3he" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_30.png" id="116_ygn63"]
+[ext_resource type="Texture2D" uid="uid://c1icemr3xedv7" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_31.png" id="117_vgyk1"]
+[ext_resource type="Texture2D" uid="uid://eulx1w3fs3b2" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_32.png" id="118_tiwik"]
+[ext_resource type="Texture2D" uid="uid://ddg3x5bie2y3e" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_33.png" id="119_7xm5j"]
+[ext_resource type="Texture2D" uid="uid://bnn5qgmcsrdca" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_34.png" id="120_b0fxx"]
+[ext_resource type="Texture2D" uid="uid://cb0j0j1h3dt7n" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_35.png" id="121_wessh"]
+[ext_resource type="Texture2D" uid="uid://bh4w8js1gjno6" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_36.png" id="122_qgt2j"]
+[ext_resource type="Texture2D" uid="uid://dcxbk5akybts1" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_37.png" id="123_vat3e"]
+[ext_resource type="Texture2D" uid="uid://jwki778ofbtf" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_38.png" id="124_tslbe"]
+[ext_resource type="Texture2D" uid="uid://cvwfb8gsos5k1" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_39.png" id="125_m6y5b"]
+[ext_resource type="Texture2D" uid="uid://bgv10njyafn0b" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_40.png" id="126_g6blh"]
+[ext_resource type="Texture2D" uid="uid://dld7qfn4ey0vt" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_41.png" id="127_hqlaf"]
+[ext_resource type="Texture2D" uid="uid://xsptsob5hfws" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_42.png" id="128_4erd3"]
+[ext_resource type="Texture2D" uid="uid://csvhpxkcjwsl0" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_43.png" id="129_uji20"]
+[ext_resource type="Texture2D" uid="uid://bb7btxrvvdgk4" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_44.png" id="130_px5pi"]
+[ext_resource type="Texture2D" uid="uid://crepduqsdjoy0" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_45.png" id="131_6v61n"]
+[ext_resource type="Texture2D" uid="uid://biycl5vjehunr" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_46.png" id="132_6wj0e"]
+[ext_resource type="Texture2D" uid="uid://c8ymjmhtp1tt8" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_47.png" id="133_iu0lo"]
+[ext_resource type="Texture2D" uid="uid://d1l57qhuqrgat" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_48.png" id="134_h6gqs"]
+[ext_resource type="Texture2D" uid="uid://ca3w337rifivk" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_49.png" id="135_a6icy"]
+[ext_resource type="Texture2D" uid="uid://bg78mqi7ex48g" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_50.png" id="136_imbtn"]
+[ext_resource type="Texture2D" uid="uid://bc8iq7qwrjcca" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_51.png" id="137_een35"]
+[ext_resource type="Texture2D" uid="uid://cydrpj7bbtdae" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_52.png" id="138_vhcii"]
+[ext_resource type="Texture2D" uid="uid://d3bsatl4umvki" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_53.png" id="139_dfbnu"]
+[ext_resource type="Texture2D" uid="uid://dqhmf0b7y43tu" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_54.png" id="140_7l72e"]
+[ext_resource type="Texture2D" uid="uid://bw4ya27aahm04" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_55.png" id="141_jtxgb"]
+[ext_resource type="Texture2D" uid="uid://bn4w3l4xyhyxm" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_56.png" id="142_vahk2"]
+[ext_resource type="Texture2D" uid="uid://c4lor080u2rpl" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_57.png" id="143_c7buo"]
+[ext_resource type="Texture2D" uid="uid://dru2v4laqojri" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_58.png" id="144_4ef45"]
+[ext_resource type="Texture2D" uid="uid://cnlx3jcentkhh" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_59.png" id="145_4wha4"]
+[ext_resource type="Texture2D" uid="uid://bwrqism8a1hiq" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_60.png" id="146_vsbyj"]
+[ext_resource type="Texture2D" uid="uid://miaukl318p71" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_61.png" id="147_2dvgn"]
+[ext_resource type="Texture2D" uid="uid://7nu357v4puor" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_62.png" id="148_h8wpl"]
+[ext_resource type="Texture2D" uid="uid://duqkgagrgr27q" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_63.png" id="149_ofq0d"]
+[ext_resource type="Texture2D" uid="uid://5cmhaoi6og0i" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_64.png" id="150_ipot0"]
+[ext_resource type="Texture2D" uid="uid://b5yaohn1qffti" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_65.png" id="151_umvdc"]
+[ext_resource type="Texture2D" uid="uid://cml82utt61lno" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_66.png" id="152_62lqh"]
+[ext_resource type="Texture2D" uid="uid://ck0qg5ylm4f1q" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_67.png" id="153_o8c7w"]
+[ext_resource type="Texture2D" uid="uid://bw0nvht7tuub1" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_68.png" id="154_554c3"]
+[ext_resource type="Texture2D" uid="uid://cwt6sc0kvqgia" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_69.png" id="155_3n4ip"]
+[ext_resource type="Texture2D" uid="uid://boel0b7n8468k" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_70.png" id="156_j3007"]
+[ext_resource type="Texture2D" uid="uid://d2nvf2r0sakfw" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_71.png" id="157_cjvas"]
+[ext_resource type="Texture2D" uid="uid://c6s8172pfqgc" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_72.png" id="158_n8pgv"]
+[ext_resource type="Texture2D" uid="uid://kg8hde62njs6" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_73.png" id="159_d2lcq"]
+[ext_resource type="Texture2D" uid="uid://cgoyaeow3fgi7" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_74.png" id="160_yxldi"]
+[ext_resource type="Texture2D" uid="uid://b3wi3nqbsfji0" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_75.png" id="161_3nst2"]
+[ext_resource type="Texture2D" uid="uid://d27ts2s8xa4wh" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_76.png" id="162_boifn"]
+[ext_resource type="Texture2D" uid="uid://cx32vpjye2o8a" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_77.png" id="163_ilh4l"]
+[ext_resource type="Texture2D" uid="uid://bydvfebg8ci01" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_78.png" id="164_nu5s7"]
+[ext_resource type="Texture2D" uid="uid://bgpq2h01jgkjd" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_79.png" id="165_hqho0"]
+[ext_resource type="Texture2D" uid="uid://xos0corshn67" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_80.png" id="166_fel1l"]
+[ext_resource type="Texture2D" uid="uid://b6pwr8ypemgsy" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_81.png" id="167_iqw0y"]
+[ext_resource type="Texture2D" uid="uid://bc0ygxr4l684n" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_82.png" id="168_j77tr"]
+[ext_resource type="Texture2D" uid="uid://41ajqslyold6" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_83.png" id="169_y4c5w"]
+[ext_resource type="Texture2D" uid="uid://dmj1pv7wsfckv" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_84.png" id="170_nwia8"]
+[ext_resource type="Texture2D" uid="uid://dlpkfno53ayyp" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_85.png" id="171_hc4mi"]
+[ext_resource type="Texture2D" uid="uid://dhslarng8osbb" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_86.png" id="172_c2586"]
+[ext_resource type="Texture2D" uid="uid://8om7yyqwmr8k" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_87.png" id="173_g02vb"]
+[ext_resource type="Texture2D" uid="uid://b0p7cjwfds4sn" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_88.png" id="174_pwnl0"]
+[ext_resource type="Texture2D" uid="uid://ckikom3d438a7" path="res://assets/sprites/Animations/creature/Manifestation-chase-start/Mom_manifestation_rig-Chase-front-start_89.png" id="175_hpslu"]
+[ext_resource type="Texture2D" uid="uid://dpnluqi2uqo8s" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_00.png" id="176_g2f0n"]
+[ext_resource type="Texture2D" uid="uid://b1v0xv2tcasdl" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_01.png" id="177_5rkm2"]
+[ext_resource type="Texture2D" uid="uid://cvkwihomq7drh" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_02.png" id="178_ytcs7"]
+[ext_resource type="Texture2D" uid="uid://bhbasqggfbjkj" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_03.png" id="179_0fgpk"]
+[ext_resource type="Texture2D" uid="uid://3y8qqcwxkll0" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_04.png" id="180_g21et"]
+[ext_resource type="Texture2D" uid="uid://bmknwjmmpwxj4" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_05.png" id="181_43y6j"]
+[ext_resource type="Texture2D" uid="uid://75k428biterh" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_06.png" id="182_hitu2"]
+[ext_resource type="Texture2D" uid="uid://b6onw6bo8ep84" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_07.png" id="183_os5et"]
+[ext_resource type="Texture2D" uid="uid://dxr41mqbvqn8u" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_08.png" id="184_t0rjn"]
+[ext_resource type="Texture2D" uid="uid://1y6uy1x27ko2" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_09.png" id="185_ij6q6"]
+[ext_resource type="Texture2D" uid="uid://ctl5x0rsg1utd" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_10.png" id="186_6we12"]
+[ext_resource type="Texture2D" uid="uid://cdp6m0gfgf2q8" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_11.png" id="187_wpin8"]
+[ext_resource type="Texture2D" uid="uid://bmf0qejwkpj5w" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_12.png" id="188_x1iww"]
+[ext_resource type="Texture2D" uid="uid://dc8ofov3hi54i" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_13.png" id="189_mvoyr"]
+[ext_resource type="Texture2D" uid="uid://c4kvy6ot2xwcw" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_14.png" id="190_71mmr"]
+[ext_resource type="Texture2D" uid="uid://dbccdqxtbhm3j" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_15.png" id="191_svk25"]
+[ext_resource type="Texture2D" uid="uid://c8db2ojtavi3p" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_16.png" id="192_ov4qd"]
+[ext_resource type="Texture2D" uid="uid://bf6ury5dwjpv1" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_17.png" id="193_jr7jg"]
+[ext_resource type="Texture2D" uid="uid://djm3xhuik0t7r" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_18.png" id="194_8kwho"]
+[ext_resource type="Texture2D" uid="uid://bu3vstgrwfdl4" path="res://assets/sprites/Animations/creature/Manifestation-grapple/Mom_manifestation_rig-grapple_19.png" id="195_3eo37"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jgtqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_it00a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6v7x4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sj8ka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oswjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rf547")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xam2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nro1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pmatv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1rc2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_w2eel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_11mfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5c78l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_w2u2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jl44q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ededl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_d5u84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_r476x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_s00ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_y2skr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_uta7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_2moyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_4566t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8nkp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ib4c5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_khyu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_qjnvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_txtsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_naw05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_x5o55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_lxmnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_sqldk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_i3php")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_0nik0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_1y8im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_7qhtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_sqm1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_q5ghw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_fj8ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_sbaj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_6obed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_k5qff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_ypicm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_wxr4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_finwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_otddf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_vilkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_gdg37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_sv4hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_4bi2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_wtrj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_l60kd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_qm4sn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_fhxj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_j3w8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_kb27b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_pwl3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_koo4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_3ggi6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_decox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_cl5a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_xmm5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_ovnu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_16lx8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_8vfxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_xsgdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_54prj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_fen6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_0gr2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_0w5m8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_e3npv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_08tsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_3811l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_jer0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_plsy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_qiejm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_206tg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_lcfig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_gqm1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_3wfn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_xhg55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_37ilm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_wh6on")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_2ajla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_6dwat")
+}],
+"loop": 1,
+"name": &"chase_loop",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("86_cnm37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_ogucc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_elc0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_4mtdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_6dnqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_76brs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_cr1kh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_8b6ls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_iaqg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_ydvfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_4klt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_lrwgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_h1can")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_v18xo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_qb1al")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_53c8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_mxkcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_8wpdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_40217")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_3a01a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_vvy5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_shbgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_gwgvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_hw04g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_m3fof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_34iqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_onsw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_yq13q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_xdb4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_22t70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_ygn63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_vgyk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_tiwik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_7xm5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_b0fxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_wessh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_qgt2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_vat3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_tslbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_m6y5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_g6blh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_hqlaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_4erd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_uji20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_px5pi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_6v61n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_6wj0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_iu0lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_h6gqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_a6icy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_imbtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_een35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_vhcii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_dfbnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_7l72e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_jtxgb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_vahk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_c7buo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_4ef45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_4wha4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_vsbyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_2dvgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_h8wpl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_ofq0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_ipot0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_umvdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_62lqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_o8c7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_554c3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_3n4ip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_j3007")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_cjvas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_n8pgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_d2lcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_yxldi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_3nst2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_boifn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_ilh4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_nu5s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_hqho0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_fel1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_iqw0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_j77tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_y4c5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_nwia8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_hc4mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_c2586")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_g02vb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_pwnl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_hpslu")
+}],
+"loop": 1,
+"name": &"chase_start",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("176_g2f0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_5rkm2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_ytcs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_0fgpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_g21et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_43y6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_hitu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_os5et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_t0rjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_ij6q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_6we12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_wpin8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_x1iww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_mvoyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_71mmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_svk25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("192_ov4qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_jr7jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_8kwho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_3eo37")
+}],
+"loop": 1,
+"name": &"grab",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iumt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4alk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ji8yr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l3kwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wlgo7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7lyw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v0u3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s2dw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_aer7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tgusf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_sgemt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_g7rb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wqldr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mbp8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2rqxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3pncf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_f0mbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1ctxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_k6bxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_jdjdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_hygqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_5ptqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_qjopc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_fkbhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_xhid7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_wcxl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jsoq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_t0fap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_naqc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_avofw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_une46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_vyitd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_temsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_scdiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_yct3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_p7uka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_nntr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_anvq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_7d60a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_jiw5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_2ccmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_qcesf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_x1g74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_5dit7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_6vr6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ec5y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_uevuj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_j3plb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_i5b4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_esvmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_e3mrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_ejq36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_0ttml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_vpse6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_7apkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_nxqa4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_iehaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_qpew2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_ehcxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_ase5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_a44iy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_guum8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_pj2rn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_0ppxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_vukg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_r3m13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_dufyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_rts2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_ddho0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_bt0tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_jrgdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_dl7en")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_pscs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_budai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_xbhyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_jgtqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_it00a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_6v7x4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_sj8ka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_oswjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_rf547")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_xam2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_nro1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_pmatv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_1rc2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_w2eel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_11mfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_5c78l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_w2u2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_jl44q")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 30.0
+}]

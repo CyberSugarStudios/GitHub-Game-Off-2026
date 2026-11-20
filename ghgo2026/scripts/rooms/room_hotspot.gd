@@ -21,6 +21,10 @@ const SHOW_DEBUG_RECTS := true
 @export var observe_dialogue: DialogueResource
 @export var observe_cue: String
 #endregion
+var blocker: Node = null:
+	set(value):
+		blocker = value
+		_refresh()
 var _used := false
 var _hovered := false
 #endregion
@@ -70,7 +74,8 @@ func _refresh() -> void:
 		return
 	var in_main_view := get_viewport() == get_tree().root
 	visible = in_main_view and InteractionRules.realm_matches(realm) and not (one_shot and _used) \
-		and InteractionRules.story_open(requires_flag, hidden_after_flag) and _is_available()
+		and InteractionRules.story_open(requires_flag, hidden_after_flag) and _is_available() \
+			and blocker == null
 	if _hovered:
 		if visible:
 			_send_prompt()

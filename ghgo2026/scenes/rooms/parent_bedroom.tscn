@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_1y1r8"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_1y1r8"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="7_jpf7g"]
-[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_lgaq2"]
+[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_lgaq2"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="8_ubuay"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="9_jpf7g"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="9_lgaq2"]

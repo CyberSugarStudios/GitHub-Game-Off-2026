@@ -8,13 +8,15 @@
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_g005p"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
-[ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/mom/david_frames.tres" id="7_a5o1a"]
-[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_e86kh"]
+[ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/frames/dad/david_frames.tres" id="7_a5o1a"]
+[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_e86kh"]
+[ext_resource type="PackedScene" uid="uid://dmf8if323xntg" path="res://scenes/rooms/room_creature.tscn" id="8_7cjtg"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="11_e86kh"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="12_8llds"]
 [ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="12_a5o1a"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="14_eokjc"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="15_mnsc7"]
+[ext_resource type="Script" uid="uid://c8mgegcpjhxpp" path="res://scripts/rooms/door_light.gd" id="17_8mmjm"]
 
 [sub_resource type="Gradient" id="Gradient_g005p"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
@@ -89,6 +91,11 @@ scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 frames = ExtResource("7_a5o1a")
 
+[node name="RoomCreature" parent="Actors" unique_id=964999695 node_paths=PackedStringArray("blocks") instance=ExtResource("8_7cjtg")]
+position = Vector2(208, 1112)
+scale = Vector2(0.5, 0.5)
+blocks = NodePath("../../Hotspots/FrontDoor")
+
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
@@ -143,7 +150,6 @@ offset_right = 297.0
 offset_bottom = 1037.0
 script = ExtResource("7_5s50e")
 door_id = &"front_door"
-leads_to = &"end_credits_scene"
 lock_bars = 5
 prompt_text = "Shift through door"
 realm = 2
@@ -282,3 +288,9 @@ day_strength = 0.9
 needs_activity = "watching_tv"
 tv_flicker = true
 power_target = &"tv"
+
+[node name="DoorLight" type="Polygon2D" parent="." unique_id=1829461519]
+z_index = 35
+position = Vector2(150, 555)
+polygon = PackedVector2Array(-148.89, -493.53, 144.305, -479.92, 140.74, 480.815, -151.93, 591.095)
+script = ExtResource("17_8mmjm")

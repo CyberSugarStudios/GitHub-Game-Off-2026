@@ -17,8 +17,8 @@ extends Node2D
 var _room_id: StringName
 var _target := Vector2.ZERO
 var _walking := false
-var _leanne_frames := preload("res://assets/sprites/Animations/mom/leanne_frames.tres")
-var _david_frames := preload("res://assets/sprites/Animations/mom/david_frames.tres")
+var _leanne_frames := preload("res://assets/sprites/Animations/frames/mom/leanne_frames.tres")
+var _david_frames := preload("res://assets/sprites/Animations/frames/dad/david_frames.tres")
 
 func _ready() -> void:
 	var node := get_parent()

@@ -1,0 +1,15 @@
+~ p5_creature_seen
+Emily: It's there. In front of the door. [#thought]
+Emily: It's been following me this whole time. [#thought]
+=> END
+
+~ p5_face_it
+Emily: You were never trying to hurt me, were you? [#thought]
+Emily: You're everything I couldn't say. Everything I carried. [#thought]
+Emily: I don't have to run from you anymore. [#thought]
+=> END
+
+~ p5_accepted
+Emily: ...Okay. [#thought]
+Emily: The door. I can go now. [#thought]
+=> END

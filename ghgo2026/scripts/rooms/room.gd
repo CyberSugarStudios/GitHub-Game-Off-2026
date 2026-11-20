@@ -40,5 +40,8 @@ func _process(_delta: float) -> void:
 		maxf(tint.b, light_fill.b)
 	)
 
+func get_tint() -> Color:
+	return _night_tint.color
+
 func get_room_size() -> Vector2:
 	return background.get_rect().size * background.scale

@@ -7,6 +7,7 @@ signal seen_conversation_end(title: String)
 signal seen_plane(is_astral: bool)
 signal seen_room(room_id: StringName)
 signal seen_parent_moved(parent_id: StringName, location: StringName)
+signal accept_finished
 
 const MOM := &"leanne"
 const DAD := &"david"
@@ -15,6 +16,8 @@ const PUZZLE_1 := preload("res://dialogue/puzzle_1.dialogue")
 const PUZZLE_2 := preload("res://dialogue/puzzle_2.dialogue")
 const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
 const PUZZLE_4 := preload("res://dialogue/puzzle_4.dialogue")
+const PUZZLE_5 := preload("res://dialogue/puzzle_5.dialogue")
+const CREDITS_SCENE := "res://scenes/ui/credits_roll.tscn"
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 const INTRO_DONE := &"intro_done"
 const INTRO_FLAGS: Array[StringName] = [
@@ -94,10 +97,19 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p4_lights_settle: float = 2.0
 @export_range(0.0, 1.0) var p4_light_enough: float = 0.3
 
+@export_group("Puzzle 5")
+@export var p5_accept_presses: int = 24
+@export var p5_light_seconds: float = 3.0
+@export var p5_white_hold: float = 1.5
+@export var p5_to_black_seconds: float = 2.5
+@export var p5_fight_audio: AudioStream
+@export var p5_fight_seconds: float = 8.0
+
 @export var wait_fade_time: float = 0.4
 #endregion
 var _finished: Dictionary[String, bool] = {}
 var _waiting := false
+var _accept_progress := -1.0
 var _p3_drinks := 0
 var _p3_medicated := false
 var _p3_last_minute := -1
@@ -248,8 +260,8 @@ func _run_story() -> void:
 		await _run_puzzle_3()
 	if GameState.story_stage == 4:
 		await _run_puzzle_4()
-#	if GameState.story_stage == 5:
-#		await _run_puzzle_5()
+	if GameState.story_stage == 5:
+		await _run_finale()
 
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
@@ -281,6 +293,7 @@ func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> v
 		household.send(MOM, &"kitchen", p2_coffee_make_minutes, [[&"kitchen", \
 			p2_coffee_drink_minutes, &"drinking_coffee"]], &"making_coffee")
 #endregion
+
 #region - PUZZLE 3
 func _run_puzzle_3() -> void:
 	_p3_last_minute = GameClock.minute
@@ -364,6 +377,7 @@ static func _crossed(from: int, to: int, at: int) -> bool:
 		return at > from and at <= to
 	return at > from or at <= to
 #endregion
+
 #region - PUZZLE 4
 func _run_puzzle_4() -> void:
 	var told := false
@@ -399,6 +413,53 @@ func _p4_wait_for_light() -> bool:
 		await get_tree().process_frame
 	return false
 #endregion
+
+#region - FINALE
+func _run_finale() -> void:
+	await wait_room(&"living_room")
+	say_in_background("p5_creature_seen", PUZZLE_5)
+	await wait_event(&"creature_faced")
+	await say("p5_face_it", true, PUZZLE_5)
+	await _accept_creature()
+	await say("p5_accepted", false, PUZZLE_5)
+	await wait_event(&"front_door_opened")
+	await _play_ending()
+
+func _accept_creature() -> void:
+	_accept_progress = 0.0
+	GameState.set_controls_locked(true)
+	prompt("Accept   [SPACE]")
+	Events.struggle_changed.emit(0.001)
+	await accept_finished
+	_accept_progress = -1.0
+	GameState.set_flag(&"creature_accepted")
+	prompt("")
+	Events.struggle_changed.emit(0.0)
+	GameState.set_controls_locked(false)
+
+func _play_ending() -> void:
+	GameState.set_controls_locked(true)
+	Music.stop(p5_light_seconds)
+	await wait(p5_light_seconds * 0.5)
+	fade.color = Color.WHITE
+	var tween := create_tween()
+	tween.tween_property(fade, "color:a", 1.0, p5_light_seconds * 0.5)
+	tween.tween_interval(p5_white_hold)
+	tween.tween_property(fade, "color", Color.BLACK, p5_to_black_seconds)
+	await tween.finished
+	if p5_fight_audio:
+		Music.play(p5_fight_audio, 1.5)
+	await wait(p5_fight_seconds)
+	GameState.set_controls_locked(false)
+	get_tree().change_scene_to_file(CREDITS_SCENE)
+
+func _depug_jump_to_finale() -> void:
+	while GameState.max_bars < 5:
+		GameState.restore_memory()
+	GameState.set_story_stage(5)
+	_run_finale()
+#endregion
+
 func _on_any_story_event(id: StringName) -> void:
 	match id:
 		&"wait_hour":
@@ -492,6 +553,19 @@ static func _to_minutes(time_text: String) -> int:
 	return int(parts[0]) * 60 + int(parts[1])
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _accept_progress >= 0.0 and event.is_action_pressed("struggle"):
+		_accept_progress = minf(_accept_progress + 1.0 / p5_accept_presses, 1.0)
+		Events.struggle_changed.emit(_accept_progress)
+		if _accept_progress >= 1.0:
+			accept_finished.emit()
+		get_viewport().set_input_as_handled()
+		return
+	
+	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
+	and event.keycode == KEY_F8 and GameState.has_flag(INTRO_DONE):
+		get_viewport().set_input_as_handled()
+		_depug_jump_to_finale()
+	
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
 	and event.keycode == KEY_F4 and not GameState.has_flag(INTRO_DONE):
 		get_viewport().set_input_as_handled()

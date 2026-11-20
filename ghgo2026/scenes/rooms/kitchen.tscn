@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_fiuqx"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_m75iv"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_n5en3"]
-[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/mom/leanne_frames.tres" id="7_78330"]
-[ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/mom/david_frames.tres" id="8_fiuqx"]
+[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_78330"]
+[ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/frames/dad/david_frames.tres" id="8_fiuqx"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="10_78330"]
 [ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="10_fiuqx"]
 
