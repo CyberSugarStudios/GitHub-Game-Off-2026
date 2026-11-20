@@ -15,6 +15,9 @@ const VOLUME_ROWS := {
 func _ready() -> void:
 	add_theme_constant_override("separation", 14)
 	custom_minimum_size.x = 680
+	_build()
+
+func _build() -> void:
 	_heading("Sound")
 	for bus in VOLUME_ROWS:
 		_slider_row(VOLUME_ROWS[bus], Settings.volumes.get(bus, 1.0), 0.0, 1.0, 0.01,
@@ -28,6 +31,19 @@ func _ready() -> void:
 		func(on: bool) -> void: Settings.invert_y = on)
 	_check_row("Hold to struggle (hold Space instead of tapping)", Settings.hold_to_struggle,
 		func(on: bool) -> void: Settings.hold_to_struggle = on)
+	var reset := Button.new()
+	reset.text = "Reset to defaults"
+	reset.add_theme_font_size_override("font_size", font_size)
+	reset.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	reset.pressed.connect(_reset)
+	add_child(reset)
+
+func _reset() -> void:
+	Settings.reset_to_defaults()
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
+	_build()
 
 func _heading(text: String) -> void:
 	var label := _label(text)
