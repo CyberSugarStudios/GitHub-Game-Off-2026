@@ -7,6 +7,7 @@
 script = ExtResource("1_irgav")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1113710896]
+modulate = Color(1, 1, 1, 0.75000006)
 sprite_frames = ExtResource("2_ja31d")
 animation = &"chase_loop"
 
@@ -16,3 +17,17 @@ animation = &"chase_loop"
 unit_size = 3.0
 
 [node name="Stinger" type="AudioStreamPlayer" parent="." unique_id=317460124]
+
+[node name="GrabOverlay" type="CanvasLayer" parent="." unique_id=1747399456]
+layer = 0
+visible = false
+
+[node name="GrabSprite" type="AnimatedSprite2D" parent="GrabOverlay" unique_id=320718800]
+sprite_frames = ExtResource("2_ja31d")
+animation = &"grab"
+
+[node name="Glow" type="OmniLight3D" parent="." unique_id=160602867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+light_color = Color(0.4509804, 0.8509804, 0.8, 1)
+light_energy = 0.6
+omni_range = 2.5

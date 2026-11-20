@@ -4,7 +4,7 @@ extends Polygon2D
 @export var open_event: StringName = &"front_door_opened"
 @export var needs_flag: StringName = &"creature_accepted"
 @export var bloom_seconds: float = 3.0
-@export var bloom_scale: float = 14.0
+@export var bloom_scale: float = 18.0
 
 var _room: Room
 

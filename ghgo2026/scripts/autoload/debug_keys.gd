@@ -5,12 +5,12 @@ const KEYS: Array[String] = [
 	"F1   Restore a memory bar",
 	"F2   Clock +15 min",
 	"F3   Astral focus on/off",
+	"F4   Skip intro / restart intro",
 	"F5   Creature level +1",
 	"F6   Hint level +1",
 	"F7   Next story stage",
 	"F8   Jump to the finale",
-	"F9   Skip intro / restart intro",
-	"F10  Toggle this list",
+	"`    Toggle this list",
 ]
 
 var _panel: PanelContainer
@@ -27,9 +27,9 @@ func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and not event.echo):
 		return
 	match event.keycode:
-		KEY_F9:
+		KEY_F4:
 			_skip_or_restart_intro()
-		KEY_F10:
+		KEY_QUOTELEFT:
 			_panel.visible = not _panel.visible
 		_:
 			return

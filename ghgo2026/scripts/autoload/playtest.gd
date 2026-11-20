@@ -18,6 +18,8 @@ func _ready() -> void:
 	set_process(is_enabled())
 
 func _process(delta: float) -> void:
+	if Time.get_ticks_msec() - _started_at < 5000:
+		return
 	_sample_clock += delta
 	if _sample_clock < 1.0:
 		return

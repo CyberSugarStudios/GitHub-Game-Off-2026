@@ -100,7 +100,8 @@ const INTRO_FLAGS: Array[StringName] = [
 @export_group("Puzzle 5")
 @export var p5_accept_presses: int = 24
 @export var p5_light_seconds: float = 3.0
-@export var p5_white_hold: float = 1.5
+@export var p5_white_seconds: float = 0.5
+@export var p5_white_hold: float = 1.0
 @export var p5_to_black_seconds: float = 2.5
 @export var p5_fight_audio: AudioStream
 @export var p5_fight_seconds: float = 8.0
@@ -440,16 +441,15 @@ func _accept_creature() -> void:
 func _play_ending() -> void:
 	GameState.set_controls_locked(true)
 	Music.stop(p5_light_seconds)
-	await wait(p5_light_seconds * 0.5)
-	fade.color = Color.WHITE
+	await wait(p5_light_seconds)
+	fade.color = Color(1.0, 1.0, 1.0, 0.0)
 	var tween := create_tween()
-	tween.tween_property(fade, "color:a", 1.0, p5_light_seconds * 0.5)
+	tween.tween_property(fade, "color:a", 1.0, p5_white_seconds)
 	tween.tween_interval(p5_white_hold)
+	if p5_fight_audio:
+		tween.tween_callback(Music.play.bind(p5_fight_audio, p5_to_black_seconds))
 	tween.tween_property(fade, "color", Color.BLACK, p5_to_black_seconds)
 	await tween.finished
-	if p5_fight_audio:
-		Music.play(p5_fight_audio, 1.5)
-	await wait(p5_fight_seconds)
 	GameState.set_controls_locked(false)
 	get_tree().change_scene_to_file(CREDITS_SCENE)
 

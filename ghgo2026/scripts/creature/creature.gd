@@ -44,12 +44,17 @@ const EYE_HEIGHT := 1.4
 @export var guard_exit_grace: float = 2.5
 
 @export_group("Art")
+@export var size_scale: float = 0.8
 @export var animation_fit: Dictionary[StringName, Vector2] = {
 	&"idle": Vector2(2.1, 0.0),
 	&"chase_start": Vector2(2.13, 0.0),
 	&"chase_loop": Vector2(2.13, 0.0),
 	&"grab": Vector2(3.68, 0.98),
 }
+
+@export_group("Grab Overlay")
+@export var grab_screen_height: float = 1.6
+@export var grab_face := Vector2(0.505, 0.11)
 
 @export_group("Sounds")
 @export var sting_sound: AudioStream
@@ -62,6 +67,8 @@ const EYE_HEIGHT := 1.4
 @onready var presence: AudioStreamPlayer3D = $Presence
 @onready var stinger: AudioStreamPlayer = $Stinger
 @onready var sprite: AnimatedSprite3D = get_node_or_null("Sprite")
+@onready var grab_overlay: CanvasLayer = get_node_or_null("GrabOverlay")
+@onready var grab_sprite: AnimatedSprite2D = get_node_or_null("GrabOverlay/GrabSprite")
 #endregion
 var _state := State.HIDDEN
 var _timer := 0.0
@@ -189,7 +196,7 @@ func _process_guard(delta: float) -> void:
 func _start_grab() -> void:
 	_state = State.GRABBING
 	_presses = 0
-	_animate(&"grab")
+	_show_grab_overlay(true)
 	GameState.set_controls_locked(true)
 	GameState.regen_paused = true
 	player.face_toward(global_position + Vector3.UP * grab_look_height, 0.25)
@@ -291,10 +298,27 @@ func _animate(anim: StringName) -> void:
 	var texture := sprite.sprite_frames.get_frame_texture(anim, 0)
 	var fit: Vector2 = animation_fit.get(anim, Vector2(2.1, 0.0))
 	if texture:
-		sprite.pixel_size = fit.x / texture.get_height()
-		sprite.position.y = fit.x * 0.5 - fit.y
+		sprite.pixel_size = fit.x * size_scale / texture.get_height()
+		sprite.position.y = (fit.x * 0.5 - fit.y) * size_scale
+
+func _show_grab_overlay(on: bool) -> void:
+	if grab_overlay == null or grab_sprite == null:
+		return
+	grab_overlay.visible = on
+	if sprite:
+		sprite.visible = not on
+	if not on:
+		grab_sprite.stop()
+		return
+	var texture := grab_sprite.sprite_frames.get_frame_texture(&"grab", 0)
+	var screen := get_viewport().get_visible_rect().size
+	grab_sprite.scale = Vector2.ONE * (screen.y * grab_screen_height / texture.get_height())
+	grab_sprite.offset = (Vector2(0.5, 0.5) - grab_face) * texture.get_size() # Face at the sprite's origin.
+	grab_sprite.position = screen * 0.5
+	grab_sprite.play(&"grab")
 
 func _vanish(next_in: float) -> void:
+	_show_grab_overlay(false)
 	_state = State.HIDDEN
 	visible = false
 	presence.stop()
