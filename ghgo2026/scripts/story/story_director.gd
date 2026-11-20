@@ -253,7 +253,7 @@ func _run_story() -> void:
 
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
-	await say_hall_fight("p1_painting_fight", PUZZLE_1)
+	await say_fight("p1_painting_fight", PUZZLE_1)
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
 	household.send(MOM, p1_storms_to, p1_apart_minutes)
 	GameState.restore_memory()
@@ -267,7 +267,7 @@ func _run_puzzle_2() -> void:
 	GameState.parent_location_changed.connect(_on_puzzle_2_parent_moved)
 	await wait_event(&"keepsake_box_fell")
 	GameState.parent_location_changed.disconnect(_on_puzzle_2_parent_moved)
-	await say("p2_box_fight", true, PUZZLE_2)
+	await say_fight("p2_box_fight", PUZZLE_2)
 	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
 	household.send(DAD, p2_storms_to, p2_apart_minutes)
 	GameState.restore_memory()
@@ -349,7 +349,7 @@ func _p3_try_night() -> bool:
 		GameState.add_near_miss()
 		household.send(DAD, &"living_room", 60)
 		return false
-	await say("p3_safe_fight", true, PUZZLE_3)
+	await say_fight("p3_safe_fight", PUZZLE_3)
 	household.send(DAD, &"living_room", 120)
 	GameState.restore_memory()
 	await say("p3_after", false, PUZZLE_3)
@@ -380,6 +380,7 @@ func _run_puzzle_4() -> void:
 			await wait(p4_lights_settle)
 			break
 	await say("p4_room_reveal", true, PUZZLE_4)
+	GameState.set_flag(&"emily_room_revealed")
 	await wait_room(&"emily_bedroom")
 	await wait_event(&"diary_finished")
 	GameState.set_story_stage(5)
@@ -439,13 +440,15 @@ func say(cue: String, frozen: bool = false, dialogue: DialogueResource = INTRO) 
 func say_in_background(cue: String, dialogue: DialogueResource = INTRO) -> void:
 	Events.conversation_requested.emit(dialogue, cue, false)
 
-func say_hall_fight(cue: String, dialogue: DialogueResource) -> void:
+func say_fight(cue: String, dialogue: DialogueResource) -> void:
 	player.watch({
 		"Leanne": household.get_hall_parent(MOM),
 		"David": household.get_hall_parent(DAD)
 	})
+	room_view.follow_speakers(true)
 	await say(cue, true, dialogue)
 	player.watch({})
+	room_view.follow_speakers(false)
 
 func wait_said(title: String) -> void:
 	_finished.erase(title)

@@ -11,6 +11,10 @@ extends Node
 @export var fade_time: float = 0.35
 @export var staged_pan_time: float = 1.2
 
+@export_group("Followning")
+@export var follow_speed: float = 3.0
+@export var follow_screen_margin := Vector2(0.08, 0.2)
+
 @onready var room_layer: CanvasLayer = $RoomLayer
 @onready var room_ui: CanvasLayer = $RoomUI
 @onready var exit_button: Button = $RoomUI/ExitButton
@@ -25,6 +29,12 @@ var _room_width := 0.0
 var _max_pan := 0.0
 var _pan_x := 0.0
 var _pan_velocity := 0.0
+var _pan_tween: Tween
+var _following := false
+var _speaker := ""
+var _showing_all := true
+var _follow_held := false
+var _hold_this_line := false
 var _exit_spot := Transform3D.IDENTITY
 var exit_locked := false:
 	set(value):
@@ -37,10 +47,8 @@ func _ready() -> void:
 	fade_rect.color.a = 0.0
 	Events.door_opened.connect(enter_room)
 	Events.room_door_opened.connect(change_room)
-	Events.room_pan_requested.connect(
-		func(ratio: float) -> void:
-			pan_to(ratio, staged_pan_time)
-	)
+	Events.room_pan_requested.connect(_on_pan_requested)
+	Events.subtitle_changed.connect(_on_subtitle_changed)
 	exit_button.pressed.connect(exit_room)
 	get_viewport().size_changed.connect(_fit_room)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
@@ -137,6 +145,8 @@ func _fade_to(alpha: float) -> void:
 
 #region - PANNING
 func _process(delta: float) -> void:
+	if _following and _room and not _busy:
+		_follow(delta)
 	if not _room or _busy or GameState.controls_locked:
 		return
 	
@@ -155,9 +165,9 @@ func pan_to(ratio: float, seconds: float) -> void:
 	if not _room:
 		return
 	_pan_velocity = 0.0
-	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_method(_set_pan_x, _pan_x, _max_pan * clampf(ratio, 0.0, 1.0), seconds)
-	await tween.finished
+	_pan_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_pan_tween.tween_method(_set_pan_x, _pan_x, _max_pan * clampf(ratio, 0.0, 1.0), seconds)
+	await _pan_tween.finished
 
 func _set_pan_x(x: float) -> void:
 	_pan_x = x
@@ -183,4 +193,70 @@ func _apply_pan():
 		room_layer.offset.x = (screen_width - _room_width) / 2.0
 	else:
 		room_layer.offset.x = -_pan_x
+#endregion
+
+#region - FOLLOWING SPEAKERS
+func follow_speakers(on: bool) -> void:
+	_following = on
+	_speaker = ""
+	_showing_all = true
+	_follow_held = false
+	_hold_this_line = false
+
+func _on_pan_requested(ratio: float) -> void:
+	_follow_held = true
+	_hold_this_line = true
+	pan_to(ratio, staged_pan_time)
+
+func _on_subtitle_changed(character: String, _text: String, _clarity: float, _is_thought: bool) -> void:
+	if character == "":
+		return
+	if _hold_this_line:
+		_hold_this_line = false
+		return
+	if _actor_for(character):
+		_speaker = character
+		_follow_held = false
+
+func _follow(delta: float) -> void:
+	if _follow_held or _max_pan <= 0.0 or (_pan_tween and _pan_tween.is_running()):
+		return
+	var actors := _visible_actors()
+	if actors.is_empty():
+		return
+	var screen_width := get_viewport().get_visible_rect().size.x
+	var margin := (follow_screen_margin.x if _showing_all else follow_screen_margin.y) * screen_width
+	_showing_all = actors.all(
+		func(actor: RoomActor) -> bool:
+			var on_screen_x := actor.global_position.x - _pan_x
+			return on_screen_x >= margin and on_screen_x <= screen_width - margin)
+
+	var talker := _actor_for(_speaker)
+	var target_x := 0.0
+	if not _showing_all and talker in actors:
+		target_x = talker.global_position.x
+	else:
+		for actor in actors:
+			target_x += actor.global_position.x
+		target_x /= actors.size()
+	var target_pan := clampf(target_x - screen_width * 0.5, 0.0, _max_pan)
+	_set_pan_x(lerpf(_pan_x, target_pan, 1.0 - exp(-follow_speed * delta)))
+
+func _visible_actors() -> Array[RoomActor]:
+	var actors: Array[RoomActor] = []
+	var holder := _room.get_node_or_null("Actors")
+	if holder:
+		for child in holder.get_children():
+			var actor := child as RoomActor
+			if actor and actor.visible:
+				actors.append(actor)
+	return actors
+
+func _actor_for(character: String) -> RoomActor:
+	if character == "" or not _room:
+		return null
+	for actor in _visible_actors():
+		if String(actor.parent_id) == character.to_lower():
+			return actor
+	return null
 #endregion

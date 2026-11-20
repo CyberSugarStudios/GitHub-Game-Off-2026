@@ -52,6 +52,7 @@ offset_bottom = 603.0
 script = ExtResource("6_0hvy4")
 prompt_text = "Read the diary"
 story_id = &"open_diary"
+requires_flag = &"emily_room_revealed"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="MP3Player" type="TextureButton" parent="Hotspots" unique_id=1849474790]
@@ -62,6 +63,7 @@ offset_bottom = 968.0
 script = ExtResource("6_0hvy4")
 prompt_text = "MP3 Player"
 story_id = &"listen_mp3"
+requires_flag = &"emily_room_revealed"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="TurnOnStringLights" type="TextureButton" parent="Hotspots" unique_id=624255428]
