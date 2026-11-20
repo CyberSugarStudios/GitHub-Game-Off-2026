@@ -428,7 +428,7 @@ func _run_finale() -> void:
 func _accept_creature() -> void:
 	_accept_progress = 0.0
 	GameState.set_controls_locked(true)
-	prompt("Accept   [SPACE]")
+	prompt("Accept   " + Settings.struggle_hint())
 	Events.struggle_changed.emit(0.001)
 	await accept_finished
 	_accept_progress = -1.0

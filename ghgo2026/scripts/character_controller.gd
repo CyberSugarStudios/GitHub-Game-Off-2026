@@ -88,9 +88,10 @@ func _physics_process(delta: float) -> void:
 	_report_distance_moved()
 
 func _look(relative: Vector2) -> void:
-	rotate_y(-relative.x * mouse_sensitivity)
+	var sensitivity := mouse_sensitivity * Settings.look_speed
+	rotate_y(-relative.x * sensitivity)
 	var pitch_direction := 1.0 if invert_y else -1.0
-	camera.rotate_x(pitch_direction * relative.y * mouse_sensitivity)
+	camera.rotate_x(pitch_direction * relative.y * sensitivity)
 	var limit := deg_to_rad(max_pitch_degrees)
 	camera.rotation.x = clampf(camera.rotation.x, -limit, limit)
 

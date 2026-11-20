@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b713spnah4skw"]
+
+[ext_resource type="Script" uid="uid://7uqmnmqcix7m" path="res://scripts/ui/options_panel.gd" id="1_ksq0f"]
+
+[node name="OptionsPanel" type="VBoxContainer" unique_id=1048352369]
+script = ExtResource("1_ksq0f")

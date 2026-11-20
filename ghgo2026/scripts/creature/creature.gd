@@ -201,7 +201,7 @@ func _start_grab() -> void:
 	GameState.regen_paused = true
 	player.face_toward(global_position + Vector3.UP * grab_look_height, 0.25)
 	_play(grab_sound)
-	Events.story_prompt_changed.emit("Struggle!   [SPACE]")
+	Events.story_prompt_changed.emit("Struggle!   " + Settings.struggle_hint())
 	Events.struggle_changed.emit(0.001)
 
 func _process_grab(delta: float) -> void:

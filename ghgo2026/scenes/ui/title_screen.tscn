@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cui1imxye4xc8" path="res://scripts/ui/title_screen.gd" id="1_eb34j"]
 [ext_resource type="Texture2D" uid="uid://cs78elmrh0fk8" path="res://assets/textures/rooms/emily_room.webp" id="2_aqpy5"]
+[ext_resource type="PackedScene" uid="uid://b713spnah4skw" path="res://scenes/ui/OptionsPanel.tscn" id="3_w8uqo"]
 
 [node name="TitleScreen" type="Control" unique_id=677689258]
 layout_mode = 3
@@ -102,7 +103,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Options" type="VBoxContainer" parent="OptionsMenu" unique_id=2027892854]
+[node name="OptionsPanel" parent="OptionsMenu" unique_id=1048352369 instance=ExtResource("3_w8uqo")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -110,8 +111,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="CloseOptionsButton" type="Button" parent="OptionsMenu" unique_id=946727618]
 custom_minimum_size = Vector2(50, 50)
