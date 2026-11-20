@@ -56,6 +56,6 @@ func build_report() -> String:
 	if _fps_samples > 0:
 		lines.append("FPS: avg %d, low %d" % [roundi(_fps_total / _fps_samples), roundi(_fps_low)])
 	lines.append("Progress: stage %d, %d bars, day %d %s, in %s" % [GameState.story_stage, GameState.max_bars,
-			GameClock.day, GameClock.get_time_text(), GameState.current_room if GameState.is_in_room() else "hall"])
+			GameClock.day, GameClock.get_time_text(), String(GameState.current_room) if GameState.is_in_room() else "hall"])
 	lines.append("Flags: %s" % ", ".join(PackedStringArray(GameState.flags.keys())))
 	return "\n".join(lines)

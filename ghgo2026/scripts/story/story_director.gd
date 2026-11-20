@@ -104,7 +104,6 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p5_white_hold: float = 1.0
 @export var p5_to_black_seconds: float = 2.5
 @export var p5_fight_audio: AudioStream
-@export var p5_fight_seconds: float = 8.0
 
 @export var wait_fade_time: float = 0.4
 #endregion

@@ -23,6 +23,7 @@ layer = 0
 visible = false
 
 [node name="GrabSprite" type="AnimatedSprite2D" parent="GrabOverlay" unique_id=320718800]
+modulate = Color(1, 1, 1, 0.75000006)
 sprite_frames = ExtResource("2_ja31d")
 animation = &"grab"
 

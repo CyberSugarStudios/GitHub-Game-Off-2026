@@ -90,7 +90,7 @@ func _ready() -> void:
 	_timer = _lurk_delay()
 	if sprite:
 		sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
-		sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+		sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISABLED
 		sprite.animation_finished.connect(
 			func() -> void:
 				if sprite.animation == &"chase_start":
