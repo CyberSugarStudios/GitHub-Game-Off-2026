@@ -278,7 +278,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"chase_loop",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -418,7 +418,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"chase_start",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -453,7 +453,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"grab",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -593,6 +593,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 10.0
+"speed": 30.0
 }]
 metadata/halved = true

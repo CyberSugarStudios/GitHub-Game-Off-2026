@@ -30,7 +30,7 @@ const EYE_HEIGHT := 1.4
 
 @export_group("Struggle")
 @export var struggle_presses: int = 12
-@export var presses_per_bar: int = 4
+@export var presses_per_bar: int = 6
 @export var grab_drain_per_second: float = 0.25
 @export var escape_cooldown: float = 20.0
 @export var grab_look_height: float = 1.3

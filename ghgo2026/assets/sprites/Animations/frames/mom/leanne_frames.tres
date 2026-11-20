@@ -191,7 +191,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 7.5
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -256,7 +256,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle_sad",
-"speed": 7.5
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -306,7 +306,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_back",
-"speed": 7.5
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -356,7 +356,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_front",
-"speed": 7.5
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -406,6 +406,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_side",
-"speed": 7.5
+"speed": 15.0
 }]
 metadata/halved = true
