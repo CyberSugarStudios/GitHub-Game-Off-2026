@@ -546,7 +546,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"chase_loop",
-"speed": 35.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -821,7 +821,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"chase_start",
-"speed": 35.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -886,7 +886,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"grab",
-"speed": 35.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1161,5 +1161,5 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 35.0
+"speed": 20.0
 }]

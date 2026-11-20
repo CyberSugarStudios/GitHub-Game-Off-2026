@@ -25,7 +25,7 @@ visible = false
 [node name="GrabSprite" type="AnimatedSprite2D" parent="GrabOverlay" unique_id=320718800]
 modulate = Color(1, 1, 1, 0.75000006)
 sprite_frames = ExtResource("2_ja31d")
-animation = &"grab"
+animation = &"idle"
 
 [node name="Glow" type="OmniLight3D" parent="." unique_id=160602867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)

@@ -376,7 +376,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 30.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -501,7 +501,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle_sad",
-"speed": 30.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -596,7 +596,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_back",
-"speed": 30.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -691,7 +691,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_front",
-"speed": 30.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -786,5 +786,5 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_side",
-"speed": 30.0
+"speed": 15.0
 }]
