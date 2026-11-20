@@ -440,12 +440,12 @@ func say_in_background(cue: String, dialogue: DialogueResource = INTRO) -> void:
 	Events.conversation_requested.emit(dialogue, cue, false)
 
 func say_hall_fight(cue: String, dialogue: DialogueResource) -> void:
-	player.watch([
-		household.get_hall_parent(MOM),
-		household.get_hall_parent(DAD)
-	])
+	player.watch({
+		"Leanne": household.get_hall_parent(MOM),
+		"David": household.get_hall_parent(DAD)
+	})
 	await say(cue, true, dialogue)
-	player.watch([])
+	player.watch({})
 
 func wait_said(title: String) -> void:
 	_finished.erase(title)

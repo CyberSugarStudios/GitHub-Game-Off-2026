@@ -26,6 +26,7 @@ extends CharacterBody3D
 @export var max_pitch_degrees: float = 80.0
 @export var watch_turn_speed: float = 4.0
 @export var watch_head_height: float = 1.5
+@export var watch_screen_margin := Vector2(0.03, 0.15)
 
 @export_group("Astral Feel")
 @export var astral_fov_boost: float = 8.0
@@ -38,7 +39,9 @@ var _last_position: Vector3
 
 var _base_fov: float
 var _fov_tween: Tween
-var _watching: Array[Node3D] = []
+var _watching: Dictionary = {}
+var _speaker := ""
+var _showing_both := true
 #endregion
 #endregion
 
@@ -49,6 +52,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Events.returned_to_hall.connect(place_at)
 	Events.shift_charge_changed.connect(_on_shift_charge_changed)
+	Events.subtitle_changed.connect(_on_subtitle_changed)
 
 func _on_shift_charge_changed(amount: float) -> void:
 	if amount <= 0.0:
@@ -101,24 +105,53 @@ func face_toward(point: Vector3, seconds: float) -> void:
 	tween.tween_property(self, "rotation:y", rotation.y + wrapf(yaw - rotation.y, -PI, PI), seconds)
 	tween.tween_property(camera, "rotation:x", clampf(pitch, -limit, limit), seconds)
 
-func watch(targets: Array) -> void:
-	_watching.clear()
-	for target in targets:
-		if target is Node3D:
-			_watching.append(target)
+func watch(targets: Dictionary) -> void:
+	_watching = targets
+	_speaker = ""
+	_showing_both = true
+
+func _on_subtitle_changed(character: String, _text: String, _clarity: float, _is_thought: bool) -> void:
+	if _watching.has(character):
+		_speaker = character
 
 func _process(delta: float) -> void:
 	if _watching.is_empty():
 		return
-	var middle := Vector3.ZERO
-	var count := 0
-	for target in _watching:
-		if is_instance_valid(target) and target.is_visible_in_tree():
-			middle += target.global_position
-			count += 1
-	if count == 0:
+	var people: Array[Node3D] = []
+	for person_name in _watching:
+		var person := _watching[person_name] as Node3D
+		if is_instance_valid(person) and person.is_visible_in_tree():
+			people.append(person)
+	if people.is_empty():
 		return
-	var to_point := middle / count + Vector3.UP * watch_head_height - camera.global_position
+	
+	var margin := watch_screen_margin.x if _showing_both else watch_screen_margin.y
+	_showing_both = people.all(
+		func(person: Node3D) -> bool:
+			return _on_screen(_head(person), margin)
+	)
+	
+	var talker := _watching.get(_speaker) as Node3D
+	var point := Vector3.ZERO
+	if not _showing_both and talker in people:
+		point = _head(talker)
+	else:
+		for person in people:
+			point += _head(person)
+		point /= people.size()
+	_turn_toward(point, delta)
+
+func _head(person: Node3D) -> Vector3:
+	return person.global_position + Vector3.UP * watch_head_height
+
+func _on_screen(point: Vector3, margin: float) -> bool:
+	if camera.is_position_behind(point):
+		return false
+	var spot := camera.unproject_position(point) / get_viewport().get_visible_rect().size
+	return spot.x >= margin and spot.x <= 1.0 - margin and spot.y >= margin and spot.y <= 1.0 - margin
+
+func _turn_toward(point: Vector3, delta: float) -> void:
+	var to_point := point - camera.global_position
 	var yaw := atan2(-to_point.x, -to_point.z)
 	var pitch := atan2(to_point.y, Vector2(to_point.x, to_point.z).length())
 	var limit := deg_to_rad(max_pitch_degrees)

@@ -30,6 +30,7 @@ var _stage_target: HallMark = null
 
 func _ready() -> void:
 	add_to_group("astral_visibility")
+	add_to_group("hall_parents")
 	_set_present(false)
 
 func is_walking() -> bool:
@@ -37,6 +38,9 @@ func is_walking() -> bool:
 
 func get_destination() -> StringName:
 	return _destination
+
+func is_using_mark(mark: HallMark) -> bool:
+	return visible and (current_linger == mark or _linger_target == mark or standing_at == mark)
 
 func stand_at(spot: Node3D) -> void:
 	global_position = spot.global_position
@@ -129,9 +133,17 @@ func _check_linger() -> void:
 		offset.y = 0.0
 		if offset.length() <= LINGER_RADIUS:
 			_passed_marks.append(mark)
+			if _mark_taken(mark):
+				continue
 			if randf() < mark.linger_chance:
 				_linger_target = mark
 				return
+
+func _mark_taken(mark: HallMark) -> bool:
+	for node in get_tree().get_nodes_in_group("hall_parents"):
+		if node != self and (node as HallParent).is_using_mark(mark):
+			return true
+	return false
 
 func _step_toward(point: Vector3, delta: float) -> bool:
 	var to_point := point - global_position
