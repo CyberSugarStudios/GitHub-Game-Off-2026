@@ -90,6 +90,7 @@ position = Vector2(2694, 1008)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 frames = ExtResource("7_a5o1a")
+idle_faces_right = true
 
 [node name="RoomCreature" parent="Actors" unique_id=964999695 node_paths=PackedStringArray("blocks") instance=ExtResource("8_7cjtg")]
 position = Vector2(208, 1112)
