@@ -24,6 +24,8 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.0025
 @export var invert_y: bool = false
 @export var max_pitch_degrees: float = 80.0
+@export var watch_turn_speed: float = 4.0
+@export var watch_head_height: float = 1.5
 
 @export_group("Astral Feel")
 @export var astral_fov_boost: float = 8.0
@@ -36,6 +38,7 @@ var _last_position: Vector3
 
 var _base_fov: float
 var _fov_tween: Tween
+var _watching: Array[Node3D] = []
 #endregion
 #endregion
 
@@ -97,6 +100,31 @@ func face_toward(point: Vector3, seconds: float) -> void:
 	var tween := create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "rotation:y", rotation.y + wrapf(yaw - rotation.y, -PI, PI), seconds)
 	tween.tween_property(camera, "rotation:x", clampf(pitch, -limit, limit), seconds)
+
+func watch(targets: Array) -> void:
+	_watching.clear()
+	for target in targets:
+		if target is Node3D:
+			_watching.append(target)
+
+func _process(delta: float) -> void:
+	if _watching.is_empty():
+		return
+	var middle := Vector3.ZERO
+	var count := 0
+	for target in _watching:
+		if is_instance_valid(target) and target.is_visible_in_tree():
+			middle += target.global_position
+			count += 1
+	if count == 0:
+		return
+	var to_point := middle / count + Vector3.UP * watch_head_height - camera.global_position
+	var yaw := atan2(-to_point.x, -to_point.z)
+	var pitch := atan2(to_point.y, Vector2(to_point.x, to_point.z).length())
+	var limit := deg_to_rad(max_pitch_degrees)
+	var look_ease := 1.0 - exp(-watch_turn_speed * delta)
+	rotation.y = lerp_angle(rotation.y, yaw, look_ease)
+	camera.rotation.x = lerpf(camera.rotation.x, clampf(pitch, -limit, limit), look_ease)
 
 func place_at(spot: Transform3D) -> void:
 	global_position = spot.origin

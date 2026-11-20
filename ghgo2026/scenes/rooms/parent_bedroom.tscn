@@ -82,12 +82,12 @@ facing = 1
 [node name="FightGunDavid" type="Marker2D" parent="RoomSpots" unique_id=158532727]
 position = Vector2(480, 970)
 script = ExtResource("7_jpf7g")
-facing = 2
+facing = 1
 
 [node name="FightGunLeanne" type="Marker2D" parent="RoomSpots" unique_id=951712411]
 position = Vector2(1036, 974)
 script = ExtResource("7_jpf7g")
-facing = 1
+facing = 2
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40

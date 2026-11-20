@@ -27,6 +27,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var play_intro: bool = true
 
 @export_group("Scene")
+@export var player: Player
 @export var room_view: RoomView
 @export var astral_shift: AstralShift
 @export var household: Household
@@ -252,7 +253,7 @@ func _run_story() -> void:
 
 func _run_puzzle_1()  -> void:
 	await wait_event(&"hall_painting_fell")
-	await say("p1_painting_fight", true, PUZZLE_1)
+	await say_hall_fight("p1_painting_fight", PUZZLE_1)
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
 	household.send(MOM, p1_storms_to, p1_apart_minutes)
 	GameState.restore_memory()
@@ -437,6 +438,14 @@ func say(cue: String, frozen: bool = false, dialogue: DialogueResource = INTRO) 
 
 func say_in_background(cue: String, dialogue: DialogueResource = INTRO) -> void:
 	Events.conversation_requested.emit(dialogue, cue, false)
+
+func say_hall_fight(cue: String, dialogue: DialogueResource) -> void:
+	player.watch([
+		household.get_hall_parent(MOM),
+		household.get_hall_parent(DAD)
+	])
+	await say(cue, true, dialogue)
+	player.watch([])
 
 func wait_said(title: String) -> void:
 	_finished.erase(title)

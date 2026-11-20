@@ -811,8 +811,9 @@ conversation_player = NodePath("../ConversationPlayer")
 [node name="AstralShift" type="Node" parent="." unique_id=1708356995]
 script = ExtResource("36_kmb1v")
 
-[node name="StoryDirector" type="Node" parent="." unique_id=441234710 node_paths=PackedStringArray("room_view", "astral_shift", "household", "fade", "wake_doorway", "garage_voice", "living_room_voice", "front_door_sound", "title_card")]
+[node name="StoryDirector" type="Node" parent="." unique_id=441234710 node_paths=PackedStringArray("player", "room_view", "astral_shift", "household", "fade", "wake_doorway", "garage_voice", "living_room_voice", "front_door_sound", "title_card")]
 script = ExtResource("41_5poiv")
+player = NodePath("../Emily")
 room_view = NodePath("../RoomView")
 astral_shift = NodePath("../AstralShift")
 household = NodePath("../Household")
