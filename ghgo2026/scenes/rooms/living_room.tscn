@@ -232,13 +232,13 @@ prompt_text = "Nudge"
 [node name="WatchingTVAndDrinking" type="Marker2D" parent="RoomSpots" unique_id=1372252472]
 position = Vector2(2694, 1008)
 script = ExtResource("12_8llds")
-facing = 1
+facing = 2
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
 [node name="WatchingTV" type="Marker2D" parent="RoomSpots" unique_id=935877567]
 position = Vector2(2694, 1008)
 script = ExtResource("12_8llds")
-facing = 1
+facing = 2
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
 [node name="RoomDepth" type="Node2D" parent="." unique_id=845349053]

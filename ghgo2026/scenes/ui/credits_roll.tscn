@@ -30,6 +30,7 @@ offset_right = 1600.0
 offset_bottom = 684.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center][font=res://assets/fonts/Allura-Regular.ttf][font_size=240]Interim[/font_size][/font]
 Made for GitHub Game Off 2026
@@ -63,6 +64,7 @@ layout_mode = 0
 offset_top = 688.0
 offset_right = 1600.0
 offset_bottom = 972.0
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center][font_size=28]If this story touched something in you[/font_size]
 
@@ -99,7 +101,7 @@ offset_bottom = -91.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_3nbvj")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Press any key to continue"
 horizontal_alignment = 1
 
