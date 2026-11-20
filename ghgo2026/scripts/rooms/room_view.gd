@@ -13,7 +13,6 @@ extends Node
 
 @export_group("Followning")
 @export var follow_speed: float = 3.0
-@export var follow_screen_margin := Vector2(0.08, 0.2)
 
 @onready var room_layer: CanvasLayer = $RoomLayer
 @onready var room_ui: CanvasLayer = $RoomUI
@@ -32,7 +31,6 @@ var _pan_velocity := 0.0
 var _pan_tween: Tween
 var _following := false
 var _speaker := ""
-var _showing_all := true
 var _follow_held := false
 var _hold_this_line := false
 var _exit_spot := Transform3D.IDENTITY
@@ -199,7 +197,6 @@ func _apply_pan():
 func follow_speakers(on: bool) -> void:
 	_following = on
 	_speaker = ""
-	_showing_all = true
 	_follow_held = false
 	_hold_this_line = false
 
@@ -224,21 +221,15 @@ func _follow(delta: float) -> void:
 	var actors := _visible_actors()
 	if actors.is_empty():
 		return
-	var screen_width := get_viewport().get_visible_rect().size.x
-	var margin := (follow_screen_margin.x if _showing_all else follow_screen_margin.y) * screen_width
-	_showing_all = actors.all(
-		func(actor: RoomActor) -> bool:
-			var on_screen_x := actor.global_position.x - _pan_x
-			return on_screen_x >= margin and on_screen_x <= screen_width - margin)
-
 	var talker := _actor_for(_speaker)
 	var target_x := 0.0
-	if not _showing_all and talker in actors:
+	if talker:
 		target_x = talker.global_position.x
 	else:
 		for actor in actors:
 			target_x += actor.global_position.x
 		target_x /= actors.size()
+	var screen_width := get_viewport().get_visible_rect().size.x
 	var target_pan := clampf(target_x - screen_width * 0.5, 0.0, _max_pan)
 	_set_pan_x(lerpf(_pan_x, target_pan, 1.0 - exp(-follow_speed * delta)))
 
