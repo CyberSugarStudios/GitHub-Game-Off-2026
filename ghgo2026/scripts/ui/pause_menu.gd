@@ -5,6 +5,7 @@ const TITLE_SCENE_PATH := "res://scenes/ui/title_screen.tscn"
 @onready var resume_button: Button = $Buttons/ResumeButton
 @onready var settings_button: Button = $Buttons/SettingsButton
 @onready var quit_button: Button = $Buttons/QuitToTitleButton
+@onready var feedback_button: Button = $Buttons/FeedbackButton
 
 var _had_mouse_capture := false
 
@@ -13,6 +14,8 @@ func _ready() -> void:
 	resume_button.pressed.connect(resume)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	feedback_button.visible = Playtest.is_enabled()
+	feedback_button.pressed.connect(Playtest.open_form)
 
 func _process(_delta: float) -> void:
 	if get_tree().paused:

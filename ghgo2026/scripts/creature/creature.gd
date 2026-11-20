@@ -43,6 +43,14 @@ const EYE_HEIGHT := 1.4
 @export var guard_return_delay: float = 8.0
 @export var guard_exit_grace: float = 2.5
 
+@export_group("Art")
+@export var animation_fit: Dictionary[StringName, Vector2] = {
+	&"idle": Vector2(2.1, 0.0),
+	&"chase_start": Vector2(2.13, 0.0),
+	&"chase_loop": Vector2(2.13, 0.0),
+	&"grab": Vector2(3.68, 0.98),
+}
+
 @export_group("Sounds")
 @export var sting_sound: AudioStream
 @export var grab_sound: AudioStream
@@ -53,6 +61,7 @@ const EYE_HEIGHT := 1.4
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 @onready var presence: AudioStreamPlayer3D = $Presence
 @onready var stinger: AudioStreamPlayer = $Stinger
+@onready var sprite: AnimatedSprite3D = get_node_or_null("Sprite")
 #endregion
 var _state := State.HIDDEN
 var _timer := 0.0
@@ -72,6 +81,13 @@ func _ready() -> void:
 	agent.path_desired_distance = 0.25
 	agent.target_desired_distance = grab_distance * 0.5
 	_timer = _lurk_delay()
+	if sprite:
+		sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+		sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+		sprite.animation_finished.connect(
+			func() -> void:
+				if sprite.animation == &"chase_start":
+					_animate(&"chase_loop"))
 
 func set_warmup(on: bool) -> void:
 	visible = on
@@ -168,10 +184,12 @@ func _process_guard(delta: float) -> void:
 	if _grace <= 0.0 and _distance_to_player() <= guard_charge_distance:
 		_state = State.HUNTING
 		_repath = 0.0
+		_animate(&"chase_start")
 
 func _start_grab() -> void:
 	_state = State.GRABBING
 	_presses = 0
+	_animate(&"grab")
 	GameState.set_controls_locked(true)
 	GameState.regen_paused = true
 	player.face_toward(global_position + Vector3.UP * grab_look_height, 0.25)
@@ -234,6 +252,7 @@ func _on_plane_changed(in_astral: bool) -> void:
 		if _state == State.LURKING:
 			_state = State.HUNTING
 			_repath = 0.0
+			_animate(&"chase_start")
 		elif _state == State.HIDDEN:
 			_timer = minf(_timer, randf_range(hunt_delay.x, hunt_delay.y))
 	elif _state == State.HUNTING:
@@ -255,12 +274,25 @@ func _on_monster_level_changed(_level: int) -> void:
 func _appear(at: Vector3, state: State) -> void:
 	global_position = at
 	_state = state
+	_animate(&"chase_start" if state == State.HUNTING else &"idle")
 	visible = true
 	if state == State.GUARDING:
 		GameState.guarded_room = guard_room
 	_face_player()
 	if presence.stream:
 		presence.play()
+
+func _animate(anim: StringName) -> void:
+	if sprite == null or sprite.sprite_frames == null or not sprite.sprite_frames.has_animation(anim):
+		return
+	if sprite.animation == anim and sprite.is_playing():
+		return
+	sprite.play(anim)
+	var texture := sprite.sprite_frames.get_frame_texture(anim, 0)
+	var fit: Vector2 = animation_fit.get(anim, Vector2(2.1, 0.0))
+	if texture:
+		sprite.pixel_size = fit.x / texture.get_height()
+		sprite.position.y = fit.x * 0.5 - fit.y
 
 func _vanish(next_in: float) -> void:
 	_state = State.HIDDEN

@@ -567,13 +567,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_depug_jump_to_finale()
 	
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
-	and event.keycode == KEY_F4 and not GameState.has_flag(INTRO_DONE):
-		get_viewport().set_input_as_handled()
-		_restart_as_morning()
-	
-	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
 	and event.keycode == KEY_F7 and GameState.has_flag(INTRO_DONE):
 		get_viewport().set_input_as_handled()
-		GameState.story_stage += 1
+		GameState.set_story_stage(GameState.story_stage + 1)
 		GameState.restore_memory()
 #endregion

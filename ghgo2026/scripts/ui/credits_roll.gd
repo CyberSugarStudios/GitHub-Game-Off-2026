@@ -15,6 +15,7 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @onready var credits_text: Control = %CreditsText
 @onready var help_text: Control = %HelpText
 @onready var continue_prompt: CanvasItem = %ContinuePrompt
+@onready var feedback_button: Button = %FeedbackButton
 
 var _scrolled := 0.0
 var _credits_start := 0.0
@@ -25,6 +26,9 @@ var _waiting_on_help := false
 var _leaving := false
 
 func _ready() -> void:
+	feedback_button.visible = Playtest.is_enabled()
+	feedback_button.focus_mode = Control.FOCUS_NONE
+	feedback_button.pressed.connect(Playtest.open_form)
 	clip_contents = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	continue_prompt.modulate.a = 0.0

@@ -53,3 +53,8 @@ text = "Options"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Quit to Title"
+
+[node name="FeedbackButton" type="Button" parent="Buttons" unique_id=808456714]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Playtest Feedback"
