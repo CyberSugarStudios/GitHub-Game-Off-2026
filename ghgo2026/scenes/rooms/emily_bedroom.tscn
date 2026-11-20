@@ -14,18 +14,18 @@ script = ExtResource("1_kdc1v")
 room_id = &"emily_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_6ri0t")
 centered = false
 
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1130689782]
 position = Vector2(0, 19)
-scale = Vector2(6, 6)
+scale = Vector2(4, 4)
 energy = 0.0
 script = ExtResource("3_fa2v7")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_6ri0t")
 centered = false
 
@@ -466,3 +466,38 @@ scale = Vector2(2, 0.5625)
 energy = 0.0
 texture = ExtResource("7_n0mbq")
 texture_scale = 2.0
+
+[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=781550220]
+z_index = 100
+
+[node name="DIARY_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1462711061]
+offset_left = 639.0
+offset_top = 500.0
+offset_right = 981.0
+offset_bottom = 548.0
+theme_override_font_sizes/font_size = 48
+text = "DIARY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MP3_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1675105179]
+offset_left = 1170.0
+offset_top = 970.0
+offset_right = 1602.0
+offset_bottom = 1018.0
+theme_override_font_sizes/font_size = 48
+text = "MP3 PLAYER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="STRING_LIGHT_SWITCH_LABEL" type="Label" parent="TEMP_LABELS" unique_id=772968084]
+offset_left = 1269.0
+offset_top = 606.0
+offset_right = 1701.0
+offset_bottom = 756.0
+theme_override_font_sizes/font_size = 48
+text = "STRING
+LIGHT
+SWITCH"
+horizontal_alignment = 1
+vertical_alignment = 1

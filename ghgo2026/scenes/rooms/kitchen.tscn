@@ -26,7 +26,7 @@ script = ExtResource("1_njvo0")
 room_id = &"kitchen"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(2, 2)
+scale = Vector2(4.005, 4)
 texture = ExtResource("2_m75iv")
 centered = false
 
@@ -37,7 +37,7 @@ energy = 0.0
 script = ExtResource("3_581re")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-scale = Vector2(2, 2)
+scale = Vector2(4.005, 4)
 texture = ExtResource("2_m75iv")
 centered = false
 
@@ -93,14 +93,19 @@ position = Vector2(1447.4379, 723.56256)
 scale = Vector2(90.87579, 127.125175)
 texture = SubResource("CanvasTexture_n5en3")
 
+[node name="Pamphlet" type="Sprite2D" parent="FrontProps" unique_id=1555067475]
+position = Vector2(1091.75, 743.25)
+scale = Vector2(242.5, 89.50001)
+texture = SubResource("CanvasTexture_n5en3")
+
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
 [node name="Pamphlet" type="TextureButton" parent="Hotspots" unique_id=311590483]
 offset_left = 971.0
 offset_top = 699.0
-offset_right = 1218.0
-offset_bottom = 805.0
+offset_right = 1211.0
+offset_bottom = 790.0
 script = ExtResource("6_fiuqx")
 prompt_text = "Look at pamphlet"
 story_id = &"memorial_pamphlet"
@@ -179,3 +184,47 @@ position = Vector2(-44, 1172)
 
 [node name="FloorRight" type="Marker2D" parent="RoomDepth" unique_id=1294863362]
 position = Vector2(4186, 1176)
+
+[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=1625534298]
+z_index = 100
+
+[node name="COUNTERTOP_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1668506009]
+offset_left = 99.0
+offset_top = 811.0
+offset_right = 441.0
+offset_bottom = 859.0
+theme_override_font_sizes/font_size = 48
+text = "COUNTER TOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COFFEE_MACHINE_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1416812957]
+offset_left = 26.0
+offset_top = 338.0
+offset_right = 458.0
+offset_bottom = 386.0
+theme_override_font_sizes/font_size = 48
+text = "COFFEE MACHINE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COFFEE_CUP_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1977956994]
+offset_left = 1248.0
+offset_top = 705.0
+offset_right = 1680.0
+offset_bottom = 753.0
+theme_override_font_sizes/font_size = 48
+text = "COFFEE CUP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PAMPHLET_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1188015473]
+offset_left = 881.0
+offset_top = 701.0
+offset_right = 1313.0
+offset_bottom = 800.0
+theme_override_font_sizes/font_size = 48
+text = "MEMORIAL
+PAMPHLET"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -21,7 +21,7 @@ script = ExtResource("1_nl2ye")
 room_id = &"garage"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_371gr")
 centered = false
 
@@ -33,7 +33,7 @@ script = ExtResource("3_371gr")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
 visible = false
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_371gr")
 centered = false
 
@@ -164,3 +164,39 @@ art = NodePath("../../BackProps/ToolShelf")
 hint_stage = 3
 prompt_text = "Nudge"
 realm = 2
+
+[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=1458415549]
+z_index = 100
+
+[node name="KEEPSAKES_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1061116701]
+offset_left = 524.0
+offset_top = 120.0
+offset_right = 866.0
+offset_bottom = 219.0
+theme_override_font_sizes/font_size = 48
+text = "BOX OF
+KEEPSAKES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LIGHT_BULB_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1826186135]
+offset_left = 1769.0
+offset_top = 42.0
+offset_right = 2201.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 48
+text = "LIGHT
+BULB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TOOL_RACK_LABEL" type="Label" parent="TEMP_LABELS" unique_id=902967891]
+offset_left = 3580.0
+offset_top = 477.0
+offset_right = 4012.0
+offset_bottom = 576.0
+theme_override_font_sizes/font_size = 48
+text = "RACK OF
+LOOSE TOOLS"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -24,7 +24,7 @@ script = ExtResource("1_dymt4")
 room_id = &"parent_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_1y1r8")
 centered = false
 
@@ -35,7 +35,7 @@ energy = 0.0
 script = ExtResource("3_db7fa")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_1y1r8")
 centered = false
 
@@ -120,3 +120,39 @@ script = ExtResource("9_jpf7g")
 prompt_text = "Look at safe"
 observe_dialogue = ExtResource("10_crvc2")
 observe_cue = "gun_safe"
+
+[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=1443488040]
+z_index = 100
+
+[node name="SAFE_LABEL" type="Label" parent="TEMP_LABELS" unique_id=821514429]
+offset_left = -25.0
+offset_top = 918.0
+offset_right = 317.0
+offset_bottom = 1017.0
+theme_override_font_sizes/font_size = 48
+text = "GUN
+SAFE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BEDSIDE_TABLE_LABEL" type="Label" parent="TEMP_LABELS" unique_id=125391871]
+offset_left = 2522.0
+offset_top = 638.0
+offset_right = 2954.0
+offset_bottom = 737.0
+theme_override_font_sizes/font_size = 48
+text = "BEDSIDE
+TABLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PILL_BOTTLE_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1761761839]
+offset_left = 2514.0
+offset_top = 465.0
+offset_right = 2946.0
+offset_bottom = 513.0
+theme_override_font_sizes/font_size = 48
+text = "PILL
+BOTTLE"
+horizontal_alignment = 1
+vertical_alignment = 1

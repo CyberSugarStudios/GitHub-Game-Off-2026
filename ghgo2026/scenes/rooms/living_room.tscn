@@ -36,7 +36,7 @@ script = ExtResource("1_oy7wu")
 room_id = &"living_room"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_e86kh")
 centered = false
 
@@ -47,7 +47,7 @@ energy = 0.0
 script = ExtResource("3_2cxqs")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_e86kh")
 centered = false
 
@@ -295,3 +295,17 @@ z_index = 35
 position = Vector2(150, 555)
 polygon = PackedVector2Array(-148.89, -493.53, 144.305, -479.92, 140.74, 480.815, -151.93, 591.095)
 script = ExtResource("17_8mmjm")
+
+[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=1015727009]
+z_index = 100
+
+[node name="BEER_CANS_LABEL" type="Label" parent="TEMP_LABELS" unique_id=976910519]
+offset_left = 2286.0
+offset_top = 602.0
+offset_right = 2628.0
+offset_bottom = 701.0
+theme_override_font_sizes/font_size = 48
+text = "CANS OF
+BEER"
+horizontal_alignment = 1
+vertical_alignment = 1
