@@ -490,6 +490,16 @@ text = "MP3 PLAYER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MP3_LABEL2" type="Label" parent="TEMP_LABELS" unique_id=899370919]
+offset_left = 746.0
+offset_top = 704.0
+offset_right = 1178.0
+offset_bottom = 752.0
+theme_override_font_sizes/font_size = 48
+text = "MP3 PLAYER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="STRING_LIGHT_SWITCH_LABEL" type="Label" parent="TEMP_LABELS" unique_id=772968084]
 offset_left = 1269.0
 offset_top = 606.0
