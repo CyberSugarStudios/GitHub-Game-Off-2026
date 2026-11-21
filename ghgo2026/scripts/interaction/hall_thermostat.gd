@@ -4,6 +4,11 @@ extends PowerTarget
 @export var works_at_stage: int = 2
 @export var trips_event: StringName = &"david_checks_breaker"
 @export var dead_seconds: float = 4.0
+@export var noticed_from: Array[StringName] = [
+	&"living_room",
+	&"hall",
+	&"thermostat"
+]
 
 @export_group("Sounds")
 @export var shock_sound: AudioStream
@@ -36,6 +41,7 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 
 func _trips_breaker() -> bool:
 	return GameState.story_stage == works_at_stage \
+		and GameState.get_parent_location(&"david") in noticed_from \
 		and GameState.get_parent_activity(&"david") != &"sleeping"
 
 func _go_dark(seconds: float) -> void:

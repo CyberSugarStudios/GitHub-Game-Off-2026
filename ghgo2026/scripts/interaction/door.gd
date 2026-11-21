@@ -26,6 +26,7 @@ signal unlocked
 
 @export_group("Sounds")
 @export var unlock_sound: AudioStream = preload("res://assets/audio/sfx/Unlocking.wav")
+@export var unlock_click_at: float = 3.15
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
 const PARENT_NAMES: Dictionary[StringName, String] = {
@@ -62,6 +63,8 @@ func _ready() -> void:
 	_build_bars()
 	if is_locked():
 		_show_progress(0.0)
+	else:
+		lock_icon.hide()
 
 func _process(_delta: float) -> void:
 	if _bar_materials.is_empty():
@@ -140,13 +143,14 @@ func _on_unlocked() -> void:
 	_play_unlock_animation()
 
 func _play_unlock_sound() -> void:
-	if unlock_sound == null:
+	if unlock_sound == null or lock.transfer_rate <= 0.0:
 		return
+	var fill_seconds := (lock.lock_bars - lock.progress) / lock.transfer_rate
 	if _sound_fade:
 		_sound_fade.kill()
 	_sound.stream = unlock_sound
 	_sound.volume_db = 0.0
-	_sound.play()
+	_sound.play(maxf(unlock_click_at - fill_seconds, 0.0))
 
 func _fade_unlock_sound() -> void:
 	if not _sound.playing:
