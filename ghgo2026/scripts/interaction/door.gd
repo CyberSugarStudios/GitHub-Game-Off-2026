@@ -4,6 +4,12 @@ extends Interactable
 #region - INIT
 signal unlocked
 
+const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
+const PARENT_NAMES: Dictionary[StringName, String] = {
+	&"leanne": "Mom",
+	&"david": "Dad"
+}
+
 #region - EXPORTS
 @export_group("Room Base")
 @export var room_id: StringName
@@ -23,16 +29,7 @@ signal unlocked
 @export var bar_size := Vector2(0.09, 0.045)
 @export var bar_spacing: float = 0.105
 @export var bar_texture: Texture2D = preload("res://assets/textures/astral_door_lock_bar.jpg")
-
-@export_group("Sounds")
-@export var unlock_sound: AudioStream = preload("res://assets/audio/sfx/Unlocking.wav")
-@export var unlock_click_at: float = 3.15
 #endregion
-const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
-const PARENT_NAMES: Dictionary[StringName, String] = {
-	&"leanne": "Mom",
-	&"david": "Dad"
-}
 #region - ONREADY
 @onready var lock_icon: Node3D = get_node_or_null("LockIcon")
 @onready var bar_row: Node3D = get_node_or_null("LockIcon/BarPips")
@@ -41,8 +38,6 @@ var lock: DoorLock
 
 var _bar_materials: Array[ShaderMaterial] = []
 var _icon_rest_position: Vector3
-var _sound: AudioStreamPlayer3D
-var _sound_fade: Tween
 #endregion
 
 func _ready() -> void:
@@ -53,10 +48,6 @@ func _ready() -> void:
 	lock.progress_changed.connect(_show_progress)
 	lock.unlocked.connect(_on_unlocked)
 	lock.failed.connect(_play_fail_shake)
-	lock.failed.connect(_fade_unlock_sound)
-	_sound = AudioStreamPlayer3D.new()
-	_sound.bus = &"SFX"
-	add_child(_sound)
 	if lock_icon == null:
 		return
 	_icon_rest_position = lock_icon.position
@@ -109,7 +100,6 @@ func _on_interacted() -> void:
 		return
 	if is_locked():
 		lock.start()
-		_play_unlock_sound()
 	else:
 		if not GameState.try_spend(pass_cost):
 			return
@@ -141,23 +131,6 @@ func _with_who_is_inside(text: String) -> String:
 func _on_unlocked() -> void:
 	unlocked.emit()
 	_play_unlock_animation()
-
-func _play_unlock_sound() -> void:
-	if unlock_sound == null or lock.transfer_rate <= 0.0:
-		return
-	var fill_seconds := (lock.lock_bars - lock.progress) / lock.transfer_rate
-	if _sound_fade:
-		_sound_fade.kill()
-	_sound.stream = unlock_sound
-	_sound.volume_db = 0.0
-	_sound.play(maxf(unlock_click_at - fill_seconds, 0.0))
-
-func _fade_unlock_sound() -> void:
-	if not _sound.playing:
-		return
-	_sound_fade = create_tween()
-	_sound_fade.tween_property(_sound, "volume_db", -40.0, 0.2)
-	_sound_fade.tween_callback(_sound.stop)
 #endregion
 
 #region - VISUALS
@@ -195,10 +168,7 @@ func _play_unlock_animation() -> void:
 			material.set_shader_parameter("opacity", v), 1.0, 0.0, 0.5).set_delay(start + 0.12)
 	tween.tween_property(lock_icon, "position:y", _icon_rest_position.y + 0.04, 0.9) \
 			.set_delay(0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(_sound, "volume_db", -40.0, 1.05) \
-			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.chain().tween_callback(lock_icon.hide)
-	tween.tween_callback(_sound.stop)
 
 func _play_fail_shake() -> void:
 	var tween := create_tween()
