@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bnn5b1typ61dm"
+path="res://.godot/imported/Dad footstep 4.wav-073e50a90cb899aa1da27574603ffc96.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/footsteps/david/Dad footstep 4.wav"
+dest_files=["res://.godot/imported/Dad footstep 4.wav-073e50a90cb899aa1da27574603ffc96.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

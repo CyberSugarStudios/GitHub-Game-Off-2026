@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cj5ehrnf5mb5e"
+path="res://.godot/imported/Mum footstep 9.wav-1b8064786abc37d93216f36a3086363d.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/footsteps/leanne/Mum footstep 9.wav"
+dest_files=["res://.godot/imported/Mum footstep 9.wav-1b8064786abc37d93216f36a3086363d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

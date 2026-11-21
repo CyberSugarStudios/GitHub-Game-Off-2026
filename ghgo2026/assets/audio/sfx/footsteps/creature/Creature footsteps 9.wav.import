@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://s70yn560puat"
+path="res://.godot/imported/Creature footsteps 9.wav-2f6ec4359fda76c82585285a69f62bef.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/footsteps/creature/Creature footsteps 9.wav"
+dest_files=["res://.godot/imported/Creature footsteps 9.wav-2f6ec4359fda76c82585285a69f62bef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
