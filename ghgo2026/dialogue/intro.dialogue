@@ -6,7 +6,7 @@ Emily: What time is it? [#thought]
 => END
 
 ~ intro_clock
-Emily: Twenty to five. Is Dad already home? [#thought]
+Emily: It's {{GameClock.get_clock_text()}}. Dad's usually home by now. [#thought]
 => END
 
 ~ intro_david_garage

@@ -7,6 +7,7 @@ signal max_bars_changed(max_bars: int)
 signal plane_changed(in_astral: bool)
 signal forced_out_of_astral
 signal flag_set(id: StringName)
+signal flag_cleared(id: StringName)
 signal room_changed(room_id: StringName) #&"" should mean the hall
 signal controls_locked_changed(locked: bool)
 signal parent_location_changed(parent_id: StringName, location: StringName)
@@ -174,7 +175,8 @@ func has_flag(id: StringName) -> bool:
 	return flags.has(id)
 
 func clear_flag(id: StringName) -> void:
-	flags.erase(id)
+	if flags.erase(id):
+		flag_cleared.emit(id)
 #endregion
 
 #region - ROOMS

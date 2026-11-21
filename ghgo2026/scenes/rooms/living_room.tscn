@@ -90,7 +90,6 @@ position = Vector2(2694, 1008)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 frames = ExtResource("7_a5o1a")
-idle_faces_right = true
 
 [node name="RoomCreature" parent="Actors" unique_id=964999695 node_paths=PackedStringArray("blocks") instance=ExtResource("8_7cjtg")]
 position = Vector2(208, 1112)
@@ -232,16 +231,11 @@ from_stage = 3
 
 [node name="RoomSpots" type="Node2D" parent="." unique_id=50306253]
 
-[node name="WatchingTVAndDrinking" type="Marker2D" parent="RoomSpots" unique_id=1372252472]
-position = Vector2(2694, 1008)
-script = ExtResource("12_8llds")
-facing = 2
-metadata/_custom_type_script = "uid://26eyobriow6j"
-
 [node name="WatchingTV" type="Marker2D" parent="RoomSpots" unique_id=935877567]
 position = Vector2(2694, 1008)
 script = ExtResource("12_8llds")
-facing = 2
+facing = 1
+also_for = Array[StringName]([&"watching_tv_and_drinking", &"drinking_and_tv", &"drinking_and_watching_tv_then_falling_asleep", &"sleeping"])
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
 [node name="RoomDepth" type="Node2D" parent="." unique_id=845349053]

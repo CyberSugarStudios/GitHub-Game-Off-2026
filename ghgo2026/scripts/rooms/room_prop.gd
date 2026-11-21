@@ -61,6 +61,7 @@ func _ready() -> void:
 	add_child(_sound)
 	Events.power_used.connect(_on_power_used)
 	GameState.flag_set.connect(_on_flag_set)
+	GameState.flag_cleared.connect(_on_flag_cleared)
 	if _is_done():
 		_done_shown = true
 		_animate(success_anim, true)
@@ -128,6 +129,18 @@ func _on_flag_set(id: StringName) -> void:
 	await _animate(success_anim, false)
 	if done_reveal:
 		done_reveal.visible = true
+
+func _on_flag_cleared(id: StringName) -> void:
+	if id != done_flag or not _done_shown:
+		return
+	_done_shown = false
+	if art:
+		art.position = _rest_position
+		art.rotation = _rest_rotation
+		art.modulate = Color.WHITE
+	if done_reveal:
+		done_reveal.visible = false
+	_refresh()
 
 func _is_done() -> bool:
 	return done_flag != &"" and GameState.has_flag(done_flag)

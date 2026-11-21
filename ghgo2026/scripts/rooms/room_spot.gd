@@ -5,7 +5,11 @@ extends Marker2D
 enum Facing { EITHER, LEFT, RIGHT }
 
 @export var facing: Facing = Facing.EITHER
+@export var also_for: Array[StringName] = []
 @export_placeholder("") var spot_id: String = ""
+
+func matches(id: StringName) -> bool:
+	return get_spot_id() == id or id in also_for
 
 func get_spot_id() -> StringName:
 	return StringName(spot_id if spot_id != "" else String(name).to_snake_case())
