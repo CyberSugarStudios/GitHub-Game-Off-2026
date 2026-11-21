@@ -23,8 +23,15 @@ signal unlocked
 @export var bar_size := Vector2(0.09, 0.045)
 @export var bar_spacing: float = 0.105
 @export var bar_texture: Texture2D = preload("res://assets/textures/astral_door_lock_bar.jpg")
+
+@export_group("Sounds")
+@export var unlock_sound: AudioStream = preload("res://assets/audio/sfx/Unlocking.wav")
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
+const PARENT_NAMES: Dictionary[StringName, String] = {
+	&"leanne": "Mom",
+	&"david": "Dad"
+}
 #region - ONREADY
 @onready var lock_icon: Node3D = get_node_or_null("LockIcon")
 @onready var bar_row: Node3D = get_node_or_null("LockIcon/BarPips")
@@ -33,6 +40,7 @@ var lock: DoorLock
 
 var _bar_materials: Array[ShaderMaterial] = []
 var _icon_rest_position: Vector3
+var _sound: AudioStreamPlayer3D
 #endregion
 
 func _ready() -> void:
@@ -43,6 +51,9 @@ func _ready() -> void:
 	lock.progress_changed.connect(_show_progress)
 	lock.unlocked.connect(_on_unlocked)
 	lock.failed.connect(_play_fail_shake)
+	_sound = AudioStreamPlayer3D.new()
+	_sound.bus = &"SFX"
+	add_child(_sound)
 	if lock_icon == null:
 		return
 	_icon_rest_position = lock_icon.position
@@ -62,18 +73,22 @@ func is_locked() -> bool:
 
 #region - INTERACT OVERRIDES
 func get_prompt_text() -> String:
-	return room_label if _observing() else prompt_text
+	return room_label if _observing() else _with_who_is_inside(prompt_text)
 
 func get_block_reason() -> String:
 	if _observing():
 		return "" if _observe_cue() != "" else room_label
+	var reason := _entry_block_reason()
+	return _with_who_is_inside(reason) if reason != "" else ""
+
+func _entry_block_reason() -> String:
 	if not enterable:
 		return room_label
 	if GameState.guarded_room == room_id:
 		return "It won't let me near..."
 	if lock.transferring:
 		return "Using energy..."
-	var reason := super()
+	var reason := super.get_block_reason()
 	if reason != "":
 		return reason
 	if not is_locked() and not GameState.can_afford(pass_cost):
@@ -103,11 +118,25 @@ func _observe_cue() -> String:
 		if cue in cues:
 			return cue
 	return ""
+
+func _with_who_is_inside(text: String) -> String:
+	var inside := PackedStringArray()
+	for node in get_tree().get_nodes_in_group("hall_parents"):
+		var parent := node as HallParent
+		if not parent.visible and GameState.get_parent_location(parent.parent_id) == room_id:
+			var parent_name: String = PARENT_NAMES.get(parent.parent_id, String(parent.parent_id).capitalize())
+			inside.append(parent_name)
+	if inside.is_empty():
+		return text
+	return "%s\n%s %s inside" % [text, " and ".join(inside), "is" if inside.size() == 1 else "are"]
 #endregion
 
 #region - LOCK
 func _on_unlocked() -> void:
 	unlocked.emit()
+	if unlock_sound:
+		_sound.stream = unlock_sound
+		_sound.play()
 	_play_unlock_animation()
 #endregion
 

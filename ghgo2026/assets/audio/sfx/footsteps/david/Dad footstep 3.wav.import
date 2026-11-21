@@ -13,11 +13,11 @@ dest_files=["res://.godot/imported/Dad footstep 3.wav-cc6f7a6948f00b3c372dc046c6
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=false
-edit/normalize=false
+edit/trim=true
+edit/normalize=true
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1

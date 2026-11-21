@@ -86,7 +86,6 @@ func save_settings() -> void:
 	config.set_value("display", "gamma", gamma)
 	config.set_value("display", "reduce_flashing", reduce_flashing)
 	config.save(PATH)
-	config.save(PATH)
 
 func load_settings() -> void:
 	var config := ConfigFile.new()

@@ -81,6 +81,9 @@ func _process(delta: float) -> void:
 	if _offset < 0 and _next_offset < 0 and GameState.has_flag(on_flag):
 		_start_swap(power_on_seconds)
 		_powering_on = true
+		_on_time = 0.0
+	if _powering_on:
+		_on_time += delta
 	if _next_offset >= 0:
 		_ripple(delta)
 	elif _offset >= 0:
@@ -135,8 +138,9 @@ func _apply(delta: float) -> void:
 			brightness = _level[i] * lerpf(twinkle.x, twinkle.y, 0.5 + 0.5 * sin(_phase[i]))
 			if not Settings.reduce_flashing:
 				brightness *= randf_range(0.97, 1.03)
-				if _powering_on and _level[i] < 1.0:
-					brightness *= 0.55 + 0.45 * sin(_on_time * TAU * SPUTTER_HZ)
+				if _powering_on:
+					var depth := 0.45 * (1.0 - clampf(_on_time / power_on_seconds, 0.0, 1.0))
+					brightness *= 1.0 - depth + depth * sin(_on_time * TAU * SPUTTER_HZ)
 		var bulb := _bulbs[i]
 		bulb.energy = bulb_energy * brightness
 		bulb.enabled = bulb.energy > 0.001
