@@ -5,8 +5,10 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @export var fade_time: float = 0.8
 
 @onready var continue_button: Button = %ContinueButton
+@onready var body_text: RichTextLabel = $VBoxContainer/Body
 
 var _leaving := false
+var cw_url := "https://www.findahelpline.com"
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -15,6 +17,10 @@ func _ready() -> void:
 	continue_button.pressed.connect(_continue)
 	continue_button.grab_focus()
 	ResourceLoader.load_threaded_request(TITLE_SCENE)
+	body_text.meta_clicked.connect(on_find_help_clicked)
+
+func on_find_help_clicked(meta):
+	OS.shell_open(str(meta))
 
 func _continue() -> void:
 	if _leaving:
