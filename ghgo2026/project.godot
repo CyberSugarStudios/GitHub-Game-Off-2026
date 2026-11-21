@@ -12,9 +12,9 @@ config_version=5
 
 config/name="Interim"
 config/version="2026.11.20.1000.0.5.0"
-run/main_scene="uid://bl6ydrcg5uvk1"
+run/main_scene="res://scenes/ui/content_warning.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-boot_splash/image="uid://c7x1veh614skg"
+boot_splash/image="res://assets/sprites/Boot/boot_splash.png"
 
 [audio]
 
@@ -23,15 +23,15 @@ general/default_playback_type.web=0
 
 [autoload]
 
-GameState="*uid://cmu56bxxnvwt"
-Events="*uid://bmrr1rqe06xum"
-DialogueManager="*uid://c3rodes2l3gxb"
-Music="*uid://jwtptgsbl278"
-GameClock="*uid://dyjw6bowhrj5s"
-Powers="*uid://p2qf51jx1njd"
-DebugKeys="*uid://ckjo2stlek4i5"
-Playtest="*uid://dcn0psxjsn5lk"
-Settings="*uid://bcj7wie80jqvs"
+GameState="res://scripts/autoload/game_state.gd"
+Events="res://scripts/autoload/events.gd"
+DialogueManager="res://addons/dialogue_manager/dialogue_manager.gd"
+Music="res://scripts/autoload/music.gd"
+GameClock="res://scripts/autoload/game_clock.gd"
+Powers="res://scripts/autoload/powers.gd"
+DebugKeys="res://scripts/autoload/debug_keys.gd"
+Playtest="res://scripts/autoload/playtest.gd"
+Settings="*res://scripts/autoload/settings.gd"
 
 [display]
 
@@ -50,8 +50,8 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [gui]
 
-theme/custom="uid://81yxjnb27kjl"
-theme/custom_font="uid://cuf6mi06fmdlq"
+theme/custom="res://resources/interim_main_theme.tres"
+theme/custom_font="res://assets/fonts/JosefinSans-VariableFont_wght.ttf"
 
 [input]
 
