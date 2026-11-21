@@ -457,6 +457,13 @@ func _debug_jump_to_finale() -> void:
 		GameState.restore_memory()
 	GameState.set_story_stage(5)
 	_run_finale()
+
+func _debug_next_stage() -> void:
+	GameState.set_story_stage(GameState.story_stage + 1)
+	GameState.restore_memory()
+	GameState.exit_astral()
+	GameState.set_controls_locked(false)
+	get_tree().reload_current_scene()
 #endregion
 
 func _on_any_story_event(id: StringName) -> void:
@@ -568,6 +575,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo \
 	and event.keycode == KEY_F7 and GameState.has_flag(INTRO_DONE):
 		get_viewport().set_input_as_handled()
-		GameState.set_story_stage(GameState.story_stage + 1)
-		GameState.restore_memory()
+		_debug_next_stage()
 #endregion

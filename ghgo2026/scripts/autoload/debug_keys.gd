@@ -8,7 +8,7 @@ const KEYS: Array[String] = [
 	"F4   Skip intro / restart intro",
 	"F5   Creature level +1",
 	"F6   Hint level +1",
-	"F7   Next story stage",
+	"F7   Next stage (restarts the house there)",
 	"End  Jump to the finale",
 	"`    Toggle this list",
 ]
