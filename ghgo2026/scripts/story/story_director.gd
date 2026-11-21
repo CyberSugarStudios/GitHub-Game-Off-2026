@@ -76,6 +76,8 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p2_apart_minutes: int = 90
 
 @export_group("Puzzle 3")
+@export var p3_restock_time: String = "16:30"
+@export var p3_restock_minutes: int = 10
 @export var p3_drink_times: Array[String] = [
 	"17:00",
 	"19:00",
@@ -321,11 +323,24 @@ func _on_puzzle_3_minute(_day: int, minute: int) -> void:
 	_p3_last_minute = minute
 	if _crossed(previous, minute, p3_new_day_hour * 60):
 		_p3_new_day()
+	if _crossed(previous, minute, _to_minutes(p3_restock_time)):
+		_p3_fetch_beer()
+	if _crossed(previous, minute, _to_minutes(p3_restock_time) + p3_restock_minutes):
+		_p3_restock()
 	for time_text in p3_drink_times:
 		if _crossed(previous, minute, _to_minutes(time_text)):
 			_p3_drink_time()
 	if _crossed(previous, minute, _to_minutes(p3_pill_time)):
 		_p3_pill_time()
+
+func _p3_fetch_beer() -> void:
+	household.send(DAD, &"kitchen", p3_restock_minutes, [], &"getting_beer")
+	say_in_background("p3_david_restock", PUZZLE_3)
+
+func _p3_restock() -> void:
+	_p3_drinks = 0
+	for can in p3_beer_cans:
+		GameState.clear_flag(can)
 
 func _p3_drink_time() -> void:
 	if household.expected_location(DAD) != &"living_room":
@@ -346,10 +361,7 @@ func _p3_pill_time() -> void:
 		_p3_medicated = true
 
 func _p3_new_day() -> void:
-	_p3_drinks = 0
 	_p3_medicated = false
-	for can in p3_beer_cans:
-		GameState.clear_flag(can)
 	GameState.clear_flag(&"pills_hidden")
 
 func _p3_try_night() -> bool:
@@ -373,6 +385,7 @@ func _p3_try_night() -> bool:
 		GameState.add_near_miss()
 		household.send(DAD, &"living_room", 60)
 		return false
+	GameState.set_story_stage(4)
 	await say_fight("p3_safe_fight", PUZZLE_3)
 	household.send(DAD, &"living_room", 120)
 	GameState.restore_memory()
@@ -432,7 +445,7 @@ func _run_finale() -> void:
 	await wait_event(&"creature_faced")
 	await say("p5_face_it", true, PUZZLE_5)
 	await _accept_creature()
-	await say("p5_accepted", false, PUZZLE_5)
+	say_in_background("p5_accepted", PUZZLE_5)
 	await wait_event(&"front_door_opened")
 	await _play_ending()
 
