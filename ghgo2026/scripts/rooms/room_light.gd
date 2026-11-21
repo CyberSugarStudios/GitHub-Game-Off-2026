@@ -19,7 +19,7 @@ const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 	Color(0.9, 0.6, 0.9),
 	Color(0.5, 0.6, 0.9)
 ])
-@export var shot_seconds := Vector2(0.4, 3.0)
+@export var shot_seconds := Vector2(0.6, 3.0)
 @export var power_target: StringName
 @export var cut_by_power: StringName = &"static"
 
@@ -72,13 +72,16 @@ func _is_switched_on() -> bool:
 func _flicker(delta: float) -> float:
 	_shot_left -= delta
 	if _shot_left <= 0.0 and not tv_colors.is_empty():
-		_shot_left = randf_range(shot_seconds.x, shot_seconds.y)
+		var shot_range := shot_seconds
+		if Settings.reduce_flashing:
+			shot_range = Vector2(maxf(shot_seconds.x, 2.0), maxf(shot_seconds.y, 5.0))
+		_shot_left = randf_range(shot_range.x, shot_range.y)
 		_shot_color = tv_colors[randi() % tv_colors.size()]
 		_shot_energy = randf_range(0.6, 1.3)
-	var ease_in := minf(delta * 12.0, 1.0)
+	var ease_in := minf(delta * (2.5 if Settings.reduce_flashing else 10.0), 1.0)
 	color = color.lerp(_shot_color, ease_in)
 	_flicker_energy = lerpf(_flicker_energy, _shot_energy, ease_in)
-	return _flicker_energy * randf_range(0.93, 1.07)
+	return _flicker_energy * (1.0 if Settings.reduce_flashing else randf_range(0.96, 1.04))
 
 func _on_power_used(power_id: StringName, id: StringName) -> void:
 	if power_target != &"" and id == power_target and power_id == cut_by_power:

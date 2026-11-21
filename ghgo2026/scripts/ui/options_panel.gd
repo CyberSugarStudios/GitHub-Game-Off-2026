@@ -23,6 +23,18 @@ func _build() -> void:
 		_slider_row(VOLUME_ROWS[bus], Settings.volumes.get(bus, 1.0), 0.0, 1.0, 0.01,
 			func(value: float) -> void: Settings.set_volume(bus, value),
 			func(value: float) -> String: return "%d%%" % roundi(value * 100.0))
+	_heading("Display")
+	_slider_row("Brightness", Settings.brightness, 0.5, 1.6, 0.05,
+		func(value: float) -> void: Settings.brightness = value,
+		func(value: float) -> String: return "%d%%" % roundi(value * 100.0))
+	_slider_row("Contrast", Settings.contrast, 0.7, 1.4, 0.05,
+		func(value: float) -> void: Settings.contrast = value,
+		func(value: float) -> String: return "%d%%" % roundi(value * 100.0))
+	_slider_row("Gamma", Settings.gamma, 0.6, 1.8, 0.05,
+		func(value: float) -> void: Settings.gamma = value,
+		func(value: float) -> String: return "%.2f" % value)
+	_check_row("Reduce flashing lights", Settings.reduce_flashing,
+		func(on: bool) -> void: Settings.reduce_flashing = on)
 	_heading("Controls")
 	_slider_row("Mouse sensitivity", Settings.look_speed, 0.25, 2.0, 0.05,
 		func(value: float) -> void: Settings.look_speed = value,

@@ -2,6 +2,7 @@ class_name StringLights
 extends Node2D
 
 const LIGHT_LIMIT := 16
+const SPUTTER_HZ := 2.5
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 
 @export var on_flag: StringName = &"string_lights_on"
@@ -38,6 +39,7 @@ var _level: Array[float] = []
 var _target: Array[float] = []
 var _phase: Array[float] = []
 var _speed: Array[float] = []
+var _on_time := 1.0
 var _step := 1
 var _slots := 0
 var _offset := -1
@@ -130,10 +132,11 @@ func _apply(delta: float) -> void:
 		var brightness := 0.0
 		if _level[i] > 0.0:
 			_phase[i] += delta * _speed[i] * TAU
-			brightness = _level[i] * lerpf(twinkle.x, twinkle.y, 0.5 + 0.5 * sin(_phase[i])) \
-					* randf_range(0.94, 1.06)
-			if _powering_on and _level[i] < 1.0 and randf() < 0.5:
-				brightness = 0.0
+			brightness = _level[i] * lerpf(twinkle.x, twinkle.y, 0.5 + 0.5 * sin(_phase[i]))
+			if not Settings.reduce_flashing:
+				brightness *= randf_range(0.97, 1.03)
+				if _powering_on and _level[i] < 1.0:
+					brightness *= 0.55 + 0.45 * sin(_on_time * TAU * SPUTTER_HZ)
 		var bulb := _bulbs[i]
 		bulb.energy = bulb_energy * brightness
 		bulb.enabled = bulb.energy > 0.001

@@ -32,6 +32,7 @@ Powers="*res://scripts/autoload/powers.gd"
 DebugKeys="*res://scripts/autoload/debug_keys.gd"
 Playtest="*res://scripts/autoload/playtest.gd"
 Settings="*res://scripts/autoload/settings.gd"
+ScreenGrade="*res://scripts/autoload/screen_grade.gd"
 
 [display]
 

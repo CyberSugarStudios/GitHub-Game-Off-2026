@@ -389,7 +389,7 @@ func _p3_try_night() -> bool:
 	await say_fight("p3_safe_fight", PUZZLE_3)
 	household.send(DAD, &"living_room", 120)
 	GameState.restore_memory()
-	await say("p3_after", false, PUZZLE_3)
+	say_in_background("p3_after", PUZZLE_3)
 	return true
 
 func _is_night() -> bool:
