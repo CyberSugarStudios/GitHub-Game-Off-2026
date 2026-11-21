@@ -51,6 +51,7 @@ func _ready() -> void:
 		push_warning("DoorwayView: no Room Scene set on %s" % get_path())
 		return
 	_room = room_scene.instantiate() as Room
+	_room.is_preview = true
 	viewport.add_child(_room)
 
 	_room_size = _room.get_room_size()

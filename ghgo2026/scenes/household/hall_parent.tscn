@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dmk4i6jngl2gp" path="res://scripts/household/hall_parent.gd" id="1_2ek4g"]
 [ext_resource type="PackedScene" uid="uid://d3o2oif4q4l0l" path="res://scenes/dialogue/speaker.tscn" id="2_notox"]
 [ext_resource type="Script" uid="uid://bs58mgqqsx51k" path="res://scripts/powers/parent_target.gd" id="3_cqwst"]
+[ext_resource type="Script" uid="uid://dspq8tx32a8dr" path="res://scripts/audio/footsteps_3d.gd" id="5_3pmy5"]
 [ext_resource type="Script" uid="uid://cnkb82njg3q00" path="res://scripts/household/parent_sprite.gd" id="5_mdgke"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_notox"]
@@ -39,3 +40,10 @@ shape = SubResource("CapsuleShape3D_53m36")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=426285732]
 script = ExtResource("5_mdgke")
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=1717291099]
+volume_db = -8.0
+max_polyphony = 2
+bus = &"SFX"
+script = ExtResource("5_3pmy5")
+metadata/_custom_type_script = "uid://dspq8tx32a8dr"

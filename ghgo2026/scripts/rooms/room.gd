@@ -21,6 +21,7 @@ const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 
 var _night_tint: CanvasModulate
 var light_fill := Color(0.0, 0.0, 0.0, 0.0)
+var is_preview := false
 
 func _ready() -> void:
 	_night_tint = CanvasModulate.new()
