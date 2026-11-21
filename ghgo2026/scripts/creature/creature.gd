@@ -99,6 +99,9 @@ func _ready() -> void:
 func set_warmup(on: bool) -> void:
 	visible = on
 
+func get_state() -> State:
+	return _state
+
 #region - STATES
 func _physics_process(delta: float) -> void:
 	if _state == State.GRABBING:
