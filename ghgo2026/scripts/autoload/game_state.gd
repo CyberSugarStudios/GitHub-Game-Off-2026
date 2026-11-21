@@ -156,6 +156,10 @@ func try_spend(cost: float) -> bool:
 	_set_energy(energy - cost)
 	return true
 
+func refund(amount: float) -> void:
+	if amount > 0.0:
+		_set_energy(energy + amount)
+
 func restore_memory() -> void:
 	if max_bars >= MAX_POSSIBLE_BARS:
 		return

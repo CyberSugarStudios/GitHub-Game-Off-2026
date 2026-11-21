@@ -26,7 +26,6 @@ signal unlocked
 
 @export_group("Sounds")
 @export var unlock_sound: AudioStream = preload("res://assets/audio/sfx/Unlocking.wav")
-@export var unlock_pitch_range := Vector2(0.6, 2.0)
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
 const PARENT_NAMES: Dictionary[StringName, String] = {
@@ -141,19 +140,13 @@ func _on_unlocked() -> void:
 	_play_unlock_animation()
 
 func _play_unlock_sound() -> void:
-	if unlock_sound == null or lock.transfer_rate <= 0.0:
+	if unlock_sound == null:
 		return
-	var length := unlock_sound.get_length()
-	var fill_seconds := (lock.lock_bars - lock.progress) / lock.transfer_rate
-	if length <= 0.0 or fill_seconds <= 0.0:
-		return
-	var pitch := clampf(length / fill_seconds, unlock_pitch_range.x, unlock_pitch_range.y)
 	if _sound_fade:
 		_sound_fade.kill()
 	_sound.stream = unlock_sound
-	_sound.pitch_scale = pitch
 	_sound.volume_db = 0.0
-	_sound.play(maxf(length - fill_seconds * pitch, 0.0))
+	_sound.play()
 
 func _fade_unlock_sound() -> void:
 	if not _sound.playing:
@@ -198,7 +191,10 @@ func _play_unlock_animation() -> void:
 			material.set_shader_parameter("opacity", v), 1.0, 0.0, 0.5).set_delay(start + 0.12)
 	tween.tween_property(lock_icon, "position:y", _icon_rest_position.y + 0.04, 0.9) \
 			.set_delay(0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(_sound, "volume_db", -40.0, 1.05) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.chain().tween_callback(lock_icon.hide)
+	tween.tween_callback(_sound.stop)
 
 func _play_fail_shake() -> void:
 	var tween := create_tween()

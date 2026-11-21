@@ -7,6 +7,8 @@ signal failed
 
 const DOOR_LINES := preload("res://dialogue/doors.dialogue")
 const FEEDBACK_SECONDS := 1.5
+const DRAIN_DELAY := 0.3
+const DRAIN_SECONDS := 0.5
 
 var door_id: StringName
 var lock_bars := 0
@@ -65,10 +67,15 @@ func _fail() -> void:
 	_feedback_left = FEEDBACK_SECONDS
 	failed.emit()
 	_drain = create_tween()
-	_drain.tween_interval(0.3)
-	_drain.tween_method(_set_progress, progress, 0.0, 0.5).set_trans(Tween.TRANS_SINE) \
+	_drain.tween_interval(DRAIN_DELAY)
+	_drain.tween_method(_refund_to, progress, 0.0, DRAIN_SECONDS).set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN)
 	_play_fail_line()
+
+func _refund_to(value: float) -> void:
+	var returned := progress - value
+	_set_progress(value)
+	GameState.refund(returned)
 
 func _play_fail_line() -> void:
 	var cues := DOOR_LINES.get_cues()
