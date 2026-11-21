@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cjvvts07a43o6" path="res://scripts/creature/creature.gd" id="1_irgav"]
 [ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/creature_frames.tres" id="2_ja31d"]
+[ext_resource type="AudioStream" uid="uid://btyhuyr7dhdke" path="res://assets/audio/sfx/footsteps/creature_steps.tres" id="3_mv8bj"]
+[ext_resource type="Script" uid="uid://dspq8tx32a8dr" path="res://scripts/audio/footsteps_3d.gd" id="3_odxpr"]
 
 [node name="Creature" type="Node3D" unique_id=275844227]
 script = ExtResource("1_irgav")
@@ -32,3 +34,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 light_color = Color(0.4509804, 0.8509804, 0.8, 1)
 light_energy = 0.6
 omni_range = 2.5
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=1088437908]
+stream = ExtResource("3_mv8bj")
+volume_db = -2.0
+max_polyphony = 3
+bus = &"SFX"
+script = ExtResource("3_odxpr")
+stride = 1.2
+metadata/_custom_type_script = "uid://dspq8tx32a8dr"

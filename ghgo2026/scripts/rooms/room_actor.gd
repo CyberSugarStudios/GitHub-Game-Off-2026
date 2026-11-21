@@ -1,6 +1,11 @@
 class_name RoomActor
 extends Node2D
 
+const STEPS: Dictionary[StringName, AudioStream] = {
+	&"leanne": preload("res://assets/audio/sfx/footsteps/leanne_steps.tres"),
+	&"david": preload("res://assets/audio/sfx/footsteps/david_steps.tres"),
+}
+
 @export var parent_id: StringName = &"leanne"
 @export var frames: SpriteFrames
 @export var spots: Node2D
@@ -10,6 +15,8 @@ extends Node2D
 @export var idle_faces_right: bool = false
 @export var walk_animation: StringName = &"walk_side"
 @export var idle_animation: StringName = &"idle"
+@export var step_stride: float = 450.0
+@export var step_volume_db: float = -8.0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var placeholder: CanvasItem = get_node_or_null("Placeholder")
@@ -17,6 +24,9 @@ extends Node2D
 var _room_id: StringName
 var _target := Vector2.ZERO
 var _walking := false
+var _room: Room
+var _steps: AudioStreamPlayer
+var _walked := 0.0
 var _leanne_frames := preload("res://assets/sprites/Animations/frames/mom/leanne_frames.tres")
 var _david_frames := preload("res://assets/sprites/Animations/frames/dad/david_frames.tres")
 
@@ -26,8 +36,15 @@ func _ready() -> void:
 		node = node.get_parent()
 	if node:
 		_room_id = (node as Room).room_id
+		_room = node as Room
 	if spots == null and node:
 		spots = node.get_node_or_null("RoomSpots") as Node2D
+	_steps = AudioStreamPlayer.new()
+	_steps.stream = STEPS.get(parent_id)
+	_steps.bus = &"SFX"
+	_steps.volume_db = step_volume_db
+	_steps.max_polyphony = 2
+	add_child(_steps)
 	if parent_id == &"leanne":
 		frames = _leanne_frames
 	else:
@@ -66,6 +83,7 @@ func _refresh(walk_in: bool) -> void:
 	if not was_here:
 		position = _spot(&"door", position)
 	_walking = position.distance_to(_target) > 1.0
+	_walked = step_stride * 0.5
 	if not _walking:
 		_stand()
 
@@ -80,7 +98,16 @@ func _process(delta: float) -> void:
 		_stand()
 		return
 	position += to_target.normalized() * step
+	_count_step(step)
 	_animate(walk_animation, (to_target.x > 0.0) != side_faces_right)
+
+func _count_step(distance: float) -> void:
+	_walked += distance
+	if _walked < step_stride:
+		return
+	_walked -= step_stride
+	if _room and not _room.is_preview and _steps.stream:
+		_steps.play()
 
 func _stand() -> void:
 	var activity := GameState.get_parent_activity(parent_id)

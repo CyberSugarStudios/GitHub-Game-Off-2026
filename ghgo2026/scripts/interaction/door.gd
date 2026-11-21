@@ -26,6 +26,7 @@ signal unlocked
 
 @export_group("Sounds")
 @export var unlock_sound: AudioStream = preload("res://assets/audio/sfx/Unlocking.wav")
+@export var unlock_pitch_range := Vector2(0.6, 2.0)
 #endregion
 const LOCK_BAR_SHADER := preload("res://shaders/lock_bar.gdshader")
 const PARENT_NAMES: Dictionary[StringName, String] = {
@@ -41,6 +42,7 @@ var lock: DoorLock
 var _bar_materials: Array[ShaderMaterial] = []
 var _icon_rest_position: Vector3
 var _sound: AudioStreamPlayer3D
+var _sound_fade: Tween
 #endregion
 
 func _ready() -> void:
@@ -51,6 +53,7 @@ func _ready() -> void:
 	lock.progress_changed.connect(_show_progress)
 	lock.unlocked.connect(_on_unlocked)
 	lock.failed.connect(_play_fail_shake)
+	lock.failed.connect(_fade_unlock_sound)
 	_sound = AudioStreamPlayer3D.new()
 	_sound.bus = &"SFX"
 	add_child(_sound)
@@ -104,6 +107,7 @@ func _on_interacted() -> void:
 		return
 	if is_locked():
 		lock.start()
+		_play_unlock_sound()
 	else:
 		if not GameState.try_spend(pass_cost):
 			return
@@ -134,10 +138,29 @@ func _with_who_is_inside(text: String) -> String:
 #region - LOCK
 func _on_unlocked() -> void:
 	unlocked.emit()
-	if unlock_sound:
-		_sound.stream = unlock_sound
-		_sound.play()
 	_play_unlock_animation()
+
+func _play_unlock_sound() -> void:
+	if unlock_sound == null or lock.transfer_rate <= 0.0:
+		return
+	var length := unlock_sound.get_length()
+	var fill_seconds := (lock.lock_bars - lock.progress) / lock.transfer_rate
+	if length <= 0.0 or fill_seconds <= 0.0:
+		return
+	var pitch := clampf(length / fill_seconds, unlock_pitch_range.x, unlock_pitch_range.y)
+	if _sound_fade:
+		_sound_fade.kill()
+	_sound.stream = unlock_sound
+	_sound.pitch_scale = pitch
+	_sound.volume_db = 0.0
+	_sound.play(maxf(length - fill_seconds * pitch, 0.0))
+
+func _fade_unlock_sound() -> void:
+	if not _sound.playing:
+		return
+	_sound_fade = create_tween()
+	_sound_fade.tween_property(_sound, "volume_db", -40.0, 0.2)
+	_sound_fade.tween_callback(_sound.stop)
 #endregion
 
 #region - VISUALS

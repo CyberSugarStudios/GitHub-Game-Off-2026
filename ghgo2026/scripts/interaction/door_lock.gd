@@ -15,6 +15,7 @@ var progress := 0.0
 var transferring := false
 
 var _feedback_left := 0.0
+var _drain: Tween
 
 func setup(id: StringName, bars: int, rate: float) -> void:
 	door_id = id
@@ -32,6 +33,8 @@ func is_showing_feedback() -> bool:
 
 func start() -> void:
 	if is_locked():
+		if _drain:
+			_drain.kill()
 		transferring = true
 
 func _process(delta: float) -> void:
@@ -61,9 +64,9 @@ func _fail() -> void:
 	transferring = false
 	_feedback_left = FEEDBACK_SECONDS
 	failed.emit()
-	var drain := create_tween()
-	drain.tween_interval(0.3)
-	drain.tween_method(_set_progress, progress, 0.0, 0.5).set_trans(Tween.TRANS_SINE) \
+	_drain = create_tween()
+	_drain.tween_interval(0.3)
+	_drain.tween_method(_set_progress, progress, 0.0, 0.5).set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN)
 	_play_fail_line()
 
