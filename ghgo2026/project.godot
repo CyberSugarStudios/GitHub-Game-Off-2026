@@ -18,19 +18,19 @@ boot_splash/image="res://assets/sprites/Boot/boot_splash.png"
 
 [audio]
 
-buses/default_bus_layout="res://resources/default_bus_layout.tres"
+buses/default_bus_layout="uid://8t32vnqrx8ji"
 general/default_playback_type.web=0
 
 [autoload]
 
-GameState="res://scripts/autoload/game_state.gd"
-Events="res://scripts/autoload/events.gd"
-DialogueManager="res://addons/dialogue_manager/dialogue_manager.gd"
-Music="res://scripts/autoload/music.gd"
-GameClock="res://scripts/autoload/game_clock.gd"
-Powers="res://scripts/autoload/powers.gd"
-DebugKeys="res://scripts/autoload/debug_keys.gd"
-Playtest="res://scripts/autoload/playtest.gd"
+GameState="*res://scripts/autoload/game_state.gd"
+Events="*res://scripts/autoload/events.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Music="*res://scripts/autoload/music.gd"
+GameClock="*res://scripts/autoload/game_clock.gd"
+Powers="*res://scripts/autoload/powers.gd"
+DebugKeys="*res://scripts/autoload/debug_keys.gd"
+Playtest="*res://scripts/autoload/playtest.gd"
 Settings="*res://scripts/autoload/settings.gd"
 
 [display]
