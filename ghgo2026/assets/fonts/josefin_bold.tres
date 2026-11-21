@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" format=3 uid="uid://nbgtuufo4x15"]
+
+[ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="1_62ruq"]
+
+[resource]
+base_font = ExtResource("1_62ruq")
+variation_opentype = {
+2003265652: 700
+}

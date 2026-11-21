@@ -110,6 +110,7 @@ caught_cue = "p3_leanne_catches_pills"
 art = NodePath("../../BackProps/PillBottle")
 hint_stage = 3
 prompt_text = "Nudge"
+from_stage = 3
 
 [node name="GunSafe" type="TextureButton" parent="Hotspots" unique_id=1681047351]
 offset_left = 24.0

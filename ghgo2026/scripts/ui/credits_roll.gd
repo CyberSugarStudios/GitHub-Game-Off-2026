@@ -29,6 +29,10 @@ func _ready() -> void:
 	feedback_button.visible = Playtest.is_enabled()
 	feedback_button.focus_mode = Control.FOCUS_NONE
 	feedback_button.pressed.connect(Playtest.open_form)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for child in find_children("*", "Control", true, false):
+		if child != feedback_button:
+			(child as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
 	clip_contents = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	continue_prompt.modulate.a = 0.0

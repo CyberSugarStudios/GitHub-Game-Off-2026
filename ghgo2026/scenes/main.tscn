@@ -48,6 +48,8 @@
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
 [ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
 [ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="37_5poiv"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="37_dnhof"]
+[ext_resource type="FontVariation" uid="uid://nbgtuufo4x15" path="res://assets/fonts/josefin_bold.tres" id="38_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://bpyjxvjn83tjr" path="res://scenes/ui/diary_book.tscn" id="39_bjg73"]
 [ext_resource type="PackedScene" uid="uid://cvbp0nfglxkyt" path="res://scenes/ui/mp3_player.tscn" id="41_0loja"]
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
@@ -450,6 +452,9 @@ player = NodePath("../../Emily")
 spots = NodePath("../CreatureSpots")
 respawn_spot = NodePath("../RespawnSpot")
 fade = NodePath("../../RoomView/FadeLayer/Fade")
+lurk_seconds = Vector2(10, 20)
+lurk_vanish_distance = 2.0
+stare_seconds = 2.5
 guard_spot = NodePath("../RoomEntrances/EntranceEmilyBedroom")
 
 [node name="CreatureSpots" type="Node" parent="Hall" unique_id=1621709190]
@@ -554,6 +559,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Subtitle" type="RichTextLabel" parent="UI" unique_id=921380357]
+visible = false
 custom_minimum_size = Vector2(1400, 60)
 anchors_preset = 7
 anchor_left = 0.5
@@ -568,7 +574,14 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("37_dnhof")
+theme_override_fonts/bold_font = ExtResource("38_1v6qk")
+theme_override_fonts/bold_italics_font = ExtResource("38_1v6qk")
+theme_override_fonts/italics_font = ExtResource("37_dnhof")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32

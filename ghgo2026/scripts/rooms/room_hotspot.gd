@@ -14,6 +14,7 @@ const SHOW_DEBUG_RECTS := true
 @export var story_id: StringName
 
 @export_group("Story")
+@export var from_stage: int = 0
 @export var requires_flag: StringName
 @export var hidden_after_flag: StringName
 
@@ -35,6 +36,10 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	
+	GameState.story_stage_changed.connect(
+		func(_stage: int) -> void:
+			_refresh()
+	)
 	GameState.plane_changed.connect(
 		func(_in_astral: bool) -> void:
 			_refresh())
@@ -75,7 +80,7 @@ func _refresh() -> void:
 	var in_main_view := get_viewport() == get_tree().root
 	visible = in_main_view and InteractionRules.realm_matches(realm) and not (one_shot and _used) \
 		and InteractionRules.story_open(requires_flag, hidden_after_flag) and _is_available() \
-			and blocker == null
+			and blocker == null and GameState.story_stage >= from_stage
 	if _hovered:
 		if visible:
 			_send_prompt()

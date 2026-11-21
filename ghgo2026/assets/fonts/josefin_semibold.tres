@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" format=3 uid="uid://r2y7ofg1yun4"]
+
+[ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="1_kcpb8"]
+
+[resource]
+base_font = ExtResource("1_kcpb8")
+variation_opentype = {
+2003265652: 600
+}
