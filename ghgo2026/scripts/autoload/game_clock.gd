@@ -39,6 +39,14 @@ func get_time_text() -> String:
 	@warning_ignore("integer_division")
 	return "%d:%02d" % [minute / 60, minute % 60]
 
+func get_clock_text() -> String:
+	@warning_ignore("integer_division")
+	var hour := minute / 60
+	var shown_hour := hour % 12
+	if shown_hour == 0:
+		shown_hour = 12
+	return "%d:%02d %s" % [shown_hour, minute % 60, "AM" if hour < 12 else "PM"]
+
 func get_total_minutes() -> int:
 	return day * MINUTES_PER_DAY + minute
 

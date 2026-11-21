@@ -2,10 +2,11 @@
 
 ~ intro_wake
 Emily: Ugh... I must have fallen asleep. I don't even remember getting home. [#thought]
+Emily: What time is it? [#thought]
 => END
 
 ~ intro_clock
-Emily: Is Dad already home? [#thought]
+Emily: Twenty to five. Is Dad already home? [#thought]
 => END
 
 ~ intro_david_garage

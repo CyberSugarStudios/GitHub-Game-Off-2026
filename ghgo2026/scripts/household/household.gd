@@ -33,6 +33,9 @@ func has_errand(parent_id: StringName) -> bool:
 
 func place_everyone() -> void:
 	_detours.clear()
+	settle_everyone()
+
+func settle_everyone() -> void:
 	for parent in hall_parents:
 		parent.stop()
 		var target := _target_location(parent.parent_id)
@@ -43,6 +46,9 @@ func place_everyone() -> void:
 			parent.stand_at(spot)
 		GameState.set_parent_activity(parent.parent_id, _target_activity(parent.parent_id))
 		GameState.set_parent_location(parent.parent_id, target)
+
+func expected_location(parent_id: StringName) -> StringName:
+	return _target_location(parent_id)
 
 func _update() -> void:
 	for parent in hall_parents:
