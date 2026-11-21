@@ -57,6 +57,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var morning_fade_time: float = 0.6
 
 @export_group("Puzzle 1")
+@export var p1_wait_hint_delay: float = 8.0
 @export var p1_storms_to: StringName = &"parent_bedroom"
 @export var p1_storm_pace: float = 1.6
 @export var p1_lingers_seconds: float = 4.0
@@ -263,7 +264,9 @@ func _run_story() -> void:
 	if GameState.story_stage == 5:
 		await _run_finale()
 
+#region - PUZZLE 1
 func _run_puzzle_1()  -> void:
+	_teach_waiting()
 	await wait_event(&"hall_painting_fell")
 	await say_fight("p1_painting_fight", PUZZLE_1)
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
@@ -273,6 +276,14 @@ func _run_puzzle_1()  -> void:
 	household.send(DAD, p1_lingers_then_to, p1_apart_minutes)
 	await say("p1_after", false, PUZZLE_1)
 	GameState.set_story_stage(2)
+
+func _teach_waiting() -> void:
+	if GameState.has_flag(&"wait_hint_heard"):
+		return
+	GameState.set_flag(&"wait_hint_heard")
+	await wait(p1_wait_hint_delay)
+	say_in_background("p1_wait_hint", PUZZLE_1)
+#endregion
 
 #region - PUZZLE 2
 func _run_puzzle_2() -> void:
@@ -317,7 +328,7 @@ func _on_puzzle_3_minute(_day: int, minute: int) -> void:
 		_p3_pill_time()
 
 func _p3_drink_time() -> void:
-	if GameState.get_parent_location(DAD) != &"living_room":
+	if household.expected_location(DAD) != &"living_room":
 		return
 	for can in p3_beer_cans:
 		if not GameState.has_flag(can):
@@ -327,7 +338,7 @@ func _p3_drink_time() -> void:
 	say_in_background("p3_david_no_beer", PUZZLE_3)
 
 func _p3_pill_time() -> void:
-	if GameState.get_parent_location(MOM) != &"parent_bedroom":
+	if household.expected_location(MOM) != &"parent_bedroom":
 		return
 	if GameState.has_flag(&"pills_hidden"):
 		say_in_background("p3_leanne_no_pills", PUZZLE_3)
@@ -487,6 +498,7 @@ func _wait_an_hour() -> void:
 	tween.tween_property(fade, "color:a", 1.0, wait_fade_time)
 	await tween.finished
 	GameClock.set_time(GameClock.day, GameClock.minute + 60)
+	household.settle_everyone()
 	await wait(0.3)
 	tween = create_tween()
 	tween.tween_property(fade, "color:a", 0.0, wait_fade_time)
