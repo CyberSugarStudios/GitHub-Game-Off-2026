@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+const SPEAKER_COLORS := {
+	"Leanne": Color.CORAL,
+	"David": Color.DARK_GOLDENROD,
+	"Emily": Color.DARK_CYAN,
+}
+
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
 @export var prompt_available_color := Color(1.0, 1.0, 1.0)
 @export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
@@ -121,11 +127,13 @@ func _on_subtitle_changed(character: String, text: String, clarity: float, is_th
 	if text == "":
 		return
 	var shown := _obscure(text, clarity).replace("[", "[lb]")
+	var color: Color = SPEAKER_COLORS[character]
 	if is_thought:
 		shown = "[i]%s[/i]" % shown
-	elif clarity >= 0.5:
-		shown = "[b]%s:[/b] %s" %[character, shown]
-	subtitle.text = shown
+		subtitle.add_theme_color_override("default_color", Color.GRAY * color)
+	else:
+		subtitle.add_theme_color_override("default_color", color)
+	subtitle.text = character + ": " + shown
 	subtitle.modulate.a = lerpf(0.4, 1.0, clarity)
 
 func _obscure(text: String, clarity: float) -> String:

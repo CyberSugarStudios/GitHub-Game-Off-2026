@@ -200,6 +200,7 @@ caught_cue = "p3_david_catches_can"
 art = NodePath("../../BackProps/BeerCan1")
 hint_stage = 3
 prompt_text = "Nudge"
+from_stage = 3
 
 [node name="BeerCanProp2" type="TextureButton" parent="Hotspots" unique_id=742954849 node_paths=PackedStringArray("art")]
 script = ExtResource("6_g005p")
@@ -213,6 +214,7 @@ caught_cue = "p3_david_catches_can"
 art = NodePath("../../BackProps/BeerCan2")
 hint_stage = 3
 prompt_text = "Nudge"
+from_stage = 3
 
 [node name="BeerCanProp3" type="TextureButton" parent="Hotspots" unique_id=417001425 node_paths=PackedStringArray("art")]
 script = ExtResource("6_g005p")
@@ -226,6 +228,7 @@ caught_cue = "p3_david_catches_can"
 art = NodePath("../../BackProps/BeerCan3")
 hint_stage = 3
 prompt_text = "Nudge"
+from_stage = 3
 
 [node name="RoomSpots" type="Node2D" parent="." unique_id=50306253]
 
