@@ -193,9 +193,11 @@ func _animate(anim: Anim, instant: bool) -> void:
 			tween.tween_property(art, "rotation", _rest_rotation + deg_to_rad(90.0), 0.35) \
 				.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		Anim.FLICKER:
-			for i in 6:
-				var flash := Color(1.8, 1.8, 1.8) if i % 2 == 0 else Color(0.4, 0.4, 0.5)
-				tween.tween_property(art, "modulate", flash, 0.05)
+			var flashes := 1 if Settings.reduce_flashing else 3
+			var bright := Color(1.3, 1.3, 1.3) if Settings.reduce_flashing else Color(1.8, 1.8, 1.8)
+			var dark := Color(0.7, 0.7, 0.75) if Settings.reduce_flashing else Color(0.4, 0.4, 0.5)
+			for i in flashes * 2:
+				tween.tween_property(art, "modulate", bright if i % 2 == 0 else dark, 0.17)
 			tween.tween_property(art, "modulate", Color.WHITE, 0.1)
 		Anim.FALL:
 			tween.tween_property(art, "position:y", _rest_position.y + fall_distance, 0.45) \

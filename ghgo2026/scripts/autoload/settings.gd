@@ -1,5 +1,7 @@
 extends Node
 
+signal changed
+
 const PATH := "user://settings.cfg"
 const BUSES: Array[StringName] = [&"Master", &"Music", &"MP3", &"Voices", &"SFX", &"Ambience"]
 const STRUGGLE_PRESSES_PER_SECOND := 8.0
@@ -8,11 +10,19 @@ const DEFAULT_VOLUME := 1.0
 const DEFAULT_LOOK_SPEED := 1.0
 const DEFAULT_INVERT_Y := false
 const DEFAULT_HOLD_TO_STRUGGLE := false
+const DEFAULT_BRIGHTNESS := 1.0
+const DEFAULT_CONTRAST := 1.0
+const DEFAULT_GAMMA := 1.0
+const DEFAULT_REDUCE_FLASHING := false
 
 var volumes: Dictionary[StringName, float] = {}
 var look_speed := DEFAULT_LOOK_SPEED
 var invert_y := DEFAULT_INVERT_Y
 var hold_to_struggle := DEFAULT_HOLD_TO_STRUGGLE
+var brightness := DEFAULT_BRIGHTNESS
+var contrast := DEFAULT_CONTRAST
+var gamma := DEFAULT_GAMMA
+var reduce_flashing := DEFAULT_REDUCE_FLASHING
 
 var _struggling := false
 var _struggle_held := false
@@ -52,12 +62,17 @@ func reset_to_defaults() -> void:
 	look_speed = DEFAULT_LOOK_SPEED
 	invert_y = DEFAULT_INVERT_Y
 	hold_to_struggle = DEFAULT_HOLD_TO_STRUGGLE
+	brightness = DEFAULT_BRIGHTNESS
+	contrast = DEFAULT_CONTRAST
+	gamma = DEFAULT_GAMMA
+	reduce_flashing = DEFAULT_REDUCE_FLASHING
 	request_save()
 #endregion
 
 #region - SAVING
 func request_save() -> void:
 	_save_in = SAVE_DELAY
+	changed.emit()
 
 func save_settings() -> void:
 	var config := ConfigFile.new()
@@ -66,6 +81,11 @@ func save_settings() -> void:
 	config.set_value("controls", "look_speed", look_speed)
 	config.set_value("controls", "invert_y", invert_y)
 	config.set_value("controls", "hold_to_struggle", hold_to_struggle)
+	config.set_value("display", "brightness", brightness)
+	config.set_value("display", "contrast", contrast)
+	config.set_value("display", "gamma", gamma)
+	config.set_value("display", "reduce_flashing", reduce_flashing)
+	config.save(PATH)
 	config.save(PATH)
 
 func load_settings() -> void:
@@ -77,6 +97,10 @@ func load_settings() -> void:
 	look_speed = config.get_value("controls", "look_speed", DEFAULT_LOOK_SPEED)
 	invert_y = config.get_value("controls", "invert_y", DEFAULT_INVERT_Y)
 	hold_to_struggle = config.get_value("controls", "hold_to_struggle", DEFAULT_HOLD_TO_STRUGGLE)
+	brightness = config.get_value("display", "brightness", DEFAULT_BRIGHTNESS)
+	contrast = config.get_value("display", "contrast", DEFAULT_CONTRAST)
+	gamma = config.get_value("display", "gamma", DEFAULT_GAMMA)
+	reduce_flashing = config.get_value("display", "reduce_flashing", DEFAULT_REDUCE_FLASHING)
 #endregion
 
 #region - HOLD TO STRUGGLE
