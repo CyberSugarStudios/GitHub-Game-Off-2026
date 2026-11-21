@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://cboixhu71t4jv" path="res://assets/audio/sfx/footsteps/david/Dad footstep 13.wav" id="5_cbrp5"]
 [ext_resource type="AudioStream" uid="uid://cfxlj156vb1m8" path="res://assets/audio/sfx/footsteps/david/Dad footstep 14.wav" id="6_2onco"]
 [ext_resource type="AudioStream" uid="uid://cyicaaglki4tm" path="res://assets/audio/sfx/footsteps/david/Dad footstep 15.wav" id="7_lh2je"]
-[ext_resource type="AudioStream" uid="uid://dlyfektv8wsw7" path="res://assets/audio/sfx/footsteps/david/Dad footstep 16.wav" id="8_s4if4"]
 [ext_resource type="AudioStream" uid="uid://f1rqb7puuqm8" path="res://assets/audio/sfx/footsteps/david/Dad footstep 17.wav" id="9_rwdo3"]
 [ext_resource type="AudioStream" uid="uid://ctsct17eqflde" path="res://assets/audio/sfx/footsteps/david/Dad footstep 19.wav" id="10_2eowc"]
 [ext_resource type="AudioStream" uid="uid://d0ti4gdeubooy" path="res://assets/audio/sfx/footsteps/david/Dad footstep 20.wav" id="11_5jllj"]
@@ -29,7 +28,7 @@
 [resource]
 random_pitch = 1.08
 random_volume_offset_db = 1.5
-streams_count = 25
+streams_count = 24
 stream_0/stream = ExtResource("1_4g5rh")
 stream_1/stream = ExtResource("2_7s7s8")
 stream_2/stream = ExtResource("13_chha3")
@@ -45,13 +44,12 @@ stream_11/stream = ExtResource("4_mtle4")
 stream_12/stream = ExtResource("5_cbrp5")
 stream_13/stream = ExtResource("6_2onco")
 stream_14/stream = ExtResource("7_lh2je")
-stream_15/stream = ExtResource("8_s4if4")
-stream_16/stream = ExtResource("9_rwdo3")
-stream_17/stream = ExtResource("10_2eowc")
-stream_18/stream = ExtResource("11_5jllj")
-stream_19/stream = ExtResource("12_km6c2")
-stream_20/stream = ExtResource("14_o5v3r")
-stream_21/stream = ExtResource("15_u63wv")
-stream_22/stream = ExtResource("16_upcfs")
-stream_23/stream = ExtResource("17_yw8n2")
-stream_24/stream = ExtResource("18_w5gog")
+stream_15/stream = ExtResource("9_rwdo3")
+stream_16/stream = ExtResource("10_2eowc")
+stream_17/stream = ExtResource("11_5jllj")
+stream_18/stream = ExtResource("12_km6c2")
+stream_19/stream = ExtResource("14_o5v3r")
+stream_20/stream = ExtResource("15_u63wv")
+stream_21/stream = ExtResource("16_upcfs")
+stream_22/stream = ExtResource("17_yw8n2")
+stream_23/stream = ExtResource("18_w5gog")

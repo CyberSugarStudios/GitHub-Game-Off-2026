@@ -9,6 +9,10 @@ const DOOR_LINES := preload("res://dialogue/doors.dialogue")
 const FEEDBACK_SECONDS := 1.5
 const DRAIN_DELAY := 0.3
 const DRAIN_SECONDS := 0.5
+const UNLOCK_SOUND := preload("res://assets/audio/sfx/Unlocking.wav")
+const CLICK_AT := 3.15
+const RING_OUT_SECONDS := 1.05
+const FAIL_FADE_SECONDS := 0.2
 
 var door_id: StringName
 var lock_bars := 0
@@ -18,11 +22,19 @@ var transferring := false
 
 var _feedback_left := 0.0
 var _drain: Tween
+var _sound: AudioStreamPlayer
+var _sound_fade: Tween
 
 func setup(id: StringName, bars: int, rate: float) -> void:
 	door_id = id
 	lock_bars = bars
 	transfer_rate = rate
+
+func _ready() -> void:
+	_sound = AudioStreamPlayer.new()
+	_sound.stream = UNLOCK_SOUND
+	_sound.bus = &"SFX"
+	add_child(_sound)
 
 func is_locked() -> bool:
 	return lock_bars > 0 and not GameState.has_flag(unlock_flag())
@@ -38,6 +50,7 @@ func start() -> void:
 		if _drain:
 			_drain.kill()
 		transferring = true
+		_play_sound()
 
 func _process(delta: float) -> void:
 	_feedback_left = maxf(_feedback_left - delta, 0.0)
@@ -61,11 +74,13 @@ func _finish() -> void:
 	_set_progress(lock_bars)
 	GameState.set_flag(unlock_flag())
 	unlocked.emit()
+	_fade_sound(RING_OUT_SECONDS)
 
 func _fail() -> void:
 	transferring = false
 	_feedback_left = FEEDBACK_SECONDS
 	failed.emit()
+	_fade_sound(FAIL_FADE_SECONDS)
 	_drain = create_tween()
 	_drain.tween_interval(DRAIN_DELAY)
 	_drain.tween_method(_refund_to, progress, 0.0, DRAIN_SECONDS).set_trans(Tween.TRANS_SINE) \
@@ -87,3 +102,24 @@ func _play_fail_line() -> void:
 func _set_progress(value: float) -> void:
 	progress = clampf(value, 0.0, lock_bars)
 	progress_changed.emit(progress)
+
+#region - SOUND
+func _play_sound() -> void:
+	if transfer_rate <= 0.0:
+		return
+	var fill_seconds := (lock_bars - progress) / transfer_rate
+	if _sound_fade:
+		_sound_fade.kill()
+	_sound.volume_db = 0.0
+	_sound.play(maxf(CLICK_AT - fill_seconds, 0.0))
+
+func _fade_sound(seconds: float) -> void:
+	if not _sound.playing:
+		return
+	if _sound_fade:
+		_sound_fade.kill()
+	_sound_fade = create_tween()
+	_sound_fade.tween_property(_sound, "volume_db", -40.0, seconds) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	_sound_fade.tween_callback(_sound.stop)
+#endregion
