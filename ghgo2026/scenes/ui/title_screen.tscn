@@ -15,7 +15,7 @@ script = ExtResource("1_eb34j")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1707387708]
 position = Vector2(-21, 429)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("2_aqpy5")
 
 [node name="VersionNumberLabel" type="Label" parent="." unique_id=1088067038]

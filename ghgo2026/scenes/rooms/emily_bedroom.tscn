@@ -14,7 +14,7 @@ script = ExtResource("1_kdc1v")
 room_id = &"emily_bedroom"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("2_6ri0t")
 centered = false
 
@@ -25,7 +25,7 @@ energy = 0.0
 script = ExtResource("3_fa2v7")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("2_6ri0t")
 centered = false
 

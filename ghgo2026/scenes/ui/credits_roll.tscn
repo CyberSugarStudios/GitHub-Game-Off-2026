@@ -26,10 +26,9 @@ color = Color(0, 0, 0, 1)
 [node name="CreditsText" type="RichTextLabel" parent="." unique_id=2000140420]
 unique_name_in_owner = true
 layout_mode = 0
+offset_top = 900.0
 offset_right = 1600.0
-offset_bottom = 684.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_bottom = 1888.0
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center][font=res://assets/fonts/Allura-Regular.ttf][font_size=240]Interim[/font_size][/font]
@@ -61,9 +60,9 @@ horizontal_alignment = 1
 [node name="HelpText" type="RichTextLabel" parent="." unique_id=457808753]
 unique_name_in_owner = true
 layout_mode = 0
-offset_top = 688.0
+offset_top = 1888.0
 offset_right = 1600.0
-offset_bottom = 972.0
+offset_bottom = 2432.0
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center][font_size=28]If this story touched something in you[/font_size]
