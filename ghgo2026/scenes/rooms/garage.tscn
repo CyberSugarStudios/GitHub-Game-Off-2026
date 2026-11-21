@@ -21,7 +21,7 @@ script = ExtResource("1_nl2ye")
 room_id = &"garage"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("2_371gr")
 centered = false
 
@@ -33,7 +33,7 @@ script = ExtResource("3_371gr")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
 visible = false
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("2_371gr")
 centered = false
 
@@ -51,6 +51,11 @@ texture = SubResource("CanvasTexture_53m36")
 [node name="ToolShelf" type="Sprite2D" parent="BackProps" unique_id=858577032]
 position = Vector2(3796.75, 608.7499)
 scale = Vector2(465.5, 937.49976)
+texture = SubResource("CanvasTexture_53m36")
+
+[node name="BreakerBox" type="Sprite2D" parent="BackProps" unique_id=1659593059]
+position = Vector2(3392.4998, 443)
+scale = Vector2(212.9998, 247.00002)
 texture = SubResource("CanvasTexture_53m36")
 
 [node name="KeepsakeBox" type="Sprite2D" parent="BackProps" unique_id=815889840]
@@ -72,7 +77,7 @@ scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_0yego")
 
 [node name="David" parent="Actors" unique_id=1359733094 instance=ExtResource("6_lynjs")]
-position = Vector2(3312, 1045)
+position = Vector2(3120, 1045)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 
@@ -198,5 +203,16 @@ offset_bottom = 576.0
 theme_override_font_sizes/font_size = 48
 text = "RACK OF
 LOOSE TOOLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BREAKER_BOX_LABEL" type="Label" parent="TEMP_LABELS" unique_id=683441206]
+offset_left = 3176.0
+offset_top = 398.0
+offset_right = 3608.0
+offset_bottom = 497.0
+theme_override_font_sizes/font_size = 48
+text = "BREAKER
+BOX"
 horizontal_alignment = 1
 vertical_alignment = 1

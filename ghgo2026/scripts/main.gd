@@ -13,19 +13,9 @@ const HALL_MUSIC := preload("res://assets/audio/music/WIP_child_ghost_background
 
 func _ready() -> void:
 	Music.play(HALL_MUSIC)
-	Events.story_event.connect(_on_story_event_test) #TEMP
 	
 	fade.color.a = 1.0
 	_warm_up()
-
-func _on_story_event_test(id: StringName) -> void:
-	print("Story event: ", id)
-	var dialogue := load("res://dialogue/test.dialogue") as DialogueResource
-	match id:
-		&"test_box":
-			Events.conversation_requested.emit(dialogue, "kitchen_murmur", false) # Live
-		&"test_box_living_only":
-			Events.conversation_requested.emit(dialogue, "portrait_falls", true)  # Frozen: grants a memory"
 
 func _warm_up() -> void:
 	astral_filter.visible = true
