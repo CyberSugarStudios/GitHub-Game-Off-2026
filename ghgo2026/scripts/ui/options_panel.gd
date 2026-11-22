@@ -12,11 +12,17 @@ const VOLUME_ROWS := {
 
 @export var font_size: int = 28
 
-const TEST_SOUND := preload("res://assets/audio/sfx/footsteps/leanne_steps.tres")
-const TEST_SOUND_GAP_MS := 200
+const TEST_TAP := preload("res://assets/audio/sfx/footsteps/leanne_steps.tres")
+const TAP_GAP_MS := 200
+const HOLD_MS := 1500
+const PREVIEW_FADE := 0.6
 
-var _test_player: AudioStreamPlayer
-var _last_test_ms := 0
+@export var previews: Dictionary[StringName, AudioStream] = {}
+
+var _players: Dictionary[StringName, AudioStreamPlayer] = {}
+var _fades: Dictionary[StringName, Tween] = {}
+var _hold_until: Dictionary[StringName, int] = {}
+var _last_tap_ms := 0
 
 func _ready() -> void:
 	add_theme_constant_override("separation", 14)
@@ -61,22 +67,77 @@ func _build() -> void:
 func _reset() -> void:
 	Settings.reset_to_defaults()
 	for child in get_children():
+		if child is AudioStreamPlayer:
+			continue
 		remove_child(child)
 		child.queue_free()
 	_build()
 
+#region - TEST SOUNDS
 func _play_test_sound(bus: StringName) -> void:
-	var now := Time.get_ticks_msec()
-	if now - _last_test_ms < TEST_SOUND_GAP_MS:
+	var stream: AudioStream = previews.get(bus)
+	if stream == null:
+		_tap(bus)
 		return
-	_last_test_ms = now
-	if not is_instance_valid(_test_player):
-		_test_player = AudioStreamPlayer.new()
-		_test_player.stream = TEST_SOUND
-		_test_player.process_mode = Node.PROCESS_MODE_ALWAYS
-		add_child(_test_player)
-	_test_player.bus = bus
-	_test_player.play()
+	if bus == &"Music" and Music.current_stream() == stream:
+		return
+	var player := _player_for(bus)
+	_hold_until[bus] = Time.get_ticks_msec() + HOLD_MS
+	set_process(true)
+	if _fades.has(bus):
+		_fades[bus].kill()
+		_fades.erase(bus)
+	player.volume_linear = 1.0
+	if player.playing:
+		return
+	player.stream = stream
+	player.play()
+	if bus == &"Music":
+		Music.step_aside(true)
+
+func _tap(bus: StringName) -> void:
+	var now := Time.get_ticks_msec()
+	if now - _last_tap_ms < TAP_GAP_MS:
+		return
+	_last_tap_ms = now
+	var player := _player_for(&"tap")
+	player.bus = bus
+	player.stream = TEST_TAP
+	player.play()
+
+func _player_for(key: StringName) -> AudioStreamPlayer:
+	var player: AudioStreamPlayer = _players.get(key)
+	if not is_instance_valid(player):
+		player = AudioStreamPlayer.new()
+		player.process_mode = Node.PROCESS_MODE_ALWAYS
+		if key != &"tap":
+			player.bus = key
+		add_child(player)
+		_players[key] = player
+	return player
+
+func _process(_delta: float) -> void:
+	var now := Time.get_ticks_msec()
+	for bus: StringName in _hold_until.keys():
+		if now >= _hold_until[bus]:
+			_hold_until.erase(bus)
+			_fade_out(bus)
+	set_process(not _hold_until.is_empty())
+
+func _fade_out(bus: StringName) -> void:
+	var player: AudioStreamPlayer = _players.get(bus)
+	if is_instance_valid(player) and player.playing:
+		var tween := create_tween()
+		tween.tween_property(player, "volume_linear", 0.0, PREVIEW_FADE)
+		tween.tween_callback(player.stop)
+		_fades[bus] = tween
+	if bus == &"Music":
+		Music.step_aside(false)
+
+func _exit_tree() -> void:
+	if _hold_until.has(&"Music"):
+		Music.step_aside(false)
+#endregion
 
 func _heading(text: String) -> void:
 	var label := _label(text)

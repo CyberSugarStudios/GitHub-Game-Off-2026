@@ -11,6 +11,7 @@ var _fade_tween: Tween
 var _music_bus := -1
 var _was_paused := false
 var _duck_tween: Tween
+var _aside_tween: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -71,3 +72,13 @@ func duck(on: bool, fade_time: float = 0.8) -> void:
 func _set_muffled(on: bool) -> void:
 	if _music_bus >= 0 and AudioServer.get_bus_effect_count(_music_bus) > PAUSE_FILTER_EFFECT:
 		AudioServer.set_bus_effect_enabled(_music_bus, PAUSE_FILTER_EFFECT, on)
+
+func current_stream() -> AudioStream:
+	var current := _players[_active]
+	return current.stream if current.playing else null
+
+func step_aside(on: bool, fade_time: float = 0.5) -> void:
+	if _aside_tween:
+		_aside_tween.kill()
+	_aside_tween = create_tween()
+	_aside_tween.tween_property(_players[_active], "volume_linear", 0.0 if on else 1.0, fade_time)
