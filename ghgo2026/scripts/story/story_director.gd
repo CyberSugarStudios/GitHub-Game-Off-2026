@@ -500,6 +500,8 @@ func _on_any_story_event(id: StringName) -> void:
 	match id:
 		&"wait_hour":
 			_wait_an_hour()
+		&"lose_hour":
+			_skip_hour()
 		&"coffee_on_leanne":
 			say_in_background("p2_leanne_coffee", PUZZLE_2)
 			household.send(MOM, &"parent_bedroom", p2_change_minutes, [[&"garage", \
@@ -516,14 +518,17 @@ func _wait_an_hour() -> void:
 	var tween := create_tween()
 	tween.tween_property(fade, "color:a", 1.0, wait_fade_time)
 	await tween.finished
-	GameClock.set_time(GameClock.day, GameClock.minute + 60)
-	household.settle_everyone()
+	_skip_hour()
 	await wait(0.3)
 	tween = create_tween()
 	tween.tween_property(fade, "color:a", 0.0, wait_fade_time)
 	await tween.finished
 	GameState.set_controls_locked(false)
 	_waiting = false
+
+func _skip_hour() -> void:
+	GameClock.set_time(GameClock.day, GameClock.minute + 60)
+	household.settle_everyone()
 #endregion
 
 #region - BEAT HELPERS

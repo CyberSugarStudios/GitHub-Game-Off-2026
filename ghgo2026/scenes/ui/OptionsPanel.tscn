@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://b713spnah4skw"]
 
 [ext_resource type="Script" uid="uid://7uqmnmqcix7m" path="res://scripts/ui/options_panel.gd" id="1_ksq0f"]
+[ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/WIP_child_ghost_background_2.mp3" id="2_bjfn0"]
+[ext_resource type="AudioStream" uid="uid://csy32heftvwml" path="res://assets/audio/sfx/Unlocking.wav" id="3_m1e8r"]
 
 [node name="OptionsPanel" type="VBoxContainer" unique_id=1048352369]
 script = ExtResource("1_ksq0f")
+previews = Dictionary[StringName, AudioStream]({
+&"Ambience": ExtResource("2_bjfn0"),
+&"MP3": ExtResource("2_bjfn0"),
+&"Master": ExtResource("2_bjfn0"),
+&"Music": ExtResource("2_bjfn0"),
+&"SFX": ExtResource("3_m1e8r"),
+&"Voices": ExtResource("2_bjfn0")
+})
