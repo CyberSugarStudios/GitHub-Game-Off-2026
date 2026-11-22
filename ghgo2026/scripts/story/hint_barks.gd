@@ -23,11 +23,11 @@ func _try_bark() -> void:
 	var level := GameState.get_hint_level()
 	if level <= 0 or GameState.controls_locked or conversation_player.is_running():
 		return
+	var cue := ""
 	var can_hear := household.hall_parents.filter(_can_hear)
-	if can_hear.is_empty():
-		return
-	var parent: HallParent = can_hear.pick_random()
-	var cue := _hint_cue(parent.parent_id, level)
+	if not can_hear.is_empty():
+		var parent: HallParent = can_hear.pick_random()
+		cue = _hint_cue(parent.parent_id, level)
 	if cue == "":
 		cue = _hint_cue(&"emily", level)
 	if cue != "":

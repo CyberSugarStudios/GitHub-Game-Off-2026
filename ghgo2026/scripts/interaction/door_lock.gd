@@ -9,7 +9,13 @@ const DOOR_LINES := preload("res://dialogue/doors.dialogue")
 const FEEDBACK_SECONDS := 1.5
 const DRAIN_DELAY := 0.3
 const DRAIN_SECONDS := 0.5
-const UNLOCK_SOUND := preload("res://assets/audio/sfx/Unlocking.wav")
+const UNLOCK_SOUNDS: Array[AudioStream] = [
+	preload("res://assets/audio/sfx/Unlocking.wav"),
+	preload("res://assets/audio/sfx/Unlocking 2.wav"),
+	preload("res://assets/audio/sfx/Unlocking 3.wav"),
+	preload("res://assets/audio/sfx/Unlocking 4.wav"),
+	preload("res://assets/audio/sfx/Unlocking 5.wav"),
+]
 const CLICK_AT := 3.15
 const RING_OUT_SECONDS := 1.05
 const FAIL_FADE_SECONDS := 0.2
@@ -32,7 +38,6 @@ func setup(id: StringName, bars: int, rate: float) -> void:
 
 func _ready() -> void:
 	_sound = AudioStreamPlayer.new()
-	_sound.stream = UNLOCK_SOUND
 	_sound.bus = &"SFX"
 	add_child(_sound)
 
@@ -111,6 +116,7 @@ func _play_sound() -> void:
 	if _sound_fade:
 		_sound_fade.kill()
 	_sound.volume_db = 0.0
+	_sound.stream = UNLOCK_SOUNDS.pick_random()
 	_sound.play(maxf(CLICK_AT - fill_seconds, 0.0))
 
 func _fade_sound(seconds: float) -> void:

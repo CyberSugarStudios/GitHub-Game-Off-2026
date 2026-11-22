@@ -42,7 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033, 1.3, 0.012)
 [node name="BarPips" type="Node3D" parent="LockIcon" unique_id=1279087040]
 
 [node name="DoorArt" type="MeshInstance3D" parent="." unique_id=463790496]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03, 0.01)
+transform = Transform3D(1.0086411, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03, 0.01)
 mesh = SubResource("QuadMesh_53m36")
 surface_material_override/0 = SubResource("StandardMaterial3D_t0o22")
 
