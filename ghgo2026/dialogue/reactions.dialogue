@@ -1,0 +1,100 @@
+~ near_miss_hall_painting
+% Emily: It moved... but there's nobody here to see it. [#thought]
+% Emily: Mom and Dad both need to be out here for this. [#thought]
+=> END
+
+~ near_miss_thermostat
+% Emily: Dad won't feel that from where he is. [#thought]
+% Emily: He has to be close enough to notice. [#thought]
+=> END
+
+~ near_miss_tv
+% Emily: Dad's not even in here to see it. [#thought]
+% Emily: Static, for nobody. [#thought]
+=> END
+
+~ near_miss_garage_light
+% Emily: Dad would have to be out here to notice. [#thought]
+=> END
+
+~ near_miss_coffee_maker
+% Emily: Mom has to be standing right here, making coffee. [#thought]
+=> END
+
+~ near_miss_coffee_cup
+% Emily: Mom has to be holding it. [#thought]
+=> END
+
+~ near_miss
+% Emily: Nobody noticed. [#thought]
+% Emily: ...Nothing. [#thought]
+=> END
+
+~ creature_seen_stage1
+Emily: What the hell is that? [#thought]
+=> END
+
+~ creature_grabbed_stage1
+Emily: Get off— get OFF me! [#thought]
+=> END
+
+~ creature_escaped_stage1
+Emily: It let go. Why did it let go? [#thought]
+=> END
+
+~ creature_seen_stage2
+Emily: It's back. [#thought]
+=> END
+
+~ creature_grabbed_stage2
+Emily: Not again— [#thought]
+=> END
+
+~ creature_escaped_stage2
+Emily: I can still feel where it held me. [#thought]
+=> END
+
+~ creature_seen_stage3
+Emily: It's closer every time. [#thought]
+=> END
+
+~ creature_grabbed_stage3
+Emily: Why does this feel... familiar? [#thought]
+=> END
+
+~ creature_escaped_stage3
+Emily: It's not trying to hurt me. Is it? [#thought]
+=> END
+
+~ creature_seen_stage4
+Emily: It's standing at my door. [#thought]
+=> END
+
+~ creature_grabbed_stage4
+Emily: It doesn't want me in there. [#thought]
+=> END
+
+~ creature_escaped_stage4
+Emily: What is it keeping me from? [#thought]
+=> END
+
+~ creature_seen
+Emily: It's here. [#thought]
+=> END
+
+~ creature_grabbed
+Emily: No— [#thought]
+=> END
+
+~ creature_escaped
+Emily: Breathe. Just breathe. [#thought]
+=> END
+
+~ creature_consumed
+Emily: So cold... it took everything. [#thought]
+=> END
+
+~ read_thoughts_first
+Emily: Wait. That wasn't out loud. [#thought]
+Emily: I heard what they were thinking. [#thought]
+=> END

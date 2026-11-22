@@ -76,6 +76,7 @@ var _stared := 0.0
 var _presses := 0
 var _repath := 0.0
 var _grace := 0.0
+var _seen := false
 #endregion
 
 func _ready() -> void:
@@ -153,6 +154,7 @@ func _start_lurk() -> void:
 	_stared = 0.0
 
 func _process_lurk(delta: float) -> void:
+	_note_seen()
 	_face_player()
 	_timer -= delta
 	if _player_can_see(global_position + Vector3.UP * EYE_HEIGHT):
@@ -175,6 +177,7 @@ func _start_hunt() -> void:
 	_repath = 0.0
 
 func _process_hunt(delta: float) -> void:
+	_note_seen()
 	_repath -= delta
 	if _repath <= 0.0:
 		agent.target_position = player.global_position
@@ -189,6 +192,7 @@ func _process_hunt(delta: float) -> void:
 	_face_player()
 
 func _process_guard(delta: float) -> void:
+	_note_seen()
 	_face_player()
 	_grace -= delta
 	if _grace <= 0.0 and _distance_to_player() <= guard_charge_distance:
@@ -206,6 +210,7 @@ func _start_grab() -> void:
 	_play(grab_sound)
 	Events.story_prompt_changed.emit("Struggle!   " + Settings.struggle_hint())
 	Events.struggle_changed.emit(0.001)
+	Events.creature_moment.emit(&"grabbed")
 
 func _process_grab(delta: float) -> void:
 	GameState.drain(grab_drain_per_second * delta, true)
@@ -215,6 +220,7 @@ func _process_grab(delta: float) -> void:
 
 func _escape() -> void:
 	_play(free_sound)
+	Events.creature_moment.emit(&"escaped")
 	Events.story_prompt_changed.emit("")
 	Events.struggle_changed.emit(0.0)
 	GameState.set_controls_locked(false)
@@ -223,6 +229,7 @@ func _escape() -> void:
 
 func _consume() -> void:
 	GameState.regen_paused = false
+	Events.creature_moment.emit(&"consumed")
 	_vanish(escape_cooldown)
 	_play(consume_sound)
 	Events.story_prompt_changed.emit("")
@@ -284,6 +291,7 @@ func _on_monster_level_changed(_level: int) -> void:
 func _appear(at: Vector3, state: State) -> void:
 	global_position = at
 	_state = state
+	_seen = false
 	_animate(&"chase_start" if state == State.HUNTING else &"idle")
 	visible = true
 	if state == State.GUARDING:
@@ -343,6 +351,11 @@ func _pick_spot(min_distance: float, max_distance: float, out_of_sight: bool) ->
 	if choices.is_empty():
 		return null
 	return choices.pick_random()
+
+func _note_seen() -> void:
+	if not _seen and _player_can_see(global_position + Vector3.UP * EYE_HEIGHT):
+		_seen = true
+		Events.creature_moment.emit(&"seen")
 
 func _player_can_see(point: Vector3) -> bool:
 	var camera := get_viewport().get_camera_3d()

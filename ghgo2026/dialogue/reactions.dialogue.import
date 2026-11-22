@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://cbf5prvwkpnr4"
+path="res://.godot/imported/reactions.dialogue-afda1368750713c22ac9d98b801beb74.tres"
+
+[deps]
+
+source_file="res://dialogue/reactions.dialogue"
+dest_files=["res://.godot/imported/reactions.dialogue-afda1368750713c22ac9d98b801beb74.tres"]
+
+[params]
+
+defaults=true
