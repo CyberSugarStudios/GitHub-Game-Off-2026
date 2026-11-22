@@ -71,6 +71,7 @@ func stage_to(mark: HallMark) -> void:
 	_linger_left = 0.0
 	_linger_target = null
 	current_linger = null
+	agent.target_position = mark.global_position
 
 func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> void:
 	_stage_target = null
@@ -88,7 +89,9 @@ func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> vo
 func _physics_process(delta: float) -> void:
 	is_moving = false
 	if _stage_target:
-		if _step_toward(_stage_target.global_position, delta):
+		var point := _stage_target.global_position if agent.is_navigation_finished() \
+			else agent.get_next_path_position()
+		if _step_toward(point, delta) and agent.is_navigation_finished():
 			standing_at = _stage_target
 			_stage_target = null
 		return
