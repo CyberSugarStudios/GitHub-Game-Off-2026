@@ -430,7 +430,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7813568, 0, -5.5777636)
 script = ExtResource("5_gqmmt")
 mark_id = &"pumpkin_photo"
 linger_chance = 1.0
-linger_seconds = 2.0
 linger_activity = &"idle"
 look_target = NodePath("../../HallDecor/HallPainting")
 
@@ -895,6 +894,7 @@ bus = &"Voices"
 [node name="ParentReactions" type="Node" parent="." unique_id=1429764438 node_paths=PackedStringArray("household", "conversation_player")]
 script = ExtResource("22_jscy8")
 household = NodePath("../Household")
+chill_minutes = 20
 conversation_player = NodePath("../ConversationPlayer")
 
 [node name="AstralShift" type="Node" parent="." unique_id=1708356995]

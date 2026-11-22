@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://due1lqvw1g57r"
-path="res://.godot/imported/Dad_rear_rig-walk_26.png-38f9e860890d102412a01c7f47baa642.ctex"
+path.s3tc="res://.godot/imported/Dad_rear_rig-walk_26.png-38f9e860890d102412a01c7f47baa642.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/Animations/dad/Dad-walk-away/Dad_rear_rig-walk_26.png"
-dest_files=["res://.godot/imported/Dad_rear_rig-walk_26.png-38f9e860890d102412a01c7f47baa642.ctex"]
+dest_files=["res://.godot/imported/Dad_rear_rig-walk_26.png-38f9e860890d102412a01c7f47baa642.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
