@@ -169,6 +169,7 @@ func _setup_morning() -> void:
 	if garage_voice:
 		garage_voice.visible = false
 	GameClock.set_time(2, _to_minutes(morning_time))
+	GameState.restart_stage_timer()
 	if GameState.story_stage < 1:
 		GameState.set_story_stage(1)
 	GameState.set_monster_level(GameState.story_stage)
@@ -466,6 +467,7 @@ func _accept_creature() -> void:
 	GameState.set_controls_locked(false)
 
 func _play_ending() -> void:
+	GameState.clear_checkpoint()
 	GameState.set_controls_locked(true)
 	Music.stop(p5_light_seconds)
 	await wait(p5_light_seconds)

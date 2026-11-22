@@ -31,8 +31,8 @@ func _ready() -> void:
 	var app_version = ProjectSettings.get_setting("application/config/version")
 	version_number_label.text = "v" + app_version
 	
-	# Enabled later after save system exists
-	continue_game_button.disabled = true
+	continue_game_button.disabled = not GameState.has_checkpoint()
+	continue_game_button.pressed.connect(on_continue_pressed)
 	
 	# Brower can't use quit button
 	quit_button.visible = not OS.has_feature("web")
@@ -48,10 +48,22 @@ func _ready() -> void:
 	ResourceLoader.load_threaded_request(GAME_SCENE_PATH)
 
 func on_new_game_pressed() -> void:
-	new_game_button.disabled = true
-	new_game_button.text = "Loading..."
+	GameState.clear_checkpoint()
 	GameState.reset()
 	GameClock.reset()
+	_enter_game(new_game_button)
+
+func on_continue_pressed() -> void:
+	if not GameState.load_checkpoint():
+		continue_game_button.disabled = true
+		return
+	GameClock.reset()
+	_enter_game(continue_game_button)
+
+func _enter_game(pressed: Button) -> void:
+	new_game_button.disabled = true
+	continue_game_button.disabled = true
+	pressed.text = "Loading..."
 	while ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		await get_tree().process_frame
 	var scene := ResourceLoader.load_threaded_get(GAME_SCENE_PATH) as PackedScene
