@@ -2,8 +2,15 @@ extends Node
 
 const FORM_ID := "1FAIpQLSfatGLctTLhUCTkvCQmdYIMcUE2KsamTFjJ7h2SW3QfrAiRWw"
 const DEBUG_ENTRY := "entry.2135919735"
+const HITCH_SECONDS := 0.25
+const BACKGROUND_SECONDS := 3.0
+const MAX_HITCHES := 8
 
 var _started_at := 0
+var _hitches := PackedStringArray()
+var _hitch_count := 0
+var _last_event := "start"
+var _last_event_at := 0
 var _fps_total := 0.0
 var _fps_samples := 0
 var _fps_low := INF
@@ -15,11 +22,26 @@ func is_enabled() -> bool:
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_started_at = Time.get_ticks_msec()
+	_last_event_at = _started_at
 	set_process(is_enabled())
+	if not is_enabled():
+		return
+	GameState.room_changed.connect(func(room: StringName) -> void:
+		_note("entered %s" % (room if room != &"" else &"hall")))
+	GameState.plane_changed.connect(func(astral: bool) -> void:
+		_note("astral on" if astral else "astral off"))
+	Events.story_event.connect(func(id: StringName) -> void:
+		_note("event %s" % id))
+	Events.conversation_requested.connect(func(_dialogue: DialogueResource, title: String, _frozen: bool) -> void:
+		_note("line %s" % title))
+	Events.creature_moment.connect(func(kind: StringName) -> void:
+		_note("creature %s" % kind))
 
 func _process(delta: float) -> void:
 	if Time.get_ticks_msec() - _started_at < 5000:
 		return
+	if delta >= HITCH_SECONDS and delta < BACKGROUND_SECONDS:
+		_record_hitch(delta)
 	_sample_clock += delta
 	if _sample_clock < 1.0:
 		return
@@ -28,6 +50,21 @@ func _process(delta: float) -> void:
 	_fps_total += fps
 	_fps_samples += 1
 	_fps_low = minf(_fps_low, fps)
+
+func _note(what: String) -> void:
+	_last_event = what
+	_last_event_at = Time.get_ticks_msec()
+
+func _record_hitch(delta: float) -> void:
+	_hitch_count += 1
+	var now := Time.get_ticks_msec()
+	var place := String(GameState.current_room) if GameState.is_in_room() else "hall"
+	var entry := "%.2f s at %.1f min: stage %d, %s, %s, %.1f s after %s" % [
+		delta, (now - _started_at) / 60000.0, GameState.story_stage, place,
+		"astral" if GameState.in_astral else "living", (now - _last_event_at) / 1000.0, _last_event]
+	if _hitches.size() < MAX_HITCHES:
+		_hitches.append(entry)
+	print("[HITCH] ", entry)
 
 func open_form() -> void:
 	var url := "https://docs.google.com/forms/d/e/%s/viewform?usp=pp_url&%s=%s" \
@@ -55,6 +92,10 @@ func build_report() -> String:
 	lines.append("Language: %s" % OS.get_locale())
 	if _fps_samples > 0:
 		lines.append("FPS: avg %d, low %d" % [roundi(_fps_total / _fps_samples), roundi(_fps_low)])
+	if _hitch_count > 0:
+		lines.append("Hitches (%.2f s or longer): %d" % [HITCH_SECONDS, _hitch_count])
+		for hitch in _hitches:
+			lines.append("  " + hitch)
 	lines.append("Progress: stage %d, %d bars, day %d %s, in %s" % [GameState.story_stage, GameState.max_bars,
 			GameClock.day, GameClock.get_time_text(), String(GameState.current_room) if GameState.is_in_room() else "hall"])
 	lines.append("Flags: %s" % ", ".join(PackedStringArray(GameState.flags.keys())))
