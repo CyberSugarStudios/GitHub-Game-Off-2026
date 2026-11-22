@@ -55,6 +55,11 @@ const EYE_HEIGHT := 1.4
 @export_group("Grab Overlay")
 @export var grab_screen_height: float = 1.6
 @export var grab_face := Vector2(0.505, 0.11)
+@export var press_shove := Vector2(0.04, 0.12)
+@export var press_jolt := Vector2(10.0, 40.0)
+@export var lean_per_second: float = 0.05
+@export var max_lean: float = 0.15
+@export var release_seconds: float = 0.25
 
 @export_group("Sounds")
 @export var sting_sound: AudioStream
@@ -77,6 +82,12 @@ var _presses := 0
 var _repath := 0.0
 var _grace := 0.0
 var _seen := false
+var _grab_scale := Vector2.ONE
+var _grab_center := Vector2.ZERO
+var _lean := 0.0
+var _punch := 0.0
+var _jolt := Vector2.ZERO
+var _punch_tween: Tween
 #endregion
 
 func _ready() -> void:
@@ -213,6 +224,8 @@ func _start_grab() -> void:
 	Events.creature_moment.emit(&"grabbed")
 
 func _process_grab(delta: float) -> void:
+	_lean = minf(_lean + lean_per_second * delta, max_lean)
+	_pose_grab()
 	GameState.drain(grab_drain_per_second * delta, true)
 	_face_player()
 	if GameState.energy <= GameState.ENERGY_EPSILON:
@@ -251,7 +264,9 @@ func _consume() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if _state == State.GRABBING and event.is_action_pressed("struggle"):
 		_presses += 1
-		Events.struggle_changed.emit(float(_presses) / _presses_needed())
+		var progress := float(_presses) / _presses_needed()
+		Events.struggle_changed.emit(progress)
+		_struggle_punch(progress)
 		if _presses >= _presses_needed():
 			_escape()
 		get_viewport().set_input_as_handled()
@@ -315,18 +330,51 @@ func _animate(anim: StringName) -> void:
 func _show_grab_overlay(on: bool) -> void:
 	if grab_overlay == null or grab_sprite == null:
 		return
-	grab_overlay.visible = on
 	if sprite:
 		sprite.visible = not on
 	if not on:
-		grab_sprite.stop()
+		if grab_overlay.visible:
+			_fling_grab()
 		return
+	grab_overlay.visible = true
 	var texture := grab_sprite.sprite_frames.get_frame_texture(&"grab", 0)
 	var screen := get_viewport().get_visible_rect().size
-	grab_sprite.scale = Vector2.ONE * (screen.y * grab_screen_height / texture.get_height())
-	grab_sprite.offset = (Vector2(0.5, 0.5) - grab_face) * texture.get_size() # Face at the sprite's origin.
-	grab_sprite.position = screen * 0.5
+	_grab_scale = Vector2.ONE * (screen.y * grab_screen_height / texture.get_height())
+	_grab_center = screen * 0.5
+	_lean = 0.0
+	_punch = 0.0
+	_jolt = Vector2.ZERO
+	grab_sprite.modulate.a = 1.0
+	grab_sprite.offset = (Vector2(0.5, 0.5) - grab_face) * texture.get_size()
+	_pose_grab()
 	grab_sprite.play(&"grab")
+
+func _pose_grab() -> void:
+	if grab_sprite:
+		grab_sprite.scale = _grab_scale * (1.0 + _lean - _punch)
+		grab_sprite.position = _grab_center + _jolt
+
+func _struggle_punch(progress: float) -> void:
+	_lean = 0.0
+	if _punch_tween:
+		_punch_tween.kill()
+	_punch = lerpf(press_shove.x, press_shove.y, progress)
+	_jolt = Vector2(randf_range(-1.0, 1.0), randf_range(-0.5, 0.5)) * lerpf(press_jolt.x, press_jolt.y, progress)
+	_punch_tween = create_tween().set_parallel()
+	_punch_tween.tween_property(self, "_punch", 0.0, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_punch_tween.tween_property(self, "_jolt", Vector2.ZERO, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_pose_grab()
+
+func _fling_grab() -> void:
+	if _punch_tween:
+		_punch_tween.kill()
+	var tween := create_tween().set_parallel()
+	tween.tween_property(grab_sprite, "scale", _grab_scale * 0.5, release_seconds) \
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property(grab_sprite, "modulate:a", 0.0, release_seconds)
+	tween.chain().tween_callback(func() -> void:
+		grab_overlay.visible = false
+		grab_sprite.stop())
 
 func _vanish(next_in: float) -> void:
 	_show_grab_overlay(false)
