@@ -26,6 +26,8 @@ const ENERGY_EPSILON := 0.001
 const HALL := &"hall"
 const HINT_HOURS_PER_LEVEL := 3.0
 const HINT_PER_NEAR_MISS := 0.5
+const SAVE_PATH := "user://save.cfg"
+const SAVE_VERSION := 1
 
 #region - VARS
 var max_bars := STARTING_BARS #door check
@@ -88,9 +90,14 @@ func set_story_stage(stage: int) -> void:
 	if story_stage == stage:
 		return
 	story_stage = stage
+	restart_stage_timer()
+	story_stage_changed.emit(stage)
+	if stage >= 1:
+		save_checkpoint()
+
+func restart_stage_timer() -> void:
 	_stage_started_at = GameClock.get_total_minutes()
 	_hint_bonus = 0.0
-	story_stage_changed.emit(stage)
 
 func set_monster_level(level: int) -> void:
 	if monster_level == level:
@@ -222,6 +229,37 @@ func reset() -> void:
 	shift_allowed = true
 	regen_paused = false
 	guarded_room = &""
+
+#region - SAVING
+func save_checkpoint() -> void:
+	var config := ConfigFile.new()
+	config.set_value("save", "version", SAVE_VERSION)
+	config.set_value("save", "story_stage", story_stage)
+	config.set_value("save", "max_bars", max_bars)
+	config.set_value("save", "flags", PackedStringArray(flags.keys()))
+	config.save(SAVE_PATH)
+
+func has_checkpoint() -> bool:
+	var config := ConfigFile.new()
+	return config.load(SAVE_PATH) == OK and config.get_value("save", "version", 0) == SAVE_VERSION
+
+func load_checkpoint() -> bool:
+	var config := ConfigFile.new()
+	if config.load(SAVE_PATH) != OK or config.get_value("save", "version", 0) != SAVE_VERSION:
+		return false
+	reset()
+	story_stage = config.get_value("save", "story_stage", 0)
+	max_bars = config.get_value("save", "max_bars", STARTING_BARS)
+	for flag: String in config.get_value("save", "flags", PackedStringArray()):
+		flags[StringName(flag)] = true
+	max_bars_changed.emit(max_bars)
+	_set_energy(max_bars)
+	return true
+
+func clear_checkpoint() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+#endregion
 
 func _set_energy(value: float) -> void:
 	var clamped := clampf(value, 0.0, max_bars)
