@@ -60,6 +60,7 @@
 [ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/WIP_child_ghost_background_2.mp3" id="43_1v6qk"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="46_bu4jf"]
+[ext_resource type="Script" uid="uid://crgeabduhkqgf" path="res://scripts/story/emily_reactions.gd" id="61_t5ykj"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 ambient_light_source = 2
@@ -914,6 +915,11 @@ title_card = NodePath("../RoomView/FadeLayer/TitleCard")
 script = ExtResource("44_cjqg0")
 household = NodePath("../Household")
 conversation_player = NodePath("../ConversationPlayer")
+
+[node name="EmilyReactions" type="Node" parent="." unique_id=989090217 node_paths=PackedStringArray("conversation_player")]
+script = ExtResource("61_t5ykj")
+conversation_player = NodePath("../ConversationPlayer")
+metadata/_custom_type_script = "uid://crgeabduhkqgf"
 
 [editable path="Hall"]
 [editable path="Hall/LeanneHall"]

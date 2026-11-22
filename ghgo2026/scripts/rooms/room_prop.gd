@@ -111,7 +111,7 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 			Events.story_event.emit(success_event)
 	else:
 		_play(near_miss_sound)
-		GameState.add_near_miss()
+		GameState.add_near_miss(target_id)
 		if near_miss_event != &"":
 			Events.story_event.emit(near_miss_event)
 		await _animate(near_miss_anim, false)

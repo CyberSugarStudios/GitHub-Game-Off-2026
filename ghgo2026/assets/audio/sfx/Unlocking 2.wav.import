@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c5fjeqoys1r5h"
+path="res://.godot/imported/Unlocking 2.wav-c7f493f3b732e088b3b8ba875eb564ae.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Unlocking 2.wav"
+dest_files=["res://.godot/imported/Unlocking 2.wav-c7f493f3b732e088b3b8ba875eb564ae.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -28,6 +28,8 @@ func _try_bark() -> void:
 		return
 	var parent: HallParent = can_hear.pick_random()
 	var cue := _hint_cue(parent.parent_id, level)
+	if cue == "":
+		cue = _hint_cue(&"emily", level)
 	if cue != "":
 		Events.conversation_requested.emit(BARKS, cue, false)
 

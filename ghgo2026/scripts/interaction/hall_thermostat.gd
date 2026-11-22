@@ -37,7 +37,7 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 	else:
 		_go_dark(0.3)
 		if GameState.story_stage == works_at_stage:
-			GameState.add_near_miss()
+			GameState.add_near_miss(target_id)
 
 func _trips_breaker() -> bool:
 	return GameState.story_stage == works_at_stage \
