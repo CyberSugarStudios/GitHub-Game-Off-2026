@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://odpkt7mftb5y"
+uid="uid://b0bxh0qt1qn5i"
 path.s3tc="res://.godot/imported/Dad_side_rig-walk_00.png-ac70b447a8de68ac733075e9fd94cecc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -37,5 +37,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=768
+process/size_limit=0
 detect_3d/compress_to=0

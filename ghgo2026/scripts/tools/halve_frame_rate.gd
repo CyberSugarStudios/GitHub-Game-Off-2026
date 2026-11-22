@@ -2,7 +2,8 @@
 extends EditorScript
 
 const FRAMES: Array[String] = [
-	"res://assets/sprites/Animations/frames/creature/creature_frames.tres",
+	"res://assets/sprites/Animations/frames/creature/mom_creature_frames.tres",
+	"res://assets/sprites/Animations/frames/creature/emily_creature_frames.tres",
 	"res://assets/sprites/Animations/frames/dad/david_frames.tres",
 	"res://assets/sprites/Animations/frames/mom/leanne_frames.tres",
 ]

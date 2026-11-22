@@ -1,0 +1,1101 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cv88o0lj250y1"]
+
+[ext_resource type="Texture2D" uid="uid://gs6buqni7mlb" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_00.png" id="1_ieex4"]
+[ext_resource type="Texture2D" uid="uid://cw2idvih0750f" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_01.png" id="2_o2wgx"]
+[ext_resource type="Texture2D" uid="uid://c4xdr2pke4poe" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_02.png" id="3_0a5jf"]
+[ext_resource type="Texture2D" uid="uid://dlxk7revvimvr" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_03.png" id="4_7vjlt"]
+[ext_resource type="Texture2D" uid="uid://34smxl1e8nqr" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_04.png" id="5_0i8cp"]
+[ext_resource type="Texture2D" uid="uid://cjxmoogge7ec" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_05.png" id="6_ydplj"]
+[ext_resource type="Texture2D" uid="uid://c1da3si15154o" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_06.png" id="7_3dlqk"]
+[ext_resource type="Texture2D" uid="uid://b0beic7m34g35" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_07.png" id="8_2trqe"]
+[ext_resource type="Texture2D" uid="uid://b6a1q76wfhol1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_08.png" id="9_tvtx8"]
+[ext_resource type="Texture2D" uid="uid://bihtinxdjl36f" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_09.png" id="10_r0v8j"]
+[ext_resource type="Texture2D" uid="uid://epld0v4textj" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_10.png" id="11_lnf5l"]
+[ext_resource type="Texture2D" uid="uid://b4i3jct4dcygt" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_11.png" id="12_l7vdo"]
+[ext_resource type="Texture2D" uid="uid://bfln2ryauq8av" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_12.png" id="13_0n7ud"]
+[ext_resource type="Texture2D" uid="uid://dsaf4u8ap3lmy" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_13.png" id="14_njvnu"]
+[ext_resource type="Texture2D" uid="uid://b1p3r4hxt1xnp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_14.png" id="15_auwum"]
+[ext_resource type="Texture2D" uid="uid://ddxwxjmuoqo2x" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_15.png" id="16_l8lsp"]
+[ext_resource type="Texture2D" uid="uid://31rowlj1ovym" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_16.png" id="17_c7pbi"]
+[ext_resource type="Texture2D" uid="uid://b34xxcq8nhwp0" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_17.png" id="18_33nt0"]
+[ext_resource type="Texture2D" uid="uid://cuiuarx3yvkec" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_18.png" id="19_g26ty"]
+[ext_resource type="Texture2D" uid="uid://cvk8iv66htlvr" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_19.png" id="20_6p2yp"]
+[ext_resource type="Texture2D" uid="uid://co6khxt7sa82j" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_20.png" id="21_dqhhx"]
+[ext_resource type="Texture2D" uid="uid://3cerarjauhd0" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_21.png" id="22_bldrn"]
+[ext_resource type="Texture2D" uid="uid://d0kfh325i423t" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_22.png" id="23_fo5ha"]
+[ext_resource type="Texture2D" uid="uid://bwi8t6nju0nmd" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_23.png" id="24_w7glh"]
+[ext_resource type="Texture2D" uid="uid://hlv0bcb5hbi8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_24.png" id="25_pqplo"]
+[ext_resource type="Texture2D" uid="uid://dq0j5rkjhflsq" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_25.png" id="26_d4syi"]
+[ext_resource type="Texture2D" uid="uid://clp18evw0iy64" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_26.png" id="27_vjo1b"]
+[ext_resource type="Texture2D" uid="uid://b58v8neqb5ow8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_27.png" id="28_87erk"]
+[ext_resource type="Texture2D" uid="uid://bmg4d6wh3lpjp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_28.png" id="29_2v14f"]
+[ext_resource type="Texture2D" uid="uid://dvw7qrpadlimh" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_29.png" id="30_y0si6"]
+[ext_resource type="Texture2D" uid="uid://oj3jjchikmv0" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_30.png" id="31_gfdin"]
+[ext_resource type="Texture2D" uid="uid://dmomgmcbpoj3x" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_31.png" id="32_51j6i"]
+[ext_resource type="Texture2D" uid="uid://cxdhv0nlbgoj" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_32.png" id="33_pdcme"]
+[ext_resource type="Texture2D" uid="uid://daxgmwe88rfqs" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_33.png" id="34_b2f1e"]
+[ext_resource type="Texture2D" uid="uid://cg2611jmnf55y" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_34.png" id="35_8sjdh"]
+[ext_resource type="Texture2D" uid="uid://v0iar46exp0a" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_35.png" id="36_tx12d"]
+[ext_resource type="Texture2D" uid="uid://bw6owqwdkooui" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_36.png" id="37_nwcwn"]
+[ext_resource type="Texture2D" uid="uid://duwdi1wrkopur" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_37.png" id="38_lyt86"]
+[ext_resource type="Texture2D" uid="uid://caaibtptf1uw8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_38.png" id="39_w0k0s"]
+[ext_resource type="Texture2D" uid="uid://bqhbbvw4cyemk" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_39.png" id="40_lojxj"]
+[ext_resource type="Texture2D" uid="uid://dcycayc5pvayi" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_40.png" id="41_npdyx"]
+[ext_resource type="Texture2D" uid="uid://depfctuqujq5c" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_41.png" id="42_eqx5a"]
+[ext_resource type="Texture2D" uid="uid://bhdw8u5ybjkvl" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_42.png" id="43_ud374"]
+[ext_resource type="Texture2D" uid="uid://dp2xa82b5d7em" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_43.png" id="44_r3u7u"]
+[ext_resource type="Texture2D" uid="uid://b1ijnw47jppwy" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_44.png" id="45_rv0tx"]
+[ext_resource type="Texture2D" uid="uid://vrf2q18wgy3" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_45.png" id="46_tppyb"]
+[ext_resource type="Texture2D" uid="uid://h23x3s7p1yau" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_46.png" id="47_f8yar"]
+[ext_resource type="Texture2D" uid="uid://jjygkwca1xri" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_47.png" id="48_q4m25"]
+[ext_resource type="Texture2D" uid="uid://ktco8h3rilfi" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_48.png" id="49_fa8ty"]
+[ext_resource type="Texture2D" uid="uid://cxbtk7gpvx3r4" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_49.png" id="50_udkm6"]
+[ext_resource type="Texture2D" uid="uid://c8n4i3guuf8rs" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_50.png" id="51_0t7ca"]
+[ext_resource type="Texture2D" uid="uid://co5omqqkeldnt" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_51.png" id="52_qxkde"]
+[ext_resource type="Texture2D" uid="uid://dwci6stve63u4" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_52.png" id="53_34hkg"]
+[ext_resource type="Texture2D" uid="uid://b6ogh877bgvje" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_53.png" id="54_6ytob"]
+[ext_resource type="Texture2D" uid="uid://cm68oiqpb7uc4" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_54.png" id="55_dp6ap"]
+[ext_resource type="Texture2D" uid="uid://bg05lv4lghln3" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_55.png" id="56_rwmo2"]
+[ext_resource type="Texture2D" uid="uid://doppplsfvbyva" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_56.png" id="57_djy1f"]
+[ext_resource type="Texture2D" uid="uid://ky6m50318kwe" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_57.png" id="58_uce2h"]
+[ext_resource type="Texture2D" uid="uid://cekun5vjc0b6s" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_58.png" id="59_cnmj7"]
+[ext_resource type="Texture2D" uid="uid://bdl2lk0ssfp7k" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_59.png" id="60_5d84o"]
+[ext_resource type="Texture2D" uid="uid://4xenbog4jmmw" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_60.png" id="61_2dmxi"]
+[ext_resource type="Texture2D" uid="uid://tbp3eqvacaaq" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_61.png" id="62_pa3ik"]
+[ext_resource type="Texture2D" uid="uid://d22j1co8m5olq" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_62.png" id="63_0es6l"]
+[ext_resource type="Texture2D" uid="uid://b2nwb1xqg7ekn" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_63.png" id="64_3ilfi"]
+[ext_resource type="Texture2D" uid="uid://qyis15dprjsl" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_64.png" id="65_2dudu"]
+[ext_resource type="Texture2D" uid="uid://mx2vefp5mko2" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_65.png" id="66_a4drd"]
+[ext_resource type="Texture2D" uid="uid://byp8ggfqvy0j7" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_66.png" id="67_8yn7x"]
+[ext_resource type="Texture2D" uid="uid://cfccv3ho6i2t8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_67.png" id="68_pxymc"]
+[ext_resource type="Texture2D" uid="uid://f1v2dp3i7jih" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_68.png" id="69_fn5gs"]
+[ext_resource type="Texture2D" uid="uid://bdovnvaj0sc2s" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_69.png" id="70_uvn7y"]
+[ext_resource type="Texture2D" uid="uid://bd3852gd7uin8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_70.png" id="71_7uj3w"]
+[ext_resource type="Texture2D" uid="uid://b2j5q5pxu1dg7" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_71.png" id="72_ua0mk"]
+[ext_resource type="Texture2D" uid="uid://c4fdw3tjt2or3" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_72.png" id="73_lmtor"]
+[ext_resource type="Texture2D" uid="uid://c8chgag74vjyq" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_73.png" id="74_712h7"]
+[ext_resource type="Texture2D" uid="uid://d2hpyduiq5vnd" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_74.png" id="75_31f8i"]
+[ext_resource type="Texture2D" uid="uid://chm0uahwr48by" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_75.png" id="76_e07dm"]
+[ext_resource type="Texture2D" uid="uid://bx3cdmo7vd4we" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_76.png" id="77_mntik"]
+[ext_resource type="Texture2D" uid="uid://bc7xnnga8rsrx" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_77.png" id="78_c5hpt"]
+[ext_resource type="Texture2D" uid="uid://0qd7j4560nab" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_78.png" id="79_prbm7"]
+[ext_resource type="Texture2D" uid="uid://dgvrkgtwgnjrf" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_79.png" id="80_bapvd"]
+[ext_resource type="Texture2D" uid="uid://ouexvdvp2ly1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_80.png" id="81_uyc2k"]
+[ext_resource type="Texture2D" uid="uid://bhfevptgd5wxj" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_81.png" id="82_gi3sc"]
+[ext_resource type="Texture2D" uid="uid://b05p7yep1mgvd" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_82.png" id="83_vn4vq"]
+[ext_resource type="Texture2D" uid="uid://c1i4a30uxfu5n" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_83.png" id="84_oosla"]
+[ext_resource type="Texture2D" uid="uid://ban87kf1gv07c" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_84.png" id="85_ji7fj"]
+[ext_resource type="Texture2D" uid="uid://djp136cnoalq3" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_85.png" id="86_gmox1"]
+[ext_resource type="Texture2D" uid="uid://dru325imjnudq" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_86.png" id="87_oviwc"]
+[ext_resource type="Texture2D" uid="uid://d3gvqei7e56j8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_87.png" id="88_s0hd2"]
+[ext_resource type="Texture2D" uid="uid://7wyo7ejj8x02" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_88.png" id="89_135qk"]
+[ext_resource type="Texture2D" uid="uid://c5ofhlwub8nom" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-chase/Emily_manifestation_rig-Chase_89.png" id="90_svwpr"]
+[ext_resource type="Texture2D" uid="uid://duhv55ukeuepp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_00.png" id="91_1jl0c"]
+[ext_resource type="Texture2D" uid="uid://dnpgn2rbkhgkn" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_01.png" id="92_yf34a"]
+[ext_resource type="Texture2D" uid="uid://bs70kf6yajaae" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_02.png" id="93_gjv6f"]
+[ext_resource type="Texture2D" uid="uid://cynhdodce0hqy" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_03.png" id="94_ekict"]
+[ext_resource type="Texture2D" uid="uid://6lny1xivstvr" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_04.png" id="95_cf6qo"]
+[ext_resource type="Texture2D" uid="uid://dkdwsee6x3vsd" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_05.png" id="96_q77fi"]
+[ext_resource type="Texture2D" uid="uid://g40wdcsdrl0x" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_06.png" id="97_38vwu"]
+[ext_resource type="Texture2D" uid="uid://unopv3fmrkvy" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_07.png" id="98_chdis"]
+[ext_resource type="Texture2D" uid="uid://b5xjkvsy4cbuh" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_08.png" id="99_5f55o"]
+[ext_resource type="Texture2D" uid="uid://m6cv8oebiqmi" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_09.png" id="100_apbw7"]
+[ext_resource type="Texture2D" uid="uid://cv806lbspljwd" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_10.png" id="101_fx6ev"]
+[ext_resource type="Texture2D" uid="uid://huybnor11ny8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_11.png" id="102_nquwv"]
+[ext_resource type="Texture2D" uid="uid://b5iiv4svhjcyp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_12.png" id="103_h4gk7"]
+[ext_resource type="Texture2D" uid="uid://cov8ysanm5vdp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_13.png" id="104_gc03q"]
+[ext_resource type="Texture2D" uid="uid://iuxw5t72umed" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_14.png" id="105_fyhq1"]
+[ext_resource type="Texture2D" uid="uid://cp8xhay8eifrw" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_15.png" id="106_oiio1"]
+[ext_resource type="Texture2D" uid="uid://dhupuntrcoqiy" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_16.png" id="107_o4hj2"]
+[ext_resource type="Texture2D" uid="uid://c8lyfvxdttksx" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_17.png" id="108_tvxhq"]
+[ext_resource type="Texture2D" uid="uid://d2kq6k0cvh20f" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_18.png" id="109_q0gwu"]
+[ext_resource type="Texture2D" uid="uid://bgbe7p6qynftg" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_19.png" id="110_ritbc"]
+[ext_resource type="Texture2D" uid="uid://cw5xl0riqtf7q" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_20.png" id="111_32nos"]
+[ext_resource type="Texture2D" uid="uid://by0a7nr8yjtvb" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_21.png" id="112_6p3m0"]
+[ext_resource type="Texture2D" uid="uid://b138j3qs0phsa" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_22.png" id="113_6kjhi"]
+[ext_resource type="Texture2D" uid="uid://dy57ko4srddj7" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_23.png" id="114_lyowm"]
+[ext_resource type="Texture2D" uid="uid://bej3urdc56iuc" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_24.png" id="115_btyoo"]
+[ext_resource type="Texture2D" uid="uid://dn5qoemypw4bv" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_25.png" id="116_mqnys"]
+[ext_resource type="Texture2D" uid="uid://xox3c4air0ql" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_26.png" id="117_i8ikp"]
+[ext_resource type="Texture2D" uid="uid://dxh53w4o05ww6" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_27.png" id="118_vh0j5"]
+[ext_resource type="Texture2D" uid="uid://b8dvhno2yyt1f" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_28.png" id="119_on6wu"]
+[ext_resource type="Texture2D" uid="uid://babq6be20x5h8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_29.png" id="120_wja20"]
+[ext_resource type="Texture2D" uid="uid://sjx3sbfhrwl1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_30.png" id="121_n6wva"]
+[ext_resource type="Texture2D" uid="uid://btbw1f3t6r2y2" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_31.png" id="122_jnowm"]
+[ext_resource type="Texture2D" uid="uid://bh1d0gr73vgl5" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_32.png" id="123_jqivj"]
+[ext_resource type="Texture2D" uid="uid://b2q6kgkkrpahn" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_33.png" id="124_w1bj7"]
+[ext_resource type="Texture2D" uid="uid://d3w8hovsdsj5s" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_34.png" id="125_bmton"]
+[ext_resource type="Texture2D" uid="uid://clhprvxdkpruk" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_35.png" id="126_roawn"]
+[ext_resource type="Texture2D" uid="uid://gpxqpexriap8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_36.png" id="127_ygyi7"]
+[ext_resource type="Texture2D" uid="uid://01jdhepgivfj" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_37.png" id="128_0wpka"]
+[ext_resource type="Texture2D" uid="uid://dqu5fldcsp5lu" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_38.png" id="129_rqt66"]
+[ext_resource type="Texture2D" uid="uid://dhav1wwwkxdn0" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_39.png" id="130_p6t5s"]
+[ext_resource type="Texture2D" uid="uid://gx3mvge7qu2" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_40.png" id="131_l4fyv"]
+[ext_resource type="Texture2D" uid="uid://c4qw7npynmf31" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_41.png" id="132_niuv1"]
+[ext_resource type="Texture2D" uid="uid://dr0ang36h6xeu" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_42.png" id="133_r3ss5"]
+[ext_resource type="Texture2D" uid="uid://bggdw1qu4uteo" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_43.png" id="134_h2l8q"]
+[ext_resource type="Texture2D" uid="uid://cd71t6babtk0k" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_44.png" id="135_13pso"]
+[ext_resource type="Texture2D" uid="uid://dpl28c22lcc55" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_45.png" id="136_c8v3p"]
+[ext_resource type="Texture2D" uid="uid://d2drn7stu22of" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_46.png" id="137_x5orb"]
+[ext_resource type="Texture2D" uid="uid://drgy2a6u2srl1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_47.png" id="138_7rvbx"]
+[ext_resource type="Texture2D" uid="uid://cnhst67grhp5v" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_48.png" id="139_iio2x"]
+[ext_resource type="Texture2D" uid="uid://mqr66co0muul" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_49.png" id="140_sokhe"]
+[ext_resource type="Texture2D" uid="uid://c3cdvtx4kmd6c" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_50.png" id="141_748bp"]
+[ext_resource type="Texture2D" uid="uid://cyrcgfpxuacav" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_51.png" id="142_utw45"]
+[ext_resource type="Texture2D" uid="uid://h1udne8hgrxf" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_52.png" id="143_wgfmo"]
+[ext_resource type="Texture2D" uid="uid://b4wkij3cdi6j0" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_53.png" id="144_bpbkm"]
+[ext_resource type="Texture2D" uid="uid://b78aleprii3gf" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_54.png" id="145_qaqqn"]
+[ext_resource type="Texture2D" uid="uid://o0ejb61jwn2m" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_55.png" id="146_4qf4m"]
+[ext_resource type="Texture2D" uid="uid://dpb14gdq6tg6x" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_56.png" id="147_cf8cf"]
+[ext_resource type="Texture2D" uid="uid://b6kpjqd4g7fd8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_57.png" id="148_tfycq"]
+[ext_resource type="Texture2D" uid="uid://qifaf24h1qi" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_58.png" id="149_1snal"]
+[ext_resource type="Texture2D" uid="uid://xhpq5pmlsjqx" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_59.png" id="150_g11h3"]
+[ext_resource type="Texture2D" uid="uid://cpir7ncsldmao" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_60.png" id="151_vajcd"]
+[ext_resource type="Texture2D" uid="uid://kybyxfei4xf5" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_61.png" id="152_lgowq"]
+[ext_resource type="Texture2D" uid="uid://2g5pk3ettbg" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_62.png" id="153_57kir"]
+[ext_resource type="Texture2D" uid="uid://dufbw8100rwyg" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_63.png" id="154_iwjlx"]
+[ext_resource type="Texture2D" uid="uid://dvla2wurk4m2x" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_64.png" id="155_q2550"]
+[ext_resource type="Texture2D" uid="uid://donmtqpag3xlh" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_65.png" id="156_rry4q"]
+[ext_resource type="Texture2D" uid="uid://duj6v2ibk56kc" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_66.png" id="157_p0yue"]
+[ext_resource type="Texture2D" uid="uid://dr27q7ynrhy00" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_67.png" id="158_ospve"]
+[ext_resource type="Texture2D" uid="uid://b31hdjyv6eanb" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_68.png" id="159_wnqjl"]
+[ext_resource type="Texture2D" uid="uid://bdocjjfsa28mp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_69.png" id="160_q3e5s"]
+[ext_resource type="Texture2D" uid="uid://dr3lgjk338nsv" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_70.png" id="161_6tq3p"]
+[ext_resource type="Texture2D" uid="uid://b5pe12a3qy1n8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_71.png" id="162_3oo8f"]
+[ext_resource type="Texture2D" uid="uid://gsylxoo6sbml" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_72.png" id="163_7mm1c"]
+[ext_resource type="Texture2D" uid="uid://qc8ut10r5d4q" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_73.png" id="164_27omu"]
+[ext_resource type="Texture2D" uid="uid://cgfrh15s6t2cp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_74.png" id="165_wc5no"]
+[ext_resource type="Texture2D" uid="uid://vc1ucrnwhmg2" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_75.png" id="166_6cp0h"]
+[ext_resource type="Texture2D" uid="uid://diqe7cl7x14ix" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_76.png" id="167_io3ul"]
+[ext_resource type="Texture2D" uid="uid://bncq67fum3i6p" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_77.png" id="168_buwwa"]
+[ext_resource type="Texture2D" uid="uid://qflm2effy2em" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_78.png" id="169_lqokq"]
+[ext_resource type="Texture2D" uid="uid://t7xaiy6ys7ei" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_79.png" id="170_tcwxi"]
+[ext_resource type="Texture2D" uid="uid://rrdt1vs640gu" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_80.png" id="171_2h2yt"]
+[ext_resource type="Texture2D" uid="uid://i2sxf8ncaxux" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_81.png" id="172_djj5u"]
+[ext_resource type="Texture2D" uid="uid://ccf6xb3bnedmc" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_82.png" id="173_5ixqo"]
+[ext_resource type="Texture2D" uid="uid://b8tdjxjw6r6xl" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_83.png" id="174_xo167"]
+[ext_resource type="Texture2D" uid="uid://brbfutfm7ptxt" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_84.png" id="175_e1sti"]
+[ext_resource type="Texture2D" uid="uid://bx1v5gdyo5w01" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_85.png" id="176_x08ax"]
+[ext_resource type="Texture2D" uid="uid://do2fcrwfl5tif" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_86.png" id="177_k4t07"]
+[ext_resource type="Texture2D" uid="uid://bi1dsxirfi3nu" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_87.png" id="178_sqlg7"]
+[ext_resource type="Texture2D" uid="uid://duy5h1gulj8mv" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_88.png" id="179_20erp"]
+[ext_resource type="Texture2D" uid="uid://b1mp6dfoxu1le" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-grapple/Emily_manifestation_rig-Grapple_89.png" id="180_k2el2"]
+[ext_resource type="Texture2D" uid="uid://cy4yohxydnqto" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_00.png" id="181_iy5ik"]
+[ext_resource type="Texture2D" uid="uid://ch12obwbv44yh" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_01.png" id="182_s52vj"]
+[ext_resource type="Texture2D" uid="uid://c7me5nkynhok1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_02.png" id="183_v3fup"]
+[ext_resource type="Texture2D" uid="uid://cw6ir7ogisxyp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_03.png" id="184_mvdgr"]
+[ext_resource type="Texture2D" uid="uid://dkwei8o3kvr8n" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_04.png" id="185_285f3"]
+[ext_resource type="Texture2D" uid="uid://cxaw1pocs56i1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_05.png" id="186_icu5i"]
+[ext_resource type="Texture2D" uid="uid://bla0wu8v865cb" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_06.png" id="187_ldtob"]
+[ext_resource type="Texture2D" uid="uid://te3rdoko7cbu" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_07.png" id="188_pvdk2"]
+[ext_resource type="Texture2D" uid="uid://i0y8h4emb4hb" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_08.png" id="189_ya8s6"]
+[ext_resource type="Texture2D" uid="uid://bcpinpa6rlgo8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_09.png" id="190_uasnc"]
+[ext_resource type="Texture2D" uid="uid://dx4q6ulax6d3r" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_10.png" id="191_dxpow"]
+[ext_resource type="Texture2D" uid="uid://wrkgs4vwx0km" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_11.png" id="192_2ugdo"]
+[ext_resource type="Texture2D" uid="uid://w3xu3eq7qcim" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_12.png" id="193_mtstn"]
+[ext_resource type="Texture2D" uid="uid://c0oc7a61y67c5" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_13.png" id="194_fi6gk"]
+[ext_resource type="Texture2D" uid="uid://cb07xlhbi5ouc" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_14.png" id="195_2uflr"]
+[ext_resource type="Texture2D" uid="uid://dp0tsyi0fx221" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_15.png" id="196_ilj4l"]
+[ext_resource type="Texture2D" uid="uid://cwu5i6dtwo0u3" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_16.png" id="197_6hu1q"]
+[ext_resource type="Texture2D" uid="uid://4n82lgv0uq0o" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_17.png" id="198_1g1eb"]
+[ext_resource type="Texture2D" uid="uid://cssm3b486kv3x" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_18.png" id="199_s612v"]
+[ext_resource type="Texture2D" uid="uid://62tr27i33w3" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_19.png" id="200_j581k"]
+[ext_resource type="Texture2D" uid="uid://blbo0xetf67xh" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_20.png" id="201_ieev1"]
+[ext_resource type="Texture2D" uid="uid://bulnejyumhdmx" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_21.png" id="202_p7sw4"]
+[ext_resource type="Texture2D" uid="uid://dd021g1ydhjak" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_22.png" id="203_2rcj0"]
+[ext_resource type="Texture2D" uid="uid://dtn4al0gqf1uf" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_23.png" id="204_420vl"]
+[ext_resource type="Texture2D" uid="uid://c6pxxkh3qb7gn" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_24.png" id="205_1xfvb"]
+[ext_resource type="Texture2D" uid="uid://bu6pruhpotp7d" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_25.png" id="206_aaqop"]
+[ext_resource type="Texture2D" uid="uid://dwwfy782dtxsm" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_26.png" id="207_yrxad"]
+[ext_resource type="Texture2D" uid="uid://cl6mt516hsx8m" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_27.png" id="208_lfebh"]
+[ext_resource type="Texture2D" uid="uid://buylwocsaojvn" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_28.png" id="209_nyri8"]
+[ext_resource type="Texture2D" uid="uid://c155o7y4rpw6g" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_29.png" id="210_tav4a"]
+[ext_resource type="Texture2D" uid="uid://biukyqccaa4jw" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_30.png" id="211_3pvuv"]
+[ext_resource type="Texture2D" uid="uid://mdr3uh6efdju" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_31.png" id="212_hq6kf"]
+[ext_resource type="Texture2D" uid="uid://p8mt6d5rvr4j" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_32.png" id="213_5cp0x"]
+[ext_resource type="Texture2D" uid="uid://dydqv0q5ngmpr" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_33.png" id="214_h15q2"]
+[ext_resource type="Texture2D" uid="uid://blsesacwwus1h" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_34.png" id="215_633yx"]
+[ext_resource type="Texture2D" uid="uid://nge071ismmei" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_35.png" id="216_67w8t"]
+[ext_resource type="Texture2D" uid="uid://bx6gl8b21qmoc" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_36.png" id="217_rxbhn"]
+[ext_resource type="Texture2D" uid="uid://d1xgykad70xl2" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_37.png" id="218_ayymq"]
+[ext_resource type="Texture2D" uid="uid://i3luaebuwx0s" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_38.png" id="219_ug1aw"]
+[ext_resource type="Texture2D" uid="uid://bg5h2lbptkcxc" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_39.png" id="220_tfqli"]
+[ext_resource type="Texture2D" uid="uid://bffjq0c7ohblo" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_40.png" id="221_ojlbf"]
+[ext_resource type="Texture2D" uid="uid://cgxmewettn2hj" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_41.png" id="222_6n2ys"]
+[ext_resource type="Texture2D" uid="uid://cex3jx1g080ta" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_42.png" id="223_8j07s"]
+[ext_resource type="Texture2D" uid="uid://b3wgt8on7oxj7" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_43.png" id="224_gutl7"]
+[ext_resource type="Texture2D" uid="uid://brdgag435iknv" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_44.png" id="225_2kux0"]
+[ext_resource type="Texture2D" uid="uid://csmcmvsxixvf1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_45.png" id="226_phh8b"]
+[ext_resource type="Texture2D" uid="uid://xa8dbdvwjikc" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_46.png" id="227_h3eco"]
+[ext_resource type="Texture2D" uid="uid://cd270n7iaetuj" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_47.png" id="228_uecjc"]
+[ext_resource type="Texture2D" uid="uid://v1h7x0f7qqw1" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_48.png" id="229_6ogov"]
+[ext_resource type="Texture2D" uid="uid://bycag22go2n8i" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_49.png" id="230_4f7ad"]
+[ext_resource type="Texture2D" uid="uid://b4lor6kl0r0ak" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_50.png" id="231_0xc56"]
+[ext_resource type="Texture2D" uid="uid://np8yae5yeu16" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_51.png" id="232_15p3s"]
+[ext_resource type="Texture2D" uid="uid://bdectqdg3x5fy" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_52.png" id="233_rrmvb"]
+[ext_resource type="Texture2D" uid="uid://b64fejq4ceki4" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_53.png" id="234_4bl7b"]
+[ext_resource type="Texture2D" uid="uid://bwocnppm6jf2m" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_54.png" id="235_wvjdi"]
+[ext_resource type="Texture2D" uid="uid://cli0p67myjrne" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_55.png" id="236_pcjvt"]
+[ext_resource type="Texture2D" uid="uid://ci03e8mf1q0v0" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_56.png" id="237_w86hs"]
+[ext_resource type="Texture2D" uid="uid://b4lbhpk8r6njd" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_57.png" id="238_ihmnj"]
+[ext_resource type="Texture2D" uid="uid://baimkewyr8pod" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_58.png" id="239_51m7l"]
+[ext_resource type="Texture2D" uid="uid://d1vmxf604g6a" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_59.png" id="240_v1bc3"]
+[ext_resource type="Texture2D" uid="uid://cx31f7o6fssou" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_60.png" id="241_dujun"]
+[ext_resource type="Texture2D" uid="uid://btmwddxhpkhsn" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_61.png" id="242_jtfgs"]
+[ext_resource type="Texture2D" uid="uid://dhst1wx5jj7fu" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_62.png" id="243_7ndra"]
+[ext_resource type="Texture2D" uid="uid://6u1nq8rf463a" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_63.png" id="244_yh0xa"]
+[ext_resource type="Texture2D" uid="uid://coeyo7hxhtlkh" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_64.png" id="245_un7wy"]
+[ext_resource type="Texture2D" uid="uid://b40o0wwnksoxk" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_65.png" id="246_ph1pu"]
+[ext_resource type="Texture2D" uid="uid://b6y7u5xgcfveu" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_66.png" id="247_s427p"]
+[ext_resource type="Texture2D" uid="uid://qj8k4111lpok" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_67.png" id="248_unl46"]
+[ext_resource type="Texture2D" uid="uid://d3xbc7wbkbcc8" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_68.png" id="249_qpccd"]
+[ext_resource type="Texture2D" uid="uid://b56pe21rt7eou" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_69.png" id="250_kufpx"]
+[ext_resource type="Texture2D" uid="uid://bcdub7jhlg3mj" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_70.png" id="251_ue6tw"]
+[ext_resource type="Texture2D" uid="uid://di0jo736xr55m" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_71.png" id="252_kixvj"]
+[ext_resource type="Texture2D" uid="uid://cb2bt18pgj2s7" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_72.png" id="253_h4nhq"]
+[ext_resource type="Texture2D" uid="uid://coarl2pfeun7w" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_73.png" id="254_lt3wp"]
+[ext_resource type="Texture2D" uid="uid://coe7ieg85jxpi" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_74.png" id="255_fxoub"]
+[ext_resource type="Texture2D" uid="uid://w6mshomw5bdp" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_75.png" id="256_orbfa"]
+[ext_resource type="Texture2D" uid="uid://bvnhom4c3p5ve" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_76.png" id="257_6bwkb"]
+[ext_resource type="Texture2D" uid="uid://c7pj3tc542n67" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_77.png" id="258_lh87h"]
+[ext_resource type="Texture2D" uid="uid://dietfx2tbllwd" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_78.png" id="259_yq3ho"]
+[ext_resource type="Texture2D" uid="uid://2yuy08r04how" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_79.png" id="260_2kf0b"]
+[ext_resource type="Texture2D" uid="uid://6l1x054gxdw3" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_80.png" id="261_q25ri"]
+[ext_resource type="Texture2D" uid="uid://dv0j2uvn75mqm" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_81.png" id="262_vbrpy"]
+[ext_resource type="Texture2D" uid="uid://30moyt1006xa" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_82.png" id="263_xhu5v"]
+[ext_resource type="Texture2D" uid="uid://dsjrdlntpkau7" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_83.png" id="264_l5idj"]
+[ext_resource type="Texture2D" uid="uid://wg5vnfx6hcx5" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_84.png" id="265_fqgib"]
+[ext_resource type="Texture2D" uid="uid://fugkvbjea10d" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_85.png" id="266_qkhny"]
+[ext_resource type="Texture2D" uid="uid://01e5wu6psxbf" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_86.png" id="267_fuf86"]
+[ext_resource type="Texture2D" uid="uid://b1ogtv51dq084" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_87.png" id="268_71b36"]
+[ext_resource type="Texture2D" uid="uid://bquyfadd5kou2" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_88.png" id="269_0543h"]
+[ext_resource type="Texture2D" uid="uid://bwr4oqvwm7xhf" path="res://assets/sprites/Animations/creature/emily_manifestation/Emily-manifestation-Idle/Emily_manifestation_rig-Idle_89.png" id="270_vy8ie"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ieex4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o2wgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0a5jf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7vjlt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0i8cp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ydplj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3dlqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2trqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tvtx8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r0v8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lnf5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_l7vdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0n7ud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_njvnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_auwum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_l8lsp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_c7pbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_33nt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g26ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6p2yp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_dqhhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_bldrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fo5ha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_w7glh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_pqplo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_d4syi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_vjo1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_87erk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_2v14f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_y0si6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_gfdin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_51j6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_pdcme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_b2f1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_8sjdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_tx12d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_nwcwn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_lyt86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_w0k0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_lojxj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_npdyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_eqx5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_ud374")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_r3u7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_rv0tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_tppyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_f8yar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_q4m25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_fa8ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_udkm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_0t7ca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_qxkde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_34hkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_6ytob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_dp6ap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_rwmo2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_djy1f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_uce2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_cnmj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_5d84o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_2dmxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_pa3ik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_0es6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_3ilfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_2dudu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_a4drd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_8yn7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_pxymc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_fn5gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_uvn7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_7uj3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_ua0mk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_lmtor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_712h7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_31f8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_e07dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_mntik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_c5hpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_prbm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_bapvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_uyc2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_gi3sc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_vn4vq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_oosla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_ji7fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_gmox1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_oviwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_s0hd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_135qk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_svwpr")
+}],
+"loop": 1,
+"name": &"chase_loop",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("91_1jl0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_yf34a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_gjv6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_ekict")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_cf6qo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_q77fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_38vwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_chdis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_5f55o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_apbw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_fx6ev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_nquwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_h4gk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_gc03q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_fyhq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_oiio1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_o4hj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_tvxhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_q0gwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_ritbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_32nos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_6p3m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_6kjhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_lyowm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_btyoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_mqnys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_i8ikp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_vh0j5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_on6wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_wja20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_n6wva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_jnowm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_jqivj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_w1bj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_bmton")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_roawn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_ygyi7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_0wpka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_rqt66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_p6t5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_l4fyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_niuv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_r3ss5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_h2l8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_13pso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_c8v3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_x5orb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_7rvbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_iio2x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_sokhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_748bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_utw45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_wgfmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_bpbkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_qaqqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_4qf4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_cf8cf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_tfycq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_1snal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_g11h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_vajcd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_lgowq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_57kir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_iwjlx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_q2550")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_rry4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_p0yue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_ospve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_wnqjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_q3e5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_6tq3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_3oo8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_7mm1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_27omu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_wc5no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_6cp0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_io3ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_buwwa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_lqokq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_tcwxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_2h2yt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_djj5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_5ixqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_xo167")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_e1sti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_x08ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_k4t07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_sqlg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_20erp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_k2el2")
+}],
+"loop": 1,
+"name": &"grab",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("181_iy5ik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_s52vj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_v3fup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_mvdgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_285f3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_icu5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_ldtob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_pvdk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_ya8s6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_uasnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_dxpow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("192_2ugdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_mtstn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_fi6gk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_2uflr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("196_ilj4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("197_6hu1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("198_1g1eb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("199_s612v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("200_j581k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("201_ieev1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("202_p7sw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("203_2rcj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("204_420vl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("205_1xfvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("206_aaqop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("207_yrxad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("208_lfebh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_nyri8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("210_tav4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_3pvuv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("212_hq6kf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("213_5cp0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("214_h15q2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("215_633yx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("216_67w8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("217_rxbhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("218_ayymq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("219_ug1aw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("220_tfqli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("221_ojlbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("222_6n2ys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("223_8j07s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("224_gutl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("225_2kux0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("226_phh8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("227_h3eco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_uecjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("229_6ogov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("230_4f7ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("231_0xc56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("232_15p3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("233_rrmvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("234_4bl7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("235_wvjdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("236_pcjvt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("237_w86hs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("238_ihmnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("239_51m7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("240_v1bc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("241_dujun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("242_jtfgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("243_7ndra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("244_yh0xa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("245_un7wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("246_ph1pu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("247_s427p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("248_unl46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("249_qpccd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("250_kufpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("251_ue6tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("252_kixvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("253_h4nhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("254_lt3wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("255_fxoub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("256_orbfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("257_6bwkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("258_lh87h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("259_yq3ho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("260_2kf0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("261_q25ri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("262_vbrpy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("263_xhu5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("264_l5idj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("265_fqgib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("266_qkhny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("267_fuf86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("268_71b36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("269_0543h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("270_vy8ie")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 30.0
+}]
+metadata/halved = true
