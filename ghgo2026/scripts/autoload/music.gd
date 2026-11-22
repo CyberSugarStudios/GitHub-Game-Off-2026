@@ -1,5 +1,7 @@
 extends Node
 
+signal finished
+
 const DEFAULT_FADE := 1.5
 const PAUSE_FILTER_EFFECT := 0
 const DUCK_EFFECT := 1
@@ -21,6 +23,7 @@ func _ready() -> void:
 		var player := AudioStreamPlayer.new()
 		player.bus = &"Music"
 		player.volume_linear = 0.0
+		player.finished.connect(_on_player_finished.bind(player))
 		add_child(player)
 		_players.append(player)
 	_set_muffled(false)
@@ -82,3 +85,7 @@ func step_aside(on: bool, fade_time: float = 0.5) -> void:
 		_aside_tween.kill()
 	_aside_tween = create_tween()
 	_aside_tween.tween_property(_players[_active], "volume_linear", 0.0 if on else 1.0, fade_time)
+
+func _on_player_finished(player: AudioStreamPlayer) -> void:
+	if player == _players[_active]:
+		finished.emit()

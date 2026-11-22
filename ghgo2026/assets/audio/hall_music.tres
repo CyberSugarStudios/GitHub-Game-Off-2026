@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MusicSet" format=3 uid="uid://dl55ecpbbpytb"]
+
+[ext_resource type="Script" uid="uid://bibamch04jqeh" path="res://scripts/audio/music_set.gd" id="1_dshgi"]
+[ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/WIP_child_ghost_background_2.mp3" id="2_hgwhg"]
+
+[resource]
+script = ExtResource("1_dshgi")
+tracks = Array[AudioStream]([ExtResource("2_hgwhg")])
+metadata/_custom_type_script = "uid://bibamch04jqeh"
