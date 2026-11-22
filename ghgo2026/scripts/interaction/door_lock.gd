@@ -10,11 +10,11 @@ const FEEDBACK_SECONDS := 1.5
 const DRAIN_DELAY := 0.3
 const DRAIN_SECONDS := 0.5
 const UNLOCK_SOUNDS: Array[AudioStream] = [
-	preload("res://assets/audio/sfx/Unlocking.wav"),
-	preload("res://assets/audio/sfx/Unlocking 2.wav"),
-	preload("res://assets/audio/sfx/Unlocking 3.wav"),
-	preload("res://assets/audio/sfx/Unlocking 4.wav"),
-	preload("res://assets/audio/sfx/Unlocking 5.wav"),
+	preload("res://assets/audio/sfx/unlocking/Unlocking 2.wav"),
+	preload("res://assets/audio/sfx/unlocking/Unlocking 3.wav"),
+	preload("res://assets/audio/sfx/unlocking/Unlocking 4.wav"),
+	preload("res://assets/audio/sfx/unlocking/Unlocking 5.wav"),
+	preload("res://assets/audio/sfx/unlocking/Unlocking.wav"),
 ]
 const CLICK_AT := 3.15
 const RING_OUT_SECONDS := 1.05
