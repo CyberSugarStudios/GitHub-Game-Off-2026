@@ -140,11 +140,10 @@ height = 0.03
 albedo_color = Color(0.5219002, 0.49219245, 0.41544694, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_53m36"]
-vertices = PackedVector3Array(-0.4793253, 0.5154266, -5.441748, -0.2293253, 0.5154266, 0.80825186, 0.2706747, 0.5154266, 0.80825186, 0.2706747, 0.5154266, -6.191748, -8.229325, 0.5154266, -6.191748, -8.229325, 0.5154266, -5.441748, -8.729325, 0.5154266, -4.441748, -8.729325, 0.5154266, 0.80825186, -1.2293253, 0.5154266, 0.80825186, -1.2293253, 0.5154266, -4.441748)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7)]
+vertices = PackedVector3Array(-0.4793253, 1.0056345, -5.712395, 0.020674706, 1.0056345, 0.2876048, 0.020674706, 1.0056345, -5.962395, -7.9793253, 1.0056345, -5.962395, -8.479325, 1.0056345, -4.212395, -8.479325, 1.0056345, 0.7876048, -1.4793253, 1.0056345, 0.7876048, -1.4793253, 1.0056345, -4.212395)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
 geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
-agent_radius = 0.25
 
 [sub_resource type="Gradient" id="Gradient_bu4jf"]
 offsets = PackedFloat32Array(0, 0.3, 0.6, 0.8, 1)
@@ -559,7 +558,7 @@ schedules = Array[ExtResource("6_0ld40")]([ExtResource("7_gqmmt"), ExtResource("
 hall_parents = [NodePath("../Hall/LeanneHall"), NodePath("../Hall/DavidHall")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=289804147]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.490208, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0019878, 0)
 navigation_mesh = SubResource("NavigationMesh_53m36")
 
 [node name="Emily" parent="." unique_id=1491077890 instance=ExtResource("2_0wfyh")]
