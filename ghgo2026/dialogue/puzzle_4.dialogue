@@ -1,22 +1,20 @@
 ~ p4_too_dark
 Emily: It's so dark in here. I can't see anything. [#thought]
-Emily: My string lights... if I could just get them on. [#thought]
-Emily: Or I could come back when it's light out. [#thought]
+Emily: My string lights... if I could just get them on. Or I could come back during the day. [#thought]
 => END
 
 ~ p4_still_dark
-Emily: Still too dark to look around. [#thought]
+Emily: I can't see shit. [#thought]
 => END
 
 ~ p4_room_reveal
-Emily: Why is there... tape in my room? [#thought, #pan=0]
-Emily: What a mess under the desk, is that... blood? [#thought]
-Emily: My diary's still on the desk. [#thought]
+Emily: The tape... I guess this is where it happened. [#thought, #pan=0]
+Emily: What a mess under the desk, it must have scared mom so much. [#thought]
 => END
 
 ~ p4_after
-Emily: It wasn't Mom. It wasn't Dad. [#thought]
+Emily: It wasn't Mom. It wasn't Dad. It wasn't even an accident. [#thought]
 Emily: It was me. [#thought]
-Emily: ...I remember now. [#thought]
-Emily: The front door. I think I can finally leave. [#thought]
+Emily: ...I remember now. I... I'm so sorry. [#thought]
+Emily: I feel ready. Ready to move on. It's time for me to leave. [#thought]
 => END

@@ -4,15 +4,16 @@ Emily: If I sit by the living room clock, maybe the hours will slip by faster. [
 => END
 
 ~ p1_painting_fight
-Leanne: Don't. Don't touch it. You don't get to touch her. [#leanne=fight_painting_leanne]
-David: She was my daughter too, Lee.
-Leanne: Then where were you? Every night it's the bills, the bank, the overtime—
-David: Somebody had to keep the lights on in this house. [#david=fight_painting_david]
-Leanne: She needed you here. Not the lights.
-David: Don't put this on me. You know what you said to her that night.
+Leanne: Dammit, David! [#leanne=fight_painting_leanne]
+David: What? I didn't even touch it. God, you really do just blame me for everything.
+Leanne: I don't blame you, David. Not everything's about you.
+David: That's not what you said that night. You know you blame me, stop kidding yourself. But you know, we are both... we were both her parents. And you're just as responsible for this as I am. [#david=fight_painting_david]
+Leanne: I already feel terrible enough, I don't need this. Just go away, I'll pick it up.
+David: You're gonna cut yourself, let me do it.
+Leanne: Stop! Just... just go.
 => END
 
 ~ p1_after
-Emily: That night...? What did Mom say to me? [#thought]
+Emily: What happened? Did they do something to me? [#thought]
 Emily: The garage... I think I can get in now. [#thought]
 => END

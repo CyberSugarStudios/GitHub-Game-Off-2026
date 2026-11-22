@@ -1,15 +1,16 @@
 ~ p5_creature_seen
-Emily: It's there. In front of the door. [#thought]
-Emily: It's been following me this whole time. [#thought]
+Emily: I'm sorry for running from you. [#thought]
+Emily: I know it hurts you too. [#thought]
 => END
 
 ~ p5_face_it
-Emily: You were never trying to hurt me, were you? [#thought]
-Emily: You're everything I couldn't say. Everything I carried. [#thought]
-Emily: I don't have to run from you anymore. [#thought]
+Emily: I know you didn't want this. [#thought]
+Emily: You were just... overwhelmed. You didn't know how to handle all of this. [#thought]
+Emily: I understand. [#thought]
+Emily: I love you. [#thought]
+Emily: I forgive you. [#thought]
 => END
 
 ~ p5_accepted
-Emily: ...Okay. [#thought]
-Emily: The door. I can go now. [#thought]
+Emily: It's time to go. This house will never be the same, but we all have to move forward. [#thought]
 => END

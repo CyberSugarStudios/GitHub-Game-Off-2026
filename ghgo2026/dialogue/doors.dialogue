@@ -1,12 +1,12 @@
 # any door
 ~ locked
 % Emily: It won't open. [#thought]
-% Emily: I'm not strong enough yet. [#thought]
+% Emily: I'm not ready to go in there yet. [#thought]
 => END
 
 # x_locked for specific doors
 ~ emily_bedroom_locked
-Emily: My room... why can't I get in? [#thought]
+Emily: My room... I can't go in there yet. [#thought]
 => END
 
 ~ linen_closet_observe

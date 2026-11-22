@@ -57,15 +57,15 @@ custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[b][i][font_size=27][color=b6ae9a]Interim[/color][/font_size][/i][/b] is a narrative experience exploring grief, loss, and complex human experiences. In playing, you will encounter themes and depictions of self-harm, physical injury, violence towards others, and substance misuse.
-
-There are also flickering lights. (These can be reduced in Options)
+text = "[color=b6ae9a][b][i][font_size=27]Interim[/font_size][/i][/b] is a narrative experience exploring grief, loss, and complex human experiences. In playing, you will encounter themes and depictions of self-harm, physical injury, violence towards others, and substance misuse.
 
 If this experience provokes difficult feelings or thoughts of harming yourself, please seek support. You are not alone.
 
-[b][i][font_size=27][color=b6ae9a]United States:[/color][/font_size][/i][/b] Call or text 988 to reach the Suicide & Crisis Lifeline.
+[b][i][font_size=27]United States:[/font_size][/i][/b] Call or text 988 to reach the Suicide & Crisis Lifeline.
 
-[b][i][font_size=27][color=b6ae9a]Outside the United States:[/color][/font_size][/i][/b] Visit [url=www.findahelpline.com]findahelpline.com[/url] to find support resources in your country."
+[b][i][font_size=27]Outside the United States:[/font_size][/i][/b] Visit [url=www.findahelpline.com]findahelpline.com[/url] to find support resources in your country.
+
+[i][font_size=27]There are also flickering lights (these can be reduced in [b]Options[/b]).[/font_size][/i][/color]"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1

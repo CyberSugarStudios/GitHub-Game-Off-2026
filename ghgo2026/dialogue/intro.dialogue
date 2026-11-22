@@ -6,7 +6,7 @@ Emily: What time is it? [#thought]
 => END
 
 ~ intro_clock
-Emily: It's {{GameClock.get_clock_text()}}. Dad's usually home by now. [#thought]
+Emily: Dad's usually home by now. [#thought]
 => END
 
 ~ intro_david_garage
@@ -26,12 +26,13 @@ Emily: What is this... [#thought]
 => END
 
 ~ intro_back
-Emily: What the actual fuck... Oh my god... Mom was right. Weed does make you hallucinate. I am not qualified to deal with this. [#thought]
+Emily: What the actual fuck... Oh my god... Mom was right. Weed does make you hallucinate. I am not qualified to deal with this. I need help. [#thought]
 Emily: Dad?! Dad!
 => END
 
 ~ intro_leanne_home
 Leanne: God dammit, David. You said you were going to replace the wipers three fucking weeks ago.
+Emily: Oh thank god, mom's home. Maybe she can help. [#thought]
 => END
 
 ~ intro_mom_1
@@ -47,7 +48,7 @@ Emily: Mom!!
 => END
 
 ~ intro_mom_4
-Emily: What the actual fuck is happening oh my god.
+Emily: What the actual fuck is happening?
 => END
 
 ~ intro_pamphlet
