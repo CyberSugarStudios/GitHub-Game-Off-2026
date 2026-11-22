@@ -1,5 +1,5 @@
 ~ thoughts_leanne
-Leanne: Where did I put that blanket? [#thought]
+Leanne: Jesus, it's freezing in here. Where's that blanket at? [#thought]
 => END
 
 ~ thoughts_david
@@ -7,11 +7,11 @@ David: Thermostat's acting up again. [#thought]
 => END
 
 ~ thoughts_leanne_pumpkin_photo
-Leanne: I miss her. [#thought]
+Leanne: I'm sorry, honey. [#thought]
 => END
 
 ~ thoughts_david_pumpkin_photo
-David: She hated this picture. Said her smile looked fake. [#thought]
+David: She hated this picture. I always liked it. She looked so happy here. [#thought]
 => END
 
 ~ thoughts_leanne_stage0
@@ -19,19 +19,19 @@ Leanne: What's the point of cooking if it's not for her? God knows it's not for 
 => END
 
 ~ thoughts_leanne_stage1_hint0
-Leanne: This house is always so cold now. [#thought]
+Leanne: This house is always so cold now. I'll warm up in the hallway. [#thought]
 => END
 
 ~ thoughts_leanne_stage1_hint1
-Leanne: Where did I put that blanket... the hall closet. [#thought]
+Leanne: I'll grab a blanket from the hall closet. [#thought]
 => END
 
 ~ thoughts_leanne_stage1_hint2
-Leanne: We haven't stood in front of her picture together in months. [#thought]
+Leanne: I don't think David's looked at this picture in months. Maybe he's just avoiding me. [#thought]
 => END
 
 ~ thoughts_leanne_stage1_hint3
-Leanne: If he'd just stand in that hall with me, by her picture. Just once. [#thought]
+Leanne: If he'd just stand in that hall with me, by her picture. Just once. So, I don't have to be alone in all of this. [#thought]
 => END
 
 ~ thoughts_david_stage1_hint0
@@ -39,23 +39,23 @@ David: Another past-due notice. Can't even open them anymore. [#thought]
 => END
 
 ~ thoughts_david_stage1_hint1
-David: Feels like ice in here. I'll bump the thermostat. [#thought]
+David: It's as cold as Leanne in here. I'll bump the thermostat. [#thought]
 => END
 
 ~ thoughts_david_stage1_hint2
-David: Lee won't even walk past that photo if I'm in the hall. [#thought]
+David: Lee won't even walk past that photo if I'm in the hall. She blames me for everything. [#thought]
 => END
 
 ~ thoughts_david_stage1_hint3
-David: If that picture came down, she'd have to talk to me. [#thought]
+David: I wonder what Lee thinks when she looks at this now. [#thought]
 => END
 
 ~ thoughts_leanne_pumpkin_photo_broken
-Leanne: I can't pick it up. If I touch it, it's real. [#thought]
+Leanne: I can't touch it. It's just like when I found her that night... [#thought]
 => END
 
 ~ thoughts_david_pumpkin_photo_broken
-David: She'll expect me to clean it. I can't even look at it. [#thought]
+David: She said not to touch it, but she won't pick it up. There's never a right answer. [#thought]
 => END
 
 ~ thoughts_leanne_stage2_hint0
@@ -71,11 +71,11 @@ Leanne: Her box is up on that garage shelf. I can't bring myself to open it. [#t
 => END
 
 ~ thoughts_leanne_stage2_hint3
-Leanne: If he's out there while I'm doing laundry... we'd both be standing under her box. [#thought]
+Leanne: If he's out there while I'm doing laundry... maybe he'll say something about the box. [#thought]
 => END
 
 ~ thoughts_david_stage2_hint0
-David: Bills. It's always the bills. [#thought]
+David: Bills. It's always the fucking bills. [#thought]
 => END
 
 ~ thoughts_david_stage2_hint1
@@ -83,23 +83,23 @@ David: If the power cuts out one more time, I'm going straight to the breaker. [
 => END
 
 ~ thoughts_david_stage2_hint2
-David: I put her things in a box in the garage. Lee doesn't know what's in it. [#thought]
+David: I put her things in a box in the garage. I couldn't get rid of it. It's all I have left of her. [#thought]
 => END
 
 ~ thoughts_david_stage2_hint3
-David: If Lee ever saw what's in that box, with me standing right there... [#thought]
+David: Lee would be pissed if she saw all that I kept. [#thought]
 => END
 
 ~ thoughts_david_stage3_hint0
-David: Long day. Couple of cold ones and I'm out. [#thought]
+David: I need a beer. [#thought]
 => END
 
 ~ thoughts_david_stage3_hint1
-David: Can't sleep without a few. Too quiet otherwise. [#thought]
+David: Can't sleep without a few beers. The house is too quiet. [#thought]
 => END
 
 ~ thoughts_david_stage3_hint2
-David: Sober, I'd hear a pin drop in that garage. [#thought]
+David: If I were sober, I'd hear a pin drop in that garage. [#thought]
 => END
 
 ~ thoughts_david_stage3_hint3
@@ -115,9 +115,9 @@ Leanne: Nine-thirty. Pill, then sleep. Same as every night. [#thought]
 => END
 
 ~ thoughts_leanne_stage3_hint2
-Leanne: Without them I hear everything. Every creak. Him. [#thought]
+Leanne: Without them I hear everything. Every empty creak... [#thought]
 => END
 
 ~ thoughts_leanne_stage3_hint3
-Leanne: If he ever went for that safe in the night, I'd want to be awake for it. [#thought]
+Leanne: If he ever went for that safe in the night, I'd want to be awake for it. I wish we got rid of it. [#thought]
 => END

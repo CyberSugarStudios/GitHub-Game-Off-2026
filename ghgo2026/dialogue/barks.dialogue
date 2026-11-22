@@ -7,21 +7,19 @@
 ~ david_chilled
 % David: Christ, it's cold.
 % David: Leanne needs to stop touching the thermostat.
-% David: Maybe the thermostat wiring is shot?
+% David: Jesus, is the thermostat broken too?
 => END
 
 ~ david_linger_school_photo
 % David: Hey, kiddo.
-% David: *clenches his fists*
 => END
 
 ~ leanne_linger_school_photo
 % Leanne: My baby...
-% Leanne: *sobs and sniffles*
 => END
 
 ~ leanne_stage1_hint1
-Leanne: Why is it always freezing in this hallway?
+Leanne: At least it's a little warmer in the hallway.
 => END
 
 ~ david_stage1_hint2
@@ -39,7 +37,7 @@ Leanne: Every time I walk past that photo, I can't breathe.
 
 ~ david_linger_pumpkin_photo_broken
 % David: *stares at the glass*
-% David: I'll get it later.
+% David: I'll deal with it later.
 => END
 
 ~ leanne_stage2_hint2
@@ -47,7 +45,7 @@ Leanne: I should finally do something with her things in the garage.
 => END
 
 ~ david_stage2_hint3
-David: That breaker's going to give out for good one of these days.
+David: That breaker's gonna give out for good one of these days.
 => END
 
 ~ emily_stage1_hint1
@@ -55,15 +53,15 @@ Emily: They never even stand in the same room anymore. [#thought]
 => END
 
 ~ emily_stage1_hint2
-Emily: If they were both out in the hall at the same time... that photo. [#thought]
+Emily: I need them both here to get them to spill any information... [#thought]
 => END
 
 ~ emily_stage1_hint3
-Emily: When they're both in the hall, knock the pumpkin photo down. [#thought]
+Emily: When mom and dad are both here, maybe they'll talk about what happened if I mess with the picture. [#thought]
 => END
 
 ~ emily_stage2_hint1
-Emily: Mom only comes out when Dad's out of the way. [#thought]
+Emily: Mom's avoiding dad. [#thought]
 => END
 
 ~ emily_stage2_hint2

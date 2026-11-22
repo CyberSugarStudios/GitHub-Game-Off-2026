@@ -91,7 +91,8 @@ Emily: Breathe. Just breathe. [#thought]
 => END
 
 ~ creature_consumed
-Emily: So cold... it took everything. [#thought]
+Emily: It's too much... [#thought]
+Emily: How much time passed? [#thought]
 => END
 
 ~ read_thoughts_first

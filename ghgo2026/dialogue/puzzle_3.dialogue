@@ -1,30 +1,30 @@
 ~ p3_david_restock
-David: Running low. I'm grabbing a few more for tonight.
+David: Running low on beer. I'll grab a few more for tonight.
 => END
 
 ~ p3_david_catches_can
-% David: Whoa— got it. That was close.
-% David: Easy, easy. Can't sleep anymore without these.
+% David: Whoa, caught it. That was close.
+% David: Jeez, what's wrong with me. I gotta watch my step. I can't sleep anymore without these.
 => END
 
 ~ p3_leanne_catches_pills
-% Leanne: No, no— can't lose these.
-% Leanne: ...There. Right where they belong.
+% Leanne: No, no... can't lose these.
+% Leanne: It's just to help me sleep...
 => END
 
 ~ p3_david_no_beer
-% David: Where'd my— are you kidding me? Fine. I'll sit here and listen to the house creak.
-% David: Stone sober. Every sound in this place... somebody so much as touches the garage, I'll hear it.
+% David: Oh, what the hell? Are you kidding me? I can't catch a fucking break. Guess I'm not getting any sleep tonight.
+% David: At least I'll be awake if anything happens.
 => END
 
 ~ p3_leanne_no_pills
-% Leanne: Where are my pills? ...Of course. Of course I can't even have that.
-% Leanne: I'll be awake all night. If he comes crashing in here with that thing from the closet again...
+% Leanne: Where are they? Of course. Of course I can't even have that.
+% Leanne: I'll be awake all night. At least I'm still on leave from work.
 => END
 
 ~ p3_noise_daytime
 ## A crash from the garage, in daylight. David barely looks up.
-% David: What was that? ...House settling. Probably.
+% David: What the hell was that? House settling... Probably.
 % David: Hear that at night and I'd be reaching for the safe.
 => END
 
@@ -34,8 +34,8 @@ David: *snores*
 
 ~ p3_safe_alone
 Emily: Zero... four... one... seven. [#thought]
-David: Who's there? ...Garage. Kitchen. Nothing.
-David: Lee didn't even stir. Those pills.
+David: Who's there?! ...Garage. Kitchen. Nothing.
+David: Lee didn't even stir... Those pills.
 => END
 
 ~ p3_david_wakes
@@ -47,17 +47,20 @@ David: Hang on. Hang on.
 ~ p3_safe_fight
 Emily: Zero... four... one... seven. [#thought, #pan=0]
 Emily: That's my birthday. [#thought]
-Leanne: David? What are you— is that— put that away!
+Leanne: David? What are you... is that... put that away! You told me you'd get rid of it. How could you?!
 David: Someone's in the house. I heard the garage. [#leanne=fight_gun_leanne]
-Leanne: Not in this house. Not with that. Not after—
-David: ...There's no one.
-Leanne: Of course there's no one. There's never anyone. Just you and that thing.
-David: You wanted it here! "Just in case," Lee. Your words. In case someone broke in while I was at work.
-Leanne: I wanted her safe! You gave her the code!
-David: Because you asked me to!
+Leanne: David... I can't do this anymore. We need to move. Or... I need to move.
+David: Yeah... I know. I know. Things can't stay like this.
+Leanne: I don't know how everything got like this. I... I'm so sorry.
+David: It's not you, I just... I couldn't handle all of it. It's too fucking hard to live. It doesn't matter how much we work. We couldn't catch up.
+Leanne: No, no... I was complete despondent. She wouldn't even talk to me anymore and I didn't do anything about it.
+David: We um... We didn't do a very good job did we?
+Leanne: No. No we didn't.
+David: I'm sorry.
+Leanne: Me too.
 => END
 
 ~ p3_after
-Emily: My birthday... Dad gave me the... no. [#thought]
+Emily: Wait... I knew the code. From when dad took me shooting. [#thought]
 Emily: My room... I think I can get in now. [#thought]
 => END

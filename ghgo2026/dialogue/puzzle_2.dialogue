@@ -1,6 +1,6 @@
 ~ p2_leanne_coffee
-Leanne: Oh— that's hot. Great. Perfect.
-Leanne: I need to change. And wash this.
+Leanne: Shit! That's hot. Great. Perfect.
+Leanne: I'll just throw this in the laundry machine now.
 => END
 
 ~ p2_david_breaker
@@ -9,17 +9,16 @@ David: Breaker. Again.
 => END
 
 ~ p2_box_fight
-Leanne: These are hers. Why are these— David. What is this? [#leanne=fight_box_leanne]
+Leanne: David? Are these hers? [#leanne=fight_box_leanne]
 David: Lee, leave it.
-Leanne: Ear protection. In her size. You were going to take her shooting?
-David: I was going to teach her to respect it. To be safe around it. Somebody had to teach her something. [#david=fight_box_david]
-Leanne: She was thirteen!
-David: And you were never home long enough to notice what she needed.
-Leanne: Don't you dare. You were out here every night with your bills—
-David: Somebody had to keep this family from going under!
+Leanne: Jesus, the hunting shit? What is wrong with you. You never should have taken her.
+David: It was the only time we really spent together. [#david=fight_box_david]
+Leanne: It didn't have to be. You were the one that made it that way.
+David: I know, Lee! Don't you think I know that.
+Leanne: I can't look at this. It makes me sick.
 => END
 
 ~ p2_after
-Emily: Dad has a gun...? [#thought]
+Emily: Oh yeah... hunting with dad. He taught me how to shoot. It'd been so long since we went, I forgot we even had a gun. [#thought]
 Emily: Mom and Dad's room... I think I can get in now. [#thought]
 => END
