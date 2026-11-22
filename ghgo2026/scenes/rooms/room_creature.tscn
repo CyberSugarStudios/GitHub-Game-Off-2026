@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmf8if323xntg"]
 
 [ext_resource type="Script" uid="uid://cocgtvycevni1" path="res://scripts/rooms/room_creature.gd" id="1_tjiwa"]
-[ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/creature_frames.tres" id="2_a2ts7"]
+[ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/mom_creature_frames.tres" id="2_a2ts7"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="2_db64d"]
 
 [node name="RoomCreature" type="Node2D" unique_id=1712821977]

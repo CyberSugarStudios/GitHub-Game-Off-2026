@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CreatureLook" format=3 uid="uid://cyr0kqua3ixbk"]
+
+[ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/mom_creature_frames.tres" id="1_pxtwi"]
+[ext_resource type="Script" uid="uid://cwgulpmpap0nb" path="res://scripts/creature/creature_look.gd" id="1_t7q1r"]
+
+[resource]
+script = ExtResource("1_t7q1r")
+frames = ExtResource("1_pxtwi")
+metadata/_custom_type_script = "uid://cwgulpmpap0nb"

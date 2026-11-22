@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CreatureLook" format=3 uid="uid://ca20dahc55q1i"]
+
+[ext_resource type="Script" uid="uid://cwgulpmpap0nb" path="res://scripts/creature/creature_look.gd" id="1_lwtww"]
+[ext_resource type="SpriteFrames" uid="uid://rd5jk2tvpp0q" path="res://assets/sprites/Animations/frames/creature/emily_creature_frames.tres" id="1_nomxl"]
+
+[resource]
+script = ExtResource("1_lwtww")
+frames = ExtResource("1_nomxl")
+animation_fit = Dictionary[StringName, Vector2]({
+&"chase_loop": Vector2(2.15, 0.15),
+&"chase_start": Vector2(2.15, 0.15),
+&"idle": Vector2(2, 0)
+})
+grab_face = Vector2(0.63, 0.11)
+metadata/_custom_type_script = "uid://cwgulpmpap0nb"

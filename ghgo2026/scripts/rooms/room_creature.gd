@@ -1,7 +1,7 @@
 class_name RoomCreature
 extends Node2D
 
-const CREATURE_FRAMES := preload("res://assets/sprites/Animations/frames/creature/creature_frames.tres")
+const CREATURE_FRAMES := preload("res://assets/sprites/Animations/frames/creature/mom_creature_frames.tres")
 const LIGHT_MASK := preload("res://assets/textures/light_mask.webp")
 
 @export var appears_at_stage: int = 5

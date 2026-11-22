@@ -45,16 +45,9 @@ const EYE_HEIGHT := 1.4
 
 @export_group("Art")
 @export var size_scale: float = 0.8
-@export var animation_fit: Dictionary[StringName, Vector2] = {
-	&"idle": Vector2(2.1, 0.0),
-	&"chase_start": Vector2(2.13, 0.0),
-	&"chase_loop": Vector2(2.13, 0.0),
-	&"grab": Vector2(3.68, 0.98),
-}
+@export var looks: Dictionary[int, CreatureLook] = {}
 
 @export_group("Grab Overlay")
-@export var grab_screen_height: float = 1.6
-@export var grab_face := Vector2(0.505, 0.11)
 @export var press_shove := Vector2(0.04, 0.12)
 @export var press_jolt := Vector2(10.0, 40.0)
 @export var lean_per_second: float = 0.05
@@ -88,6 +81,7 @@ var _lean := 0.0
 var _punch := 0.0
 var _jolt := Vector2.ZERO
 var _punch_tween: Tween
+var _look := CreatureLook.new()
 #endregion
 
 func _ready() -> void:
@@ -307,6 +301,7 @@ func _appear(at: Vector3, state: State) -> void:
 	global_position = at
 	_state = state
 	_seen = false
+	_apply_look()
 	_animate(&"chase_start" if state == State.HUNTING else &"idle")
 	visible = true
 	if state == State.GUARDING:
@@ -315,14 +310,32 @@ func _appear(at: Vector3, state: State) -> void:
 	if presence.stream:
 		presence.play()
 
+func _apply_look() -> void:
+	var best := -1
+	for level in looks:
+		if level <= GameState.monster_level and level > best:
+			best = level
+	if best < 0 or looks[best] == _look:
+		return
+	_look = looks[best]
+	if sprite:
+		sprite.sprite_frames = _look.frames
+		sprite.stop()
+	if grab_sprite:
+		grab_sprite.sprite_frames = _look.frames
+
 func _animate(anim: StringName) -> void:
-	if sprite == null or sprite.sprite_frames == null or not sprite.sprite_frames.has_animation(anim):
+	if sprite == null or sprite.sprite_frames == null:
+		return
+	if anim == &"chase_start" and not sprite.sprite_frames.has_animation(anim):
+		anim = &"chase_loop"
+	if not sprite.sprite_frames.has_animation(anim):
 		return
 	if sprite.animation == anim and sprite.is_playing():
 		return
 	sprite.play(anim)
 	var texture := sprite.sprite_frames.get_frame_texture(anim, 0)
-	var fit: Vector2 = animation_fit.get(anim, Vector2(2.1, 0.0))
+	var fit: Vector2 = _look.animation_fit.get(anim, Vector2(2.1, 0.0))
 	if texture:
 		sprite.pixel_size = fit.x * size_scale / texture.get_height()
 		sprite.position.y = (fit.x * 0.5 - fit.y) * size_scale
@@ -339,13 +352,13 @@ func _show_grab_overlay(on: bool) -> void:
 	grab_overlay.visible = true
 	var texture := grab_sprite.sprite_frames.get_frame_texture(&"grab", 0)
 	var screen := get_viewport().get_visible_rect().size
-	_grab_scale = Vector2.ONE * (screen.y * grab_screen_height / texture.get_height())
+	_grab_scale = Vector2.ONE * (screen.y * _look.grab_screen_height / texture.get_height())
 	_grab_center = screen * 0.5
 	_lean = 0.0
 	_punch = 0.0
 	_jolt = Vector2.ZERO
 	grab_sprite.modulate.a = 1.0
-	grab_sprite.offset = (Vector2(0.5, 0.5) - grab_face) * texture.get_size()
+	grab_sprite.offset = (Vector2(0.5, 0.5) - _look.grab_face) * texture.get_size()
 	_pose_grab()
 	grab_sprite.play(&"grab")
 
