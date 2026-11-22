@@ -276,7 +276,7 @@ func _run_puzzle_1()  -> void:
 	GameState.restore_memory()
 	await wait(p1_lingers_seconds)
 	household.send(DAD, p1_lingers_then_to, p1_apart_minutes)
-	await say("p1_after", false, PUZZLE_1)
+	say_in_background("p1_after", PUZZLE_1)
 	GameState.set_story_stage(2)
 
 func _teach_waiting() -> void:
@@ -298,13 +298,17 @@ func _run_puzzle_2() -> void:
 	GameState.restore_memory()
 	await wait(p2_lingers_seconds)
 	household.send(MOM, p2_lingers_then_to, p2_apart_minutes)
-	await say("p2_after", false, PUZZLE_2)
+	say_in_background("p2_after", PUZZLE_2)
 	GameState.set_story_stage(3)
 
 func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> void:
-	if parent_id == DAD and location == &"garage" and not household.has_errand(MOM):
+	if parent_id == DAD and location == &"garage" and _leanne_free_for_coffee():
 		household.send(MOM, &"kitchen", p2_coffee_make_minutes, [[&"kitchen", \
 			p2_coffee_drink_minutes, &"drinking_coffee"]], &"making_coffee")
+
+func _leanne_free_for_coffee() -> bool:
+	return GameState.get_parent_location(MOM) == &"parent_bedroom" \
+		and GameState.get_parent_activity(MOM) != &"changing"
 #endregion
 
 #region - PUZZLE 3
@@ -373,11 +377,11 @@ func _p3_try_night() -> bool:
 		say_in_background("p3_david_passed_out", PUZZLE_3)
 		GameState.add_near_miss()
 		return false
+	say_in_background("p3_david_wakes", PUZZLE_3)
 	await wait_room(&"")
 	await wait(p3_wake_delay)
 	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
 	household.send(DAD, &"parent_bedroom", p3_safe_minutes, [], &"opening_safe")
-	say_in_background("p3_david_wakes", PUZZLE_3)
 	await wait_parent(DAD, &"parent_bedroom")
 	await wait_room(&"parent_bedroom")
 	if _p3_medicated:

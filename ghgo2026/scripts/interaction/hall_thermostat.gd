@@ -6,6 +6,7 @@ extends PowerTarget
 @export var dead_seconds: float = 4.0
 @export var noticed_from: Array[StringName] = [
 	&"living_room",
+	&"kitchen",
 	&"hall",
 	&"thermostat"
 ]
