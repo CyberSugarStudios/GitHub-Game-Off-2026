@@ -353,7 +353,7 @@ func _show_grab_overlay(on: bool) -> void:
 	var texture := grab_sprite.sprite_frames.get_frame_texture(&"grab", 0)
 	var screen := get_viewport().get_visible_rect().size
 	_grab_scale = Vector2.ONE * (screen.y * _look.grab_screen_height / texture.get_height())
-	_grab_center = screen * 0.5
+	_grab_center = screen * _look.grab_screen_point
 	_lean = 0.0
 	_punch = 0.0
 	_jolt = Vector2.ZERO

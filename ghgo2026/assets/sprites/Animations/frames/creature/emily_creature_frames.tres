@@ -276,7 +276,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"chase_loop",
-"speed": 2.5
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
