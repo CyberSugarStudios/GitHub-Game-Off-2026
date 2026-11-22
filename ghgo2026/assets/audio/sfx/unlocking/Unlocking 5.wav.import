@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cla1b7vcxjaop"
-path="res://.godot/imported/Unlocking 5.wav-6e4654f90467b657c458b70b319d59e3.sample"
+path="res://.godot/imported/Unlocking 5.wav-3ddbaec8fffee47f591e8eb6fffb9dbc.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/Unlocking 5.wav"
-dest_files=["res://.godot/imported/Unlocking 5.wav-6e4654f90467b657c458b70b319d59e3.sample"]
+source_file="res://assets/audio/sfx/unlocking/Unlocking 5.wav"
+dest_files=["res://.godot/imported/Unlocking 5.wav-3ddbaec8fffee47f591e8eb6fffb9dbc.sample"]
 
 [params]
 

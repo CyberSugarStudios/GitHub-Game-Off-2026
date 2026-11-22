@@ -1,7 +1,5 @@
 extends Node3D
 
-const HALL_MUSIC := preload("res://assets/audio/music/WIP_child_ghost_background_2.mp3")
-
 @export var warmup_turn_steps: int = 8
 @export var warmup_frames_per_step: int = 2
 
@@ -12,8 +10,6 @@ const HALL_MUSIC := preload("res://assets/audio/music/WIP_child_ghost_background
 @onready var story: StoryDirector = $StoryDirector
 
 func _ready() -> void:
-	Music.play(HALL_MUSIC)
-	
 	fade.color.a = 1.0
 	_warm_up()
 
