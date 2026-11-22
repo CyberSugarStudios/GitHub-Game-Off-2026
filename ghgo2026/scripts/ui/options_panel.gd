@@ -12,6 +12,12 @@ const VOLUME_ROWS := {
 
 @export var font_size: int = 28
 
+const TEST_SOUND := preload("res://assets/audio/sfx/footsteps/leanne_steps.tres")
+const TEST_SOUND_GAP_MS := 200
+
+var _test_player: AudioStreamPlayer
+var _last_test_ms := 0
+
 func _ready() -> void:
 	add_theme_constant_override("separation", 14)
 	custom_minimum_size.x = 680
@@ -21,7 +27,9 @@ func _build() -> void:
 	_heading("Sound")
 	for bus in VOLUME_ROWS:
 		_slider_row(VOLUME_ROWS[bus], Settings.volumes.get(bus, 1.0), 0.0, 1.0, 0.01,
-			func(value: float) -> void: Settings.set_volume(bus, value),
+			func(value: float) -> void:
+				Settings.set_volume(bus, value)
+				_play_test_sound(bus),
 			func(value: float) -> String: return "%d%%" % roundi(value * 100.0))
 	_heading("Display")
 	_slider_row("Brightness", Settings.brightness, 0.5, 1.6, 0.05,
@@ -56,6 +64,19 @@ func _reset() -> void:
 		remove_child(child)
 		child.queue_free()
 	_build()
+
+func _play_test_sound(bus: StringName) -> void:
+	var now := Time.get_ticks_msec()
+	if now - _last_test_ms < TEST_SOUND_GAP_MS:
+		return
+	_last_test_ms = now
+	if not is_instance_valid(_test_player):
+		_test_player = AudioStreamPlayer.new()
+		_test_player.stream = TEST_SOUND
+		_test_player.process_mode = Node.PROCESS_MODE_ALWAYS
+		add_child(_test_player)
+	_test_player.bus = bus
+	_test_player.play()
 
 func _heading(text: String) -> void:
 	var label := _label(text)
