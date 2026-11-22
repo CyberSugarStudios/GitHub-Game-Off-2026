@@ -11,3 +11,4 @@ extends Resource
 @export_group("Grab Overlay")
 @export var grab_screen_height: float = 1.6
 @export var grab_face := Vector2(0.505, 0.11)
+@export var grab_screen_point := Vector2(0.5, 0.5)
