@@ -14,7 +14,7 @@ const GRAVITY := 9.8
 
 @export_group("Sounds")
 @export var wobble_sound: AudioStream
-@export var fall_sound: AudioStream
+@export var fall_sound: AudioStream = preload("res://assets/audio/sfx/varied/frame_break.wav")
 
 @onready var frame: Node3D = $Frame
 @onready var broken_glass: Node3D = $BrokenGlass
@@ -25,6 +25,7 @@ var _fallen := false
 
 func _ready() -> void:
 	super()
+	sound.bus = &"SFX"
 	broken_glass.visible = false
 	Events.power_used.connect(_on_power_used)
 	for parent in household.hall_parents:

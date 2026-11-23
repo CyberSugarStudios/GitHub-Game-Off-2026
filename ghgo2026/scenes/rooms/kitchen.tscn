@@ -10,7 +10,11 @@
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_78330"]
 [ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/frames/dad/david_frames.tres" id="8_fiuqx"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="10_78330"]
+[ext_resource type="AudioStream" uid="uid://b8tadkiwxacxj" path="res://assets/audio/sfx/varied/coffee_cup_knock.wav" id="10_dlhyq"]
 [ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="10_fiuqx"]
+[ext_resource type="Script" uid="uid://cjsclnw6dgxgk" path="res://scripts/rooms/activity_sound.gd" id="13_714v7"]
+[ext_resource type="AudioStream" uid="uid://b7d0lrowpo5ml" path="res://assets/audio/sfx/varied/coffee_brew_loop.wav" id="13_sltsg"]
+[ext_resource type="AudioStream" uid="uid://dl2y102x3cq0h" path="res://assets/audio/sfx/varied/coffee_sip.wav" id="15_avos5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sltsg"]
 
@@ -146,6 +150,7 @@ near_miss_event = &"coffee_spilled"
 near_miss_anim = 2
 only_during = &"drinking_coffee"
 art = NodePath("../../FrontProps/CoffeeCup")
+success_sound = ExtResource("10_dlhyq")
 prompt_text = "Nudge"
 realm = 2
 metadata/_edit_use_anchors_ = true
@@ -228,3 +233,16 @@ text = "MEMORIAL
 PAMPHLET"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BrewSound" type="AudioStreamPlayer" parent="." unique_id=613518075]
+stream = ExtResource("13_sltsg")
+script = ExtResource("13_714v7")
+activity = &"making_coffee"
+metadata/_custom_type_script = "uid://cjsclnw6dgxgk"
+
+[node name="SipSound" type="AudioStreamPlayer" parent="." unique_id=8835893]
+stream = ExtResource("15_avos5")
+script = ExtResource("13_714v7")
+activity = &"drinking_coffee"
+every_seconds = Vector2(4, 9)
+metadata/_custom_type_script = "uid://cjsclnw6dgxgk"

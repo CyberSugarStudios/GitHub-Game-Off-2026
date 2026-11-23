@@ -58,6 +58,7 @@ func _ready() -> void:
 	if done_reveal:
 		done_reveal.visible = false
 	_sound = AudioStreamPlayer.new()
+	_sound.bus = &"SFX"
 	add_child(_sound)
 	Events.power_used.connect(_on_power_used)
 	GameState.flag_set.connect(_on_flag_set)
