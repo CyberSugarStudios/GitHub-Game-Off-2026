@@ -58,9 +58,15 @@
 [ext_resource type="PackedScene" uid="uid://cvbp0nfglxkyt" path="res://scenes/ui/mp3_player.tscn" id="41_0loja"]
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
 [ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="42_dnhof"]
-[ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/WIP_child_ghost_background_2.mp3" id="43_1v6qk"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="46_bu4jf"]
+[ext_resource type="AudioStream" uid="uid://px0ggwvj5t3w" path="res://assets/audio/MP3_music/Luna.mp3" id="49_xrs0c"]
+[ext_resource type="AudioStream" uid="uid://1tttq4djvtjq" path="res://assets/audio/MP3_music/Joe Leytrick - In The Dark.mp3" id="50_xljpf"]
+[ext_resource type="AudioStream" uid="uid://l3ggeppsujhg" path="res://assets/audio/MP3_music/Card Towers.mp3" id="51_j4bwh"]
+[ext_resource type="AudioStream" uid="uid://btycl8jacpeuw" path="res://assets/audio/MP3_music/Joe Leytrick - I Don't Know (Acoustic).mp3" id="52_ksmap"]
+[ext_resource type="AudioStream" uid="uid://re335n35lw6n" path="res://assets/audio/MP3_music/Swallowtail.mp3" id="53_ygd8o"]
+[ext_resource type="AudioStream" uid="uid://dehuotf0kjjg3" path="res://assets/audio/MP3_music/Joe Leytrick - Forget The Day.mp3" id="54_2s0kr"]
+[ext_resource type="AudioStream" uid="uid://b0wiaqutmoxn2" path="res://assets/audio/MP3_music/Anathema.mp3" id="55_xaipn"]
 [ext_resource type="Script" uid="uid://crgeabduhkqgf" path="res://scripts/story/emily_reactions.gd" id="61_t5ykj"]
 [ext_resource type="Script" uid="uid://csb2u46ehna7t" path="res://scripts/audio/music_director.gd" id="62_od4ux"]
 [ext_resource type="Script" uid="uid://bibamch04jqeh" path="res://scripts/audio/music_set.gd" id="63_xhfw6"]
@@ -182,25 +188,53 @@ shader_parameter/wave_mix = 1.0
 shader_parameter/aberration_mix = 1.0
 shader_parameter/grain_mix = 1.0
 
-[sub_resource type="Resource" id="Resource_ids8r"]
+[sub_resource type="Resource" id="Resource_gcjdw"]
 script = ExtResource("42_dnhof")
-title = "Test1"
-artist = "Testa1"
-stream = ExtResource("43_1v6qk")
+title = "Luna"
+artist = "Faye Ophelia"
+stream = ExtResource("49_xrs0c")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
-[sub_resource type="Resource" id="Resource_dnhof"]
+[sub_resource type="Resource" id="Resource_fxi2g"]
 script = ExtResource("42_dnhof")
-title = "Test2"
-artist = "Testa2"
-stream = ExtResource("43_1v6qk")
+title = "In the Dark"
+artist = "Joe Leytrick"
+stream = ExtResource("50_xljpf")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
-[sub_resource type="Resource" id="Resource_1v6qk"]
+[sub_resource type="Resource" id="Resource_l8cm0"]
 script = ExtResource("42_dnhof")
-title = "Test3"
-artist = "Testa3"
-stream = ExtResource("43_1v6qk")
+title = "Card Towers"
+artist = "Faye Ophelia"
+stream = ExtResource("51_j4bwh")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_4mwkl"]
+script = ExtResource("42_dnhof")
+title = "I Don't Know (Acoustic)"
+artist = "Joe Leytrick"
+stream = ExtResource("52_ksmap")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_v0bc0"]
+script = ExtResource("42_dnhof")
+title = "Swallowtail"
+artist = "Faye Ophelia"
+stream = ExtResource("53_ygd8o")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_6fmp2"]
+script = ExtResource("42_dnhof")
+title = "Forget the Day"
+artist = "Joe Leytrick"
+stream = ExtResource("54_2s0kr")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_kycw1"]
+script = ExtResource("42_dnhof")
+title = "Anathema"
+artist = "Faye Ophelia"
+stream = ExtResource("55_xaipn")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [node name="Main" type="Node3D" unique_id=666068387]
@@ -228,14 +262,14 @@ astral_only_lights = [NodePath("../Hall/Lights/UnderTone"), NodePath("../Hall/Li
 
 [node name="Hall" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
-[node name="hall" parent="Hall" index="0" unique_id=137619233]
+[node name="hall" parent="Hall" index="0" unique_id=1690432032]
 transform = Transform3D(1, 0, 0, 0, 1.0365604, 0, 0, 0, 1, 0, -0.053405765, 0)
 material_override = ExtResource("4_y6deb")
 
-[node name="hallCeiling" parent="Hall" index="1" unique_id=1270299963]
+[node name="hallCeiling" parent="Hall" index="1" unique_id=1230881077]
 surface_material_override/0 = SubResource("StandardMaterial3D_c6pm6")
 
-[node name="hallFloor" parent="Hall" index="2" unique_id=1360151445]
+[node name="hallFloor" parent="Hall" index="2" unique_id=2039490390]
 surface_material_override/0 = SubResource("StandardMaterial3D_gcjdw")
 
 [node name="Lights" type="Node" parent="Hall" unique_id=1715504205]
@@ -788,7 +822,7 @@ visible = false
 
 [node name="MP3Player" parent="." unique_id=548456274 instance=ExtResource("41_0loja")]
 layer = 10
-tracks = Array[ExtResource("42_dnhof")]([SubResource("Resource_ids8r"), SubResource("Resource_dnhof"), SubResource("Resource_1v6qk")])
+tracks = Array[ExtResource("42_dnhof")]([SubResource("Resource_gcjdw"), SubResource("Resource_fxi2g"), SubResource("Resource_l8cm0"), SubResource("Resource_4mwkl"), SubResource("Resource_v0bc0"), SubResource("Resource_6fmp2"), SubResource("Resource_kycw1")])
 
 [node name="RoomView" type="Node" parent="." unique_id=1658057070]
 script = ExtResource("10_choun")

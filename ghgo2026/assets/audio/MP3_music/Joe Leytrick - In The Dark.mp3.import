@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1tttq4djvtjq"
+path="res://.godot/imported/Joe Leytrick - In The Dark.mp3-399f12e4afe973153c3a0d9e1bc4a29c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/MP3_music/Joe Leytrick - In The Dark.mp3"
+dest_files=["res://.godot/imported/Joe Leytrick - In The Dark.mp3-399f12e4afe973153c3a0d9e1bc4a29c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
