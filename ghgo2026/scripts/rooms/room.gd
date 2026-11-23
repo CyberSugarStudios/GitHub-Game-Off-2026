@@ -39,7 +39,7 @@ func _soften_placeholders() -> void:
 		for node in layer.find_children("*", "Sprite2D", true, false):
 			var sprite := node as Sprite2D
 			if sprite.material == null and _is_placeholder(sprite.texture):
-				sprite.material = material
+				sprite.material = prop_material
 
 static func _is_placeholder(texture: Texture2D) -> bool:
 	if texture is GradientTexture1D:
