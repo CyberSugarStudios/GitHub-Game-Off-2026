@@ -82,11 +82,13 @@ func _update() -> void:
 			continue
 		
 		GameState.set_parent_location(parent.parent_id, GameState.HALL)
+		_door(current)
 		parent.walk(_find_spot(current), to, target, to is HallMark)
 
 func _on_parent_arrived(parent_id: StringName, room_id: StringName) -> void:
 	GameState.set_parent_activity(parent_id, _target_activity(parent_id))
 	GameState.set_parent_location(parent_id, room_id)
+	_door(room_id)
 
 func _on_parent_staged(parent_id: StringName, spot: StringName) -> void:
 	var hall_parent := get_hall_parent(parent_id)
@@ -140,6 +142,11 @@ func _find_spot(location: StringName) -> Node3D:
 		if (node as HallMark).mark_id == location:
 			return node
 	return null
+
+func _door(location: StringName) -> void:
+	var entrance := _find_spot(location) as RoomEntrance
+	if entrance:
+		entrance.open_and_close()
 
 func get_hall_parent(parent_id: StringName) -> HallParent:
 	for parent in hall_parents:
