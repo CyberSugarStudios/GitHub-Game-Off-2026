@@ -53,9 +53,9 @@ script = ExtResource("4_g005p")
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
 
-[node name="TV" type="Sprite2D" parent="BackProps" unique_id=1232032568]
-position = Vector2(749, 644.99994)
-scale = Vector2(0.53696036, 0.5342539)
+[node name="TV" type="Sprite2D" parent="BackProps" unique_id=1232032568 groups=["doorway_flat"]]
+position = Vector2(787, 703)
+scale = Vector2(0.65, 0.647)
 texture = ExtResource("5_16llt")
 
 [node name="BeerCan1" type="Sprite2D" parent="BackProps" unique_id=714885831]

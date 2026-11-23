@@ -46,6 +46,9 @@ const EYE_HEIGHT := 1.4
 @export_group("Art")
 @export var size_scale: float = 0.8
 @export var looks: Dictionary[int, CreatureLook] = {}
+@export var download_looks: Dictionary[int, String] = {
+	3: "res://assets/sprites/Animations/creature/emily_look_1.tres"
+}
 
 @export_group("Grab Overlay")
 @export var press_shove := Vector2(0.04, 0.12)
@@ -92,6 +95,7 @@ func _ready() -> void:
 	GameState.monster_level_changed.connect(_on_monster_level_changed)
 	Events.door_opened.connect(_on_door_opened)
 	Events.returned_to_hall.connect(_on_returned_to_hall)
+	_request_download_looks()
 	agent.path_desired_distance = 0.25
 	agent.target_desired_distance = grab_distance * 0.5
 	_timer = _lurk_delay()
@@ -316,7 +320,23 @@ func _appear(at: Vector3, state: State) -> void:
 	if presence.stream:
 		presence.play()
 
+func _request_download_looks() -> void:
+	for level in download_looks:
+		var path := download_looks[level]
+		if not looks.has(level) and ResourceLoader.exists(path):
+			ResourceLoader.load_threaded_request(path)
+
+func _collect_download_looks() -> void:
+	for level in download_looks:
+		var path := download_looks[level]
+		if looks.has(level) or level > GameState.monster_level or not ResourceLoader.exists(path):
+			continue
+		var look := ResourceLoader.load_threaded_get(path) as CreatureLook
+		if look:
+			looks[level] = look
+
 func _apply_look() -> void:
+	_collect_download_looks()
 	var best := -1
 	for level in looks:
 		if level <= GameState.monster_level and level > best:
