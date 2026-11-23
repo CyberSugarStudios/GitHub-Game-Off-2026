@@ -6,6 +6,7 @@ const DEFAULT_FADE := 1.5
 const PAUSE_FILTER_EFFECT := 0
 const DUCK_EFFECT := 1
 const DUCK_DB := -80.0
+const BED_BUS := &"MusicBed"
 
 var _players: Array[AudioStreamPlayer] = []
 var _active := 0
@@ -14,18 +15,26 @@ var _music_bus := -1
 var _was_paused := false
 var _duck_tween: Tween
 var _aside_tween: Tween
+var _layer: AudioStreamPlayer
+var _layer_tween: Tween
+var _bed_tween: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_music_bus = AudioServer.get_bus_index(&"Music")
+	_make_bed_bus()
 	
 	for i in 2:
 		var player := AudioStreamPlayer.new()
-		player.bus = &"Music"
+		player.bus = BED_BUS
 		player.volume_linear = 0.0
 		player.finished.connect(_on_player_finished.bind(player))
 		add_child(player)
 		_players.append(player)
+	_layer = AudioStreamPlayer.new()
+	_layer.bus = &"Music"
+	_layer.volume_linear = 0.0
+	add_child(_layer)
 	_set_muffled(false)
 
 func _process(_delta: float) -> void:
@@ -93,3 +102,46 @@ func _on_player_finished(player: AudioStreamPlayer) -> void:
 func current_position() -> float:
 	var current := _players[_active]
 	return current.get_playback_position() if current.playing else 0.0
+
+#region - LAYER
+func play_layer(stream: AudioStream, fade_time: float, from_position: float = 0.0, \
+		bed_db: float = -12.0) -> void:
+	if _layer_tween:
+		_layer_tween.kill()
+	if _layer.stream != stream or not _layer.playing:
+		_layer.stream = stream
+		_layer.volume_linear = 0.0
+		_layer.play(from_position)
+	_layer_tween = create_tween()
+	_layer_tween.tween_property(_layer, "volume_linear", 1.0, fade_time)
+	_fade_bed(bed_db, fade_time)
+
+func stop_layer(fade_time: float) -> void:
+	_fade_bed(0.0, fade_time)
+	if not _layer.playing:
+		return
+	if _layer_tween:
+		_layer_tween.kill()
+	_layer_tween = create_tween()
+	_layer_tween.tween_property(_layer, "volume_linear", 0.0, fade_time)
+	_layer_tween.tween_callback(_layer.stop)
+
+func _make_bed_bus() -> void:
+	if AudioServer.get_bus_index(BED_BUS) >= 0:
+		return
+	AudioServer.add_bus()
+	var index := AudioServer.bus_count - 1
+	AudioServer.set_bus_name(index, BED_BUS)
+	AudioServer.set_bus_send(index, &"Music")
+
+func _fade_bed(db: float, fade_time: float) -> void:
+	var index := AudioServer.get_bus_index(BED_BUS)
+	if index < 0:
+		return
+	if _bed_tween:
+		_bed_tween.kill()
+	_bed_tween = create_tween()
+	_bed_tween.tween_method(
+		func(value: float) -> void: AudioServer.set_bus_volume_db(index, value),
+		AudioServer.get_bus_volume_db(index), db, fade_time)
+#endregion

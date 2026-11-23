@@ -6,6 +6,7 @@ extends CanvasLayer
 @export var restart_after: float = 3.0
 @export_range(0.0, 1.0) var start_volume: float = 0.8
 @export var button_sound: AudioStream = preload("res://assets/audio/sfx/varied/mp3_button.wav")
+@export var close_fade: float = 1.0
 
 @onready var audio: AudioStreamPlayer = $Audio
 @onready var title_label: Label = %TitleLabel
@@ -21,6 +22,7 @@ extends CanvasLayer
 var _index := 0
 var _started := false
 var _click: AudioStreamPlayer
+var _fade: Tween
 
 func _ready() -> void:
 	visible = false
@@ -61,6 +63,19 @@ func close() -> void:
 		return
 	visible = false
 	GameState.set_controls_locked(false)
+	_fade_out_song()
+
+func _fade_out_song() -> void:
+	if not _started:
+		return
+	_started = false
+	if _fade:
+		_fade.kill()
+	_fade = create_tween()
+	_fade.tween_property(audio, "volume_linear", 0.0, close_fade)
+	_fade.tween_callback(audio.stop)
+	Music.duck(false, close_fade * 1.5)
+	_show_track()
 
 func toggle_play() -> void:
 	if not _started:
@@ -99,6 +114,9 @@ func _play_index(index: int) -> void:
 	if tracks.is_empty():
 		return
 	_index = wrapi(index, 0, tracks.size())
+	if _fade:
+		_fade.kill()
+	audio.volume_linear = volume_slider.value
 	audio.stream = tracks[_index].stream
 	audio.stream_paused = false
 	audio.play()
