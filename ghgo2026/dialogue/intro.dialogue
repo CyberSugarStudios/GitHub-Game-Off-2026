@@ -11,7 +11,7 @@ Emily: Dad's usually home by now. [#thought]
 
 ~ intro_david_garage
 David: Come on... where did I put the...
-do wait(4.0)
+do wait(2.0)
 David: Of course. Of course it's that one.
 => END
 

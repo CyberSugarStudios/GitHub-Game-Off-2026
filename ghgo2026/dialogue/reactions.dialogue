@@ -98,4 +98,6 @@ Emily: How much time passed? [#thought]
 ~ read_thoughts_first
 Emily: Wait. That wasn't out loud. [#thought]
 Emily: I heard what they were thinking. [#thought]
+do wait(0.5)
+Emily: What's that on the counter? [#thought]
 => END
