@@ -39,7 +39,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var wake_doorway: Door
 @export var garage_voice: Speaker
 @export var living_room_voice: Speaker
-@export var front_door_sound: AudioStreamPlayer3D
+@export var front_door_sound: DoorSound
 @export var title_card: CanvasItem
 
 @export_group("Intro")
@@ -117,6 +117,7 @@ var _accept_progress := -1.0
 var _p3_medicated := false
 var _p3_last_minute := -1
 var _p3_drinks := 0
+var _p3_restock_due := false
 var _sfx: AudioStreamPlayer
 #endregion
 
@@ -214,8 +215,8 @@ func _run_intro() -> void:
 	GameState.shift_allowed = false
 	await say("intro_back")
 	
-	if front_door_sound and front_door_sound.stream:
-		front_door_sound.play()
+	if front_door_sound:
+		await front_door_sound.open_and_close()
 	await wait(1.0)
 	GameState.set_parent_location(MOM, &"living_room")
 	living_room_voice.visible = true
@@ -344,10 +345,15 @@ func _on_puzzle_3_minute(_day: int, minute: int) -> void:
 		_p3_pill_time()
 
 func _p3_fetch_beer() -> void:
+	if not _p3_restock_due:
+		return
 	household.send(DAD, &"kitchen", p3_restock_minutes, [], &"getting_beer")
 	say_in_background("p3_david_restock", PUZZLE_3)
 
 func _p3_restock() -> void:
+	if not _p3_restock_due:
+		return
+	_p3_restock_due = false
 	_p3_drinks = 0
 	for can in p3_beer_cans:
 		GameState.clear_flag(can)
@@ -382,6 +388,7 @@ func _p3_pill_time() -> void:
 
 func _p3_new_day() -> void:
 	_p3_medicated = false
+	_p3_restock_due = true
 	GameState.clear_flag(&"pills_hidden")
 
 func _p3_try_night() -> bool:

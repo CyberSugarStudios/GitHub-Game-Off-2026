@@ -1,9 +1,5 @@
 class_name ConversationPlayer
 extends Node
-# plays Dialogue Manager conversations with voice acting in two modes:
-# Mode 1: Live (frozen = false): The game keeps running, and the lines play from the speaker's pos
-# Mode 2: Memory (frozen = true): Cutscene, letterbox, full subtitles, voice not positional
-# Voice files: res://audio/voice/line.ogg. Missing file fallback to reading-time estimate
 
 #region - INIT
 const VOICE_FOLDER := "res://audio/voice/"
@@ -153,13 +149,21 @@ func _load_voice(line: DialogueLine) -> AudioStream:
 
 # 1 = readble, 0 = lost
 func _get_clarity() -> float:
-	if _frozen or not is_instance_valid(_speaker):
+	if _frozen or not is_instance_valid(_speaker) or not _speaker.is_visible_in_tree():
+		return 1.0
+	if _in_same_room(_line.character):
 		return 1.0
 	var camera := get_viewport().get_camera_3d()
 	if camera == null:
 		return 1.0
 	var distance := camera.global_position.distance_to(_speaker.global_position)
 	return clampf(inverse_lerp(lost_distance, clear_distance, distance), 0.0, 1.0)
+
+func _in_same_room(character: String) -> bool:
+	if not GameState.is_in_room():
+		return false
+	var parent_id := StringName(character.to_lower())
+	return GameState.get_parent_location(parent_id) == GameState.current_room
 
 func _update_subtitle() -> void:
 	if _line == null:

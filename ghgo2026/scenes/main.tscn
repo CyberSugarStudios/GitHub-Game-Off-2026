@@ -38,6 +38,7 @@
 [ext_resource type="Script" uid="uid://cup4c1hbpt1b" path="res://scripts/ui/power_menu.gd" id="15_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://dw6ulots2gxv" path="res://scenes/creature/creature.tscn" id="19_2cjbq"]
 [ext_resource type="Script" uid="uid://bjq72crji2awk" path="res://scripts/interaction/hall_painting.gd" id="19_chjal"]
+[ext_resource type="Script" uid="uid://dekcomumltder" path="res://scripts/rooms/door_sounds.gd" id="19_j4bwh"]
 [ext_resource type="Script" uid="uid://c4vxoy4gjw2cd" path="res://scripts/powers/parent_reactions.gd" id="22_jscy8"]
 [ext_resource type="Script" uid="uid://dtre8wakq3t5o" path="res://scripts/interaction/hall_thermostat.gd" id="23_augu2"]
 [ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
@@ -353,6 +354,7 @@ room_id = &"emily_bedroom"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016183853, 0, -6.178411)
 script = ExtResource("4_jkv2x")
 room_id = &"kitchen"
+has_door = false
 
 [node name="EntranceParentBedroom" type="Marker3D" parent="Hall/RoomEntrances" unique_id=2139407700]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.462862, 0, -6.3867373)
@@ -363,6 +365,7 @@ room_id = &"parent_bedroom"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.841735, 0, -5.442392)
 script = ExtResource("4_jkv2x")
 room_id = &"living_room"
+has_door = false
 
 [node name="EntranceGarage" type="Marker3D" parent="Hall/RoomEntrances" unique_id=1346914638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5828085, 0, -5.744641)
@@ -449,8 +452,10 @@ transform = Transform3D(-2.1855693e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855693e-07, 0,
 visible = false
 character_name = "Leanne"
 
-[node name="FrontDoorSound" type="AudioStreamPlayer3D" parent="Hall/RoomEntrances/LivingRoomDoorway" unique_id=662055244]
+[node name="FrontDoorSound" type="Marker3D" parent="Hall/RoomEntrances/LivingRoomDoorway" unique_id=1510478623]
 transform = Transform3D(-1, 0, 1.7682974e-07, 0, 1, 0, -1.7682974e-07, 0, -1, 0.08739699, 1.1945355, -1.5871773)
+script = ExtResource("19_j4bwh")
+room_id = &"living_room"
 
 [node name="HallMarks" type="Node" parent="Hall" unique_id=654693850]
 
@@ -957,7 +962,7 @@ fade = NodePath("../RoomView/FadeLayer/Fade")
 wake_doorway = NodePath("../Hall/RoomEntrances/LivingRoomDoorway")
 garage_voice = NodePath("../Hall/RoomEntrances/GarageDoor/GarageVoice")
 living_room_voice = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/LivingRoomVoice")
-front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSound")
+front_door_sound = NodePath("")
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
 
 [node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player")]

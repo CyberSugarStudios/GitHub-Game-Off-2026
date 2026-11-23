@@ -9,6 +9,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_0yego"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="7_o0bpy"]
 [ext_resource type="AudioStream" uid="uid://cbp766hev1hwj" path="res://assets/audio/sfx/varied/box_fall.wav" id="9_lynjs"]
+[ext_resource type="AudioStream" uid="uid://qsp0q274avfm" path="res://assets/audio/sfx/varied/chest_rattle.wav" id="10_0yego"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
@@ -169,6 +170,8 @@ success_event = &"night_noise"
 success_anim = 1
 art = NodePath("../../BackProps/ToolShelf")
 hint_stage = 3
+success_sound = ExtResource("10_0yego")
+near_miss_sound = ExtResource("10_0yego")
 prompt_text = "Nudge"
 realm = 2
 
