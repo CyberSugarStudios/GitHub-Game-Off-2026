@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dnxaay7p8j4ju"]
+
+[ext_resource type="Script" uid="uid://bt5lkdnjjeepo" path="res://scripts/ui/first_settings.gd" id="1_dd5l6"]
+[ext_resource type="Texture2D" uid="uid://c355btreawcvp" path="res://assets/sprites/settings_example.png" id="2_vkp2m"]
+
+[node name="FirstSettings" type="Control" unique_id=880927422]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dd5l6")
+reference_image = ExtResource("2_vkp2m")

@@ -5,6 +5,26 @@ const DEBUG_ENTRY := "entry.2135919735"
 const HITCH_SECONDS := 0.25
 const BACKGROUND_SECONDS := 3.0
 const MAX_HITCHES := 8
+const RENDERER_JS := """
+	(function () {
+		try {
+			var canvas = document.createElement('canvas');
+			var gl = canvas.getContext('webgl2', { failIfMajorPerformanceCaveat: true });
+			var slow = !gl;
+			if (!gl) { gl = canvas.getContext('webgl2') || canvas.getContext('webgl'); }
+			if (!gl) { return 'none|1'; }
+			var info = gl.getExtension('WEBGL_debug_renderer_info');
+			var name = info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+			return name + '|' + (slow ? '1' : '0');
+		} catch (e) {
+			return 'unknown|0';
+		}
+	})()
+	"""
+
+var _renderer := ""
+var _software := false
+var _renderer_checked := false
 
 var _started_at := 0
 var _hitches := PackedStringArray()
@@ -66,6 +86,24 @@ func _record_hitch(delta: float) -> void:
 		_hitches.append(entry)
 	print("[HITCH] ", entry)
 
+func web_renderer() -> String:
+	_check_renderer()
+	return _renderer
+
+func is_software_rendering() -> bool:
+	_check_renderer()
+	return _software
+
+func _check_renderer() -> void:
+	if _renderer_checked or not OS.has_feature("web"):
+		return
+	_renderer_checked = true
+	var parts := str(JavaScriptBridge.eval(RENDERER_JS, true)).split("|")
+	_renderer = parts[0]
+	var lower := _renderer.to_lower()
+	_software = (parts.size() > 1 and parts[1] == "1") or "swiftshader" in lower \
+		or "llvmpipe" in lower or "software" in lower or "basic render" in lower
+
 func open_form() -> void:
 	var url := "https://docs.google.com/forms/d/e/%s/viewform?usp=pp_url&%s=%s" \
 			% [FORM_ID, DEBUG_ENTRY, build_report().uri_encode()]
@@ -87,6 +125,8 @@ func build_report() -> String:
 	if memory.get("physical", -1) > 0:
 		lines.append("RAM: %.1f GB" % (memory["physical"] / 1073741824.0))
 	lines.append("GPU: %s %s" % [RenderingServer.get_video_adapter_vendor(), RenderingServer.get_video_adapter_name()])
+	if OS.has_feature("web"):
+		lines.append("WebGL renderer: %s%s" % [web_renderer(), " (SOFTWARE: acceleration off)" if is_software_rendering() else ""])
 	lines.append("Renderer: %s" % RenderingServer.get_current_rendering_method())
 	lines.append("Screen: %s, window: %s" % [DisplayServer.screen_get_size(), DisplayServer.window_get_size()])
 	lines.append("Language: %s" % OS.get_locale())
