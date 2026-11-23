@@ -439,6 +439,7 @@ func _run_puzzle_4() -> void:
 			break
 	await say("p4_room_reveal", true, PUZZLE_4)
 	GameState.set_flag(&"emily_room_revealed")
+	GameState.next_hint_step()
 	await wait_room(&"emily_bedroom")
 	await wait_event(&"diary_finished")
 	GameState.set_story_stage(5)

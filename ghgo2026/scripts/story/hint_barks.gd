@@ -40,8 +40,11 @@ func _can_hear(parent: HallParent) -> bool:
 
 func _hint_cue(parent_id: StringName, level: int) -> String:
 	var cues := BARKS.get_cues()
+	var stage := "stage%d" % GameState.story_stage
+	if GameState.hint_step > 0:
+		stage += "_step%d" % GameState.hint_step
 	for l in range(level, 0, -1):
-		var cue := "%s_stage%d_hint%d" % [parent_id, GameState.story_stage, l]
+		var cue := "%s_%s_hint%d" % [parent_id, stage, l]
 		if cue in cues:
 			return cue
 	return ""

@@ -95,3 +95,15 @@ Emily: It's too dark in there at night. [#thought]
 ~ emily_stage4_hint3
 Emily: My string lights. Or I could wait for morning. [#thought]
 => END
+
+~ emily_stage4_step1_hint1
+Emily: TEMP - Vague clue [#thought]
+=> END
+
+~ emily_stage4_step1_hint2
+Emily: TEMP - Moderate clue [#thought]
+=> END
+
+~ emily_stage4_step1_hint3
+Emily: TEMP - Direct clue [#thought]
+=> END

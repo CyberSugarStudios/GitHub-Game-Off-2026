@@ -10,6 +10,7 @@ const GRAVITY := 9.8
 @export var crooked_degrees: float = 7.0
 @export var fall_distance: float = 1.2
 @export var fall_story_event: StringName = &"hall_painting_fell"
+@export var fallen_from_stage: int = 2
 
 @export_group("Sounds")
 @export var wobble_sound: AudioStream
@@ -28,7 +29,7 @@ func _ready() -> void:
 	Events.power_used.connect(_on_power_used)
 	for parent in household.hall_parents:
 		parent.linger_started.connect(_on_linger_started)
-	if GameState.has_flag(fall_story_event):
+	if GameState.has_flag(fall_story_event) or GameState.story_stage >= fallen_from_stage:
 		_show_fallen()
 
 func is_focusable() -> bool:
