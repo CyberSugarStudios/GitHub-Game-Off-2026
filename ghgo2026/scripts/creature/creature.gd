@@ -75,6 +75,7 @@ var _presses := 0
 var _repath := 0.0
 var _grace := 0.0
 var _seen := false
+var _sees_player := false
 var _grab_scale := Vector2.ONE
 var _grab_center := Vector2.ZERO
 var _lean := 0.0
@@ -105,11 +106,15 @@ func _ready() -> void:
 func set_warmup(on: bool) -> void:
 	visible = on
 
+func sees_player() -> bool:
+	return _sees_player
+
 func get_state() -> State:
 	return _state
 
 #region - STATES
 func _physics_process(delta: float) -> void:
+	_sees_player = _state == State.GRABBING or (_state == State.HUNTING and _line_of_sight())
 	if _state == State.GRABBING:
 		_process_grab(delta)
 		return
@@ -418,6 +423,14 @@ func _note_seen() -> void:
 	if not _seen and _player_can_see(global_position + Vector3.UP * EYE_HEIGHT):
 		_seen = true
 		Events.creature_moment.emit(&"seen")
+
+func _line_of_sight() -> bool:
+	var camera := get_viewport().get_camera_3d()
+	if camera == null:
+		return false
+	var eye := global_position + Vector3.UP * EYE_HEIGHT
+	var query := PhysicsRayQueryParameters3D.create(eye, camera.global_position, WORLD_LAYER)
+	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 func _player_can_see(point: Vector3) -> bool:
 	var camera := get_viewport().get_camera_3d()

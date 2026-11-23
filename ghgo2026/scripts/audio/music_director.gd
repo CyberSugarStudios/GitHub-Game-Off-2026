@@ -10,7 +10,9 @@ extends Node
 @export var hunt_music: AudioStream
 @export var hunt_music_start: float = 9.75
 @export var hunt_fade: float = 1.0
-@export var calm_after_hunt: float = 4.0
+@export var hunt_fade_out: float = 0.6
+@export var calm_after_hunt: float = 0.5
+@export var hall_quiet_db: float = -12.0
 
 var _set: MusicSet
 var _last_track: AudioStream
@@ -27,41 +29,43 @@ func _ready() -> void:
 	GameState.plane_changed.connect(func(_astral: bool) -> void: _on_plane_changed())
 	GameState.flag_set.connect(func(id: StringName) -> void:
 		if id == &"creature_accepted":
-			_held = true)
+			_held = true
+			_end_hunt())
 	_choose_set()
+
+func _exit_tree() -> void:
+	Music.stop_layer(hunt_fade_out)
 
 func _process(delta: float) -> void:
 	if _held:
 		return
-	if _creature_close():
-		_calm_left = calm_after_hunt
-		if not _hunting:
-			_hunting = true
-			_quiet_left = -1.0
-			_remember_position()
-			_playing = null
-			if hunt_music:
-				Music.play(hunt_music, hunt_fade, hunt_music_start)
-			else:
-				Music.stop(hunt_fade)
-		return
-	if _hunting:
-		_calm_left -= delta
-		if _calm_left <= 0.0:
-			_hunting = false
-			_resume()
-		return
+	_update_hunt(delta)
 	if _quiet_left >= 0.0:
 		_quiet_left -= delta
 		if _quiet_left < 0.0:
 			_play_next()
 
-func _creature_close() -> bool:
-	if creature == null:
-		return false
-	var state := creature.get_state()
-	return state == Creature.State.HUNTING or state == Creature.State.GRABBING
+#region - HUNT
+func _update_hunt(delta: float) -> void:
+	if creature and creature.sees_player():
+		_calm_left = calm_after_hunt
+		if not _hunting and hunt_music:
+			_hunting = true
+			Music.play_layer(hunt_music, hunt_fade, hunt_music_start, hall_quiet_db)
+		return
+	if _hunting:
+		_calm_left -= delta
+		if _calm_left <= 0.0:
+			_end_hunt()
 
+func _end_hunt() -> void:
+	if not _hunting:
+		return
+	_hunting = false
+	Music.stop_layer(hunt_fade_out)
+#endregion
+
+#region - HALL MUSIC
 func _choose_set() -> void:
 	var best := -1
 	for stage in stage_music:
@@ -71,7 +75,7 @@ func _choose_set() -> void:
 	if chosen == _set:
 		return
 	_set = chosen
-	if not _hunting and not _held:
+	if not _held:
 		_play_next()
 
 func _play_next() -> void:
@@ -84,16 +88,8 @@ func _play_next() -> void:
 	_last_track = choices.pick_random()
 	_play_track(_version(_last_track), Music.DEFAULT_FADE)
 
-func _resume() -> void:
-	var was_playing := _last_track != null and \
-		(_positions.has(_last_track) or _positions.has(astral_versions.get(_last_track)))
-	if was_playing:
-		_play_track(_version(_last_track), hunt_fade)
-	else:
-		_play_next()
-
 func _on_plane_changed() -> void:
-	if _held or _hunting or _playing == null:
+	if _held or _playing == null:
 		return
 	var version := _version(_last_track)
 	if version != _playing:
@@ -114,7 +110,7 @@ func _version(track: AudioStream) -> AudioStream:
 	return track
 
 func _on_track_finished() -> void:
-	if _hunting or _held or _set == null:
+	if _held or _set == null:
 		return
 	if _last_track:
 		_positions.erase(_last_track)
@@ -122,3 +118,4 @@ func _on_track_finished() -> void:
 			_positions.erase(astral_versions[_last_track])
 	_playing = null
 	_quiet_left = randf_range(_set.silence_between.x, _set.silence_between.y)
+#endregion
