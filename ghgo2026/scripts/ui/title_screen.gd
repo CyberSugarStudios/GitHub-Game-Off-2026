@@ -47,7 +47,9 @@ func _ready() -> void:
 	confirm_close_button.pressed.connect(on_confirm_close_button_pressed)
 	cancel_close_button.pressed.connect(on_cancel_close_button_pressed)
 	
-	ResourceLoader.load_threaded_request(GAME_SCENE_PATH)
+	if ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH) == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+		ResourceLoader.load_threaded_request(GAME_SCENE_PATH, "", true)
+	_warn_if_software_rendering()
 
 func on_new_game_pressed() -> void:
 	GameState.clear_checkpoint()
@@ -66,13 +68,35 @@ func _enter_game(pressed: Button) -> void:
 	new_game_button.disabled = true
 	continue_game_button.disabled = true
 	pressed.text = "Loading..."
-	while ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+	var started := Time.get_ticks_msec()
+	var bar := _make_load_bar()
+	var progress := []
+	while ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH, progress) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		bar.value = progress[0]
 		await get_tree().process_frame
+	bar.value = 1.0
+	await get_tree().process_frame
+	await get_tree().process_frame
 	var scene := ResourceLoader.load_threaded_get(GAME_SCENE_PATH) as PackedScene
+	print("[LOAD] house loaded %.1f s after clicking" % ((Time.get_ticks_msec() - started) / 1000.0))
 	if scene:
 		get_tree().change_scene_to_packed(scene)
 	else:
 		get_tree().change_scene_to_file(GAME_SCENE_PATH)
+
+func _make_load_bar() -> PillBar:
+	var bar := PillBar.new()
+	bar.value = 0.0
+	bar.anchor_left = 0.5
+	bar.anchor_right = 0.5
+	bar.anchor_top = 1.0
+	bar.anchor_bottom = 1.0
+	bar.offset_left = -240.0
+	bar.offset_right = 240.0
+	bar.offset_top = -96.0
+	bar.offset_bottom = -78.0
+	add_child(bar)
+	return bar
 
 func on_options_menu_button_pressed() -> void:
 	options_menu.visible = true
@@ -100,3 +124,16 @@ func on_confirm_close_button_pressed() -> void:
 func on_cancel_close_button_pressed() -> void:
 	confirm_close_menu.visible = false
 	title_and_buttons.visible = true
+
+func _warn_if_software_rendering() -> void:
+	if not Playtest.is_software_rendering():
+		return
+	var warning := Label.new()
+	warning.text = "Graphics acceleration seems to be turned off in your browser, so the game may run slowly.\n" \
+		+ "Turn on \"Use graphics acceleration when available\" in your browser settings, then reload."
+	warning.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	warning.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	warning.add_theme_font_size_override("font_size", 20)
+	warning.add_theme_color_override("font_color", Color("#D9A35A"))
+	warning.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE, Control.PRESET_MODE_MINSIZE, 16)
+	add_child(warning)
