@@ -261,14 +261,14 @@ astral_only_lights = [NodePath("../Hall/Lights/UnderTone"), NodePath("../Hall/Li
 
 [node name="Hall" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
-[node name="hall" parent="Hall" index="0" unique_id=1690432032]
+[node name="hall" parent="Hall" index="0" unique_id=137619233]
 transform = Transform3D(1, 0, 0, 0, 1.0365604, 0, 0, 0, 1, 0, -0.053405765, 0)
 material_override = ExtResource("4_y6deb")
 
-[node name="hallCeiling" parent="Hall" index="1" unique_id=1230881077]
+[node name="hallCeiling" parent="Hall" index="1" unique_id=1270299963]
 surface_material_override/0 = SubResource("StandardMaterial3D_c6pm6")
 
-[node name="hallFloor" parent="Hall" index="2" unique_id=2039490390]
+[node name="hallFloor" parent="Hall" index="2" unique_id=1360151445]
 surface_material_override/0 = SubResource("StandardMaterial3D_gcjdw")
 
 [node name="Lights" type="Node" parent="Hall" unique_id=1715504205]
