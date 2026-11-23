@@ -9,6 +9,35 @@ const PARENT_NAMES: Dictionary[StringName, String] = {
 	&"leanne": "Mom",
 	&"david": "Dad"
 }
+const ACTIVITY_TEXT: Dictionary[StringName, String] = {
+	&"changing": "getting changed",
+	&"checking_breaker": "checking the breaker",
+	&"cleaning": "cleaning",
+	&"cleaning_then_watching_tv": "cleaning up",
+	&"cooking": "cooking",
+	&"cooking_and_eating": "cooking",
+	&"cooking_and_then_eating": "cooking",
+	&"drinking": "drinking",
+	&"drinking_and_tv": "drinking and watching TV",
+	&"drinking_and_watching_tv_then_falling_asleep": "drinking in front of the TV",
+	&"drinking_coffee": "drinking coffee",
+	&"eating": "eating",
+	&"eating_and_then_cleaning": "eating",
+	&"getting_beer": "grabbing more beer",
+	&"laundry": "doing laundry",
+	&"making_coffee": "making coffee",
+	&"opening_safe": "opening the safe",
+	&"reading": "reading",
+	&"reading_and_sleeping": "reading in bed",
+	&"reading_and_then_sleeping": "reading in bed",
+	&"showering": "showering",
+	&"sleeping": "sleeping",
+	&"taking_pill": "taking a pill",
+	&"tinkering": "tinkering",
+	&"using": "using the bathroom",
+	&"watching_tv": "watching TV",
+	&"watching_tv_and_drinking": "watching TV and drinking"
+}
 
 #region - EXPORTS
 @export_group("Room Base")
@@ -69,11 +98,11 @@ func is_locked() -> bool:
 
 #region - INTERACT OVERRIDES
 func get_prompt_text() -> String:
-	return room_label if _observing() else _with_who_is_inside(prompt_text)
+	return _with_who_is_inside(room_label if _observing() else prompt_text)
 
 func get_block_reason() -> String:
 	if _observing():
-		return "" if _observe_cue() != "" else room_label
+		return "" if _observe_cue() != "" else _with_who_is_inside(room_label)
 	var reason := _entry_block_reason()
 	return _with_who_is_inside(reason) if reason != "" else ""
 
@@ -116,15 +145,21 @@ func _observe_cue() -> String:
 	return ""
 
 func _with_who_is_inside(text: String) -> String:
-	var inside := PackedStringArray()
+	var lines := PackedStringArray()
+	if text != "":
+		lines.append(text)
 	for node in get_tree().get_nodes_in_group("hall_parents"):
 		var parent := node as HallParent
 		if not parent.visible and GameState.get_parent_location(parent.parent_id) == room_id:
-			var parent_name: String = PARENT_NAMES.get(parent.parent_id, String(parent.parent_id).capitalize())
-			inside.append(parent_name)
-	if inside.is_empty():
-		return text
-	return "%s\n%s %s inside" % [text, " and ".join(inside), "is" if inside.size() == 1 else "are"]
+			lines.append(_inside_line(parent.parent_id))
+	return "\n".join(lines)
+
+func _inside_line(parent_id: StringName) -> String:
+	var parent_name: String = PARENT_NAMES.get(parent_id, String(parent_id).capitalize())
+	var doing: String = ACTIVITY_TEXT.get(GameState.get_parent_activity(parent_id), "")
+	if doing == "":
+		return "%s is inside" % parent_name
+	return "%s is inside %s" % [parent_name, doing]
 #endregion
 
 #region - LOCK

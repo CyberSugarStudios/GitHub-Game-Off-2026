@@ -70,7 +70,7 @@ func stop(fade_time: float = DEFAULT_FADE) -> void:
 	_fade_tween.tween_property(current, "volume_linear", 0.0, fade_time)
 	_fade_tween.tween_callback(current.stop)
 
-func duck(on: bool, fade_time: float = 0.8) -> void:
+func duck(on: bool, fade_time: float = 0.8, db: float = DUCK_DB) -> void:
 	if _music_bus < 0 or AudioServer.get_bus_effect_count(_music_bus) <= DUCK_EFFECT:
 		return
 	var amplify := AudioServer.get_bus_effect(_music_bus, DUCK_EFFECT) as AudioEffectAmplify
@@ -79,7 +79,7 @@ func duck(on: bool, fade_time: float = 0.8) -> void:
 	if _duck_tween:
 		_duck_tween.kill()
 	_duck_tween = create_tween()
-	_duck_tween.tween_property(amplify, "volume_db", DUCK_DB if on else 0.0, fade_time)
+	_duck_tween.tween_property(amplify, "volume_db", db if on else 0.0, fade_time)
 
 func _set_muffled(on: bool) -> void:
 	if _music_bus >= 0 and AudioServer.get_bus_effect_count(_music_bus) > PAUSE_FILTER_EFFECT:

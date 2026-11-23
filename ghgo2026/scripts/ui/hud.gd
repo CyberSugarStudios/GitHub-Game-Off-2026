@@ -14,6 +14,14 @@ const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav
 @export var bar_fade_speed: float = 4.0
 @export var struggle_shake := Vector2(2.0, 14.0)
 
+@export_group("Memory Restored")
+@export var memory_pill_scale: float = 3.0
+@export var memory_hold: float = 0.8
+@export var memory_fly_time: float = 0.9
+@export var memory_fill_time: float = 0.7
+@export var memory_duck_db: float = -15.0
+@export var memory_unduck_time: float = 1.5
+
 @onready var astral_filter: ColorRect = $AstralRealmColorFilter
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
 @onready var crosshair: ColorRect = $Crosshair
@@ -33,6 +41,7 @@ var _prompt_rest := Vector2.ZERO
 var _shake_tween: Tween
 var _memory_player: AudioStreamPlayer
 var _known_bars := 0
+var _memory_animations := 0
 
 func _ready() -> void:
 	for child in spirit_bars_container.get_children():
@@ -47,6 +56,7 @@ func _ready() -> void:
 	_memory_player.stream = MEMORY_SOUND
 	_memory_player.bus = &"SFX"
 	add_child(_memory_player)
+	_memory_player.finished.connect(func() -> void: Music.duck(false, memory_unduck_time))
 	GameState.max_bars_changed.connect(_on_max_bars_changed)
 	GameState.plane_changed.connect(_on_plane_changed)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
@@ -78,7 +88,8 @@ func set_warmup(on: bool) -> void:
 func _process(delta: float) -> void:
 	var full := GameState.energy >= GameState.max_bars - 0.001
 	_full_for = _full_for + delta if full else 0.0
-	var want := 1.0 if (_warmup or GameState.in_astral or _full_for < full_fade_delay) else 0.0
+	var want := 1.0 if (_warmup or GameState.in_astral or _full_for < full_fade_delay \
+		or _memory_animations > 0) else 0.0
 	spirit_bars_container.modulate.a = move_toward(spirit_bars_container.modulate.a, want,\
 		bar_fade_speed * delta)
 
@@ -89,8 +100,48 @@ func _on_energy_changed(energy: float, max_bars: int) -> void:
 
 func _on_max_bars_changed(max_bars: int) -> void:
 	if max_bars > _known_bars:
-		_memory_player.play()
+		_play_memory_restored(max_bars - 1)
 	_known_bars = max_bars
+
+func _play_memory_restored(index: int) -> void:
+	Music.duck(true, 0.6, memory_duck_db)
+	_memory_player.play()
+	if index < 0 or index >= _bars.size():
+		return
+	var slot := _bars[index]
+	slot.modulate.a = 0.0
+	_memory_animations += 1
+
+	var pill := PillBar.new()
+	pill.value = 0.0
+	pill.size = slot.custom_minimum_size
+	pill.pivot_offset = pill.size * 0.5
+	pill.position = get_viewport().get_visible_rect().size * 0.5 - pill.pivot_offset
+	pill.scale = Vector2.ONE * memory_pill_scale * 1.15
+	pill.modulate.a = 0.0
+	add_child(pill)
+
+	var tween := create_tween()
+	tween.tween_property(pill, "modulate:a", 1.0, 0.4)
+	tween.parallel().tween_property(pill, "scale", Vector2.ONE * memory_pill_scale, 0.6) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_interval(memory_hold)
+	await tween.finished
+
+	tween = create_tween().set_parallel()
+	tween.tween_property(pill, "position", slot.global_position, memory_fly_time) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(pill, "scale", Vector2.ONE, memory_fly_time) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+
+	tween = create_tween()
+	tween.tween_property(pill, "value", 1.0, memory_fill_time)
+	await tween.finished
+
+	slot.modulate.a = 1.0
+	pill.queue_free()
+	_memory_animations -= 1
 
 #region - ASTRAL EFFECT
 func _on_plane_changed(in_astral: bool) -> void:
