@@ -7,7 +7,8 @@ var all_powers: Array[Power] = [
 	preload("res://data/powers/read_thoughts.tres"),
 	preload("res://data/powers/chill.tres"),
 	preload("res://data/powers/nudge.tres"),
-	preload("res://data/powers/electrify.tres")
+	preload("res://data/powers/electrify.tres"),
+	preload("res://data/powers/hug.tres")
 ]
 
 var target: StringName = &""
@@ -34,12 +35,17 @@ func get_unlocked() -> Array[Power]:
 func get_usable() -> Array[Power]:
 	var result: Array[Power] = []
 	for power in get_unlocked():
+		if power.once_per_target and GameState.has_flag(used_flag(power, target)):
+			continue
 		if target_accepts.is_empty():
 			if power.on_parents:
 				result.append(power)
 		elif power.id in target_accepts:
 			result.append(power)
 	return result
+
+func used_flag(power: Power, target_id: StringName) -> StringName:
+	return StringName("%s_%s" % [power.id, target_id])
 
 func get_selected() -> Power:
 	var usable := get_usable()
@@ -73,6 +79,8 @@ func use_selected() -> bool:
 		return false
 	if not GameState.try_spend(power.energy_cost):
 		return false
+	if power.once_per_target:
+		GameState.set_flag(used_flag(power, target))
 	Events.power_used.emit(power.id, target)
 	if GameState.is_in_room():
 		set_target(&"")

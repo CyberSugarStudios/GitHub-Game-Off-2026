@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://y8o45eg5umn2"
+path="res://.godot/imported/Chest rattle.wav-df392bbcd40fe81113f0635bc4c6d4e5.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/varied/Chest rattle.wav"
+dest_files=["res://.godot/imported/Chest rattle.wav-df392bbcd40fe81113f0635bc4c6d4e5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

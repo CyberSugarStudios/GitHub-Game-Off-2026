@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Power" format=3 uid="uid://cm3ltqoqart8r"]
+
+[ext_resource type="Script" uid="uid://cv2x7jbb0ontl" path="res://scripts/powers/power.gd" id="1_7mr3k"]
+
+[resource]
+script = ExtResource("1_7mr3k")
+id = &"hug"
+display_name = "Hug"
+energy_cost = 3.0
+required_bars = 3
+requires_flag = &"diary_finished"
+once_per_target = true
+metadata/_custom_type_script = "uid://cv2x7jbb0ontl"
