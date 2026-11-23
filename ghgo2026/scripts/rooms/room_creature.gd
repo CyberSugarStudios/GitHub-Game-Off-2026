@@ -15,7 +15,7 @@ const LIGHT_MASK := preload("res://assets/textures/light_mask.webp")
 @export_group("Glow")
 @export var glow_color := Color(0.45, 0.85, 0.8)
 @export var glow_energy: float = 0.8
-@export var glow_size: float = 2.5
+@export var glow_size: float = 10.0
 @export_range(0.0, 1.0) var night_lift: float = 0.6
 
 @onready var sprite: AnimatedSprite2D = $Sprite

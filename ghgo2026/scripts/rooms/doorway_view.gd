@@ -9,6 +9,7 @@ const LAYER_PROPS := 2
 const LAYER_WALLS := 4
 const PROP_LAYERS: Array[String] = ["BackProps", "Actors", "FrontProps"]
 const FLAT_GROUP := &"doorway_flat"
+const BASE_MARKER := "DoorwayBase"
 const WALL_ART: Array[String] = ["Background", "AstralBackground"]
 
 @export var room_scene: PackedScene
@@ -196,9 +197,15 @@ func _update_cards(camera: Vector3) -> void:
 			continue
 		var rect := _rect_of(art)
 		var support: CanvasItem = _supports.get(art)
-		var depth := _depth_of(_base_of(support) if support else _base_of(art))
+		var marker := art.get_node_or_null(BASE_MARKER) as Node2D
+		var ground := _base_of(art)
+		if marker:
+			ground = marker.global_position
+		elif support:
+			ground = _base_of(support)
+		var depth := _depth_of(ground)
 		var base := _stand_at(_base_of(art), depth)
-		if support:
+		if support and not marker:
 			base += Vector3(camera.x - base.x, 0.0, camera.z - base.z).normalized() * 0.03
 		var size := rect.size / _px_per_meter_at(depth)
 		card.position = base
