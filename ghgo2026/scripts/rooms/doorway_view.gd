@@ -8,6 +8,7 @@ const LAYER_SHARED := 1
 const LAYER_PROPS := 2
 const LAYER_WALLS := 4
 const PROP_LAYERS: Array[String] = ["BackProps", "Actors", "FrontProps"]
+const FLAT_GROUP := &"doorway_flat"
 const WALL_ART: Array[String] = ["Background", "AstralBackground"]
 
 @export var room_scene: PackedScene
@@ -99,8 +100,12 @@ func _split_layers(view_scale: float) -> void:
 			art.visibility_layer = LAYER_WALLS
 	for node_name in PROP_LAYERS:
 		var layer := _room.get_node_or_null(node_name) as CanvasItem
-		if layer:
-			layer.visibility_layer = LAYER_PROPS
+		if layer == null:
+			continue
+		layer.visibility_layer = LAYER_PROPS | LAYER_WALLS
+		for child in layer.get_children():
+			if child is CanvasItem:
+				(child as CanvasItem).visibility_layer = LAYER_WALLS if _is_flat(child) else LAYER_PROPS
 	viewport.canvas_cull_mask = LAYER_SHARED | LAYER_WALLS
 
 	_props_viewport = SubViewport.new()
@@ -140,7 +145,7 @@ func _build_cards() -> void:
 			continue
 		for child in layer.get_children():
 			var art := _art_of(child)
-			if art:
+			if art and not _is_flat(child):
 				_cards[art] = _make_card()
 	for art in _cards:
 		var support := _find_support(art)
@@ -167,6 +172,9 @@ func _find_support(art: CanvasItem) -> CanvasItem:
 
 func _is_actor(art: CanvasItem) -> bool:
 	return art.get_parent() is RoomActor
+
+func _is_flat(node: Node) -> bool:
+	return node.is_in_group(FLAT_GROUP)
 
 func _make_card() -> MeshInstance3D:
 	var card_material := ShaderMaterial.new()

@@ -54,8 +54,8 @@ script = ExtResource("4_g005p")
 z_index = 10
 
 [node name="TV" type="Sprite2D" parent="BackProps" unique_id=1232032568 groups=["doorway_flat"]]
-position = Vector2(787, 703)
-scale = Vector2(0.65, 0.647)
+position = Vector2(786.99994, 702.5)
+scale = Vector2(0.64257807, 0.64060915)
 texture = ExtResource("5_16llt")
 
 [node name="BeerCan1" type="Sprite2D" parent="BackProps" unique_id=714885831]
@@ -267,6 +267,7 @@ position = Vector2(4186, 1176)
 position = Vector2(1538, 429)
 color = Color(1, 0.8509804, 0.65882355, 1)
 texture = ExtResource("14_eokjc")
+texture_scale = 2.0
 script = ExtResource("15_mnsc7")
 lit_hours = Vector2(17, 23.5)
 
@@ -274,6 +275,7 @@ lit_hours = Vector2(17, 23.5)
 position = Vector2(2377, 277)
 color = Color(1, 0.8509804, 0.65882355, 1)
 texture = ExtResource("14_eokjc")
+texture_scale = 2.0
 script = ExtResource("15_mnsc7")
 lit_hours = Vector2(17, 23.5)
 
@@ -282,6 +284,7 @@ position = Vector2(806, 550)
 color = Color(0.51584375, 0.85105014, 0.6591482, 1)
 energy = 2.0
 texture = ExtResource("14_eokjc")
+texture_scale = 2.0
 script = ExtResource("15_mnsc7")
 on_energy = 1.8
 day_strength = 0.9
