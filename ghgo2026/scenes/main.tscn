@@ -42,7 +42,6 @@
 [ext_resource type="Script" uid="uid://dtre8wakq3t5o" path="res://scripts/interaction/hall_thermostat.gd" id="23_augu2"]
 [ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
 [ext_resource type="Resource" uid="uid://chr3tvgwur0og" path="res://data/schedules/leanne_stage2.tres" id="26_txyw0"]
-[ext_resource type="AudioStream" uid="uid://d1t3s735gwxy3" path="res://assets/audio/sfx/varied/consumed_motif.wav" id="27_1epgm"]
 [ext_resource type="Script" uid="uid://oonra37m55uk" path="res://scripts/ui/focus_ring.gd" id="27_pibwh"]
 [ext_resource type="Resource" uid="uid://ho2y34hkaur" path="res://data/schedules/david_stage2.tres" id="27_vc5cj"]
 [ext_resource type="Resource" uid="uid://dcg0fmjpspw6b" path="res://data/schedules/leanne_stage3.tres" id="28_nvyfr"]
@@ -566,7 +565,6 @@ lurk_seconds = Vector2(10, 20)
 lurk_vanish_distance = 2.0
 stare_seconds = 2.5
 guard_spot = NodePath("../RoomEntrances/EntranceEmilyBedroom")
-consume_sound = ExtResource("27_1epgm")
 
 [node name="CreatureSpots" type="Node" parent="Hall" unique_id=1621709190]
 
@@ -687,11 +685,11 @@ offset_bottom = -178.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_colors/font_outline_color = Color(0.31764707, 0.2509804, 0.23137255, 0.6)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.34901962)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_constants/outline_size = 10
+theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("37_dnhof")
 theme_override_fonts/bold_font = ExtResource("38_1v6qk")
 theme_override_fonts/bold_italics_font = ExtResource("38_1v6qk")

@@ -4,12 +4,7 @@ extends PowerTarget
 @export var works_at_stage: int = 2
 @export var trips_event: StringName = &"david_checks_breaker"
 @export var dead_seconds: float = 4.0
-@export var noticed_from: Array[StringName] = [
-	&"living_room",
-	&"kitchen",
-	&"hall",
-	&"thermostat"
-]
+@export var noticed_from: Array[StringName] = [&"thermostat"]
 
 @export_group("Sounds")
 @export var shock_sound: AudioStream

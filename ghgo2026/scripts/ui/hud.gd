@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 const SPEAKER_COLORS: Dictionary[String, Color] = {
-	"Leanne": Color("#FFB59A"),
-	"David": Color("#E8C872"),
-	"Emily": Color("#8FE3E3"),
+	"Leanne": Color("#948381"),
+	"David": Color("#979577"),
+	"Emily": Color("#70AFA3")
 }
 const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav")
 
