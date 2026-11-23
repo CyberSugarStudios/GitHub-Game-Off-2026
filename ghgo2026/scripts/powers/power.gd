@@ -8,3 +8,4 @@ extends Resource
 @export var requires_flag: StringName
 @export_multiline var description: String = ""
 @export var on_parents: bool = true
+@export var once_per_target: bool = false

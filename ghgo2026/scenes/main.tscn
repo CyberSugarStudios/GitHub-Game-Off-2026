@@ -533,7 +533,7 @@ font_size = 96
 outline_size = 0
 script = ExtResource("25_xrs0c")
 hint_stage = 4
-pulse_from_hint_level = 0
+pulse_from_hint_level = 1
 
 [node name="Sound" type="AudioStreamPlayer3D" parent="Hall/HallDecor/HallPainting" unique_id=565091145]
 
@@ -807,10 +807,6 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_pm3ni")
-dim_alpha = null
-row_size = null
-cost_bar_size = null
-cost_bar_gap = null
 
 [node name="StoryPrompt" type="Label" parent="UI" unique_id=418705579]
 anchors_preset = 8

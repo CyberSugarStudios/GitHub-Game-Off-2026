@@ -12,3 +12,13 @@ Emily: I understand. [#thought]
 ~ p5_accepted
 Emily: It's time to go. This house will never be the same, but we all have to move forward. [#thought]
 => END
+
+~ hug_leanne
+Emily: TEMP [#thought]
+Leanne: TEMP_REACTION
+=> END
+
+~ hug_david
+Emily: TEMP [#thought]
+David: TEMP_REACTION
+=> END

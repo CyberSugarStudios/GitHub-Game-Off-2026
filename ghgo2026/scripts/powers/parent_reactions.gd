@@ -3,6 +3,7 @@ extends Node
 
 const BARKS := preload("res://dialogue/barks.dialogue")
 const THOUGHTS := preload("res://dialogue/thoughts.dialogue")
+const HUGS := preload("res://dialogue/puzzle_5.dialogue")
 const THOUGHT_BED := preload("res://assets/audio/sfx/varied/thought_bed.wav")
 const THOUGHT_BED_DB := -8.0
 
@@ -47,6 +48,12 @@ func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
 			var destination: StringName = chill_destinations.get(parent_id, &"")
 			if destination != &"" and household:
 				household.send(parent_id, destination, chill_minutes)
+		&"hug":
+			var hug_cue := "hug_%s" % parent_id
+			if _has_cue(HUGS, hug_cue):
+				Events.conversation_requested.emit(HUGS, hug_cue, false)
+			else:
+				push_warning("ParentReactions: no hug written for %s" % parent_id)
 		_:
 			push_warning("ParentReactions: no reaction for power '%s'" % power_id)
 

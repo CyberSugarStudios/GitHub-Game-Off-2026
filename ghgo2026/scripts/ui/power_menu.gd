@@ -21,6 +21,9 @@ func _ready() -> void:
 	GameState.max_bars_changed.connect(
 		func(_bars: int) -> void:
 			_rebuild())
+	GameState.flag_set.connect(
+		func(_id: StringName) -> void:
+			_rebuild())
 	GameState.energy_changed.connect(
 		func(_e: float, _m: int) -> void:
 			_refresh())

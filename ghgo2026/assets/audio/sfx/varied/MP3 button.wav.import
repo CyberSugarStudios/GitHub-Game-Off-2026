@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://chj6b4h37oevw"
+path="res://.godot/imported/MP3 button.wav-22f0779f61e52ab4c86fc2b248a15907.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/varied/MP3 button.wav"
+dest_files=["res://.godot/imported/MP3 button.wav-22f0779f61e52ab4c86fc2b248a15907.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
