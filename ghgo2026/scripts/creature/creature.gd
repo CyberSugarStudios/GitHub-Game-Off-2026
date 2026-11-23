@@ -358,7 +358,7 @@ func _show_grab_overlay(on: bool) -> void:
 	_lean = 0.0
 	_punch = 0.0
 	_jolt = Vector2.ZERO
-	grab_sprite.modulate.a = 1.0
+	grab_sprite.modulate.a = 0.75
 	grab_sprite.offset = (Vector2(0.5, 0.5) - _look.grab_face) * texture.get_size()
 	_pose_grab()
 	grab_sprite.play(&"grab")

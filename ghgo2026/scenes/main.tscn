@@ -962,7 +962,7 @@ fade = NodePath("../RoomView/FadeLayer/Fade")
 wake_doorway = NodePath("../Hall/RoomEntrances/LivingRoomDoorway")
 garage_voice = NodePath("../Hall/RoomEntrances/GarageDoor/GarageVoice")
 living_room_voice = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/LivingRoomVoice")
-front_door_sound = NodePath("")
+front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSound")
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
 
 [node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player")]
