@@ -1,9 +1,14 @@
 class_name DiaryBook
 extends CanvasLayer
 
+const LOCKED_LINES := preload("res://dialogue/puzzle_4.dialogue")
+
 @export var pages: DiaryPages
 @export var open_event: StringName = &"open_diary"
 @export var finished_event: StringName = &"diary_finished"
+@export var unlocked_flag: StringName = &"diary_unlocked"
+@export var locked_cue: String = "p4_diary_locked"
+@export var unlock_pause: float = 0.6
 @export var turn_time: float = 0.3
 @export var turn_sound: AudioStream
 
@@ -14,6 +19,7 @@ extends CanvasLayer
 @onready var prev_button: Button = $Book/PrevButton
 @onready var next_button: Button = $Book/NextButton
 @onready var close_button: Button = $Book/CloseButton
+@onready var keypad: DiaryKeypad = $Keypad
 
 var _spread := 0
 var _reached_end := false
@@ -26,6 +32,8 @@ func _ready() -> void:
 	prev_button.pressed.connect(turn.bind(-1))
 	next_button.pressed.connect(turn.bind(1))
 	close_button.pressed.connect(close)
+	keypad.unlocked.connect(_on_keypad_unlocked)
+	keypad.close_requested.connect(close)
 	_sound = AudioStreamPlayer.new()
 	add_child(_sound)
 
@@ -36,20 +44,47 @@ func _on_story_event(id: StringName) -> void:
 func open() -> void:
 	if visible or pages == null or pages.pages.is_empty():
 		return
-	_spread = 0
 	visible = true
 	GameState.set_controls_locked(true)
+	if GameState.has_flag(unlocked_flag):
+		_show_book()
+	else:
+		book.visible = false
+		keypad.open()
+
+func _show_book() -> void:
+	_spread = 0
+	keypad.visible = false
+	book.visible = true
 	left_page.pivot_offset = Vector2(left_page.size.x, 0.0)
 	_show_spread()
+
+func _on_keypad_unlocked() -> void:
+	GameState.set_flag(unlocked_flag)
+	await get_tree().create_timer(unlock_pause).timeout
+	if not visible:
+		return
+	_show_book()
+	book.modulate.a = 0.0
+	create_tween().tween_property(book, "modulate:a", 1.0, turn_time)
 
 func close() -> void:
 	if not visible:
 		return
 	visible = false
+	keypad.visible = false
 	GameState.set_controls_locked(false)
-	if _reached_end and not GameState.has_flag(finished_event):
+	if not GameState.has_flag(unlocked_flag):
+		_say_locked()
+	elif _reached_end and not GameState.has_flag(finished_event):
 		GameState.set_flag(finished_event)
 		Events.story_event.emit(finished_event)
+
+func _say_locked() -> void:
+	if locked_cue == "" or GameState.has_flag(&"diary_lock_hinted"):
+		return
+	GameState.set_flag(&"diary_lock_hinted")
+	Events.conversation_requested.emit(LOCKED_LINES, locked_cue, false)
 
 func turn(step: int) -> void:
 	var next := clampi(_spread + step, 0, _last_spread())
@@ -95,6 +130,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause") or \
 	event.is_action_pressed("move_backward"):
 		close()
+	elif not book.visible:
+		return
 	elif event.is_action_pressed("ui_left") or event.is_action_pressed("move_left"):
 		turn(-1)
 	elif event.is_action_pressed("ui_right") or event.is_action_pressed("move_right"):

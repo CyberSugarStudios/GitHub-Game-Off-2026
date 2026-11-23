@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://du1k3jyafobg" path="res://scripts/ui/diary_book.gd" id="1_j6ua3"]
 [ext_resource type="Resource" uid="uid://b6vliqvwjabhv" path="res://data/diary.tres" id="2_inaej"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="3_h8b7n"]
+[ext_resource type="Script" uid="uid://bmb221d86q626" path="res://scripts/ui/diary_keypad.gd" id="4_5j4bp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inaej"]
 bg_color = Color(0.97814435, 0.97814435, 0.95093787, 1)
@@ -121,3 +122,11 @@ offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Close"
+
+[node name="Keypad" type="Control" parent="." unique_id=447371676]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_5j4bp")
+metadata/_custom_type_script = "uid://bmb221d86q626"

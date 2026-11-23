@@ -42,6 +42,7 @@ var story_stage := 0
 var monster_level := 0
 var _stage_started_at := 0
 var _hint_bonus := 0.0
+var hint_step := 0
 var shift_allowed := true
 var regen_paused := false
 var guarded_room: StringName = &""
@@ -98,6 +99,12 @@ func set_story_stage(stage: int) -> void:
 func restart_stage_timer() -> void:
 	_stage_started_at = GameClock.get_total_minutes()
 	_hint_bonus = 0.0
+	hint_step = 0
+
+func next_hint_step() -> void:
+	var step := hint_step + 1
+	restart_stage_timer()
+	hint_step = step
 
 func set_monster_level(level: int) -> void:
 	if monster_level == level:

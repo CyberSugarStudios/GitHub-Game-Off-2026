@@ -41,6 +41,8 @@
 [ext_resource type="Script" uid="uid://c4vxoy4gjw2cd" path="res://scripts/powers/parent_reactions.gd" id="22_jscy8"]
 [ext_resource type="Script" uid="uid://dtre8wakq3t5o" path="res://scripts/interaction/hall_thermostat.gd" id="23_augu2"]
 [ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
+[ext_resource type="FontFile" uid="uid://dea7h0fglpipj" path="res://assets/fonts/ReenieBeanie-Regular.ttf" id="25_xljpf"]
+[ext_resource type="Script" uid="uid://cpwfkinsrkigc" path="res://scripts/interaction/astral_writing.gd" id="25_xrs0c"]
 [ext_resource type="Resource" uid="uid://chr3tvgwur0og" path="res://data/schedules/leanne_stage2.tres" id="26_txyw0"]
 [ext_resource type="Script" uid="uid://oonra37m55uk" path="res://scripts/ui/focus_ring.gd" id="27_pibwh"]
 [ext_resource type="Resource" uid="uid://ho2y34hkaur" path="res://data/schedules/david_stage2.tres" id="27_vc5cj"]
@@ -520,6 +522,18 @@ shape = SubResource("BoxShape3D_2lwwf")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.735, 0.01, -5.26)
 mesh = SubResource("QuadMesh_2lwwf")
 surface_material_override/0 = ExtResource("4_y6deb")
+
+[node name="CodeClue" type="Label3D" parent="Hall/HallDecor/HallPainting/BrokenGlass" unique_id=1052557243]
+transform = Transform3D(-0.8660254, -0.50000006, 0, 0.50000006, -0.8660254, 0, 0, 0, 1, 0, 0, 0.0040283203)
+modulate = Color(0.4392157, 0.6862745, 0.6392157, 1)
+outline_modulate = Color(0.4392157, 0.6862745, 0.6392157, 1)
+text = "2611"
+font = ExtResource("25_xljpf")
+font_size = 96
+outline_size = 0
+script = ExtResource("25_xrs0c")
+hint_stage = 4
+pulse_from_hint_level = 0
 
 [node name="Sound" type="AudioStreamPlayer3D" parent="Hall/HallDecor/HallPainting" unique_id=565091145]
 
