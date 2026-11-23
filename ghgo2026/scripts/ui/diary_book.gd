@@ -10,7 +10,12 @@ const LOCKED_LINES := preload("res://dialogue/puzzle_4.dialogue")
 @export var locked_cue: String = "p4_diary_locked"
 @export var unlock_pause: float = 0.6
 @export var turn_time: float = 0.3
-@export var turn_sound: AudioStream
+@export var turn_sounds: Array[AudioStream] = [
+	preload("res://assets/audio/sfx/varied/paper_1.wav"),
+	preload("res://assets/audio/sfx/varied/paper_2.wav"),
+	preload("res://assets/audio/sfx/varied/paper_3.wav"),
+	preload("res://assets/audio/sfx/varied/paper_4.wav")
+]
 
 @onready var book: Control = $Book
 @onready var left_page: RichTextLabel = $Book/LeftPage
@@ -35,6 +40,7 @@ func _ready() -> void:
 	keypad.unlocked.connect(_on_keypad_unlocked)
 	keypad.close_requested.connect(close)
 	_sound = AudioStreamPlayer.new()
+	_sound.bus = &"SFX"
 	add_child(_sound)
 
 func _on_story_event(id: StringName) -> void:
@@ -91,7 +97,8 @@ func turn(step: int) -> void:
 	if next == _spread or _turning:
 		return
 	_turning = true
-	_play(turn_sound)
+	if not turn_sounds.is_empty():
+		_play(turn_sounds.pick_random())
 	var folding := right_page if step > 0 else left_page
 	var unfolding := left_page if step > 0 else  right_page
 	var tween := create_tween()
@@ -143,4 +150,5 @@ func _unhandled_input(event: InputEvent) -> void:
 func _play(stream: AudioStream) -> void:
 	if stream:
 		_sound.stream = stream
+		_sound.pitch_scale = randf_range(0.94, 1.06)
 		_sound.play()

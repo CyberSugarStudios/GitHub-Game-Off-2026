@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var open_event: StringName = &"listen_mp3"
 @export var restart_after: float = 3.0
 @export_range(0.0, 1.0) var start_volume: float = 0.8
+@export var button_sound: AudioStream = preload("res://assets/audio/sfx/varied/mp3_button.wav")
 
 @onready var audio: AudioStreamPlayer = $Audio
 @onready var title_label: Label = %TitleLabel
@@ -19,6 +20,7 @@ extends CanvasLayer
 
 var _index := 0
 var _started := false
+var _click: AudioStreamPlayer
 
 func _ready() -> void:
 	visible = false
@@ -35,8 +37,13 @@ func _ready() -> void:
 			audio.volume_linear = value
 	)
 	audio.finished.connect(_on_song_ended)
+	_click = AudioStreamPlayer.new()
+	_click.bus = &"SFX"
+	_click.stream = button_sound
+	add_child(_click)
 	for button in [back_button, play_button, skip_button, close_button]:
 		button.focus_mode = Control.FOCUS_NONE
+		button.pressed.connect(_click.play)
 	_show_track()
 
 func _on_story_event(id: StringName) -> void:

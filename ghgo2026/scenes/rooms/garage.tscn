@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_o0bpy"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_0yego"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="7_o0bpy"]
+[ext_resource type="AudioStream" uid="uid://cbp766hev1hwj" path="res://assets/audio/sfx/varied/box_fall.wav" id="9_lynjs"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
@@ -147,6 +148,7 @@ done_flag = &"keepsake_box_fell"
 art = NodePath("../../BackProps/KeepsakeBox")
 done_reveal = NodePath("../../BackProps/KeepsakeBoxSpilled")
 hint_stage = 2
+success_sound = ExtResource("9_lynjs")
 prompt_text = "Nudge"
 realm = 2
 

@@ -9,3 +9,4 @@ extends Resource
 @export_multiline var description: String = ""
 @export var on_parents: bool = true
 @export var once_per_target: bool = false
+@export var use_sound: AudioStream

@@ -14,6 +14,16 @@ extends Node
 @export_group("Followning")
 @export var follow_speed: float = 3.0
 
+@export_group("Door Sounds")
+@export var open_sounds: Array[AudioStream] = [
+	preload("res://assets/audio/sfx/varied/door_open_1.wav"),
+	preload("res://assets/audio/sfx/varied/door_open_2.wav")
+]
+@export var close_sounds: Array[AudioStream] = [
+	preload("res://assets/audio/sfx/varied/door_close_1.wav"),
+	preload("res://assets/audio/sfx/varied/door_close_2.wav")
+]
+
 @onready var room_layer: CanvasLayer = $RoomLayer
 @onready var room_ui: CanvasLayer = $RoomUI
 @onready var exit_button: Button = $RoomUI/ExitButton
@@ -23,6 +33,7 @@ extends Node
 @onready var pan_right_label: Label = $RoomUI/PanRightLabel
 
 var _room: Room = null
+var _door_sound: AudioStreamPlayer
 var _busy := false # guard against double-triggers
 var _room_width := 0.0
 var _max_pan := 0.0
@@ -43,6 +54,10 @@ var exit_locked := false:
 func _ready() -> void:
 	room_ui.visible = false
 	fade_rect.color.a = 0.0
+	_door_sound = AudioStreamPlayer.new()
+	_door_sound.bus = &"SFX"
+	add_child(_door_sound)
+	GameState.room_changed.connect(_on_room_changed)
 	Events.door_opened.connect(enter_room)
 	Events.room_door_opened.connect(change_room)
 	Events.room_pan_requested.connect(_on_pan_requested)
@@ -129,6 +144,18 @@ func exit_room() -> void:
 	
 	await _fade_to(0.0)
 	_busy = false
+
+func _on_room_changed(room_id: StringName) -> void:
+	if not _busy:
+		return
+	_play_door(open_sounds if room_id != &"" else close_sounds)
+
+func _play_door(sounds: Array[AudioStream]) -> void:
+	if sounds.is_empty():
+		return
+	_door_sound.stream = sounds.pick_random()
+	_door_sound.pitch_scale = randf_range(0.95, 1.05)
+	_door_sound.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _room and not _busy and not GameState.controls_locked and event.is_action_pressed("move_backward"): # S Key

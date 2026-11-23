@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="8_ubuay"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="9_jpf7g"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="9_lgaq2"]
+[ext_resource type="AudioStream" uid="uid://mx4vryx3viow" path="res://assets/audio/sfx/varied/pill_bottle.wav" id="10_crhs2"]
 [ext_resource type="Resource" uid="uid://dps2dkhdur8ec" path="res://dialogue/objects.dialogue" id="10_crvc2"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
@@ -109,6 +110,8 @@ caught_dialogue = ExtResource("9_lgaq2")
 caught_cue = "p3_leanne_catches_pills"
 art = NodePath("../../BackProps/PillBottle")
 hint_stage = 3
+success_sound = ExtResource("10_crhs2")
+near_miss_sound = ExtResource("10_crhs2")
 prompt_text = "Nudge"
 from_stage = 3
 

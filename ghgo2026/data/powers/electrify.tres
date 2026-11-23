@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Power" format=3 uid="uid://buwrmoqnjqs01"]
 
 [ext_resource type="Script" uid="uid://cv2x7jbb0ontl" path="res://scripts/powers/power.gd" id="1_14x0h"]
+[ext_resource type="AudioStream" uid="uid://wc5kxf3klxtv" path="res://assets/audio/sfx/varied/sparks.wav" id="2_cd63o"]
 
 [resource]
 script = ExtResource("1_14x0h")
@@ -10,4 +11,5 @@ energy_cost = 0.25
 required_bars = 2
 requires_flag = &"intro_done"
 on_parents = false
+use_sound = ExtResource("2_cd63o")
 metadata/_custom_type_script = "uid://cv2x7jbb0ontl"

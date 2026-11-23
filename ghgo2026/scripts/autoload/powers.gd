@@ -14,8 +14,12 @@ var all_powers: Array[Power] = [
 var target: StringName = &""
 var target_accepts: Array[StringName] = []
 var selected := 0
+var _sound: AudioStreamPlayer
 
 func _ready() -> void:
+	_sound = AudioStreamPlayer.new()
+	_sound.bus = &"SFX"
+	add_child(_sound)
 	GameState.room_changed.connect(
 		func(_room: StringName) -> void:
 			set_target(&""))
@@ -81,6 +85,9 @@ func use_selected() -> bool:
 		return false
 	if power.once_per_target:
 		GameState.set_flag(used_flag(power, target))
+	if power.use_sound:
+		_sound.stream = power.use_sound
+		_sound.play()
 	Events.power_used.emit(power.id, target)
 	if GameState.is_in_room():
 		set_target(&"")
