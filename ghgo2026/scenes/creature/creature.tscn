@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://btyhuyr7dhdke" path="res://assets/audio/sfx/footsteps/creature_steps.tres" id="3_mv8bj"]
 [ext_resource type="Script" uid="uid://bbexm6tsgulm0" path="res://scripts/creature/crature_voice.gd" id="3_odxpr"]
 [ext_resource type="Resource" uid="uid://ca20dahc55q1i" path="res://assets/sprites/Animations/creature/emily_look_1.tres" id="4_xrt5i"]
+[ext_resource type="AudioStream" uid="uid://d1t3s735gwxy3" path="res://assets/audio/sfx/varied/consumed_motif.wav" id="5_motif"]
 
 [node name="Creature" type="Node3D" unique_id=275844227]
 script = ExtResource("1_irgav")
@@ -14,6 +15,7 @@ looks = Dictionary[int, ExtResource("2_ewood")]({
 1: ExtResource("3_gbnpt"),
 3: ExtResource("4_xrt5i")
 })
+consume_sound = ExtResource("5_motif")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1113710896]
 modulate = Color(1, 1, 1, 0.75000006)

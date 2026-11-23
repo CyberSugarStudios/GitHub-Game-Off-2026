@@ -7,6 +7,7 @@ extends Node2D
 # hotspots		= z 40
 
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
+const PLACEHOLDER_SHADER := preload("res://shaders/placeholder_prop.gdshader")
 
 @export var room_id: StringName
 
@@ -26,6 +27,24 @@ var is_preview := false
 func _ready() -> void:
 	_night_tint = CanvasModulate.new()
 	add_child(_night_tint)
+	_soften_placeholders()
+
+func _soften_placeholders() -> void:
+	var prop_material := ShaderMaterial.new()
+	prop_material.shader = PLACEHOLDER_SHADER
+	for layer_name in ["BackProps", "FrontProps"]:
+		var layer := get_node_or_null(layer_name)
+		if layer == null:
+			continue
+		for node in layer.find_children("*", "Sprite2D", true, false):
+			var sprite := node as Sprite2D
+			if sprite.material == null and _is_placeholder(sprite.texture):
+				sprite.material = material
+
+static func _is_placeholder(texture: Texture2D) -> bool:
+	if texture is GradientTexture1D:
+		return true
+	return texture is CanvasTexture and (texture as CanvasTexture).diffuse_texture == null
 
 func _process(_delta: float) -> void:
 	if keep_dark:

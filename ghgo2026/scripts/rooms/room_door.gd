@@ -8,6 +8,7 @@ signal unlocked
 @export var leads_to: StringName
 @export_range(0, 5) var lock_bars: int = 0
 @export var transfer_rate: float = 6.25
+@export var open_on_unlock: bool = false
 
 @export_group("Lock Bar Look")
 @export var bar_size := Vector2(120, 60)
@@ -18,6 +19,7 @@ signal unlocked
 var lock: DoorLock
 var _bars: Array[PillBar] = []
 var _bar_rest_x := 0.0
+var _opening := false
 
 func _ready() -> void:
 	lock = DoorLock.new()
@@ -34,13 +36,15 @@ func _ready() -> void:
 		_build_bars()
 		if lock.is_locked():
 			_show_progress(0.0)
+		else:
+			bar_row.hide()
 
 func _process(_delta: float) -> void:
 	if bar_row:
 		bar_row.modulate.a = 1.0 if lock.is_showing_feedback() else DayNight.astral_amount
 
 func get_block_reason() -> String:
-	if lock.transferring:
+	if lock.transferring or _opening:
 		return "Unlocking..."
 	return super()
 
@@ -48,9 +52,13 @@ func _on_interacted() -> void:
 	if lock.is_locked():
 		lock.start()
 	else:
-		Events.story_event.emit(StringName("%s_opened" % door_id))
-		if leads_to != &"":
-			Events.room_door_opened.emit(leads_to)
+		_open()
+
+func _open() -> void:
+	_opening = false
+	Events.story_event.emit(StringName("%s_opened" % door_id))
+	if leads_to != &"":
+		Events.room_door_opened.emit(leads_to)
 
 func _build_bars() -> void:
 	for i in lock_bars:
@@ -65,6 +73,7 @@ func _show_progress(progress: float) -> void:
 
 func _on_unlocked() -> void:
 	unlocked.emit()
+	_opening = open_on_unlock
 	var tween := create_tween().set_parallel()
 	for i in _bars.size():
 		var bar_material := _bars[i].material as ShaderMaterial
@@ -77,6 +86,8 @@ func _on_unlocked() -> void:
 		tween.tween_method(set_flash, 1.0, 0.0, 0.4).set_delay(start + 0.12)
 		tween.tween_method(set_opacity, 1.0, 0.0, 0.5).set_delay(start + 0.12)
 	tween.chain().tween_callback(bar_row.hide)
+	if open_on_unlock:
+		tween.tween_callback(_open)
 
 func _play_fail_shake() -> void:
 	var tween := create_tween()

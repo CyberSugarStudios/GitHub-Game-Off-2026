@@ -534,6 +534,7 @@ func _wait_an_hour() -> void:
 	tween.tween_property(fade, "color:a", 1.0, wait_fade_time)
 	await tween.finished
 	_skip_hour()
+	GameState.refill_energy()
 	await wait(0.3)
 	tween = create_tween()
 	tween.tween_property(fade, "color:a", 0.0, wait_fade_time)
