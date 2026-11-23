@@ -2,6 +2,7 @@ extends Control
 
 #region - INIT
 const GAME_SCENE_PATH := "res://scenes/main.tscn"
+const MENU_MUSIC := preload("res://assets/audio/music/main_menu_music.mp3")
 #region - VARS
 @onready var version_number_label = $VersionNumberLabel
 
@@ -26,6 +27,7 @@ const GAME_SCENE_PATH := "res://scenes/main.tscn"
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Music.play(MENU_MUSIC)
 	new_game_button.pressed.connect(on_new_game_pressed)
 	
 	var app_version = ProjectSettings.get_setting("application/config/version")

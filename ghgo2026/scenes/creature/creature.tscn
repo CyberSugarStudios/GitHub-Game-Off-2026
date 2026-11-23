@@ -26,6 +26,7 @@ animation = &"chase_loop"
 unit_size = 3.0
 
 [node name="Stinger" type="AudioStreamPlayer" parent="." unique_id=317460124]
+bus = &"SFX"
 
 [node name="GrabOverlay" type="CanvasLayer" parent="." unique_id=1747399456]
 layer = 0

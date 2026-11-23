@@ -19,6 +19,7 @@ const PUZZLE_4 := preload("res://dialogue/puzzle_4.dialogue")
 const PUZZLE_5 := preload("res://dialogue/puzzle_5.dialogue")
 const CREDITS_SCENE := "res://scenes/ui/credits_roll.tscn"
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
+const BEER_CAN_SOUND := preload("res://assets/audio/sfx/varied/beer_can_open.wav")
 const INTRO_DONE := &"intro_done"
 const INTRO_FLAGS: Array[StringName] = [
 	&"garage_handle_tried",
@@ -113,9 +114,10 @@ const INTRO_FLAGS: Array[StringName] = [
 var _finished: Dictionary[String, bool] = {}
 var _waiting := false
 var _accept_progress := -1.0
-var _p3_drinks := 0
 var _p3_medicated := false
 var _p3_last_minute := -1
+var _p3_drinks := 0
+var _sfx: AudioStreamPlayer
 #endregion
 
 func _ready() -> void:
@@ -126,6 +128,9 @@ func _ready() -> void:
 	GameState.story_stage_changed.connect(_on_story_stage_changed)
 	GameState.parent_location_changed.connect(seen_parent_moved.emit)
 	Events.story_event.connect(_on_any_story_event)
+	_sfx = AudioStreamPlayer.new()
+	_sfx.bus = &"SFX"
+	add_child(_sfx)
 	if title_card:
 		title_card.modulate.a = 0.0
 
@@ -354,8 +359,18 @@ func _p3_drink_time() -> void:
 		if not GameState.has_flag(can):
 			GameState.set_flag(can)
 			_p3_drinks += 1
+			_play_beer_can()
 			return
 	say_in_background("p3_david_no_beer", PUZZLE_3)
+
+func _play_beer_can() -> void:
+	if GameState.controls_locked:
+		return
+	if GameState.is_in_room() and GameState.current_room != &"living_room":
+		return
+	_sfx.stream = BEER_CAN_SOUND
+	_sfx.volume_db = 0.0 if GameState.current_room == &"living_room" else -10.0
+	_sfx.play()
 
 func _p3_pill_time() -> void:
 	if household.expected_location(MOM) != &"parent_bedroom":

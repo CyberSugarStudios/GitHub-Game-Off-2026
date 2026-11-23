@@ -5,6 +5,7 @@ const SPEAKER_COLORS: Dictionary[String, Color] = {
 	"David": Color("#E8C872"),
 	"Emily": Color("#8FE3E3"),
 }
+const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav")
 
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
 @export var prompt_available_color := Color(1.0, 1.0, 1.0)
@@ -30,6 +31,8 @@ var _full_for := 0.0
 var _warmup := false
 var _prompt_rest := Vector2.ZERO
 var _shake_tween: Tween
+var _memory_player: AudioStreamPlayer
+var _known_bars := 0
 
 func _ready() -> void:
 	for child in spirit_bars_container.get_children():
@@ -39,6 +42,12 @@ func _ready() -> void:
 	_astral_material = astral_filter.material as ShaderMaterial
 	
 	GameState.energy_changed.connect(_on_energy_changed)
+	_known_bars = GameState.max_bars
+	_memory_player = AudioStreamPlayer.new()
+	_memory_player.stream = MEMORY_SOUND
+	_memory_player.bus = &"SFX"
+	add_child(_memory_player)
+	GameState.max_bars_changed.connect(_on_max_bars_changed)
 	GameState.plane_changed.connect(_on_plane_changed)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
 	Events.interaction_prompt_changed.connect(_on_interaction_prompt_changed)
@@ -77,6 +86,11 @@ func _on_energy_changed(energy: float, max_bars: int) -> void:
 	for i in _bars.size():
 		_bars[i].visible = i < max_bars
 		_bars[i].value = clampf(energy - i, 0.0, 1.0)
+
+func _on_max_bars_changed(max_bars: int) -> void:
+	if max_bars > _known_bars:
+		_memory_player.play()
+	_known_bars = max_bars
 
 #region - ASTRAL EFFECT
 func _on_plane_changed(in_astral: bool) -> void:

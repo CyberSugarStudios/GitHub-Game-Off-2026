@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 		_was_paused = paused
 		_set_muffled(paused)
 
-func play(stream: AudioStream, fade_time: float = DEFAULT_FADE) -> void:
+func play(stream: AudioStream, fade_time: float = DEFAULT_FADE, from_position: float = 0.0) -> void:
 	var current := _players[_active]
 	if current.stream == stream and current.playing:
 		return
@@ -45,7 +45,7 @@ func play(stream: AudioStream, fade_time: float = DEFAULT_FADE) -> void:
 	next.stop()
 	next.stream = stream
 	next.volume_linear = 0.0
-	next.play()
+	next.play(from_position)
 	
 	_fade_tween = create_tween().set_parallel()
 	_fade_tween.tween_property(next, "volume_linear", 1.0, fade_time)
@@ -89,3 +89,7 @@ func step_aside(on: bool, fade_time: float = 0.5) -> void:
 func _on_player_finished(player: AudioStreamPlayer) -> void:
 	if player == _players[_active]:
 		finished.emit()
+
+func current_position() -> float:
+	var current := _players[_active]
+	return current.get_playback_position() if current.playing else 0.0

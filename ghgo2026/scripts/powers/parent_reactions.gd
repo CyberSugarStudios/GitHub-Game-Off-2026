@@ -3,6 +3,8 @@ extends Node
 
 const BARKS := preload("res://dialogue/barks.dialogue")
 const THOUGHTS := preload("res://dialogue/thoughts.dialogue")
+const THOUGHT_BED := preload("res://assets/audio/sfx/varied/thought_bed.wav")
+const THOUGHT_BED_DB := -8.0
 
 @export var household: Household
 @export var chill_destinations: Dictionary[StringName, StringName] = {
@@ -12,8 +14,17 @@ const THOUGHTS := preload("res://dialogue/thoughts.dialogue")
 @export var chill_minutes: int = 15
 @export var conversation_player: ConversationPlayer
 
+var _bed: AudioStreamPlayer
+var _bed_title := ""
+var _bed_tween: Tween
+
 func _ready() -> void:
 	Events.power_used.connect(_on_power_used)
+	Events.conversation_finished.connect(_on_conversation_finished)
+	_bed = AudioStreamPlayer.new()
+	_bed.stream = THOUGHT_BED
+	_bed.bus = &"SFX"
+	add_child(_bed)
 	if household:
 		for parent in household.hall_parents:
 			parent.linger_started.connect(_on_linger_started)
@@ -28,6 +39,7 @@ func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
 				push_warning("ParentReactions: no thought written for %s" % parent_id)
 				return
 			Events.conversation_requested.emit(THOUGHTS, cue, false)
+			_start_bed(cue)
 		&"chill":
 			var bark := "%s_chilled" % parent_id
 			if _has_cue(BARKS, bark):
@@ -64,3 +76,22 @@ func _on_linger_started(parent_id: StringName, mark_id: StringName) -> void:
 
 func _has_cue(dialogue: DialogueResource, cue: String) -> bool:
 	return cue in dialogue.get_cues()
+
+func _start_bed(title: String) -> void:
+	_bed_title = title
+	if _bed_tween:
+		_bed_tween.kill()
+	_bed.volume_db = -40.0
+	_bed.play()
+	_bed_tween = create_tween()
+	_bed_tween.tween_property(_bed, "volume_db", THOUGHT_BED_DB, 0.4)
+
+func _on_conversation_finished(title: String) -> void:
+	if title != _bed_title or not _bed.playing:
+		return
+	_bed_title = ""
+	if _bed_tween:
+		_bed_tween.kill()
+	_bed_tween = create_tween()
+	_bed_tween.tween_property(_bed, "volume_db", -40.0, 0.8)
+	_bed_tween.tween_callback(_bed.stop)
