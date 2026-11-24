@@ -218,6 +218,7 @@ func _run_intro() -> void:
 	if front_door_sound:
 		await front_door_sound.open_and_close()
 	await wait(1.0)
+	GameState.set_parent_activity(MOM, &"arriving_home")
 	GameState.set_parent_location(MOM, &"living_room")
 	living_room_voice.visible = true
 	await say("intro_leanne_home")
