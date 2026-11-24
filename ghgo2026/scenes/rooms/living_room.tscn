@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
 [ext_resource type="Texture2D" uid="uid://ctllll4se2kij" path="res://assets/sprites/rooms/living_room/cutout_lamp_prop.webp" id="6_eqisx"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_g005p"]
+[ext_resource type="Texture2D" uid="uid://ejp62bnweus5" path="res://assets/sprites/rooms/living_room/cutout_boardgames_prop.webp" id="6_kh4kc"]
 [ext_resource type="Texture2D" uid="uid://b483p8hsp6p02" path="res://assets/sprites/rooms/living_room/cutout_side_table_prop.webp" id="6_v4v7e"]
 [ext_resource type="Texture2D" uid="uid://c8st7w68bw6s2" path="res://assets/sprites/rooms/living_room/cutout_lamp_prop_2.webp" id="7_2g6jb"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
@@ -64,6 +65,17 @@ position = Vector2(-361.04553, 476.88992)
 [node name="DoorwayRight" type="Marker2D" parent="BackProps/TV" unique_id=152939928]
 position = Vector2(519.7814, 241.17673)
 
+[node name="Boardgames" type="Sprite2D" parent="BackProps" unique_id=1975454704]
+position = Vector2(1228, 826)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_kh4kc")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Boardgames" unique_id=1892957006]
+position = Vector2(-470, 195)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/Boardgames" unique_id=804952893]
+position = Vector2(519.9999, 134.99997)
+
 [node name="LampLeft" type="Sprite2D" parent="BackProps" unique_id=1315043537]
 position = Vector2(1536.9999, 586)
 scale = Vector2(0.64257807, 0.64060915)
@@ -97,6 +109,24 @@ position = Vector2(-379.9998, 479.99988)
 [node name="DoorwayRight" type="Marker2D" parent="BackProps/SideTable" unique_id=1588696366]
 position = Vector2(226.66696, 446.66644)
 
+[node name="BeerCan1" type="Sprite2D" parent="BackProps/SideTable" unique_id=714885831]
+z_index = 1
+position = Vector2(-303.3335, -133.3335)
+scale = Vector2(0.8333333, 0.8333333)
+texture = ExtResource("7_b5xou")
+
+[node name="BeerCan2" type="Sprite2D" parent="BackProps/SideTable" unique_id=1156932208]
+z_index = 1
+position = Vector2(-10, -176.66699)
+scale = Vector2(0.8333333, 0.8333333)
+texture = ExtResource("7_b5xou")
+
+[node name="BeerCan3" type="Sprite2D" parent="BackProps/SideTable" unique_id=122941396]
+z_index = 1
+position = Vector2(303.3335, -133.3335)
+scale = Vector2(0.8333333, 0.8333333)
+texture = ExtResource("7_b5xou")
+
 [node name="Recliner" type="Sprite2D" parent="BackProps" unique_id=1811996666]
 position = Vector2(2853, 736)
 scale = Vector2(0.6, 0.6)
@@ -107,39 +137,6 @@ position = Vector2(-451.66644, 301.66663)
 
 [node name="DoorwayRight" type="Marker2D" parent="BackProps/Recliner" unique_id=747447626]
 position = Vector2(404.99988, 356.66663)
-
-[node name="BeerCan1" type="Sprite2D" parent="BackProps" unique_id=714885831]
-position = Vector2(2335, 750)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("7_b5xou")
-
-[node name="DoorwayLeft" type="Marker2D" parent="BackProps/BeerCan1" unique_id=2052430013]
-position = Vector2(-43.999634, 64.00003)
-
-[node name="DoorwayRight" type="Marker2D" parent="BackProps/BeerCan1" unique_id=185838125]
-position = Vector2(48.000122, 63.99997)
-
-[node name="BeerCan2" type="Sprite2D" parent="BackProps" unique_id=1156932208]
-position = Vector2(2423, 737)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("7_b5xou")
-
-[node name="DoorwayLeft" type="Marker2D" parent="BackProps/BeerCan2" unique_id=565800308]
-position = Vector2(-43.999634, 64.00003)
-
-[node name="DoorwayRight" type="Marker2D" parent="BackProps/BeerCan2" unique_id=1197796890]
-position = Vector2(48.000122, 63.99997)
-
-[node name="BeerCan3" type="Sprite2D" parent="BackProps" unique_id=122941396]
-position = Vector2(2517, 750)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("7_b5xou")
-
-[node name="DoorwayLeft" type="Marker2D" parent="BackProps/BeerCan3" unique_id=168759246]
-position = Vector2(-43.999634, 64.00003)
-
-[node name="DoorwayRight" type="Marker2D" parent="BackProps/BeerCan3" unique_id=1956936790]
-position = Vector2(48.000122, 63.99997)
 
 [node name="Couch" type="Sprite2D" parent="BackProps" unique_id=321414050]
 position = Vector2(3534, 966)
@@ -156,7 +153,6 @@ visible = false
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
-visible = false
 position = Vector2(1039, 1015)
 scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_e86kh")
@@ -280,7 +276,7 @@ done_flag = &"beer_can_1"
 guarded_by = Array[StringName]([&"david"])
 caught_dialogue = ExtResource("11_e86kh")
 caught_cue = "p3_david_catches_can"
-art = NodePath("../../BackProps/BeerCan1")
+art = NodePath("../../BackProps/SideTable/BeerCan1")
 hint_stage = 3
 success_sound = ExtResource("13_xsf0y")
 prompt_text = "Nudge"
@@ -295,7 +291,7 @@ done_flag = &"beer_can_2"
 guarded_by = Array[StringName]([&"david"])
 caught_dialogue = ExtResource("11_e86kh")
 caught_cue = "p3_david_catches_can"
-art = NodePath("../../BackProps/BeerCan2")
+art = NodePath("../../BackProps/SideTable/BeerCan2")
 hint_stage = 3
 success_sound = ExtResource("13_xsf0y")
 prompt_text = "Nudge"
@@ -310,7 +306,7 @@ done_flag = &"beer_can_3"
 guarded_by = Array[StringName]([&"david"])
 caught_dialogue = ExtResource("11_e86kh")
 caught_cue = "p3_david_catches_can"
-art = NodePath("../../BackProps/BeerCan3")
+art = NodePath("../../BackProps/SideTable/BeerCan3")
 hint_stage = 3
 success_sound = ExtResource("13_xsf0y")
 prompt_text = "Nudge"
@@ -329,22 +325,22 @@ metadata/_custom_type_script = "uid://26eyobriow6j"
 script = ExtResource("12_a5o1a")
 
 [node name="BackWallTopLeft" type="Marker2D" parent="RoomDepth" unique_id=1356782965]
-position = Vector2(768, 51)
+position = Vector2(768, 52)
 
 [node name="BackWallBottomRight" type="Marker2D" parent="RoomDepth" unique_id=1411946600]
-position = Vector2(3092, 849)
+position = Vector2(3095, 849)
 
 [node name="CeilingLeft" type="Marker2D" parent="RoomDepth" unique_id=1947222752]
-position = Vector2(-53, -49)
+position = Vector2(2, -42)
 
 [node name="CeilingRight" type="Marker2D" parent="RoomDepth" unique_id=2090409027]
-position = Vector2(4206, -45)
+position = Vector2(4090, -53)
 
 [node name="FloorLeft" type="Marker2D" parent="RoomDepth" unique_id=511612702]
-position = Vector2(-44, 1172)
+position = Vector2(-2, 1163)
 
 [node name="FloorRight" type="Marker2D" parent="RoomDepth" unique_id=1047169625]
-position = Vector2(4186, 1176)
+position = Vector2(4098, 1149)
 
 [node name="RoomLights" type="Node2D" parent="." unique_id=750706581]
 
@@ -378,6 +374,7 @@ tv_flicker = true
 power_target = &"tv"
 
 [node name="DoorLight" type="Polygon2D" parent="." unique_id=1829461519]
+visible = false
 z_index = 35
 position = Vector2(150, 555)
 polygon = PackedVector2Array(-148.89, -493.53, 144.305, -479.92, 140.74, 480.815, -151.93, 591.095)
