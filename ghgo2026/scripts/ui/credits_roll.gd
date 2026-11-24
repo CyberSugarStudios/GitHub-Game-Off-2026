@@ -90,6 +90,11 @@ func _back_to_title() -> void:
 	if _leaving:
 		return
 	_leaving = true
+	var black := ColorRect.new()
+	black.color = Color(0.0, 0.0, 0.0, 0.0)
+	black.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(black)
+	black.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	Music.stop(1.5)
-	await create_tween().tween_interval(1.5).finished
+	await create_tween().tween_property(black, "color:a", 1.0, 1.5).finished
 	get_tree().change_scene_to_file(TITLE_SCENE)
