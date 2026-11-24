@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://usymmxwfh1jd"
+path="res://.godot/imported/intro_mom_3.wav-d640c795f9646f56cc520e4d6a465abf.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/intro/intro_mom_3.wav"
+dest_files=["res://.godot/imported/intro_mom_3.wav-d640c795f9646f56cc520e4d6a465abf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

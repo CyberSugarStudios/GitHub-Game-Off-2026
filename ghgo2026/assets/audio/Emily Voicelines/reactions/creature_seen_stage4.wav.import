@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dir4ymfvpj8ps"
+path="res://.godot/imported/creature_seen_stage4.wav-6efb191991d321f4e753b3bf4197abf8.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/reactions/creature_seen_stage4.wav"
+dest_files=["res://.godot/imported/creature_seen_stage4.wav-6efb191991d321f4e753b3bf4197abf8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bowi1ynus2hg6"
+path="res://.godot/imported/near_miss_coffee_maker.wav-1cfddc92e2b59f927300bb9f5f75091e.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/reactions/near_miss_coffee_maker.wav"
+dest_files=["res://.godot/imported/near_miss_coffee_maker.wav-1cfddc92e2b59f927300bb9f5f75091e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

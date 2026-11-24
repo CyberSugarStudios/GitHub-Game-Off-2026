@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cj3puue2vmb1d"
+path="res://.godot/imported/gun_safe2.wav-c94d249f0e6913f4df5d52051128f3cc.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/objects/gun_safe2.wav"
+dest_files=["res://.godot/imported/gun_safe2.wav-c94d249f0e6913f4df5d52051128f3cc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

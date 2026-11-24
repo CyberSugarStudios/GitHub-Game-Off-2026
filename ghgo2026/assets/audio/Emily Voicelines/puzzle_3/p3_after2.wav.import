@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmu2au0arl3f8"
+path="res://.godot/imported/p3_after2.wav-e3acae5ddd73f0748d75ef5cb5b36b8d.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/puzzle_3/p3_after2.wav"
+dest_files=["res://.godot/imported/p3_after2.wav-e3acae5ddd73f0748d75ef5cb5b36b8d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

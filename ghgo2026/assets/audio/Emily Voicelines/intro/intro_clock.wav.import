@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jphgy8pj7vwj"
+path="res://.godot/imported/intro_clock.wav-37547915c13a5b24cfda32e6e45d119a.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/intro/intro_clock.wav"
+dest_files=["res://.godot/imported/intro_clock.wav-37547915c13a5b24cfda32e6e45d119a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

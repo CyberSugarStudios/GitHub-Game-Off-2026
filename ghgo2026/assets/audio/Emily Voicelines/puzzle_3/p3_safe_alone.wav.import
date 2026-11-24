@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dhym1505unsty"
+path="res://.godot/imported/p3_safe_alone.wav-09170b5cb9c72992e4d3590b246e34b9.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/puzzle_3/p3_safe_alone.wav"
+dest_files=["res://.godot/imported/p3_safe_alone.wav-09170b5cb9c72992e4d3590b246e34b9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

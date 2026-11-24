@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://blkp26fop0hif"
+path="res://.godot/imported/p5_accepted.wav-5e79e2c33caa0df8e96ac636eca04c83.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/puzzle_5/p5_accepted.wav"
+dest_files=["res://.godot/imported/p5_accepted.wav-5e79e2c33caa0df8e96ac636eca04c83.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

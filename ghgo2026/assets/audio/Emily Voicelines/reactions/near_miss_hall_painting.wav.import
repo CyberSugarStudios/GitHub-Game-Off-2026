@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dctw04j721ksd"
+path="res://.godot/imported/near_miss_hall_painting.wav-be755eb3f43b7d5ef7bcbc5054d15c3f.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/reactions/near_miss_hall_painting.wav"
+dest_files=["res://.godot/imported/near_miss_hall_painting.wav-be755eb3f43b7d5ef7bcbc5054d15c3f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

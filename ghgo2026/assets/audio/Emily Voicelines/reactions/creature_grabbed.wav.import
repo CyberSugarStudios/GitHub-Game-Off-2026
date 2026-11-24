@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bovi62cq1do"
+path="res://.godot/imported/creature_grabbed.wav-95ef249030be0224420631af0ce85a5b.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/reactions/creature_grabbed.wav"
+dest_files=["res://.godot/imported/creature_grabbed.wav-95ef249030be0224420631af0ce85a5b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

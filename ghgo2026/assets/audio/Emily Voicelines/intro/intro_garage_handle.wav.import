@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bsnkwpjrsvw2c"
+path="res://.godot/imported/intro_garage_handle.wav-62c5359e3c10210bbf1edc57790ebf52.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/intro/intro_garage_handle.wav"
+dest_files=["res://.godot/imported/intro_garage_handle.wav-62c5359e3c10210bbf1edc57790ebf52.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

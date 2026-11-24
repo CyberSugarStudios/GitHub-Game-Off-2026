@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://br1ueqxoj4xwe"
+path="res://.godot/imported/emily_stage1_hint2.wav-9ec063195a79f0169f037b24a5ed5e61.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/barks/emily_stage1_hint2.wav"
+dest_files=["res://.godot/imported/emily_stage1_hint2.wav-9ec063195a79f0169f037b24a5ed5e61.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmgx40k0o48x5"
+path="res://.godot/imported/p5_creature_seen2.wav-0d19e4ce30a87b1f7d0af8bc8d07c81e.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/puzzle_5/p5_creature_seen2.wav"
+dest_files=["res://.godot/imported/p5_creature_seen2.wav-0d19e4ce30a87b1f7d0af8bc8d07c81e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
