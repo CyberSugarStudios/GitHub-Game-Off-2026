@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://jl2fctw0xxhm"
+path="res://.godot/imported/white gummy.mp3-36d038a36a0fc283b6dba39f08aae4f4.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/white gummy.mp3"
+dest_files=["res://.godot/imported/white gummy.mp3-36d038a36a0fc283b6dba39f08aae4f4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
