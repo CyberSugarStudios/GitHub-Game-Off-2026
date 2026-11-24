@@ -97,13 +97,13 @@ Emily: My string lights. Or I could wait for morning. [#thought]
 => END
 
 ~ emily_stage4_step1_hint1
-Emily: TEMP - Vague clue [#thought]
+Emily: There must be a code around here somewhere... [#thought]
 => END
 
 ~ emily_stage4_step1_hint2
-Emily: TEMP - Moderate clue [#thought]
+Emily: I think I saw something useful in the hallway. [#thought]
 => END
 
 ~ emily_stage4_step1_hint3
-Emily: TEMP - Direct clue [#thought]
+Emily: Maybe I should look at the broken picture frame again. [#thought]
 => END

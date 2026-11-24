@@ -13,13 +13,13 @@ Emily: What a mess under the desk, it must have scared mom so much. [#thought]
 => END
 
 ~ p4_diary_locked
-Emily: TEMP_LINE [#thought]
+Emily: Damn, I can't remember the code. I bet there's useful information in here. [#thought]
 => END
 
 ~ p4_after
 Emily: It wasn't Mom. It wasn't Dad. It wasn't even an accident. [#thought]
 Emily: It was me. [#thought]
 Emily: ...I remember now. I... I'm so sorry. [#thought]
-Emily: TEMP_MENTION_HUG [#thought]
 Emily: I feel ready. Ready to move on. It's time for me to leave. [#thought]
+Emily: I should say bye to mom and dad. [#thought]
 => END

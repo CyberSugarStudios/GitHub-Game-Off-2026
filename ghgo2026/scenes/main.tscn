@@ -190,11 +190,11 @@ shader_parameter/wave_mix = 1.0
 shader_parameter/aberration_mix = 1.0
 shader_parameter/grain_mix = 1.0
 
-[sub_resource type="Resource" id="Resource_gcjdw"]
+[sub_resource type="Resource" id="Resource_kycw1"]
 script = ExtResource("42_dnhof")
-title = "Luna"
+title = "Anathema"
 artist = "Faye Ophelia"
-stream = ExtResource("49_xrs0c")
+stream = ExtResource("55_xaipn")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [sub_resource type="Resource" id="Resource_fxi2g"]
@@ -232,11 +232,11 @@ artist = "Joe Leytrick"
 stream = ExtResource("54_2s0kr")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
-[sub_resource type="Resource" id="Resource_kycw1"]
+[sub_resource type="Resource" id="Resource_gcjdw"]
 script = ExtResource("42_dnhof")
-title = "Anathema"
+title = "Luna"
 artist = "Faye Ophelia"
-stream = ExtResource("55_xaipn")
+stream = ExtResource("49_xrs0c")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [node name="Main" type="Node3D" unique_id=666068387]
@@ -264,14 +264,14 @@ astral_only_lights = [NodePath("../Hall/Lights/UnderTone"), NodePath("../Hall/Li
 
 [node name="Hall" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
-[node name="hall" parent="Hall" index="0" unique_id=137619233]
+[node name="hall" parent="Hall" index="0" unique_id=1690432032]
 transform = Transform3D(1, 0, 0, 0, 1.0365604, 0, 0, 0, 1, 0, -0.053405765, 0)
 material_override = ExtResource("4_y6deb")
 
-[node name="hallCeiling" parent="Hall" index="1" unique_id=1270299963]
+[node name="hallCeiling" parent="Hall" index="1" unique_id=1230881077]
 surface_material_override/0 = SubResource("StandardMaterial3D_c6pm6")
 
-[node name="hallFloor" parent="Hall" index="2" unique_id=1360151445]
+[node name="hallFloor" parent="Hall" index="2" unique_id=2039490390]
 surface_material_override/0 = SubResource("StandardMaterial3D_gcjdw")
 
 [node name="Lights" type="Node" parent="Hall" unique_id=1715504205]
@@ -835,7 +835,7 @@ visible = false
 
 [node name="MP3Player" parent="." unique_id=548456274 instance=ExtResource("41_0loja")]
 layer = 10
-tracks = Array[ExtResource("42_dnhof")]([SubResource("Resource_gcjdw"), SubResource("Resource_fxi2g"), SubResource("Resource_l8cm0"), SubResource("Resource_4mwkl"), SubResource("Resource_v0bc0"), SubResource("Resource_6fmp2"), SubResource("Resource_kycw1")])
+tracks = Array[ExtResource("42_dnhof")]([SubResource("Resource_kycw1"), SubResource("Resource_fxi2g"), SubResource("Resource_l8cm0"), SubResource("Resource_4mwkl"), SubResource("Resource_v0bc0"), SubResource("Resource_6fmp2"), SubResource("Resource_gcjdw")])
 
 [node name="RoomView" type="Node" parent="." unique_id=1658057070]
 script = ExtResource("10_choun")
