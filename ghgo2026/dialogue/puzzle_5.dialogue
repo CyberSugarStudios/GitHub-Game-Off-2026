@@ -14,11 +14,12 @@ Emily: It's time to go. This house will never be the same, but we all have to mo
 => END
 
 ~ hug_leanne
-Emily: TEMP [#thought]
-Leanne: TEMP_REACTION
+Emily: I can't leave without telling her that it's okay. It's not her fault. [#thought]
+Leanne: Emily? E-Emily?
+Leanne: That was strange. I feel... warm. Maybe everything's gonna be okay. [#thought]
 => END
 
 ~ hug_david
-Emily: TEMP [#thought]
-David: TEMP_REACTION
+Emily: Dad's hurting so much... I need to let him know that everything's going to be okay. [#thought]
+David: It's warm again... but good warm. I, uh... I think I'm gonna go to an AA meeting tonight. I... I want to be better. [#thought]
 => END
