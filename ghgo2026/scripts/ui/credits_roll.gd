@@ -6,7 +6,7 @@ signal finished
 
 const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 
-@export var scroll_speed: float = 70.0
+@export var scroll_speed: float = 60.0
 @export var music: AudioStream
 @export var music_fade: float = 8.0
 @export var prompt_delay: float = 3.0

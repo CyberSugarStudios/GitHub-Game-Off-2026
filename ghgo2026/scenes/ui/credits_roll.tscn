@@ -44,35 +44,39 @@ offset_right = 1600.0
 offset_bottom = 1888.0
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][font=res://assets/fonts/Allura-Regular.ttf][font_size=240]Interim[/font_size][/font]
+text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regular.ttf][font_size=440]Interim[/font_size][/font][/color]
 [font_size=28][b]Made for the GitHub Game Off 2026[/b][/font_size]
 
 
-[font=res://assets/fonts/Allura-Regular.ttf][font_size=80]Team[/font_size][/font]
-[font_size=28][b]Jordon Call[/b] — Lead Developer and Systems Designer
-[b]Charlie Vaughn[/b] — Creative Director
-[b]Phrenix[/b] — Art Director and Animator
-[b]Sunny Bee[/b] — Character Artist
-[b]KatyaArt132[/b] — Cinematics Artist
-[b]Lee Campos[/b] — Background Artist
-[b]Rhys Cassidy[/b] — Composer
-[b]Jura[/b] — Folley Artist
-[b]Robert Burchette[/b] — Communications Moderator[/font_size]
+
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Team[/color][/font_size][/font]
+[font_size=30][center][table=2][cell padding=0,0,24,0][left][b]Jordon Call[/b][/left][/cell][cell][left]Lead Developer & Systems Designer[/left][/cell]
+[cell padding=0,0,24,0][left][b]Charlie Vaughn[/b][/left][/cell][cell][left]Creative Director[/left][/cell]
+[cell padding=0,0,24,0][left][b]Phrenix[/b][/left][/cell][cell][left]Art Director and Animator[/left][/cell]
+[cell padding=0,0,24,0][left][b]Sunny Bee[/b][/left][/cell][cell][left]Character Artist[/left][/cell]
+[cell padding=0,0,24,0][left][b]KatyaArt132[/b][/left][/cell][cell][left]Cinematics Artist[/left][/cell]
+[cell padding=0,0,24,0][left][b]Lee Campos[/b][/left][/cell][cell][left]Background Artist[/left][/cell]
+[cell padding=0,0,24,0][left][b]Rhys Cassidy[/b][/left][/cell][cell][left]Composer[/left][/cell]
+[cell padding=0,0,24,0][left][b]Jura[/b][/left][/cell][cell][left]Foley Artist[/left][/cell]
+[cell padding=0,0,24,0][left][b]Robert Burchette[/b][/left][/cell][cell][left]Communications & Playtest Coordinator[/left][/cell][/table][/center][/font_size]
 
 
-[font=res://assets/fonts/Allura-Regular.ttf][font_size=80]Voice Actors[/font_size][/font]
-[font_size=28][b]Sunny Bee[/b] as Emily Dunn
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Voice Actors[/color][/font_size][/font]
+
+[font_size=30][b]Sunny Bee[/b] as Emily Dunn
 [b]Ry Hillemeyer[/b] as David Dunn
 [b]Bella Hillemeyer[/b] as Leanne Dunn
 
 
-[font=res://assets/fonts/Allura-Regular.ttf][font_size=80]Playtesters[/font_size][/font]
-[font_size=28]Catherine Garrett
-MrDragorian
-Robert Burchette[/font_size]
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Playtesters[/color][/font_size][/font]
+
+[font_size=30][b]Catherine Garrett[/b]
+[b]MrDragorian[/b]
+[b]Robert Burchette[/b][/font_size]
 
 
-[font=res://assets/fonts/Allura-Regular.ttf][font_size=80]Featured Music[/font_size][/font]
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Featured Music[/color][/font_size][/font]
+
 [font_size=30][b]Faye Ophelia[/b]
 \"Luna\" · \"Card Towers\" · \"Swallowtail\" · \"Anathema\"[/font_size]
 [font_size=20][i]Used with the artist's permission.[/i][/font_size]
@@ -86,10 +90,14 @@ Robert Burchette[/font_size]
 [font_size=20][i]Used under license from the artist.[/i][/font_size]
 
 
-[font=res://assets/fonts/Allura-Regular.ttf][font_size=80]Built With[/font_size][/font]
-[font_size=24]Godot Engine — godotengine.org/license
-Dialogue Manager by Nathan Hoad (MIT License)
-Allura, Caveat, Josefin Sans, and ReenieBeanie — SIL Open Font License[/font_size]"
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Built With[/color][/font_size][/font]
+[font_size=24][center][table=2][cell padding=0,10,24,10][left][b]Godot Engine[/b][/left][/cell][cell padding=0,10,0,10][left]godotengine.org/license[/left][/cell]
+[cell padding=0,10,24,10][left][b]Dialogue Manager[/b][/left][/cell][cell padding=0,10,0,10][left]by Nathan Hoad (MIT License)[/left][/cell]
+[cell padding=0,10,24,10][left][b]Allura, Caveat, Josefin[/b]
+[b]Sans, & ReenieBeanie[/b][/left][/cell][cell padding=0,10,0,10][left]SIL Open Font License[/left][/cell]
+[/table]
+[/center]
+[/font_size]"
 fit_content = true
 horizontal_alignment = 1
 
@@ -101,23 +109,26 @@ offset_right = 1600.0
 offset_bottom = 3640.0
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][font_size=30][b][i]If this story touched something in you...[/i][/b]
+text = "[color=cccdc4][center][font_size=30][b][i]If this story touched something in you...[/i][/b]
 
 Emily's story is fiction, but the feelings in it are real for a lot of people.
 If you are thinking about suicide, or you are worried about someone, please reach out.
 You are not a burden, and you are not alone.
 
-United States — call or text 988, or text HOME or HOLA to 741741
-Canada — call or text 988
-UK & Ireland — call Samaritans, 116-123
-Australia — call Lifeline at 13-11-14, text 0477-13-11-14, or visit lifeline.org.au
-Anywhere else — findahelpline.com
-
+[center]
+[table=2]
+[cell padding=0,0,24,0][left][b]United States[/b][/left][/cell][cell][left]Call or text 988, or text HOME or HOLA to 741741[/left][/cell]
+[cell padding=0,0,24,0][left][b]Canada[/b][/left][/cell][cell][left]Call or text 988[/left][/cell]
+[cell padding=0,0,24,0][left][b]UK & Ireland[/b][/left][/cell][cell][left]Call Samaritans, 116-123[/left][/cell]
+[cell padding=0,0,24,0][left][b]Australia[/b][/left][/cell][cell][left]Call Lifeline at 13-11-14, text 0477-13-11-14, or visit lifeline.org.au[/left][/cell]
+[cell padding=0,0,24,0][left][b]Anywhere else[/b][/left][/cell][cell][left]Findahelpline.com[/left][/cell]
+[/table]
+[/center]
 If you are in immediate danger, call your local emergency number.
 If there is a gun in your home, storing it locked, unloaded, and apart from ammunition saves lives.
 [/font_size]
 
-[font_size=20][b][i]Thank you for playing our game[/i].[/b][/font_size]"
+[font_size=30][b][i]Thank you for playing our game[/i].[/b][/font_size][/center]"
 fit_content = true
 horizontal_alignment = 1
 
