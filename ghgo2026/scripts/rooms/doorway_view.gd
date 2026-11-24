@@ -10,6 +10,7 @@ const PLANE_RIGHT := "DoorwayRight"
 const LAYER_SHARED := 1
 const LAYER_PROPS := 2
 const LAYER_WALLS := 4
+const LAYER_LIGHT := 8
 const PROP_LAYERS: Array[String] = ["BackProps", "Actors", "FrontProps"]
 const FLAT_GROUP := &"doorway_flat"
 const BASE_MARKER := "DoorwayBase"
@@ -39,6 +40,7 @@ const WALL_ART: Array[String] = ["Background", "AstralBackground"]
 var _room: Room
 var _material: ShaderMaterial
 var _props_viewport: SubViewport
+var _light_viewport: SubViewport
 var _card_mesh: QuadMesh
 var _cards: Dictionary[CanvasItem, MeshInstance3D] = {}
 var _planes: Dictionary[CanvasItem, MeshInstance3D] = {}
@@ -79,6 +81,7 @@ func _process(_delta: float) -> void:
 	var mode := SubViewport.UPDATE_ALWAYS if active else SubViewport.UPDATE_DISABLED
 	viewport.render_target_update_mode = mode
 	_props_viewport.render_target_update_mode = mode
+	_light_viewport.render_target_update_mode = mode
 	if active:
 		_update_cards(to_local(camera_3d.global_position))
 
@@ -122,6 +125,21 @@ func _split_layers(view_scale: float) -> void:
 	add_child(_props_viewport)
 	_props_viewport.canvas_transform = Transform2D.IDENTITY.scaled(Vector2(view_scale, view_scale))
 
+	var light_sheet := ColorRect.new()
+	light_sheet.color = Color.WHITE
+	light_sheet.size = _room_size
+	light_sheet.z_index = -4096
+	light_sheet.visibility_layer = LAYER_LIGHT
+	light_sheet.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_room.add_child(light_sheet)
+	_light_viewport = SubViewport.new()
+	_light_viewport.world_2d = viewport.world_2d
+	_light_viewport.disable_3d = true
+	_light_viewport.size = viewport.size
+	_light_viewport.canvas_cull_mask = LAYER_SHARED | LAYER_LIGHT
+	add_child(_light_viewport)
+	_light_viewport.canvas_transform = Transform2D.IDENTITY.scaled(Vector2(view_scale, view_scale))
+
 func _build_window() -> void:
 	var quad := QuadMesh.new()
 	quad.size = opening_size
@@ -154,8 +172,9 @@ func _build_cards() -> void:
 				continue
 			var left := art.get_node_or_null(PLANE_LEFT) as Node2D
 			var right := art.get_node_or_null(PLANE_RIGHT) as Node2D
-			if left and right:
-				_planes[art] = _make_plane(art, left.global_position, right.global_position)
+			if left and right and art is Sprite2D:
+				for item in [art] + art.find_children("*", "Sprite2D", false, false):
+					_planes[item] = _make_plane(item, left.global_position, right.global_position)
 			else:
 				_cards[art] = _make_card()
 	for art in _cards:
@@ -199,40 +218,63 @@ func _make_card() -> MeshInstance3D:
 	add_child(card)
 	return card
 
-func _make_plane(art: CanvasItem, left: Vector2, right: Vector2) -> MeshInstance3D:
+func _make_plane(art: Sprite2D, left: Vector2, right: Vector2) -> MeshInstance3D:
 	var rect := _rect_of(art)
 	var left_v := RoomDepth.apply_map(_floor_unmap, left).y
 	var right_v := RoomDepth.apply_map(_floor_unmap, right).y
-	var height := maxf(
-		(left.y - rect.position.y) / _px_per_meter_at(left_v),
-		(right.y - rect.position.y) / _px_per_meter_at(right_v))
-	var left_top := left - Vector2(0.0, height * _px_per_meter_at(left_v))
-	var right_top := right - Vector2(0.0, height * _px_per_meter_at(right_v))
+	var height := maxf(_rise(left, left_v, rect.position.y), _rise(right, right_v, rect.position.y))
+	var plane_map := _plane_map(left, right, left_v, right_v, height)
+	var s_from := minf(0.0, _plane_s(plane_map, rect.position.x))
+	var s_to := maxf(1.0, _plane_s(plane_map, rect.end.x))
+	for s in [s_from, s_to]:
+		var foot := _plane_floor(plane_map, s)
+		height = maxf(height, _rise(foot, RoomDepth.apply_map(_floor_unmap, foot).y, rect.position.y))
+	plane_map = _plane_map(left, right, left_v, right_v, height)
 	var to_uv := Basis.from_scale(Vector3(1.0 / _room_size.x, 1.0 / _room_size.y, 1.0))
 	var plane_material := ShaderMaterial.new()
 	plane_material.shader = PLANE_SHADER
-	plane_material.set_shader_parameter("props_view", _props_viewport.get_texture())
+	plane_material.set_shader_parameter("art_texture", art.texture)
+	plane_material.set_shader_parameter("light_view", _light_viewport.get_texture())
 	plane_material.set_shader_parameter("to_room", global_transform.affine_inverse())
 	plane_material.set_shader_parameter("region", _to_uv(rect))
-	plane_material.set_shader_parameter("plane_map",
-		to_uv * RoomDepth.quad_map(PackedVector2Array([left_top, right_top, right, left])))
+	plane_material.set_shader_parameter("plane_map", to_uv * plane_map)
+	var a := _floor_point(left)
+	var b := _floor_point(right)
 	var plane := MeshInstance3D.new()
-	plane.mesh = _plane_mesh(_floor_point(left), _floor_point(right), height)
+	plane.mesh = _plane_mesh(a.lerp(b, s_from), a.lerp(b, s_to), height, s_from, s_to)
 	plane.material_override = plane_material
 	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(plane)
 	return plane
 
+func _rise(foot: Vector2, v: float, top: float) -> float:
+	return (foot.y - top) / _px_per_meter_at(v)
+
+func _plane_map(left: Vector2, right: Vector2, left_v: float, right_v: float, height: float) -> Basis:
+	var left_top := left - Vector2(0.0, height * _px_per_meter_at(left_v))
+	var right_top := right - Vector2(0.0, height * _px_per_meter_at(right_v))
+	return RoomDepth.quad_map(PackedVector2Array([left_top, right_top, right, left]))
+
+func _plane_floor(plane_map: Basis, s: float) -> Vector2:
+	return RoomDepth.apply_map(plane_map, Vector2(s, 1.0))
+
+static func _plane_s(plane_map: Basis, x: float) -> float:
+	var c0 := plane_map.x
+	var c1 := plane_map.y
+	var c2 := plane_map.z
+	return (c1.x + c2.x - x * (c1.z + c2.z)) / (x * c0.z - c0.x)
+
 func _floor_point(point: Vector2) -> Vector3:
 	var uv := RoomDepth.apply_map(_floor_unmap, point)
 	return Vector3((uv.x - 0.5) * _box.x, 0.0, (uv.y - 1.0) * _box.z)
 
-static func _plane_mesh(left: Vector3, right: Vector3, height: float) -> ArrayMesh:
+static func _plane_mesh(left: Vector3, right: Vector3, height: float, s_from: float, s_to: float) -> ArrayMesh:
 	var up := Vector3.UP * height
 	var arrays := []
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = PackedVector3Array([left + up, right + up, right, left])
-	arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array([Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 1)])
+	arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array([
+		Vector2(s_from, 0), Vector2(s_to, 0), Vector2(s_to, 1), Vector2(s_from, 1)])
 	arrays[Mesh.ARRAY_INDEX] = PackedInt32Array([0, 1, 2, 0, 2, 3])
 	var mesh := ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
@@ -240,7 +282,11 @@ static func _plane_mesh(left: Vector3, right: Vector3, height: float) -> ArrayMe
 
 func _update_cards(camera: Vector3) -> void:
 	for art in _planes:
-		_planes[art].visible = art.is_visible_in_tree()
+		var plane := _planes[art]
+		plane.visible = art.is_visible_in_tree()
+		if plane.visible:
+			(plane.material_override as ShaderMaterial) \
+				.set_shader_parameter("tint", art.modulate * art.self_modulate)
 	for art in _cards:
 		var card := _cards[art]
 		card.visible = art.is_visible_in_tree()
