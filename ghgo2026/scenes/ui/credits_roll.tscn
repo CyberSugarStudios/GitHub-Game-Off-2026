@@ -50,15 +50,15 @@ text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regu
 
 
 [font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Team[/color][/font_size][/font]
-[font_size=30][center][table=2][cell padding=0,0,24,0][left][b]Jordon Call[/b][/left][/cell][cell][left]Lead Developer & Systems Designer[/left][/cell]
-[cell padding=0,0,24,0][left][b]Charlie Vaughn[/b][/left][/cell][cell][left]Creative Director[/left][/cell]
-[cell padding=0,0,24,0][left][b]Phrenix[/b][/left][/cell][cell][left]Art Director and Animator[/left][/cell]
-[cell padding=0,0,24,0][left][b]Sunny Bee[/b][/left][/cell][cell][left]Character Artist[/left][/cell]
-[cell padding=0,0,24,0][left][b]KatyaArt132[/b][/left][/cell][cell][left]Cinematics Artist[/left][/cell]
-[cell padding=0,0,24,0][left][b]Lee Campos[/b][/left][/cell][cell][left]Background Artist[/left][/cell]
-[cell padding=0,0,24,0][left][b]Rhys Cassidy[/b][/left][/cell][cell][left]Composer[/left][/cell]
-[cell padding=0,0,24,0][left][b]Jura[/b][/left][/cell][cell][left]Foley Artist[/left][/cell]
-[cell padding=0,0,24,0][left][b]Robert Burchette[/b][/left][/cell][cell][left]Communications & Playtest Coordinator[/left][/cell][/table][/center][/font_size]
+[font_size=30][center][table=2][cell padding=0,0,24,0][right][b]Jordon Call[/b][/right][/cell][cell][left]Lead Developer & Systems Designer[/left][/cell]
+[cell padding=0,0,24,0][right][b]Charlie Vaughn[/b][/right][/cell][cell][left]Creative Director[/left][/cell]
+[cell padding=0,0,24,0][right][b]Phrenix[/b][/right][/cell][cell][left]Art Director & Animator[/left][/cell]
+[cell padding=0,0,24,0][right][b]Sunny Bee[/b][/right][/cell][cell][left]Character Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]KatyaArt132[/b][/right][/cell][cell][left]Cinematics Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Lee Campos[/b][/right][/cell][cell][left]Background Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Rhys Cassidy[/b][/right][/cell][cell][left]Composer[/left][/cell]
+[cell padding=0,0,24,0][right][b]Jura[/b][/right][/cell][cell][left]Foley Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Robert Burchette[/b][/right][/cell][cell][left]Communications & Playtest Coordinator[/left][/cell][/table][/center][/font_size]
 
 
 [font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Voice Actors[/color][/font_size][/font]
@@ -104,9 +104,10 @@ horizontal_alignment = 1
 [node name="HelpText" type="RichTextLabel" parent="." unique_id=457808753]
 unique_name_in_owner = true
 layout_mode = 0
-offset_top = 2960.0
-offset_right = 1600.0
-offset_bottom = 3640.0
+offset_left = 2.0
+offset_top = 3555.0
+offset_right = 1602.0
+offset_bottom = 4235.0
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[color=cccdc4][center][font_size=30][b][i]If this story touched something in you...[/i][/b]
