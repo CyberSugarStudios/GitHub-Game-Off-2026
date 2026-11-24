@@ -15,6 +15,8 @@ uniform float corner_width = 0.4;
 uniform float ceiling_shade : hint_range(0.0, 1.0) = 0.5;
 uniform float edge_shadow : hint_range(0.0, 1.0) = 0.55;
 uniform float edge_width : hint_range(0.0, 0.5) = 0.18;
+uniform float past_walls = 1.0;
+uniform float past_floor = 20.0;
 
 varying vec3 pos;
 varying vec3 eye;
@@ -65,7 +67,8 @@ void fragment() {
 	color *= mix(1.0 - edge_shadow, 1.0, sides * top);
 	ALBEDO = color;
 
-	vec4 clip = PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * vec4(hit - vec3(0.0, floor_offset, 0.0), 1.0);
+	float past = (t == exits.y && ray.y < 0.0) ? past_floor : past_walls;
+	vec4 clip = PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * vec4(hit + ray * past - vec3(0.0, floor_offset, 0.0), 1.0);
 	float ndc = clip.z / clip.w;
 #if CURRENT_RENDERER == RENDERER_COMPATIBILITY
 	DEPTH = ndc * 0.5 + 0.5;

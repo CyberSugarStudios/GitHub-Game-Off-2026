@@ -6,11 +6,13 @@ const CARD_SHADER := preload("res://shaders/doorway_card.gdshader")
 const PLANE_SHADER := preload("res://shaders/doorway_plane.gdshader")
 const PLANE_LEFT := "DoorwayLeft"
 const PLANE_RIGHT := "DoorwayRight"
+const PLANE_MOVE := "DoorwayMove"
 
 const LAYER_SHARED := 1
 const LAYER_PROPS := 2
 const LAYER_WALLS := 4
 const LAYER_LIGHT := 8
+const LAYER_ACTORS := 16
 const PROP_LAYERS: Array[String] = ["BackProps", "Actors", "FrontProps"]
 const FLAT_GROUP := &"doorway_flat"
 const BASE_MARKER := "DoorwayBase"
@@ -29,6 +31,8 @@ const WALL_ART: Array[String] = ["Background", "AstralBackground"]
 
 @export_group("Props")
 @export var min_card_depth: float = 0.15
+@export var props_past_walls: float = 1.0
+@export var props_past_floor: float = 20.0
 
 @export_group("Performance")
 @export var render_distance: float = 12.0
@@ -40,6 +44,7 @@ const WALL_ART: Array[String] = ["Background", "AstralBackground"]
 var _room: Room
 var _material: ShaderMaterial
 var _props_viewport: SubViewport
+var _actors_viewport: SubViewport
 var _light_viewport: SubViewport
 var _card_mesh: QuadMesh
 var _cards: Dictionary[CanvasItem, MeshInstance3D] = {}
@@ -81,6 +86,7 @@ func _process(_delta: float) -> void:
 	var mode := SubViewport.UPDATE_ALWAYS if active else SubViewport.UPDATE_DISABLED
 	viewport.render_target_update_mode = mode
 	_props_viewport.render_target_update_mode = mode
+	_actors_viewport.render_target_update_mode = mode
 	_light_viewport.render_target_update_mode = mode
 	if active:
 		_update_cards(to_local(camera_3d.global_position))
@@ -110,20 +116,15 @@ func _split_layers(view_scale: float) -> void:
 		var layer := _room.get_node_or_null(node_name) as CanvasItem
 		if layer == null:
 			continue
-		layer.visibility_layer = LAYER_PROPS | LAYER_WALLS
+		var own_layer := LAYER_ACTORS if node_name == "Actors" else LAYER_PROPS
+		layer.visibility_layer = own_layer | LAYER_WALLS
 		for child in layer.get_children():
 			if child is CanvasItem:
-				(child as CanvasItem).visibility_layer = LAYER_WALLS if _is_flat(child) else LAYER_PROPS
+				(child as CanvasItem).visibility_layer = LAYER_WALLS if _is_flat(child) else own_layer
 	viewport.canvas_cull_mask = LAYER_SHARED | LAYER_WALLS
 
-	_props_viewport = SubViewport.new()
-	_props_viewport.world_2d = viewport.world_2d
-	_props_viewport.transparent_bg = true
-	_props_viewport.disable_3d = true
-	_props_viewport.size = viewport.size
-	_props_viewport.canvas_cull_mask = LAYER_SHARED | LAYER_PROPS
-	add_child(_props_viewport)
-	_props_viewport.canvas_transform = Transform2D.IDENTITY.scaled(Vector2(view_scale, view_scale))
+	_props_viewport = _make_view(LAYER_PROPS, view_scale)
+	_actors_viewport = _make_view(LAYER_ACTORS, view_scale)
 
 	var light_sheet := ColorRect.new()
 	light_sheet.color = Color.WHITE
@@ -140,6 +141,17 @@ func _split_layers(view_scale: float) -> void:
 	add_child(_light_viewport)
 	_light_viewport.canvas_transform = Transform2D.IDENTITY.scaled(Vector2(view_scale, view_scale))
 
+func _make_view(layer: int, view_scale: float) -> SubViewport:
+	var view := SubViewport.new()
+	view.world_2d = viewport.world_2d
+	view.transparent_bg = true
+	view.disable_3d = true
+	view.size = viewport.size
+	view.canvas_cull_mask = LAYER_SHARED | layer
+	add_child(view)
+	view.canvas_transform = Transform2D.IDENTITY.scaled(Vector2(view_scale, view_scale))
+	return view
+
 func _build_window() -> void:
 	var quad := QuadMesh.new()
 	quad.size = opening_size
@@ -155,6 +167,8 @@ func _build_window() -> void:
 	_material.set_shader_parameter("ceiling_shade", ceiling_shade)
 	_material.set_shader_parameter("edge_shadow", edge_shadow)
 	_material.set_shader_parameter("edge_width", edge_width)
+	_material.set_shader_parameter("past_walls", props_past_walls)
+	_material.set_shader_parameter("past_floor", props_past_floor)
 	window.material_override = _material
 #endregion
 
@@ -173,10 +187,11 @@ func _build_cards() -> void:
 			var left := art.get_node_or_null(PLANE_LEFT) as Node2D
 			var right := art.get_node_or_null(PLANE_RIGHT) as Node2D
 			if left and right and art is Sprite2D:
+				var move := art.get_node_or_null(PLANE_MOVE) as Node2D
 				for item in [art] + art.find_children("*", "Sprite2D", false, false):
-					_planes[item] = _make_plane(item, left.global_position, right.global_position)
+					_planes[item] = _make_plane(item, left.global_position, right.global_position, move)
 			else:
-				_cards[art] = _make_card()
+				_cards[art] = _make_card(_actors_viewport if node_name == "Actors" else _props_viewport)
 	for art in _cards:
 		var support := _find_support(art)
 		if support:
@@ -206,10 +221,10 @@ func _is_actor(art: CanvasItem) -> bool:
 func _is_flat(node: Node) -> bool:
 	return node.is_in_group(FLAT_GROUP)
 
-func _make_card() -> MeshInstance3D:
+func _make_card(view: SubViewport) -> MeshInstance3D:
 	var card_material := ShaderMaterial.new()
 	card_material.shader = CARD_SHADER
-	card_material.set_shader_parameter("props_view", _props_viewport.get_texture())
+	card_material.set_shader_parameter("props_view", view.get_texture())
 	card_material.set_shader_parameter("to_room", global_transform.affine_inverse())
 	var card := MeshInstance3D.new()
 	card.mesh = _card_mesh
@@ -218,18 +233,18 @@ func _make_card() -> MeshInstance3D:
 	add_child(card)
 	return card
 
-func _make_plane(art: Sprite2D, left: Vector2, right: Vector2) -> MeshInstance3D:
+func _make_plane(art: Sprite2D, left: Vector2, right: Vector2, move: Node2D) -> MeshInstance3D:
 	var rect := _rect_of(art)
 	var left_v := RoomDepth.apply_map(_floor_unmap, left).y
 	var right_v := RoomDepth.apply_map(_floor_unmap, right).y
-	var height := maxf(_rise(left, left_v, rect.position.y), _rise(right, right_v, rect.position.y))
-	var plane_map := _plane_map(left, right, left_v, right_v, height)
-	var s_from := minf(0.0, _plane_s(plane_map, rect.position.x))
-	var s_to := maxf(1.0, _plane_s(plane_map, rect.end.x))
-	for s in [s_from, s_to]:
-		var foot := _plane_floor(plane_map, s)
-		height = maxf(height, _rise(foot, RoomDepth.apply_map(_floor_unmap, foot).y, rect.position.y))
-	plane_map = _plane_map(left, right, left_v, right_v, height)
+	var plane_map := _plane_map(left, right, left_v, right_v, 1.0)
+	var plane_unmap := plane_map.inverse()
+	var lo := Vector2.ZERO
+	var hi := Vector2.ONE
+	for corner in [rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)]:
+		var spot := RoomDepth.apply_map(plane_unmap, corner)
+		lo = lo.min(spot)
+		hi = hi.max(spot)
 	var to_uv := Basis.from_scale(Vector3(1.0 / _room_size.x, 1.0 / _room_size.y, 1.0))
 	var plane_material := ShaderMaterial.new()
 	plane_material.shader = PLANE_SHADER
@@ -238,43 +253,33 @@ func _make_plane(art: Sprite2D, left: Vector2, right: Vector2) -> MeshInstance3D
 	plane_material.set_shader_parameter("to_room", global_transform.affine_inverse())
 	plane_material.set_shader_parameter("region", _to_uv(rect))
 	plane_material.set_shader_parameter("plane_map", to_uv * plane_map)
-	var a := _floor_point(left)
-	var b := _floor_point(right)
 	var plane := MeshInstance3D.new()
-	plane.mesh = _plane_mesh(a.lerp(b, s_from), a.lerp(b, s_to), height, s_from, s_to)
+	plane.mesh = _plane_mesh(_floor_point(left), _floor_point(right), lo, hi)
+	if move:
+		plane.position = _floor_point(move.global_position) - _floor_point(left.lerp(right, 0.5))
 	plane.material_override = plane_material
 	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(plane)
 	return plane
-
-func _rise(foot: Vector2, v: float, top: float) -> float:
-	return (foot.y - top) / _px_per_meter_at(v)
 
 func _plane_map(left: Vector2, right: Vector2, left_v: float, right_v: float, height: float) -> Basis:
 	var left_top := left - Vector2(0.0, height * _px_per_meter_at(left_v))
 	var right_top := right - Vector2(0.0, height * _px_per_meter_at(right_v))
 	return RoomDepth.quad_map(PackedVector2Array([left_top, right_top, right, left]))
 
-func _plane_floor(plane_map: Basis, s: float) -> Vector2:
-	return RoomDepth.apply_map(plane_map, Vector2(s, 1.0))
-
-static func _plane_s(plane_map: Basis, x: float) -> float:
-	var c0 := plane_map.x
-	var c1 := plane_map.y
-	var c2 := plane_map.z
-	return (c1.x + c2.x - x * (c1.z + c2.z)) / (x * c0.z - c0.x)
-
 func _floor_point(point: Vector2) -> Vector3:
 	var uv := RoomDepth.apply_map(_floor_unmap, point)
 	return Vector3((uv.x - 0.5) * _box.x, 0.0, (uv.y - 1.0) * _box.z)
 
-static func _plane_mesh(left: Vector3, right: Vector3, height: float, s_from: float, s_to: float) -> ArrayMesh:
-	var up := Vector3.UP * height
+static func _plane_mesh(left: Vector3, right: Vector3, lo: Vector2, hi: Vector2) -> ArrayMesh:
+	var corners := PackedVector2Array([lo, Vector2(hi.x, lo.y), hi, Vector2(lo.x, hi.y)])
+	var vertices := PackedVector3Array()
+	for corner in corners:
+		vertices.append(left.lerp(right, corner.x) + Vector3.UP * (1.0 - corner.y))
 	var arrays := []
 	arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX] = PackedVector3Array([left + up, right + up, right, left])
-	arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array([
-		Vector2(s_from, 0), Vector2(s_to, 0), Vector2(s_to, 1), Vector2(s_from, 1)])
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	arrays[Mesh.ARRAY_TEX_UV] = corners
 	arrays[Mesh.ARRAY_INDEX] = PackedInt32Array([0, 1, 2, 0, 2, 3])
 	var mesh := ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
