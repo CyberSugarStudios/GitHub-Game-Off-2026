@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bq5t1fvnrwydh"
+path="res://.godot/imported/Pin number 2.wav-c56fc31528587e1d6923f6792da6295c.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/varied/Pin number 2.wav"
+dest_files=["res://.godot/imported/Pin number 2.wav-c56fc31528587e1d6923f6792da6295c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

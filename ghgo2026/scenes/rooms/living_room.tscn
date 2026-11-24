@@ -7,11 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://dp3ro3imlywoh" path="res://assets/sprites/rooms/living_room/cutout_tv_prop.webp" id="5_16llt"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_0vv3f"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_e86kh"]
+[ext_resource type="Texture2D" uid="uid://ctllll4se2kij" path="res://assets/sprites/rooms/living_room/cutout_lamp_prop.webp" id="6_eqisx"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_g005p"]
+[ext_resource type="Texture2D" uid="uid://b483p8hsp6p02" path="res://assets/sprites/rooms/living_room/cutout_side_table_prop.webp" id="6_v4v7e"]
+[ext_resource type="Texture2D" uid="uid://c8st7w68bw6s2" path="res://assets/sprites/rooms/living_room/cutout_lamp_prop_2.webp" id="7_2g6jb"]
 [ext_resource type="Script" uid="uid://drb2crubjopm3" path="res://scripts/rooms/room_door.gd" id="7_5s50e"]
+[ext_resource type="Texture2D" uid="uid://chplkujvld8st" path="res://assets/sprites/rooms/living_room/cutout_recliner_prop.webp" id="7_12hvq"]
 [ext_resource type="SpriteFrames" uid="uid://luywmfaa5ri4" path="res://assets/sprites/Animations/frames/dad/david_frames.tres" id="7_a5o1a"]
+[ext_resource type="Texture2D" uid="uid://dovt0pbx6owx0" path="res://assets/sprites/rooms/living_room/cutout_beer_can_prop.webp" id="7_b5xou"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_e86kh"]
 [ext_resource type="PackedScene" uid="uid://dmf8if323xntg" path="res://scenes/rooms/room_creature.tscn" id="8_7cjtg"]
+[ext_resource type="Texture2D" uid="uid://m04gc5l6r65k" path="res://assets/sprites/rooms/living_room/cutout_couch_prop.webp" id="9_eqisx"]
+[ext_resource type="Texture2D" uid="uid://bmrrswsb2y6n2" path="res://assets/sprites/rooms/living_room/cutout_coffee_table_prop.webp" id="10_331a7"]
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="11_e86kh"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="12_8llds"]
 [ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="12_a5o1a"]
@@ -19,13 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="14_eokjc"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="15_mnsc7"]
 [ext_resource type="Script" uid="uid://c8mgegcpjhxpp" path="res://scripts/rooms/door_light.gd" id="17_8mmjm"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
-
-[sub_resource type="Gradient" id="Gradient_8pl6i"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
-gradient = SubResource("Gradient_8pl6i")
 
 [node name="LivingRoom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_oy7wu")
@@ -58,25 +58,101 @@ position = Vector2(786.99994, 702.5)
 scale = Vector2(0.64257807, 0.64060915)
 texture = ExtResource("5_16llt")
 
-[node name="DoorwayBase" type="Marker2D" parent="BackProps/TV" unique_id=1180372759]
-position = Vector2(175.85423, 320.7884)
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/TV" unique_id=299664167]
+position = Vector2(-361.04553, 476.88992)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/TV" unique_id=152939928]
+position = Vector2(519.7814, 241.17673)
+
+[node name="LampLeft" type="Sprite2D" parent="BackProps" unique_id=1315043537]
+position = Vector2(1536.9999, 586)
+scale = Vector2(0.64257807, 0.64060915)
+texture = ExtResource("6_eqisx")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/LampLeft" unique_id=2013896748]
+position = Vector2(-90.26132, 460.49918)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/LampLeft" unique_id=1068494192]
+position = Vector2(96.48654, 462.06024)
+
+[node name="LampRight" type="Sprite2D" parent="BackProps" unique_id=980189948]
+position = Vector2(2434, 573)
+scale = Vector2(0.64257807, 0.64060915)
+texture = ExtResource("7_2g6jb")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/LampRight" unique_id=725940916]
+position = Vector2(-60.692932, 482.35336)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/LampRight" unique_id=198502989]
+position = Vector2(66.91815, 476.10938)
+
+[node name="SideTable" type="Sprite2D" parent="BackProps" unique_id=1534547416]
+position = Vector2(2426, 790.00006)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_v4v7e")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/SideTable" unique_id=278526994]
+position = Vector2(-379.9998, 479.99988)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/SideTable" unique_id=1588696366]
+position = Vector2(226.66696, 446.66644)
+
+[node name="Recliner" type="Sprite2D" parent="BackProps" unique_id=1811996666]
+position = Vector2(2853, 736)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_12hvq")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Recliner" unique_id=1933057549]
+position = Vector2(-451.66644, 301.66663)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/Recliner" unique_id=747447626]
+position = Vector2(404.99988, 356.66663)
 
 [node name="BeerCan1" type="Sprite2D" parent="BackProps" unique_id=714885831]
-position = Vector2(2421.75, 731)
-scale = Vector2(20.499899, 37.999947)
-texture = SubResource("CanvasTexture_53m36")
+position = Vector2(2335, 750)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_b5xou")
 
-[node name="BeerCan2" type="Sprite2D" parent="BackProps" unique_id=833751683]
-position = Vector2(2455.5, 733)
-scale = Vector2(22.99978, 40.00005)
-texture = SubResource("CanvasTexture_53m36")
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/BeerCan1" unique_id=2052430013]
+position = Vector2(-43.999634, 64.00003)
 
-[node name="BeerCan3" type="Sprite2D" parent="BackProps" unique_id=2322645]
-position = Vector2(2493.5, 735.50006)
-scale = Vector2(26.999899, 46.99997)
-texture = SubResource("CanvasTexture_53m36")
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/BeerCan1" unique_id=185838125]
+position = Vector2(48.000122, 63.99997)
+
+[node name="BeerCan2" type="Sprite2D" parent="BackProps" unique_id=1156932208]
+position = Vector2(2423, 737)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_b5xou")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/BeerCan2" unique_id=565800308]
+position = Vector2(-43.999634, 64.00003)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/BeerCan2" unique_id=1197796890]
+position = Vector2(48.000122, 63.99997)
+
+[node name="BeerCan3" type="Sprite2D" parent="BackProps" unique_id=122941396]
+position = Vector2(2517, 750)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_b5xou")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/BeerCan3" unique_id=168759246]
+position = Vector2(-43.999634, 64.00003)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/BeerCan3" unique_id=1956936790]
+position = Vector2(48.000122, 63.99997)
+
+[node name="Couch" type="Sprite2D" parent="BackProps" unique_id=321414050]
+position = Vector2(3534, 966)
+texture = ExtResource("9_eqisx")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Couch" unique_id=2063782715]
+position = Vector2(-474.00012, 15.0000305)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/Couch" unique_id=1791221720]
+position = Vector2(437.00012, 147.99997)
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
+visible = false
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
@@ -99,10 +175,16 @@ blocks = NodePath("../../Hotspots/FrontDoor")
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
-[node name="TestCofeeTable" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(2582.4377, 1049.6406)
-scale = Vector2(4.145018, 238.71867)
-texture = SubResource("GradientTexture1D_8pl6i")
+[node name="CoffeeTable" type="Sprite2D" parent="FrontProps" unique_id=514310673]
+position = Vector2(3051, 1131)
+scale = Vector2(0.64257807, 0.64060915)
+texture = ExtResource("10_331a7")
+
+[node name="DoorwayLeft" type="Marker2D" parent="FrontProps/CoffeeTable" unique_id=1169497552]
+position = Vector2(-479.3191, -79.6116)
+
+[node name="DoorwayRight" type="Marker2D" parent="FrontProps/CoffeeTable" unique_id=769872677]
+position = Vector2(454.41968, 241.95723)
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
@@ -173,10 +255,10 @@ alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1217.2004
-offset_top = 809.12506
-offset_right = 1217.2004
-offset_bottom = 809.12506
+offset_left = -3.0
+offset_top = -1.0
+offset_right = -3.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_g005p")
@@ -267,7 +349,7 @@ position = Vector2(4186, 1176)
 [node name="RoomLights" type="Node2D" parent="." unique_id=750706581]
 
 [node name="LampLeft" type="PointLight2D" parent="RoomLights" unique_id=1058687670]
-position = Vector2(1538, 429)
+position = Vector2(1535, 416)
 color = Color(1, 0.8509804, 0.65882355, 1)
 texture = ExtResource("14_eokjc")
 texture_scale = 4.0
@@ -275,7 +357,7 @@ script = ExtResource("15_mnsc7")
 lit_hours = Vector2(17, 23.5)
 
 [node name="LampRight" type="PointLight2D" parent="RoomLights" unique_id=2021425120]
-position = Vector2(2377, 277)
+position = Vector2(2430, 308)
 color = Color(1, 0.8509804, 0.65882355, 1)
 texture = ExtResource("14_eokjc")
 texture_scale = 4.0
@@ -300,17 +382,3 @@ z_index = 35
 position = Vector2(150, 555)
 polygon = PackedVector2Array(-148.89, -493.53, 144.305, -479.92, 140.74, 480.815, -151.93, 591.095)
 script = ExtResource("17_8mmjm")
-
-[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=1015727009]
-z_index = 100
-
-[node name="BEER_CANS_LABEL" type="Label" parent="TEMP_LABELS" unique_id=976910519]
-offset_left = 2286.0
-offset_top = 602.0
-offset_right = 2628.0
-offset_bottom = 701.0
-theme_override_font_sizes/font_size = 48
-text = "CANS OF
-BEER"
-horizontal_alignment = 1
-vertical_alignment = 1

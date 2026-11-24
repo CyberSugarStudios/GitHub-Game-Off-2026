@@ -3,6 +3,9 @@ extends Node3D
 
 const WINDOW_SHADER := preload("res://shaders/doorway_window.gdshader")
 const CARD_SHADER := preload("res://shaders/doorway_card.gdshader")
+const PLANE_SHADER := preload("res://shaders/doorway_plane.gdshader")
+const PLANE_LEFT := "DoorwayLeft"
+const PLANE_RIGHT := "DoorwayRight"
 
 const LAYER_SHARED := 1
 const LAYER_PROPS := 2
@@ -38,6 +41,7 @@ var _material: ShaderMaterial
 var _props_viewport: SubViewport
 var _card_mesh: QuadMesh
 var _cards: Dictionary[CanvasItem, MeshInstance3D] = {}
+var _planes: Dictionary[CanvasItem, MeshInstance3D] = {}
 
 var _room_size := Vector2.ZERO
 var _wall := Rect2()
@@ -146,7 +150,13 @@ func _build_cards() -> void:
 			continue
 		for child in layer.get_children():
 			var art := _art_of(child)
-			if art and not _is_flat(child):
+			if art == null or _is_flat(child):
+				continue
+			var left := art.get_node_or_null(PLANE_LEFT) as Node2D
+			var right := art.get_node_or_null(PLANE_RIGHT) as Node2D
+			if left and right:
+				_planes[art] = _make_plane(art, left.global_position, right.global_position)
+			else:
 				_cards[art] = _make_card()
 	for art in _cards:
 		var support := _find_support(art)
@@ -189,7 +199,48 @@ func _make_card() -> MeshInstance3D:
 	add_child(card)
 	return card
 
+func _make_plane(art: CanvasItem, left: Vector2, right: Vector2) -> MeshInstance3D:
+	var rect := _rect_of(art)
+	var left_v := RoomDepth.apply_map(_floor_unmap, left).y
+	var right_v := RoomDepth.apply_map(_floor_unmap, right).y
+	var height := maxf(
+		(left.y - rect.position.y) / _px_per_meter_at(left_v),
+		(right.y - rect.position.y) / _px_per_meter_at(right_v))
+	var left_top := left - Vector2(0.0, height * _px_per_meter_at(left_v))
+	var right_top := right - Vector2(0.0, height * _px_per_meter_at(right_v))
+	var to_uv := Basis.from_scale(Vector3(1.0 / _room_size.x, 1.0 / _room_size.y, 1.0))
+	var plane_material := ShaderMaterial.new()
+	plane_material.shader = PLANE_SHADER
+	plane_material.set_shader_parameter("props_view", _props_viewport.get_texture())
+	plane_material.set_shader_parameter("to_room", global_transform.affine_inverse())
+	plane_material.set_shader_parameter("region", _to_uv(rect))
+	plane_material.set_shader_parameter("plane_map",
+		to_uv * RoomDepth.quad_map(PackedVector2Array([left_top, right_top, right, left])))
+	var plane := MeshInstance3D.new()
+	plane.mesh = _plane_mesh(_floor_point(left), _floor_point(right), height)
+	plane.material_override = plane_material
+	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(plane)
+	return plane
+
+func _floor_point(point: Vector2) -> Vector3:
+	var uv := RoomDepth.apply_map(_floor_unmap, point)
+	return Vector3((uv.x - 0.5) * _box.x, 0.0, (uv.y - 1.0) * _box.z)
+
+static func _plane_mesh(left: Vector3, right: Vector3, height: float) -> ArrayMesh:
+	var up := Vector3.UP * height
+	var arrays := []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = PackedVector3Array([left + up, right + up, right, left])
+	arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array([Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 1)])
+	arrays[Mesh.ARRAY_INDEX] = PackedInt32Array([0, 1, 2, 0, 2, 3])
+	var mesh := ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	return mesh
+
 func _update_cards(camera: Vector3) -> void:
+	for art in _planes:
+		_planes[art].visible = art.is_visible_in_tree()
 	for art in _cards:
 		var card := _cards[art]
 		card.visible = art.is_visible_in_tree()
@@ -272,3 +323,5 @@ func _exit_tree() -> void:
 	window.material_override = null
 	for card in _cards.values():
 		card.material_override = null
+	for plane in _planes.values():
+		plane.material_override = null

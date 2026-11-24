@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckrmdqyrknpxe"
+path="res://.godot/imported/Interim - Breath SFX 2.wav-bc53a4730d1e5d7e2efc9759d7f02288.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/varied2/Interim - Breath SFX 2.wav"
+dest_files=["res://.godot/imported/Interim - Breath SFX 2.wav-bc53a4730d1e5d7e2efc9759d7f02288.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
