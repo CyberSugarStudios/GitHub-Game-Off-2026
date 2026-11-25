@@ -23,6 +23,9 @@ const WAIT_POPUP := preload("res://scenes/ui/wait_popup.tscn")
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 const BEER_CAN_SOUND := preload("res://assets/audio/sfx/varied/beer_can_open.wav")
 const INTRO_DONE := &"intro_done"
+const FIGHT_WALL_LAYER := 1
+const FIGHT_EYE_HEIGHT := 1.4
+const FIGHT_PULL_STEPS := 6
 const INTRO_FLAGS: Array[StringName] = [
 	&"garage_handle_tried",
 	&"leanne_home",
@@ -637,8 +640,8 @@ func arrange_fight(leanne_mark: StringName, david_mark: StringName, gap: float, 
 	var across := Vector3(-sight.z, 0.0, sight.x) * gap * 0.5
 	var ahead := sight * stagger * 0.5
 	var spots: Array[Vector3] = [
-		_fight_spot(center + across + ahead, keep_away),
-		_fight_spot(center - across - ahead, keep_away)
+		_fight_spot(center + across + ahead, center, keep_away),
+		_fight_spot(center - across - ahead, center, keep_away)
 	]
 	var mom := household.get_hall_parent(MOM)
 	var dad := household.get_hall_parent(DAD)
@@ -650,14 +653,32 @@ func arrange_fight(leanne_mark: StringName, david_mark: StringName, gap: float, 
 		spot.y = marks[i].global_position.y
 		marks[i].global_position = spot
 
-func _fight_spot(spot: Vector3, keep_away: float) -> Vector3:
+func _fight_spot(spot: Vector3, center: Vector3, keep_away: float) -> Vector3:
 	var away := spot - player.global_position
 	away.y = 0.0
 	if away.length() < keep_away:
 		var push := away.normalized() if away.length() > 0.01 else Vector3.FORWARD
 		spot = player.global_position + push * keep_away
-	var on_floor := NavigationServer3D.map_get_closest_point(player.get_world_3d().navigation_map, spot)
-	return on_floor if on_floor != Vector3.ZERO else spot
+	for step in FIGHT_PULL_STEPS + 1:
+		var tried := _on_floor(center.lerp(spot, 1.0 - float(step) / FIGHT_PULL_STEPS))
+		if _in_sight(center, tried):
+			return tried
+	return _on_floor(center)
+
+func _on_floor(point: Vector3) -> Vector3:
+	var on_floor := NavigationServer3D.map_get_closest_point(player.get_world_3d().navigation_map, point)
+	return on_floor if on_floor != Vector3.ZERO else point
+
+func _in_sight(center: Vector3, spot: Vector3) -> bool:
+	var eye := Vector3.UP * FIGHT_EYE_HEIGHT
+	if not _clear_line(center + eye, spot + eye):
+		return false
+	var camera := player.get_viewport().get_camera_3d()
+	return camera == null or _clear_line(camera.global_position, spot + eye)
+
+func _clear_line(from: Vector3, to: Vector3) -> bool:
+	var query := PhysicsRayQueryParameters3D.create(from, to, FIGHT_WALL_LAYER, [player.get_rid()])
+	return player.get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 func _find_mark(mark_id: StringName) -> HallMark:
 	for node in get_tree().get_nodes_in_group("hall_marks"):
