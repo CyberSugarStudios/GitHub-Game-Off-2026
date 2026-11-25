@@ -226,7 +226,7 @@ func build_report() -> String:
 	if OS.has_feature("web"):
 		lines.append("Browser: %s on %s" % [client.get("browser", "unknown"), client.get("platform", "?")])
 		lines.append("User agent: %s" % client.get("ua", ""))
-		var ram := "%s GB (browser rounds, max 8)" % str(client["memory"]) if client.get("memory", 0) else "not reported"
+		var ram := "%s GB (browser estimate)" % str(client["memory"]) if client.get("memory", 0) else "not reported"
 		lines.append("CPU threads: %d, RAM: %s" % [int(client.get("threads", 0)), ram])
 	else:
 		lines.append("CPU: %s (%d threads)" % [OS.get_processor_name(), OS.get_processor_count()])
