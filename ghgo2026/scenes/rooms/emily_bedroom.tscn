@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cs78elmrh0fk8" path="res://assets/textures/rooms/emily_room.webp" id="2_6ri0t"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_fa2v7"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_n0mbq"]
+[ext_resource type="Texture2D" uid="uid://d0j7oawqvrrii" path="res://assets/sprites/rooms/bedroom/journal.webp" id="5_n0mbq"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_0hvy4"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_41fqi"]
 [ext_resource type="Script" uid="uid://6l1etsyla5f1" path="res://scripts/rooms/string_lights.gd" id="7_fqoov"]
@@ -35,6 +36,12 @@ script = ExtResource("4_n0mbq")
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
 
+[node name="Sprite2D" type="Sprite2D" parent="BackProps" unique_id=1715701487]
+position = Vector2(984.99994, 960.99994)
+rotation = 0.08528534
+scale = Vector2(0.3510691, 0.267056)
+texture = ExtResource("5_n0mbq")
+
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
 
@@ -45,10 +52,10 @@ z_index = 30
 z_index = 40
 
 [node name="Diary" type="TextureButton" parent="Hotspots" unique_id=184838228]
-offset_left = 729.0
-offset_top = 536.0
-offset_right = 881.0
-offset_bottom = 603.0
+offset_left = 908.0
+offset_top = 904.0
+offset_right = 1067.0
+offset_bottom = 990.0
 script = ExtResource("6_0hvy4")
 prompt_text = "Read the diary"
 story_id = &"open_diary"
