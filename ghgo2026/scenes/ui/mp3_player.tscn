@@ -2,38 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cq4ft3ogr2m6j" path="res://scripts/ui/mp3_player.gd" id="1_unlxu"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="2_gftdv"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gftdv"]
-bg_color = Color(0.6996531, 0.69965357, 0.69965345, 1)
-corner_radius_top_left = 36
-corner_radius_top_right = 36
-corner_radius_bottom_right = 36
-corner_radius_bottom_left = 36
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unlxu"]
-bg_color = Color(0.16470589, 0.1764706, 0.2, 1)
-corner_radius_top_left = 36
-corner_radius_top_right = 36
-corner_radius_bottom_right = 36
-corner_radius_bottom_left = 36
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53m36"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 36
-corner_radius_top_right = 36
-corner_radius_bottom_right = 36
-corner_radius_bottom_left = 36
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lwwf"]
-bg_color = Color(0.62352943, 0.7647059, 0.7764706, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+[ext_resource type="Texture2D" uid="uid://b0g6o2go5gvy5" path="res://assets/sprites/rooms/bedroom/MP3.webp" id="2_ple03"]
 
 [node name="MP3Player" type="CanvasLayer" unique_id=548456274]
 script = ExtResource("1_unlxu")
@@ -48,70 +17,36 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="DeviceOutline" type="PanelContainer" parent="." unique_id=700775779]
-custom_minimum_size = Vector2(400, 560)
+[node name="DeviceArt" type="TextureRect" parent="." unique_id=264117268]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -280.0
-offset_right = 210.0
-offset_bottom = 280.0
+offset_left = -275.0
+offset_top = -413.0
+offset_right = 377.0
+offset_bottom = 611.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gftdv")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_ple03")
+expand_mode = 1
 
-[node name="DeviceInnerOutling" type="PanelContainer" parent="." unique_id=701202365]
-custom_minimum_size = Vector2(400, 500)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -207.5
-offset_top = -273.8525
-offset_right = 207.5
-offset_bottom = 273.8525
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_unlxu")
-
-[node name="Device" type="PanelContainer" parent="." unique_id=1007297289]
-visibility_layer = 512
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -202.5
-offset_top = -267.4875
-offset_right = 202.5
-offset_bottom = 267.4875
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_53m36")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Device" unique_id=984447391]
-layout_mode = 2
-offset_transform_enabled = true
-theme_override_constants/separation = 16
-
-[node name="Screen" type="PanelContainer" parent="Device/VBoxContainer" unique_id=296681817]
-custom_minimum_size = Vector2(0, 220)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2lwwf")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Device/VBoxContainer/Screen" unique_id=293518782]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="DeviceArt" unique_id=293518782]
+layout_mode = 0
+offset_left = 187.5
+offset_top = 206.25
+offset_right = 572.5
+offset_bottom = 500.25
+scale = Vector2(0.7421534, 0.8516031)
 theme_override_constants/separation = 4
 
-[node name="SpacingTop" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=1367456780]
+[node name="SpacingTop" type="Control" parent="DeviceArt/VBoxContainer" unique_id=1367456780]
 custom_minimum_size = Vector2(0, 13.38)
 layout_mode = 2
 
-[node name="CoverArt" type="TextureRect" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=355270081]
+[node name="CoverArt" type="TextureRect" parent="DeviceArt/VBoxContainer" unique_id=355270081]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(130, 130)
 custom_maximum_size = Vector2(130, 130)
@@ -121,44 +56,50 @@ size_flags_vertical = 4
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TitleLabel" type="Label" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=743631671]
+[node name="TitleLabel" type="Label" parent="DeviceArt/VBoxContainer" unique_id=743631671]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.105882354, 0.16470589, 0.17254902, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_gftdv")
 theme_override_font_sizes/font_size = 32
 text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArtistLabel" type="Label" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=1582008921]
+[node name="ArtistLabel" type="Label" parent="DeviceArt/VBoxContainer" unique_id=1582008921]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.105882354, 0.16470589, 0.17254902, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_gftdv")
 theme_override_font_sizes/font_size = 32
 text = "Artist"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeLabel" type="Label" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=1913867697]
+[node name="TimeLabel" type="Label" parent="DeviceArt/VBoxContainer" unique_id=1913867697]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.105882354, 0.16470589, 0.17254902, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_gftdv")
 theme_override_font_sizes/font_size = 32
 text = "XX:XX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=2075025148]
+[node name="HBoxContainer" type="HBoxContainer" parent="DeviceArt/VBoxContainer" unique_id=2075025148]
 layout_mode = 2
 
-[node name="SpacingLeft" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer/HBoxContainer" unique_id=580031682]
+[node name="SpacingLeft" type="Control" parent="DeviceArt/VBoxContainer/HBoxContainer" unique_id=580031682]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 
-[node name="Progress" type="ProgressBar" parent="Device/VBoxContainer/Screen/VBoxContainer/HBoxContainer" unique_id=1966472582]
+[node name="Progress" type="ProgressBar" parent="DeviceArt/VBoxContainer/HBoxContainer" unique_id=1966472582]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(345, 16)
 layout_mode = 2
@@ -166,50 +107,18 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="SpacingRight" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer/HBoxContainer" unique_id=1740640709]
+[node name="SpacingRight" type="Control" parent="DeviceArt/VBoxContainer/HBoxContainer" unique_id=1740640709]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 
-[node name="SpacingBottom" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=2106267389]
+[node name="SpacingBottom" type="Control" parent="DeviceArt/VBoxContainer" unique_id=2106267389]
 custom_minimum_size = Vector2(0, 13.38)
 layout_mode = 2
 
-[node name="Controls" type="HBoxContainer" parent="Device/VBoxContainer" unique_id=546310320]
-layout_mode = 2
-theme_override_constants/separation = 14
-alignment = 1
-
-[node name="BackButton" type="Button" parent="Device/VBoxContainer/Controls" unique_id=1563503559]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(90, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-text = "|<<"
-
-[node name="PlayButton" type="Button" parent="Device/VBoxContainer/Controls" unique_id=176488098]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(90, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-text = "Play"
-
-[node name="SkipButton" type="Button" parent="Device/VBoxContainer/Controls" unique_id=357436168]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(90, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-text = ">>|"
-
-[node name="Volume" type="HBoxContainer" parent="Device/VBoxContainer" unique_id=1665402196]
+[node name="Volume" type="HBoxContainer" parent="DeviceArt/VBoxContainer" unique_id=1665402196]
 layout_mode = 2
 
-[node name="Vol" type="Label" parent="Device/VBoxContainer/Volume" unique_id=1368487759]
+[node name="Vol" type="Label" parent="DeviceArt/VBoxContainer/Volume" unique_id=1368487759]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -217,17 +126,60 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_gftdv")
 text = "Volume"
 
-[node name="VolumeSlider" type="HSlider" parent="Device/VBoxContainer/Volume" unique_id=768048492]
+[node name="VolumeSlider" type="HSlider" parent="DeviceArt/VBoxContainer/Volume" unique_id=768048492]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 
-[node name="CloseButton" type="Button" parent="Device/VBoxContainer" unique_id=784874902]
+[node name="BackButton" type="Button" parent="DeviceArt" unique_id=1563503559]
 unique_name_in_owner = true
-layout_mode = 2
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 0
+offset_left = 288.75
+offset_top = 746.25
+offset_right = 378.75
+offset_bottom = 806.25
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
-text = "Close"
+text = "|<<"
+
+[node name="PlayButton" type="Button" parent="DeviceArt" unique_id=176488098]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 0
+offset_left = 288.75
+offset_top = 541.25
+offset_right = 378.75
+offset_bottom = 601.25
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+text = "Play"
+
+[node name="SkipButton" type="Button" parent="DeviceArt" unique_id=357436168]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 0
+offset_left = 286.24994
+offset_top = 636.25
+offset_right = 376.24994
+offset_bottom = 696.25
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+text = ">>|"
+
+[node name="CloseButton" type="Button" parent="DeviceArt" unique_id=784874902]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 226.25
+offset_top = 846.25
+offset_right = 437.49994
+offset_bottom = 878.25
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+text = "Back   [S]"

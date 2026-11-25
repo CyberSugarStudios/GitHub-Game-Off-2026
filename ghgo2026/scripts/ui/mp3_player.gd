@@ -169,7 +169,6 @@ func _show_track() -> void:
 	artist_label.text = track.artist if track else "No artist"
 	cover_art.texture = track.cover if track else null
 	cover_art.visible = cover_art.texture != null
-	play_button.text = "Pause" if is_playing() else "Play"
 
 func _process(_delta: float) -> void:
 	if not visible or tracks.is_empty() or tracks[_index].stream == null:
@@ -177,7 +176,7 @@ func _process(_delta: float) -> void:
 	var length := tracks[_index].stream.get_length()
 	var at := audio.get_playback_position() if _started else 0.0
 	progress.value = at / length if length > 0.0 else 0.0
-	time_label.text = "%s / %s" % [_clock(at), _clock(length)]
+	time_label.text = "%s  %s / %s" % [">" if is_playing() else "||", _clock(at), _clock(length)]
 
 static func _clock(seconds: float) -> String:
 	return "%d:%02d" % [floori(seconds / 60.0), int(seconds) % 60]
