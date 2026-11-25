@@ -10,12 +10,15 @@ const INTRO_VIDEO := preload("res://assets/sprites/Animations/intro_anim.ogv")
 @onready var day_night: DayNight = $DayNight
 @onready var player: Node3D = $Emily
 @onready var story: StoryDirector = $StoryDirector
+@onready var music_director: MusicDirector = $MusicDirector
 
 var _video_playing := false
 var _skip_video := false
 
 func _ready() -> void:
 	fade.color.a = 1.0
+	if story.play_intro and not GameState.has_flag(StoryDirector.INTRO_DONE):
+		music_director.play_intro()
 	_warm_up()
 
 func _warm_up() -> void:
@@ -46,6 +49,7 @@ func _warm_up() -> void:
 	else:
 		var screen := await _play_intro_videos()
 		fade.color.a = 0.0
+		music_director.end_intro(reveal_time)
 		tween = create_tween()
 		tween.tween_property(screen, "modulate:a", 0.0, reveal_time)
 		tween.tween_callback(screen.get_parent().queue_free)

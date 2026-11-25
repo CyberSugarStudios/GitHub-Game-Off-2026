@@ -31,6 +31,7 @@ var _hunting := false
 var _calm_left := 0.0
 var _held := false
 var _song := false
+var _intro := false
 
 func _ready() -> void:
 	Music.finished.connect(_on_track_finished)
@@ -79,6 +80,21 @@ func _end_hunt() -> void:
 #endregion
 
 #region - HALL MUSIC
+func play_intro() -> void:
+	if intro_song == null:
+		return
+	_intro = true
+	_remember_position()
+	_playing = null
+	Music.play(intro_song, 0.5)
+
+func end_intro(fade_time: float) -> void:
+	if not _intro:
+		return
+	_intro = false
+	Music.stop(fade_time)
+	_quiet_left = fade_time + (_set.silence_between.x if _set else 0.0)
+
 func _play_song() -> void:
 	if _song or diary_song == null:
 		return
@@ -99,7 +115,7 @@ func _choose_set() -> void:
 	if chosen == _set:
 		return
 	_set = chosen
-	if not _held:
+	if not _held and not _intro:
 		_play_next()
 
 func _play_next() -> void:
@@ -134,7 +150,7 @@ func _version(track: AudioStream) -> AudioStream:
 	return track
 
 func _on_track_finished() -> void:
-	if _held or _song or _set == null:
+	if _held or _song or _intro or _set == null:
 		return
 	if _last_track:
 		_positions.erase(_last_track)
