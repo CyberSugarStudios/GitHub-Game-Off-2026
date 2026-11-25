@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cr00836mar1wk"
+path="res://.godot/imported/hug_david.wav-992992ee8a4d3b91c465a9e8e267702d.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/puzzle_5/hug_david.wav"
+dest_files=["res://.godot/imported/hug_david.wav-992992ee8a4d3b91c465a9e8e267702d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

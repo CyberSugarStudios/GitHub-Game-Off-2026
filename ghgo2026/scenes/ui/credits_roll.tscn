@@ -53,11 +53,11 @@ text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regu
 [font_size=30][center][table=2][cell padding=0,0,24,0][right][b]Jordon Call[/b][/right][/cell][cell][left]Lead Developer & Systems Designer[/left][/cell]
 [cell padding=0,0,24,0][right][b]Charlie Vaughn[/b][/right][/cell][cell][left]Creative Director[/left][/cell]
 [cell padding=0,0,24,0][right][b]Phrenix[/b][/right][/cell][cell][left]Art Director & Animator[/left][/cell]
-[cell padding=0,0,24,0][right][b]Sunny Bee[/b][/right][/cell][cell][left]Character Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Sunny Bee[/b][/right][/cell][cell][left]Character & Prop Artist[/left][/cell]
 [cell padding=0,0,24,0][right][b]KatyaArt132[/b][/right][/cell][cell][left]Cinematics Artist[/left][/cell]
-[cell padding=0,0,24,0][right][b]Lee Campos[/b][/right][/cell][cell][left]Background Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Lee Campos[/b][/right][/cell][cell][left]Background & Prop Artist[/left][/cell]
 [cell padding=0,0,24,0][right][b]Rhys Cassidy[/b][/right][/cell][cell][left]Composer[/left][/cell]
-[cell padding=0,0,24,0][right][b]Jura[/b][/right][/cell][cell][left]Foley Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Jura Leopold[/b][/right][/cell][cell][left]Foley Artist[/left][/cell]
 [cell padding=0,0,24,0][right][b]Robert Burchette[/b][/right][/cell][cell][left]Communications & Playtest Coordinator[/left][/cell][/table][/center][/font_size]
 
 
@@ -91,10 +91,10 @@ text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regu
 
 
 [font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Built With[/color][/font_size][/font]
-[font_size=24][center][table=2][cell padding=0,10,24,10][left][b]Godot Engine[/b][/left][/cell][cell padding=0,10,0,10][left]godotengine.org/license[/left][/cell]
-[cell padding=0,10,24,10][left][b]Dialogue Manager[/b][/left][/cell][cell padding=0,10,0,10][left]by Nathan Hoad (MIT License)[/left][/cell]
-[cell padding=0,10,24,10][left][b]Allura, Caveat, Josefin[/b]
-[b]Sans, & ReenieBeanie[/b][/left][/cell][cell padding=0,10,0,10][left]SIL Open Font License[/left][/cell]
+[font_size=24][center][table=2][cell padding=0,10,24,10][right][b]Godot Engine[/b][/right][/cell][cell padding=0,10,0,10][left]godotengine.org/license[/left][/cell]
+[cell padding=0,10,24,10][right][b]Dialogue Manager[/b][/right][/cell][cell padding=0,10,0,10][left]by Nathan Hoad (MIT License)[/left][/cell]
+[cell padding=0,10,24,10][right][b]Allura, Caveat, Josefin[/b]
+[b]Sans, & ReenieBeanie[/b][/right][/cell][cell padding=0,10,0,10][left]SIL Open Font License[/left][/cell]
 [/table]
 [/center]
 [/font_size]"
@@ -118,11 +118,11 @@ You are not a burden, and you are not alone.
 
 [center]
 [table=2]
-[cell padding=0,0,24,0][left][b]United States[/b][/left][/cell][cell][left]Call or text 988, or text HOME or HOLA to 741741[/left][/cell]
-[cell padding=0,0,24,0][left][b]Canada[/b][/left][/cell][cell][left]Call or text 988[/left][/cell]
-[cell padding=0,0,24,0][left][b]UK & Ireland[/b][/left][/cell][cell][left]Call Samaritans, 116-123[/left][/cell]
-[cell padding=0,0,24,0][left][b]Australia[/b][/left][/cell][cell][left]Call Lifeline at 13-11-14, text 0477-13-11-14, or visit lifeline.org.au[/left][/cell]
-[cell padding=0,0,24,0][left][b]Anywhere else[/b][/left][/cell][cell][left]Findahelpline.com[/left][/cell]
+[cell padding=0,0,24,0][right][b]United States[/b][/right][/cell][cell][left]Call or text 988, or text HOME or HOLA to 741741[/left][/cell]
+[cell padding=0,0,24,0][right][b]Canada[/b][/right][/cell][cell][left]Call or text 988[/left][/cell]
+[cell padding=0,0,24,0][right][b]UK & Ireland[/b][/right][/cell][cell][left]Call Samaritans, 116-123[/left][/cell]
+[cell padding=0,0,24,0][right][b]Australia[/b][/right][/cell][cell][left]Call Lifeline at 13-11-14, text 0477-13-11-14, or visit lifeline.org.au[/left][/cell]
+[cell padding=0,0,24,0][right][b]Anywhere else[/b][/right][/cell][cell][left]Findahelpline.com[/left][/cell]
 [/table]
 [/center]
 If you are in immediate danger, call your local emergency number.
