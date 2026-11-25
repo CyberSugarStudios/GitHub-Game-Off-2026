@@ -109,6 +109,9 @@ func change_room(room_id: StringName) -> void:
 	await _fade_to(0.0)
 	_busy = false
 
+func current_room() -> Room:
+	return _room
+
 func exit_room() -> void:
 	if _busy or not _room or exit_locked or GameState.controls_locked:
 		return

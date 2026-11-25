@@ -18,7 +18,7 @@ boot_splash/image="res://assets/sprites/Boot/boot_splash.png"
 
 [audio]
 
-buses/default_bus_layout="res://resources/default_bus_layout.tres"
+buses/default_bus_layout="uid://caw1616vein83"
 general/default_playback_type.web=0
 
 [autoload]
@@ -43,7 +43,7 @@ window/stretch/aspect="expand"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Jordon/Downloads/new_room_demo.avi"
+movie_writer/movie_file="C:/Users/Jordon/Downloads/hand_anim_demo.avi"
 
 [editor_plugins]
 

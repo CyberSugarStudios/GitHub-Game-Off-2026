@@ -52,7 +52,8 @@ func _rustle() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
 		return
-	if event is InputEventMouseButton and (event as InputEventMouseButton).pressed:
+	var mouse := event as InputEventMouseButton
+	if mouse and mouse.pressed and mouse.button_index in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
 		_rustle()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_cancel") or event.is_action_pressed("interact") \

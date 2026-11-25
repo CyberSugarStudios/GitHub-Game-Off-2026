@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var fog_events: Array[StringName] = [&"bathroom_shower_faucet"]
 @export var fog_minutes: int = 120
 @export var creature: Creature
+@export var room_view: RoomView
 @export_range(0.0, 1.0) var creature_opacity: float = 0.75
 
 @export_group("Astral Sequence")
@@ -18,6 +19,7 @@ extends CanvasLayer
 @export var creature_seconds: float = 0.6
 @export var fade_out_seconds: float = 2.0
 
+@onready var mirror_art: TextureRect = $Root/Mirror
 @onready var reflection: TextureRect = $Root/Reflection
 @onready var creature_art: AnimatedSprite2D = $Root/Creature
 @onready var fog: TextureRect = $Root/Fog
@@ -75,6 +77,13 @@ func close() -> void:
 func _process(_delta: float) -> void:
 	if visible:
 		fog.modulate.a = _fog_amount()
+
+func _match_room_light() -> void:
+	var room := room_view.current_room() if room_view else null
+	var tint := room.get_tint() if room else Color.WHITE
+	tint.a = 1.0
+	for art: CanvasItem in [mirror_art, reflection, creature_art, fog]:
+		art.self_modulate = tint
 
 func _on_plane_changed(astral: bool) -> void:
 	if not visible:
@@ -154,7 +163,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			GameState.toggle_plane()
 		get_viewport().set_input_as_handled()
 		return
-	var click: bool = event is InputEventMouseButton and (event as InputEventMouseButton).pressed
+	var mouse := event as InputEventMouseButton
+	if mouse and mouse.pressed and mouse.button_index not in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
+		get_viewport().set_input_as_handled()
+		return
+	var click: bool = mouse != null and mouse.pressed
 	if click or event.is_action_pressed("ui_cancel") or event.is_action_pressed("interact") \
 			or event.is_action_pressed("move_backward"):
 		close()

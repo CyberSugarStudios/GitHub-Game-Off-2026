@@ -19,6 +19,7 @@ signal unlocked
 var lock: DoorLock
 var _bars: Array[PillBar] = []
 var _bar_rest_x := 0.0
+var _shake_tween: Tween
 var _opening := false
 
 func _ready() -> void:
@@ -32,7 +33,6 @@ func _ready() -> void:
 	if bar_row:
 		bar_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		bar_row.add_theme_constant_override("separation", bar_spacing)
-		_bar_rest_x = bar_row.position.x
 		_build_bars()
 		if lock.is_locked():
 			_show_progress(0.0)
@@ -90,6 +90,12 @@ func _on_unlocked() -> void:
 		tween.tween_callback(_open)
 
 func _play_fail_shake() -> void:
-	var tween := create_tween()
+	if bar_row == null:
+		return
+	if _shake_tween and _shake_tween.is_running():
+		_shake_tween.kill()
+	else:
+		_bar_rest_x = bar_row.position.x
+	_shake_tween = create_tween()
 	for offset in [12.0, -12.0, 8.0, 0.0]:
-		tween.tween_property(bar_row, "position:x", _bar_rest_x + offset, 0.05)
+		_shake_tween.tween_property(bar_row, "position:x", _bar_rest_x + offset, 0.05)
