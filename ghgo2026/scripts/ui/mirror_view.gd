@@ -33,6 +33,8 @@ var _music_tween: Tween
 
 func _ready() -> void:
 	visible = false
+	if room_view == null:
+		room_view = get_node_or_null("../RoomView") as RoomView
 	_chase = AudioStreamPlayer.new()
 	_chase.bus = &"Music"
 	add_child(_chase)
@@ -56,6 +58,7 @@ func open() -> void:
 		return
 	visible = true
 	GameState.set_controls_locked(true)
+	_match_room_light()
 	var look := creature.look_for_level() if creature else null
 	_has_creature = look != null and look.frames != null
 	if _has_creature:
@@ -77,6 +80,7 @@ func close() -> void:
 func _process(_delta: float) -> void:
 	if visible:
 		fog.modulate.a = _fog_amount()
+		_match_room_light()
 
 func _match_room_light() -> void:
 	var room := room_view.current_room() if room_view else null

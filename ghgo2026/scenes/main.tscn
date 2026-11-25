@@ -982,8 +982,9 @@ metadata/_custom_type_script = "uid://csb2u46ehna7t"
 script = ExtResource("77_ksmap")
 metadata/_custom_type_script = "uid://bxs7xdlwwl1ov"
 
-[node name="MirrorView" parent="." unique_id=786889855 node_paths=PackedStringArray("creature") instance=ExtResource("78_ygd8o")]
+[node name="MirrorView" parent="." unique_id=786889855 node_paths=PackedStringArray("creature", "room_view") instance=ExtResource("78_ygd8o")]
 creature = NodePath("../Hall/Creature")
+room_view = NodePath("../RoomView")
 
 [node name="PamphletView" parent="." unique_id=1293784446 instance=ExtResource("79_2s0kr")]
 
