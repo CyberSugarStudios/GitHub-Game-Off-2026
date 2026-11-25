@@ -942,7 +942,7 @@ conversation_player = NodePath("../ConversationPlayer")
 [node name="AstralShift" type="Node" parent="." unique_id=1708356995]
 script = ExtResource("36_kmb1v")
 
-[node name="StoryDirector" type="Node" parent="." unique_id=441234710 node_paths=PackedStringArray("player", "room_view", "astral_shift", "household", "fade", "wake_doorway", "garage_voice", "living_room_voice", "front_door_sound", "title_card")]
+[node name="StoryDirector" type="Node" parent="." unique_id=441234710 node_paths=PackedStringArray("player", "room_view", "astral_shift", "household", "fade", "wake_doorway", "garage_voice", "living_room_voice", "front_door_sound", "title_card", "pamphlet")]
 script = ExtResource("41_5poiv")
 player = NodePath("../Emily")
 room_view = NodePath("../RoomView")
@@ -954,6 +954,7 @@ garage_voice = NodePath("../Hall/RoomEntrances/GarageDoor/GarageVoice")
 living_room_voice = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/LivingRoomVoice")
 front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSound")
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
+pamphlet = NodePath("../PamphletView")
 
 [node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player")]
 script = ExtResource("44_cjqg0")

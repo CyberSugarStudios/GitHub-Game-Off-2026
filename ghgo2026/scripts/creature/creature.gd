@@ -39,8 +39,8 @@ const EYE_HEIGHT := 1.4
 @export var guard_spot: Node3D
 @export var guard_room: StringName = &"emily_bedroom"
 @export var guard_radius: float = 6.0
-@export var guard_charge_distance: float = 5.0
-@export var guard_return_delay: float = 8.0
+@export var guard_charge_distance: float = 2.75
+@export var guard_return_delay: float = 30.0
 @export var guard_exit_grace: float = 2.5
 
 @export_group("Art")
@@ -126,7 +126,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if GameState.is_in_room():
 		if GameState.monster_level == 4 and guard_spot:
-			if _state == State.HIDDEN:
+			if GameState.current_room == guard_room:
+				if _state != State.HIDDEN:
+					_vanish(guard_return_delay)
+				_timer = maxf(_timer, guard_return_delay)
+			elif _state == State.HIDDEN:
 				_timer -= delta
 				if _timer <= 0.0:
 					_appear(guard_spot.global_position, State.GUARDING)
@@ -241,12 +245,12 @@ func _escape() -> void:
 	Events.struggle_changed.emit(0.0)
 	GameState.set_controls_locked(false)
 	GameState.regen_paused = false
-	_vanish(escape_cooldown)
+	_vanish(_cooldown(escape_cooldown))
 
 func _consume() -> void:
 	GameState.regen_paused = false
 	Events.creature_moment.emit(&"consumed")
-	_vanish(escape_cooldown)
+	_vanish(_cooldown(escape_cooldown))
 	_play(consume_sound)
 	Events.story_prompt_changed.emit("")
 	Events.struggle_changed.emit(0.0)
@@ -316,6 +320,7 @@ func _appear(at: Vector3, state: State) -> void:
 	visible = true
 	if state == State.GUARDING:
 		GameState.guarded_room = guard_room
+		_grace = guard_exit_grace
 	_face_player()
 	if presence.stream:
 		presence.play()
@@ -492,6 +497,9 @@ func _distance_to_player() -> float:
 
 func _lurk_delay() -> float:
 	return randf_range(lurk_interval.x, lurk_interval.y)
+
+func _cooldown(seconds: float) -> float:
+	return maxf(seconds, guard_return_delay) if GameState.monster_level == 4 else seconds
 
 func _hunts_now() -> bool:
 	var level := GameState.monster_level

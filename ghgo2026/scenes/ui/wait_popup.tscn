@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://e5o4kgdfuio0"]
+
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="1_20j1s"]
+[ext_resource type="Script" uid="uid://loobfxm5d2j7" path="res://scripts/ui/wait_popup.gd" id="1_mgf4u"]
+[ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="2_mgf4u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53m36"]
+bg_color = Color(0.31764707, 0.2509804, 0.23137255, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[node name="WaitPopup" type="CanvasLayer" unique_id=108376269]
+layer = 10
+script = ExtResource("1_mgf4u")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1332689873]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75000006)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1585961520]
+custom_minimum_size = Vector2(360, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_53m36")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2054539911]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Box" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1130968566]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Box" unique_id=1569882966]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_20j1s")
+theme_override_font_sizes/font_size = 38
+text = "Wait..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HourButton" type="Button" parent="PanelContainer/MarginContainer/Box" unique_id=353978365]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.6862745, 0.65882355, 0.58431375, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_mgf4u")
+theme_override_font_sizes/font_size = 32
+text = "...for one hour."
+
+[node name="NightButton" type="Button" parent="PanelContainer/MarginContainer/Box" unique_id=177953567]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.6862745, 0.65882355, 0.58431375, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_mgf4u")
+theme_override_font_sizes/font_size = 32
+text = "...until Night."
+
+[node name="MorningButton" type="Button" parent="PanelContainer/MarginContainer/Box" unique_id=1260250010]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.6862745, 0.65882355, 0.58431375, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_mgf4u")
+theme_override_font_sizes/font_size = 32
+text = "...until Morning."
+
+[node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/Box" unique_id=1026017829]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.6862745, 0.65882355, 0.58431375, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_mgf4u")
+theme_override_font_sizes/font_size = 32
+text = "Nevermind    [S]"

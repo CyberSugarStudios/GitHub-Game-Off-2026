@@ -19,6 +19,7 @@ const PUZZLE_4 := preload("res://dialogue/puzzle_4.dialogue")
 const PUZZLE_5 := preload("res://dialogue/puzzle_5.dialogue")
 const CREDITS_SCENE := "res://scenes/ui/credits_roll.tscn"
 const HAND_SCENE := preload("res://scenes/ui/hand_through_door_intro.tscn")
+const WAIT_POPUP := preload("res://scenes/ui/wait_popup.tscn")
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 const BEER_CAN_SOUND := preload("res://assets/audio/sfx/varied/beer_can_open.wav")
 const INTRO_DONE := &"intro_done"
@@ -57,6 +58,7 @@ const INTRO_FLAGS: Array[StringName] = [
 
 @export_group("Morning")
 @export var morning_time: String = "07:30"
+@export var night_time: String = "23:30"
 @export var morning_fade_time: float = 0.6
 
 @export_group("Puzzle 1")
@@ -116,6 +118,7 @@ const INTRO_FLAGS: Array[StringName] = [
 #endregion
 var _finished: Dictionary[String, bool] = {}
 var _waiting := false
+var _wait_popup: WaitPopup
 var _accept_progress := -1.0
 var _p3_medicated := false
 var _p3_last_minute := -1
@@ -135,6 +138,8 @@ func _ready() -> void:
 	_sfx = AudioStreamPlayer.new()
 	_sfx.bus = &"SFX"
 	add_child(_sfx)
+	_wait_popup = WAIT_POPUP.instantiate() as WaitPopup
+	add_child(_wait_popup)
 	if title_card:
 		title_card.modulate.a = 0.0
 
@@ -539,7 +544,7 @@ func _debug_next_stage() -> void:
 func _on_any_story_event(id: StringName) -> void:
 	match id:
 		&"wait_hour":
-			_wait_an_hour()
+			_ask_wait()
 		&"lose_hour":
 			_skip_hour()
 		&"coffee_on_leanne":
@@ -550,15 +555,27 @@ func _on_any_story_event(id: StringName) -> void:
 			say_in_background("p2_david_breaker", PUZZLE_2)
 			household.send(DAD,  &"garage", p2_breaker_minutes, [], &"checking_breaker")
 
-func _wait_an_hour() -> void:
-	if _waiting:
+func _ask_wait() -> void:
+	if _waiting or _wait_popup.visible:
+		return
+	var choice: StringName = await _wait_popup.ask(night_time, morning_time)
+	match choice:
+		&"hour":
+			await _wait_minutes(60)
+		&"night":
+			await _wait_minutes(_minutes_until(night_time))
+		&"morning":
+			await _wait_minutes(_minutes_until(morning_time))
+
+func _wait_minutes(minutes: int) -> void:
+	if _waiting or minutes <= 0:
 		return
 	_waiting = true
 	GameState.set_controls_locked(true)
 	var tween := create_tween()
 	tween.tween_property(fade, "color:a", 1.0, wait_fade_time)
 	await tween.finished
-	_skip_hour()
+	_skip_minutes(minutes)
 	GameState.refill_energy()
 	await wait(0.3)
 	tween = create_tween()
@@ -567,9 +584,15 @@ func _wait_an_hour() -> void:
 	GameState.set_controls_locked(false)
 	_waiting = false
 
+func _minutes_until(time_text: String) -> int:
+	return posmod(_to_minutes(time_text) - GameClock.minute, GameClock.MINUTES_PER_DAY)
+
 func _skip_hour() -> void:
+	_skip_minutes(60)
+
+func _skip_minutes(minutes: int) -> void:
 	Events.dialogue_interrupt_requested.emit()
-	GameClock.set_time(GameClock.day, GameClock.minute + 60)
+	GameClock.set_time(GameClock.day, GameClock.minute + minutes)
 	household.settle_everyone()
 #endregion
 

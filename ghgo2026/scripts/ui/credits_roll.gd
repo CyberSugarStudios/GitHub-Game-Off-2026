@@ -9,7 +9,7 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @export var scroll_speed: float = 60.0
 @export var music: AudioStream
 @export var music_fade: float = 8.0
-@export var music_limit_seconds: float = 90.0
+@export var music_limit_seconds: float = 89.5
 @export var prompt_delay: float = 3.0
 @export var gap: float = 160.0
 
