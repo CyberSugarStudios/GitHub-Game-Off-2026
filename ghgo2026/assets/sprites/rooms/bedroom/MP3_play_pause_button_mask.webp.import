@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://rn1r5xpgw1s"
+path="res://.godot/imported/MP3_play_pause_button_mask.webp-e689c3981925858a259c61a9f60eb93f.res"
+
+[deps]
+
+source_file="res://assets/sprites/rooms/bedroom/MP3_play_pause_button_mask.webp"
+dest_files=["res://.godot/imported/MP3_play_pause_button_mask.webp-e689c3981925858a259c61a9f60eb93f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

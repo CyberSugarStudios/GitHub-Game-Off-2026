@@ -3,6 +3,12 @@
 [ext_resource type="Script" uid="uid://cq4ft3ogr2m6j" path="res://scripts/ui/mp3_player.gd" id="1_unlxu"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="2_gftdv"]
 [ext_resource type="Texture2D" uid="uid://b0g6o2go5gvy5" path="res://assets/sprites/rooms/bedroom/MP3.webp" id="2_ple03"]
+[ext_resource type="Texture2D" uid="uid://bjybkf1jor05o" path="res://assets/sprites/rooms/bedroom/MP3_back_button.webp" id="4_rpydq"]
+[ext_resource type="BitMap" uid="uid://c4q1dbwtyuox0" path="res://assets/sprites/rooms/bedroom/MP3_back_button_mask.webp" id="5_3g7s7"]
+[ext_resource type="Texture2D" uid="uid://bfsrlwv5ga3l2" path="res://assets/sprites/rooms/bedroom/MP3_next_button.webp" id="5_kndek"]
+[ext_resource type="Texture2D" uid="uid://l847n3ke6wi7" path="res://assets/sprites/rooms/bedroom/MP3_play_pause_button.webp" id="6_s8hnw"]
+[ext_resource type="BitMap" uid="uid://rn1r5xpgw1s" path="res://assets/sprites/rooms/bedroom/MP3_play_pause_button_mask.webp" id="7_tyh5q"]
+[ext_resource type="BitMap" uid="uid://d1o0ixvmpo1o1" path="res://assets/sprites/rooms/bedroom/MP3_next_button_mask.webp" id="9_bu88d"]
 
 [node name="MP3Player" type="CanvasLayer" unique_id=548456274]
 script = ExtResource("1_unlxu")
@@ -35,21 +41,16 @@ expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DeviceArt" unique_id=293518782]
 layout_mode = 0
-offset_left = 187.5
-offset_top = 206.25
-offset_right = 572.5
-offset_bottom = 500.25
-scale = Vector2(0.7421534, 0.8516031)
+offset_left = 183.75
+offset_top = 197.5
+offset_right = 568.75
+offset_bottom = 511.5
+scale = Vector2(0.76003444, 0.85498613)
 theme_override_constants/separation = 4
-
-[node name="SpacingTop" type="Control" parent="DeviceArt/VBoxContainer" unique_id=1367456780]
-custom_minimum_size = Vector2(0, 13.38)
-layout_mode = 2
 
 [node name="CoverArt" type="TextureRect" parent="DeviceArt/VBoxContainer" unique_id=355270081]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(130, 130)
-custom_maximum_size = Vector2(130, 130)
+custom_minimum_size = Vector2(150, 130)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -133,44 +134,41 @@ size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 
-[node name="BackButton" type="Button" parent="DeviceArt" unique_id=1563503559]
+[node name="BackButton" type="TextureButton" parent="DeviceArt" unique_id=152596475]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 60)
 layout_mode = 0
-offset_left = 288.75
-offset_top = 746.25
-offset_right = 378.75
-offset_bottom = 806.25
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-text = "|<<"
+offset_left = 218.75
+offset_top = 664.99994
+offset_right = 1214.75
+offset_bottom = 1198.0
+scale = Vector2(0.23018117, 0.2366047)
+texture_normal = ExtResource("4_rpydq")
+texture_click_mask = ExtResource("5_3g7s7")
 
-[node name="PlayButton" type="Button" parent="DeviceArt" unique_id=176488098]
+[node name="PlayButton" type="TextureButton" parent="DeviceArt" unique_id=310126957]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 60)
 layout_mode = 0
-offset_left = 288.75
-offset_top = 541.25
-offset_right = 378.75
-offset_bottom = 601.25
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-text = "Play"
+offset_left = 220.0
+offset_top = 558.74994
+offset_right = 1215.0
+offset_bottom = 1272.75
+scale = Vector2(0.23117562, 0.23117562)
+texture_normal = ExtResource("6_s8hnw")
+texture_click_mask = ExtResource("7_tyh5q")
 
-[node name="SkipButton" type="Button" parent="DeviceArt" unique_id=357436168]
+[node name="SkipButton" type="TextureButton" parent="DeviceArt" unique_id=2055073176]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 60)
 layout_mode = 0
-offset_left = 286.24994
-offset_top = 636.25
-offset_right = 376.24994
-offset_bottom = 696.25
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-text = ">>|"
+offset_left = 244.99997
+offset_top = 590.00006
+offset_right = 989.0
+offset_bottom = 1304.0
+scale = Vector2(0.23182723, 0.23182723)
+texture_normal = ExtResource("5_kndek")
+texture_click_mask = ExtResource("9_bu88d")
 
 [node name="CloseButton" type="Button" parent="DeviceArt" unique_id=784874902]
 unique_name_in_owner = true

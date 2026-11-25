@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://d1o0ixvmpo1o1"
+path="res://.godot/imported/MP3_next_button_mask.webp-8c5b0f21a03c9ce94bd86b0a4606d167.res"
+
+[deps]
+
+source_file="res://assets/sprites/rooms/bedroom/MP3_next_button_mask.webp"
+dest_files=["res://.godot/imported/MP3_next_button_mask.webp-8c5b0f21a03c9ce94bd86b0a4606d167.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

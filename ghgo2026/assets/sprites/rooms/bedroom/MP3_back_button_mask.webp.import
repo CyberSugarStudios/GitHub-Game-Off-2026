@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://c4q1dbwtyuox0"
+path="res://.godot/imported/MP3_back_button_mask.webp-6cff77ed608f8a3bf1461853a2291ce8.res"
+
+[deps]
+
+source_file="res://assets/sprites/rooms/bedroom/MP3_back_button_mask.webp"
+dest_files=["res://.godot/imported/MP3_back_button_mask.webp-6cff77ed608f8a3bf1461853a2291ce8.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

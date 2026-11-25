@@ -15,9 +15,9 @@ extends CanvasLayer
 @onready var cover_art: TextureRect = %CoverArt
 @onready var time_label: Label = %TimeLabel
 @onready var progress: ProgressBar = %Progress
-@onready var back_button: Button = %BackButton
-@onready var play_button: Button = %PlayButton
-@onready var skip_button: Button = %SkipButton
+@onready var back_button: TextureButton = %BackButton
+@onready var play_button: TextureButton = %PlayButton
+@onready var skip_button: TextureButton = %SkipButton
 @onready var volume_slider: HSlider = %VolumeSlider
 @onready var close_button: Button = %CloseButton
 
