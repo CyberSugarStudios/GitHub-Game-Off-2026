@@ -119,7 +119,7 @@ func _swap_spread(next: int, folding: Control, unfolding: Control) -> void:
 func _show_spread() -> void:
 	left_page.text = _page(_spread * 2)
 	right_page.text = _page(_spread * 2 + 1)
-	page_number.text = "%d / %d" %[_spread + 1, _last_spread() + 1]
+	page_number.text = "%d | %d" %[_spread + 1, _last_spread() + 1]
 	prev_button.disabled = _spread == 0
 	next_button.disabled = _spread == _last_spread()
 	if _spread == _last_spread():
