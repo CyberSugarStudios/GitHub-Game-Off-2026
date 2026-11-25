@@ -43,6 +43,7 @@ var _held := false
 var _song := false
 var _intro := false
 var _intro_players: Array[AudioStreamPlayer] = []
+var _earbuds_db := 0.0
 
 func _ready() -> void:
 	Music.finished.connect(_on_track_finished)
@@ -96,8 +97,19 @@ func play_intro() -> void:
 	_remember_position()
 	_playing = null
 	Music.stop(0.3)
-	_start_intro_sound(intro_song, _earbuds_bus(), 0.0)
+	var earbuds := AudioServer.get_bus_index(_earbuds_bus())
+	_earbuds_db = AudioServer.get_bus_volume_db(earbuds)
+	AudioServer.set_bus_bypass_effects(earbuds, true)
+	AudioServer.set_bus_volume_db(earbuds, 0.0)
+	_start_intro_sound(intro_song, EARBUDS_BUS, 0.0)
 	_start_intro_sound(intro_ambience, &"Ambience", intro_ambience_db)
+
+func intro_to_earbuds() -> void:
+	var earbuds := AudioServer.get_bus_index(EARBUDS_BUS)
+	if earbuds < 0:
+		return
+	AudioServer.set_bus_bypass_effects(earbuds, false)
+	AudioServer.set_bus_volume_db(earbuds, _earbuds_db)
 
 func end_intro(fade_time: float) -> void:
 	if not _intro:
