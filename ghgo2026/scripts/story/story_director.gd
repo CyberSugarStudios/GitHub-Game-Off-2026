@@ -556,6 +556,7 @@ func _wait_an_hour() -> void:
 	_waiting = false
 
 func _skip_hour() -> void:
+	Events.dialogue_interrupt_requested.emit()
 	GameClock.set_time(GameClock.day, GameClock.minute + 60)
 	household.settle_everyone()
 #endregion

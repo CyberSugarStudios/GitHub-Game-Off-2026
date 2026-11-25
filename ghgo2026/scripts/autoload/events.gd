@@ -18,4 +18,5 @@ signal parents_staged(parent_id: StringName, spot: StringName)
 signal room_pan_requested(ratio: float)
 signal near_missed(source: StringName)
 signal creature_moment(kind: StringName)
+signal dialogue_interrupt_requested
 @warning_ignore_restore("unused_signal")
