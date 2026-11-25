@@ -4,7 +4,6 @@ const INTRO_VIDEO := preload("res://assets/sprites/Animations/intro_anim.ogv")
 
 @export var warmup_turn_steps: int = 8
 @export var warmup_frames_per_step: int = 2
-@export_range(0.0, 0.2, 0.005) var bus_crop: float = 0.05
 
 @onready var fade: ColorRect = $RoomView/FadeLayer/Fade
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
@@ -64,17 +63,13 @@ func _play_intro_videos() -> ColorRect:
 	var box := AspectRatioContainer.new()
 	screen.add_child(box)
 	box.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var frame := Control.new()
-	frame.clip_contents = true
-	box.add_child(frame)
 	var video := VideoStreamPlayer.new()
 	video.expand = true
-	frame.add_child(video)
+	box.add_child(video)
 	_video_playing = true
 	video.stream = INTRO_VIDEO
 	video.play()
 	await get_tree().process_frame
-	video.set_offsets_preset(Control.PRESET_FULL_RECT)
 	var texture := video.get_video_texture()
 	if texture and texture.get_height() > 0:
 		box.ratio = float(texture.get_width()) / texture.get_height()

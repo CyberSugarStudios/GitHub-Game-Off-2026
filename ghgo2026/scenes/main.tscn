@@ -241,7 +241,6 @@ metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [node name="Main" type="Node3D" unique_id=666068387]
 script = ExtResource("1_sugp2")
-bus_crop = 0.0
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=244970420]
 transform = Transform3D(0.49999997, -0.43301272, 0.75000006, 0, 0.8660254, 0.50000006, -0.86602545, -0.24999999, 0.43301266, 4.3079224, 5.7391357, 0)
