@@ -14,6 +14,14 @@ extends Node
 @export var calm_after_hunt: float = 0.5
 @export var hall_quiet_db: float = -12.0
 
+@export_group("Diary")
+@export var diary_flag: StringName = &"diary_unlocked"
+@export var diary_song: AudioStream = preload("res://assets/audio/music/end_credits_music.mp3")
+@export var diary_fade: float = 3.0
+
+@export_group("Intro")
+@export var intro_song: AudioStream = preload("res://assets/audio/MP3_music/Anathema.mp3")
+
 var _set: MusicSet
 var _last_track: AudioStream
 var _playing: AudioStream
@@ -22,6 +30,7 @@ var _quiet_left := -1.0
 var _hunting := false
 var _calm_left := 0.0
 var _held := false
+var _song := false
 
 func _ready() -> void:
 	Music.finished.connect(_on_track_finished)
@@ -30,8 +39,12 @@ func _ready() -> void:
 	GameState.flag_set.connect(func(id: StringName) -> void:
 		if id == &"creature_accepted":
 			_held = true
-			_end_hunt())
+			_end_hunt()
+		elif id == diary_flag:
+			_play_song())
 	_choose_set()
+	if GameState.has_flag(diary_flag):
+		_play_song()
 
 func _exit_tree() -> void:
 	Music.stop_layer(hunt_fade_out)
@@ -66,7 +79,18 @@ func _end_hunt() -> void:
 #endregion
 
 #region - HALL MUSIC
+func _play_song() -> void:
+	if _song or diary_song == null:
+		return
+	_song = true
+	_remember_position()
+	_playing = null
+	_quiet_left = -1.0
+	Music.play(diary_song, diary_fade)
+
 func _choose_set() -> void:
+	if _song:
+		return
 	var best := -1
 	for stage in stage_music:
 		if stage <= GameState.story_stage and stage > best:
@@ -110,7 +134,7 @@ func _version(track: AudioStream) -> AudioStream:
 	return track
 
 func _on_track_finished() -> void:
-	if _held or _set == null:
+	if _held or _song or _set == null:
 		return
 	if _last_track:
 		_positions.erase(_last_track)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qcv2lxcjf3hg" path="res://scripts/ui/credits_roll.gd" id="1_c18oi"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="2_3nbvj"]
-[ext_resource type="AudioStream" uid="uid://cd0s8t4wl3gpt" path="res://assets/audio/music/end_credits_music.mp3" id="2_ngeid"]
+[ext_resource type="AudioStream" uid="uid://jl2fctw0xxhm" path="res://assets/audio/music/white gummy.mp3" id="2_pcjb0"]
 [ext_resource type="VideoStream" uid="uid://cpjtabllj673p" path="res://assets/sprites/Animations/Emily-bus/Emily-bus-idle.ogv" id="3_pcjb0"]
 
 [node name="CreditsRoll" type="Control" unique_id=1954314595]
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c18oi")
 scroll_speed = 100.0
-music = ExtResource("2_ngeid")
+music = ExtResource("2_pcjb0")
 
 [node name="Background2" type="VideoStreamPlayer" parent="." unique_id=1099289524]
 layout_mode = 1

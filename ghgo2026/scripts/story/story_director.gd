@@ -108,6 +108,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p5_white_hold: float = 1.0
 @export var p5_to_black_seconds: float = 2.5
 @export var p5_fight_audio: AudioStream
+@export var ending_song: AudioStream = preload("res://assets/audio/music/white gummy.mp3")
 
 @export var wait_fade_time: float = 0.4
 #endregion
@@ -493,7 +494,10 @@ func _accept_creature() -> void:
 func _play_ending() -> void:
 	GameState.clear_checkpoint()
 	GameState.set_controls_locked(true)
-	Music.stop(p5_light_seconds)
+	if ending_song:
+		Music.play(ending_song, p5_light_seconds)
+	else:
+		Music.stop(p5_light_seconds)
 	await wait(p5_light_seconds)
 	fade.color = Color(1.0, 1.0, 1.0, 0.0)
 	var tween := create_tween()
