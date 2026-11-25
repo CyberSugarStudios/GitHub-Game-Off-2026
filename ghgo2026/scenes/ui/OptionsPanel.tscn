@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://b713spnah4skw"]
 
 [ext_resource type="Script" uid="uid://7uqmnmqcix7m" path="res://scripts/ui/options_panel.gd" id="1_ksq0f"]
+[ext_resource type="AudioStream" uid="uid://b0wiaqutmoxn2" path="res://assets/audio/MP3_music/Anathema.mp3" id="3_1wn4n"]
+[ext_resource type="AudioStream" uid="uid://cd0s8t4wl3gpt" path="res://assets/audio/music/end_credits_music.mp3" id="4_0qnn8"]
 [ext_resource type="AudioStream" uid="uid://bru3chlcrbsin" path="res://assets/audio/music/hall_music.mp3" id="4_wasor"]
-[ext_resource type="AudioStream" uid="uid://cjb0d8qbvn0pq" path="res://assets/audio/music/WIP_child_ghost_background_2.mp3" id="8_wip"]
+[ext_resource type="AudioStream" uid="uid://wc5kxf3klxtv" path="res://assets/audio/sfx/varied/sparks.wav" id="5_c88ko"]
+[ext_resource type="AudioStream" uid="uid://c4qath6yi0kb6" path="res://assets/audio/Emily Voicelines/intro/intro_garage_handle2.wav" id="6_wasor"]
+[ext_resource type="AudioStream" uid="uid://btycl8jacpeuw" path="res://assets/audio/MP3_music/Joe Leytrick - I Don't Know (Acoustic).mp3" id="7_0qnn8"]
 
 [node name="OptionsPanel" type="VBoxContainer" unique_id=1048352369]
 script = ExtResource("1_ksq0f")
 previews = Dictionary[StringName, AudioStream]({
-&"MP3": ExtResource("8_wip"),
-&"Music": ExtResource("4_wasor")
+&"Ambience": ExtResource("4_0qnn8"),
+&"MP3": ExtResource("7_0qnn8"),
+&"Master": ExtResource("3_1wn4n"),
+&"Music": ExtResource("4_wasor"),
+&"SFX": ExtResource("5_c88ko"),
+&"Voices": ExtResource("6_wasor")
 })
