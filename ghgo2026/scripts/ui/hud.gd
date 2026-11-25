@@ -21,6 +21,7 @@ const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav
 @export var memory_fill_time: float = 0.7
 @export var memory_duck_db: float = -15.0
 @export var memory_unduck_time: float = 1.5
+@export var memory_duck_seconds: float = 2.5
 
 @onready var astral_filter: ColorRect = $AstralRealmColorFilter
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
@@ -56,7 +57,6 @@ func _ready() -> void:
 	_memory_player.stream = MEMORY_SOUND
 	_memory_player.bus = &"SFX"
 	add_child(_memory_player)
-	_memory_player.finished.connect(func() -> void: Music.duck(false, memory_unduck_time))
 	GameState.max_bars_changed.connect(_on_max_bars_changed)
 	GameState.plane_changed.connect(_on_plane_changed)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
@@ -103,9 +103,13 @@ func _on_max_bars_changed(max_bars: int) -> void:
 		_play_memory_restored(max_bars - 1)
 	_known_bars = max_bars
 
+func _unduck_after_memory() -> void:
+	Music.duck(false, memory_unduck_time)
+
 func _play_memory_restored(index: int) -> void:
 	Music.duck(true, 0.6, memory_duck_db)
 	_memory_player.play()
+	get_tree().create_timer(memory_duck_seconds).timeout.connect(_unduck_after_memory)
 	if index < 0 or index >= _bars.size():
 		return
 	var slot := _bars[index]
