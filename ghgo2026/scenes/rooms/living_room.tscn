@@ -153,7 +153,6 @@ position = Vector2(177.7, 340)
 position = Vector2(-256, 42.4)
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
-visible = false
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
