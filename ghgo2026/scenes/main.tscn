@@ -78,6 +78,8 @@
 [ext_resource type="AudioStream" uid="uid://bq6c3r18nglg8" path="res://assets/audio/music/hall_music_astral.mp3" id="67_y57op"]
 [ext_resource type="Script" uid="uid://bxs7xdlwwl1ov" path="res://scripts/ui/cupboard_keypad.gd" id="77_ksmap"]
 [ext_resource type="PackedScene" uid="uid://bocgap0btqaff" path="res://scenes/ui/mirror_view.tscn" id="78_ygd8o"]
+[ext_resource type="PackedScene" uid="uid://8kuxv6n1o1p0" path="res://scenes/ui/PamphletView.tscn" id="79_2s0kr"]
+[ext_resource type="PackedScene" uid="uid://cbglrm0cpop85" path="res://scenes/ui/hand_through_door_intro.tscn" id="80_xaipn"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 background_mode = 1
@@ -966,6 +968,11 @@ metadata/_custom_type_script = "uid://bxs7xdlwwl1ov"
 
 [node name="MirrorView" parent="." unique_id=786889855 node_paths=PackedStringArray("creature") instance=ExtResource("78_ygd8o")]
 creature = NodePath("../Hall/Creature")
+
+[node name="PamphletView" parent="." unique_id=1293784446 instance=ExtResource("79_2s0kr")]
+
+[node name="HandThroughDoorIntro" parent="." unique_id=2020070984 instance=ExtResource("80_xaipn")]
+visible = false
 
 [editable path="Hall"]
 [editable path="Hall/LeanneHall"]

@@ -18,6 +18,7 @@ const PUZZLE_3 := preload("res://dialogue/puzzle_3.dialogue")
 const PUZZLE_4 := preload("res://dialogue/puzzle_4.dialogue")
 const PUZZLE_5 := preload("res://dialogue/puzzle_5.dialogue")
 const CREDITS_SCENE := "res://scenes/ui/credits_roll.tscn"
+const HAND_SCENE := preload("res://scenes/ui/hand_through_door_intro.tscn")
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 const BEER_CAN_SOUND := preload("res://assets/audio/sfx/varied/beer_can_open.wav")
 const INTRO_DONE := &"intro_done"
@@ -41,6 +42,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var living_room_voice: Speaker
 @export var front_door_sound: DoorSound
 @export var title_card: CanvasItem
+@export var pamphlet: PamphletView
 
 @export_group("Intro")
 @export var intro_time: String = "16:40"
@@ -198,6 +200,7 @@ func _run_intro() -> void:
 	say_in_background("intro_david_garage")
 	await wait_event(&"garage_handle")
 	GameState.set_flag(&"garage_handle_tried")
+	await _show_hand_through_door()
 	
 	await say("intro_garage_handle", true)
 	
@@ -240,9 +243,18 @@ func _run_intro() -> void:
 	GameState.set_flag(&"read_mom_thoughts")
 	
 	await wait_event(&"memorial_pamphlet")
+	if pamphlet:
+		await pamphlet.closed
 	await say(&"intro_pamphlet", true)
 	
 	_end_intro()
+
+func _show_hand_through_door() -> void:
+	GameState.set_controls_locked(true)
+	var scene := HAND_SCENE.instantiate() as HandThroughDoor
+	add_child(scene)
+	await scene.play()
+	scene.queue_free()
 
 func _end_intro() -> void:
 	GameState.set_controls_locked(true)

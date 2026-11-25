@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://8kuxv6n1o1p0"]
+
+[ext_resource type="Script" uid="uid://dp5sdgfdyrhlb" path="res://scripts/ui/pamphlet_view.gd" id="1_5vd7c"]
+[ext_resource type="Texture2D" uid="uid://djy810ufskw8r" path="res://assets/sprites/rooms/kitchen/pamphlet.webp" id="2_2ngxf"]
+
+[node name="PamphletView" type="CanvasLayer" unique_id=1293784446]
+layer = 10
+script = ExtResource("1_5vd7c")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=657249497]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.75000006)
+
+[node name="Pamphlet" type="TextureRect" parent="." unique_id=416743648]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2ngxf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BackButton" type="Button" parent="." unique_id=2072651226]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.5
+offset_top = -60.0
+offset_right = 70.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Back (S)"

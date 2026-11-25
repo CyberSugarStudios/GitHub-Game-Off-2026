@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cbglrm0cpop85"]
 
+[ext_resource type="Script" uid="uid://d0ifl15wufxyp" path="res://scripts/ui/hand_through_door.gd" id="1_pydi4"]
 [ext_resource type="Texture2D" uid="uid://d4d5fnifsaw64" path="res://assets/textures/house/hall/hallway_1.webp" id="1_twpwp"]
 [ext_resource type="Texture2D" uid="uid://cxldrekaa0rha" path="res://assets/textures/house/doors/door_frame.webp" id="2_vgyvs"]
 [ext_resource type="Texture2D" uid="uid://bmybhllukh5yy" path="res://assets/textures/house/doors/door_1_int.webp" id="3_pydi4"]
@@ -8,6 +9,7 @@
 
 [node name="HandThroughDoorIntro" type="CanvasLayer" unique_id=2020070984]
 layer = 10
+script = ExtResource("1_pydi4")
 
 [node name="Root" type="Control" parent="." unique_id=668426915]
 layout_mode = 3
@@ -81,3 +83,22 @@ grow_vertical = 2
 texture = ExtResource("5_vgyvs")
 expand_mode = 5
 stretch_mode = 6
+
+[node name="LetterboxTop" type="ColorRect" parent="." unique_id=958107815]
+custom_minimum_size = Vector2(0, 90)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LetterboxBottom" type="ColorRect" parent="." unique_id=139316615]
+custom_minimum_size = Vector2(0, 90)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
