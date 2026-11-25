@@ -14,6 +14,7 @@ const STAGED_PARENTS: Array[String] = ["leanne", "david"]
 @export var gap_after_line: float = 0.25
 @export var seconds_per_character: float = 0.06
 @export var min_line_time: float = 1.5
+@export var uninterruptible_prefixes: Array[String] = ["emily_stage"]
 #endregion
 @onready var flat_voice: AudioStreamPlayer = $FlatVoice
 
@@ -26,10 +27,14 @@ var _time_left := 0.0
 var _last_clarity := -1.0
 var _title := ""
 var _dialogue: DialogueResource = null
+var _protected := false
+var _started_frame := -1
 #endregion
 
 func _ready() -> void:
 	Events.conversation_requested.connect(play)
+	Events.dialogue_interrupt_requested.connect(interrupt)
+	Events.creature_moment.connect(_on_creature_moment)
 
 func _exit_tree() -> void:
 	_run_id += 1
@@ -40,12 +45,30 @@ func _exit_tree() -> void:
 func is_running() -> bool:
 	return _running
 
+func interrupt() -> void:
+	if _running and not _frozen and _started_frame != Engine.get_process_frames():
+		_stop_current()
+
+func current_title() -> String:
+	return _title if _running else ""
+
+func line_time_left() -> float:
+	return maxf(_time_left - gap_after_line, 0.0) if _running and _line else INF
+
+func _on_creature_moment(kind: StringName) -> void:
+	if kind == &"grabbed":
+		interrupt()
+
 func play(dialogue: DialogueResource, title: String, frozen: bool) -> void:
 	if _running and _frozen:
+		return
+	if _running and _protected and not frozen:
 		return
 	_stop_current()
 	_title = title
 	_dialogue = dialogue
+	_protected = uninterruptible_prefixes.any(func(prefix: String) -> bool: return title.begins_with(prefix))
+	_started_frame = Engine.get_process_frames()
 	_run_id += 1
 	var my_id := _run_id
 	_running = true
