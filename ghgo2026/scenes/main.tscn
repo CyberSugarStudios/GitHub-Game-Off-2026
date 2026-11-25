@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://boq4lgbp0eypn" path="res://scripts/household/hall_mark.gd" id="5_gqmmt"]
 [ext_resource type="Script" uid="uid://dwicwhdedn1ey" path="res://scripts/household/household.gd" id="5_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cphlvw4ugwl31" path="res://scenes/ui/pause_menu.tscn" id="5_tbgi4"]
-[ext_resource type="Shader" uid="uid://bdo730lmi4xh" path="res://shaders/astral_screen.gdshader" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://xd1awdyyt8ud" path="res://scripts/household/parents_schedule.gd" id="6_0ld40"]
 [ext_resource type="Texture2D" uid="uid://dqlhrc8cw1pa7" path="res://assets/textures/house/hall/floor.webp" id="6_5he1u"]
 [ext_resource type="PackedScene" uid="uid://jd4f6hndmxh8" path="res://scenes/interaction/doorway.tscn" id="7_2wyq8"]
@@ -57,6 +56,7 @@
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="37_dnhof"]
 [ext_resource type="FontVariation" uid="uid://nbgtuufo4x15" path="res://assets/fonts/josefin_bold.tres" id="38_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://bpyjxvjn83tjr" path="res://scenes/ui/diary_book.tscn" id="39_bjg73"]
+[ext_resource type="Material" uid="uid://dvftu1aox64i7" path="res://shaders/astral_filter_material.tres" id="40_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://cvbp0nfglxkyt" path="res://scenes/ui/mp3_player.tscn" id="41_0loja"]
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
 [ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="42_dnhof"]
@@ -161,36 +161,6 @@ vertices = PackedVector3Array(-0.4793253, 1.0056345, -5.712395, 0.020674706, 1.0
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
 geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
-
-[sub_resource type="Gradient" id="Gradient_bu4jf"]
-offsets = PackedFloat32Array(0, 0.3, 0.6, 0.8, 1)
-colors = PackedColorArray(0.019607844, 0.08627451, 0.11372549, 1, 0.043137256, 0.2901961, 0.36078432, 1, 0.08627451, 0.5647059, 0.56078434, 1, 0.27058825, 0.8392157, 0.78431374, 1, 0.7607843, 1, 0.9607843, 1)
-metadata/_snap_enabled = true
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_o7ddy"]
-gradient = SubResource("Gradient_bu4jf")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
-shader = ExtResource("5_tefeu")
-shader_parameter/strength = 1.0
-shader_parameter/grade_ramp = SubResource("GradientTexture1D_o7ddy")
-shader_parameter/grade_amount = 0.85
-shader_parameter/accent_keep = 0.8
-shader_parameter/haze_color = Color(0.1, 0.38, 0.42, 1)
-shader_parameter/haze_amount = 0.3
-shader_parameter/glow_amount = 0.6
-shader_parameter/glow_threshold = 0.55
-shader_parameter/glow_radius = 0.004
-shader_parameter/wave_amount = 0.004
-shader_parameter/wave_speed = 1.5
-shader_parameter/wave_frequency = 12.0
-shader_parameter/aberration = 0.008
-shader_parameter/vignette_amount = 1.1
-shader_parameter/grain_amount = 0.04
-shader_parameter/reach = 1.0
-shader_parameter/wave_mix = 1.0
-shader_parameter/aberration_mix = 1.0
-shader_parameter/grain_mix = 1.0
 
 [sub_resource type="Resource" id="Resource_kycw1"]
 script = ExtResource("42_dnhof")
@@ -629,7 +599,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99468, 0, -5.5272307)
 script = ExtResource("4_jyhfs")
 
 [node name="AstralRealmColorFilter" type="ColorRect" parent="UI" unique_id=327788835]
-material = SubResource("ShaderMaterial_tbgi4")
+material = ExtResource("40_ygd8o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
