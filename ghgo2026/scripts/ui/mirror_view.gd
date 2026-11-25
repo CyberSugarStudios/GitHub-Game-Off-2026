@@ -6,24 +6,31 @@ extends CanvasLayer
 @export var fog_minutes: int = 90
 @export var creature: Creature
 @export_range(0.0, 1.0) var creature_opacity: float = 0.75
-@export_range(0.0, 1.0) var reflection_under_creature: float = 0.25
 
-@export_group("Flicker")
-@export var flicker_gap := Vector2(1.2, 3.5)
-@export var flicker_length := Vector2(0.08, 0.4)
-@export var fade_time: float = 0.25
+@export_group("Astral Sequence")
+@export var chase_music: AudioStream = preload("res://assets/audio/music/creature_chase.mp3")
+@export var chase_start: float = 9.75
+@export var build_seconds: float = 6.0
+@export_range(0.0, 1.0) var build_volume: float = 0.5
+@export var flickers: int = 3
+@export var flicker_length := Vector2(0.06, 0.18)
+@export var creature_seconds: float = 2.5
+@export var fade_out_seconds: float = 2.0
 
 @onready var reflection: TextureRect = $Root/Reflection
-@onready var creature_art: TextureRect = $Root/Creature
+@onready var creature_art: AnimatedSprite2D = $Root/Creature
 @onready var fog: TextureRect = $Root/Fog
 
 var _fogged_at := -100000
-var _flicker_left := 0.0
-var _showing_creature := false
+var _run := 0
+var _chase: AudioStreamPlayer
+var _music_tween: Tween
 
 func _ready() -> void:
 	visible = false
-	creature_art.modulate.a = 0.0
+	_chase = AudioStreamPlayer.new()
+	_chase.bus = &"Music"
+	add_child(_chase)
 	Events.story_event.connect(_on_story_event)
 	GameState.parent_activity_changed.connect(_on_parent_activity)
 
@@ -43,32 +50,72 @@ func open() -> void:
 	visible = true
 	GameState.set_controls_locked(true)
 	fog.modulate.a = _fog_amount()
-	_set_creature(false, 0.0)
-	_flicker_left = randf_range(flicker_gap.x, flicker_gap.y) * 0.5
+	_show_creature(false)
 	var look := creature.look_for_level() if creature else null
-	var frames := look.frames if look else null
-	creature_art.texture = frames.get_frame_texture(&"idle", 0) if frames and frames.has_animation(&"idle") else null
+	if look and look.frames:
+		creature_art.sprite_frames = look.frames
+		if not look.frames.has_animation(creature_art.animation):
+			creature_art.animation = &"idle"
+		creature_art.play()
+	_run += 1
+	if GameState.in_astral and look and look.frames:
+		_play_astral(_run)
 
 func close() -> void:
 	visible = false
+	_run += 1
+	_fade_chase(0.3)
+	_show_creature(false)
 	GameState.set_controls_locked(false)
 
-func _process(delta: float) -> void:
-	if not visible or not GameState.in_astral or creature_art.texture == null:
+func _play_astral(run: int) -> void:
+	_chase.stream = chase_music
+	_chase.volume_linear = 0.0
+	_chase.play(chase_start)
+	if _music_tween:
+		_music_tween.kill()
+	_music_tween = create_tween()
+	_music_tween.tween_property(_chase, "volume_linear", build_volume, build_seconds)
+	var elapsed := 0.0
+	for i in flickers:
+		var at := build_seconds * float(i + 1) / float(flickers + 1)
+		if not await _wait(at - elapsed, run):
+			return
+		reflection.visible = false
+		var blink := randf_range(flicker_length.x, flicker_length.y)
+		if not await _wait(blink, run):
+			return
+		reflection.visible = true
+		elapsed = at + blink
+	if not await _wait(build_seconds - elapsed, run):
 		return
-	_flicker_left -= delta
-	if _flicker_left > 0.0:
+	_music_tween.kill()
+	_chase.volume_linear = 1.0
+	_show_creature(true)
+	if not await _wait(creature_seconds, run):
 		return
-	_showing_creature = not _showing_creature
-	_set_creature(_showing_creature, fade_time if not _showing_creature else 0.05)
-	var timing := flicker_length if _showing_creature else flicker_gap
-	_flicker_left = randf_range(timing.x, timing.y)
+	_fade_chase(fade_out_seconds)
+	if not await _wait(fade_out_seconds, run):
+		return
+	_show_creature(false)
 
-func _set_creature(on: bool, fade: float) -> void:
-	_showing_creature = on
-	var tween := create_tween().set_parallel()
-	tween.tween_property(creature_art, "modulate:a", creature_opacity if on else 0.0, fade)
-	tween.tween_property(reflection, "modulate:a", reflection_under_creature if on else 1.0, fade)
+func _show_creature(on: bool) -> void:
+	creature_art.visible = on
+	creature_art.modulate.a = creature_opacity
+	reflection.visible = not on
+
+func _fade_chase(seconds: float) -> void:
+	if _music_tween:
+		_music_tween.kill()
+	if not _chase.playing:
+		return
+	_music_tween = create_tween()
+	_music_tween.tween_property(_chase, "volume_linear", 0.0, seconds)
+	_music_tween.tween_callback(_chase.stop)
+
+func _wait(seconds: float, run: int) -> bool:
+	await get_tree().create_timer(maxf(seconds, 0.0)).timeout
+	return run == _run and visible
 
 func _fog_amount() -> float:
 	var age := GameClock.get_total_minutes() - _fogged_at
