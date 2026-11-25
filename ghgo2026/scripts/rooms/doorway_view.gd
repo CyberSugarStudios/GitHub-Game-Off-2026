@@ -370,6 +370,19 @@ func _to_uv(rect: Rect2) -> Vector4:
 		rect.end.x / _room_size.x, rect.end.y / _room_size.y)
 #endregion
 
+func play_step(stream: AudioStream, room_point: Vector2, volume_db: float) -> void:
+	if _room_size == Vector2.ZERO:
+		return
+	var step := AudioStreamPlayer3D.new()
+	step.stream = stream
+	step.bus = DoorSound.muffled_bus(false)
+	step.volume_db = volume_db
+	step.unit_size = 4.0
+	step.position = _floor_point(room_point)
+	step.finished.connect(step.queue_free)
+	add_child(step)
+	step.play()
+
 func _exit_tree() -> void:
 	window.material_override = null
 	for card in _cards.values():
