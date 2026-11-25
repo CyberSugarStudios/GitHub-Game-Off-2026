@@ -8,10 +8,23 @@ uniform float outline_width : hint_range(0.0, 0.3) = 0.08;
 uniform float aspect = 2.0;
 uniform float flash : hint_range(0.0, 1.0) = 0.0;
 uniform float opacity : hint_range(0.0, 1.0) = 1.0;
+uniform float texture_aspect = 2.0;
 
 float rounded_box(vec2 p, vec2 half_size, float radius) {
 	vec2 q = abs(p) - half_size + radius;
 	return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - radius;
+}
+
+float cap_slice(float u) {
+	float x = u * aspect;
+	if (x < 0.5) {
+		return x / texture_aspect;
+	}
+	if (x > aspect - 0.5) {
+		return 1.0 - (aspect - x) / texture_aspect;
+	}
+	float cap = 0.5 / texture_aspect;
+	return mix(cap, 1.0 - cap, (x - 0.5) / max(aspect - 1.0, 0.0001));
 }
 
 void fragment() {
@@ -27,7 +40,7 @@ void fragment() {
 		color = outline_color.rgb;
 		alpha = outline_color.a;
 	} else if (UV.x <= fill) {
-		color = texture(fill_texture, UV).rgb * fill_tint.rgb;
+		color = texture(fill_texture, vec2(cap_slice(UV.x), UV.y)).rgb * fill_tint.rgb;
 		alpha = 1.0;
 	}
 	color = mix(color, vec3(1.0), flash * 0.7);
