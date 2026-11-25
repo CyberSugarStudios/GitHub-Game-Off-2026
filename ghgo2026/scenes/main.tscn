@@ -76,6 +76,7 @@
 [ext_resource type="AudioStream" uid="uid://bxbthjh4grdow" path="res://assets/audio/music/creature_chase.mp3" id="65_xhfw6"]
 [ext_resource type="AudioStream" uid="uid://bru3chlcrbsin" path="res://assets/audio/music/hall_music.mp3" id="66_r4e17"]
 [ext_resource type="AudioStream" uid="uid://bq6c3r18nglg8" path="res://assets/audio/music/hall_music_astral.mp3" id="67_y57op"]
+[ext_resource type="Script" uid="uid://bxs7xdlwwl1ov" path="res://scripts/ui/cupboard_keypad.gd" id="77_ksmap"]
 
 [sub_resource type="Environment" id="Environment_53m36"]
 background_mode = 1
@@ -987,6 +988,10 @@ ExtResource("66_r4e17"): ExtResource("67_y57op")
 })
 hunt_music = ExtResource("65_xhfw6")
 metadata/_custom_type_script = "uid://csb2u46ehna7t"
+
+[node name="CupboardKeypad" type="CanvasLayer" parent="." unique_id=1173553519]
+script = ExtResource("77_ksmap")
+metadata/_custom_type_script = "uid://bxs7xdlwwl1ov"
 
 [editable path="Hall"]
 [editable path="Hall/LeanneHall"]

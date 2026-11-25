@@ -153,6 +153,7 @@ position = Vector2(177.7, 340)
 position = Vector2(-256, 42.4)
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
+visible = false
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
@@ -272,6 +273,23 @@ near_miss_event = &"tv_static"
 success_anim = 3
 near_miss_anim = 3
 art = NodePath("../../BackProps/TV")
+
+[node name="TvCupboard" type="TextureButton" parent="Hotspots" unique_id=1854851146]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 566.0
+offset_top = 792.0
+offset_right = 736.0
+offset_bottom = 990.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_e86kh")
+prompt_text = "Open the cupboard"
+story_id = &"tv_cupboard"
+metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="BeerCanProp1" type="TextureButton" parent="Hotspots" unique_id=773842213 node_paths=PackedStringArray("art")]
 script = ExtResource("6_g005p")
