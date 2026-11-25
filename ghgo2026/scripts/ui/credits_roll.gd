@@ -9,6 +9,7 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @export var scroll_speed: float = 60.0
 @export var music: AudioStream
 @export var music_fade: float = 8.0
+@export var music_limit_seconds: float = 90.0
 @export var prompt_delay: float = 3.0
 @export var gap: float = 160.0
 
@@ -63,6 +64,11 @@ func _ready() -> void:
 	await _tween.finished
 	finished.emit()
 	_back_to_title()
+
+func _process(_delta: float) -> void:
+	if not _leaving and music_limit_seconds > 0.0 and Music.current_stream() == music \
+			and Music.current_position() >= music_limit_seconds - 1.5:
+		_back_to_title()
 
 func _set_scrolled(value: float) -> void:
 	_scrolled = value

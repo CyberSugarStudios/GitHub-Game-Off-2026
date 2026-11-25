@@ -5,6 +5,7 @@ extends Node
 @export var stage_music: Dictionary[int, MusicSet] = {}
 @export var astral_versions: Dictionary[AudioStream, AudioStream] = {}
 @export var plane_fade: float = 1.5
+@export var hall_volume_db: float = -6.0
 
 @export_group("Hunt")
 @export var hunt_music: AudioStream
@@ -21,6 +22,7 @@ extends Node
 
 @export_group("Intro")
 @export var intro_song: AudioStream = preload("res://assets/audio/MP3_music/Anathema.mp3")
+@export var intro_fade_in: float = 2.0
 @export var intro_ambience: AudioStream
 @export var intro_ambience_db: float = -6.0
 @export_subgroup("Earbuds")
@@ -28,7 +30,7 @@ extends Node
 @export var earbuds_high_cut_hz: float = 3500.0
 @export_range(0.0, 1.0) var earbuds_crunch: float = 0.15
 @export_range(0.0, 1.0) var earbuds_width: float = 0.2
-@export var earbuds_volume_db: float = -4.0
+@export var earbuds_volume_db: float = -2.0
 
 const EARBUDS_BUS := &"Earbuds"
 
@@ -139,9 +141,10 @@ func _start_intro_sound(stream: AudioStream, bus: StringName, volume_db: float) 
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
 	player.bus = bus
-	player.volume_db = volume_db
+	player.volume_db = -60.0
 	add_child(player)
 	player.play()
+	create_tween().tween_property(player, "volume_db", volume_db, intro_fade_in)
 	_intro_players.append(player)
 
 func _earbuds_bus() -> StringName:
@@ -207,7 +210,7 @@ func _on_plane_changed() -> void:
 func _play_track(stream: AudioStream, fade: float) -> void:
 	_remember_position()
 	_playing = stream
-	Music.play(stream, fade, _positions.get(stream, 0.0))
+	Music.play(stream, fade, _positions.get(stream, 0.0), db_to_linear(hall_volume_db))
 
 func _remember_position() -> void:
 	if _playing and Music.current_stream() == _playing:
