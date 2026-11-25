@@ -3,6 +3,9 @@ extends Control
 #region - INIT
 const GAME_SCENE_PATH := "res://scenes/main.tscn"
 const MENU_MUSIC := preload("res://assets/audio/music/main_menu_music.mp3")
+const MENU_MUSIC_DB := -8.0
+const MENU_FADE_IN := 4.0
+const LEAVE_FADE := 1.5
 #region - VARS
 @onready var version_number_label = $VersionNumberLabel
 
@@ -27,7 +30,7 @@ const MENU_MUSIC := preload("res://assets/audio/music/main_menu_music.mp3")
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	Music.play(MENU_MUSIC)
+	Music.play(MENU_MUSIC, MENU_FADE_IN, 0.0, db_to_linear(MENU_MUSIC_DB))
 	new_game_button.pressed.connect(on_new_game_pressed)
 	
 	var app_version = ProjectSettings.get_setting("application/config/version")
@@ -77,12 +80,22 @@ func _enter_game(pressed: Button) -> void:
 	bar.value = 1.0
 	await get_tree().process_frame
 	await get_tree().process_frame
+	await _fade_out()
 	var scene := ResourceLoader.load_threaded_get(GAME_SCENE_PATH) as PackedScene
 	print("[LOAD] house loaded %.1f s after clicking" % ((Time.get_ticks_msec() - started) / 1000.0))
 	if scene:
 		get_tree().change_scene_to_packed(scene)
 	else:
 		get_tree().change_scene_to_file(GAME_SCENE_PATH)
+
+func _fade_out() -> void:
+	var black := ColorRect.new()
+	black.color = Color(0.0, 0.0, 0.0, 0.0)
+	black.mouse_filter = Control.MOUSE_FILTER_STOP
+	add_child(black)
+	black.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	Music.stop(LEAVE_FADE)
+	await create_tween().tween_property(black, "color:a", 1.0, LEAVE_FADE).finished
 
 func _make_load_bar() -> PillBar:
 	var bar := PillBar.new()

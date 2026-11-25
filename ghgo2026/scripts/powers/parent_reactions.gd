@@ -5,7 +5,8 @@ const BARKS := preload("res://dialogue/barks.dialogue")
 const THOUGHTS := preload("res://dialogue/thoughts.dialogue")
 const HUGS := preload("res://dialogue/puzzle_5.dialogue")
 const THOUGHT_BED := preload("res://assets/audio/sfx/varied/thought_bed.wav")
-const THOUGHT_BED_DB := -8.0
+const THOUGHT_BED_DB := -4.0
+const THOUGHT_BED_FADE := 0.8
 
 @export var household: Household
 @export var chill_destinations: Dictionary[StringName, StringName] = {
@@ -93,12 +94,21 @@ func _start_bed(title: String) -> void:
 	_bed_tween = create_tween()
 	_bed_tween.tween_property(_bed, "volume_db", THOUGHT_BED_DB, 0.4)
 
-func _on_conversation_finished(title: String) -> void:
-	if title != _bed_title or not _bed.playing:
+func _process(_delta: float) -> void:
+	if _bed_title == "" or not _bed.playing or conversation_player == null:
 		return
+	if conversation_player.current_title() == _bed_title \
+			and conversation_player.line_time_left() <= THOUGHT_BED_FADE:
+		_fade_bed()
+
+func _on_conversation_finished(title: String) -> void:
+	if title == _bed_title and _bed.playing:
+		_fade_bed()
+
+func _fade_bed() -> void:
 	_bed_title = ""
 	if _bed_tween:
 		_bed_tween.kill()
 	_bed_tween = create_tween()
-	_bed_tween.tween_property(_bed, "volume_db", -40.0, 0.8)
+	_bed_tween.tween_property(_bed, "volume_db", -40.0, THOUGHT_BED_FADE)
 	_bed_tween.tween_callback(_bed.stop)

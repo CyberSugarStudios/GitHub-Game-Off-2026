@@ -5,6 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/mom_creature_frames.tres" id="3_4fkph"]
 [ext_resource type="Texture2D" uid="uid://cfnsh4xxbmhr1" path="res://assets/sprites/rooms/bathroom/emily_reflection.webp" id="4_4iq1k"]
 [ext_resource type="Texture2D" uid="uid://c3fcegkj8bqxy" path="res://assets/sprites/rooms/bathroom/fog.webp" id="5_4iq1k"]
+[ext_resource type="Material" uid="uid://dvftu1aox64i7" path="res://shaders/astral_filter_material.tres" id="6_4twi7"]
 
 [node name="MirrorView" type="CanvasLayer" unique_id=981359443]
 layer = 10
@@ -32,12 +33,13 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Creature" type="AnimatedSprite2D" parent="Root" unique_id=32354017]
-position = Vector2(884, 1113)
-scale = Vector2(3, 3)
+position = Vector2(940, 1362)
+scale = Vector2(4, 4)
 sprite_frames = ExtResource("3_4fkph")
-animation = &"chase_loop"
+animation = &"idle"
 
 [node name="Reflection" type="TextureRect" parent="Root" unique_id=104357251]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,3 +60,30 @@ grow_vertical = 2
 texture = ExtResource("5_4iq1k")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="AstralFilter" type="ColorRect" parent="Root" unique_id=691730195]
+material = ExtResource("6_4twi7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="Root" unique_id=1172755026]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.5
+offset_top = -60.0
+offset_right = 70.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "Back (S)"

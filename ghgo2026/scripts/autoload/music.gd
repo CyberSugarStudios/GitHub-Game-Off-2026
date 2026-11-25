@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 		_was_paused = paused
 		_set_muffled(paused)
 
-func play(stream: AudioStream, fade_time: float = DEFAULT_FADE, from_position: float = 0.0) -> void:
+func play(stream: AudioStream, fade_time: float = DEFAULT_FADE, from_position: float = 0.0, volume: float = 1.0) -> void:
 	var current := _players[_active]
 	if current.stream == stream and current.playing:
 		return
@@ -57,7 +57,7 @@ func play(stream: AudioStream, fade_time: float = DEFAULT_FADE, from_position: f
 	next.play(from_position)
 	
 	_fade_tween = create_tween().set_parallel()
-	_fade_tween.tween_property(next, "volume_linear", 1.0, fade_time)
+	_fade_tween.tween_property(next, "volume_linear", volume, fade_time)
 	_fade_tween.tween_property(current, "volume_linear", 0.0, fade_time)
 	_fade_tween.chain().tween_callback(current.stop)
 	_active = 1 - _active
