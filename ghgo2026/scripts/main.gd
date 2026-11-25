@@ -1,5 +1,11 @@
 extends Node3D
 
+const INTRO_VIDEOS: Array[VideoStream] = [
+	preload("res://assets/sprites/Animations/intro_animation.ogv"),
+	preload("res://assets/sprites/Animations/Emily-bus/Emily-bus-idle.ogv"),
+	preload("res://assets/sprites/Animations/Emily-bus/Emily-bus-sorrow.ogv"),
+]
+
 @export var warmup_turn_steps: int = 8
 @export var warmup_frames_per_step: int = 2
 
@@ -8,6 +14,9 @@ extends Node3D
 @onready var day_night: DayNight = $DayNight
 @onready var player: Node3D = $Emily
 @onready var story: StoryDirector = $StoryDirector
+
+var _video_playing := false
+var _skip_video := false
 
 func _ready() -> void:
 	fade.color.a = 1.0
@@ -34,7 +43,49 @@ func _warm_up() -> void:
 	await get_tree().process_frame
 	
 	var reveal_time := story.prepare()
-	var tween := create_tween()
-	tween.tween_property(fade, "color:a", 0.0, reveal_time)
+	var tween: Tween
+	if GameState.has_flag(StoryDirector.INTRO_DONE):
+		tween = create_tween()
+		tween.tween_property(fade, "color:a", 0.0, reveal_time)
+	else:
+		var screen := await _play_intro_videos()
+		fade.color.a = 0.0
+		tween = create_tween()
+		tween.tween_property(screen, "modulate:a", 0.0, reveal_time)
+		tween.tween_callback(screen.get_parent().queue_free)
 	await tween.finished
 	story.start()
+
+func _play_intro_videos() -> ColorRect:
+	var layer := CanvasLayer.new()
+	layer.layer = 128
+	add_child(layer)
+	var screen := ColorRect.new()
+	screen.color = Color.BLACK
+	layer.add_child(screen)
+	screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var box := AspectRatioContainer.new()
+	screen.add_child(box)
+	box.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var video := VideoStreamPlayer.new()
+	video.expand = true
+	box.add_child(video)
+	_video_playing = true
+	for stream in INTRO_VIDEOS:
+		if _skip_video:
+			break
+		video.stream = stream
+		video.play()
+		await get_tree().process_frame
+		var texture := video.get_video_texture()
+		if texture and texture.get_height() > 0:
+			box.ratio = float(texture.get_width()) / texture.get_height()
+		while video.is_playing() and not _skip_video:
+			await get_tree().process_frame
+	_video_playing = false
+	return screen
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _video_playing and (event.is_action_pressed("interact") or event.is_action_pressed("ui_accept")):
+		_skip_video = true
+		get_viewport().set_input_as_handled()
