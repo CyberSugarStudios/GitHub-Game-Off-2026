@@ -65,10 +65,15 @@ func play(stream: AudioStream, fade_time: float = DEFAULT_FADE, from_position: f
 func stop(fade_time: float = DEFAULT_FADE) -> void:
 	if _fade_tween:
 		_fade_tween.kill()
-	var current := _players[_active]
-	_fade_tween = create_tween()
-	_fade_tween.tween_property(current, "volume_linear", 0.0, fade_time)
-	_fade_tween.tween_callback(current.stop)
+	_fade_tween = create_tween().set_parallel()
+	for player in _players:
+		if player.playing:
+			_fade_tween.tween_property(player, "volume_linear", 0.0, fade_time)
+	_fade_tween.chain().tween_callback(_stop_players)
+
+func _stop_players() -> void:
+	for player in _players:
+		player.stop()
 
 func duck(on: bool, fade_time: float = 0.8, db: float = DUCK_DB) -> void:
 	if _music_bus < 0 or AudioServer.get_bus_effect_count(_music_bus) <= DUCK_EFFECT:
