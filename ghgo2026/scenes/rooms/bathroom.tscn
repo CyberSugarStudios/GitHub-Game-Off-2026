@@ -64,7 +64,7 @@ texture = SubResource("GradientTexture1D_8pl6i")
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
-[node name="TestMirror" type="TextureButton" parent="Hotspots" unique_id=311590483]
+[node name="Mirror" type="TextureButton" parent="Hotspots" unique_id=311590483]
 offset_left = 2.0
 offset_top = 94.0
 offset_right = 167.0
@@ -74,11 +74,11 @@ prompt_text = "Look in the mirror"
 story_id = &"bathroom_mirror"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
-[node name="TestCurtain" type="TextureButton" parent="Hotspots" unique_id=851927085]
-offset_left = 2586.0
-offset_top = 109.0
-offset_right = 3372.0
-offset_bottom = 1167.0
+[node name="Faucet" type="TextureButton" parent="Hotspots" unique_id=851927085]
+offset_left = 2337.0
+offset_top = 653.0
+offset_right = 2427.0
+offset_bottom = 779.0
 script = ExtResource("3_8pl6i")
 prompt_text = "Turn on water"
 realm = 2
