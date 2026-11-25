@@ -17,14 +17,17 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.75000006)
 
 [node name="Pamphlet" type="TextureRect" parent="." unique_id=416743648]
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = -0.037777778
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.9622222
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_2ngxf")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="BackButton" type="Button" parent="." unique_id=2072651226]
 anchors_preset = 7
@@ -39,4 +42,4 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "Back (S)"
+text = "Back   [S]"

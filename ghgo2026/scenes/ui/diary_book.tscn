@@ -72,19 +72,16 @@ text = "Lorem ipsum..."
 
 [node name="PageNumber" type="Label" parent="Book" unique_id=695807680]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -51.0
-offset_right = 48.0
-offset_bottom = -19.0
+offset_left = -54.0
+offset_top = -50.0
+offset_right = 47.0
+offset_bottom = -18.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_h8b7n")
 theme_override_font_sizes/font_size = 32
@@ -132,7 +129,7 @@ offset_right = 31.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Close"
+text = "Back   [S]"
 
 [node name="Keypad" type="Control" parent="." unique_id=447371676]
 layout_mode = 3

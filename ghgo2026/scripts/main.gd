@@ -19,16 +19,21 @@ var _video_playing := false
 var _skip_video := false
 
 func _ready() -> void:
+	_log_load("house built")
 	fade.color.a = 1.0
 	if story.play_intro and not GameState.has_flag(StoryDirector.INTRO_DONE):
 		music_director.play_intro()
 	_warm_up()
+
+static func _log_load(what: String) -> void:
+	Playtest.mark_load(what)
 
 func _warm_up() -> void:
 	astral_filter.visible = true
 	get_tree().call_group("astral_visibility", "set_warmup", true)
 	
 	var start_yaw := player.rotation.y
+	var slowest := 0
 	for astral in [1.0, 0.0]:
 		day_night.forced_astral = astral
 		for step in warmup_turn_steps:
@@ -36,9 +41,12 @@ func _warm_up() -> void:
 			for i in warmup_frames_per_step:
 				if not is_inside_tree():
 					return
+				var before := Time.get_ticks_msec()
 				await get_tree().process_frame
+				slowest = maxi(slowest, Time.get_ticks_msec() - before)
 	player.rotation.y = start_yaw
 	day_night.forced_astral = -1.0
+	_log_load("warm-up done (slowest frame %d ms)" % slowest)
 	
 	astral_filter.visible = GameState.in_astral
 	get_tree().call_group("astral_visibility", "set_warmup", false)
@@ -76,6 +84,7 @@ func _play_intro_videos() -> ColorRect:
 	_video_playing = true
 	video.stream = INTRO_VIDEO
 	video.play()
+	_log_load("intro video started")
 	await get_tree().process_frame
 	var texture := video.get_video_texture()
 	if texture and texture.get_height() > 0:

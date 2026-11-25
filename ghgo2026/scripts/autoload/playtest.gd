@@ -22,9 +22,88 @@ const RENDERER_JS := """
 	})()
 	"""
 
+const CLIENT_JS := """
+	(function () {
+		var info = { ua: navigator.userAgent };
+		try {
+			var ua = navigator.userAgent;
+			var data = navigator.userAgentData;
+			var brands = (data && data.brands) ? data.brands.filter(function (b) {
+				return b.brand.indexOf('Brand') < 0 && b.brand !== 'Chromium';
+			}) : [];
+			if (brands.length) {
+				info.browser = brands.map(function (b) { return b.brand + ' ' + b.version; }).join(' / ');
+			} else {
+				var checks = [['Edg/', 'Edge'], ['OPR/', 'Opera'], ['Firefox/', 'Firefox'], ['Chrome/', 'Chrome'], ['Version/', 'Safari']];
+				for (var i = 0; i < checks.length; i++) {
+					var at = ua.indexOf(checks[i][0]);
+					if (at >= 0) {
+						info.browser = checks[i][1] + ' ' + ua.substring(at + checks[i][0].length).split(' ')[0];
+						break;
+					}
+				}
+			}
+			info.platform = (data && data.platform) || navigator.platform || '';
+			info.threads = navigator.hardwareConcurrency || 0;
+			info.memory = navigator.deviceMemory || 0;
+			info.dpr = window.devicePixelRatio || 1;
+			var gl = document.createElement('canvas').getContext('webgl2');
+			if (gl) {
+				var dbg = gl.getExtension('WEBGL_debug_renderer_info');
+				info.gl_vendor = dbg ? gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR);
+				info.max_texture = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+				var high = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
+				info.frag_highp = high ? high.precision : 0;
+				info.float_buffers = !!gl.getExtension('EXT_color_buffer_float');
+				var lose = gl.getExtension('WEBGL_lose_context');
+				if (lose) { lose.loseContext(); }
+			}
+		} catch (e) {
+			info.error = String(e);
+		}
+		return JSON.stringify(info);
+	})()
+	"""
+const CONTEXT_WATCH_JS := """
+	(function () {
+		if (window._interimLost !== undefined) { return; }
+		window._interimLost = 0;
+		var canvas = document.getElementById('canvas') || document.querySelector('canvas');
+		if (canvas) {
+			canvas.addEventListener('webglcontextlost', function () { window._interimLost++; });
+		}
+	})()
+	"""
+
+class ErrorLog extends Logger:
+	const MAX_KEPT := 10
+	var total := 0
+	var _kept := PackedStringArray()
+	var _mutex := Mutex.new()
+
+	func _log_error(function: String, file: String, line: int, code: String, rationale: String,
+			_editor_notify: bool, error_type: int, _script_backtraces: Array[ScriptBacktrace]) -> void:
+		var kinds := ["error", "warning", "script", "shader"]
+		var kind: String = kinds[error_type] if error_type < kinds.size() else "error"
+		var text := ("%s: %s (%s:%d %s)" % [kind, rationale if rationale != "" else code,
+				file.get_file(), line, function]).left(240)
+		_mutex.lock()
+		total += 1
+		if _kept.size() < MAX_KEPT and not _kept.has(text):
+			_kept.append(text)
+		_mutex.unlock()
+
+	func kept() -> PackedStringArray:
+		_mutex.lock()
+		var copy := _kept.duplicate()
+		_mutex.unlock()
+		return copy
+
 var _renderer := ""
 var _software := false
 var _renderer_checked := false
+var _client: Dictionary = {}
+var _errors := ErrorLog.new()
 
 var _started_at := 0
 var _hitches := PackedStringArray()
@@ -35,6 +114,8 @@ var _fps_total := 0.0
 var _fps_samples := 0
 var _fps_low := INF
 var _sample_clock := 0.0
+var _load_clicked := -1
+var _load_marks := PackedStringArray()
 
 func is_enabled() -> bool:
 	return OS.is_debug_build() or OS.has_feature("playtest")
@@ -46,6 +127,9 @@ func _ready() -> void:
 	set_process(is_enabled())
 	if not is_enabled():
 		return
+	OS.add_logger(_errors)
+	if OS.has_feature("web"):
+		JavaScriptBridge.eval(CONTEXT_WATCH_JS, true)
 	GameState.room_changed.connect(func(room: StringName) -> void:
 		_note("entered %s" % (room if room != &"" else &"hall")))
 	GameState.plane_changed.connect(func(astral: bool) -> void:
@@ -70,6 +154,17 @@ func _process(delta: float) -> void:
 	_fps_total += fps
 	_fps_samples += 1
 	_fps_low = minf(_fps_low, fps)
+
+func start_load_clock() -> void:
+	_load_clicked = Time.get_ticks_msec()
+	_load_marks.clear()
+
+func mark_load(what: String) -> void:
+	if _load_clicked < 0:
+		return
+	var entry := "%s %.2f s" % [what, (Time.get_ticks_msec() - _load_clicked) / 1000.0]
+	_load_marks.append(entry)
+	print("[LOAD] ", entry)
 
 func _note(what: String) -> void:
 	_last_event = what
@@ -104,6 +199,15 @@ func _check_renderer() -> void:
 	_software = (parts.size() > 1 and parts[1] == "1") or "swiftshader" in lower \
 		or "llvmpipe" in lower or "software" in lower or "basic render" in lower
 
+func _client_info() -> Dictionary:
+	if _client.is_empty() and OS.has_feature("web"):
+		var parsed = JSON.parse_string(str(JavaScriptBridge.eval(CLIENT_JS, true)))
+		_client = parsed if parsed is Dictionary else {"browser": "unknown"}
+	return _client
+
+func _context_losses() -> int:
+	return int(JavaScriptBridge.eval("window._interimLost || 0", true)) if OS.has_feature("web") else 0
+
 func open_form() -> void:
 	var url := "https://docs.google.com/forms/d/e/%s/viewform?usp=pp_url&%s=%s" \
 			% [FORM_ID, DEBUG_ENTRY, build_report().uri_encode()]
@@ -118,24 +222,42 @@ func build_report() -> String:
 	lines.append("Local time: %s (%s)" % [Time.get_datetime_string_from_system(false, true), zone.get("name", "?")])
 	lines.append("Session: %.1f min" % ((Time.get_ticks_msec() - _started_at) / 60000.0))
 	lines.append("OS: %s %s" % [OS.get_name(), OS.get_version()])
+	var client := _client_info()
 	if OS.has_feature("web"):
-		lines.append("Browser: %s" % str(JavaScriptBridge.eval("navigator.userAgent", true)))
-	lines.append("CPU: %s (%d threads)" % [OS.get_processor_name(), OS.get_processor_count()])
+		lines.append("Browser: %s on %s" % [client.get("browser", "unknown"), client.get("platform", "?")])
+		lines.append("User agent: %s" % client.get("ua", ""))
+		var ram := "%s GB (browser rounds, max 8)" % str(client["memory"]) if client.get("memory", 0) else "not reported"
+		lines.append("CPU threads: %d, RAM: %s" % [int(client.get("threads", 0)), ram])
+	else:
+		lines.append("CPU: %s (%d threads)" % [OS.get_processor_name(), OS.get_processor_count()])
 	var memory: Dictionary = OS.get_memory_info()
 	if memory.get("physical", -1) > 0:
 		lines.append("RAM: %.1f GB" % (memory["physical"] / 1073741824.0))
-	lines.append("GPU: %s %s" % [RenderingServer.get_video_adapter_vendor(), RenderingServer.get_video_adapter_name()])
 	if OS.has_feature("web"):
 		lines.append("WebGL renderer: %s%s" % [web_renderer(), " (SOFTWARE: acceleration off)" if is_software_rendering() else ""])
+		lines.append("WebGL: vendor %s, max texture %d, fragment highp bits %d, float buffers %s, context lost %d times" % [
+				client.get("gl_vendor", "?"), int(client.get("max_texture", 0)), int(client.get("frag_highp", 0)),
+				"yes" if client.get("float_buffers", false) else "no", _context_losses()])
+	else:
+		lines.append("GPU: %s %s" % [RenderingServer.get_video_adapter_vendor(), RenderingServer.get_video_adapter_name()])
 	lines.append("Renderer: %s" % RenderingServer.get_current_rendering_method())
-	lines.append("Screen: %s, window: %s" % [DisplayServer.screen_get_size(), DisplayServer.window_get_size()])
+	var screen := "Screen: %s, window: %s" % [DisplayServer.screen_get_size(), DisplayServer.window_get_size()]
+	if OS.has_feature("web"):
+		screen += ", pixel ratio %s" % str(client.get("dpr", "?"))
+	lines.append(screen)
 	lines.append("Language: %s" % OS.get_locale())
 	if _fps_samples > 0:
 		lines.append("FPS: avg %d, low %d" % [roundi(_fps_total / _fps_samples), roundi(_fps_low)])
+	if not _load_marks.is_empty():
+		lines.append("Load (from click): %s" % ", ".join(_load_marks))
 	if _hitch_count > 0:
 		lines.append("Hitches (%.2f s or longer): %d" % [HITCH_SECONDS, _hitch_count])
 		for hitch in _hitches:
 			lines.append("  " + hitch)
+	if _errors.total > 0:
+		lines.append("Engine errors/warnings: %d" % _errors.total)
+		for error in _errors.kept():
+			lines.append("  " + error)
 	lines.append("Progress: stage %d, %d bars, day %d %s, in %s" % [GameState.story_stage, GameState.max_bars,
 			GameClock.day, GameClock.get_time_text(), String(GameState.current_room) if GameState.is_in_room() else "hall"])
 	lines.append("Flags: %s" % ", ".join(PackedStringArray(GameState.flags.keys())))

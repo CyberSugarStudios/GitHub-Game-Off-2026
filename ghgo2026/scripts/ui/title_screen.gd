@@ -71,7 +71,7 @@ func _enter_game(pressed: Button) -> void:
 	new_game_button.disabled = true
 	continue_game_button.disabled = true
 	pressed.text = "Loading..."
-	var started := Time.get_ticks_msec()
+	Playtest.start_load_clock()
 	var bar := _make_load_bar()
 	var progress := []
 	while ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH, progress) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
@@ -82,7 +82,7 @@ func _enter_game(pressed: Button) -> void:
 	await get_tree().process_frame
 	await _fade_out()
 	var scene := ResourceLoader.load_threaded_get(GAME_SCENE_PATH) as PackedScene
-	print("[LOAD] house loaded %.1f s after clicking" % ((Time.get_ticks_msec() - started) / 1000.0))
+	Playtest.mark_load("title faded")
 	if scene:
 		get_tree().change_scene_to_packed(scene)
 	else:
@@ -99,7 +99,8 @@ func _fade_out() -> void:
 
 func _make_load_bar() -> PillBar:
 	var bar := PillBar.new()
-	bar.value = 0.0
+	bar.value = 1.0
+	Playtest.mark_load("loaded")
 	bar.anchor_left = 0.5
 	bar.anchor_right = 0.5
 	bar.anchor_top = 1.0
