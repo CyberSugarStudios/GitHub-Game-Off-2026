@@ -21,6 +21,16 @@ extends Node
 
 @export_group("Intro")
 @export var intro_song: AudioStream = preload("res://assets/audio/MP3_music/Anathema.mp3")
+@export var intro_ambience: AudioStream
+@export var intro_ambience_db: float = -6.0
+@export_subgroup("Earbuds")
+@export var earbuds_low_cut_hz: float = 500.0
+@export var earbuds_high_cut_hz: float = 3500.0
+@export_range(0.0, 1.0) var earbuds_crunch: float = 0.15
+@export_range(0.0, 1.0) var earbuds_width: float = 0.2
+@export var earbuds_volume_db: float = -4.0
+
+const EARBUDS_BUS := &"Earbuds"
 
 var _set: MusicSet
 var _last_track: AudioStream
@@ -32,6 +42,7 @@ var _calm_left := 0.0
 var _held := false
 var _song := false
 var _intro := false
+var _intro_players: Array[AudioStreamPlayer] = []
 
 func _ready() -> void:
 	Music.finished.connect(_on_track_finished)
@@ -81,19 +92,54 @@ func _end_hunt() -> void:
 
 #region - HALL MUSIC
 func play_intro() -> void:
-	if intro_song == null:
-		return
 	_intro = true
 	_remember_position()
 	_playing = null
-	Music.play(intro_song, 0.5)
+	Music.stop(0.3)
+	_start_intro_sound(intro_song, _earbuds_bus(), 0.0)
+	_start_intro_sound(intro_ambience, &"Ambience", intro_ambience_db)
 
 func end_intro(fade_time: float) -> void:
 	if not _intro:
 		return
 	_intro = false
-	Music.stop(fade_time)
+	for player in _intro_players:
+		var tween := create_tween()
+		tween.tween_property(player, "volume_linear", 0.0, fade_time)
+		tween.tween_callback(player.queue_free)
+	_intro_players.clear()
 	_quiet_left = fade_time + (_set.silence_between.x if _set else 0.0)
+
+func _start_intro_sound(stream: AudioStream, bus: StringName, volume_db: float) -> void:
+	if stream == null:
+		return
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.bus = bus
+	player.volume_db = volume_db
+	add_child(player)
+	player.play()
+	_intro_players.append(player)
+
+func _earbuds_bus() -> StringName:
+	if AudioServer.get_bus_index(EARBUDS_BUS) == -1:
+		var index := AudioServer.bus_count
+		AudioServer.add_bus(index)
+		AudioServer.set_bus_name(index, EARBUDS_BUS)
+		AudioServer.set_bus_send(index, &"Music")
+		AudioServer.set_bus_volume_db(index, earbuds_volume_db)
+		var low_cut := AudioEffectHighPassFilter.new()
+		low_cut.cutoff_hz = earbuds_low_cut_hz
+		var high_cut := AudioEffectLowPassFilter.new()
+		high_cut.cutoff_hz = earbuds_high_cut_hz
+		var crunch := AudioEffectDistortion.new()
+		crunch.mode = AudioEffectDistortion.MODE_LOFI
+		crunch.drive = earbuds_crunch
+		var narrow := AudioEffectStereoEnhance.new()
+		narrow.pan_pullout = earbuds_width
+		for effect in [low_cut, high_cut, crunch, narrow]:
+			AudioServer.add_bus_effect(index, effect)
+	return EARBUDS_BUS
 
 func _play_song() -> void:
 	if _song or diary_song == null:
