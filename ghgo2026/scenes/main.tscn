@@ -941,6 +941,7 @@ vertical_alignment = 1
 script = ExtResource("13_trceg")
 
 [node name="FlatVoice" type="AudioStreamPlayer" parent="ConversationPlayer" unique_id=1651416059]
+volume_db = -3.0
 bus = &"Voices"
 
 [node name="ParentReactions" type="Node" parent="." unique_id=1429764438 node_paths=PackedStringArray("household", "conversation_player")]

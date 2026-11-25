@@ -106,8 +106,14 @@ func _count_step(distance: float) -> void:
 	if _walked < step_stride:
 		return
 	_walked -= step_stride
-	if _room and not _room.is_preview and _steps.stream:
+	if _room == null or _steps.stream == null:
+		return
+	if not _room.is_preview:
 		_steps.play()
+	elif not GameState.is_in_room():
+		var view := _room.get_parent().get_parent() as DoorwayView
+		if view:
+			view.play_step(_steps.stream, global_position, step_volume_db)
 
 func _stand() -> void:
 	var activity := GameState.get_parent_activity(parent_id)

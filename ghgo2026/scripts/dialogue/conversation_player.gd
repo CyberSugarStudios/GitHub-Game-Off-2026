@@ -3,6 +3,7 @@ extends Node
 
 #region - INIT
 const VOICE_FOLDER := "res://audio/voice/"
+const EMILY_VOICE_FOLDER := "res://assets/audio/Emily Voicelines/"
 const STAGED_PARENTS: Array[String] = ["leanne", "david"]
 #region - EXPORTS
 @export_group("Live Listening")
@@ -24,6 +25,7 @@ var _speaker: Speaker = null
 var _time_left := 0.0
 var _last_clarity := -1.0
 var _title := ""
+var _dialogue: DialogueResource = null
 #endregion
 
 func _ready() -> void:
@@ -43,6 +45,7 @@ func play(dialogue: DialogueResource, title: String, frozen: bool) -> void:
 		return
 	_stop_current()
 	_title = title
+	_dialogue = dialogue
 	_run_id += 1
 	var my_id := _run_id
 	_running = true
@@ -137,15 +140,37 @@ func _find_speaker(character: String) -> Speaker:
 		var speaker := node as Speaker
 		if speaker and speaker.character_name == character and speaker.is_visible_in_tree():
 			return speaker
-	return null # No one in hall, voice plays flat
+	return null
 
 func _load_voice(line: DialogueLine) -> AudioStream:
-	if line.static_id == "":
-		return null # Scene not locked yet, no line IDs
 	var path := VOICE_FOLDER + line.static_id + ".ogg"
-	if not ResourceLoader.exists(path):
-		return null # Not recorded yet
+	if line.static_id == "" or not ResourceLoader.exists(path):
+		path = emily_voice_path(_dialogue, line)
+	if path == "" or not ResourceLoader.exists(path):
+		return null
 	return load(path) as AudioStream
+
+static func emily_voice_path(dialogue: DialogueResource, line: DialogueLine) -> String:
+	var local_id := line.id.get_slice("@", line.id.get_slice_count("@") - 1)
+	if dialogue == null or line.character != "Emily" or not local_id.is_valid_int():
+		return ""
+	var line_id := local_id.to_int()
+	var cue := ""
+	var cue_start := -1
+	for cue_name in dialogue.cues:
+		var start := str(dialogue.cues[cue_name]).to_int()
+		if start <= line_id and start > cue_start:
+			cue = cue_name
+			cue_start = start
+	if cue == "":
+		return ""
+	var count := 0
+	for id in range(cue_start, line_id + 1):
+		var info: Dictionary = dialogue.lines.get(str(id), {})
+		if info.get("type") == "dialogue" and info.get("character") == "Emily":
+			count += 1
+	var file_name := cue if count <= 1 else cue + str(count)
+	return EMILY_VOICE_FOLDER + dialogue.resource_path.get_file().get_basename() + "/" + file_name + ".wav"
 
 # 1 = readble, 0 = lost
 func _get_clarity() -> float:
@@ -170,7 +195,7 @@ func _update_subtitle() -> void:
 		return
 	var clarity := _get_clarity()
 	if absf(clarity - _last_clarity) < 0.02:
-		return # barely changed, no need to resend
+		return
 	_last_clarity = clarity
 	Events.subtitle_changed.emit(_line.character, _line.text, clarity, _line.has_tag("thought"))
 #endregion
