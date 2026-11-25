@@ -326,6 +326,14 @@ func _request_download_looks() -> void:
 		if not looks.has(level) and ResourceLoader.exists(path):
 			ResourceLoader.load_threaded_request(path)
 
+func look_for_level() -> CreatureLook:
+	_collect_download_looks()
+	var best := -1
+	for level in looks:
+		if level <= GameState.monster_level and level > best:
+			best = level
+	return looks[best] if best >= 0 else null
+
 func _collect_download_looks() -> void:
 	for level in download_looks:
 		var path := download_looks[level]
