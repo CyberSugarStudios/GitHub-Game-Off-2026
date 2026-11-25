@@ -99,17 +99,28 @@ func play_intro() -> void:
 	Music.stop(0.3)
 	var earbuds := AudioServer.get_bus_index(_earbuds_bus())
 	_earbuds_db = AudioServer.get_bus_volume_db(earbuds)
-	AudioServer.set_bus_bypass_effects(earbuds, true)
-	AudioServer.set_bus_volume_db(earbuds, 0.0)
+	_set_earbuds(0.0)
 	_start_intro_sound(intro_song, EARBUDS_BUS, 0.0)
 	_start_intro_sound(intro_ambience, &"Ambience", intro_ambience_db)
 
-func intro_to_earbuds() -> void:
+func intro_to_earbuds(fade_time: float) -> void:
+	create_tween().tween_method(_set_earbuds, 0.0, 1.0, fade_time)
+
+func _set_earbuds(amount: float) -> void:
 	var earbuds := AudioServer.get_bus_index(EARBUDS_BUS)
 	if earbuds < 0:
 		return
-	AudioServer.set_bus_bypass_effects(earbuds, false)
-	AudioServer.set_bus_volume_db(earbuds, _earbuds_db)
+	AudioServer.set_bus_volume_db(earbuds, lerpf(0.0, _earbuds_db, amount))
+	for i in AudioServer.get_bus_effect_count(earbuds):
+		var effect := AudioServer.get_bus_effect(earbuds, i)
+		if effect is AudioEffectHighPassFilter:
+			(effect as AudioEffectHighPassFilter).cutoff_hz = 20.0 * pow(earbuds_low_cut_hz / 20.0, amount)
+		elif effect is AudioEffectLowPassFilter:
+			(effect as AudioEffectLowPassFilter).cutoff_hz = 20500.0 * pow(earbuds_high_cut_hz / 20500.0, amount)
+		elif effect is AudioEffectDistortion:
+			(effect as AudioEffectDistortion).drive = lerpf(0.0, earbuds_crunch, amount)
+		elif effect is AudioEffectStereoEnhance:
+			(effect as AudioEffectStereoEnhance).pan_pullout = lerpf(1.0, earbuds_width, amount)
 
 func end_intro(fade_time: float) -> void:
 	if not _intro:

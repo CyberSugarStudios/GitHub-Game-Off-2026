@@ -5,7 +5,8 @@ const INTRO_VIDEO := preload("res://assets/sprites/Animations/intro_anim.ogv")
 @export var warmup_turn_steps: int = 8
 @export var warmup_frames_per_step: int = 2
 
-@export var bus_appears_at: float = 19.8
+@export var bus_appears_at: float = 18.3
+@export var bus_transition_seconds: float = 1.75
 
 @onready var fade: ColorRect = $RoomView/FadeLayer/Fade
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
@@ -83,7 +84,7 @@ func _play_intro_videos() -> ColorRect:
 	while video.is_playing() and not _skip_video:
 		if not on_bus and video.stream_position >= bus_appears_at:
 			on_bus = true
-			music_director.intro_to_earbuds()
+			music_director.intro_to_earbuds(bus_transition_seconds)
 		await get_tree().process_frame
 	_video_playing = false
 	return screen
