@@ -71,9 +71,13 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p1_lingers_seconds: float = 4.0
 @export var p1_lingers_then_to: StringName = &"kitchen"
 @export var p1_apart_minutes: int = 90
-@export var p1_fight_gap: float = 1.4
-@export var p1_fight_stagger: float = 0.6
-@export var p1_fight_keep_away: float = 1.2
+
+@export_group("Fight Staging")
+@export var fight_gap: float = 1.4
+@export var fight_stagger: float = 1.0
+@export var fight_min_apart: float = 1.6
+@export var fight_keep_away: float = 1.2
+@export var fight_walk_timeout: float = 6.0
 
 @export_group("Puzzle 2")
 @export var p2_coffee_make_minutes: int = 10
@@ -302,7 +306,7 @@ func _run_story() -> void:
 func _run_puzzle_1()  -> void:
 	_teach_waiting()
 	await wait_event(&"hall_painting_fell")
-	arrange_fight(&"fight_painting_leanne", &"fight_painting_david", p1_fight_gap, p1_fight_stagger, p1_fight_keep_away)
+	await stage_fight(&"fight_painting_leanne", &"fight_painting_david")
 	await say_fight("p1_painting_fight", PUZZLE_1)
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
 	household.send(MOM, p1_storms_to, p1_apart_minutes)
@@ -625,24 +629,51 @@ func say_fight(cue: String, dialogue: DialogueResource) -> void:
 	player.watch({})
 	room_view.follow_speakers(false)
 
-func arrange_fight(leanne_mark: StringName, david_mark: StringName, gap: float, stagger: float, keep_away: float) -> void:
+func stage_fight(leanne_mark: StringName, david_mark: StringName) -> void:
+	GameState.exit_astral()
+	GameState.set_controls_locked(true)
+	var middle := arrange_fight(leanne_mark, david_mark)
+	player.face_toward(middle + Vector3.UP * FIGHT_EYE_HEIGHT, 0.6)
+	Events.parents_staged.emit(MOM, leanne_mark)
+	Events.parents_staged.emit(DAD, david_mark)
+	var mom := household.get_hall_parent(MOM)
+	var dad := household.get_hall_parent(DAD)
+	var waited := 0.0
+	while waited < fight_walk_timeout and not (_stands_at(mom, leanne_mark) and _stands_at(dad, david_mark)):
+		await get_tree().process_frame
+		waited += get_process_delta_time()
+
+func _stands_at(parent: HallParent, mark_id: StringName) -> bool:
+	if parent == null or not parent.visible:
+		return true
+	return parent.standing_at != null and parent.standing_at.mark_id == mark_id
+
+func arrange_fight(leanne_mark: StringName, david_mark: StringName) -> Vector3:
 	var marks: Array[HallMark] = [_find_mark(leanne_mark), _find_mark(david_mark)]
 	if marks[0] == null or marks[1] == null:
-		return
+		return player.global_position
 	var center := (marks[0].global_position + marks[1].global_position) * 0.5
 	var sight := center - player.global_position
 	sight.y = 0.0
-	if sight.length() < keep_away:
+	if sight.length() < fight_keep_away:
 		var camera := player.get_viewport().get_camera_3d()
 		sight = -camera.global_basis.z if camera else Vector3.FORWARD
 		sight.y = 0.0
 	sight = sight.normalized()
-	var across := Vector3(-sight.z, 0.0, sight.x) * gap * 0.5
-	var ahead := sight * stagger * 0.5
-	var spots: Array[Vector3] = [
-		_fight_spot(center + across + ahead, center, keep_away),
-		_fight_spot(center - across - ahead, center, keep_away)
-	]
+	var across := Vector3(-sight.z, 0.0, sight.x) * fight_gap * 0.5
+	var spots: Array[Vector3] = []
+	var stagger := fight_stagger
+	for attempt in 6:
+		var ahead := sight * stagger * 0.5
+		var tried: Array[Vector3] = [
+			_fight_spot(center + across + ahead, center, fight_keep_away),
+			_fight_spot(center - across - ahead, center, fight_keep_away)
+		]
+		if spots.is_empty() or tried[0].distance_to(tried[1]) > spots[0].distance_to(spots[1]):
+			spots = tried
+		if spots[0].distance_to(spots[1]) >= fight_min_apart:
+			break
+		stagger += 0.4
 	var mom := household.get_hall_parent(MOM)
 	var dad := household.get_hall_parent(DAD)
 	if mom and dad and mom.global_position.distance_to(spots[1]) + dad.global_position.distance_to(spots[0]) \
@@ -652,6 +683,7 @@ func arrange_fight(leanne_mark: StringName, david_mark: StringName, gap: float, 
 		var spot := spots[i]
 		spot.y = marks[i].global_position.y
 		marks[i].global_position = spot
+	return (spots[0] + spots[1]) * 0.5
 
 func _fight_spot(spot: Vector3, center: Vector3, keep_away: float) -> Vector3:
 	var away := spot - player.global_position
