@@ -7,6 +7,7 @@ extends CanvasLayer
 @export_range(0.0, 1.0) var start_volume: float = 0.8
 @export var button_sound: AudioStream = preload("res://assets/audio/sfx/varied/mp3_button.wav")
 @export var close_fade: float = 1.0
+@export var scroll_seconds: float = 5.0
 
 @onready var audio: AudioStreamPlayer = $Audio
 @onready var title_label: Label = %TitleLabel
@@ -35,6 +36,8 @@ func _ready() -> void:
 	play_button.pressed.connect(toggle_play)
 	skip_button.pressed.connect(skip)
 	close_button.pressed.connect(close)
+	progress.mouse_filter = Control.MOUSE_FILTER_STOP
+	progress.gui_input.connect(_on_progress_input)
 	volume_slider.value_changed.connect(
 		func(value: float) -> void:
 			audio.volume_linear = value
@@ -96,6 +99,38 @@ func back() -> void:
 
 func is_playing() -> bool:
 	return _started and not audio.stream_paused
+
+func _on_progress_input(event: InputEvent) -> void:
+	var button := event as InputEventMouseButton
+	if button and button.pressed:
+		if button.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_seek_to(_position() + scroll_seconds)
+		elif button.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_seek_to(_position() - scroll_seconds)
+		elif button.button_index == MOUSE_BUTTON_LEFT:
+			_seek_to(_track_length() * button.position.x / progress.size.x)
+		progress.accept_event()
+		return
+	var motion := event as InputEventMouseMotion
+	if motion and motion.button_mask & MOUSE_BUTTON_MASK_LEFT:
+		_seek_to(_track_length() * motion.position.x / progress.size.x)
+		progress.accept_event()
+
+func _seek_to(seconds: float) -> void:
+	if tracks.is_empty() or tracks[_index].stream == null:
+		return
+	var paused := audio.stream_paused and _started
+	if not _started:
+		_play_index(_index)
+	audio.play(clampf(seconds, 0.0, maxf(_track_length() - 0.5, 0.0)))
+	audio.stream_paused = paused
+	_after_change()
+
+func _position() -> float:
+	return audio.get_playback_position() if _started else 0.0
+
+func _track_length() -> float:
+	return tracks[_index].stream.get_length() if not tracks.is_empty() and tracks[_index].stream else 0.0
 
 func _select(index: int) -> void:
 	if tracks.is_empty():

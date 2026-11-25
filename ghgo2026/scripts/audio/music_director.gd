@@ -133,7 +133,7 @@ func end_intro(fade_time: float) -> void:
 		tween.tween_property(player, "volume_linear", 0.0, fade_time)
 		tween.tween_callback(player.queue_free)
 	_intro_players.clear()
-	_quiet_left = fade_time + (_set.silence_between.x if _set else 0.0)
+	_quiet_left = fade_time
 
 func _start_intro_sound(stream: AudioStream, bus: StringName, volume_db: float) -> void:
 	if stream == null:
