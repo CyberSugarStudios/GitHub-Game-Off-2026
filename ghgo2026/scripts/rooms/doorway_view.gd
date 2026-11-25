@@ -33,6 +33,7 @@ const WALL_ART: Array[String] = ["Background", "AstralBackground"]
 @export var min_card_depth: float = 0.15
 @export var props_past_walls: float = 1.0
 @export var props_past_floor: float = 20.0
+@export var child_plane_offset: float = 0.01
 
 @export_group("Performance")
 @export var render_distance: float = 12.0
@@ -189,7 +190,10 @@ func _build_cards() -> void:
 			if left and right and art is Sprite2D:
 				var move := art.get_node_or_null(PLANE_MOVE) as Node2D
 				for item in [art] + art.find_children("*", "Sprite2D", false, false):
-					_planes[item] = _make_plane(item, left.global_position, right.global_position, move)
+					var plane := _make_plane(item, left.global_position, right.global_position, move)
+					if item != art:
+						plane.position.z += child_plane_offset
+					_planes[item] = plane
 			else:
 				_cards[art] = _make_card(_actors_viewport if node_name == "Actors" else _props_viewport)
 	for art in _cards:
@@ -251,7 +255,7 @@ func _make_plane(art: Sprite2D, left: Vector2, right: Vector2, move: Node2D) -> 
 	plane_material.set_shader_parameter("art_texture", art.texture)
 	plane_material.set_shader_parameter("light_view", _light_viewport.get_texture())
 	plane_material.set_shader_parameter("to_room", global_transform.affine_inverse())
-	plane_material.set_shader_parameter("region", _to_uv(rect))
+	plane_material.set_shader_parameter("art_from_room", _art_from_room(art))
 	plane_material.set_shader_parameter("plane_map", to_uv * plane_map)
 	var plane := MeshInstance3D.new()
 	plane.mesh = _plane_mesh(_floor_point(left), _floor_point(right), lo, hi)
@@ -290,8 +294,9 @@ func _update_cards(camera: Vector3) -> void:
 		var plane := _planes[art]
 		plane.visible = art.is_visible_in_tree()
 		if plane.visible:
-			(plane.material_override as ShaderMaterial) \
-				.set_shader_parameter("tint", art.modulate * art.self_modulate)
+			var plane_material := plane.material_override as ShaderMaterial
+			plane_material.set_shader_parameter("tint", art.modulate * art.self_modulate)
+			plane_material.set_shader_parameter("art_from_room", _art_from_room(art as Sprite2D))
 	for art in _cards:
 		var card := _cards[art]
 		card.visible = art.is_visible_in_tree()
@@ -364,6 +369,13 @@ func _stand_at(point: Vector2, v: float) -> Vector3:
 func _px_per_meter_at(v: float) -> float:
 	var row := _row(v)
 	return (row[1].x - row[0].x) / _box.x
+
+func _art_from_room(art: Sprite2D) -> Basis:
+	var rect := art.get_rect()
+	var to_texture := Transform2D(Vector2(1.0 / rect.size.x, 0.0), Vector2(0.0, 1.0 / rect.size.y), -rect.position / rect.size)
+	var from_uv := Transform2D(Vector2(_room_size.x, 0.0), Vector2(0.0, _room_size.y), Vector2.ZERO)
+	var t := to_texture * art.get_global_transform().affine_inverse() * from_uv
+	return Basis(Vector3(t.x.x, t.x.y, 0.0), Vector3(t.y.x, t.y.y, 0.0), Vector3(t.origin.x, t.origin.y, 1.0))
 
 func _to_uv(rect: Rect2) -> Vector4:
 	return Vector4(rect.position.x / _room_size.x, rect.position.y / _room_size.y,
