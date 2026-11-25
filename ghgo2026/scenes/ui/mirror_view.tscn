@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bocgap0btqaff"]
+
+[ext_resource type="Script" uid="uid://kmq4nktkepng" path="res://scripts/ui/mirror_view.gd" id="1_fu0bm"]
+[ext_resource type="Texture2D" uid="uid://ckk243e6bnqtq" path="res://assets/sprites/rooms/bathroom/mirror.webp" id="2_vuv7q"]
+[ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/mom_creature_frames.tres" id="3_4fkph"]
+[ext_resource type="Texture2D" uid="uid://cfnsh4xxbmhr1" path="res://assets/sprites/rooms/bathroom/emily_reflection.webp" id="4_4iq1k"]
+[ext_resource type="Texture2D" uid="uid://c3fcegkj8bqxy" path="res://assets/sprites/rooms/bathroom/fog.webp" id="5_4iq1k"]
+
+[node name="MirrorView" type="CanvasLayer" unique_id=981359443]
+layer = 10
+script = ExtResource("1_fu0bm")
+
+[node name="Root" type="Control" parent="." unique_id=1370310671]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Mirror" type="TextureRect" parent="Root" unique_id=1299219698]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vuv7q")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Creature" type="AnimatedSprite2D" parent="Root" unique_id=32354017]
+position = Vector2(884, 1113)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("3_4fkph")
+animation = &"chase_loop"
+
+[node name="Reflection" type="TextureRect" parent="Root" unique_id=104357251]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_4iq1k")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Fog" type="TextureRect" parent="Root" unique_id=1048458053]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4iq1k")
+expand_mode = 1
+stretch_mode = 6
