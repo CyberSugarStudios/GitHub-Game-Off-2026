@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cbglrm0cpop85"]
+
+[ext_resource type="Texture2D" uid="uid://d4d5fnifsaw64" path="res://assets/textures/house/hall/hallway_1.webp" id="1_twpwp"]
+[ext_resource type="Texture2D" uid="uid://cxldrekaa0rha" path="res://assets/textures/house/doors/door_frame.webp" id="2_vgyvs"]
+[ext_resource type="Texture2D" uid="uid://bmybhllukh5yy" path="res://assets/textures/house/doors/door_1_int.webp" id="3_pydi4"]
+[ext_resource type="Texture2D" uid="uid://dvcry7x4xh60a" path="res://assets/sprites/intro_emily_hand.png" id="4_k26hr"]
+[ext_resource type="Texture2D" uid="uid://bp80757jx1aho" path="res://assets/textures/house/doors/door_handle.webp" id="5_vgyvs"]
+
+[node name="HandThroughDoorIntro" type="CanvasLayer" unique_id=2020070984]
+layer = 10
+
+[node name="Root" type="Control" parent="." unique_id=668426915]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1474.0
+offset_top = 51.0
+offset_right = -1474.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="Background" type="TextureRect" parent="Root" unique_id=2018250412]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -900.0
+offset_bottom = 202.93408
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_twpwp")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="DoorFrame" type="TextureRect" parent="Root" unique_id=435319688]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -900.0
+offset_bottom = 202.93408
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vgyvs")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Door" type="TextureRect" parent="Root" unique_id=2147266159]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -900.0
+offset_bottom = 202.93408
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pydi4")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Hand" type="Sprite2D" parent="Root" unique_id=1721246285]
+position = Vector2(1378, 624.5)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_k26hr")
+
+[node name="DoorHandle" type="TextureRect" parent="Root" unique_id=1819312939]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -900.0
+offset_bottom = 202.93408
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vgyvs")
+expand_mode = 5
+stretch_mode = 6
