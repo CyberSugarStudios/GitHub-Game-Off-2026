@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var audio: AudioStreamPlayer = $Audio
 @onready var title_label: Label = %TitleLabel
 @onready var artist_label: Label = %ArtistLabel
+@onready var cover_art: TextureRect = %CoverArt
 @onready var time_label: Label = %TimeLabel
 @onready var progress: ProgressBar = %Progress
 @onready var back_button: Button = %BackButton
@@ -131,6 +132,8 @@ func _show_track() -> void:
 	var track: MP3Track = tracks[_index] if not tracks.is_empty() else null
 	title_label.text = track.title if track else "No songs"
 	artist_label.text = track.artist if track else "No artist"
+	cover_art.texture = track.cover if track else null
+	cover_art.visible = cover_art.texture != null
 	play_button.text = "Pause" if is_playing() else "Play"
 
 func _process(_delta: float) -> void:

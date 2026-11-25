@@ -30,10 +30,10 @@ corner_radius_bottom_left = 36
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lwwf"]
 bg_color = Color(0.62352943, 0.7647059, 0.7764706, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
 [node name="MP3Player" type="CanvasLayer" unique_id=548456274]
 script = ExtResource("1_unlxu")
@@ -105,6 +105,21 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2lwwf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Device/VBoxContainer/Screen" unique_id=293518782]
 layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SpacingTop" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=1367456780]
+custom_minimum_size = Vector2(0, 13.38)
+layout_mode = 2
+
+[node name="CoverArt" type="TextureRect" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=355270081]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 130)
+custom_maximum_size = Vector2(130, 130)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
 
 [node name="TitleLabel" type="Label" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=743631671]
 unique_name_in_owner = true
@@ -112,8 +127,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.105882354, 0.16470589, 0.17254902, 1)
 theme_override_fonts/font = ExtResource("2_gftdv")
 theme_override_font_sizes/font_size = 32
-text = "
-Title"
+text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -133,18 +147,32 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.105882354, 0.16470589, 0.17254902, 1)
 theme_override_fonts/font = ExtResource("2_gftdv")
 theme_override_font_sizes/font_size = 32
-text = "XX:XX
-"
+text = "XX:XX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Progress" type="ProgressBar" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=1966472582]
+[node name="HBoxContainer" type="HBoxContainer" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=2075025148]
+layout_mode = 2
+
+[node name="SpacingLeft" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer/HBoxContainer" unique_id=580031682]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="Progress" type="ProgressBar" parent="Device/VBoxContainer/Screen/VBoxContainer/HBoxContainer" unique_id=1966472582]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 16)
+custom_minimum_size = Vector2(345, 16)
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 show_percentage = false
+
+[node name="SpacingRight" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer/HBoxContainer" unique_id=1740640709]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="SpacingBottom" type="Control" parent="Device/VBoxContainer/Screen/VBoxContainer" unique_id=2106267389]
+custom_minimum_size = Vector2(0, 13.38)
+layout_mode = 2
 
 [node name="Controls" type="HBoxContainer" parent="Device/VBoxContainer" unique_id=546310320]
 layout_mode = 2

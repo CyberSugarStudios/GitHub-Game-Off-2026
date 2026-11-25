@@ -65,12 +65,18 @@
 [ext_resource type="AudioStream" uid="uid://px0ggwvj5t3w" path="res://assets/audio/MP3_music/Luna.mp3" id="49_xrs0c"]
 [ext_resource type="AudioStream" uid="uid://1tttq4djvtjq" path="res://assets/audio/MP3_music/Joe Leytrick - In The Dark.mp3" id="50_xljpf"]
 [ext_resource type="AudioStream" uid="uid://l3ggeppsujhg" path="res://assets/audio/MP3_music/Card Towers.mp3" id="51_j4bwh"]
+[ext_resource type="Texture2D" uid="uid://d1fxqa1udrj6b" path="res://assets/sprites/rooms/bedroom/CardTowers_Cover.png" id="51_vtx2l"]
 [ext_resource type="AudioStream" uid="uid://btycl8jacpeuw" path="res://assets/audio/MP3_music/Joe Leytrick - I Don't Know (Acoustic).mp3" id="52_ksmap"]
+[ext_resource type="Texture2D" uid="uid://d30xs04ws05qg" path="res://assets/sprites/rooms/bedroom/InTheDark_Cover.png" id="53_63lxy"]
 [ext_resource type="AudioStream" uid="uid://re335n35lw6n" path="res://assets/audio/MP3_music/Swallowtail.mp3" id="53_ygd8o"]
 [ext_resource type="AudioStream" uid="uid://dehuotf0kjjg3" path="res://assets/audio/MP3_music/Joe Leytrick - Forget The Day.mp3" id="54_2s0kr"]
 [ext_resource type="AudioStream" uid="uid://b0wiaqutmoxn2" path="res://assets/audio/MP3_music/Anathema.mp3" id="55_xaipn"]
+[ext_resource type="Texture2D" uid="uid://wms8dnwpdhor" path="res://assets/sprites/rooms/bedroom/IDontKnow_Cover.png" id="56_fjhjs"]
+[ext_resource type="Texture2D" uid="uid://bgrufsmfroeb" path="res://assets/sprites/rooms/bedroom/Swallowtail_Cover.png" id="58_bfu41"]
+[ext_resource type="Texture2D" uid="uid://cxkqss7nj0iwk" path="res://assets/sprites/rooms/bedroom/ForgetTheDay_Cover.png" id="60_r4ag1"]
 [ext_resource type="Script" uid="uid://crgeabduhkqgf" path="res://scripts/story/emily_reactions.gd" id="61_t5ykj"]
 [ext_resource type="Script" uid="uid://csb2u46ehna7t" path="res://scripts/audio/music_director.gd" id="62_od4ux"]
+[ext_resource type="Texture2D" uid="uid://bekbcgp23boq1" path="res://assets/sprites/rooms/bedroom/Luna_Cover.png" id="62_v0wtd"]
 [ext_resource type="Script" uid="uid://bibamch04jqeh" path="res://scripts/audio/music_set.gd" id="63_xhfw6"]
 [ext_resource type="Resource" uid="uid://dl55ecpbbpytb" path="res://assets/audio/hall_music.tres" id="64_1epgm"]
 [ext_resource type="AudioStream" uid="uid://bxbthjh4grdow" path="res://assets/audio/music/creature_chase.mp3" id="65_xhfw6"]
@@ -169,6 +175,7 @@ script = ExtResource("42_dnhof")
 title = "Anathema"
 artist = "Faye Ophelia"
 stream = ExtResource("55_xaipn")
+cover = ExtResource("51_vtx2l")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [sub_resource type="Resource" id="Resource_fxi2g"]
@@ -176,6 +183,7 @@ script = ExtResource("42_dnhof")
 title = "In the Dark"
 artist = "Joe Leytrick"
 stream = ExtResource("50_xljpf")
+cover = ExtResource("53_63lxy")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [sub_resource type="Resource" id="Resource_l8cm0"]
@@ -183,6 +191,7 @@ script = ExtResource("42_dnhof")
 title = "Card Towers"
 artist = "Faye Ophelia"
 stream = ExtResource("51_j4bwh")
+cover = ExtResource("51_vtx2l")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [sub_resource type="Resource" id="Resource_4mwkl"]
@@ -190,6 +199,7 @@ script = ExtResource("42_dnhof")
 title = "I Don't Know (Acoustic)"
 artist = "Joe Leytrick"
 stream = ExtResource("52_ksmap")
+cover = ExtResource("56_fjhjs")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [sub_resource type="Resource" id="Resource_v0bc0"]
@@ -197,6 +207,7 @@ script = ExtResource("42_dnhof")
 title = "Swallowtail"
 artist = "Faye Ophelia"
 stream = ExtResource("53_ygd8o")
+cover = ExtResource("58_bfu41")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [sub_resource type="Resource" id="Resource_6fmp2"]
@@ -204,6 +215,7 @@ script = ExtResource("42_dnhof")
 title = "Forget the Day"
 artist = "Joe Leytrick"
 stream = ExtResource("54_2s0kr")
+cover = ExtResource("60_r4ag1")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [sub_resource type="Resource" id="Resource_gcjdw"]
@@ -211,10 +223,13 @@ script = ExtResource("42_dnhof")
 title = "Luna"
 artist = "Faye Ophelia"
 stream = ExtResource("49_xrs0c")
+cover = ExtResource("62_v0wtd")
 metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
 
 [node name="Main" type="Node3D" unique_id=666068387]
 script = ExtResource("1_sugp2")
+bus_appears_at = 17.6
+bus_transition_seconds = 2.4
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=244970420]
 transform = Transform3D(0.49999997, -0.43301272, 0.75000006, 0, 0.8660254, 0.50000006, -0.86602545, -0.24999999, 0.43301266, 4.3079224, 5.7391357, 0)
