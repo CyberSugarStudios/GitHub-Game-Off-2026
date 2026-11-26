@@ -4,10 +4,14 @@ extends VBoxContainer
 @export var row_size := Vector2(300, 40)
 @export var cost_bar_size := Vector2(36, 18)
 @export var cost_bar_gap: float = 4.0
+@export var anchor_gap: float = 16.0
+@export var screen_margin: float = 12.0
+
+var _home: Array[float] = []
 
 func _ready() -> void:
+	_home = [offset_left, offset_top, offset_right, offset_bottom]
 	grow_horizontal = Control.GROW_DIRECTION_END
-	grow_vertical = Control.GROW_DIRECTION_END
 	Powers.target_changed.connect(
 		func(_id: StringName) -> void:
 			_rebuild())
@@ -54,6 +58,30 @@ func _rebuild() -> void:
 		button.add_child(_make_cost_bars(power.energy_cost))
 		add_child(button)
 	_refresh()
+
+func _process(_delta: float) -> void:
+	if not visible:
+		return
+	var anchor := Powers.target_anchor
+	if GameState.is_in_room() and is_instance_valid(anchor) and anchor.is_inside_tree():
+		_place_beside(anchor.get_global_transform_with_canvas() * Rect2(Vector2.ZERO, anchor.size))
+	elif offset_left != _home[0] or offset_top != _home[1]:
+		offset_left = _home[0]
+		offset_top = _home[1]
+		offset_right = _home[2]
+		offset_bottom = _home[3]
+
+func _place_beside(item: Rect2) -> void:
+	var count := get_child_count()
+	var menu := Vector2(row_size.x, count * row_size.y + maxi(count - 1, 0) * get_theme_constant("separation"))
+	var view := get_viewport_rect().size
+	var x := item.end.x + anchor_gap
+	if x + menu.x > view.x - screen_margin:
+		x = item.position.x - anchor_gap - menu.x
+	var y := item.get_center().y - menu.y * 0.5
+	global_position = Vector2(
+		clampf(x, screen_margin, view.x - menu.x - screen_margin),
+		clampf(y, screen_margin, view.y - menu.y - screen_margin))
 
 func _refresh() -> void:
 	var powers := Powers.get_usable()

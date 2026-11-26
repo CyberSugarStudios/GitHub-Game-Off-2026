@@ -43,6 +43,7 @@
 [ext_resource type="Script" uid="uid://b250rp23ft0gg" path="res://scripts/ui/pill_bar.gd" id="24_j8jky"]
 [ext_resource type="FontFile" uid="uid://dea7h0fglpipj" path="res://assets/fonts/ReenieBeanie-Regular.ttf" id="25_xljpf"]
 [ext_resource type="Script" uid="uid://cpwfkinsrkigc" path="res://scripts/interaction/astral_writing.gd" id="25_xrs0c"]
+[ext_resource type="Texture2D" uid="uid://bni2uyuq07081" path="res://assets/textures/house/wall_decor/pumpkins_photo_back.webp" id="26_63lxy"]
 [ext_resource type="Resource" uid="uid://chr3tvgwur0og" path="res://data/schedules/leanne_stage2.tres" id="26_txyw0"]
 [ext_resource type="Script" uid="uid://oonra37m55uk" path="res://scripts/ui/focus_ring.gd" id="27_pibwh"]
 [ext_resource type="Resource" uid="uid://ho2y34hkaur" path="res://data/schedules/david_stage2.tres" id="27_vc5cj"]
@@ -138,6 +139,9 @@ size = Vector3(0.7089844, 0.90270996, 0.057556152)
 
 [sub_resource type="QuadMesh" id="QuadMesh_2lwwf"]
 size = Vector2(0.6, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kh4kc"]
+albedo_texture = ExtResource("26_63lxy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_augu2"]
 size = Vector3(0.3, 0.3, 0.2)
@@ -515,7 +519,7 @@ shape = SubResource("BoxShape3D_2lwwf")
 [node name="BrokenGlass" type="MeshInstance3D" parent="Hall/HallDecor/HallPainting" unique_id=1175863201]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.735, 0.01, -5.26)
 mesh = SubResource("QuadMesh_2lwwf")
-surface_material_override/0 = ExtResource("4_y6deb")
+surface_material_override/0 = SubResource("StandardMaterial3D_kh4kc")
 
 [node name="CodeClue" type="Label3D" parent="Hall/HallDecor/HallPainting/BrokenGlass" unique_id=1052557243]
 transform = Transform3D(-0.8660254, -0.50000006, 0, 0.50000006, -0.8660254, 0, 0, 0, 1, 0, 0, 0.0040283203)
@@ -523,7 +527,7 @@ modulate = Color(0.4392157, 0.6862745, 0.6392157, 1)
 outline_modulate = Color(0.4392157, 0.6862745, 0.6392157, 1)
 text = "2611"
 font = ExtResource("25_xljpf")
-font_size = 96
+font_size = 79
 outline_size = 0
 script = ExtResource("25_xrs0c")
 hint_stage = 4

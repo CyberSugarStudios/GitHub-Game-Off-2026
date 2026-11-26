@@ -58,7 +58,7 @@ func _ready() -> void:
 	if click_area:
 		click_area.interacted.connect(
 			func() -> void:
-				Powers.set_target(parent_id)
+				Powers.set_target(parent_id, [], click_area)
 		)
 	GameState.parent_location_changed.connect(_on_parent_changed)
 	GameState.parent_activity_changed.connect(_on_parent_changed)

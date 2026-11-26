@@ -6,11 +6,33 @@ const BARKS := preload("res://dialogue/barks.dialogue")
 @export var household: Household
 @export var conversation_player: ConversationPlayer
 @export var every_minutes: int = 30
+@export var presses_per_level: int = 3
+
+const SOLUTION_POPUP := preload("res://scenes/ui/solution_popup.tscn")
 
 var _minutes := 0
+var _presses := 0
+var _popup: SolutionPopup
 
 func _ready() -> void:
 	GameClock.minute_changed.connect(_on_minute_changed)
+	_popup = SOLUTION_POPUP.instantiate() as SolutionPopup
+	add_child(_popup)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not event.is_action_pressed("hint") or GameState.controls_locked or conversation_player.is_running():
+		return
+	get_viewport().set_input_as_handled()
+	_presses += 1
+	if _presses >= presses_per_level:
+		_presses = 0
+		if GameState.get_hint_level() >= GameState.MAX_HINT_LEVEL:
+			_popup.show_solution("solution_" + _stage_key())
+			return
+		GameState.raise_hint_level()
+	var cue := _hint_cue(&"emily", maxi(GameState.get_hint_level(), 1))
+	if cue != "":
+		Events.conversation_requested.emit(BARKS, cue, false)
 
 func _on_minute_changed(_day: int, _minute: int) -> void:
 	_minutes += 1
@@ -40,11 +62,15 @@ func _can_hear(parent: HallParent) -> bool:
 
 func _hint_cue(parent_id: StringName, level: int) -> String:
 	var cues := BARKS.get_cues()
-	var stage := "stage%d" % GameState.story_stage
-	if GameState.hint_step > 0:
-		stage += "_step%d" % GameState.hint_step
+	var stage := _stage_key()
 	for l in range(level, 0, -1):
 		var cue := "%s_%s_hint%d" % [parent_id, stage, l]
 		if cue in cues:
 			return cue
 	return ""
+
+func _stage_key() -> String:
+	var stage := "stage%d" % GameState.story_stage
+	if GameState.hint_step > 0:
+		stage += "_step%d" % GameState.hint_step
+	return stage
