@@ -6,6 +6,13 @@ const MENU_MUSIC := preload("res://assets/audio/music/main_menu_music.mp3")
 const MENU_MUSIC_DB := -8.0
 const MENU_FADE_IN := 4.0
 const LEAVE_FADE := 1.5
+const LABEL_FONT := preload("res://assets/fonts/josefin_semibold.tres")
+const LABEL_HOVER_FONT := preload("res://assets/fonts/josefin_bold.tres")
+const LABEL_COLOR := Color(0.72156864, 0.8745098, 0.84705883)
+const LABEL_HOVER_COLOR := Color(0.92, 0.98, 0.97)
+const BUTTON_HOVER_ALPHA := 0.8
+const BUTTON_PRESS_ALPHA := 0.6
+const HOVER_FADE := 0.12
 #region - VARS
 @onready var version_number_label = $VersionNumberLabel
 
@@ -53,6 +60,8 @@ func _ready() -> void:
 	if ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH) == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 		ResourceLoader.load_threaded_request(GAME_SCENE_PATH, "", true)
 	_warn_if_software_rendering()
+	for button in [continue_game_button, new_game_button, options_button, credits_button, quit_button]:
+		_add_hover_effect(button)
 
 func on_new_game_pressed() -> void:
 	GameState.clear_checkpoint()
@@ -67,10 +76,12 @@ func on_continue_pressed() -> void:
 	GameClock.reset()
 	_enter_game(continue_game_button)
 
-func _enter_game(pressed: Button) -> void:
+func _enter_game(pressed: BaseButton) -> void:
 	new_game_button.disabled = true
 	continue_game_button.disabled = true
-	pressed.text = "Loading..."
+	var label := pressed.get_node_or_null("Label") as Label
+	if label:
+		label.text = "LOADING..."
 	Playtest.start_load_clock()
 	var bar := _make_load_bar()
 	var progress := []
@@ -138,6 +149,29 @@ func on_confirm_close_button_pressed() -> void:
 func on_cancel_close_button_pressed() -> void:
 	confirm_close_menu.visible = false
 	title_and_buttons.visible = true
+
+func _add_hover_effect(button: BaseButton) -> void:
+	var label := button.get_node_or_null("Label") as Label
+	button.mouse_entered.connect(_set_hover.bind(button, label, true))
+	button.mouse_exited.connect(_set_hover.bind(button, label, false))
+	button.button_down.connect(_fade_button.bind(button, BUTTON_PRESS_ALPHA))
+	button.button_up.connect(func() -> void:
+		_fade_button(button, BUTTON_HOVER_ALPHA if button.get_meta(&"hovered", false) else 1.0))
+
+func _set_hover(button: BaseButton, label: Label, hovered: bool) -> void:
+	hovered = hovered and not button.disabled
+	button.set_meta(&"hovered", hovered)
+	_fade_button(button, BUTTON_HOVER_ALPHA if hovered else 1.0)
+	if label == null:
+		return
+	label.add_theme_font_override("font", LABEL_HOVER_FONT if hovered else LABEL_FONT)
+	var color := LABEL_HOVER_COLOR if hovered else LABEL_COLOR
+	var tween := label.create_tween().set_parallel()
+	tween.tween_property(label, "theme_override_colors/font_color", color, HOVER_FADE)
+	tween.tween_property(label, "theme_override_colors/font_outline_color", color, HOVER_FADE)
+
+func _fade_button(button: BaseButton, alpha: float) -> void:
+	button.create_tween().tween_property(button, "self_modulate:a", alpha, HOVER_FADE)
 
 func _warn_if_software_rendering() -> void:
 	if not Playtest.is_software_rendering():
