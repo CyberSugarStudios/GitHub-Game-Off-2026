@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cphlvw4ugwl31"]
 
 [ext_resource type="Script" uid="uid://768plycxsvoq" path="res://scripts/ui/pause_menu.gd" id="1_6tw0m"]
+[ext_resource type="Script" uid="uid://ctr8sw6h7ilc4" path="res://scripts/ui/title_button.gd" id="2_8uki6"]
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="2_f6eus"]
 [ext_resource type="PackedScene" uid="uid://b713spnah4skw" path="res://scenes/ui/OptionsPanel.tscn" id="3_f6eus"]
+[ext_resource type="PackedScene" uid="uid://bc8avv3u5fuci" path="res://scenes/ui/title_button.tscn" id="5_0bnpd"]
 
 [sub_resource type="Gradient" id="Gradient_r23qo"]
 offsets = PackedFloat32Array(0, 0.45528457, 1)
@@ -37,14 +39,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.24313726, 0.32156864, 0.72156864)
 
-[node name="CreditsLabel" type="RichTextLabel" parent="." unique_id=290121948]
+[node name="PausedLabel" type="RichTextLabel" parent="." unique_id=290121948]
 custom_minimum_size = Vector2(0, 100)
-anchors_preset = -1
-offset_left = 542.0
-offset_top = 159.0
-offset_right = 1031.125
-offset_bottom = 321.5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.56201
+offset_top = -291.0
+offset_right = 244.56299
+offset_bottom = -128.5
 grow_horizontal = 2
+grow_vertical = 2
 theme_type_variation = &"TitleText"
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
@@ -69,8 +76,8 @@ theme_override_constants/separation = 15
 
 [node name="ResumeButton" type="TextureButton" parent="Buttons" unique_id=112169057]
 layout_mode = 2
-disabled = true
 texture_normal = SubResource("GradientTexture2D_8uki6")
+script = ExtResource("2_8uki6")
 
 [node name="Label" type="Label" parent="Buttons/ResumeButton" unique_id=116022441]
 layout_mode = 0
@@ -88,6 +95,7 @@ vertical_alignment = 1
 [node name="SettingsButton" type="TextureButton" parent="Buttons" unique_id=1594935713]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_4inpj")
+script = ExtResource("2_8uki6")
 
 [node name="Label" type="Label" parent="Buttons/SettingsButton" unique_id=1882203703]
 layout_mode = 0
@@ -105,6 +113,7 @@ vertical_alignment = 1
 [node name="QuitToTitleButton" type="TextureButton" parent="Buttons" unique_id=876339077]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_4inpj")
+script = ExtResource("2_8uki6")
 
 [node name="Label" type="Label" parent="Buttons/QuitToTitleButton" unique_id=1508341347]
 layout_mode = 0
@@ -122,6 +131,7 @@ vertical_alignment = 1
 [node name="FeedbackButton" type="TextureButton" parent="Buttons" unique_id=514665606]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_4inpj")
+script = ExtResource("2_8uki6")
 
 [node name="Label" type="Label" parent="Buttons/FeedbackButton" unique_id=2048067172]
 layout_mode = 0
@@ -154,7 +164,6 @@ theme_override_constants/separation = 24
 [node name="OptionsPanel" parent="OptionsPage" unique_id=1048352369 instance=ExtResource("3_f6eus")]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="OptionsPage" unique_id=1056908374]
+[node name="BackButton" parent="OptionsPage" unique_id=619476330 instance=ExtResource("5_0bnpd")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Back"
+text = "BACK"

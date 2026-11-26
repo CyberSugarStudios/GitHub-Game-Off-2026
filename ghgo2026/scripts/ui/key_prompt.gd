@@ -27,6 +27,10 @@ const SEMIBOLD := preload("res://assets/fonts/josefin_semibold.tres")
 		font_size = value
 		_refresh()
 @export var key_color := Color(0.8, 0.804, 0.769)
+@export var icon: Texture2D:
+	set(value):
+		icon = value
+		_refresh()
 
 func show_prompt(new_key: String, new_text: String, new_prefix: String = "") -> void:
 	key = new_key
@@ -46,12 +50,12 @@ func _refresh() -> void:
 	prefix_label.text = prefix
 	prefix_label.visible = prefix != ""
 	prefix_label.add_theme_font_size_override("font_size", font_size)
-	key_rect.visible = key != ""
+	key_rect.visible = key != "" or icon != null
 	var wide := key.length() > 1
-	key_rect.texture = WIDE_KEY_ART if wide else KEY_ART
+	key_rect.texture = icon if icon else (WIDE_KEY_ART if wide else KEY_ART)
 	var art := key_rect.texture
 	key_rect.custom_minimum_size = Vector2(key_height * art.get_width() / art.get_height(), key_height)
-	key_label.text = key
+	key_label.text = "" if icon else key
 	key_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	key_label.anchor_bottom = 0.76
 	key_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

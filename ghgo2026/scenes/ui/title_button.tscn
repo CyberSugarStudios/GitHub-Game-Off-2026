@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bc8avv3u5fuci"]
+
+[ext_resource type="Script" uid="uid://ctr8sw6h7ilc4" path="res://scripts/ui/title_button.gd" id="1_f270o"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="2_hmp5d"]
+
+[sub_resource type="Gradient" id="Gradient_r23qo"]
+offsets = PackedFloat32Array(0, 0.45528457, 1)
+colors = PackedColorArray(0.72156864, 0.8745098, 0.84705883, 0.5294118, 0.72156864, 0.8745098, 0.84705883, 0.2, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xclc8"]
+gradient = SubResource("Gradient_r23qo")
+width = 372
+height = 56
+fill_from = Vector2(0.013513514, 0)
+
+[node name="TitleButton" type="TextureButton" unique_id=619476330]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = SubResource("GradientTexture2D_xclc8")
+script = ExtResource("1_f270o")
+text = "BUTTON"
+
+[node name="Label" type="Label" parent="." unique_id=799539150]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 218.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_colors/font_outline_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("2_hmp5d")
+theme_override_font_sizes/font_size = 26
+text = "BUTTON"
+vertical_alignment = 1

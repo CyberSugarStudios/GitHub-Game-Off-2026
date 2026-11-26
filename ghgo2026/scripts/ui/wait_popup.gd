@@ -3,10 +3,10 @@ extends CanvasLayer
 
 signal answered(choice: StringName)
 
-@onready var hour_button: Button = %HourButton
-@onready var night_button: Button = %NightButton
-@onready var morning_button: Button = %MorningButton
-@onready var back_button: Button = %BackButton
+@onready var hour_button: BaseButton = %HourButton
+@onready var night_button: BaseButton = %NightButton
+@onready var morning_button: BaseButton = %MorningButton
+@onready var back_button: BaseButton = %BackButton
 
 func _ready() -> void:
 	visible = false

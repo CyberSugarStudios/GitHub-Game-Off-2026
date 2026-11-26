@@ -8,7 +8,7 @@ const TITLE_SCENE_PATH := "res://scenes/ui/title_screen.tscn"
 @onready var feedback_button: TextureButton = $Buttons/FeedbackButton
 @onready var buttons: Control = $Buttons
 @onready var options_page: Control = $OptionsPage
-@onready var back_button: Button = $OptionsPage/BackButton
+@onready var back_button: BaseButton = $OptionsPage/BackButton
 
 var _had_mouse_capture := false
 

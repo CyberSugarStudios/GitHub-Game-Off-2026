@@ -4,7 +4,7 @@ extends CanvasLayer
 const SOLUTIONS := preload("res://dialogue/solutions.dialogue")
 
 @onready var body: RichTextLabel = %Body
-@onready var close_button: Button = %CloseButton
+@onready var close_button: BaseButton = %CloseButton
 
 var _mouse_before := Input.MOUSE_MODE_VISIBLE
 

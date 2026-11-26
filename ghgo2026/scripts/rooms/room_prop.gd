@@ -26,6 +26,8 @@ enum Anim { NONE, WOBBLE, TIP_OVER, FLICKER, FALL }
 @export var done_reveal: CanvasItem
 @export var fall_distance: float = 300.0
 @export var fit_to_art: bool = true
+@export var art_always_visible: bool = false
+@export var active_texture: Texture2D
 
 @export_group("Hints")
 @export var hint_stage: int = -1
@@ -39,6 +41,8 @@ var _rest_position := Vector2.ZERO
 var _rest_rotation := 0.0
 var _sound: AudioStreamPlayer
 var _done_shown := false
+var _tipped := false
+var _base_texture: Texture2D
 
 func _ready() -> void:
 	realm = InteractionRules.Realm.ASTRAL_ONLY
@@ -68,10 +72,9 @@ func _ready() -> void:
 		_animate(success_anim, true)
 		if done_reveal:
 			done_reveal.visible = true
-		if art:
-			art.visible = _exists()
-		GameState.parent_activity_changed.connect(_on_parent_changed)
-		GameState.parent_location_changed.connect(_on_parent_changed)
+	GameState.parent_activity_changed.connect(_on_parent_changed)
+	GameState.parent_location_changed.connect(_on_parent_changed)
+	_update_art()
 
 func _process(_delta: float) -> void:
 	if art == null or hint_stage < 0:
@@ -139,6 +142,8 @@ func _on_flag_cleared(id: StringName) -> void:
 		art.position = _rest_position
 		art.rotation = _rest_rotation
 		art.modulate = Color.WHITE
+		_tipped = false
+		_update_art()
 	if done_reveal:
 		done_reveal.visible = false
 	_refresh()
@@ -167,8 +172,7 @@ func _parents_here() -> bool:
 
 func _on_parent_changed(_id: StringName, _value: StringName) -> void:
 	_refresh()
-	if art:
-		art.visible = _exists()
+	_update_art()
 
 func _is_available() -> bool:
 	return _exists()
@@ -182,9 +186,22 @@ func _exists() -> bool:
 				return true
 	return false
 
+func _update_art() -> void:
+	if art == null:
+		return
+	art.visible = art_always_visible or _exists()
+	var sprite := art as Sprite2D
+	if sprite and active_texture:
+		if _base_texture == null:
+			_base_texture = sprite.texture
+		sprite.texture = active_texture if _exists() and not _tipped else _base_texture
+
 func _animate(anim: Anim, instant: bool) -> void:
 	if art == null or anim == Anim.NONE:
 		return
+	if anim == Anim.TIP_OVER or anim == Anim.FALL:
+		_tipped = true
+		_update_art()
 	var tween := create_tween()
 	match anim:
 		Anim.WOBBLE:

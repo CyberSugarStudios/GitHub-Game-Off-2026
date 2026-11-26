@@ -87,12 +87,12 @@ texture = ExtResource("10_v3sj4")
 
 [node name="CoffeeCupEmpty" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1785664145]
 position = Vector2(251.47543, 1.8160305)
-scale = Vector2(0.066, 0.066)
+scale = Vector2(0.04760757, 0.04760757)
 texture = ExtResource("11_hm2ep")
 
 [node name="CoffeeCupFull" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1009143108]
 position = Vector2(251.67581, 0.37937927)
-scale = Vector2(0.066, 0.066)
+scale = Vector2(0.04760757, 0.04760757)
 texture = ExtResource("19_cupfull")
 
 [node name="Pamphlet" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1555067475]
@@ -127,7 +127,7 @@ z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 node_paths=PackedStringArray("spots") instance=ExtResource("6_m75iv")]
 position = Vector2(1821, 1044)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.52, 0.52)
 frames = ExtResource("7_78330")
 spots = NodePath("../../RoomSpots")
 
@@ -144,8 +144,8 @@ metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 metadata/_edit_use_anchors_ = true
 
 [node name="David" parent="Actors" unique_id=348760919 node_paths=PackedStringArray("spots") instance=ExtResource("6_m75iv")]
-position = Vector2(3413, 1086)
-scale = Vector2(0.5, 0.5)
+position = Vector2(3430, 1068)
+scale = Vector2(0.55, 0.55)
 parent_id = &"david"
 frames = ExtResource("8_fiuqx")
 spots = NodePath("../../RoomSpots")
@@ -224,6 +224,8 @@ near_miss_event = &"coffee_spilled"
 near_miss_anim = 2
 only_during = &"drinking_coffee"
 art = NodePath("../../BackProps/MainCabinet/CoffeeCupFull")
+art_always_visible = true
+active_texture = ExtResource("19_cupfull")
 success_sound = ExtResource("10_dlhyq")
 prompt_text = "Nudge"
 realm = 2

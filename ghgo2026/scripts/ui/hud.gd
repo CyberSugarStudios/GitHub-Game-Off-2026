@@ -10,6 +10,9 @@ const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
 @export var prompt_available_color := Color(1.0, 1.0, 1.0)
 @export var prompt_blocked_color := Color(0.6, 0.6, 0.6)
+@export var click_icon: Texture2D
+@export var room_prompt_bottom: float = -150.0
+@export var hall_prompt_bottom: float = -80.0
 @export var full_fade_delay: float = 1.0
 @export var bar_fade_speed: float = 4.0
 @export var struggle_shake := Vector2(2.0, 14.0)
@@ -228,8 +231,17 @@ func _refresh_crosshair() -> void:
 
 func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 	interaction_prompt.visible = text != ""
-	var key := ("Click" if GameState.is_in_room() else "E") if available else ""
+	var in_room := GameState.is_in_room()
+	var key := ""
+	if available:
+		key = "E" if not in_room else ("" if click_icon else "Click")
+	interaction_prompt.icon = click_icon if available and in_room else null
 	interaction_prompt.show_prompt(key, text)
+	var bottom := room_prompt_bottom if in_room else hall_prompt_bottom
+	if not is_equal_approx(interaction_prompt.offset_bottom, bottom):
+		var height := interaction_prompt.size.y
+		interaction_prompt.offset_bottom = bottom
+		interaction_prompt.offset_top = bottom - height
 	interaction_prompt.modulate = prompt_available_color if available else prompt_blocked_color
 	crosshair.modulate.a = 1.0 if text != "" else 0.35
 

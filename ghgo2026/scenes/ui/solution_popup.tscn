@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://d278cto85td3s"]
 
 [ext_resource type="Script" uid="uid://d217d7curwry8" path="res://scripts/ui/solution_popup.gd" id="1_wrj14"]
+[ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="2_0l7j5"]
+[ext_resource type="PackedScene" uid="uid://bc8avv3u5fuci" path="res://scenes/ui/title_button.tscn" id="3_5xkyo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wrj14"]
 
 [node name="SolutionPopup" type="CanvasLayer" unique_id=416268265]
 layer = 10
@@ -12,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
+color = Color(0, 0.24269372, 0.32086813, 0.25)
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1732036957]
 custom_minimum_size = Vector2(640, 0)
@@ -27,6 +31,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wrj14")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1584075412]
 layout_mode = 2
@@ -41,7 +46,11 @@ theme_override_constants/separation = 16
 
 [node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1032444923]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
+theme_override_colors/font_outline_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_0l7j5")
+theme_override_font_sizes/font_size = 110
 text = "Stuck? Here's what to do..."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -53,11 +62,16 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/normal_font_size = 24
-text = "Solution"
+text = "Lorum ipsem steps because you can't handle simple puzzle games. 
+
+No, I'm sorry, that was mean, and defensive. It's just because I worked really hard on this game, but I know that not all of the puzzles have been that clear. I mean, that's why this whole screen exists in the first place...
+
+Anyway, that's how you do it! Good luck!
+
+Loser xD"
 fit_content = true
 autowrap_mode = 2
 
-[node name="CloseButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=529992285]
-unique_name_in_owner = true
+[node name="CloseButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=619476330 instance=ExtResource("3_5xkyo")]
 layout_mode = 2
-text = "Close   [S]"
+text = "CLOSE"
