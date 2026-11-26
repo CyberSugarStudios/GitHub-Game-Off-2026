@@ -10,8 +10,12 @@ const LABEL_FONT := preload("res://assets/fonts/josefin_semibold.tres")
 const LABEL_HOVER_FONT := preload("res://assets/fonts/josefin_bold.tres")
 const LABEL_COLOR := Color(0.72156864, 0.8745098, 0.84705883)
 const LABEL_HOVER_COLOR := Color(0.92, 0.98, 0.97)
-const BUTTON_HOVER_ALPHA := 0.8
-const BUTTON_PRESS_ALPHA := 0.6
+const BUTTON_HOVER_ALPHA := 1.5
+const BUTTON_PRESS_ALPHA := 1.8
+const HOVER_SOUND := preload("res://assets/audio/ui/haptic_noise.mp3")
+const SELECT_SOUND := preload("res://assets/audio/ui/select_noise.mp3")
+const SELECT_VOLUME_DB := 8.0
+const DISABLED_COLOR := Color(0.45, 0.45, 0.45)
 const HOVER_FADE := 0.12
 #region - VARS
 @onready var version_number_label = $VersionNumberLabel
@@ -33,6 +37,8 @@ const HOVER_FADE := 0.12
 @onready var confirm_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/ConfirmCloseButton
 @onready var cancel_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/CancelCloseButton
 #endregion
+var _hover_sound: AudioStreamPlayer
+var _select_sound: AudioStreamPlayer
 #endregion
 
 func _ready() -> void:
@@ -44,9 +50,10 @@ func _ready() -> void:
 	version_number_label.text = "v" + app_version
 	
 	continue_game_button.disabled = not GameState.has_checkpoint()
+	if continue_game_button.disabled:
+		_grey_out(continue_game_button)
 	continue_game_button.pressed.connect(on_continue_pressed)
 	
-	# Brower can't use quit button
 	quit_button.visible = not OS.has_feature("web")
 	
 	options_button.pressed.connect(on_options_menu_button_pressed)
@@ -60,6 +67,8 @@ func _ready() -> void:
 	if ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH) == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 		ResourceLoader.load_threaded_request(GAME_SCENE_PATH, "", true)
 	_warn_if_software_rendering()
+	_hover_sound = _make_sound(HOVER_SOUND, 0.0)
+	_select_sound = _make_sound(SELECT_SOUND, SELECT_VOLUME_DB * 2.5)
 	for button in [continue_game_button, new_game_button, options_button, credits_button, quit_button]:
 		_add_hover_effect(button)
 
@@ -72,6 +81,7 @@ func on_new_game_pressed() -> void:
 func on_continue_pressed() -> void:
 	if not GameState.load_checkpoint():
 		continue_game_button.disabled = true
+		_grey_out(continue_game_button)
 		return
 	GameClock.reset()
 	_enter_game(continue_game_button)
@@ -150,6 +160,15 @@ func on_cancel_close_button_pressed() -> void:
 	confirm_close_menu.visible = false
 	title_and_buttons.visible = true
 
+func _make_sound(stream: AudioStream, volume_db: float) -> AudioStreamPlayer:
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.volume_db = volume_db
+	player.bus = &"SFX"
+	player.max_polyphony = 4
+	add_child(player)
+	return player
+
 func _add_hover_effect(button: BaseButton) -> void:
 	var label := button.get_node_or_null("Label") as Label
 	button.mouse_entered.connect(_set_hover.bind(button, label, true))
@@ -157,11 +176,15 @@ func _add_hover_effect(button: BaseButton) -> void:
 	button.button_down.connect(_fade_button.bind(button, BUTTON_PRESS_ALPHA))
 	button.button_up.connect(func() -> void:
 		_fade_button(button, BUTTON_HOVER_ALPHA if button.get_meta(&"hovered", false) else 1.0))
+	button.pressed.connect(_select_sound.play)
 
 func _set_hover(button: BaseButton, label: Label, hovered: bool) -> void:
-	hovered = hovered and not button.disabled
+	if button.disabled:
+		return
 	button.set_meta(&"hovered", hovered)
 	_fade_button(button, BUTTON_HOVER_ALPHA if hovered else 1.0)
+	if hovered:
+		_hover_sound.play()
 	if label == null:
 		return
 	label.add_theme_font_override("font", LABEL_HOVER_FONT if hovered else LABEL_FONT)
@@ -172,6 +195,21 @@ func _set_hover(button: BaseButton, label: Label, hovered: bool) -> void:
 
 func _fade_button(button: BaseButton, alpha: float) -> void:
 	button.create_tween().tween_property(button, "self_modulate:a", alpha, HOVER_FADE)
+
+func _grey_out(button: TextureButton) -> void:
+	var normal := button.texture_normal as GradientTexture2D
+	if normal and normal.gradient:
+		var grey := normal.duplicate() as GradientTexture2D
+		grey.gradient = normal.gradient.duplicate() as Gradient
+		for i in grey.gradient.get_point_count():
+			var color := grey.gradient.get_color(i)
+			var shade := color.get_luminance() * 0.6
+			grey.gradient.set_color(i, Color(shade, shade, shade, color.a))
+		button.texture_disabled = grey
+	var label := button.get_node_or_null("Label") as Label
+	if label:
+		label.add_theme_color_override("font_color", DISABLED_COLOR)
+		label.add_theme_color_override("font_outline_color", DISABLED_COLOR)
 
 func _warn_if_software_rendering() -> void:
 	if not Playtest.is_software_rendering():
