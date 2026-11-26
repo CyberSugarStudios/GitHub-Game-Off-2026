@@ -14,11 +14,14 @@ config/name="Interim"
 config/version="2026.11.25.1930.0.9.1pt5"
 run/main_scene="res://scenes/ui/content_warning.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-boot_splash/image="res://assets/sprites/Boot/boot_splash.png"
+boot_splash/image="uid://usg3cs6ey547"
 
 [audio]
 
-buses/default_bus_layout="res://data/default_bus_layout.tres"
+<<<<<<< HEAD
+=======
+buses/default_bus_layout="uid://tbmkrvrb0ub5"
+>>>>>>> 079e358157780416995f2eb619e19b19e220bfe2
 general/default_playback_type.web=0
 
 [autoload]
@@ -125,3 +128,4 @@ rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 driver/depth_prepass/enable=false
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
