@@ -73,5 +73,6 @@ fit_content = true
 autowrap_mode = 2
 
 [node name="CloseButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=619476330 instance=ExtResource("3_5xkyo")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "CLOSE"
