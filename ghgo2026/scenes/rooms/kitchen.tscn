@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vnb6bjdisn6w"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_njvo0"]
-[ext_resource type="Texture2D" uid="uid://chf2l6rwcwco8" path="res://assets/textures/rooms/empty_kitchen.webp" id="2_33dcn"]
+[ext_resource type="Texture2D" uid="uid://chf2l6rwcwco8" path="res://assets/textures/rooms/kitchen.webp" id="2_33dcn"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_581re"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_m75iv"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_fiuqx"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://dl2y102x3cq0h" path="res://assets/audio/sfx/varied/coffee_sip.wav" id="15_avos5"]
 [ext_resource type="Texture2D" uid="uid://c0fi4o6ysmnl0" path="res://assets/sprites/rooms/kitchen/kitchen_beer_case.webp" id="17_wjo8k"]
 [ext_resource type="Texture2D" uid="uid://dovt0pbx6owx0" path="res://assets/sprites/rooms/living_room/cutout_beer_can_prop.webp" id="18_prl6a"]
+[ext_resource type="Texture2D" uid="uid://bqxbeum501c5w" path="res://assets/sprites/rooms/kitchen/coffee_cup_full.webp" id="19_cupfull"]
 
 [node name="Kitchen" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_njvo0")
@@ -52,45 +53,74 @@ script = ExtResource("4_m75iv")
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
 
-[node name="Pamphlet" type="Sprite2D" parent="BackProps" unique_id=1555067475]
-position = Vector2(2098.0002, 587.00006)
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("12_nsrbe")
-
 [node name="Fridge" type="Sprite2D" parent="BackProps" unique_id=1910034078]
-position = Vector2(703, 603)
-scale = Vector2(0.52, 0.52)
+position = Vector2(706.1, 604.1)
+scale = Vector2(0.549, 0.549)
 texture = ExtResource("7_u5w5f")
 
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Fridge" unique_id=390025487]
+position = Vector2(-340, 511.7)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/Fridge" unique_id=510623943]
+position = Vector2(285.9, 511.7)
+
 [node name="MainCabinet" type="Sprite2D" parent="BackProps" unique_id=834886285]
-position = Vector2(1838, 552)
-scale = Vector2(0.52, 0.52)
+position = Vector2(1841, 574)
+scale = Vector2(0.5325844, 0.5325844)
 texture = ExtResource("8_4a0ue")
 
-[node name="CoffeeCup" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1009143108]
-position = Vector2(817.30786, 9.615601)
-scale = Vector2(0.1923077, 0.1923077)
-texture = ExtResource("11_hm2ep")
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/MainCabinet" unique_id=699527027]
+position = Vector2(-506.6, 270.8)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/MainCabinet" unique_id=604264462]
+position = Vector2(510.1, 270.8)
 
 [node name="CoffeeMaker" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=29446814]
-position = Vector2(-1351.9231, -90.38458)
-scale = Vector2(0.28846157, 0.28846157)
+position = Vector2(-1318.9999, -81.80005)
+scale = Vector2(0.2735007, 0.2735007)
 texture = ExtResource("6_nd2m6")
 
 [node name="EspressoMaker" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1220024183]
-position = Vector2(-1017.3076, -94.23071)
-scale = Vector2(0.28846157, 0.28846157)
+position = Vector2(-1037, -69.80005)
+scale = Vector2(0.26667458, 0.26667458)
 texture = ExtResource("10_v3sj4")
 
+[node name="CoffeeCupFull" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1009143108]
+position = Vector2(428.1012, 16.89867)
+scale = Vector2(0.19999999, 0.19999999)
+texture = ExtResource("19_cupfull")
+
+[node name="CoffeeCupEmpty" type="Sprite2D" parent="BackProps/MainCabinet/CoffeeCupFull" unique_id=105075158]
+position = Vector2(-1.5, 17)
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("11_hm2ep")
+
+[node name="Pamphlet" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1555067475]
+position = Vector2(764.1982, 75.1055)
+scale = Vector2(0.20057914, 0.20057914)
+texture = ExtResource("12_nsrbe")
+
 [node name="Microwave" type="Sprite2D" parent="BackProps" unique_id=1573894090]
-position = Vector2(3377, 533)
-scale = Vector2(0.52, 0.52)
+position = Vector2(3368.0002, 566)
+scale = Vector2(0.5327041, 0.5327041)
 texture = ExtResource("11_v3sj4")
 
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Microwave" unique_id=1329723484]
+position = Vector2(-237.8, 511)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/Microwave" unique_id=1321358443]
+position = Vector2(267.9, 511)
+
 [node name="StoveAndVent" type="Sprite2D" parent="BackProps" unique_id=920843879]
-position = Vector2(2915, 527)
-scale = Vector2(0.52, 0.52)
+position = Vector2(2914, 556)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_wjo8k")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/StoveAndVent" unique_id=1849196747]
+position = Vector2(-234.4, 493.3)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/StoveAndVent" unique_id=1235673431]
+position = Vector2(250, 493.3)
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
@@ -124,29 +154,35 @@ spots = NodePath("../../RoomSpots")
 z_index = 30
 
 [node name="BeerCase" type="Sprite2D" parent="FrontProps" unique_id=548377354]
-position = Vector2(285, 1031)
-scale = Vector2(0.25, 0.25)
+position = Vector2(272, 1018)
+scale = Vector2(0.3214021, 0.3214021)
 texture = ExtResource("17_wjo8k")
 
+[node name="DoorwayLeft" type="Marker2D" parent="FrontProps/BeerCase" unique_id=1262305938]
+position = Vector2(-487.8, 268.7)
+
+[node name="DoorwayRight" type="Marker2D" parent="FrontProps/BeerCase" unique_id=846847104]
+position = Vector2(334.7, 268.7)
+
 [node name="Beercan" type="Sprite2D" parent="FrontProps/BeerCase" unique_id=356882799]
-position = Vector2(-136, -428)
-scale = Vector2(1.5, 1.5)
+position = Vector2(-106.2, -334.3)
+scale = Vector2(1.1716, 1.1716)
 texture = ExtResource("18_prl6a")
 
 [node name="Beercan2" type="Sprite2D" parent="FrontProps/BeerCase" unique_id=714812764]
-position = Vector2(-48, -372)
+position = Vector2(-37.5, -290.6)
 rotation = 1.5707964
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.1716, 1.1716)
 texture = ExtResource("18_prl6a")
 
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
 [node name="Pamphlet" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 2005.0
-offset_top = 566.0
-offset_right = 2199.0
-offset_bottom = 610.0
+offset_left = 2152.0
+offset_top = 591.0
+offset_right = 2339.0
+offset_bottom = 633.0
 script = ExtResource("6_fiuqx")
 prompt_text = "Look at pamphlet"
 story_id = &"memorial_pamphlet"
@@ -186,7 +222,7 @@ success_event = &"coffee_on_leanne"
 near_miss_event = &"coffee_spilled"
 near_miss_anim = 2
 only_during = &"drinking_coffee"
-art = NodePath("../../BackProps/MainCabinet/CoffeeCup")
+art = NodePath("../../BackProps/MainCabinet/CoffeeCupFull")
 success_sound = ExtResource("10_dlhyq")
 prompt_text = "Nudge"
 realm = 2
@@ -226,51 +262,6 @@ position = Vector2(-63, 1159)
 
 [node name="FloorRight" type="Marker2D" parent="RoomDepth" unique_id=1294863362]
 position = Vector2(4186, 1176)
-
-[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=1625534298]
-visible = false
-z_index = 100
-
-[node name="COUNTERTOP_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1668506009]
-offset_left = 99.0
-offset_top = 811.0
-offset_right = 441.0
-offset_bottom = 859.0
-theme_override_font_sizes/font_size = 48
-text = "COUNTER TOP"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="COFFEE_MACHINE_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1416812957]
-offset_left = 26.0
-offset_top = 338.0
-offset_right = 458.0
-offset_bottom = 386.0
-theme_override_font_sizes/font_size = 48
-text = "COFFEE MACHINE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="COFFEE_CUP_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1977956994]
-offset_left = 1248.0
-offset_top = 705.0
-offset_right = 1680.0
-offset_bottom = 753.0
-theme_override_font_sizes/font_size = 48
-text = "COFFEE CUP"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PAMPHLET_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1188015473]
-offset_left = 881.0
-offset_top = 701.0
-offset_right = 1313.0
-offset_bottom = 800.0
-theme_override_font_sizes/font_size = 48
-text = "MEMORIAL
-PAMPHLET"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="BrewSound" type="AudioStreamPlayer" parent="." unique_id=613518075]
 stream = ExtResource("13_sltsg")
