@@ -37,9 +37,19 @@ autoplay = true
 expand = true
 loop = true
 
-[node name="Title" type="Sprite2D" parent="." unique_id=64972241]
-position = Vector2(634, 266)
+[node name="Title" type="TextureRect" parent="." unique_id=519175309]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.033
+anchor_top = -0.017
+anchor_right = 0.679
+anchor_bottom = 0.76600003
+offset_left = -0.20000076
+offset_top = -81.7
+offset_right = 0.1953125
+offset_bottom = -82.400024
 texture = ExtResource("2_r23qo")
+expand_mode = 1
 
 [node name="VersionNumberLabel" type="Label" parent="." unique_id=1088067038]
 layout_mode = 1
@@ -59,13 +69,13 @@ text = "v0.0.1"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.091000006
-anchor_top = 0.44400004
+anchor_top = 0.467
 anchor_right = 0.323
-anchor_bottom = 0.822
+anchor_bottom = 0.84400004
 offset_left = -0.6000061
-offset_top = 41.399963
+offset_top = -0.3000183
 offset_right = 0.19995117
-offset_bottom = 41.19995
+offset_bottom = 0.39996338
 grow_horizontal = 2
 grow_vertical = 2
 

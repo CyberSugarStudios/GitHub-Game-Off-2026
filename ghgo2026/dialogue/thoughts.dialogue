@@ -6,6 +6,14 @@ Leanne: Jesus, it's freezing in here. Where's that blanket at? [#thought]
 David: Thermostat's acting up again. [#thought]
 => END
 
+~ thoughts_leanne_night
+Leanne: Zzz [#thought]
+=> END
+
+~ thoughts_david_night
+David: Zzz [#thought]
+=> END
+
 ~ thoughts_leanne_pumpkin_photo
 Leanne: I'm sorry, honey. [#thought]
 => END
@@ -103,7 +111,7 @@ David: If I were sober, I'd hear a pin drop in that garage. [#thought]
 => END
 
 ~ thoughts_david_stage3_hint3
-David: If someone broke in tonight I'd go straight for the safe. If I could wake up. [#thought]
+David: If someone broke in tonight, I'd go straight for the safe... That is, if I could wake up. [#thought]
 => END
 
 ~ thoughts_leanne_stage3_hint0
@@ -119,5 +127,21 @@ Leanne: Without them I hear everything. Every empty creak... [#thought]
 => END
 
 ~ thoughts_leanne_stage3_hint3
-Leanne: If he ever went for that safe in the night, I'd want to be awake for it. I wish we got rid of it. [#thought]
+Leanne: He's been so paranoid lately. It'd help if I was awake at night in case anything happened. [#thought]
+=> END
+
+~ thoughts_after_hug_leanne
+Leanne: It still hurts. It will always hurt. But life doesn't stop. I have to move one day at a time. [#thought]
+=> END
+
+~ thoughts_after_hug_david
+David: The life we had is gone. But I have to find a way to still live the one I have left. [#thought]
+=> END
+
+~ thoughts_after_forgiving_leanne
+Leanne: Something feels a little different now. A little lighter. [#thought]
+=> END
+
+~ thoughts_after_forgiving_david
+David: Kiddo... Wherever you are, I hope you know that even though I wasn't a great father... I loved you. I still love you. I always will. [#thought]
 => END
