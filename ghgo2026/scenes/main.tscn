@@ -61,7 +61,6 @@
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
 [ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="42_dnhof"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
-[ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="46_bu4jf"]
 [ext_resource type="AudioStream" uid="uid://px0ggwvj5t3w" path="res://assets/audio/MP3_music/Luna.mp3" id="49_xrs0c"]
 [ext_resource type="AudioStream" uid="uid://1tttq4djvtjq" path="res://assets/audio/MP3_music/Joe Leytrick - In The Dark.mp3" id="50_xljpf"]
 [ext_resource type="AudioStream" uid="uid://l3ggeppsujhg" path="res://assets/audio/MP3_music/Card Towers.mp3" id="51_j4bwh"]
@@ -82,6 +81,8 @@
 [ext_resource type="AudioStream" uid="uid://bxbthjh4grdow" path="res://assets/audio/music/creature_chase.mp3" id="65_xhfw6"]
 [ext_resource type="AudioStream" uid="uid://bru3chlcrbsin" path="res://assets/audio/music/hall_music.mp3" id="66_r4e17"]
 [ext_resource type="AudioStream" uid="uid://bq6c3r18nglg8" path="res://assets/audio/music/hall_music_astral.mp3" id="67_y57op"]
+[ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="69_fjhjs"]
+[ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="70_bfu41"]
 [ext_resource type="Script" uid="uid://bxs7xdlwwl1ov" path="res://scripts/ui/cupboard_keypad.gd" id="77_ksmap"]
 [ext_resource type="PackedScene" uid="uid://bocgap0btqaff" path="res://scenes/ui/mirror_view.tscn" id="78_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://8kuxv6n1o1p0" path="res://scenes/ui/PamphletView.tscn" id="79_2s0kr"]
@@ -253,14 +254,14 @@ astral_only_lights = [NodePath("../Hall/Lights/UnderTone"), NodePath("../Hall/Li
 
 [node name="Hall" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
-[node name="hall" parent="Hall" index="0" unique_id=137619233]
+[node name="hall" parent="Hall" index="0" unique_id=1690432032]
 transform = Transform3D(1, 0, 0, 0, 1.0365604, 0, 0, 0, 1, 0, -0.053405765, 0)
 material_override = ExtResource("4_y6deb")
 
-[node name="hallCeiling" parent="Hall" index="1" unique_id=1270299963]
+[node name="hallCeiling" parent="Hall" index="1" unique_id=1230881077]
 surface_material_override/0 = SubResource("StandardMaterial3D_c6pm6")
 
-[node name="hallFloor" parent="Hall" index="2" unique_id=1360151445]
+[node name="hallFloor" parent="Hall" index="2" unique_id=2039490390]
 surface_material_override/0 = SubResource("StandardMaterial3D_gcjdw")
 
 [node name="Lights" type="Node" parent="Hall" unique_id=1715504205]
@@ -843,54 +844,149 @@ layer = 0
 [node name="RoomUI" type="CanvasLayer" parent="RoomView" unique_id=1426586971]
 layer = 2
 
-[node name="ExitButton" type="Button" parent="RoomView/RoomUI" unique_id=1970652737]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -70.5
-offset_top = -60.0
-offset_right = 70.5
-offset_bottom = -20.0
+[node name="ExitButton" type="TextureRect" parent="RoomView/RoomUI" unique_id=1693197715]
+anchors_preset = -1
+anchor_left = 0.47700003
+anchor_top = 0.823
+anchor_right = 0.523
+anchor_bottom = 0.887
+offset_left = -0.20007324
+offset_top = -16.200012
+offset_right = -0.2999878
+offset_bottom = -0.30004883
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "Leave   [S]"
+texture = ExtResource("69_fjhjs")
+expand_mode = 1
 
-[node name="PanRightLabel" type="Label" parent="RoomView/RoomUI" unique_id=679566168]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 71.0
-offset_top = -60.0
-offset_right = 329.0
-offset_bottom = -20.0
+[node name="ExitArrow" type="TextureRect" parent="RoomView/RoomUI/ExitButton" unique_id=4145467]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34013605
+anchor_top = 1.4217687
+anchor_right = 0.6802721
+anchor_bottom = 1.989017
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("46_bu4jf")
+texture = ExtResource("70_bfu41")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SKey" type="Label" parent="RoomView/RoomUI/ExitButton" unique_id=910662209]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.18400002
+anchor_right = 0.80300003
+anchor_bottom = 0.72800004
+offset_left = -0.03650093
+offset_top = -0.024001122
+offset_right = -0.020503998
+offset_bottom = -0.008003235
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
+theme_override_fonts/font = ExtResource("37_dnhof")
 theme_override_font_sizes/font_size = 32
-text = " | Look Right (D) >"
+text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanLeftLabel" type="Label" parent="RoomView/RoomUI" unique_id=1702669614]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -324.0
-offset_top = -60.0
-offset_right = -70.0
-offset_bottom = -20.0
+[node name="LeftButton" type="TextureRect" parent="RoomView/RoomUI" unique_id=947097264]
+anchors_preset = -1
+anchor_left = 0.384375
+anchor_top = 0.90944445
+anchor_right = 0.4303125
+anchor_bottom = 0.9911111
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("46_bu4jf")
+texture = ExtResource("69_fjhjs")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftArrow" type="TextureRect" parent="RoomView/RoomUI/LeftButton" unique_id=985073879]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.463
+anchor_top = 0.3429252
+anchor_right = 2.0300002
+anchor_bottom = 0.683
+offset_left = 41.669495
+offset_right = 24.994858
+offset_bottom = 16.696907
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 1.5707964
+texture = ExtResource("70_bfu41")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AKey" type="Label" parent="RoomView/RoomUI/LeftButton" unique_id=124514682]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.18400002
+anchor_right = 0.80300003
+anchor_bottom = 0.72800004
+offset_left = -0.03650093
+offset_top = -0.024001122
+offset_right = -0.020503998
+offset_bottom = -0.008003235
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
+theme_override_fonts/font = ExtResource("37_dnhof")
 theme_override_font_sizes/font_size = 32
-text = "< Look Left  (A) | "
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightButton" type="TextureRect" parent="RoomView/RoomUI" unique_id=358260111]
+anchors_preset = -1
+anchor_left = 0.57375
+anchor_top = 0.90944445
+anchor_right = 0.6196875
+anchor_bottom = 0.9911111
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("69_fjhjs")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RightArrow" type="TextureRect" parent="RoomView/RoomUI/RightButton" unique_id=1637282836]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.0857149
+anchor_top = 0.34260547
+anchor_right = -0.5186457
+anchor_bottom = 0.68260545
+offset_top = 25.023485
+offset_right = -16.679703
+offset_bottom = 41.72589
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 4.712389
+texture = ExtResource("70_bfu41")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DKey" type="Label" parent="RoomView/RoomUI/RightButton" unique_id=504957121]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.18400002
+anchor_right = 0.80300003
+anchor_bottom = 0.72800004
+offset_left = -0.03650093
+offset_top = -0.024001122
+offset_right = -0.020503998
+offset_bottom = -0.008003235
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
+theme_override_fonts/font = ExtResource("37_dnhof")
+theme_override_font_sizes/font_size = 32
+text = "D"
 horizontal_alignment = 1
 vertical_alignment = 1
 
