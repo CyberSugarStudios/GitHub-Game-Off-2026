@@ -1,8 +1,28 @@
 [gd_scene format=3 uid="uid://cphlvw4ugwl31"]
 
 [ext_resource type="Script" uid="uid://768plycxsvoq" path="res://scripts/ui/pause_menu.gd" id="1_6tw0m"]
-[ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="2_0lmf7"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="2_f6eus"]
 [ext_resource type="PackedScene" uid="uid://b713spnah4skw" path="res://scenes/ui/OptionsPanel.tscn" id="3_f6eus"]
+
+[sub_resource type="Gradient" id="Gradient_r23qo"]
+offsets = PackedFloat32Array(0, 0.45528457, 1)
+colors = PackedColorArray(0.72156864, 0.8745098, 0.84705883, 0.5294118, 0.72156864, 0.8745098, 0.84705883, 0.2, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8uki6"]
+gradient = SubResource("Gradient_r23qo")
+width = 372
+height = 56
+fill_from = Vector2(0.013513514, 0)
+
+[sub_resource type="Gradient" id="Gradient_0bnpd"]
+offsets = PackedFloat32Array(0, 0.45528457, 1)
+colors = PackedColorArray(0.72156864, 0.8745098, 0.84705883, 0.5294118, 0.72156864, 0.8745098, 0.84705883, 0.2, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4inpj"]
+gradient = SubResource("Gradient_0bnpd")
+width = 372
+height = 56
+fill_from = Vector2(0.013513514, 0)
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1351570408]
 process_mode = 3
@@ -15,7 +35,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.31764707, 0.2509804, 0.23137255, 0.6)
+color = Color(0, 0.24313726, 0.32156864, 0.72156864)
+
+[node name="CreditsLabel" type="RichTextLabel" parent="." unique_id=290121948]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = -1
+offset_left = 542.0
+offset_top = 159.0
+offset_right = 1031.125
+offset_bottom = 321.5
+grow_horizontal = 2
+theme_type_variation = &"TitleText"
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regular.ttf][font_size=150]Paused[/font_size][/font][/color]"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="." unique_id=804959118]
 anchors_preset = 8
@@ -23,42 +59,82 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -150.5
+offset_top = -37.0
+offset_right = 150.5
+offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
 
-[node name="PausedLabel" type="RichTextLabel" parent="Buttons" unique_id=2115916943]
-custom_minimum_size = Vector2(280, 0)
+[node name="ResumeButton" type="TextureButton" parent="Buttons" unique_id=112169057]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_0lmf7")
-theme_override_font_sizes/normal_font_size = 90
-text = "Paused"
-fit_content = true
-horizontal_alignment = 1
+disabled = true
+texture_normal = SubResource("GradientTexture2D_8uki6")
+
+[node name="Label" type="Label" parent="Buttons/ResumeButton" unique_id=116022441]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 218.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_colors/font_outline_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 26
+text = "CONTINUE"
 vertical_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="Buttons" unique_id=535028995]
+[node name="SettingsButton" type="TextureButton" parent="Buttons" unique_id=1594935713]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Resume"
+texture_normal = SubResource("GradientTexture2D_4inpj")
 
-[node name="SettingsButton" type="Button" parent="Buttons" unique_id=308342952]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Options"
+[node name="Label" type="Label" parent="Buttons/SettingsButton" unique_id=1882203703]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 218.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_colors/font_outline_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 26
+text = "SETTINGS"
+vertical_alignment = 1
 
-[node name="QuitToTitleButton" type="Button" parent="Buttons" unique_id=903478230]
+[node name="QuitToTitleButton" type="TextureButton" parent="Buttons" unique_id=876339077]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Quit to Title"
+texture_normal = SubResource("GradientTexture2D_4inpj")
 
-[node name="FeedbackButton" type="Button" parent="Buttons" unique_id=808456714]
+[node name="Label" type="Label" parent="Buttons/QuitToTitleButton" unique_id=1508341347]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 218.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_colors/font_outline_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 26
+text = "QUIT"
+vertical_alignment = 1
+
+[node name="FeedbackButton" type="TextureButton" parent="Buttons" unique_id=514665606]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Playtest Feedback"
+texture_normal = SubResource("GradientTexture2D_4inpj")
+
+[node name="Label" type="Label" parent="Buttons/FeedbackButton" unique_id=2048067172]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 218.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_colors/font_outline_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 26
+text = "PLAYTEST FEEDBACK"
+vertical_alignment = 1
 
 [node name="OptionsPage" type="VBoxContainer" parent="." unique_id=299374755]
 visible = false

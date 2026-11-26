@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="2_3nbvj"]
 [ext_resource type="AudioStream" uid="uid://tutme0ktkfhr" path="res://assets/audio/music/Ayleen Valentine - white gummy.mp3" id="2_pcjb0"]
 [ext_resource type="VideoStream" uid="uid://cpjtabllj673p" path="res://assets/sprites/Animations/Emily-bus/Emily-bus-idle.ogv" id="3_pcjb0"]
+[ext_resource type="Texture2D" uid="uid://fl3slmy3jame" path="res://assets/textures/Title_Text.png" id="4_slemu"]
 
 [node name="CreditsRoll" type="Control" unique_id=1954314595]
 layout_mode = 3
@@ -14,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c18oi")
 music = ExtResource("2_pcjb0")
+music_limit_seconds = 88.2
 
 [node name="Background2" type="VideoStreamPlayer" parent="." unique_id=1099289524]
 layout_mode = 1
@@ -35,16 +37,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.24313726, 0.32156864, 0.57254905)
 
+[node name="CreditsTitle" type="TextureRect" parent="." unique_id=861073729]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.02375
+anchor_top = 0.79444444
+anchor_right = 0.97375
+anchor_bottom = 1.8377777
+texture = ExtResource("4_slemu")
+
 [node name="CreditsText" type="RichTextLabel" parent="." unique_id=2000140420]
 unique_name_in_owner = true
 layout_mode = 0
-offset_top = 900.0
-offset_right = 1600.0
-offset_bottom = 1888.0
+anchor_top = 1.61
+anchor_right = 1.0
+anchor_bottom = 4.628889
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regular.ttf][font_size=440]Interim[/font_size][/font][/color]
-[font_size=28][b]Made for the GitHub Game Off 2026[/b][/font_size]
+text = "[center][color=cccdc4][font_size=28][b]Made for the GitHub Game Off 2026[/b][/font_size]
 
 
 
@@ -101,14 +111,15 @@ text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regu
 [/font_size]"
 fit_content = true
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="HelpText" type="RichTextLabel" parent="." unique_id=457808753]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 2.0
-offset_top = 3555.0
-offset_right = 1602.0
-offset_bottom = 4235.0
+anchor_left = 0.00125
+anchor_top = 4.3166666
+anchor_right = 1.00125
+anchor_bottom = 5.072222
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[color=cccdc4][center][font_size=30][b][i]If this story touched something in you...[/i][/b]
@@ -133,6 +144,7 @@ If there is a gun in your home, storing it locked, unloaded, and apart from ammu
 [font_size=30][b][i]Thank you for playing our game[/i].[/b][/font_size][/center]"
 fit_content = true
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ContinuePrompt" type="Label" parent="." unique_id=161353931]
 unique_name_in_owner = true

@@ -14,6 +14,7 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @export var prompt_delay: float = 3.0
 @export var gap: float = 160.0
 
+@onready var credits_title: TextureRect = %CreditsTitle
 @onready var credits_text: Control = %CreditsText
 @onready var help_text: Control = %HelpText
 @onready var continue_prompt: CanvasItem = %ContinuePrompt
@@ -21,6 +22,7 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 
 var _scrolled := 0.0
 var _credits_start := 0.0
+var _title_start := 0.0
 var _help_start := 0.0
 var _help_rest := 0.0
 var _tween: Tween
@@ -42,12 +44,13 @@ func _ready() -> void:
 		Music.play(music, music_fade, 0.0, db_to_linear(music_db))
 	await get_tree().process_frame
 	await get_tree().process_frame
-	_credits_start = size.y
-	_help_start = _credits_start + credits_text.size.y + gap
+	_title_start = size.y - (gap * 2)
+	_credits_start = _title_start + credits_title.size.y - (gap * 1.5)
+	_help_start = _credits_start + credits_text.size.y - (gap * 1.5)
 	_help_rest = (size.y - help_text.size.y) * 0.5
 	_set_scrolled(0.0)
 
-	var credits_gone := _credits_start + credits_text.size.y
+	var credits_gone := _title_start + credits_title.size.y + _credits_start + credits_text.size.y
 	var help_settled := _help_start - _help_rest
 	await _scroll_to(maxf(credits_gone, help_settled))
 
@@ -73,6 +76,7 @@ func _process(_delta: float) -> void:
 
 func _set_scrolled(value: float) -> void:
 	_scrolled = value
+	credits_title.position.y = _title_start - value
 	credits_text.position.y = _credits_start - value
 	help_text.position.y = maxf(_help_start - value, _help_rest)
 
