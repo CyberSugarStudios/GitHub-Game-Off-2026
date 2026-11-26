@@ -11,7 +11,7 @@ signal closed
 	preload("res://assets/audio/sfx/varied/paper_4.wav"),
 ]
 
-@onready var back_button: Button = $BackButton
+@onready var back_button: TextureRect = $BackButton
 
 var _sound: AudioStreamPlayer
 
@@ -20,7 +20,7 @@ func _ready() -> void:
 	_sound = AudioStreamPlayer.new()
 	_sound.bus = &"SFX"
 	add_child(_sound)
-	back_button.pressed.connect(close)
+	#back_button.pressed.connect(close)
 	Events.story_event.connect(_on_story_event)
 
 func _on_story_event(id: StringName) -> void:

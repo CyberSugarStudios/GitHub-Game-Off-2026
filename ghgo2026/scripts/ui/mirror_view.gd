@@ -23,7 +23,7 @@ extends CanvasLayer
 @onready var reflection: TextureRect = $Root/Reflection
 @onready var creature_art: AnimatedSprite2D = $Root/Creature
 @onready var fog: TextureRect = $Root/Fog
-@onready var back_button: Button = $Root/BackButton
+@onready var back_button: TextureRect = $Root/BackButton
 
 var _fogged_at := -100000
 var _run := 0
@@ -38,7 +38,7 @@ func _ready() -> void:
 	_chase = AudioStreamPlayer.new()
 	_chase.bus = &"Music"
 	add_child(_chase)
-	back_button.pressed.connect(close)
+	#back_button.pressed.connect(close)
 	Events.story_event.connect(_on_story_event)
 	GameState.parent_activity_changed.connect(_on_parent_activity)
 	GameState.plane_changed.connect(_on_plane_changed)

@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://l847n3ke6wi7" path="res://assets/sprites/rooms/bedroom/MP3_play_pause_button.webp" id="6_s8hnw"]
 [ext_resource type="BitMap" uid="uid://rn1r5xpgw1s" path="res://assets/sprites/rooms/bedroom/MP3_play_pause_button_mask.webp" id="7_tyh5q"]
 [ext_resource type="BitMap" uid="uid://d1o0ixvmpo1o1" path="res://assets/sprites/rooms/bedroom/MP3_next_button_mask.webp" id="9_bu88d"]
+[ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="10_bu88d"]
+[ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="11_3wnc2"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="12_7vfk4"]
 
 [node name="MP3Player" type="CanvasLayer" unique_id=548456274]
 script = ExtResource("1_unlxu")
@@ -170,14 +173,48 @@ scale = Vector2(0.23182723, 0.23182723)
 texture_normal = ExtResource("5_kndek")
 texture_click_mask = ExtResource("9_bu88d")
 
-[node name="CloseButton" type="Button" parent="DeviceArt" unique_id=784874902]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 226.25
-offset_top = 846.25
-offset_right = 437.49994
-offset_bottom = 878.25
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-text = "Back   [S]"
+[node name="CloseButton" type="TextureRect" parent="." unique_id=1842796959]
+anchors_preset = -1
+anchor_left = 0.479375
+anchor_top = 0.82055557
+anchor_right = 0.51093745
+anchor_bottom = 0.87666667
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_bu88d")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitArrow" type="TextureRect" parent="CloseButton" unique_id=1374509753]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34013605
+anchor_top = 1.4217687
+anchor_right = 0.6802721
+anchor_bottom = 1.989017
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("11_3wnc2")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SKey" type="Label" parent="CloseButton" unique_id=1254902450]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.15405944
+anchor_right = 0.80300003
+anchor_bottom = 0.787406
+offset_left = -0.03650093
+offset_top = -0.024001122
+offset_right = -0.020503998
+offset_bottom = -0.008003235
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
+theme_override_fonts/font = ExtResource("12_7vfk4")
+theme_override_font_sizes/font_size = 25
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

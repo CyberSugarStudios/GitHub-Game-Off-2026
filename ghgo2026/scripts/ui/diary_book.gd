@@ -23,7 +23,7 @@ const LOCKED_LINES := preload("res://dialogue/puzzle_4.dialogue")
 @onready var page_number: Label = $Book/PageNumber
 @onready var prev_button: Button = $Book/PrevButton
 @onready var next_button: Button = $Book/NextButton
-@onready var close_button: Button = $Book/CloseButton
+#@onready var close_button: TextureRect = $Book/CloseButton
 @onready var keypad: DiaryKeypad = $Keypad
 
 var _spread := 0
@@ -36,7 +36,7 @@ func _ready() -> void:
 	Events.story_event.connect(_on_story_event)
 	prev_button.pressed.connect(turn.bind(-1))
 	next_button.pressed.connect(turn.bind(1))
-	close_button.pressed.connect(close)
+	#close_button.pressed.connect(close)
 	keypad.unlocked.connect(_on_keypad_unlocked)
 	keypad.close_requested.connect(close)
 	_sound = AudioStreamPlayer.new()

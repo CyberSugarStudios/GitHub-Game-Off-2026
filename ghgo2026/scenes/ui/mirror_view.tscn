@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cfnsh4xxbmhr1" path="res://assets/sprites/rooms/bathroom/emily_reflection.webp" id="4_4iq1k"]
 [ext_resource type="Texture2D" uid="uid://c3fcegkj8bqxy" path="res://assets/sprites/rooms/bathroom/fog.webp" id="5_4iq1k"]
 [ext_resource type="Material" uid="uid://dvftu1aox64i7" path="res://assets/materials/astral_filter_material.tres" id="6_4twi7"]
+[ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="7_m1gvp"]
+[ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="8_f5hwt"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="9_tcvd1"]
 
 [node name="MirrorView" type="CanvasLayer" unique_id=981359443]
 layer = 10
@@ -71,19 +74,50 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BackButton" type="Button" parent="Root" unique_id=1172755026]
+[node name="BackButton" type="TextureRect" parent="Root" unique_id=550435536]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -70.5
-offset_top = -60.0
-offset_right = 70.5
-offset_bottom = -20.0
+anchors_preset = -1
+anchor_left = 0.49125
+anchor_top = 0.865
+anchor_right = 0.5228125
+anchor_bottom = 0.9211111
+offset_right = -6.1035156e-05
 grow_horizontal = 2
 grow_vertical = 0
-focus_mode = 0
-theme_override_font_sizes/font_size = 32
-text = "Back (S)"
+texture = ExtResource("7_m1gvp")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitArrow" type="TextureRect" parent="Root/BackButton" unique_id=1372792218]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34013605
+anchor_top = 1.4217687
+anchor_right = 0.6802721
+anchor_bottom = 1.989017
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_f5hwt")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SKey" type="Label" parent="Root/BackButton" unique_id=2048824040]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.15405944
+anchor_right = 0.80300003
+anchor_bottom = 0.787406
+offset_left = -0.03650093
+offset_top = -0.024001122
+offset_right = -0.020503998
+offset_bottom = -0.008003235
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
+theme_override_fonts/font = ExtResource("9_tcvd1")
+theme_override_font_sizes/font_size = 25
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

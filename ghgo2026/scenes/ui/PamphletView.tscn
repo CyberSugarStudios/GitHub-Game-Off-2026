@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dp5sdgfdyrhlb" path="res://scripts/ui/pamphlet_view.gd" id="1_5vd7c"]
 [ext_resource type="Texture2D" uid="uid://djy810ufskw8r" path="res://assets/sprites/rooms/kitchen/pamphlet.webp" id="2_2ngxf"]
+[ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="3_lnaex"]
+[ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="4_07q02"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="5_0akl2"]
 
 [node name="PamphletView" type="CanvasLayer" unique_id=1293784446]
 layer = 10
@@ -19,8 +22,12 @@ color = Color(0, 0, 0, 0.75000006)
 [node name="Pamphlet" type="TextureRect" parent="." unique_id=416743648]
 anchors_preset = -1
 anchor_top = -0.037777778
-anchor_right = 1.0
-anchor_bottom = 0.9622222
+anchor_right = 0.9644444
+anchor_bottom = 0.9266667
+offset_left = 30.0
+offset_top = -13.0
+offset_right = 30.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -29,17 +36,48 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="." unique_id=2072651226]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -70.5
-offset_top = -60.0
-offset_right = 70.5
-offset_bottom = -20.0
+[node name="BackButton" type="TextureRect" parent="." unique_id=144043969]
+anchors_preset = -1
+anchor_left = 0.483125
+anchor_top = 0.86722225
+anchor_right = 0.5146875
+anchor_bottom = 0.92333335
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "Back   [S]"
+texture = ExtResource("3_lnaex")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitArrow" type="TextureRect" parent="BackButton" unique_id=243598434]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34013605
+anchor_top = 1.4217687
+anchor_right = 0.6802721
+anchor_bottom = 1.989017
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_07q02")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SKey" type="Label" parent="BackButton" unique_id=1065447464]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.15405944
+anchor_right = 0.80300003
+anchor_bottom = 0.787406
+offset_left = -0.03650093
+offset_top = -0.024001122
+offset_right = -0.020503998
+offset_bottom = -0.008003235
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
+theme_override_fonts/font = ExtResource("5_0akl2")
+theme_override_font_sizes/font_size = 25
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

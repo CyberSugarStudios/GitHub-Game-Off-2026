@@ -19,7 +19,7 @@ extends CanvasLayer
 @onready var play_button: TextureButton = %PlayButton
 @onready var skip_button: TextureButton = %SkipButton
 @onready var volume_slider: HSlider = %VolumeSlider
-@onready var close_button: Button = %CloseButton
+#@onready var close_button: Button = %CloseButton
 
 var _index := 0
 var _started := false
@@ -35,7 +35,7 @@ func _ready() -> void:
 	back_button.pressed.connect(back)
 	play_button.pressed.connect(toggle_play)
 	skip_button.pressed.connect(skip)
-	close_button.pressed.connect(close)
+	#close_button.pressed.connect(close)
 	progress.mouse_filter = Control.MOUSE_FILTER_STOP
 	progress.gui_input.connect(_on_progress_input)
 	volume_slider.value_changed.connect(
@@ -47,7 +47,8 @@ func _ready() -> void:
 	_click.bus = &"SFX"
 	_click.stream = button_sound
 	add_child(_click)
-	for button in [back_button, play_button, skip_button, close_button]:
+	#for button in [back_button, play_button, skip_button, close_button]:
+	for button in [back_button, play_button, skip_button]:
 		button.focus_mode = Control.FOCUS_NONE
 		button.pressed.connect(_click.play)
 	_show_track()
