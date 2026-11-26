@@ -98,13 +98,23 @@ func is_locked() -> bool:
 
 #region - INTERACT OVERRIDES
 func get_prompt_text() -> String:
-	return _with_who_is_inside(room_label if _observing() else prompt_text)
+	return _with_who_is_inside(_bold_room(room_label if _observing() else prompt_text))
+
+func _bold_room(text: String) -> String:
+	var at := text.to_lower().find(room_label.to_lower()) if room_label != "" else -1
+	var length := room_label.length()
+	if at < 0 and text.begins_with("Enter "):
+		at = 6
+		length = text.length() - 6
+	if at < 0:
+		return text
+	return "%s[b]%s[/b]%s" % [text.left(at), text.substr(at, length), text.substr(at + length)]
 
 func get_block_reason() -> String:
 	if _observing():
 		return "" if _observe_cue() != "" else _with_who_is_inside(room_label)
 	var reason := _entry_block_reason()
-	return _with_who_is_inside(reason) if reason != "" else ""
+	return _with_who_is_inside(_bold_room(reason)) if reason != "" else ""
 
 func _entry_block_reason() -> String:
 	if not enterable:

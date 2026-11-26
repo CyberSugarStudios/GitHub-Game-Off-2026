@@ -30,6 +30,8 @@ extends Node
 static var _hinted_rooms: Dictionary = {}
 var _key_tween: Tween
 var _hold_hints := false
+@export var exit_fade: float = 1.2
+var _exit_tween: Tween
 
 var _room: Room = null
 var _busy := false # guard against double-triggers
@@ -47,8 +49,7 @@ var exit_locked := false:
 	set(value):
 		exit_locked = value
 		if exit_button:
-			exit_button.visible = not value and not GameState.controls_locked
-			exit_arrow.visible = exit_button.visible
+			_show_exit(not value)
 
 func _ready() -> void:
 	room_ui.visible = false
@@ -57,15 +58,13 @@ func _ready() -> void:
 	Events.room_door_opened.connect(change_room)
 	Events.room_pan_requested.connect(_on_pan_requested)
 	Events.subtitle_changed.connect(_on_subtitle_changed)
-	#exit_button.pressed.connect(exit_room)
+	_show_exit(not exit_locked, true)
 	get_viewport().size_changed.connect(_fit_room)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
 	_on_controls_locked_changed(GameState.controls_locked)
 
 func _on_controls_locked_changed(locked: bool) -> void:
 	input_blocker.visible = locked
-	exit_button.visible = not locked and not exit_locked
-	exit_arrow.visible = exit_button.visible
 	key_hints.visible = not locked
 
 func _exit_tree() -> void:
@@ -119,6 +118,19 @@ func change_room(room_id: StringName) -> void:
 	_open(room_id, _exit_spot)
 	await _fade_to(0.0)
 	_busy = false
+
+func _show_exit(shown: bool, instant: bool = false) -> void:
+	if _exit_tween:
+		_exit_tween.kill()
+	exit_button.visible = true
+	exit_arrow.visible = true
+	if instant or not shown:
+		exit_button.modulate.a = 1.0 if shown else 0.0
+		exit_arrow.modulate.a = exit_button.modulate.a
+		return
+	_exit_tween = create_tween().set_parallel()
+	_exit_tween.tween_property(exit_button, "modulate:a", 1.0, exit_fade)
+	_exit_tween.tween_property(exit_arrow, "modulate:a", 1.0, exit_fade)
 
 func _show_key_hints(room_id: StringName) -> void:
 	if _key_tween:

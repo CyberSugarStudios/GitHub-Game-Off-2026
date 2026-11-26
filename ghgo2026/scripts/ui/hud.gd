@@ -26,11 +26,12 @@ const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav
 @onready var astral_filter: ColorRect = $AstralRealmColorFilter
 @onready var spirit_bars_container: HBoxContainer = $SpiritBars
 @onready var crosshair: ColorRect = $Crosshair
-@onready var interaction_prompt: Label = $InteractionPrompt
+@onready var interaction_prompt: KeyPrompt = $InteractionPrompt
 @onready var subtitle: RichTextLabel = $Subtitle
 @onready var letterbox_top: ColorRect = $LetterboxTop
 @onready var letterbox_bottom: ColorRect = $LetterboxBottom
-@onready var story_prompt: Label = $StoryPrompt
+@onready var story_prompt: KeyPrompt = $StoryPrompt
+var _key_token := RegEx.create_from_string("(?i)\\[(hold\\s+)?([a-z0-9 ]+)\\]")
 
 var _bars: Array[PillBar] = []
 var _astral_material: ShaderMaterial
@@ -227,14 +228,21 @@ func _refresh_crosshair() -> void:
 
 func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 	interaction_prompt.visible = text != ""
-	var key_hint := "Click   " if GameState.is_in_room() else "E   "
-	interaction_prompt.text = (key_hint + text) if available else text
+	var key := ("Click" if GameState.is_in_room() else "E") if available else ""
+	interaction_prompt.show_prompt(key, text)
 	interaction_prompt.modulate = prompt_available_color if available else prompt_blocked_color
 	crosshair.modulate.a = 1.0 if text != "" else 0.35
 
 func _on_story_prompt_changed(text: String) -> void:
-	story_prompt.text = text
 	story_prompt.visible = text != ""
+	var key := ""
+	var hold := ""
+	var token := _key_token.search(text)
+	if token:
+		key = token.get_string(2).strip_edges().capitalize()
+		hold = "Hold" if token.get_string(1) != "" else ""
+		text = (text.substr(0, token.get_start()) + text.substr(token.get_end())).strip_edges()
+	story_prompt.show_prompt(key, text, hold)
 
 func _on_struggle_changed(progress: float) -> void:
 	if _shake_tween and _shake_tween.is_running():
