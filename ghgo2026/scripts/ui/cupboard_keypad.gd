@@ -1,6 +1,8 @@
 class_name CupboardKeypad
 extends CanvasLayer
 
+const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
+
 @export var open_event: StringName = &"tv_cupboard"
 @export var code: String = "2184"
 @export var caption_text: String = "Locked"
@@ -10,6 +12,7 @@ extends CanvasLayer
 @export var duck_fade: float = 1.0
 
 var _keypad: DiaryKeypad
+var _leave_prompt: KeyPrompt
 var _lullaby: AudioStreamPlayer
 
 func _ready() -> void:
@@ -20,7 +23,16 @@ func _ready() -> void:
 	add_child(_keypad)
 	_keypad.unlocked.connect(_on_unlocked)
 	_keypad.close_requested.connect(close)
-	# The MP3 bus, so ducking the hall music doesn't duck the lullaby too.
+	_leave_prompt = KEY_PROMPT.instantiate() as KeyPrompt
+	_leave_prompt.font_size = 26
+	_leave_prompt.show_prompt("S", "Leave")
+	_leave_prompt.visible = false
+	add_child(_leave_prompt)
+	_leave_prompt.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	_leave_prompt.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_leave_prompt.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	_leave_prompt.offset_top = -40.0
+	_leave_prompt.offset_bottom = -40.0
 	_lullaby = AudioStreamPlayer.new()
 	_lullaby.stream = lullaby
 	_lullaby.bus = &"MP3"
@@ -60,12 +72,19 @@ func open() -> void:
 		return
 	GameState.set_controls_locked(true)
 	_keypad.open()
+	_leave_prompt.visible = true
 
 func close() -> void:
 	if not _keypad.visible:
 		return
 	_keypad.visible = false
+	_leave_prompt.visible = false
 	GameState.set_controls_locked(false)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _keypad.visible and event.is_action_pressed("move_backward"):
+		close()
+		get_viewport().set_input_as_handled()
 
 func _on_unlocked() -> void:
 	GameState.set_flag(unlocked_flag)

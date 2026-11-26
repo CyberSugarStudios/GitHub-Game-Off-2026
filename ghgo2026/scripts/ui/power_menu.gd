@@ -1,6 +1,10 @@
 class_name PowerMenu
 extends VBoxContainer
 
+const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
+const CLICK_SHEET := preload("res://assets/sprites/ui/clicking.webp")
+const TAUGHT_FLAG := &"power_click_taught"
+
 @export var row_size := Vector2(300, 40)
 @export var cost_bar_size := Vector2(36, 18)
 @export var cost_bar_gap: float = 4.0
@@ -8,9 +12,13 @@ extends VBoxContainer
 @export var screen_margin: float = 12.0
 
 var _home: Array[float] = []
+var _buttons: Array[Button] = []
 
 func _ready() -> void:
 	_home = [offset_left, offset_top, offset_right, offset_bottom]
+	Events.power_used.connect(func(_power: StringName, _target: StringName) -> void:
+		if not GameState.has_flag(TAUGHT_FLAG):
+			GameState.set_flag(TAUGHT_FLAG))
 	grow_horizontal = Control.GROW_DIRECTION_END
 	Powers.target_changed.connect(
 		func(_id: StringName) -> void:
@@ -43,6 +51,16 @@ func _rebuild() -> void:
 
 	var in_room := GameState.is_in_room()
 	var powers := Powers.get_usable()
+	_buttons.clear()
+	if in_room and not GameState.has_flag(TAUGHT_FLAG):
+		var hint := KEY_PROMPT.instantiate() as KeyPrompt
+		hint.font_size = 22
+		hint.icon_height = 48.0
+		hint.icon_frames = 7
+		hint.icon_fps = 4.5
+		hint.icon_sheet = CLICK_SHEET
+		hint.show_prompt("", "Choose a power")
+		add_child(hint)
 	for i in powers.size():
 		var power := powers[i]
 		var button := Button.new()
@@ -57,6 +75,7 @@ func _rebuild() -> void:
 				Powers.use_selected())
 		button.add_child(_make_cost_bars(power.energy_cost))
 		add_child(button)
+		_buttons.append(button)
 	_refresh()
 
 func _process(_delta: float) -> void:
@@ -72,8 +91,7 @@ func _process(_delta: float) -> void:
 		offset_bottom = _home[3]
 
 func _place_beside(item: Rect2) -> void:
-	var count := get_child_count()
-	var menu := Vector2(row_size.x, count * row_size.y + maxi(count - 1, 0) * get_theme_constant("separation"))
+	var menu := get_combined_minimum_size()
 	var view := get_viewport_rect().size
 	var x := item.end.x + anchor_gap
 	if x + menu.x > view.x - screen_margin:
@@ -85,8 +103,8 @@ func _place_beside(item: Rect2) -> void:
 
 func _refresh() -> void:
 	var powers := Powers.get_usable()
-	for i in get_child_count():
-		var button := get_child(i) as Button
+	for i in _buttons.size():
+		var button := _buttons[i]
 		button.disabled = not GameState.can_afford(powers[i].energy_cost)
 		var marker := ""
 		if not GameState.is_in_room():

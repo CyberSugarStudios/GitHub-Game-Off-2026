@@ -6,6 +6,7 @@ const SPEAKER_COLORS: Dictionary[String, Color] = {
 	"Emily": Color("#70AFA3")
 }
 const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav")
+const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
 
 @export var transition_time: float = 0.6 #fade in and out time for astral effect
 @export var prompt_available_color := Color(1.0, 1.0, 1.0)
@@ -13,6 +14,11 @@ const MEMORY_SOUND := preload("res://assets/audio/sfx/varied/memory_unlocked.wav
 @export var click_sheet: Texture2D = preload("res://assets/sprites/ui/clicking.webp")
 @export var click_frames: int = 7
 @export var click_fps: float = 4.5
+@export var swipe_sheet: Texture2D = preload("res://assets/sprites/ui/swiping.webp")
+@export var swipe_frames: int = 25
+@export var swipe_fps: float = 12.0
+@export var move_hint_seconds: float = 7.0
+
 @export var room_prompt_bottom: float = -150.0
 @export var hall_prompt_bottom: float = -80.0
 @export var full_fade_delay: float = 1.0
@@ -74,6 +80,7 @@ func _ready() -> void:
 	Events.shift_charge_changed.connect(_on_shift_charge_changed)
 	Events.story_prompt_changed.connect(_on_story_prompt_changed)
 	Events.struggle_changed.connect(_on_struggle_changed)
+	GameState.room_changed.connect(_on_room_changed_for_hints)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
@@ -248,6 +255,46 @@ func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 		interaction_prompt.offset_top = bottom - height
 	interaction_prompt.modulate = prompt_available_color if available else prompt_blocked_color
 	crosshair.modulate.a = 1.0 if text != "" else 0.35
+
+func _on_room_changed_for_hints(room_id: StringName) -> void:
+	if room_id != &"" or GameState.has_flag(&"move_hint_shown"):
+		return
+	GameState.set_flag(&"move_hint_shown")
+	while GameState.controls_locked or GameState.is_in_room():
+		await get_tree().process_frame
+	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 6)
+	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for letter in ["W", "A", "S", "D"]:
+		row.add_child(_hint_prompt(letter, ""))
+	row.add_child(_hint_prompt("", "Move"))
+	var gap := Control.new()
+	gap.custom_minimum_size = Vector2(40.0, 0.0)
+	row.add_child(gap)
+	var look := _hint_prompt("", "Look around")
+	look.icon_frames = swipe_frames
+	look.icon_fps = swipe_fps
+	look.icon_sheet = swipe_sheet
+	row.add_child(look)
+	add_child(row)
+	row.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	row.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	row.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	row.offset_top = -140.0
+	row.offset_bottom = -140.0
+	row.modulate.a = 0.0
+	var tween := row.create_tween()
+	tween.tween_property(row, "modulate:a", 1.0, 0.6)
+	tween.tween_interval(move_hint_seconds)
+	tween.tween_property(row, "modulate:a", 0.0, 1.5)
+	tween.tween_callback(row.queue_free)
+
+func _hint_prompt(key: String, text: String) -> KeyPrompt:
+	var prompt := KEY_PROMPT.instantiate() as KeyPrompt
+	prompt.font_size = 26
+	prompt.show_prompt(key, text)
+	return prompt
 
 func _on_story_prompt_changed(text: String) -> void:
 	story_prompt.visible = text != ""

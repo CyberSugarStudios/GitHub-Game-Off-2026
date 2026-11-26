@@ -6,6 +6,7 @@ extends Control
 @export var color := Color(0.8, 0.804, 0.769, 0.9) # color: #CCCDC4, 90%
 @export var track_color := Color(0.8, 0.804, 0.769, 0.2)
 @export var fade_speed: float = 6.0
+@export var listen_to_events := true
 
 var _progress := 0.0
 var _showing := false
@@ -13,8 +14,12 @@ var _showing := false
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	modulate.a = 0.0
-	Events.shift_charge_changed.connect(_on_shift_charge_changed)
-	Events.struggle_changed.connect(_on_shift_charge_changed)
+	if listen_to_events:
+		Events.shift_charge_changed.connect(_on_shift_charge_changed)
+		Events.struggle_changed.connect(_on_shift_charge_changed)
+
+func set_progress(amount: float) -> void:
+	_on_shift_charge_changed(amount)
 
 func _on_shift_charge_changed(amount: float) -> void:
 	_showing = amount > 0.0

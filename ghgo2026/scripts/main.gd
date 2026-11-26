@@ -1,6 +1,7 @@
 extends Node3D
 
 const INTRO_VIDEO := preload("res://assets/sprites/Animations/intro_anim.ogv")
+const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
 
 @export var warmup_turn_steps: int = 8
 @export var warmup_frames_per_step: int = 2
@@ -8,6 +9,8 @@ const INTRO_VIDEO := preload("res://assets/sprites/Animations/intro_anim.ogv")
 @export var bus_appears_at: float = 18.3
 @export var bus_transition_seconds: float = 1.75
 @export var hold_video_at: float = 3.2
+@export var skip_hold_seconds: float = 1.5
+@export var options_prompt_seconds: float = 8.0
 
 @onready var fade: ColorRect = $RoomView/FadeLayer/Fade
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
@@ -22,6 +25,9 @@ var _warmed := false
 var _video: VideoStreamPlayer
 var _video_box: AspectRatioContainer
 var _video_screen: ColorRect
+var _skip_hold := 0.0
+var _skip_ring: FocusRing
+static var _options_hint_shown := false
 
 func _ready() -> void:
 	_log_load("house built")
@@ -34,9 +40,16 @@ func _ready() -> void:
 static func _log_load(what: String) -> void:
 	Playtest.mark_load(what)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if _video == null:
 		return
+	if _video_playing:
+		var holding := Input.is_action_pressed("interact")
+		_skip_hold = clampf(_skip_hold + (delta if holding else -delta * 2.0), 0.0, skip_hold_seconds)
+		if _skip_ring:
+			_skip_ring.set_progress(_skip_hold / skip_hold_seconds)
+		if _skip_hold >= skip_hold_seconds:
+			_skip_video = true
 	if _video_box.ratio == 1.0:
 		var texture := _video.get_video_texture()
 		if texture and texture.get_height() > 0:
@@ -76,6 +89,7 @@ func _warm_up() -> void:
 	if GameState.has_flag(StoryDirector.INTRO_DONE):
 		tween = create_tween()
 		tween.tween_property(fade, "color:a", 0.0, reveal_time)
+		_flash_options_prompt()
 	else:
 		var screen := await _finish_intro_video()
 		fade.color.a = 0.0
@@ -104,6 +118,60 @@ func _start_intro_video() -> void:
 	_video.stream = INTRO_VIDEO
 	_video.play()
 	_log_load("intro video started")
+	_add_intro_prompts()
+
+func _add_intro_prompts() -> void:
+	_options_hint_shown = true
+	var column := VBoxContainer.new()
+	column.alignment = BoxContainer.ALIGNMENT_END
+	column.add_theme_constant_override("separation", 12)
+	_video_screen.add_child(column)
+	_pin_bottom_right(column)
+	var options := _make_prompt(_options_key(), "Options")
+	column.add_child(options)
+	var skip := _make_prompt("E", "Skip", "Hold")
+	column.add_child(skip)
+	_skip_ring = FocusRing.new()
+	_skip_ring.listen_to_events = false
+	_skip_ring.radius = 30.0
+	skip.get_node("Key").add_child(_skip_ring)
+	_skip_ring.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var tween := options.create_tween()
+	tween.tween_interval(options_prompt_seconds)
+	tween.tween_property(options, "modulate:a", 0.0, 1.0)
+
+func _flash_options_prompt() -> void:
+	if _options_hint_shown:
+		return
+	_options_hint_shown = true
+	var layer := CanvasLayer.new()
+	layer.layer = 20
+	add_child(layer)
+	var prompt := _make_prompt(_options_key(), "Options")
+	layer.add_child(prompt)
+	_pin_bottom_right(prompt)
+	var tween := prompt.create_tween()
+	tween.tween_interval(options_prompt_seconds)
+	tween.tween_property(prompt, "modulate:a", 0.0, 1.0)
+	tween.tween_callback(layer.queue_free)
+
+func _make_prompt(key: String, text: String, prefix: String = "") -> KeyPrompt:
+	var prompt := KEY_PROMPT.instantiate() as KeyPrompt
+	prompt.font_size = 26
+	prompt.show_prompt(key, text, prefix)
+	return prompt
+
+static func _pin_bottom_right(control: Control) -> void:
+	control.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
+	control.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	control.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	control.offset_left = -40.0
+	control.offset_right = -40.0
+	control.offset_top = -40.0
+	control.offset_bottom = -40.0
+
+static func _options_key() -> String:
+	return "P" if OS.has_feature("web") else "Esc"
 
 func _finish_intro_video() -> ColorRect:
 	if _video == null:
@@ -118,6 +186,5 @@ func _finish_intro_video() -> ColorRect:
 	return _video_screen
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _video_playing and (event.is_action_pressed("interact") or event.is_action_pressed("ui_accept")):
-		_skip_video = true
+	if _video_playing and event.is_action_pressed("interact"):
 		get_viewport().set_input_as_handled()

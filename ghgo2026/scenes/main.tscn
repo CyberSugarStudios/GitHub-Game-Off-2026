@@ -814,10 +814,16 @@ offset_top = -120.0
 offset_bottom = -80.0
 grow_vertical = 0
 font_size = 32
+icon_frames = null
+icon_fps = null
+icon_height = null
 
 [node name="StoryPrompt" parent="UI" unique_id=46602485 instance=ExtResource("48_bfu41")]
 offset_top = 25.0
 offset_bottom = 65.0
+icon_frames = null
+icon_fps = null
+icon_height = null
 
 [node name="PauseMenu" parent="." unique_id=1351570408 instance=ExtResource("5_tbgi4")]
 visible = false
