@@ -62,6 +62,7 @@ func _ready() -> void:
 		)
 	GameState.parent_location_changed.connect(_on_parent_changed)
 	GameState.parent_activity_changed.connect(_on_parent_changed)
+	Events.time_skipped.connect(_refresh.bind(false))
 	_refresh(false)
 
 func _on_parent_changed(id: StringName, _value: StringName) -> void:

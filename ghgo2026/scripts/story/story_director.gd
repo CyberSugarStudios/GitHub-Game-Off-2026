@@ -91,8 +91,6 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p2_apart_minutes: int = 90
 
 @export_group("Puzzle 3")
-@export var p3_restock_time: String = "16:30"
-@export var p3_restock_minutes: int = 10
 @export var p3_drink_times: Array[String] = [
 	"17:00",
 	"19:00",
@@ -134,7 +132,6 @@ var _accept_progress := -1.0
 var _p3_medicated := false
 var _p3_last_minute := -1
 var _p3_drinks := 0
-var _p3_restock_due := false
 var _sfx: AudioStreamPlayer
 #endregion
 
@@ -363,34 +360,17 @@ func _run_puzzle_3() -> void:
 func _on_puzzle_3_minute(_day: int, minute: int) -> void:
 	var previous := _p3_last_minute
 	_p3_last_minute = minute
-	if _crossed(previous, minute, p3_new_day_hour * 60):
-		_p3_new_day()
-	if _crossed(previous, minute, _to_minutes(p3_restock_time)):
-		_p3_fetch_beer()
-	if _crossed(previous, minute, _to_minutes(p3_restock_time) + p3_restock_minutes):
-		_p3_restock()
+	var due: Array = [[p3_new_day_hour * 60, _p3_new_day], [_to_minutes(p3_pill_time), _p3_pill_time]]
 	for time_text in p3_drink_times:
-		if _crossed(previous, minute, _to_minutes(time_text)):
-			_p3_drink_time()
-	if _crossed(previous, minute, _to_minutes(p3_pill_time)):
-		_p3_pill_time()
+		due.append([_to_minutes(time_text), _p3_drink_time])
+	due = due.filter(func(item: Array) -> bool: return _crossed(previous, minute, item[0]))
+	due.sort_custom(func(a: Array, b: Array) -> bool:
+		return posmod(a[0] - previous, 1440) < posmod(b[0] - previous, 1440))
+	for item in due:
+		(item[1] as Callable).call(item[0])
 
-func _p3_fetch_beer() -> void:
-	if not _p3_restock_due:
-		return
-	household.send(DAD, &"kitchen", p3_restock_minutes, [], &"getting_beer")
-	say_in_background("p3_david_restock", PUZZLE_3)
-
-func _p3_restock() -> void:
-	if not _p3_restock_due:
-		return
-	_p3_restock_due = false
-	_p3_drinks = 0
-	for can in p3_beer_cans:
-		GameState.clear_flag(can)
-
-func _p3_drink_time() -> void:
-	if household.expected_location(DAD) != &"living_room":
+func _p3_drink_time(at: int) -> void:
+	if household.scheduled_location_at(DAD, at) != &"living_room":
 		return
 	for can in p3_beer_cans:
 		if not GameState.has_flag(can):
@@ -409,18 +389,20 @@ func _play_beer_can() -> void:
 	_sfx.volume_db = 0.0 if GameState.current_room == &"living_room" else -10.0
 	_sfx.play()
 
-func _p3_pill_time() -> void:
-	if household.expected_location(MOM) != &"parent_bedroom":
+func _p3_pill_time(at: int) -> void:
+	if household.scheduled_location_at(MOM, at) != &"parent_bedroom":
 		return
 	if GameState.has_flag(&"pills_hidden"):
 		say_in_background("p3_leanne_no_pills", PUZZLE_3)
 	else:
 		_p3_medicated = true
 
-func _p3_new_day() -> void:
+func _p3_new_day(_at: int = 0) -> void:
 	_p3_medicated = false
-	_p3_restock_due = true
+	_p3_drinks = 0
 	GameState.clear_flag(&"pills_hidden")
+	for can in p3_beer_cans:
+		GameState.clear_flag(can)
 
 func _p3_try_night() -> bool:
 	if not _is_night():
@@ -438,7 +420,7 @@ func _p3_try_night() -> bool:
 	household.send(DAD, &"parent_bedroom", p3_safe_minutes, [], &"opening_safe")
 	await wait_parent(DAD, &"parent_bedroom")
 	await wait_room(&"parent_bedroom")
-	if _p3_medicated:
+	if _p3_medicated and not GameState.has_flag(&"pills_hidden"):
 		await say("p3_safe_alone", true, PUZZLE_3)
 		GameState.add_near_miss()
 		household.send(DAD, &"living_room", 60)
@@ -606,6 +588,7 @@ func _skip_minutes(minutes: int) -> void:
 	Events.dialogue_interrupt_requested.emit()
 	GameClock.set_time(GameClock.day, GameClock.minute + minutes)
 	household.settle_everyone()
+	Events.time_skipped.emit()
 #endregion
 
 #region - BEAT HELPERS
