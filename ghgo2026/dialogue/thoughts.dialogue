@@ -6,6 +6,12 @@ Leanne: Jesus, it's freezing in here. Where's that blanket at? [#thought]
 David: Thermostat's acting up again. [#thought]
 => END
 
+~ thoughts_leanne_night
+Leanne: Zzz [#thought]
+
+~ thoughts_david_night
+David: Zzz [#thought]
+
 ~ thoughts_leanne_pumpkin_photo
 Leanne: I'm sorry, honey. [#thought]
 => END
@@ -119,5 +125,5 @@ Leanne: Without them I hear everything. Every empty creak... [#thought]
 => END
 
 ~ thoughts_leanne_stage3_hint3
-Leanne: If he ever went for that safe in the night, I'd want to be awake for it. I wish we got rid of it. [#thought]
+Leanne: He's been so paranoid lately. It'd help if I was awake at night in case anything happened. [#thought]
 => END
