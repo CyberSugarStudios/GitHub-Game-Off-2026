@@ -4,12 +4,12 @@ David: Running low on beer. I'll grab a few more for tonight.
 
 ~ p3_david_catches_can
 % David: Whoa, caught it. That was close.
-% David: Jeez, what's wrong with me. I gotta watch my step. I can't sleep anymore without these.
+% David: Jeez, what's wrong with me. I gotta watch my step. Good thing I was here or it would have spilled.
 => END
 
 ~ p3_leanne_catches_pills
-% Leanne: No, no... can't lose these.
-% Leanne: It's just to help me sleep...
+% Leanne: Whoa, I didn't even notice that I bumped them. I better be more careful.
+% Leanne: Phew, good thing I was here to catch them.
 => END
 
 ~ p3_david_no_beer
@@ -61,6 +61,7 @@ Leanne: Me too.
 => END
 
 ~ p3_after
-Emily: Wait... I knew the code. From when dad took me shooting. [#thought]
+Emily: Mom hates that gun... Did something happen while we were hunting? [#thought]
+Emily: Did Dad?... No... No. It must have been an accident. [#thought]
 Emily: My room... I think I can get in now. [#thought]
 => END
