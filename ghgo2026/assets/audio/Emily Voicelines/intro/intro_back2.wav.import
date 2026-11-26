@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bv61hba6llj11"
+path="res://.godot/imported/intro_back2.wav-9673670711f5c777eadad2892de282bc.sample"
+
+[deps]
+
+source_file="res://assets/audio/Emily Voicelines/intro/intro_back2.wav"
+dest_files=["res://.godot/imported/intro_back2.wav-9673670711f5c777eadad2892de282bc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
