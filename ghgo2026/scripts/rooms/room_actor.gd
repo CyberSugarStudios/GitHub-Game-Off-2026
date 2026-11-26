@@ -1,6 +1,7 @@
 class_name RoomActor
 extends Node2D
 
+const PARENT_SCALES := {&"david": 0.55, &"leanne": 0.52}
 const STEPS: Dictionary[StringName, AudioStream] = {
 	&"leanne": preload("res://assets/audio/sfx/footsteps/leanne_steps.tres"),
 	&"david": preload("res://assets/audio/sfx/footsteps/david_steps.tres"),
@@ -31,6 +32,7 @@ var _leanne_frames := preload("res://assets/sprites/Animations/frames/mom/leanne
 var _david_frames := preload("res://assets/sprites/Animations/frames/dad/david_frames.tres")
 
 func _ready() -> void:
+	scale = Vector2.ONE * float(PARENT_SCALES.get(parent_id, scale.x))
 	var node := get_parent()
 	while node and not node is Room:
 		node = node.get_parent()

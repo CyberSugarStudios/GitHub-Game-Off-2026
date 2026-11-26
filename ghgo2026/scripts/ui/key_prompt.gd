@@ -5,6 +5,7 @@ extends HBoxContainer
 const KEY_ART := preload("res://assets/sprites/letter_key.png")
 const WIDE_KEY_ART := preload("res://assets/sprites/shift.png")
 const SEMIBOLD := preload("res://assets/fonts/josefin_semibold.tres")
+const INK_SHADER := preload("res://shaders/ink_tint.gdshader")
 
 @export var key: String = "E":
 	set(value):
@@ -27,10 +28,21 @@ const SEMIBOLD := preload("res://assets/fonts/josefin_semibold.tres")
 		font_size = value
 		_refresh()
 @export var key_color := Color(0.8, 0.804, 0.769)
-@export var icon: Texture2D:
+
+@export_group("Animated Icon")
+@export var icon_sheet: Texture2D:
 	set(value):
-		icon = value
+		icon_sheet = value
+		_frame = 0
 		_refresh()
+@export var icon_frames: int = 1
+@export var icon_fps: float = 8.0
+@export var icon_height: float = 72.0
+
+var _atlas: AtlasTexture
+var _ink: ShaderMaterial
+var _frame := 0
+var _frame_time := 0.0
 
 func show_prompt(new_key: String, new_text: String, new_prefix: String = "") -> void:
 	key = new_key
@@ -39,6 +51,22 @@ func show_prompt(new_key: String, new_text: String, new_prefix: String = "") -> 
 
 func _ready() -> void:
 	_refresh()
+
+func _process(delta: float) -> void:
+	if icon_sheet == null or icon_frames <= 1 or not is_visible_in_tree():
+		return
+	_frame_time += delta
+	var step := 1.0 / maxf(icon_fps, 0.01)
+	while _frame_time >= step:
+		_frame_time -= step
+		_frame = (_frame + 1) % icon_frames
+	_show_frame()
+
+func _show_frame() -> void:
+	if _atlas == null or icon_sheet == null:
+		return
+	var width := float(icon_sheet.get_width()) / maxi(icon_frames, 1)
+	_atlas.region = Rect2(width * _frame, 0.0, width, icon_sheet.get_height())
 
 func _refresh() -> void:
 	if not is_node_ready():
@@ -50,12 +78,30 @@ func _refresh() -> void:
 	prefix_label.text = prefix
 	prefix_label.visible = prefix != ""
 	prefix_label.add_theme_font_size_override("font_size", font_size)
-	key_rect.visible = key != "" or icon != null
+
 	var wide := key.length() > 1
-	key_rect.texture = icon if icon else (WIDE_KEY_ART if wide else KEY_ART)
-	var art := key_rect.texture
-	key_rect.custom_minimum_size = Vector2(key_height * art.get_width() / art.get_height(), key_height)
-	key_label.text = "" if icon else key
+	key_rect.visible = key != "" or icon_sheet != null
+	if icon_sheet:
+		if _atlas == null:
+			_atlas = AtlasTexture.new()
+			_atlas.filter_clip = true
+		if _ink == null:
+			_ink = ShaderMaterial.new()
+			_ink.shader = INK_SHADER
+		_ink.set_shader_parameter("ink", key_color)
+		_atlas.atlas = icon_sheet
+		_show_frame()
+		key_rect.texture = _atlas
+		key_rect.material = _ink
+		var frame_width := float(icon_sheet.get_width()) / maxi(icon_frames, 1)
+		key_rect.custom_minimum_size = Vector2(icon_height * frame_width / icon_sheet.get_height(), icon_height)
+	else:
+		key_rect.material = null
+		key_rect.texture = WIDE_KEY_ART if wide else KEY_ART
+		var art := key_rect.texture
+		key_rect.custom_minimum_size = Vector2(key_height * art.get_width() / art.get_height(), key_height)
+
+	key_label.text = "" if icon_sheet else key
 	key_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	key_label.anchor_bottom = 0.76
 	key_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
