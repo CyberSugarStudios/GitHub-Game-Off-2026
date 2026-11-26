@@ -18,10 +18,7 @@ boot_splash/image="uid://usg3cs6ey547"
 
 [audio]
 
-<<<<<<< HEAD
-=======
-buses/default_bus_layout="uid://tbmkrvrb0ub5"
->>>>>>> 079e358157780416995f2eb619e19b19e220bfe2
+buses/default_bus_layout="res://data/default_bus_layout.tres"
 general/default_playback_type.web=0
 
 [autoload]
