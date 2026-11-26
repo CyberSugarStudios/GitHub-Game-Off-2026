@@ -55,72 +55,72 @@ z_index = 10
 
 [node name="Fridge" type="Sprite2D" parent="BackProps" unique_id=1910034078]
 position = Vector2(706.1, 604.1)
-scale = Vector2(0.549, 0.549)
+scale = Vector2(0.8343, 0.8343)
 texture = ExtResource("7_u5w5f")
 
-[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Fridge" unique_id=390025487]
-position = Vector2(-340, 511.7)
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Fridge" unique_id=594193627]
+position = Vector2(-335.31943, 476.1394)
 
-[node name="DoorwayRight" type="Marker2D" parent="BackProps/Fridge" unique_id=510623943]
-position = Vector2(285.9, 511.7)
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/Fridge" unique_id=1730723761]
+position = Vector2(290.58057, 476.1394)
 
 [node name="MainCabinet" type="Sprite2D" parent="BackProps" unique_id=834886285]
-position = Vector2(1841, 574)
-scale = Vector2(0.5325844, 0.5325844)
+position = Vector2(1843.5, 552.9)
+scale = Vector2(1.6571, 1.6571)
 texture = ExtResource("8_4a0ue")
 
-[node name="DoorwayLeft" type="Marker2D" parent="BackProps/MainCabinet" unique_id=699527027]
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/MainCabinet" unique_id=572149863]
 position = Vector2(-506.6, 270.8)
 
-[node name="DoorwayRight" type="Marker2D" parent="BackProps/MainCabinet" unique_id=604264462]
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/MainCabinet" unique_id=4500490]
 position = Vector2(510.1, 270.8)
 
 [node name="CoffeeMaker" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=29446814]
-position = Vector2(-1318.9999, -81.80005)
-scale = Vector2(0.2735007, 0.2735007)
+position = Vector2(-426.4, -30)
+scale = Vector2(0.1202, 0.1202)
 texture = ExtResource("6_nd2m6")
 
 [node name="EspressoMaker" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1220024183]
-position = Vector2(-1037, -69.80005)
-scale = Vector2(0.26667458, 0.26667458)
+position = Vector2(-318.2, -30)
+scale = Vector2(0.1172, 0.1172)
 texture = ExtResource("10_v3sj4")
 
-[node name="CoffeeCupFull" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1009143108]
-position = Vector2(428.1012, 16.89867)
-scale = Vector2(0.19999999, 0.19999999)
-texture = ExtResource("19_cupfull")
-
-[node name="CoffeeCupEmpty" type="Sprite2D" parent="BackProps/MainCabinet/CoffeeCupFull" unique_id=105075158]
-position = Vector2(-1.5, 17)
-scale = Vector2(1.0000001, 1.0000001)
+[node name="CoffeeCupEmpty" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1785664145]
+position = Vector2(259.1, -15.4)
+scale = Vector2(0.0979, 0.0979)
 texture = ExtResource("11_hm2ep")
 
+[node name="CoffeeCupFull" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1009143108]
+position = Vector2(348.3, -15.4)
+scale = Vector2(0.096, 0.096)
+texture = ExtResource("19_cupfull")
+
 [node name="Pamphlet" type="Sprite2D" parent="BackProps/MainCabinet" unique_id=1555067475]
-position = Vector2(764.1982, 75.1055)
-scale = Vector2(0.20057914, 0.20057914)
+position = Vector2(157.3, 20.9)
+scale = Vector2(0.1116, 0.1116)
 texture = ExtResource("12_nsrbe")
 
-[node name="Microwave" type="Sprite2D" parent="BackProps" unique_id=1573894090]
-position = Vector2(3368.0002, 566)
-scale = Vector2(0.5327041, 0.5327041)
-texture = ExtResource("11_v3sj4")
-
-[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Microwave" unique_id=1329723484]
-position = Vector2(-237.8, 511)
-
-[node name="DoorwayRight" type="Marker2D" parent="BackProps/Microwave" unique_id=1321358443]
-position = Vector2(267.9, 511)
-
 [node name="StoveAndVent" type="Sprite2D" parent="BackProps" unique_id=920843879]
-position = Vector2(2914, 556)
-scale = Vector2(0.5, 0.5)
+position = Vector2(2928.3, 527.3)
+scale = Vector2(1.018, 1.018)
 texture = ExtResource("12_wjo8k")
 
-[node name="DoorwayLeft" type="Marker2D" parent="BackProps/StoveAndVent" unique_id=1849196747]
-position = Vector2(-234.4, 493.3)
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/StoveAndVent" unique_id=1359919672]
+position = Vector2(-233.90979, 457.64246)
 
-[node name="DoorwayRight" type="Marker2D" parent="BackProps/StoveAndVent" unique_id=1235673431]
-position = Vector2(250, 493.3)
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/StoveAndVent" unique_id=853422139]
+position = Vector2(250.4902, 457.64246)
+
+[node name="Microwave" type="Sprite2D" parent="BackProps" unique_id=1573894090]
+position = Vector2(3387.8, 537.8)
+scale = Vector2(0.8977, 0.8977)
+texture = ExtResource("11_v3sj4")
+
+[node name="DoorwayLeft" type="Marker2D" parent="BackProps/Microwave" unique_id=1997839965]
+position = Vector2(-237.8, 511)
+
+[node name="DoorwayRight" type="Marker2D" parent="BackProps/Microwave" unique_id=1743643481]
+position = Vector2(267.9, 511)
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
@@ -154,14 +154,14 @@ spots = NodePath("../../RoomSpots")
 z_index = 30
 
 [node name="BeerCase" type="Sprite2D" parent="FrontProps" unique_id=548377354]
-position = Vector2(272, 1018)
-scale = Vector2(0.3214021, 0.3214021)
+position = Vector2(225.5, 1039.5)
+scale = Vector2(0.3616, 0.3616)
 texture = ExtResource("17_wjo8k")
 
-[node name="DoorwayLeft" type="Marker2D" parent="FrontProps/BeerCase" unique_id=1262305938]
+[node name="DoorwayLeft" type="Marker2D" parent="FrontProps/BeerCase" unique_id=1978308100]
 position = Vector2(-487.8, 268.7)
 
-[node name="DoorwayRight" type="Marker2D" parent="FrontProps/BeerCase" unique_id=846847104]
+[node name="DoorwayRight" type="Marker2D" parent="FrontProps/BeerCase" unique_id=465713627]
 position = Vector2(334.7, 268.7)
 
 [node name="Beercan" type="Sprite2D" parent="FrontProps/BeerCase" unique_id=356882799]
@@ -179,10 +179,10 @@ texture = ExtResource("18_prl6a")
 z_index = 40
 
 [node name="Pamphlet" type="TextureButton" parent="Hotspots" unique_id=311590483]
-offset_left = 2152.0
-offset_top = 591.0
-offset_right = 2339.0
-offset_bottom = 633.0
+offset_left = 2011.0
+offset_top = 567.0
+offset_right = 2198.0
+offset_bottom = 609.0
 script = ExtResource("6_fiuqx")
 prompt_text = "Look at pamphlet"
 story_id = &"memorial_pamphlet"
