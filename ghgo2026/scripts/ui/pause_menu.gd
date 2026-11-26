@@ -2,10 +2,10 @@ extends CanvasLayer
 
 const TITLE_SCENE_PATH := "res://scenes/ui/title_screen.tscn"
 
-@onready var resume_button: Button = $Buttons/ResumeButton
-@onready var settings_button: Button = $Buttons/SettingsButton
-@onready var quit_button: Button = $Buttons/QuitToTitleButton
-@onready var feedback_button: Button = $Buttons/FeedbackButton
+@onready var resume_button: TextureButton = $Buttons/ResumeButton
+@onready var settings_button: TextureButton = $Buttons/SettingsButton
+@onready var quit_button: TextureButton = $Buttons/QuitToTitleButton
+@onready var feedback_button: TextureButton = $Buttons/FeedbackButton
 @onready var buttons: Control = $Buttons
 @onready var options_page: Control = $OptionsPage
 @onready var back_button: Button = $OptionsPage/BackButton
