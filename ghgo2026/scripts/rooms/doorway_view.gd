@@ -170,6 +170,9 @@ func _build_window() -> void:
 	_material.set_shader_parameter("edge_width", edge_width)
 	_material.set_shader_parameter("past_walls", props_past_walls)
 	_material.set_shader_parameter("past_floor", props_past_floor)
+	_material.set_shader_parameter("debug_mode", Playtest.doorway_mode)
+	Playtest.doorway_mode_changed.connect(func(mode: int) -> void:
+		_material.set_shader_parameter("debug_mode", mode))
 	window.material_override = _material
 #endregion
 

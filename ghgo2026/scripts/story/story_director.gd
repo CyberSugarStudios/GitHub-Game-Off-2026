@@ -123,6 +123,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p5_to_black_seconds: float = 2.5
 @export var p5_fight_audio: AudioStream
 @export var ending_song: AudioStream = preload("res://assets/audio/music/Ayleen Valentine - white gummy.mp3")
+@export var ending_song_db: float = -7.0
 
 @export var wait_fade_time: float = 0.4
 #endregion
@@ -523,7 +524,7 @@ func _play_ending() -> void:
 	GameState.clear_checkpoint()
 	GameState.set_controls_locked(true)
 	if ending_song:
-		Music.play(ending_song, p5_light_seconds)
+		Music.play(ending_song, p5_light_seconds, 0.0, db_to_linear(ending_song_db))
 	else:
 		Music.stop(p5_light_seconds)
 	await wait(p5_light_seconds)

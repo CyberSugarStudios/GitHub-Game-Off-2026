@@ -9,6 +9,7 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @export var scroll_speed: float = 60.0
 @export var music: AudioStream
 @export var music_fade: float = 8.0
+@export var music_db: float = -7.0
 @export var music_limit_seconds: float = 88.45
 @export var prompt_delay: float = 3.0
 @export var gap: float = 160.0
@@ -38,7 +39,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	continue_prompt.modulate.a = 0.0
 	if music:
-		Music.play(music, music_fade)
+		Music.play(music, music_fade, 0.0, db_to_linear(music_db))
 	await get_tree().process_frame
 	await get_tree().process_frame
 	_credits_start = size.y

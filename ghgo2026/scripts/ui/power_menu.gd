@@ -1,7 +1,6 @@
 class_name PowerMenu
 extends VBoxContainer
 
-@export var dim_alpha: float = 0.5
 @export var row_size := Vector2(300, 40)
 @export var cost_bar_size := Vector2(36, 18)
 @export var cost_bar_gap: float = 4.0
@@ -44,7 +43,7 @@ func _rebuild() -> void:
 		var power := powers[i]
 		var button := Button.new()
 		button.custom_minimum_size = row_size
-		button.text = "%d   %s" % [i + 1, power.display_name]
+		button.text = power.display_name
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.focus_mode = Control.FOCUS_NONE
 		button.mouse_filter = Control.MOUSE_FILTER_STOP if in_room else Control.MOUSE_FILTER_IGNORE
@@ -61,7 +60,10 @@ func _refresh() -> void:
 	for i in get_child_count():
 		var button := get_child(i) as Button
 		button.disabled = not GameState.can_afford(powers[i].energy_cost)
-		button.modulate.a = 1.0 if i == Powers.selected else dim_alpha
+		var marker := ""
+		if not GameState.is_in_room():
+			marker = "> " if i == Powers.selected else "   "
+		button.text = marker + powers[i].display_name
 
 func _make_cost_bars(cost: float) -> Control:
 	var holder := Control.new()

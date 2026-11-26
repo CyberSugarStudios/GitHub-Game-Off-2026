@@ -17,6 +17,7 @@ uniform float edge_shadow : hint_range(0.0, 1.0) = 0.55;
 uniform float edge_width : hint_range(0.0, 0.5) = 0.18;
 uniform float past_walls = 1.0;
 uniform float past_floor = 20.0;
+uniform int debug_mode = 0;
 
 varying vec3 pos;
 varying vec3 eye;
@@ -74,9 +75,17 @@ void fragment() {
 	float sides = smoothstep(0.0, edge_width, min(UV.x, 1.0 - UV.x));
 	float top = smoothstep(0.0, edge_width * 0.6, UV.y);
 	color *= mix(1.0 - edge_shadow, 1.0, sides * top);
+	if (debug_mode == 1) {
+		color = vec3(0.85, 0.25, 0.85);
+	} else if (debug_mode == 4) {
+		color = face == 2 ? vec3(0.2, 0.35, 0.95) : (face == 0 ? vec3(0.95, 0.25, 0.2) : (on_ceiling ? vec3(0.95, 0.9, 0.2) : vec3(0.2, 0.85, 0.35)));
+	}
 	ALBEDO = color;
 
 	float past = (face == 1 && ray.y < 0.0) ? past_floor : past_walls;
+	if (debug_mode == 2) {
+		past = 0.0;
+	}
 	vec4 clip = PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * vec4(hit + ray * past - vec3(0.0, floor_offset, 0.0), 1.0);
 	float ndc = clip.z / clip.w;
 #if CURRENT_RENDERER == RENDERER_COMPATIBILITY
@@ -84,4 +93,7 @@ void fragment() {
 #else
 	DEPTH = ndc;
 #endif
+	if (debug_mode == 3) {
+		DEPTH = FRAGCOORD.z;
+	}
 }

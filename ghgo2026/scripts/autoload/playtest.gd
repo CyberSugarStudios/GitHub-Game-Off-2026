@@ -114,6 +114,19 @@ var _fps_total := 0.0
 var _fps_samples := 0
 var _fps_low := INF
 var _sample_clock := 0.0
+
+signal doorway_mode_changed(mode: int)
+const DOORWAY_MODES: Array[String] = ["normal", "flat colour", "no depth push", "plain depth", "surface colours"]
+var doorway_mode := 0
+
+func _unhandled_input(event: InputEvent) -> void:
+	var key := event as InputEventKey
+	if not is_enabled() or key == null or not key.pressed or key.echo or key.keycode != KEY_F9:
+		return
+	doorway_mode = (doorway_mode + 1) % DOORWAY_MODES.size()
+	doorway_mode_changed.emit(doorway_mode)
+	Events.story_prompt_changed.emit("Doorway test %d: %s" % [doorway_mode, DOORWAY_MODES[doorway_mode]])
+	get_viewport().set_input_as_handled()
 var _load_clicked := -1
 var _load_marks := PackedStringArray()
 
