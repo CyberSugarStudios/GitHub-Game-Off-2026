@@ -25,6 +25,11 @@
 % Emily: Mom has to be holding it. [#thought]
 => END
 
+~ near_miss_garage_box
+% Emily: I think I'll get more information if they both see this. [#thought]
+% Emily: I need them both here to notice this. [#thought]
+=> END
+
 ~ near_miss
 % Emily: Nobody noticed. [#thought]
 % Emily: ...Nothing. [#thought]
@@ -100,4 +105,12 @@ Emily: Wait. That wasn't out loud. [#thought]
 Emily: I heard what they were thinking. [#thought]
 do wait(0.5)
 Emily: What's that on the counter? [#thought]
+=> END
+
+~ music_box_opened
+Emily: My music box! Mom got this for me when I was little. [#thought]
+=> END
+
+~ music_box_closed
+Emily: I remember how much that used to comfort me. I wish I'd listened to this more often.
 => END
