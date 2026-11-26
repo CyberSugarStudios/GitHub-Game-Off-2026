@@ -19,4 +19,5 @@ signal room_pan_requested(ratio: float)
 signal near_missed(source: StringName)
 signal creature_moment(kind: StringName)
 signal dialogue_interrupt_requested
+signal time_skipped
 @warning_ignore_restore("unused_signal")

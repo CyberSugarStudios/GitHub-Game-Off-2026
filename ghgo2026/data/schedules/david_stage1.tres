@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 script = ExtResource("1_2k5ik")
 start_time = "10:00"
 location = &"garage"
-activity = &"drinking"
+activity = &"tinkering"
 metadata/_custom_type_script = "uid://dqhcwlmq20tc4"
 
 [sub_resource type="Resource" id="Resource_j1in5"]
