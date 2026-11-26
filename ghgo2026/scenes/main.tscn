@@ -62,6 +62,7 @@
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
 [ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="42_dnhof"]
 [ext_resource type="Script" uid="uid://cxw5nuo8xc4t8" path="res://scripts/story/hint_barks.gd" id="44_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://cunot33xsxjwv" path="res://scenes/ui/key_prompt.tscn" id="48_bfu41"]
 [ext_resource type="AudioStream" uid="uid://px0ggwvj5t3w" path="res://assets/audio/MP3_music/Luna.mp3" id="49_xrs0c"]
 [ext_resource type="AudioStream" uid="uid://1tttq4djvtjq" path="res://assets/audio/MP3_music/Joe Leytrick - In The Dark.mp3" id="50_xljpf"]
 [ext_resource type="AudioStream" uid="uid://l3ggeppsujhg" path="res://assets/audio/MP3_music/Card Towers.mp3" id="51_j4bwh"]
@@ -731,22 +732,6 @@ grow_vertical = 0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="InteractionPrompt" type="Label" parent="UI" unique_id=1903249116]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -120.0
-offset_right = 20.0
-offset_bottom = -88.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HintPrompt" type="Label" parent="UI" unique_id=575392051]
 anchors_preset = 1
 anchor_left = 1.0
@@ -821,20 +806,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_pm3ni")
 
-[node name="StoryPrompt" type="Label" parent="UI" unique_id=418705579]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -450.0
+[node name="InteractionPrompt" parent="UI" unique_id=424001723 instance=ExtResource("48_bfu41")]
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_bottom = -80.0
+grow_vertical = 0
+font_size = 32
+
+[node name="StoryPrompt" parent="UI" unique_id=46602485 instance=ExtResource("48_bfu41")]
 offset_top = 25.0
-offset_right = 449.99976
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
+offset_bottom = 65.0
 
 [node name="PauseMenu" parent="." unique_id=1351570408 instance=ExtResource("5_tbgi4")]
 visible = false

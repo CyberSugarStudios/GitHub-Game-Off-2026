@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvhtup4pdgll3" path="res://scripts/ui/key_prompt.gd" id="1_iyd8u"]
 [ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="1_qqp7l"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="3_21fvh"]
 
 [node name="KeyPrompt" type="HBoxContainer" unique_id=424001723]
 anchors_preset = 8
@@ -18,26 +19,41 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 script = ExtResource("1_iyd8u")
+key = ""
 
 [node name="Prefix" type="Label" parent="." unique_id=670384688]
+visible = false
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 vertical_alignment = 1
 
 [node name="Key" type="TextureRect" parent="." unique_id=381861175]
+visible = false
+custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("1_qqp7l")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Key" unique_id=824478615]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 16.0
+[node name="KeyLabel" type="Label" parent="Key" unique_id=824478615]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.76
+theme_override_colors/font_color = Color(0.8, 0.804, 0.769, 1)
+theme_override_fonts/font = ExtResource("3_21fvh")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Text" type="RichTextLabel" parent="." unique_id=538534302]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/bold_font = ExtResource("3_21fvh")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
