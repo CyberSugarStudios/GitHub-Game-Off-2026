@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Interim"
-config/version="2026.11.25.1930.0.9.0pt4"
+config/version="2026.11.25.1930.0.9.1pt5"
 run/main_scene="res://scenes/ui/content_warning.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/image="res://assets/sprites/Boot/boot_splash.png"

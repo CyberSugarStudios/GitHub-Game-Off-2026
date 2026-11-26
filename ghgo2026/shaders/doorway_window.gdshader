@@ -32,15 +32,24 @@ void fragment() {
 	vec3 lo = vec3(-box_size.x * 0.5, 0.0, -box_size.z);
 	vec3 hi = vec3(box_size.x * 0.5, box_size.y, 0.0);
 	vec3 exits = (mix(lo, hi, step(0.0, ray)) - pos) / ray;
-	float t = min(exits.x, min(exits.y, exits.z));
+	int face = 2;
+	float t = exits.z;
+	if (exits.y < t) {
+		face = 1;
+		t = exits.y;
+	}
+	if (exits.x < t) {
+		face = 0;
+		t = exits.x;
+	}
 	vec3 hit = pos + ray * t;
 
 	vec3 n = (hit - lo) / box_size;	// x: left to right, y: floor to ceiling, z: back wall to doorway
 	vec3 mapped;
 	bool on_ceiling = false;
-	if (t == exits.z) {
+	if (face == 2) {
 		mapped = back_map * vec3(n.x, 1.0 - n.y, 1.0);
-	} else if (t == exits.y) {
+	} else if (face == 1) {
 		on_ceiling = ray.y > 0.0;
 		if (on_ceiling) {
 			mapped = ceiling_map * vec3(n.x, n.z, 1.0);
@@ -67,7 +76,7 @@ void fragment() {
 	color *= mix(1.0 - edge_shadow, 1.0, sides * top);
 	ALBEDO = color;
 
-	float past = (t == exits.y && ray.y < 0.0) ? past_floor : past_walls;
+	float past = (face == 1 && ray.y < 0.0) ? past_floor : past_walls;
 	vec4 clip = PROJECTION_MATRIX * VIEW_MATRIX * MODEL_MATRIX * vec4(hit + ray * past - vec3(0.0, floor_offset, 0.0), 1.0);
 	float ndc = clip.z / clip.w;
 #if CURRENT_RENDERER == RENDERER_COMPATIBILITY
