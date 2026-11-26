@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b713spnah4skw"]
 
 [ext_resource type="Script" uid="uid://7uqmnmqcix7m" path="res://scripts/ui/options_panel.gd" id="1_ksq0f"]
-[ext_resource type="Theme" path="res://assets/ui/interim_theme.tres" id="2_theme"]
-[ext_resource type="FontFile" path="res://assets/fonts/Allura-Regular.ttf" id="2_allura"]
-[ext_resource type="PackedScene" path="res://scenes/ui/setting_slider.tscn" id="2_slider"]
+[ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="2_allura"]
 [ext_resource type="PackedScene" uid="uid://bc8avv3u5fuci" path="res://scenes/ui/title_button.tscn" id="2_button"]
+[ext_resource type="PackedScene" path="res://scenes/ui/setting_slider.tscn" id="2_slider"]
+[ext_resource type="Theme" uid="uid://d36exa7tunr3n" path="res://resources/interim_theme.tres" id="2_theme"]
 [ext_resource type="AudioStream" uid="uid://b0wiaqutmoxn2" path="res://assets/audio/MP3_music/Anathema.mp3" id="3_1wn4n"]
 [ext_resource type="AudioStream" uid="uid://cd0s8t4wl3gpt" path="res://assets/audio/music/end_credits_music.mp3" id="4_0qnn8"]
 [ext_resource type="AudioStream" uid="uid://bru3chlcrbsin" path="res://assets/audio/music/hall_music.mp3" id="4_wasor"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c4qath6yi0kb6" path="res://assets/audio/Emily Voicelines/intro/intro_garage_handle2.wav" id="6_wasor"]
 [ext_resource type="AudioStream" uid="uid://btycl8jacpeuw" path="res://assets/audio/MP3_music/Joe Leytrick - I Don't Know (Acoustic).mp3" id="7_0qnn8"]
 
-[node name="OptionsPanel" type="VBoxContainer"]
+[node name="OptionsPanel" type="VBoxContainer" unique_id=815701727]
 custom_minimum_size = Vector2(680, 0)
 theme = ExtResource("2_theme")
 theme_override_constants/separation = 14
@@ -26,51 +26,51 @@ previews = Dictionary[StringName, AudioStream]({
 &"Voices": ExtResource("6_wasor")
 })
 
-[node name="SoundHeading" type="Label" parent="."]
+[node name="SoundHeading" type="Label" parent="." unique_id=1307568338]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 theme_override_fonts/font = ExtResource("2_allura")
 theme_override_font_sizes/font_size = 60
 text = "Sound"
 
-[node name="MasterVolume" parent="." instance=ExtResource("2_slider")]
+[node name="MasterVolume" parent="." unique_id=1210454132 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Master volume"
 
-[node name="MusicVolume" parent="." instance=ExtResource("2_slider")]
+[node name="MusicVolume" parent="." unique_id=1941489925 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Music"
 
-[node name="Mp3Volume" parent="." instance=ExtResource("2_slider")]
+[node name="Mp3Volume" parent="." unique_id=1102117271 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Emily's music"
 
-[node name="VoicesVolume" parent="." instance=ExtResource("2_slider")]
+[node name="VoicesVolume" parent="." unique_id=99545545 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Voices"
 
-[node name="SfxVolume" parent="." instance=ExtResource("2_slider")]
+[node name="SfxVolume" parent="." unique_id=568429344 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Sound effects"
 
-[node name="AmbienceVolume" parent="." instance=ExtResource("2_slider")]
+[node name="AmbienceVolume" parent="." unique_id=1339998150 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Ambience"
 
-[node name="DisplayHeading" type="Label" parent="."]
+[node name="DisplayHeading" type="Label" parent="." unique_id=501787221]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 theme_override_fonts/font = ExtResource("2_allura")
 theme_override_font_sizes/font_size = 60
 text = "Display"
 
-[node name="Brightness" parent="." instance=ExtResource("2_slider")]
+[node name="Brightness" parent="." unique_id=1579303545 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Brightness"
@@ -78,7 +78,7 @@ min_value = 0.5
 max_value = 1.6
 step = 0.05
 
-[node name="Contrast" parent="." instance=ExtResource("2_slider")]
+[node name="Contrast" parent="." unique_id=1374927007 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Contrast"
@@ -86,7 +86,7 @@ min_value = 0.7
 max_value = 1.4
 step = 0.05
 
-[node name="Gamma" parent="." instance=ExtResource("2_slider")]
+[node name="Gamma" parent="." unique_id=879423324 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Gamma"
@@ -95,19 +95,19 @@ max_value = 1.8
 step = 0.05
 format = 1
 
-[node name="ReduceFlashing" type="CheckBox" parent="."]
+[node name="ReduceFlashing" type="CheckBox" parent="." unique_id=119337692]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Reduce flashing lights"
 
-[node name="ControlsHeading" type="Label" parent="."]
+[node name="ControlsHeading" type="Label" parent="." unique_id=290463902]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 theme_override_fonts/font = ExtResource("2_allura")
 theme_override_font_sizes/font_size = 60
 text = "Controls"
 
-[node name="Sensitivity" parent="." instance=ExtResource("2_slider")]
+[node name="Sensitivity" parent="." unique_id=319019995 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Mouse sensitivity"
@@ -116,18 +116,27 @@ max_value = 2.0
 step = 0.05
 format = 2
 
-[node name="InvertY" type="CheckBox" parent="."]
+[node name="InvertY" type="CheckBox" parent="." unique_id=381074066]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Invert mouse Y"
 
-[node name="HoldToStruggle" type="CheckBox" parent="."]
+[node name="HoldToStruggle" type="CheckBox" parent="." unique_id=965102104]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Hold to struggle (hold Space instead of tapping)"
 
-[node name="ResetButton" parent="." instance=ExtResource("2_button")]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1794597348]
+layout_mode = 2
+
+[node name="ResetButton" parent="HBoxContainer" unique_id=1903885636 instance=ExtResource("2_button")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "RESET TO DEFAULTS"
+
+[node name="SaveAndCloseButton" parent="HBoxContainer" unique_id=619476330 instance=ExtResource("2_button")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SAVE AND CLOSE"

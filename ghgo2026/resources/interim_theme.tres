@@ -1,17 +1,20 @@
-[gd_resource type="Theme" format=3]
+[gd_resource type="Theme" format=3 uid="uid://d36exa7tunr3n"]
 
-[ext_resource type="FontVariation" path="res://assets/fonts/josefin_semibold.tres" id="1_font"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="1_font"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_track"]
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.72156864, 0.8745098, 0.84705883, 0.25)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="Gradient" id="Gradient_dot"]
+offsets = PackedFloat32Array(0, 0.7, 0.9)
+colors = PackedColorArray(0.92, 0.98, 0.97, 1, 0.92, 0.98, 0.97, 1, 0.92, 0.98, 0.97, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dot"]
+gradient = SubResource("Gradient_dot")
+width = 22
+height = 22
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fill"]
 content_margin_top = 4.0
@@ -31,31 +34,28 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Gradient" id="Gradient_dot"]
-offsets = PackedFloat32Array(0, 0.7, 0.9)
-colors = PackedColorArray(0.92, 0.98, 0.97, 1, 0.92, 0.98, 0.97, 1, 0.92, 0.98, 0.97, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dot"]
-gradient = SubResource("Gradient_dot")
-width = 22
-height = 22
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_track"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.72156864, 0.8745098, 0.84705883, 0.25)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [resource]
 default_font = ExtResource("1_font")
 default_font_size = 26
-Label/colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
 CheckBox/colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
-CheckBox/colors/font_pressed_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+CheckBox/colors/font_focus_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
 CheckBox/colors/font_hover_color = Color(0.92, 0.98, 0.97, 1)
 CheckBox/colors/font_hover_pressed_color = Color(0.92, 0.98, 0.97, 1)
-CheckBox/colors/font_focus_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+CheckBox/colors/font_pressed_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
 CheckBox/styles/focus = SubResource("StyleBoxEmpty_focus")
 HSlider/icons/grabber = SubResource("GradientTexture2D_dot")
 HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_dot")
-HSlider/styles/slider = SubResource("StyleBoxFlat_track")
+HSlider/styles/focus = SubResource("StyleBoxEmpty_focus")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_fill")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_fill_hover")
-HSlider/styles/focus = SubResource("StyleBoxEmpty_focus")
+HSlider/styles/slider = SubResource("StyleBoxFlat_track")
+Label/colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
