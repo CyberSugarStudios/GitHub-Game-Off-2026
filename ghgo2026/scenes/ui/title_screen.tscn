@@ -38,7 +38,7 @@ expand = true
 loop = true
 
 [node name="Title" type="Sprite2D" parent="." unique_id=64972241]
-position = Vector2(543, 266)
+position = Vector2(634, 266)
 texture = ExtResource("2_r23qo")
 
 [node name="VersionNumberLabel" type="Label" parent="." unique_id=1088067038]
