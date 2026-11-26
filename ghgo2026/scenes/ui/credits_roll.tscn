@@ -39,22 +39,26 @@ color = Color(0, 0.24313726, 0.32156864, 0.57254905)
 
 [node name="CreditsTitle" type="TextureRect" parent="." unique_id=861073729]
 unique_name_in_owner = true
-layout_mode = 0
-anchor_left = 0.02375
-anchor_top = 0.79444444
-anchor_right = 0.97375
-anchor_bottom = 1.8377777
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00125
+anchor_top = 1.0
+anchor_right = 0.95125
+anchor_bottom = 2.0433333
 texture = ExtResource("4_slemu")
+metadata/_edit_use_anchors_ = true
 
 [node name="CreditsText" type="RichTextLabel" parent="." unique_id=2000140420]
 unique_name_in_owner = true
-layout_mode = 0
-anchor_top = 1.61
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.0433333
 anchor_right = 1.0
-anchor_bottom = 4.628889
+anchor_bottom = 4.5644445
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][color=cccdc4][font_size=28][b]Made for the GitHub Game Off 2026[/b][/font_size]
+text = "
+[center][color=cccdc4][font_size=28][b]Made for the GitHub Game Off 2026[/b][/font_size]
 
 
 
@@ -82,6 +86,7 @@ text = "[center][color=cccdc4][font_size=28][b]Made for the GitHub Game Off 2026
 [font_size=30][b]Catherine Garrett[/b]
 [b]Hehbeh[/b]
 [b]MrDragorian[/b]
+[b]Pyrus[/b]
 [b]Robert Burchette[/b]
 [b]Tristan Atkinson[/b][/font_size]
 
@@ -108,21 +113,25 @@ text = "[center][color=cccdc4][font_size=28][b]Made for the GitHub Game Off 2026
 [b]Sans, & ReenieBeanie[/b][/right][/cell][cell padding=0,10,0,10][left]SIL Open Font License[/left][/cell]
 [/table]
 [/center]
-[/font_size]"
+[/font_size]
+"
 fit_content = true
+scroll_active = false
+autowrap_trim_flags = 0
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="HelpText" type="RichTextLabel" parent="." unique_id=457808753]
 unique_name_in_owner = true
-layout_mode = 0
-anchor_left = 0.00125
-anchor_top = 4.3166666
-anchor_right = 1.00125
-anchor_bottom = 5.072222
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 4.5644445
+anchor_right = 1.0
+anchor_bottom = 5.2755556
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[color=cccdc4][center][font_size=30][b][i]If this story touched something in you...[/i][/b]
+text = "
+[color=cccdc4][center][font_size=30][b][i]If this story touched something in you...[/i][/b]
 
 Emily's story is fiction, but the feelings in it are real for a lot of people.
 If you are thinking about suicide, or you are worried about someone, please reach out.
@@ -141,8 +150,11 @@ If you are in immediate danger, call your local emergency number.
 If there is a gun in your home, storing it locked, unloaded, and apart from ammunition saves lives.
 [/font_size]
 
-[font_size=30][b][i]Thank you for playing our game[/i].[/b][/font_size][/center]"
+[font_size=30][b][i]Thank you for playing our game[/i].[/b][/font_size][/center]
+"
 fit_content = true
+scroll_active = false
+autowrap_trim_flags = 0
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 

@@ -44,6 +44,7 @@ func _rebuild() -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
+	_buttons.clear()
 
 	visible = Powers.target != &"" and GameState.in_astral
 	if not visible:

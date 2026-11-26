@@ -11,6 +11,7 @@ const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
 @export var hold_video_at: float = 3.2
 @export var skip_hold_seconds: float = 1.5
 @export var options_prompt_seconds: float = 8.0
+@export var skip_prompt_linger: float = 1.0
 
 @onready var fade: ColorRect = $RoomView/FadeLayer/Fade
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
@@ -27,6 +28,9 @@ var _video_box: AspectRatioContainer
 var _video_screen: ColorRect
 var _skip_hold := 0.0
 var _skip_ring: FocusRing
+var _skip_prompt: KeyPrompt
+var _intro_elapsed := 0.0
+var _skip_visible_until := 0.0
 static var _options_hint_shown := false
 
 func _ready() -> void:
@@ -44,7 +48,14 @@ func _process(delta: float) -> void:
 	if _video == null:
 		return
 	if _video_playing:
+		_intro_elapsed += delta
 		var holding := Input.is_action_pressed("interact")
+		if holding:
+			_skip_visible_until = _intro_elapsed + skip_prompt_linger
+		if _skip_prompt:
+			var target := 1.0 if _intro_elapsed < _skip_visible_until else 0.0
+			var speed := 4.0 if target > _skip_prompt.modulate.a else 1.0
+			_skip_prompt.modulate.a = move_toward(_skip_prompt.modulate.a, target, speed * delta)
 		_skip_hold = clampf(_skip_hold + (delta if holding else -delta * 2.0), 0.0, skip_hold_seconds)
 		if _skip_ring:
 			_skip_ring.set_progress(_skip_hold / skip_hold_seconds)
@@ -131,6 +142,8 @@ func _add_intro_prompts() -> void:
 	column.add_child(options)
 	var skip := _make_prompt("E", "Skip", "Hold")
 	column.add_child(skip)
+	_skip_prompt = skip
+	_skip_visible_until = options_prompt_seconds
 	_skip_ring = FocusRing.new()
 	_skip_ring.listen_to_events = false
 	_skip_ring.radius = 30.0
