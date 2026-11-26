@@ -25,6 +25,7 @@ const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
 const ENERGY_EPSILON := 0.001
 const HALL := &"hall"
 const HINT_HOURS_PER_LEVEL := 3.0
+const MAX_HINT_LEVEL := 3
 const HINT_PER_NEAR_MISS := 0.5
 const SAVE_PATH := "user://save.cfg"
 const SAVE_VERSION := 1
@@ -43,6 +44,7 @@ var monster_level := 0
 var _stage_started_at := 0
 var _hint_bonus := 0.0
 var hint_step := 0
+var overlay_open := false
 var shift_allowed := true
 var regen_paused := false
 var guarded_room: StringName = &""
@@ -114,11 +116,15 @@ func set_monster_level(level: int) -> void:
 
 func get_hint_level() -> int:
 	var hours := (GameClock.get_total_minutes() - _stage_started_at) / 60.0
-	return clampi(floori(hours / HINT_HOURS_PER_LEVEL + _hint_bonus), 0, 3)
+	return clampi(floori(hours / HINT_HOURS_PER_LEVEL + _hint_bonus), 0, MAX_HINT_LEVEL)
 
 func add_near_miss(source: StringName = &"") -> void:
 	_hint_bonus += HINT_PER_NEAR_MISS
 	Events.near_missed.emit(source)
+
+func raise_hint_level() -> void:
+	if get_hint_level() < MAX_HINT_LEVEL:
+		_hint_bonus += 1.0
 #endregion
 
 #region - PLANE

@@ -15,6 +15,8 @@ const SHOW_DEBUG_RECTS := true
 
 @export_group("Story")
 @export var from_stage: int = 0
+@export var tease_before_stage: bool = false
+@export var too_early_text: String = "Can't use this yet."
 @export var requires_flag: StringName
 @export var hidden_after_flag: StringName
 
@@ -53,6 +55,8 @@ func _ready() -> void:
 	)
 
 func get_block_reason() -> String:
+	if GameState.story_stage < from_stage:
+		return too_early_text
 	return InteractionRules.get_block_reason(realm, required_bars, energy_cost)
 
 func try_interact() -> void:
@@ -80,7 +84,7 @@ func _refresh() -> void:
 	var in_main_view := get_viewport() == get_tree().root
 	visible = in_main_view and InteractionRules.realm_matches(realm) and not (one_shot and _used) \
 		and InteractionRules.story_open(requires_flag, hidden_after_flag) and _is_available() \
-			and blocker == null and GameState.story_stage >= from_stage
+			and blocker == null and (GameState.story_stage >= from_stage or tease_before_stage)
 	if _hovered:
 		if visible:
 			_send_prompt()

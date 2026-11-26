@@ -25,7 +25,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if get_tree().paused:
 		return
-	if GameState.is_in_room():
+	if GameState.is_in_room() or GameState.overlay_open:
 		_had_mouse_capture = false
 		return
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 		return
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and not GameState.overlay_open:
 		if options_page.visible:
 			_close_options()
 		elif get_tree().paused:

@@ -85,7 +85,7 @@ func _process(_delta: float) -> void:
 	art.self_modulate = Color(1.0 + glow, 1.0 + glow, 1.0 + glow)
 
 func _on_interacted() -> void:
-	Powers.set_target(target_id, accepts)
+	Powers.set_target(target_id, accepts, self)
 
 func _on_power_used(power_id: StringName, id: StringName) -> void:
 	if id != target_id or not power_id in accepts:

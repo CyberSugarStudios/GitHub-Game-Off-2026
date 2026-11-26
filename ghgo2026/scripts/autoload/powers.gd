@@ -13,6 +13,7 @@ var all_powers: Array[Power] = [
 
 var target: StringName = &""
 var target_accepts: Array[StringName] = []
+var target_anchor: Control = null
 var selected := 0
 var _sound: AudioStreamPlayer
 
@@ -57,11 +58,12 @@ func get_selected() -> Power:
 		return null
 	return usable[clampi(selected, 0, usable.size() - 1)]
 
-func set_target(id: StringName, accepts: Array[StringName] = []) -> void:
-	if target == id and target_accepts == accepts:
+func set_target(id: StringName, accepts: Array[StringName] = [], anchor: Control = null) -> void:
+	if target == id and target_accepts == accepts and target_anchor == anchor:
 		return
 	target = id
 	target_accepts = accepts
+	target_anchor = anchor
 	selected = 0
 	target_changed.emit(id)
 
