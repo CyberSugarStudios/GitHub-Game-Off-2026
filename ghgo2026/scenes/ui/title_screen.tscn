@@ -1,8 +1,19 @@
 [gd_scene format=3 uid="uid://t7qmmk1hf22j"]
 
 [ext_resource type="Script" uid="uid://cui1imxye4xc8" path="res://scripts/ui/title_screen.gd" id="1_eb34j"]
-[ext_resource type="Texture2D" uid="uid://cs78elmrh0fk8" path="res://assets/textures/rooms/emily_room.webp" id="2_aqpy5"]
+[ext_resource type="Texture2D" uid="uid://fl3slmy3jame" path="res://assets/textures/Title_Text.png" id="2_r23qo"]
+[ext_resource type="VideoStream" uid="uid://b7jy4tk0cf2u1" path="res://assets/textures/title_screen_bg2.ogv" id="2_w8uqo"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="3_a4ium"]
 [ext_resource type="PackedScene" uid="uid://b713spnah4skw" path="res://scenes/ui/OptionsPanel.tscn" id="3_w8uqo"]
+
+[sub_resource type="Gradient" id="Gradient_r23qo"]
+offsets = PackedFloat32Array(0, 0.45528457, 1)
+colors = PackedColorArray(0.72156864, 0.8745098, 0.84705883, 0.5294118, 0.72156864, 0.8745098, 0.84705883, 0.2, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_to5md"]
+gradient = SubResource("Gradient_r23qo")
+width = 372
+height = 56
 
 [node name="TitleScreen" type="Control" unique_id=677689258]
 layout_mode = 3
@@ -13,10 +24,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eb34j")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1707387708]
-position = Vector2(-21, 429)
-scale = Vector2(2, 2)
-texture = ExtResource("2_aqpy5")
+[node name="Background" type="VideoStreamPlayer" parent="." unique_id=2100998390]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_w8uqo")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=64972241]
+position = Vector2(543, 266)
+texture = ExtResource("2_r23qo")
 
 [node name="VersionNumberLabel" type="Label" parent="." unique_id=1088067038]
 layout_mode = 1
@@ -32,51 +54,97 @@ text = "v0.0.1"
 
 [node name="GameTitleAndButtons" type="VBoxContainer" parent="." unique_id=1383451429]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -56.0
-offset_right = 200.0
-offset_bottom = 56.0
+anchors_preset = -1
+anchor_left = 0.091000006
+anchor_top = 0.44400004
+anchor_right = 0.323
+anchor_bottom = 0.822
+offset_left = -0.6000061
+offset_top = 41.399963
+offset_right = 0.19995117
+offset_bottom = 41.19995
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameTitle(WorkingTitle)" type="RichTextLabel" parent="GameTitleAndButtons" unique_id=401937619]
-custom_minimum_size = Vector2(500, 200)
-layout_mode = 2
-theme_type_variation = &"TitleText"
-theme_override_font_sizes/normal_font_size = 188
-text = "Interim"
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="TitleButtons" type="VBoxContainer" parent="GameTitleAndButtons" unique_id=1948832170]
 layout_mode = 2
+theme_override_constants/separation = 15
 
-[node name="ContinueGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1996352329]
+[node name="ContinueGameButton" type="TextureButton" parent="GameTitleAndButtons/TitleButtons" unique_id=2005533511]
 layout_mode = 2
 disabled = true
-text = "Continue"
+texture_normal = SubResource("GradientTexture2D_to5md")
 
-[node name="NewGameButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=534820059]
-layout_mode = 2
-text = "New Game"
+[node name="Label" type="Label" parent="GameTitleAndButtons/TitleButtons/ContinueGameButton" unique_id=1838957875]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 18.0
+offset_right = 218.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("3_a4ium")
+theme_override_font_sizes/font_size = 26
+text = "CONTINUE"
 
-[node name="OptionsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=9048306]
+[node name="NewGameButton" type="TextureButton" parent="GameTitleAndButtons/TitleButtons" unique_id=850075290]
 layout_mode = 2
-text = "Options"
+texture_normal = SubResource("GradientTexture2D_to5md")
 
-[node name="CreditsButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=1401560807]
-layout_mode = 2
-text = "Credits"
+[node name="Label" type="Label" parent="GameTitleAndButtons/TitleButtons/NewGameButton" unique_id=472411250]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 18.0
+offset_right = 218.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("3_a4ium")
+theme_override_font_sizes/font_size = 26
+text = "NEW GAME"
 
-[node name="QuitButton" type="Button" parent="GameTitleAndButtons/TitleButtons" unique_id=49289049]
+[node name="OptionsButton" type="TextureButton" parent="GameTitleAndButtons/TitleButtons" unique_id=857407834]
 layout_mode = 2
-text = "Quit"
+texture_normal = SubResource("GradientTexture2D_to5md")
+
+[node name="Label" type="Label" parent="GameTitleAndButtons/TitleButtons/OptionsButton" unique_id=1869460951]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 18.0
+offset_right = 218.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("3_a4ium")
+theme_override_font_sizes/font_size = 26
+text = "OPTIONS"
+
+[node name="CreditsButton" type="TextureButton" parent="GameTitleAndButtons/TitleButtons" unique_id=23356595]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_to5md")
+
+[node name="Label" type="Label" parent="GameTitleAndButtons/TitleButtons/CreditsButton" unique_id=486921443]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 18.0
+offset_right = 218.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("3_a4ium")
+theme_override_font_sizes/font_size = 26
+text = "CREDITS"
+
+[node name="QuitButton" type="TextureButton" parent="GameTitleAndButtons/TitleButtons" unique_id=514400790]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_to5md")
+
+[node name="Label" type="Label" parent="GameTitleAndButtons/TitleButtons/QuitButton" unique_id=1781368279]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 18.0
+offset_right = 218.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("3_a4ium")
+theme_override_font_sizes/font_size = 26
+text = "QUIT"
 
 [node name="OptionsMenu" type="CanvasLayer" parent="." unique_id=833037058]
 visible = false
@@ -134,58 +202,121 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.31764707, 0.2509804, 0.23137255, 0.6)
+color = Color(0, 0.24313726, 0.32156864, 0.72156864)
 
 [node name="CreditsLabel" type="RichTextLabel" parent="CreditsMenu" unique_id=1565112286]
 custom_minimum_size = Vector2(0, 100)
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.15400001
-offset_bottom = -99.79201
+offset_bottom = 72.399994
 grow_horizontal = 2
 theme_type_variation = &"TitleText"
 theme_override_font_sizes/normal_font_size = 80
-text = "Credits"
+bbcode_enabled = true
+text = "[center][color=cccdc4][color=70afa3][font=res://assets/fonts/Allura-Regular.ttf][font_size=150]Credits[/font_size][/font][/color]"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CreditsText" type="RichTextLabel" parent="CreditsMenu" unique_id=1275839695]
+anchors_preset = -1
+anchor_left = 0.011284722
+anchor_right = 0.98697925
+anchor_bottom = 0.338
+offset_top = 172.0
+offset_bottom = 575.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Development Team[/color][/font_size][/font]
+
+[font_size=30]
+[center]
+[table=2]
+[cell padding=0,0,24,0][right][b]Jordon Call[/b][/right][/cell][cell][left]Lead Developer & Systems Designer[/left][/cell]
+[cell padding=0,0,24,0][right][b]Charlie Vaughn[/b][/right][/cell][cell][left]Creative Director & Executive Producer[/left][/cell]
+[cell padding=0,0,24,0][right][b]Phrenix[/b][/right][/cell][cell][left]Art Director & Animator[/left][/cell]
+[cell padding=0,0,24,0][right][b]Sunny Bee[/b][/right][/cell][cell][left]Character & Prop Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]KatyaArt132[/b][/right][/cell][cell][left]Character & Cinematic Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Lee Campos[/b][/right][/cell][cell][left]Background & Prop Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Rhys Cassidy[/b][/right][/cell][cell][left]Composer[/left][/cell]
+[cell padding=0,0,24,0][right][b]Jura Leopold[/b][/right][/cell][cell][left]Foley Artist[/left][/cell]
+[cell padding=0,0,24,0][right][b]Robert Burchette[/b][/right][/cell][cell][left]Communications & Playtest Coordinator[/left][/cell]
+[/table]
+[/center]
+[/font_size]
+
+
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Voice Actors[/color][/font_size][/font]
+
+[font_size=30]
+[b]Sunny Bee[/b] as Emily Dunn
+[b]Ry Hillemeyer[/b] as David Dunn
+[b]Bella Hillemeyer[/b] as Leanne Dunn
+[/font_size]
+
+
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Playtesters[/color][/font_size][/font]
+
+[font_size=30]
+[b]Catherine Garrett[/b]
+[b]MrDragorian[/b]
+[b]Robert Burchette[/b]
+[/font_size]
+
+
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Featured Music[/color][/font_size][/font]
+
+[font_size=30]
+[b]Faye Ophelia[/b]
+\"Luna\" · \"Card Towers\" · \"Swallowtail\" · \"Anathema\"
+[/font_size]
+[font_size=20][i]Used with the artist's permission.[/i][/font_size]
+
+[font_size=30]
+[b]Joe Leytrick[/b]
+\"In the Dark\" · \"I Don't Know (Acoustic)\" · \"Forget the Day\"
+[/font_size]
+[font_size=20][i]Used with the artist's permission.[/i][/font_size]
+
+[font_size=30]
+[b]Ayleen Valentine[/b]
+\"White Gummy\"
+[/font_size]
+[font_size=20][i]Used under license from the artist.[/i][/font_size]
+
+
+[font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Built With[/color][/font_size][/font]
+
+[font_size=24]
+[center]
+[table=2]
+[cell padding=0,10,24,10][right][b]Godot Engine[/b][/right][/cell][cell padding=0,10,0,10][left]godotengine.org/license[/left][/cell]
+[cell padding=0,10,24,10][right][b]Dialogue Manager[/b][/right][/cell][cell padding=0,10,0,10][left]by Nathan Hoad (MIT License)[/left][/cell]
+[cell padding=0,10,24,10][right][b]Allura, Caveat, Josefin[/b]
+[b]Sans, & ReenieBeanie[/b][/right][/cell][cell padding=0,10,0,10][left]SIL Open Font License[/left][/cell]
+[/table]
+[/center]
+[/font_size]"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="CloseCreditsButton" type="Button" parent="CreditsMenu" unique_id=1487107922]
 custom_minimum_size = Vector2(50, 50)
 anchors_preset = -1
-anchor_left = 0.94400007
+anchor_left = 0.957
 anchor_top = 0.023000002
-anchor_right = 0.98700005
-anchor_bottom = 0.1
-offset_left = -0.4880371
-offset_top = 0.095998764
-offset_right = -0.024047852
-offset_bottom = 0.19999695
+anchor_right = 0.98800004
+anchor_bottom = 0.079
+offset_left = -0.28796387
+offset_top = 0.19712639
+offset_right = 0.11206055
+offset_bottom = -0.20288086
 grow_horizontal = 0
 theme_type_variation = &"CloseButton"
 text = "x"
-
-[node name="CreditsText" type="Label" parent="CreditsMenu" unique_id=377700736]
-anchors_preset = -1
-anchor_left = 0.011284722
-anchor_top = 0.15432099
-anchor_right = 0.9869792
-anchor_bottom = 0.97993827
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Name - Title - Link
-
-Dialogue Manager by Nathan Hoad - MIT License
-This game uses the Allura, Caveat, Josefin Sans, and ReenieBeanie fonts.
-Allura - Copyright 2010 The Allura Project Authors (https://github.com/googlefonts/allura)
-Caveat - Copyright 2014 The Caveat Project Authors (https://github.com/googlefonts/caveat)
-Josefin Sans - Copyright 2010 The Josefin Sans Project Authors (https://github.com/ThomasJockin/JosefinSansFont-master), with Reserved Font Name \"Josefin Sans\".
-ReenieBeanie - Copyright 2010, James Grieshaber (james@typeco.com)
-These Font Softwares are licensed under the SIL Open Font License, Version 1.1.
-License URL: https://openfontlicense.org"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="ConfirmClosePopUp" type="CanvasLayer" parent="." unique_id=1987680131]
 visible = false

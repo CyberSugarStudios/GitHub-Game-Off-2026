@@ -19,8 +19,17 @@ bg_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmnfm"]
 bg_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akcoj"]
+bg_color = Color(0.3647059, 0.08235294, 0.08235294, 0.4862745)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0t8hg"]
+bg_color = Color(0.3647059, 0.08235294, 0.08235294, 0.70980394)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
-bg_color = Color(0.74509805, 0.078431375, 0.078431375, 1)
+bg_color = Color(0.3647059, 0.08235294, 0.08235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8uqo"]
+bg_color = Color(0.3647059, 0.08235294, 0.08235294, 0.4862745)
 
 [resource]
 Button/colors/font_color = Color(0.7137255, 0.68235296, 0.6039216, 1)
@@ -39,9 +48,12 @@ Button/styles/hover = SubResource("StyleBoxFlat_2lyf0")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_7008c")
 Button/styles/pressed = SubResource("StyleBoxFlat_jmnfm")
 CloseButton/base_type = &"Button"
-CloseButton/colors/font_color = Color(1, 1, 1, 1)
+CloseButton/colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
 CloseButton/font_sizes/font_size = 48
+CloseButton/styles/hover = SubResource("StyleBoxFlat_akcoj")
+CloseButton/styles/hover_pressed = SubResource("StyleBoxFlat_0t8hg")
 CloseButton/styles/normal = SubResource("StyleBoxFlat_sugp2")
+CloseButton/styles/pressed = SubResource("StyleBoxFlat_w8uqo")
 Label/colors/font_color = Color(0.7137255, 0.68235296, 0.6039216, 1)
 Label/colors/font_outline_color = Color(0.7137255, 0.68235296, 0.6039216, 1)
 Label/constants/outline_size = 2
