@@ -23,6 +23,7 @@ func show_solution(cue: String) -> void:
 	body.text = "\n\n".join(lines)
 	visible = true
 	GameState.set_controls_locked(true)
+	GameState.overlay_open = true
 	_mouse_before = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -32,6 +33,7 @@ func close() -> void:
 	visible = false
 	GameState.set_controls_locked(false)
 	Input.mouse_mode = _mouse_before
+	GameState.overlay_open = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("move_backward") \

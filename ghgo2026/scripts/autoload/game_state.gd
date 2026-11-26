@@ -44,6 +44,7 @@ var monster_level := 0
 var _stage_started_at := 0
 var _hint_bonus := 0.0
 var hint_step := 0
+var overlay_open := false
 var shift_allowed := true
 var regen_paused := false
 var guarded_room: StringName = &""

@@ -746,6 +746,20 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HintPrompt" type="Label" parent="UI" unique_id=575392051]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -146.0
+offset_top = 13.0
+offset_right = -13.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Hint   [H]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SpiritBars" type="HBoxContainer" parent="UI" unique_id=2077483971]
 offset_left = 20.0
 offset_top = 40.0
@@ -960,10 +974,11 @@ front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSo
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
 pamphlet = NodePath("../PamphletView")
 
-[node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player")]
+[node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player", "prompt_label")]
 script = ExtResource("44_cjqg0")
 household = NodePath("../Household")
 conversation_player = NodePath("../ConversationPlayer")
+prompt_label = NodePath("../UI/HintPrompt")
 
 [node name="EmilyReactions" type="Node" parent="." unique_id=989090217 node_paths=PackedStringArray("conversation_player")]
 script = ExtResource("61_t5ykj")
