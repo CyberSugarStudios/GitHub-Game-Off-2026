@@ -56,7 +56,7 @@
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="37_dnhof"]
 [ext_resource type="FontVariation" uid="uid://nbgtuufo4x15" path="res://assets/fonts/josefin_bold.tres" id="38_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://bpyjxvjn83tjr" path="res://scenes/ui/diary_book.tscn" id="39_bjg73"]
-[ext_resource type="Material" uid="uid://dvftu1aox64i7" path="res://shaders/astral_filter_material.tres" id="40_ygd8o"]
+[ext_resource type="Material" uid="uid://dvftu1aox64i7" path="res://assets/materials/astral_filter_material.tres" id="40_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://cvbp0nfglxkyt" path="res://scenes/ui/mp3_player.tscn" id="41_0loja"]
 [ext_resource type="Script" uid="uid://cneq7sco5safu" path="res://scripts/story/story_director.gd" id="41_5poiv"]
 [ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="42_dnhof"]
@@ -274,7 +274,7 @@ omni_range = 4.7829776
 [node name="UnderTone" type="OmniLight3D" parent="Hall/Lights" unique_id=2107431311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003976822, 1.5908678, -3.3724892)
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
-light_energy = 0.6
+light_energy = 0.8
 omni_range = 4.7829776
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Hall/Lights" unique_id=634529625]
@@ -286,7 +286,7 @@ omni_range = 5.551603
 [node name="UnderTone2" type="OmniLight3D" parent="Hall/Lights" unique_id=2070479431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -5.7531343)
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
-light_energy = 0.6
+light_energy = 0.8
 omni_range = 5.551603
 
 [node name="LeanneHall" parent="Hall" unique_id=865967836 instance=ExtResource("15_jkv2x")]

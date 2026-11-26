@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://qart6dupwej8"
+path="res://.godot/imported/Can sip 4.wav-aa13d4057bc90285b8a22317727f707d.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/varied2/Can sip 4.wav"
+dest_files=["res://.godot/imported/Can sip 4.wav-aa13d4057bc90285b8a22317727f707d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

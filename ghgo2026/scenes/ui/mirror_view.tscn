@@ -5,7 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cv88o0lj250y1" path="res://assets/sprites/Animations/frames/creature/mom_creature_frames.tres" id="3_4fkph"]
 [ext_resource type="Texture2D" uid="uid://cfnsh4xxbmhr1" path="res://assets/sprites/rooms/bathroom/emily_reflection.webp" id="4_4iq1k"]
 [ext_resource type="Texture2D" uid="uid://c3fcegkj8bqxy" path="res://assets/sprites/rooms/bathroom/fog.webp" id="5_4iq1k"]
-[ext_resource type="Material" uid="uid://dvftu1aox64i7" path="res://shaders/astral_filter_material.tres" id="6_4twi7"]
+[ext_resource type="Material" uid="uid://dvftu1aox64i7" path="res://assets/materials/astral_filter_material.tres" id="6_4twi7"]
 
 [node name="MirrorView" type="CanvasLayer" unique_id=981359443]
 layer = 10
