@@ -16,11 +16,20 @@ extends Node
 
 @onready var room_layer: CanvasLayer = $RoomLayer
 @onready var room_ui: CanvasLayer = $RoomUI
-@onready var exit_button: TextureRect = $RoomUI/ExitButton
+@onready var exit_button: TextureRect = $RoomUI/KeyHints/ExitButton
+@onready var exit_arrow: TextureRect = $RoomUI/KeyHints/ExitArrow
 @onready var fade_rect: ColorRect = $FadeLayer/Fade
 @onready var input_blocker: ColorRect = $RoomUI/InputBlocker
-@onready var left_button: TextureRect = $RoomUI/LeftButton
-@onready var right_button: TextureRect = $RoomUI/RightButton
+@onready var key_hints: Control = $RoomUI/KeyHints
+
+@export var key_hint_hold: float = 3.0
+@export var key_hint_fade: float = 2.5
+
+@export var intro_room: StringName = &"living_room"
+
+static var _hinted_rooms: Dictionary = {}
+var _key_tween: Tween
+var _hold_hints := false
 
 var _room: Room = null
 var _busy := false # guard against double-triggers
@@ -39,6 +48,7 @@ var exit_locked := false:
 		exit_locked = value
 		if exit_button:
 			exit_button.visible = not value and not GameState.controls_locked
+			exit_arrow.visible = exit_button.visible
 
 func _ready() -> void:
 	room_ui.visible = false
@@ -55,8 +65,8 @@ func _ready() -> void:
 func _on_controls_locked_changed(locked: bool) -> void:
 	input_blocker.visible = locked
 	exit_button.visible = not locked and not exit_locked
-	left_button.visible = not locked
-	right_button.visible = not locked
+	exit_arrow.visible = exit_button.visible
+	key_hints.visible = not locked
 
 func _exit_tree() -> void:
 	get_viewport().disable_3d = false
@@ -89,6 +99,7 @@ func _open(room_id: StringName, exit_spot: Transform3D) -> void:
 	_max_pan = 0.0
 	_pan_velocity = 0.0
 	_fit_room()
+	_show_key_hints(room_id)
 
 func open_now(room_id: StringName, exit_spot: Transform3D) -> void:
 	if _room or not rooms.has(room_id):
@@ -109,12 +120,40 @@ func change_room(room_id: StringName) -> void:
 	await _fade_to(0.0)
 	_busy = false
 
+func _show_key_hints(room_id: StringName) -> void:
+	if _key_tween:
+		_key_tween.kill()
+	key_hints.modulate.a = 0.0
+	_hold_hints = false
+	var in_intro := not GameState.has_flag(StoryDirector.INTRO_DONE) and room_id == intro_room
+	var shown: int = _hinted_rooms.get(room_id, 0)
+	if shown >= (2 if in_intro else 1):
+		return
+	_hinted_rooms[room_id] = shown + 1
+	_hold_hints = in_intro and shown == 0
+	while GameState.controls_locked or _busy:
+		await get_tree().process_frame
+	if _room == null or GameState.current_room != room_id:
+		return
+	_key_tween = create_tween()
+	_key_tween.tween_property(key_hints, "modulate:a", 1.0, 0.4)
+	if _hold_hints:
+		return
+	_key_tween.tween_interval(key_hint_hold)
+	_key_tween.tween_property(key_hints, "modulate:a", 0.0, key_hint_fade)
+
 func current_room() -> Room:
 	return _room
 
 func exit_room() -> void:
 	if _busy or not _room or exit_locked or GameState.controls_locked:
 		return
+	if _hold_hints:
+		_hold_hints = false
+		if _key_tween:
+			_key_tween.kill()
+		_key_tween = create_tween()
+		_key_tween.tween_property(key_hints, "modulate:a", 0.0, 0.4)
 	if _room.exits_to != &"":
 		change_room(_room.exits_to)
 		return
