@@ -12,6 +12,7 @@ const SHOW_DEBUG_RECTS := true
 @export_range(0, 5) var required_bars: int = 0
 @export var one_shot: bool = false
 @export var story_id: StringName
+@export var use_sound: AudioStream
 
 @export_group("Story")
 @export var from_stage: int = 0
@@ -30,6 +31,7 @@ var blocker: Node = null:
 		_refresh()
 var _used := false
 var _hovered := false
+var _use_player: AudioStreamPlayer
 #endregion
 
 func _ready() -> void:
@@ -68,6 +70,7 @@ func try_interact() -> void:
 		return
 	_used = true
 	interacted.emit()
+	_play_use_sound()
 	if story_id != &"":
 		Events.story_event.emit(story_id)
 	if observe_dialogue and observe_cue != "":
@@ -77,6 +80,16 @@ func try_interact() -> void:
 
 func _on_interacted() -> void:
 	pass
+
+func _play_use_sound() -> void:
+	if use_sound == null:
+		return
+	if _use_player == null:
+		_use_player = AudioStreamPlayer.new()
+		_use_player.bus = &"SFX"
+		add_child(_use_player)
+	_use_player.stream = use_sound
+	_use_player.play()
 
 func _refresh() -> void:
 	if not is_inside_tree():

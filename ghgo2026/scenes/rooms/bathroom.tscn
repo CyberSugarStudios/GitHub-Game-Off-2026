@@ -7,11 +7,7 @@
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_muy8a"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_nc0wo"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_won8x"]
-
-[sub_resource type="Gradient" id="Gradient_8pl6i"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
-gradient = SubResource("Gradient_8pl6i")
+[ext_resource type="AudioStream" uid="uid://c2rk045w2kehh" path="res://assets/audio/sfx/varied/Shower.wav" id="8_nc0wo"]
 
 [node name="Bathroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_y5w4s")
@@ -56,11 +52,6 @@ parent_id = &"david"
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
-[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(388.5625, 998.6407)
-scale = Vector2(3.0825195, 388.71872)
-texture = SubResource("GradientTexture1D_8pl6i")
-
 [node name="Hotspots" type="Node2D" parent="." unique_id=1900794302]
 z_index = 40
 
@@ -84,4 +75,5 @@ prompt_text = "Turn on water"
 realm = 2
 energy_cost = 0.25
 story_id = &"bathroom_shower_faucet"
+use_sound = ExtResource("8_nc0wo")
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"

@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="14_eokjc"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="15_mnsc7"]
 [ext_resource type="Script" uid="uid://c8mgegcpjhxpp" path="res://scripts/rooms/door_light.gd" id="17_8mmjm"]
+[ext_resource type="AudioStream" uid="uid://dg6oeyk5btt81" path="res://assets/audio/sfx/varied/TV on.wav" id="27_bqn76"]
+[ext_resource type="AudioStream" uid="uid://wtu22l8h3tff" path="res://assets/audio/sfx/varied/TV off.wav" id="28_cs0md"]
 [ext_resource type="Script" uid="uid://b76k2cuuruw1m" path="res://scripts/rooms/activity_sounds.gd" id="28_x2u51"]
 [ext_resource type="AudioStream" uid="uid://dmdaio4iqtyap" path="res://assets/audio/sfx/varied2/Can sip 2.wav" id="29_e3ptr"]
 [ext_resource type="AudioStream" uid="uid://ut1fobxnlk84" path="res://assets/audio/sfx/varied2/Can sip 3.wav" id="30_bqn76"]
@@ -405,6 +407,8 @@ day_strength = 0.9
 needs_activity = "watching_tv"
 tv_flicker = true
 power_target = &"tv"
+on_sound = ExtResource("27_bqn76")
+off_sound = ExtResource("28_cs0md")
 
 [node name="DoorLight" type="Polygon2D" parent="." unique_id=1829461519]
 z_index = 35

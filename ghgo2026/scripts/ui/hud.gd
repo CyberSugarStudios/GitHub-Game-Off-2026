@@ -18,6 +18,8 @@ const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
 @export var swipe_frames: int = 25
 @export var swipe_fps: float = 12.0
 @export var move_hint_seconds: float = 7.0
+@export var astral_enter_sound: AudioStream = preload("res://assets/audio/sfx/varied2/Interim - Breath SFX 1.wav")
+@export var astral_leave_sound: AudioStream = preload("res://assets/audio/sfx/varied2/Interim - Breath SFX 2.wav")
 
 @export var room_prompt_bottom: float = -150.0
 @export var hall_prompt_bottom: float = -80.0
@@ -53,6 +55,8 @@ var _warmup := false
 var _prompt_rest := Vector2.ZERO
 var _shake_tween: Tween
 var _memory_player: AudioStreamPlayer
+var _breath_player: AudioStreamPlayer
+var _breath_astral := false
 var _known_bars := 0
 var _memory_animations := 0
 
@@ -69,6 +73,10 @@ func _ready() -> void:
 	_memory_player.stream = MEMORY_SOUND
 	_memory_player.bus = &"SFX"
 	add_child(_memory_player)
+	_breath_player = AudioStreamPlayer.new()
+	_breath_player.bus = &"SFX"
+	add_child(_breath_player)
+	_breath_astral = GameState.in_astral
 	GameState.max_bars_changed.connect(_on_max_bars_changed)
 	GameState.plane_changed.connect(_on_plane_changed)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
@@ -162,6 +170,10 @@ func _play_memory_restored(index: int) -> void:
 
 #region - ASTRAL EFFECT
 func _on_plane_changed(in_astral: bool) -> void:
+	if in_astral != _breath_astral:
+		_breath_astral = in_astral
+		_breath_player.stream = astral_enter_sound if in_astral else astral_leave_sound
+		_breath_player.play()
 	if _astral_tween:
 		_astral_tween.kill()
 	_astral_tween = create_tween()

@@ -22,6 +22,8 @@ const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 @export var shot_seconds := Vector2(0.6, 3.0)
 @export var power_target: StringName
 @export var cut_by_power: StringName = &"static"
+@export var on_sound: AudioStream
+@export var off_sound: AudioStream
 
 var _room_id: StringName
 var _level := 0.0
@@ -30,6 +32,8 @@ var _shot_left := 0.0
 var _shot_color := Color.WHITE
 var _shot_energy := 1.0
 var _flicker_energy := 1.0
+var _was_on := false
+var _switch_sound: AudioStreamPlayer
 
 func _ready() -> void:
 	var node := get_parent()
@@ -43,9 +47,18 @@ func _ready() -> void:
 			_cut = false
 	)
 	_level = 1.0 if _is_switched_on() else 0.0
+	_was_on = _is_switched_on()
+	if on_sound or off_sound:
+		_switch_sound = AudioStreamPlayer.new()
+		_switch_sound.bus = &"SFX"
+		add_child(_switch_sound)
 
 func _process(delta: float) -> void:
-	_level = move_toward(_level, 1.0 if _is_switched_on() else 0.0, delta * fade_speed)
+	var switched_on := _is_switched_on()
+	if switched_on != _was_on:
+		_was_on = switched_on
+		_play_switch(switched_on)
+	_level = move_toward(_level, 1.0 if switched_on else 0.0, delta * fade_speed)
 	var daylight := DAY_NIGHT.sun_energy.sample(GameClock.get_day_fraction())
 	var strength := on_energy * _level * lerpf(1.0, day_strength, daylight) * (1.0 - DayNight.astral_amount)
 	if tv_flicker:
@@ -68,6 +81,13 @@ func _is_switched_on() -> bool:
 			and String(GameState.get_parent_activity(parent_id)).contains(needs_activity):
 				return true
 	return false
+
+func _play_switch(switched_on: bool) -> void:
+	var stream := on_sound if switched_on else off_sound
+	if stream == null or _switch_sound == null or GameState.current_room != _room_id:
+		return
+	_switch_sound.stream = stream
+	_switch_sound.play()
 
 func _flicker(delta: float) -> float:
 	_shot_left -= delta
