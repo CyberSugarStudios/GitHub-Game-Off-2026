@@ -4,6 +4,11 @@ extends Node2D
 signal arrived
 
 const PARENT_SCALES := {&"david": 0.55, &"leanne": 0.52}
+const BASE_MARKER := "DoorwayBase"
+const CANVAS_HEIGHTS := {
+	&"david": {&"idle": 2111.0, &"sitting": 1525.0, &"sleeping": 1525.0},
+	&"leanne": {&"idle": 1901.0, &"reading": 1450.0},
+}
 const STEPS: Dictionary[StringName, AudioStream] = {
 	&"leanne": preload("res://assets/audio/sfx/footsteps/leanne_steps.tres"),
 	&"david": preload("res://assets/audio/sfx/footsteps/david_steps.tres"),
@@ -93,6 +98,8 @@ func _refresh(walk_in: bool) -> void:
 		position = _spot(&"door", position)
 	_walking = position.distance_to(_target) > 1.0
 	_walked = step_stride * 0.5
+	if _walking:
+		_place_doorway_base(&"")
 	if not _walking:
 		_stand()
 
@@ -131,6 +138,29 @@ func _stand() -> void:
 	if anim == &"" or frames == null or not frames.has_animation(anim):
 		anim = activity if frames and frames.has_animation(activity) else idle_animation
 	_animate(anim, _standing_flip(activity))
+	_place_doorway_base(activity)
+
+func _height_for(anim: StringName) -> float:
+	if animation_heights.has(anim):
+		return animation_heights[anim]
+	var canvas: Dictionary = CANVAS_HEIGHTS.get(parent_id, {})
+	if canvas.has(anim) and canvas.has(idle_animation):
+		return height * float(canvas[anim]) / float(canvas[idle_animation])
+	return height
+
+func _place_doorway_base(activity: StringName) -> void:
+	var spot := _spot_node(activity)
+	var spot_base := spot.get_node_or_null(BASE_MARKER) as Node2D if spot else null
+	var marker := sprite.get_node_or_null(BASE_MARKER) as Node2D
+	if spot_base == null:
+		if marker:
+			marker.free()
+		return
+	if marker == null:
+		marker = Marker2D.new()
+		marker.name = BASE_MARKER
+		sprite.add_child(marker)
+	marker.global_position = spot_base.global_position
 
 func _spot_animation(activity: StringName) -> StringName:
 	var spot := _spot_node(activity)
@@ -155,7 +185,7 @@ func _animate(anim: StringName, flip: float) -> void:
 	sprite.speed_scale = GameClock.world_speed
 	var texture := frames.get_frame_texture(anim, 0)
 	if texture:
-		var anim_height: float = animation_heights.get(anim, height)
+		var anim_height := _height_for(anim)
 		sprite.scale = Vector2.ONE * (anim_height / texture.get_height())
 		sprite.position.y = -anim_height * 0.5
 
