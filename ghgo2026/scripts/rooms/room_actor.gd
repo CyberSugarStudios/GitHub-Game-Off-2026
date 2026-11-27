@@ -150,17 +150,20 @@ func _height_for(anim: StringName) -> float:
 
 func _place_doorway_base(activity: StringName) -> void:
 	var spot := _spot_node(activity)
-	var spot_base := spot.get_node_or_null(BASE_MARKER) as Node2D if spot else null
-	var marker := sprite.get_node_or_null(BASE_MARKER) as Node2D
-	if spot_base == null:
-		if marker:
-			marker.free()
-		return
-	if marker == null:
-		marker = Marker2D.new()
-		marker.name = BASE_MARKER
-		sprite.add_child(marker)
-	marker.global_position = spot_base.global_position
+	var seat: Node2D = spot.get("seat") if spot is RoomSpot else null
+	for marker_name in [BASE_MARKER, "DoorwayLeft", "DoorwayRight"]:
+		var holder: Node = seat if seat and marker_name != BASE_MARKER else spot
+		var source := holder.get_node_or_null(marker_name) as Node2D if holder else null
+		var marker := sprite.get_node_or_null(marker_name) as Node2D
+		if source == null:
+			if marker:
+				marker.free()
+			continue
+		if marker == null:
+			marker = Marker2D.new()
+			marker.name = marker_name
+			sprite.add_child(marker)
+		marker.global_position = source.global_position
 
 func _spot_animation(activity: StringName) -> StringName:
 	var spot := _spot_node(activity)

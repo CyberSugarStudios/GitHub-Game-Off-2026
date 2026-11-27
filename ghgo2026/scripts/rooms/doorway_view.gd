@@ -4,6 +4,7 @@ extends Node3D
 const WINDOW_SHADER := preload("res://shaders/doorway_window.gdshader")
 const CARD_SHADER := preload("res://shaders/doorway_card.gdshader")
 const PLANE_SHADER := preload("res://shaders/doorway_plane.gdshader")
+const SEAT_SHADER := preload("res://shaders/doorway_seat.gdshader")
 const PLANE_LEFT := "DoorwayLeft"
 const PLANE_RIGHT := "DoorwayRight"
 const PLANE_MOVE := "DoorwayMove"
@@ -47,6 +48,8 @@ var _material: ShaderMaterial
 var _props_viewport: SubViewport
 var _actors_viewport: SubViewport
 var _light_viewport: SubViewport
+var _seats: Dictionary[CanvasItem, MeshInstance3D] = {}
+var _seat_lines: Dictionary[CanvasItem, Array] = {}
 var _card_mesh: QuadMesh
 var _cards: Dictionary[CanvasItem, MeshInstance3D] = {}
 var _planes: Dictionary[CanvasItem, MeshInstance3D] = {}
@@ -303,6 +306,13 @@ func _update_cards(camera: Vector3) -> void:
 	for art in _cards:
 		var card := _cards[art]
 		card.visible = art.is_visible_in_tree()
+		var seat_left := art.get_node_or_null(PLANE_LEFT) as Node2D
+		var seat_right := art.get_node_or_null(PLANE_RIGHT) as Node2D
+		if card.visible and _is_actor(art) and seat_left and seat_right:
+			card.visible = false
+			_show_seat(art, seat_left.global_position, seat_right.global_position)
+			continue
+		_hide_seat(art)
 		if not card.visible:
 			continue
 		var rect := _rect_of(art)
@@ -322,6 +332,48 @@ func _update_cards(camera: Vector3) -> void:
 		card.rotation.y = atan2(camera.x - base.x, camera.z - base.z)
 		card.scale = Vector3(size.x, size.y, 1.0)
 		(card.material_override as ShaderMaterial).set_shader_parameter("region", _to_uv(rect))
+
+func _show_seat(art: CanvasItem, left: Vector2, right: Vector2) -> void:
+	var seat: MeshInstance3D = _seats.get(art)
+	if seat == null or _seat_lines.get(art) != [left, right]:
+		_hide_seat(art)
+		seat = _make_seat_plane(art, left, right)
+		_seats[art] = seat
+		_seat_lines[art] = [left, right]
+	(seat.material_override as ShaderMaterial).set_shader_parameter("region", _to_uv(_rect_of(art)))
+
+func _hide_seat(art: CanvasItem) -> void:
+	var seat: MeshInstance3D = _seats.get(art)
+	if seat:
+		seat.queue_free()
+		_seats.erase(art)
+		_seat_lines.erase(art)
+
+func _make_seat_plane(art: CanvasItem, left: Vector2, right: Vector2) -> MeshInstance3D:
+	var rect := _rect_of(art)
+	var left_v := RoomDepth.apply_map(_floor_unmap, left).y
+	var right_v := RoomDepth.apply_map(_floor_unmap, right).y
+	var plane_map := _plane_map(left, right, left_v, right_v, 1.0)
+	var plane_unmap := plane_map.inverse()
+	var lo := Vector2.ZERO
+	var hi := Vector2.ONE
+	for corner in [rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)]:
+		var spot := RoomDepth.apply_map(plane_unmap, corner)
+		lo = lo.min(spot)
+		hi = hi.max(spot)
+	var to_uv := Basis.from_scale(Vector3(1.0 / _room_size.x, 1.0 / _room_size.y, 1.0))
+	var seat_material := ShaderMaterial.new()
+	seat_material.shader = SEAT_SHADER
+	seat_material.set_shader_parameter("actors_view", _actors_viewport.get_texture())
+	seat_material.set_shader_parameter("to_room", global_transform.affine_inverse())
+	seat_material.set_shader_parameter("plane_map", to_uv * plane_map)
+	var plane := MeshInstance3D.new()
+	plane.mesh = _plane_mesh(_floor_point(left), _floor_point(right), lo, hi)
+	plane.position.z += child_plane_offset * 2.0
+	plane.material_override = seat_material
+	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(plane)
+	return plane
 
 func _rect_of(art: CanvasItem) -> Rect2:
 	var local: Rect2

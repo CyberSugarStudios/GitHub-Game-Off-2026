@@ -23,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="11_e86kh"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="12_8llds"]
 [ext_resource type="Script" uid="uid://bcy0edgmj4uh8" path="res://scripts/rooms/room_depth.gd" id="12_a5o1a"]
+[ext_resource type="Texture2D" uid="uid://dsrxyqpnne2bq" path="res://assets/sprites/rooms/living_room/recliner_sit_mask.webp" id="12_s0qln"]
 [ext_resource type="AudioStream" uid="uid://byxt0lbsivggp" path="res://assets/audio/sfx/varied/can_knock.wav" id="13_xsf0y"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="14_eokjc"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="15_mnsc7"]
@@ -145,7 +146,12 @@ position = Vector2(73.4, 350.1)
 [node name="DoorwayRight" type="Marker2D" parent="BackProps/Recliner" unique_id=747447626]
 position = Vector2(483, 433.7)
 
+[node name="SitMask" type="Sprite2D" parent="BackProps/Recliner" unique_id=558795030]
+z_index = 1
+texture = ExtResource("12_s0qln")
+
 [node name="Couch" type="Sprite2D" parent="BackProps" unique_id=321414050]
+z_index = 1
 position = Vector2(3538.9, 1041.1)
 scale = Vector2(1.28, 1.28)
 texture = ExtResource("9_eqisx")
@@ -168,6 +174,7 @@ scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_e86kh")
 
 [node name="David" parent="Actors" unique_id=1491821632 instance=ExtResource("6_0vv3f")]
+z_index = -10
 position = Vector2(2694, 1008)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
@@ -364,17 +371,15 @@ from_stage = 3
 
 [node name="RoomSpots" type="Node2D" parent="." unique_id=50306253]
 
-[node name="WatchingTV" type="Marker2D" parent="RoomSpots" unique_id=935877567]
+[node name="WatchingTV" type="Marker2D" parent="RoomSpots" unique_id=935877567 node_paths=PackedStringArray("seat")]
 position = Vector2(2694, 1008)
 script = ExtResource("12_8llds")
 facing = 1
 also_for = Array[StringName]([&"watching_tv_and_drinking", &"drinking_and_tv", &"drinking_and_watching_tv_then_falling_asleep", &"sleeping"])
 animation = &"sitting"
 night_animation = &"sleeping"
+seat = NodePath("../../BackProps/Recliner")
 metadata/_custom_type_script = "uid://26eyobriow6j"
-
-[node name="DoorwayBase" type="Marker2D" parent="RoomSpots/WatchingTV" unique_id=838485905]
-position = Vector2(-47, -8)
 
 [node name="ArrivingHome" type="Marker2D" parent="RoomSpots" unique_id=459147660]
 position = Vector2(1928, 980)

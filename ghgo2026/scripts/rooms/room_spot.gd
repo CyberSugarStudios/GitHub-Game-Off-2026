@@ -10,6 +10,7 @@ enum Facing { EITHER, LEFT, RIGHT }
 @export var animation: StringName
 @export var night_animation: StringName
 @export var night_hours := Vector2(23.0, 6.0)
+@export var seat: Node2D
 
 func animation_now() -> StringName:
 	if night_animation != &"":
