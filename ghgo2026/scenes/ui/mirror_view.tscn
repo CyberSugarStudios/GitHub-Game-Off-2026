@@ -127,9 +127,10 @@ metadata/_edit_use_anchors_ = true
 [node name="NightTint" type="CanvasModulate" parent="." unique_id=2081958262]
 
 [node name="BathroomLight" type="PointLight2D" parent="." unique_id=1820625853]
-position = Vector2(1153, -203)
+position = Vector2(819, -10)
 color = Color(1, 0.93333334, 0.8392157, 1)
-range_z_min = 10
-range_z_max = 10
+energy = 10.0
+range_layer_min = 10
+range_layer_max = 10
 texture = ExtResource("10_f5hwt")
-texture_scale = 10.0
+texture_scale = 12.5

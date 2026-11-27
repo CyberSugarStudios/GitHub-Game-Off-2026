@@ -86,4 +86,3 @@ color = Color(1, 0.93333334, 0.8392157, 1)
 texture = ExtResource("9_t60wq")
 texture_scale = 16.0
 script = ExtResource("10_juav1")
-lit_hours = Vector2(17, 23.5)
