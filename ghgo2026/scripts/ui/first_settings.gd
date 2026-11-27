@@ -39,18 +39,13 @@ func _ready() -> void:
 	
 	var panel := OPTIONS_PANEL.instantiate() as OptionsPanel
 	panel.font_size = 22
+	panel.close_text = "CONTINUE"
+	panel.closed.connect(_continue)
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	panel.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	panel.size_flags_stretch_ratio = 2.0
 	columns.add_child(panel)
 	panel.add_theme_constant_override("separation", 8)
-	
-	var start := Button.new()
-	start.text = "Continue"
-	start.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	start.add_theme_font_size_override("font_size", 28)
-	start.pressed.connect(_continue)
-	page.add_child(start)
 	
 	modulate.a = 0.0
 	create_tween().tween_property(self, "modulate:a", 1.0, fade_time)

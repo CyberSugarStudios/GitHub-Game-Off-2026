@@ -32,7 +32,7 @@ const HOVER_FADE := 0.12
 @onready var quit_button = $GameTitleAndButtons/TitleButtons/QuitButton
 
 @onready var close_credits_button = $CreditsMenu/CloseCreditsButton
-@onready var close_options_button = $OptionsMenu/OptionsPanel/HBoxContainer/CloseOptionsButton
+@onready var options_panel: OptionsPanel = $OptionsMenu/OptionsPanel
 
 @onready var confirm_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/ConfirmCloseButton
 @onready var cancel_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/CancelCloseButton
@@ -57,7 +57,7 @@ func _ready() -> void:
 	quit_button.visible = not OS.has_feature("web")
 	
 	options_button.pressed.connect(on_options_menu_button_pressed)
-	close_options_button.pressed.connect(on_close_options_button_pressed)
+	options_panel.closed.connect(on_close_options_button_pressed)
 	credits_button.pressed.connect(on_credits_menu_button_pressed)
 	close_credits_button.pressed.connect(on_close_credits_button_pressed)
 	quit_button.pressed.connect(on_quit_button_pressed)

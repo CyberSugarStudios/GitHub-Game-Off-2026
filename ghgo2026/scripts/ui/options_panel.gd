@@ -1,6 +1,8 @@
 class_name OptionsPanel
 extends VBoxContainer
 
+signal closed
+
 const VOLUME_SLIDERS := {
 	&"Master": "MasterVolume",
 	&"Music": "MusicVolume",
@@ -17,6 +19,7 @@ const PREVIEW_FADE := 0.6
 
 @export var font_size: int = 26
 @export var previews: Dictionary[StringName, AudioStream] = {}
+@export var close_text: String = ""
 
 var _players: Dictionary[StringName, AudioStreamPlayer] = {}
 var _fades: Dictionary[StringName, Tween] = {}
@@ -40,6 +43,10 @@ func _ready() -> void:
 	_bind_check(%InvertY, func(on: bool) -> void: Settings.invert_y = on)
 	_bind_check(%HoldToStruggle, func(on: bool) -> void: Settings.hold_to_struggle = on)
 	(%ResetButton as BaseButton).pressed.connect(_reset)
+	var close_button := %CloseOptionsButton as TitleButton
+	if close_text != "":
+		close_button.text = close_text
+	close_button.pressed.connect(save_and_close)
 
 func _load_values() -> void:
 	for bus: StringName in VOLUME_SLIDERS:
@@ -65,6 +72,13 @@ func _bind_check(box: CheckBox, apply: Callable) -> void:
 func _reset() -> void:
 	Settings.reset_to_defaults()
 	_load_values()
+
+func save_and_close() -> void:
+	Settings.save_settings()
+	closed.emit()
+
+func focus_close() -> void:
+	(%CloseOptionsButton as Control).grab_focus()
 
 func _apply_font_size() -> void:
 	for node in find_children("*", "", true, false):

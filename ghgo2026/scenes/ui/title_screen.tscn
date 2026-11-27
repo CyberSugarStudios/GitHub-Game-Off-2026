@@ -382,5 +382,3 @@ text = "CONFIRM"
 [node name="CancelCloseButton" parent="ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons" unique_id=825685830 instance=ExtResource("6_cfe2f")]
 layout_mode = 2
 text = "CANCEL"
-
-[editable path="OptionsMenu/OptionsPanel"]

@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://ctr8sw6h7ilc4" path="res://scripts/ui/title_button.gd" id="2_8uki6"]
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="2_f6eus"]
 [ext_resource type="PackedScene" uid="uid://b713spnah4skw" path="res://scenes/ui/OptionsPanel.tscn" id="3_f6eus"]
-[ext_resource type="PackedScene" uid="uid://bc8avv3u5fuci" path="res://scenes/ui/title_button.tscn" id="5_0bnpd"]
 
 [sub_resource type="Gradient" id="Gradient_r23qo"]
 offsets = PackedFloat32Array(0, 0.45528457, 1)
@@ -78,6 +77,7 @@ theme_override_constants/separation = 15
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_8uki6")
 script = ExtResource("2_8uki6")
+text = "RESUME"
 
 [node name="Label" type="Label" parent="Buttons/ResumeButton" unique_id=116022441]
 layout_mode = 0
@@ -96,6 +96,7 @@ vertical_alignment = 1
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_4inpj")
 script = ExtResource("2_8uki6")
+text = "SETTINGS"
 
 [node name="Label" type="Label" parent="Buttons/SettingsButton" unique_id=1882203703]
 layout_mode = 0
@@ -114,6 +115,7 @@ vertical_alignment = 1
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_4inpj")
 script = ExtResource("2_8uki6")
+text = "QUIT"
 
 [node name="Label" type="Label" parent="Buttons/QuitToTitleButton" unique_id=1508341347]
 layout_mode = 0
@@ -132,6 +134,7 @@ vertical_alignment = 1
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_4inpj")
 script = ExtResource("2_8uki6")
+text = "PLAYTEST FEEDBACK"
 
 [node name="Label" type="Label" parent="Buttons/FeedbackButton" unique_id=2048067172]
 layout_mode = 0
@@ -147,7 +150,6 @@ text = "PLAYTEST FEEDBACK"
 vertical_alignment = 1
 
 [node name="OptionsPage" type="VBoxContainer" parent="." unique_id=299374755]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -163,7 +165,3 @@ theme_override_constants/separation = 24
 
 [node name="OptionsPanel" parent="OptionsPage" unique_id=1048352369 instance=ExtResource("3_f6eus")]
 layout_mode = 2
-
-[node name="BackButton" parent="OptionsPage" unique_id=619476330 instance=ExtResource("5_0bnpd")]
-layout_mode = 2
-text = "BACK"
