@@ -13,6 +13,7 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 @export var music_limit_seconds: float = 88.45
 @export var prompt_delay: float = 3.0
 @export var gap: float = 160.0
+@export var fade_in_seconds: float = 2.5
 
 @onready var credits_title: TextureRect = %CreditsTitle
 @onready var credits_text: Control = %CreditsText
@@ -39,6 +40,7 @@ func _ready() -> void:
 			(child as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
 	clip_contents = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_fade_in_from_white()
 	continue_prompt.modulate.a = 0.0
 	if music:
 		Music.play(music, music_fade, 0.0, db_to_linear(music_db))
@@ -73,6 +75,18 @@ func _process(_delta: float) -> void:
 	if not _leaving and music_limit_seconds > 0.0 and Music.current_stream() == music \
 			and Music.current_position() >= music_limit_seconds - 1.5:
 		_back_to_title()
+
+func _fade_in_from_white() -> void:
+	RenderingServer.set_default_clear_color(
+		ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color", Color.BLACK))
+	var white := ColorRect.new()
+	white.color = Color.WHITE
+	white.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(white)
+	white.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var tween := create_tween()
+	tween.tween_property(white, "color:a", 0.0, fade_in_seconds)
+	tween.tween_callback(white.queue_free)
 
 func _set_scrolled(value: float) -> void:
 	_scrolled = value
