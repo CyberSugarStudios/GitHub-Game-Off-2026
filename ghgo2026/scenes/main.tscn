@@ -84,6 +84,7 @@
 [ext_resource type="AudioStream" uid="uid://bq6c3r18nglg8" path="res://assets/audio/music/hall_music_astral.mp3" id="67_y57op"]
 [ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="69_fjhjs"]
 [ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="70_bfu41"]
+[ext_resource type="Script" uid="uid://dior8lrsnkf18" path="res://scripts/rooms/interact_outlines.gd" id="71_r4ag1"]
 [ext_resource type="Texture2D" uid="uid://fl3slmy3jame" path="res://assets/textures/Title_Text.png" id="73_bfu41"]
 [ext_resource type="Script" uid="uid://bxs7xdlwwl1ov" path="res://scripts/ui/cupboard_keypad.gd" id="77_ksmap"]
 [ext_resource type="PackedScene" uid="uid://bocgap0btqaff" path="res://scenes/ui/mirror_view.tscn" id="78_ygd8o"]
@@ -862,6 +863,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
+[node name="InteractOutlines" type="Node2D" parent="RoomView/RoomUI" unique_id=1391920876 node_paths=PackedStringArray("room_view")]
+script = ExtResource("71_r4ag1")
+room_view = NodePath("../..")
+metadata/_custom_type_script = "uid://dior8lrsnkf18"
+
 [node name="KeyHints" type="Control" parent="RoomView/RoomUI" unique_id=1413872877]
 layout_mode = 3
 anchors_preset = 7
@@ -1005,7 +1011,6 @@ stretch_mode = 5
 
 [node name="FadeLayer" type="CanvasLayer" parent="RoomView" unique_id=646292699]
 layer = 5
-visible = false
 
 [node name="Fade" type="ColorRect" parent="RoomView/FadeLayer" unique_id=852270854]
 anchors_preset = 15

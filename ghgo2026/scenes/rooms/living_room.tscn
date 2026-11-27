@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="14_eokjc"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="15_mnsc7"]
 [ext_resource type="Script" uid="uid://c8mgegcpjhxpp" path="res://scripts/rooms/door_light.gd" id="17_8mmjm"]
+[ext_resource type="Script" uid="uid://64251ac00xvj" path="res://scripts/rooms/outline_circle.gd" id="19_cs0md"]
 [ext_resource type="AudioStream" uid="uid://dg6oeyk5btt81" path="res://assets/audio/sfx/varied/TV on.wav" id="27_bqn76"]
 [ext_resource type="AudioStream" uid="uid://wtu22l8h3tff" path="res://assets/audio/sfx/varied/TV off.wav" id="28_cs0md"]
 [ext_resource type="Script" uid="uid://b76k2cuuruw1m" path="res://scripts/rooms/activity_sounds.gd" id="28_x2u51"]
@@ -215,6 +216,14 @@ story_id = &"living_room_clock"
 hidden_after_flag = &"intro_done"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/Clock" unique_id=1590037983]
+position = Vector2(69.5, 70.5)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(80, 0, 77.27406, 20.705524, 69.28203, 40, 56.568542, 56.568542, 40, 69.28203, 20.705524, 77.27406, 4.8984254e-15, 80, -20.705524, 77.27406, -40, 69.28203, -56.568542, 56.568542, -69.28203, 40, -77.27406, 20.705524, -80, 9.796851e-15, -77.27406, -20.705524, -69.28203, -40, -56.568542, -56.568542, -40, -69.28203, -20.705524, -77.27406, -1.4695276e-14, -80, 20.705524, -77.27406, 40, -69.28203, 56.568542, -56.568542, 69.28203, -40, 77.27406, -20.705524)
+script = ExtResource("19_cs0md")
+radius = 80.0
+segments = 24
+
 [node name="WaitClock" type="TextureButton" parent="Hotspots" unique_id=2012588446]
 anchors_preset = 8
 anchor_left = 0.5
@@ -232,6 +241,14 @@ prompt_text = "Wait..."
 story_id = &"wait_hour"
 requires_flag = &"intro_done"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/WaitClock" unique_id=1481085545]
+position = Vector2(69.5, 70.5)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(80, 0, 77.27406, 20.705524, 69.28203, 40, 56.568542, 56.568542, 40, 69.28203, 20.705524, 77.27406, 4.8984254e-15, 80, -20.705524, 77.27406, -40, 69.28203, -56.568542, 56.568542, -69.28203, 40, -77.27406, 20.705524, -80, 9.796851e-15, -77.27406, -20.705524, -69.28203, -40, -56.568542, -56.568542, -40, -69.28203, -20.705524, -77.27406, -1.4695276e-14, -80, 20.705524, -77.27406, 40, -69.28203, 56.568542, -56.568542, 69.28203, -40, 77.27406, -20.705524)
+script = ExtResource("19_cs0md")
+radius = 80.0
+segments = 24
 
 [node name="FrontDoor" type="TextureButton" parent="Hotspots" unique_id=1201229799]
 offset_left = 4.0
@@ -295,6 +312,10 @@ script = ExtResource("6_e86kh")
 prompt_text = "Open the cupboard"
 story_id = &"tv_cupboard"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/TvCupboard" unique_id=1739584621]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-3, 10, 159, -18, 159, 161, -1, 204)
 
 [node name="BeerCanProp1" type="TextureButton" parent="Hotspots" unique_id=773842213 node_paths=PackedStringArray("art")]
 script = ExtResource("6_g005p")

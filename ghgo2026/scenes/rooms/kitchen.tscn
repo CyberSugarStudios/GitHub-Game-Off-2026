@@ -207,6 +207,10 @@ prompt_text = "Shock"
 realm = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/CoffeeMakerProp" unique_id=1070660980]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(1074, 406, 1182, 409, 1181, 469, 1176, 475, 1176, 481, 1178, 483, 1179, 490, 1198, 490, 1202, 496, 1205, 525, 1201, 566, 1194, 573, 1180, 577, 1174, 579, 1185, 594, 1186, 600, 1078, 602, 1078, 596, 1079, 588, 1086, 574, 1077, 551, 1072, 525, 1072, 502, 1074, 490, 1076, 484, 1072, 480, 1072, 477, 1069, 472, 1070, 410)
+
 [node name="CoffeeCupProp" type="TextureButton" parent="Hotspots" unique_id=805160077 node_paths=PackedStringArray("art")]
 anchors_preset = 15
 anchor_right = 1.0
