@@ -7,6 +7,7 @@ const GRAVITY := 9.8
 @export var inspect_mark: HallMark
 @export var broken_mark_id: StringName = &"pumpkin_photo_broken"
 @export var broken_linger_activity: StringName = &"idle_sad"
+@export_range(0.0, 1.0) var broken_linger_chance: float = 0.5
 @export var crooked_degrees: float = 7.0
 @export var fall_distance: float = 1.2
 @export var fall_story_event: StringName = &"hall_painting_fell"
@@ -91,6 +92,7 @@ func _show_fallen() -> void:
 	broken_glass.visible = true
 	inspect_mark.mark_id = broken_mark_id
 	inspect_mark.linger_activity  = broken_linger_activity
+	inspect_mark.linger_chance = broken_linger_chance
 
 func _play(stream:AudioStream) -> void:
 	if stream:

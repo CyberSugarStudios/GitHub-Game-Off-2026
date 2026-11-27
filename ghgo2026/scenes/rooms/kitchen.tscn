@@ -126,18 +126,8 @@ z_index = 20
 [node name="Leanne" parent="Actors" unique_id=1712821977 node_paths=PackedStringArray("spots") instance=ExtResource("6_m75iv")]
 position = Vector2(1821, 1044)
 scale = Vector2(0.52, 0.52)
-parent_id = null
 frames = ExtResource("7_78330")
 spots = NodePath("../../RoomSpots")
-height = null
-walk_speed = null
-side_faces_right = null
-idle_faces_right = null
-walk_animation = null
-idle_animation = null
-step_stride = null
-step_volume_db = null
-animation_heights = null
 
 [node name="ClickArea2" type="TextureButton" parent="Actors/Leanne" unique_id=1550962528]
 grow_horizontal = 2
@@ -157,15 +147,6 @@ scale = Vector2(0.55, 0.55)
 parent_id = &"david"
 frames = ExtResource("8_fiuqx")
 spots = NodePath("../../RoomSpots")
-height = null
-walk_speed = null
-side_faces_right = null
-idle_faces_right = null
-walk_animation = null
-idle_animation = null
-step_stride = null
-step_volume_db = null
-animation_heights = null
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30

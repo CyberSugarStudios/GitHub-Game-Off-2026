@@ -81,9 +81,9 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var fight_walk_timeout: float = 6.0
 
 @export_group("Puzzle 2")
-@export var p2_coffee_make_minutes: int = 10
+@export var p2_coffee_make_minutes: int = 45
 @export var p2_coffee_drink_minutes: int = 35
-@export var p2_change_minutes: int = 10
+@export var p2_change_minutes: int = 15
 @export var p2_laundry_minutes: int = 30
 @export var p2_breaker_minutes: int = 20
 @export var p2_storms_to: StringName = &"living_room"
@@ -342,8 +342,8 @@ func _run_puzzle_2() -> void:
 	say_in_background("p2_after", PUZZLE_2)
 	GameState.set_story_stage(3)
 
-func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> void:
-	if parent_id == DAD and location == &"garage" and _leanne_free_for_coffee():
+func _on_puzzle_2_parent_moved(_parent_id: StringName, _location: StringName) -> void:
+	if GameState.get_parent_location(DAD) == &"garage" and _leanne_free_for_coffee():
 		_send_leanne_for_coffee()
 
 func _send_leanne_for_coffee() -> void:
@@ -367,8 +367,13 @@ func _on_coffee_hour(_day: int, hour: int) -> void:
 		GameState.clear_flag(CoffeeStation.FULL_FLAG)
 
 func _leanne_free_for_coffee() -> bool:
-	return GameState.get_parent_location(MOM) == &"parent_bedroom" \
-		and GameState.get_parent_activity(MOM) != &"changing"
+	var activity := GameState.get_parent_activity(MOM)
+	if activity in [&"changing", &"laundry", &"making_coffee", &"drinking_coffee"]:
+		return false
+	var at := GameState.get_parent_location(MOM)
+	if at == &"parent_bedroom":
+		return true
+	return at == GameState.HALL and household.expected_location(MOM) == &"parent_bedroom"
 #endregion
 
 #region - PUZZLE 3

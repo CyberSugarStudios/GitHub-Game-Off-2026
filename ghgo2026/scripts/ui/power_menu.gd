@@ -46,10 +46,11 @@ func _ready() -> void:
 	_rebuild()
 
 func _rebuild() -> void:
+	_buttons.clear()
+	_hovered = -1
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
-	_buttons.clear()
 
 	_hovered = -1
 	visible = Powers.target != &"" and GameState.in_astral
@@ -123,7 +124,7 @@ func _place_beside(item: Rect2) -> void:
 
 func _refresh() -> void:
 	var powers := Powers.get_usable()
-	for i in _buttons.size():
+	for i in mini(_buttons.size(), powers.size()):
 		var button := _buttons[i]
 		button.disabled = not GameState.can_afford(powers[i].energy_cost)
 		button.text = powers[i].display_name

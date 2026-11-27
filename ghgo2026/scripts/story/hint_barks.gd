@@ -27,6 +27,11 @@ func _ready() -> void:
 		key.physical_keycode = KEY_H
 		InputMap.action_add_event(&"hint", key)
 	GameClock.minute_changed.connect(_on_minute_changed)
+	GameState.story_stage_changed.connect(
+		func(_stage_changed: int) -> void:
+			_minutes = 0
+			_check_stage()
+	)
 	_popup = SOLUTION_POPUP.instantiate() as SolutionPopup
 	add_child(_popup)
 	if prompt_label:
