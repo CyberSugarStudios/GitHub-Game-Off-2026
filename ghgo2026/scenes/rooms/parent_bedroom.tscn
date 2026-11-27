@@ -171,4 +171,5 @@ script = ExtResource("13_h4mvv")
 activity_contains = "opening_safe"
 sounds = Array[AudioStream]([ExtResource("14_m4iab"), ExtResource("15_ir5sm"), ExtResource("16_j4kdq"), ExtResource("17_fisxk")])
 gap_seconds = Vector2(0.3, 0.7)
+plays_per_activity = 4
 metadata/_custom_type_script = "uid://b76k2cuuruw1m"
