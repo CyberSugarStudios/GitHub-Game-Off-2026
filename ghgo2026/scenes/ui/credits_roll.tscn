@@ -41,10 +41,10 @@ color = Color(0, 0.24313726, 0.32156864, 0.57254905)
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.00125
+anchor_left = -0.085
 anchor_top = 1.0
-anchor_right = 0.95125
-anchor_bottom = 2.0433333
+anchor_right = 1.086875
+anchor_bottom = 2.2877777
 texture = ExtResource("4_slemu")
 metadata/_edit_use_anchors_ = true
 
