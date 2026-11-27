@@ -185,10 +185,11 @@ func _show_key_hints(room_id: StringName) -> void:
 	_hold_hints = false
 	var in_intro := not GameState.has_flag(StoryDirector.INTRO_DONE) and room_id == intro_room
 	var shown: int = _hinted_rooms.get(room_id, 0)
-	if shown >= (2 if in_intro else 1):
+	var always := Settings.always_show_hints
+	if shown >= (2 if in_intro else 1) and not always:
 		return
 	_hinted_rooms[room_id] = shown + 1
-	_hold_hints = in_intro and shown == 0
+	_hold_hints = (in_intro and shown == 0) or always
 	while GameState.controls_locked or _busy:
 		await get_tree().process_frame
 	if _room == null or GameState.current_room != room_id:

@@ -18,6 +18,7 @@ const TEST_TAP := preload("res://assets/audio/sfx/footsteps/leanne_steps.tres")
 const TAP_GAP_MS := 200
 const HOLD_MS := 1500
 const PREVIEW_FADE := 0.6
+const CONTROLS_GUIDE := preload("res://scenes/ui/controls_guide.tscn")
 
 @export var section_layout: SectionLayout = SectionLayout.COLUMNS
 @export var font_size: int = 26
@@ -49,6 +50,8 @@ func _ready() -> void:
 	_bind_check(%ReduceFlashing, func(on: bool) -> void: Settings.reduce_flashing = on)
 	_bind_check(%InvertY, func(on: bool) -> void: Settings.invert_y = on)
 	_bind_check(%HoldToStruggle, func(on: bool) -> void: Settings.hold_to_struggle = on)
+	_bind_check(%AlwaysShowHints, func(on: bool) -> void: Settings.always_show_hints = on)
+	(%HowToPlayButton as BaseButton).pressed.connect(_open_guide)
 	(%ResetButton as BaseButton).pressed.connect(_reset)
 	var close_button := %CloseOptionsButton as TitleButton
 	if close_text != "":
@@ -85,6 +88,7 @@ func _load_values() -> void:
 	(%ReduceFlashing as CheckBox).set_pressed_no_signal(Settings.reduce_flashing)
 	(%InvertY as CheckBox).set_pressed_no_signal(Settings.invert_y)
 	(%HoldToStruggle as CheckBox).set_pressed_no_signal(Settings.hold_to_struggle)
+	(%AlwaysShowHints as CheckBox).set_pressed_no_signal(Settings.always_show_hints)
 
 func _bind_slider(row: SettingSlider, apply: Callable) -> void:
 	row.changed.connect(func(value: float) -> void:
@@ -99,6 +103,16 @@ func _bind_check(box: CheckBox, apply: Callable) -> void:
 func _reset() -> void:
 	Settings.reset_to_defaults()
 	_load_values()
+
+func _open_guide() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 200
+	layer.process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().root.add_child(layer)
+	var guide := CONTROLS_GUIDE.instantiate() as ControlsGuide
+	guide.next_scene = ""
+	layer.add_child(guide)
+	guide.closed.connect(layer.queue_free)
 
 func save_and_close() -> void:
 	Settings.save_settings()

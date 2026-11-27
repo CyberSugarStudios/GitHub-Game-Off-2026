@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bc8avv3u5fuci" path="res://scenes/ui/title_button.tscn" id="2_button"]
 [ext_resource type="PackedScene" path="res://scenes/ui/setting_slider.tscn" id="2_slider"]
 [ext_resource type="Theme" uid="uid://d36exa7tunr3n" path="res://resources/interim_theme.tres" id="2_theme"]
-[ext_resource type="AudioStream" uid="uid://b0wiaqutmoxn2" path="res://assets/audio/MP3_music/Anathema.mp3" id="3_1wn4n"]
-[ext_resource type="AudioStream" uid="uid://cd0s8t4wl3gpt" path="res://assets/audio/music/end_credits_music.mp3" id="4_0qnn8"]
+[ext_resource type="AudioStream" uid="uid://drxx00k3e5eag" path="res://assets/audio/sfx/varied/Looping ambience.wav" id="3_eoqgt"]
 [ext_resource type="AudioStream" uid="uid://bru3chlcrbsin" path="res://assets/audio/music/hall_music.mp3" id="4_wasor"]
 [ext_resource type="AudioStream" uid="uid://wc5kxf3klxtv" path="res://assets/audio/sfx/varied/sparks.wav" id="5_c88ko"]
 [ext_resource type="AudioStream" uid="uid://c4qath6yi0kb6" path="res://assets/audio/Emily Voicelines/intro/intro_garage_handle2.wav" id="6_wasor"]
 [ext_resource type="AudioStream" uid="uid://btycl8jacpeuw" path="res://assets/audio/MP3_music/Joe Leytrick - I Don't Know (Acoustic).mp3" id="7_0qnn8"]
+[ext_resource type="AudioStream" uid="uid://x0v6gqqvjjm2" path="res://assets/audio/music/main_menu_music.mp3" id="8_eoqgt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tab"]
 content_margin_left = 28.0
@@ -30,9 +30,9 @@ theme = ExtResource("2_theme")
 theme_override_constants/separation = 24
 script = ExtResource("1_ksq0f")
 previews = Dictionary[StringName, AudioStream]({
-&"Ambience": ExtResource("4_0qnn8"),
+&"Ambience": ExtResource("3_eoqgt"),
 &"MP3": ExtResource("7_0qnn8"),
-&"Master": ExtResource("3_1wn4n"),
+&"Master": ExtResource("8_eoqgt"),
 &"Music": ExtResource("4_wasor"),
 &"SFX": ExtResource("5_c88ko"),
 &"Voices": ExtResource("6_wasor")
@@ -47,10 +47,11 @@ theme_override_colors/font_hovered_color = Color(0.72156864, 0.8745098, 0.847058
 theme_override_colors/font_unselected_color = Color(0.4392157, 0.6862745, 0.6392157, 0.45)
 theme_override_fonts/font = ExtResource("2_allura")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_tab")
 theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_tab")
 theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_tab")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_tab_on")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_tab")
+current_tab = 0
 tab_alignment = 1
 tab_count = 3
 tab_0/title = "Sound"
@@ -111,6 +112,48 @@ unique_name_in_owner = true
 layout_mode = 2
 label_text = "Ambience"
 
+[node name="ControlsSection" type="VBoxContainer" parent="Columns/LeftColumn" unique_id=396865603]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="ControlsHeading" type="Label" parent="Columns/LeftColumn/ControlsSection" unique_id=387561248]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
+theme_override_fonts/font = ExtResource("2_allura")
+theme_override_font_sizes/font_size = 60
+text = "Controls"
+
+[node name="Sensitivity" parent="Columns/LeftColumn/ControlsSection" unique_id=1310491778 instance=ExtResource("2_slider")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "Mouse sensitivity"
+min_value = 0.25
+max_value = 2.0
+step = 0.05
+format = 2
+
+[node name="InvertY" type="CheckBox" parent="Columns/LeftColumn/ControlsSection" unique_id=335301958]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Invert mouse Y"
+
+[node name="HoldToStruggle" type="CheckBox" parent="Columns/LeftColumn/ControlsSection" unique_id=19316824]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hold to struggle (hold Space instead of tapping)"
+
+[node name="AlwaysShowHints" type="CheckBox" parent="Columns/LeftColumn/ControlsSection" unique_id=1264305721]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Always show control keys"
+
+[node name="HowToPlayButton" parent="Columns/LeftColumn/ControlsSection" unique_id=619476330 instance=ExtResource("2_button")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "CONTROLS AND GUIDE"
+
 [node name="RightColumn" type="VBoxContainer" parent="Columns" unique_id=1772093316]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
@@ -160,37 +203,6 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Reduce flashing lights"
 
-[node name="ControlsSection" type="VBoxContainer" parent="Columns/RightColumn" unique_id=734920186]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 14
-
-[node name="ControlsHeading" type="Label" parent="Columns/RightColumn/ControlsSection" unique_id=290463902]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
-theme_override_fonts/font = ExtResource("2_allura")
-theme_override_font_sizes/font_size = 60
-text = "Controls"
-
-[node name="Sensitivity" parent="Columns/RightColumn/ControlsSection" unique_id=319019995 instance=ExtResource("2_slider")]
-unique_name_in_owner = true
-layout_mode = 2
-label_text = "Mouse sensitivity"
-min_value = 0.25
-max_value = 2.0
-step = 0.05
-format = 2
-
-[node name="InvertY" type="CheckBox" parent="Columns/RightColumn/ControlsSection" unique_id=381074066]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Invert mouse Y"
-
-[node name="HoldToStruggle" type="CheckBox" parent="Columns/RightColumn/ControlsSection" unique_id=965102104]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Hold to struggle (hold Space instead of tapping)"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1794597348]
 layout_mode = 2
 theme_override_constants/separation = 24
@@ -202,7 +214,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "RESET TO DEFAULTS"
 
-[node name="CloseOptionsButton" parent="HBoxContainer" unique_id=619476330 instance=ExtResource("2_button")]
+[node name="CloseOptionsButton" parent="HBoxContainer" unique_id=1827214348 instance=ExtResource("2_button")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

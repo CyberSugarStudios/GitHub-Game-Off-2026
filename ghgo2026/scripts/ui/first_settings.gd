@@ -1,6 +1,6 @@
 extends Control
 
-const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
+const GUIDE_SCENE := "res://scenes/ui/controls_guide.tscn"
 const RAMP_STEPS := 10
 
 @export var fade_time: float = 0.6
@@ -33,7 +33,4 @@ func _continue() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, fade_time)
 	await tween.finished
-	if ResourceLoader.load_threaded_get_status(TITLE_SCENE) == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-		get_tree().change_scene_to_file(TITLE_SCENE)
-	else:
-		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(TITLE_SCENE) as PackedScene)
+	get_tree().change_scene_to_file(GUIDE_SCENE)

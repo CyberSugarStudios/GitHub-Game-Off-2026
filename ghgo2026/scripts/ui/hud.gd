@@ -61,6 +61,7 @@ var _shake_tween: Tween
 var _memory_player: AudioStreamPlayer
 var _breath_player: AudioStreamPlayer
 var _breath_astral := false
+var _move_hint: Control
 var _known_bars := 0
 var _memory_animations := 0
 
@@ -275,7 +276,9 @@ func _on_interaction_prompt_changed(text: String, available: bool) -> void:
 	crosshair.modulate.a = 1.0 if text != "" else 0.35
 
 func _on_room_changed_for_hints(room_id: StringName) -> void:
-	if room_id != &"" or GameState.has_flag(&"move_hint_shown"):
+	if room_id != &"" or is_instance_valid(_move_hint):
+		return
+	if GameState.has_flag(&"move_hint_shown") and not Settings.always_show_hints:
 		return
 	GameState.set_flag(&"move_hint_shown")
 	while GameState.controls_locked or GameState.is_in_room():
@@ -298,6 +301,7 @@ func _on_room_changed_for_hints(room_id: StringName) -> void:
 	look.icon_sheet = swipe_sheet
 	row.add_child(look)
 	add_child(row)
+	_move_hint = row
 	row.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	row.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	row.grow_vertical = Control.GROW_DIRECTION_BEGIN
