@@ -49,14 +49,22 @@ var _earbuds_db := 0.0
 
 func _ready() -> void:
 	Music.finished.connect(_on_track_finished)
-	GameState.story_stage_changed.connect(func(_stage: int) -> void: _choose_set())
-	GameState.plane_changed.connect(func(_astral: bool) -> void: _on_plane_changed())
-	GameState.flag_set.connect(func(id: StringName) -> void:
-		if id == &"creature_accepted":
-			_held = true
-			_end_hunt()
-		elif id == diary_flag:
-			_play_song())
+	GameState.story_stage_changed.connect(
+		func(_stage: int) -> void:
+			_choose_set()
+	)
+	GameState.plane_changed.connect(
+		func(_astral: bool) -> void:
+			_on_plane_changed()
+	)
+	GameState.flag_set.connect(
+		func(id: StringName) -> void:
+			if id == &"creature_accepted":
+				_held = true
+				_end_hunt()
+			elif id == diary_flag:
+				_play_song()
+	)
 	_choose_set()
 	if GameState.has_flag(diary_flag):
 		_play_song()

@@ -27,6 +27,7 @@ extends CanvasLayer
 @onready var fog: TextureRect = $Root/Fog
 @onready var night_tint: CanvasModulate = $NightTint
 @onready var mirror_light: PointLight2D = $BathroomLight
+@onready var controls: CanvasLayer = $Controls
 
 var _fogged_at := -100000
 var _run := 0
@@ -35,7 +36,12 @@ var _chase: AudioStreamPlayer
 var _music_tween: Tween
 
 func _ready() -> void:
+	visibility_changed.connect(
+		func() -> void:
+			controls.visible = visible
+	)
 	visible = false
+	controls.visible = false
 	if room_view == null:
 		room_view = get_node_or_null("../RoomView") as RoomView
 	_chase = AudioStreamPlayer.new()

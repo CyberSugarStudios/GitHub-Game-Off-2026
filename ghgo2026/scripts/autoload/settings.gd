@@ -15,7 +15,7 @@ const DEFAULT_CONTRAST := 1.0
 const DEFAULT_GAMMA := 1.0
 const DEFAULT_REDUCE_FLASHING := false
 const DEFAULT_ALWAYS_SHOW_HINTS := false
-const ONBOARDING_VERSION := 2
+const ONBOARDING_VERSION := 3
 
 var volumes: Dictionary[StringName, float] = {}
 var look_speed := DEFAULT_LOOK_SPEED
