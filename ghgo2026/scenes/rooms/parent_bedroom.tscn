@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://bq5t1fvnrwydh" path="res://assets/audio/sfx/varied/Pin number 2.wav" id="15_ir5sm"]
 [ext_resource type="AudioStream" uid="uid://dg5srhslowp7l" path="res://assets/audio/sfx/varied/Pin number 3.wav" id="16_j4kdq"]
 [ext_resource type="AudioStream" uid="uid://5ksm87lmob2o" path="res://assets/audio/sfx/varied/Pin number 4.wav" id="17_fisxk"]
+[ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="18_ir5sm"]
+[ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="19_j4kdq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
@@ -173,3 +175,11 @@ sounds = Array[AudioStream]([ExtResource("14_m4iab"), ExtResource("15_ir5sm"), E
 gap_seconds = Vector2(0.3, 0.7)
 plays_per_activity = 4
 metadata/_custom_type_script = "uid://b76k2cuuruw1m"
+
+[node name="BedroomLight" type="PointLight2D" parent="." unique_id=1926713090]
+position = Vector2(2052, -31)
+color = Color(1, 0.93333334, 0.8392157, 1)
+texture = ExtResource("18_ir5sm")
+texture_scale = 16.0
+script = ExtResource("19_j4kdq")
+lit_hours = Vector2(17, 23.5)

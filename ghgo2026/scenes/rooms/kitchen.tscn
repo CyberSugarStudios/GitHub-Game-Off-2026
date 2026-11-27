@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://c0fi4o6ysmnl0" path="res://assets/sprites/rooms/kitchen/kitchen_beer_case.webp" id="17_wjo8k"]
 [ext_resource type="Texture2D" uid="uid://dovt0pbx6owx0" path="res://assets/sprites/rooms/living_room/cutout_beer_can_prop.webp" id="18_prl6a"]
 [ext_resource type="Texture2D" uid="uid://bqxbeum501c5w" path="res://assets/sprites/rooms/kitchen/coffee_cup_full.webp" id="19_cupfull"]
+[ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="26_re2ba"]
+[ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="27_w4lih"]
 
 [node name="Kitchen" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_njvo0")
@@ -272,3 +274,31 @@ script = ExtResource("13_714v7")
 activity = &"drinking_coffee"
 every_seconds = Vector2(4, 9)
 metadata/_custom_type_script = "uid://cjsclnw6dgxgk"
+
+[node name="KitchenLights" type="Node2D" parent="." unique_id=1374606811]
+
+[node name="CoffeeMachineOffLight" type="PointLight2D" parent="KitchenLights" unique_id=589994364]
+position = Vector2(1121, 421)
+color = Color(1, 0, 0, 1)
+texture = ExtResource("26_re2ba")
+texture_scale = 0.06
+script = ExtResource("27_w4lih")
+on_energy = 2.0
+metadata/_custom_type_script = "uid://byaff13r4lxs2"
+
+[node name="CoffeeMachineOnLight" type="PointLight2D" parent="KitchenLights" unique_id=646724885]
+position = Vector2(1146, 421)
+color = Color(0, 1, 0, 1)
+texture = ExtResource("26_re2ba")
+texture_scale = 0.06
+script = ExtResource("27_w4lih")
+on_energy = 2.0
+metadata/_custom_type_script = "uid://byaff13r4lxs2"
+
+[node name="KitchenLight" type="PointLight2D" parent="KitchenLights" unique_id=1680990372]
+position = Vector2(2052, -31)
+color = Color(1, 0.93333334, 0.8392157, 1)
+texture = ExtResource("26_re2ba")
+texture_scale = 16.0
+script = ExtResource("27_w4lih")
+lit_hours = Vector2(17, 23.5)

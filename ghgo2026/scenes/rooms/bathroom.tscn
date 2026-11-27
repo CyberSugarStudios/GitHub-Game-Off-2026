@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_nc0wo"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_won8x"]
 [ext_resource type="AudioStream" uid="uid://c2rk045w2kehh" path="res://assets/audio/sfx/varied/Shower.wav" id="8_nc0wo"]
+[ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="9_t60wq"]
+[ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="10_juav1"]
 
 [node name="Bathroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_y5w4s")
@@ -77,3 +79,11 @@ energy_cost = 0.25
 story_id = &"bathroom_shower_faucet"
 use_sound = ExtResource("8_nc0wo")
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="BathroomLight" type="PointLight2D" parent="." unique_id=175878522]
+position = Vector2(2052, -31)
+color = Color(1, 0.93333334, 0.8392157, 1)
+texture = ExtResource("9_t60wq")
+texture_scale = 16.0
+script = ExtResource("10_juav1")
+lit_hours = Vector2(17, 23.5)

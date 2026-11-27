@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="7_m1gvp"]
 [ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="8_f5hwt"]
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="9_tcvd1"]
+[ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="10_f5hwt"]
 
 [node name="MirrorView" type="CanvasLayer" unique_id=981359443]
 layer = 10
@@ -121,3 +122,11 @@ text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="NightTint" type="CanvasModulate" parent="." unique_id=2081958262]
+
+[node name="MirrorLight" type="PointLight2D" parent="." unique_id=1820625853]
+position = Vector2(1153, -203)
+color = Color(1, 0.93333334, 0.8392157, 1)
+texture = ExtResource("10_f5hwt")
+texture_scale = 10.0

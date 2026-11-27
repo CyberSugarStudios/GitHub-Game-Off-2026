@@ -7,6 +7,8 @@ extends CanvasLayer
 @export var creature: Creature
 @export var room_view: RoomView
 @export_range(0.0, 1.0) var creature_opacity: float = 0.75
+@export var room_light_name: StringName = &"CeilingLight"
+@export var light_boost: float = 1.0
 
 @export_group("Astral Sequence")
 @export var chase_music: AudioStream = preload("res://assets/audio/music/creature_chase.mp3")
@@ -23,7 +25,8 @@ extends CanvasLayer
 @onready var reflection: TextureRect = $Root/Reflection
 @onready var creature_art: AnimatedSprite2D = $Root/Creature
 @onready var fog: TextureRect = $Root/Fog
-@onready var back_button: TextureRect = $Root/BackButton
+@onready var night_tint: CanvasModulate = $NightTint
+@onready var mirror_light: PointLight2D = $MirrorLight
 
 var _fogged_at := -100000
 var _run := 0
@@ -38,7 +41,6 @@ func _ready() -> void:
 	_chase = AudioStreamPlayer.new()
 	_chase.bus = &"Music"
 	add_child(_chase)
-	#back_button.pressed.connect(close)
 	Events.story_event.connect(_on_story_event)
 	GameState.parent_activity_changed.connect(_on_parent_activity)
 	GameState.plane_changed.connect(_on_plane_changed)
@@ -86,8 +88,12 @@ func _match_room_light() -> void:
 	var room := room_view.current_room() if room_view else null
 	var tint := room.get_tint() if room else Color.WHITE
 	tint.a = 1.0
-	for art: CanvasItem in [mirror_art, reflection, creature_art, fog]:
-		art.self_modulate = tint
+	night_tint.color = tint
+	var source := room.find_child(room_light_name, true, false) as PointLight2D if room else null
+	mirror_light.visible = source != null and source.visible
+	if source:
+		mirror_light.color = source.color
+		mirror_light.energy = source.energy * light_boost
 
 func _on_plane_changed(astral: bool) -> void:
 	if not visible:
