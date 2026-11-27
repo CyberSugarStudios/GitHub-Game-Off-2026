@@ -5,6 +5,7 @@ const JOBS := [
 	["res://assets/sprites/Animations/frames/dad/david_frames.tres", &"sitting", "res://assets/sprites/Animations/dad/Dad-sitting", 2, 12.0],
 	["res://assets/sprites/Animations/frames/dad/david_frames.tres", &"sleeping", "res://assets/sprites/Animations/dad/Dad-sleeping", 2, 12.0],
 	["res://assets/sprites/Animations/frames/mom/leanne_frames.tres", &"reading", "res://assets/sprites/Animations/mom/Reading", 2, 12.0],
+	["res://assets/sprites/Animations/frames/mom/leanne_frames.tres", &"sleeping", "res://assets/sprites/Animations/mom/sleeping", 2, 12.0],
 	["res://assets/sprites/Animations/frames/rooms/music_box_frames.tres", &"default", "res://assets/sprites/Animations/rooms/living_room/Music-box", 1, 8.0],
 	["res://assets/sprites/Animations/frames/rooms/shower_frames.tres", &"default", "res://assets/sprites/Animations/rooms/bathroom", 1, 10.0],
 ]

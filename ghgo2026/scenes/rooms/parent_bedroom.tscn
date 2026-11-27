@@ -87,6 +87,15 @@ position = Vector2(473, 974)
 script = ExtResource("7_jpf7g")
 facing = 1
 
+[node name="ReadingAndSleeping" type="Marker2D" parent="RoomSpots" unique_id=334187648]
+position = Vector2(2441, 963)
+script = ExtResource("7_jpf7g")
+facing = 1
+also_for = Array[StringName]([&"reading_and_then_sleeping"])
+animation = &"reading"
+night_animation = &"sleeping"
+night_hours = Vector2(22, 6)
+
 [node name="FightGunDavid" type="Marker2D" parent="RoomSpots" unique_id=158532727]
 position = Vector2(480, 970)
 script = ExtResource("7_jpf7g")

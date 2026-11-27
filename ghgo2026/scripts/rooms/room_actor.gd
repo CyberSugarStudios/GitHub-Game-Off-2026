@@ -7,7 +7,10 @@ const PARENT_SCALES := {&"david": 0.55, &"leanne": 0.52}
 const BASE_MARKER := "DoorwayBase"
 const CANVAS_HEIGHTS := {
 	&"david": {&"idle": 2111.0, &"sitting": 1525.0, &"sleeping": 1525.0},
-	&"leanne": {&"idle": 1901.0, &"reading": 1450.0},
+	&"leanne": {&"idle": 1901.0, &"reading": 1450.0, &"sleeping": 1449.0},
+}
+const CANVAS_SHIFTS := {
+	&"leanne": {&"sleeping": 37.0},
 }
 const STEPS: Dictionary[StringName, AudioStream] = {
 	&"leanne": preload("res://assets/audio/sfx/footsteps/leanne_steps.tres"),
@@ -191,6 +194,9 @@ func _animate(anim: StringName, flip: float) -> void:
 		var anim_height := _height_for(anim)
 		sprite.scale = Vector2.ONE * (anim_height / texture.get_height())
 		sprite.position.y = -anim_height * 0.5
+		var shift: float = CANVAS_SHIFTS.get(parent_id, {}).get(anim, 0.0)
+		var canvas_height: float = CANVAS_HEIGHTS.get(parent_id, {}).get(anim, texture.get_height())
+		sprite.offset.x = shift * texture.get_height() / canvas_height * (-1.0 if sprite.flip_h else 1.0)
 	_fit_click_areas()
 
 func is_walking() -> bool:
@@ -246,4 +252,4 @@ func _drawn_rect() -> Rect2:
 		var width := height * 0.35
 		return Rect2(-width * 0.5, -height, width, height)
 	var size := texture.get_size() * sprite.scale
-	return Rect2(sprite.position - size * 0.5, size)
+	return Rect2(sprite.position + sprite.offset * sprite.scale - size * 0.5, size)
