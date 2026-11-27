@@ -18,20 +18,6 @@ width = 372
 height = 56
 fill_from = Vector2(0.013513514, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ik4u"]
-bg_color = Color(0.4392157, 0.68235296, 0.6392157, 1)
-border_width_top = 100
-border_width_bottom = 100
-border_color = Color(0.05882353, 0.12941177, 0.15294118, 1)
-border_blend = true
-corner_radius_top_left = 120
-corner_radius_top_right = 120
-corner_radius_bottom_right = 120
-corner_radius_bottom_left = 120
-
-[sub_resource type="Theme" id="Theme_cfe2f"]
-VScrollBar/styles/grabber = SubResource("StyleBoxFlat_6ik4u")
-
 [node name="TitleScreen" type="Control" unique_id=677689258]
 layout_mode = 3
 anchors_preset = 15
@@ -280,7 +266,6 @@ theme_override_constants/separation = 48
 [node name="CreditsText" type="RichTextLabel" parent="CreditsMenu/CreditsLayout/CreditsColumn" unique_id=1275839695]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_cfe2f")
 bbcode_enabled = true
 text = "
 [font=res://assets/fonts/Allura-Regular.ttf][font_size=80][color=70afa3]Development Team[/color][/font_size][/font]

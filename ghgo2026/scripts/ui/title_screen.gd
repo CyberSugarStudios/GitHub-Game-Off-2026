@@ -48,7 +48,7 @@ func _ready() -> void:
 	new_game_button.pressed.connect(on_new_game_pressed)
 	
 	var app_version = ProjectSettings.get_setting("application/config/version")
-	version_number_label.text = "v" + app_version
+	version_number_label.text = "v" + app_version + ("-pt." + str(Settings.ONBOARDING_VERSION) if OS.has_feature("playtest") else "")
 	
 	continue_game_button.disabled = not GameState.has_checkpoint()
 	if continue_game_button.disabled:
