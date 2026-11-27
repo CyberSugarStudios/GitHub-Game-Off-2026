@@ -514,11 +514,11 @@ func _play_ending() -> void:
 	var tween := create_tween()
 	tween.tween_property(fade, "color:a", 1.0, p5_white_seconds)
 	tween.tween_interval(p5_white_hold)
-	if p5_fight_audio:
-		tween.tween_callback(Music.play.bind(p5_fight_audio, p5_to_black_seconds))
-	tween.tween_property(fade, "color", Color.BLACK, p5_to_black_seconds)
 	await tween.finished
+	if p5_fight_audio:
+		Music.play(p5_fight_audio, p5_to_black_seconds)
 	GameState.set_controls_locked(false)
+	RenderingServer.set_default_clear_color(Color.WHITE)
 	get_tree().change_scene_to_file(CREDITS_SCENE)
 
 func _debug_jump_to_finale() -> void:

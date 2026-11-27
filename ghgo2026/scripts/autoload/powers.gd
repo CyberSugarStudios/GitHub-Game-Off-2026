@@ -110,7 +110,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		get_viewport().set_input_as_handled()
 	elif event is InputEventKey and event.pressed and not event.echo:
-		var key := (event as InputEventKey).keycode
-		if key >= KEY_1 and key <= KEY_5:
-			select(key - KEY_1)
+		var index := (event as InputEventKey).physical_keycode - KEY_1
+		if index >= 0 and index < get_usable().size() and not GameState.controls_locked:
+			select(index)
+			use_selected()
 			get_viewport().set_input_as_handled()

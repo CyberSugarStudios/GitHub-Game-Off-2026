@@ -45,6 +45,8 @@ const ACTIVITY_TEXT: Dictionary[StringName, String] = {
 @export var room_label: String = ""
 @export var exit_distance: float = 0.6
 @export var pass_cost: float = 0.0
+@export var enter_after_unlock: bool = true
+@export var enter_after_unlock_delay: float = 1.0
 
 @export_group("Living Plane")
 @export var observe_in_living: bool = true
@@ -176,6 +178,16 @@ func _inside_line(parent_id: StringName) -> String:
 func _on_unlocked() -> void:
 	unlocked.emit()
 	_play_unlock_animation()
+	if enter_after_unlock:
+		_enter_after_unlock()
+
+func _enter_after_unlock() -> void:
+	await get_tree().create_timer(enter_after_unlock_delay).timeout
+	if GameState.controls_locked or GameState.is_in_room() or _observing():
+		return
+	if _entry_block_reason() != "" or not GameState.try_spend(pass_cost):
+		return
+	Events.door_opened.emit(room_id, get_exit_transform())
 #endregion
 
 #region - VISUALS

@@ -7,6 +7,7 @@ extends CanvasLayer
 @export_range(0.0, 1.0) var start_volume: float = 0.8
 @export var button_sound: AudioStream = preload("res://assets/audio/sfx/varied/mp3_button.wav")
 @export var close_fade: float = 1.0
+@export var autostart: bool = true
 @export var scroll_seconds: float = 5.0
 
 @onready var audio: AudioStreamPlayer = $Audio
@@ -62,6 +63,8 @@ func open() -> void:
 		return
 	visible = true
 	GameState.set_controls_locked(true)
+	if autostart and not _started:
+		_play_index(_index)
 
 func close() -> void:
 	if not visible:
