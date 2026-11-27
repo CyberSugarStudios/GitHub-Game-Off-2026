@@ -47,6 +47,8 @@ const ACTIVITY_TEXT: Dictionary[StringName, String] = {
 @export var pass_cost: float = 0.0
 @export var enter_after_unlock: bool = true
 @export var enter_after_unlock_delay: float = 0.45
+@export var closed_after_flag: StringName
+@export var closed_until_flag: StringName
 
 @export_group("Living Plane")
 @export var observe_in_living: bool = true
@@ -121,6 +123,8 @@ func get_block_reason() -> String:
 func _entry_block_reason() -> String:
 	if not enterable:
 		return room_label
+	if _closed_by_flags():
+		return ""
 	if GameState.guarded_room == room_id:
 		return "It won't let me near..."
 	if lock.transferring:
@@ -131,6 +135,11 @@ func _entry_block_reason() -> String:
 	if not is_locked() and not GameState.can_afford(pass_cost):
 		return "Not enough energy"
 	return ""
+
+func _closed_by_flags() -> bool:
+	if closed_after_flag == &"" or not GameState.has_flag(closed_after_flag):
+		return false
+	return closed_until_flag == &"" or not GameState.has_flag(closed_until_flag)
 
 func get_living_label() -> String:
 	return room_label
