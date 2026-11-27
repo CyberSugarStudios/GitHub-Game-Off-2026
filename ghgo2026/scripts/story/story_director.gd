@@ -676,7 +676,7 @@ func arrange_fight(leanne_mark: StringName, david_mark: StringName) -> Vector3:
 	flat_offset.y = 0.0
 	var min_center := fight_keep_away + fight_gap * 0.5
 	if flat_offset.length() < min_center:
-		center = _on_floor(player.global_position + sight * min_center)
+		center = _clear_push(center, sight, min_center)
 	var across := Vector3(-sight.z, 0.0, sight.x) * fight_gap * 0.5
 	var spots: Array[Vector3] = []
 	var stagger := fight_stagger
@@ -713,6 +713,16 @@ func _fight_spot(spot: Vector3, center: Vector3, keep_away: float) -> Vector3:
 		if _in_sight(center, tried) and _far_from_player(tried, keep_away):
 			return tried
 	return _on_floor(center)
+
+func _clear_push(center: Vector3, sight: Vector3, distance: float) -> Vector3:
+	var eye := Vector3.UP * FIGHT_EYE_HEIGHT
+	var step := distance
+	while step >= fight_keep_away:
+		var tried := _on_floor(player.global_position + sight * step)
+		if _clear_line(player.global_position + eye, tried + eye):
+			return tried
+		step -= 0.25
+	return center
 
 func _far_from_player(spot: Vector3, keep_away: float) -> bool:
 	var offset := spot - player.global_position

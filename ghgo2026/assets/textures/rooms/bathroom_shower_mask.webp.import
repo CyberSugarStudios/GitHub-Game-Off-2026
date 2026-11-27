@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5b6iqo78woix"
-path.s3tc="res://.godot/imported/MusicBox.png-0ef84299cf1ceb04dd0fe6a9cd83a3ea.s3tc.ctex"
+uid="uid://c2526y3nlppl3"
+path.s3tc="res://.godot/imported/bathroom_shower_mask.webp-afa11b7920db1bf581b43baaacfba0f9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/rooms/living_room/MusicBox.png"
-dest_files=["res://.godot/imported/MusicBox.png-0ef84299cf1ceb04dd0fe6a9cd83a3ea.s3tc.ctex"]
+source_file="res://assets/textures/rooms/bathroom_shower_mask.webp"
+dest_files=["res://.godot/imported/bathroom_shower_mask.webp-afa11b7920db1bf581b43baaacfba0f9.s3tc.ctex"]
 
 [params]
 
@@ -24,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,5 +37,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=1024
+process/size_limit=2048
 detect_3d/compress_to=1

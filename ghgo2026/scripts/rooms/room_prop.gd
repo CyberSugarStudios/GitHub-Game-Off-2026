@@ -158,9 +158,14 @@ func _fit_to_art() -> void:
 		return
 	var art_to_parent := parent.get_global_transform().affine_inverse() * sprite.get_global_transform()
 	var rect := art_to_parent * sprite.get_rect()
+	var before := position
 	set_anchors_preset(Control.PRESET_TOP_LEFT)
 	position = rect.position
 	size = rect.size
+	var moved := position - before
+	for child in get_children():
+		if child is Node2D:
+			(child as Node2D).position -= moved
 
 func _parents_here() -> bool:
 	for parent_id in needs_parents:

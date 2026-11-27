@@ -172,6 +172,10 @@ position = Vector2(2694, 1008)
 scale = Vector2(0.5, 0.5)
 parent_id = &"david"
 frames = ExtResource("7_a5o1a")
+animation_heights = Dictionary[StringName, float]({
+&"sitting": 1500.0,
+&"sleeping": 1500.0
+})
 
 [node name="RoomCreature" parent="Actors" unique_id=964999695 node_paths=PackedStringArray("blocks") instance=ExtResource("8_7cjtg")]
 position = Vector2(208, 1112)
@@ -369,6 +373,8 @@ position = Vector2(2694, 1008)
 script = ExtResource("12_8llds")
 facing = 1
 also_for = Array[StringName]([&"watching_tv_and_drinking", &"drinking_and_tv", &"drinking_and_watching_tv_then_falling_asleep", &"sleeping"])
+animation = &"sitting"
+night_animation = &"sleeping"
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
 [node name="ArrivingHome" type="Marker2D" parent="RoomSpots" unique_id=459147660]

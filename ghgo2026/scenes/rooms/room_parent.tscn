@@ -7,12 +7,7 @@
 script = ExtResource("1_vcdkt")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1828615581]
-
-[node name="Placeholder" type="ColorRect" parent="." unique_id=1708442570]
-offset_left = -250.0
-offset_top = -1500.0
-offset_right = 250.0
-mouse_filter = 2
+animation = &"idle"
 
 [node name="ClickArea" type="TextureButton" parent="." unique_id=716037555]
 offset_right = 40.0

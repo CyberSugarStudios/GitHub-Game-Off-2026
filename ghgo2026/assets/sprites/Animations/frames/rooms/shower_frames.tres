@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c6xon0nrtetoq"]
+
+[ext_resource type="Texture2D" uid="uid://c1wrwg682ov7a" path="res://assets/sprites/Animations/rooms/bathroom/Shower_01.png" id="1_c6l16"]
+[ext_resource type="Texture2D" uid="uid://dqn8s54cksrb6" path="res://assets/sprites/Animations/rooms/bathroom/Shower_02.png" id="2_mn5m0"]
+[ext_resource type="Texture2D" uid="uid://bx504qqxd3m3" path="res://assets/sprites/Animations/rooms/bathroom/Shower_03.png" id="3_5mnbp"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c6l16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mn5m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5mnbp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]

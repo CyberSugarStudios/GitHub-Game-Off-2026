@@ -3,22 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckk243e6bnqtq"
-path.s3tc="res://.godot/imported/mirror.webp-a86969578cd99b7845858a50b71a35fb.s3tc.ctex"
+path="res://.godot/imported/mirror.webp-a86969578cd99b7845858a50b71a35fb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/sprites/rooms/bathroom/mirror.webp"
-dest_files=["res://.godot/imported/mirror.webp-a86969578cd99b7845858a50b71a35fb.s3tc.ctex"]
+dest_files=["res://.godot/imported/mirror.webp-a86969578cd99b7845858a50b71a35fb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

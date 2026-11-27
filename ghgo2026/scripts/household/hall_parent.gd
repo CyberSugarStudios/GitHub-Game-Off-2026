@@ -5,6 +5,7 @@ signal arrived(parent_id: StringName, room_id: StringName)
 signal linger_started(parent_id: StringName, mark_id: StringName)
 
 const LINGER_RADIUS := 0.6
+const STAGE_SNAP_DISTANCE := 0.75
 
 @export var parent_id: StringName = &"leanne"
 @export var walk_speed: float = 1.1
@@ -89,8 +90,11 @@ func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> vo
 func _physics_process(delta: float) -> void:
 	is_moving = false
 	if _stage_target:
-		var point := _stage_target.global_position if agent.is_navigation_finished() \
-			else agent.get_next_path_position()
+		var point := agent.get_next_path_position()
+		if agent.is_navigation_finished():
+			var target := _stage_target.global_position
+			var gap := Vector2(target.x - global_position.x, target.z - global_position.z).length()
+			point = target if gap <= STAGE_SNAP_DISTANCE else global_position
 		if _step_toward(point, delta) and agent.is_navigation_finished():
 			standing_at = _stage_target
 			_stage_target = null

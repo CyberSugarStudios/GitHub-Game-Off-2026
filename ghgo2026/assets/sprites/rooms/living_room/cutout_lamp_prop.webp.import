@@ -3,28 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctllll4se2kij"
-path.s3tc="res://.godot/imported/cutout_lamp_prop.webp-22507344a6d097a74b4786d9d76cd309.s3tc.ctex"
+path="res://.godot/imported/cutout_lamp_prop.webp-22507344a6d097a74b4786d9d76cd309.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/sprites/rooms/living_room/cutout_lamp_prop.webp"
-dest_files=["res://.godot/imported/cutout_lamp_prop.webp-22507344a6d097a74b4786d9d76cd309.s3tc.ctex"]
+dest_files=["res://.godot/imported/cutout_lamp_prop.webp-22507344a6d097a74b4786d9d76cd309.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

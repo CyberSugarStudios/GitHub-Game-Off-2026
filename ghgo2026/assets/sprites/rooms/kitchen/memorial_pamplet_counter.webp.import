@@ -3,22 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djj165hdhwv5y"
-path.s3tc="res://.godot/imported/memorial_pamplet_counter.webp-281db733f43b0efa77c74ca7b9f5b264.s3tc.ctex"
+path="res://.godot/imported/memorial_pamplet_counter.webp-281db733f43b0efa77c74ca7b9f5b264.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/sprites/rooms/kitchen/memorial_pamplet_counter.webp"
-dest_files=["res://.godot/imported/memorial_pamplet_counter.webp-281db733f43b0efa77c74ca7b9f5b264.s3tc.ctex"]
+dest_files=["res://.godot/imported/memorial_pamplet_counter.webp-281db733f43b0efa77c74ca7b9f5b264.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

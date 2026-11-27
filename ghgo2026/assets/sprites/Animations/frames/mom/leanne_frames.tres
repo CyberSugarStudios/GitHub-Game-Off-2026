@@ -26,25 +26,65 @@
 [ext_resource type="Texture2D" uid="uid://pcx3xyuu2qn3" path="res://assets/sprites/Animations/mom/Picture-look/Mum_angle_rig-Picture look_46.png" id="47_iopye"]
 [ext_resource type="Texture2D" uid="uid://cw1gvp8aifu71" path="res://assets/sprites/Animations/mom/Picture-look/Mum_angle_rig-Picture look_48.png" id="49_jh34a"]
 [ext_resource type="Texture2D" uid="uid://f6wd4c2hq6bt" path="res://assets/sprites/Animations/mom/Picture-look/Mum_angle_rig-Picture look_50.png" id="51_ljtl0"]
+[ext_resource type="Texture2D" uid="uid://kgq0lo7k2hay" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_00.png" id="51_sk8ws"]
+[ext_resource type="Texture2D" uid="uid://b88sp6w884fuh" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_02.png" id="52_4pvja"]
+[ext_resource type="Texture2D" uid="uid://ba5v6erui5wk3" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_04.png" id="53_66r3q"]
 [ext_resource type="Texture2D" uid="uid://ynrk2hprevhe" path="res://assets/sprites/Animations/mom/Picture-look/Mum_angle_rig-Picture look_52.png" id="53_e2qop"]
+[ext_resource type="Texture2D" uid="uid://0bf3vxuu37m4" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_06.png" id="54_7s7rv"]
 [ext_resource type="Texture2D" uid="uid://dx6qsmhis586y" path="res://assets/sprites/Animations/mom/Picture-look/Mum_angle_rig-Picture look_54.png" id="55_hwkx7"]
+[ext_resource type="Texture2D" uid="uid://dprpyv0xdnwdy" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_08.png" id="55_jlong"]
+[ext_resource type="Texture2D" uid="uid://mgn42631mns8" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_10.png" id="56_kqmr0"]
+[ext_resource type="Texture2D" uid="uid://dqdaek776jfeq" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_12.png" id="57_6wxwm"]
 [ext_resource type="Texture2D" uid="uid://mk85tvwmdi84" path="res://assets/sprites/Animations/mom/Picture-look/Mum_angle_rig-Picture look_56.png" id="57_v0wlk"]
+[ext_resource type="Texture2D" uid="uid://balhpl5ycor3x" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_14.png" id="58_j7whv"]
 [ext_resource type="Texture2D" uid="uid://jubhsc13xu3o" path="res://assets/sprites/Animations/mom/Picture-look/Mum_angle_rig-Picture look_58.png" id="59_1r6ib"]
+[ext_resource type="Texture2D" uid="uid://cpqtiaqb6387b" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_16.png" id="59_xm28k"]
+[ext_resource type="Texture2D" uid="uid://dvsqga6tm5k2h" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_18.png" id="60_yp0eo"]
 [ext_resource type="Texture2D" uid="uid://dwi1qsfdpgm50" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_00.png" id="61_6kpv4"]
+[ext_resource type="Texture2D" uid="uid://be0equncjo765" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_20.png" id="61_i5w4m"]
+[ext_resource type="Texture2D" uid="uid://31sxjewn6y07" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_22.png" id="62_5desw"]
 [ext_resource type="Texture2D" uid="uid://m3hm8cvdsp2j" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_02.png" id="63_jv7ba"]
+[ext_resource type="Texture2D" uid="uid://b2yierng5ixyt" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_24.png" id="63_sc6ja"]
+[ext_resource type="Texture2D" uid="uid://y8qy2dkx7gwv" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_26.png" id="64_av67a"]
 [ext_resource type="Texture2D" uid="uid://cvqdvyp0xq4r1" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_04.png" id="65_0jgbw"]
+[ext_resource type="Texture2D" uid="uid://buggnjwssfpg3" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_28.png" id="65_cmrfa"]
+[ext_resource type="Texture2D" uid="uid://d0qmu5jbiown3" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_30.png" id="66_a8pfy"]
+[ext_resource type="Texture2D" uid="uid://gxfcmdul8aqq" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_32.png" id="67_c7end"]
 [ext_resource type="Texture2D" uid="uid://dhtrcijhmatf0" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_06.png" id="67_wmyjm"]
+[ext_resource type="Texture2D" uid="uid://dbwtfjbmtuptq" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_34.png" id="68_ce68w"]
+[ext_resource type="Texture2D" uid="uid://bfhl5q4lf1vnx" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_36.png" id="69_dm5nt"]
 [ext_resource type="Texture2D" uid="uid://cltur81dbhuf0" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_08.png" id="69_ruwte"]
+[ext_resource type="Texture2D" uid="uid://cqi7inlvl3whu" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_38.png" id="70_kych2"]
 [ext_resource type="Texture2D" uid="uid://detkdlwv1n5fw" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_10.png" id="71_0nml8"]
+[ext_resource type="Texture2D" uid="uid://nhm3b3mspkws" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_40.png" id="71_cdpx3"]
+[ext_resource type="Texture2D" uid="uid://db53m1rb8y0q7" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_42.png" id="72_w1lna"]
 [ext_resource type="Texture2D" uid="uid://csaw4ql1uguq1" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_12.png" id="73_j1cvw"]
+[ext_resource type="Texture2D" uid="uid://bylt3kyujwfcv" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_44.png" id="73_wqslq"]
+[ext_resource type="Texture2D" uid="uid://6317yyse165w" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_46.png" id="74_6fyg0"]
 [ext_resource type="Texture2D" uid="uid://vipi0katexem" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_14.png" id="75_cms1r"]
+[ext_resource type="Texture2D" uid="uid://c7tmd6kvh4d3o" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_48.png" id="75_nx27n"]
+[ext_resource type="Texture2D" uid="uid://dc8ps37x11p3n" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_50.png" id="76_klgr5"]
+[ext_resource type="Texture2D" uid="uid://cf7pf02dqxhll" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_52.png" id="77_a11bv"]
 [ext_resource type="Texture2D" uid="uid://jsvpma08pv37" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_16.png" id="77_fi8ad"]
+[ext_resource type="Texture2D" uid="uid://b6lcg4drcuv1e" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_54.png" id="78_10p7t"]
+[ext_resource type="Texture2D" uid="uid://dt2y70w73cw4h" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_56.png" id="79_d7577"]
 [ext_resource type="Texture2D" uid="uid://cglre0imfr4u7" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_18.png" id="79_o2v73"]
+[ext_resource type="Texture2D" uid="uid://wxdqrrli5rwc" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_58.png" id="80_nrrhm"]
+[ext_resource type="Texture2D" uid="uid://ccobu2j6nlym3" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_60.png" id="81_3ik2a"]
 [ext_resource type="Texture2D" uid="uid://d6f0fcaxlr7b" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_20.png" id="81_5er0b"]
+[ext_resource type="Texture2D" uid="uid://d01h20ixksk8o" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_62.png" id="82_qa24g"]
 [ext_resource type="Texture2D" uid="uid://cli86iyquopk1" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_22.png" id="83_20xfc"]
+[ext_resource type="Texture2D" uid="uid://dirddomu3ml4y" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_64.png" id="83_tqvu1"]
+[ext_resource type="Texture2D" uid="uid://c6143igu3fwkt" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_66.png" id="84_2gher"]
 [ext_resource type="Texture2D" uid="uid://sdrn6hpjjmnj" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_24.png" id="85_f5jwm"]
+[ext_resource type="Texture2D" uid="uid://ek72082jk8ld" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_68.png" id="85_h2g8o"]
+[ext_resource type="Texture2D" uid="uid://680qv5heakep" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_70.png" id="86_u85j1"]
+[ext_resource type="Texture2D" uid="uid://cl2s1rbal1p2e" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_72.png" id="87_7etaw"]
 [ext_resource type="Texture2D" uid="uid://dbvjmb6albtyv" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_26.png" id="87_xwqc1"]
+[ext_resource type="Texture2D" uid="uid://beqqaxc62slrs" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_74.png" id="88_xtuh1"]
 [ext_resource type="Texture2D" uid="uid://cre2opjlmf7mn" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_28.png" id="89_d0o4f"]
+[ext_resource type="Texture2D" uid="uid://o8dxwu5ovxja" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_76.png" id="89_ougyc"]
+[ext_resource type="Texture2D" uid="uid://dosfjwakvji0i" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_78.png" id="90_20cll"]
 [ext_resource type="Texture2D" uid="uid://bd1jh8bpb7vmv" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_30.png" id="91_vtmt1"]
 [ext_resource type="Texture2D" uid="uid://fl6mrhk34cyq" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_32.png" id="93_n06mk"]
 [ext_resource type="Texture2D" uid="uid://dslh0ebqt0ken" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_34.png" id="95_wpg8o"]
@@ -257,6 +297,131 @@ animations = [{
 "loop": 1,
 "name": &"idle_sad",
 "speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51_sk8ws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_4pvja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_66r3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_7s7rv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_jlong")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_kqmr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_6wxwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_j7whv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_xm28k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_yp0eo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_i5w4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_5desw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_sc6ja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_av67a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_cmrfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_a8pfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_c7end")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_ce68w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_dm5nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_kych2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_cdpx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_w1lna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_wqslq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_6fyg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_nx27n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_klgr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_a11bv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_10p7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_d7577")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_nrrhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_3ik2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_qa24g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_tqvu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_2gher")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_h2g8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_u85j1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_7etaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_xtuh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_ougyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_20cll")
+}],
+"loop": 1,
+"name": &"reading",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,

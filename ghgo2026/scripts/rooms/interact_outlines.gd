@@ -98,10 +98,10 @@ func _make_lines(points: PackedVector2Array) -> Node2D:
 func _make_sprite() -> Sprite2D:
 	var sprite := Sprite2D.new()
 	sprite.region_enabled = true
-	var material := ShaderMaterial.new()
-	material.shader = OUTLINE_SHADER
-	material.set_shader_parameter("glow_color", glow_color)
-	sprite.material = material
+	var glow_material := ShaderMaterial.new()
+	glow_material.shader = OUTLINE_SHADER
+	glow_material.set_shader_parameter("glow_color", glow_color)
+	sprite.material = glow_material
 	return sprite
 
 func _source_texture(source: CanvasItem) -> Texture2D:
@@ -115,7 +115,7 @@ func _source_texture(source: CanvasItem) -> Texture2D:
 func _sync(outline: Outline) -> void:
 	var xform := outline.source.get_global_transform_with_canvas()
 	outline.node.transform = xform
-	var scale := maxf(absf(xform.get_scale().x), 0.0001)
+	var canvas_scale := maxf(absf(xform.get_scale().x), 0.0001)
 	if outline.node is Sprite2D:
 		var sprite := outline.node as Sprite2D
 		var texture := _source_texture(outline.source)
@@ -124,7 +124,7 @@ func _sync(outline: Outline) -> void:
 			return
 		var centered: bool = outline.source.get("centered")
 		var offset: Vector2 = outline.source.get("offset")
-		var radius := outline_px * 2.0 / scale
+		var radius := outline_px * 2.0 / canvas_scale
 		var size := texture.get_size()
 		sprite.texture = texture
 		sprite.centered = centered
@@ -132,10 +132,10 @@ func _sync(outline: Outline) -> void:
 		sprite.flip_v = outline.source.get("flip_v")
 		sprite.region_rect = Rect2(-radius, -radius, size.x + radius * 2.0, size.y + radius * 2.0)
 		sprite.offset = offset - (Vector2.ZERO if centered else Vector2(radius, radius))
-		var material := sprite.material as ShaderMaterial
-		material.set_shader_parameter("radius", radius)
-		material.set_shader_parameter("strength", outline.strength)
+		var glow_material := sprite.material as ShaderMaterial
+		glow_material.set_shader_parameter("radius", radius)
+		glow_material.set_shader_parameter("strength", outline.strength)
 	else:
 		outline.node.modulate.a = outline.strength
 		for line in outline.node.get_children():
-			(line as Line2D).width = outline_px * float(line.get_meta("width_scale")) / scale
+			(line as Line2D).width = outline_px * float(line.get_meta("width_scale")) / canvas_scale

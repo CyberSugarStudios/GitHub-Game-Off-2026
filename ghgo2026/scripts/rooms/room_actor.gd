@@ -20,6 +20,7 @@ const STEPS: Dictionary[StringName, AudioStream] = {
 @export var idle_animation: StringName = &"idle"
 @export var step_stride: float = 450.0
 @export var step_volume_db: float = -8.0
+@export var animation_heights: Dictionary[StringName, float] = {}
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var placeholder: CanvasItem = get_node_or_null("Placeholder")
@@ -35,6 +36,9 @@ var _david_frames := preload("res://assets/sprites/Animations/frames/dad/david_f
 
 func _ready() -> void:
 	scale = Vector2.ONE * float(PARENT_SCALES.get(parent_id, scale.x))
+	GameClock.hour_changed.connect(func(_day: int, _hour: int) -> void:
+		if visible and not _walking:
+			_stand())
 	var node := get_parent()
 	while node and not node is Room:
 		node = node.get_parent()
@@ -123,8 +127,16 @@ func _count_step(distance: float) -> void:
 
 func _stand() -> void:
 	var activity := GameState.get_parent_activity(parent_id)
-	var anim := activity if frames and frames.has_animation(activity) else idle_animation
+	var anim := _spot_animation(activity)
+	if anim == &"" or frames == null or not frames.has_animation(anim):
+		anim = activity if frames and frames.has_animation(activity) else idle_animation
 	_animate(anim, _standing_flip(activity))
+
+func _spot_animation(activity: StringName) -> StringName:
+	var spot := _spot_node(activity)
+	if spot == null:
+		spot = _spot_node(&"default")
+	return (spot as RoomSpot).animation_now() if spot is RoomSpot else &""
 
 func _animate(anim: StringName, flip: float) -> void:
 	if frames == null:
@@ -143,8 +155,9 @@ func _animate(anim: StringName, flip: float) -> void:
 	sprite.speed_scale = GameClock.world_speed
 	var texture := frames.get_frame_texture(anim, 0)
 	if texture:
-		sprite.scale = Vector2.ONE * (height / texture.get_height())
-		sprite.position.y = -height * 0.5
+		var anim_height: float = animation_heights.get(anim, height)
+		sprite.scale = Vector2.ONE * (anim_height / texture.get_height())
+		sprite.position.y = -anim_height * 0.5
 
 func is_walking() -> bool:
 	return _walking

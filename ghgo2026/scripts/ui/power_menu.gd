@@ -17,6 +17,7 @@ const TAUGHT_FLAG := &"power_click_taught"
 var _home: Array[float] = []
 var _buttons: Array[Button] = []
 var _styles: Dictionary[StringName, StyleBox] = {}
+var _hovered := -1
 
 func _ready() -> void:
 	_home = [offset_left, offset_top, offset_right, offset_bottom]
@@ -50,6 +51,7 @@ func _rebuild() -> void:
 		child.queue_free()
 	_buttons.clear()
 
+	_hovered = -1
 	visible = Powers.target != &"" and GameState.in_astral
 	if not visible:
 		return
@@ -78,7 +80,18 @@ func _rebuild() -> void:
 			func() -> void:
 				Powers.select(i)
 				Powers.use_selected())
-		button.mouse_entered.connect(func() -> void: Powers.select(i))
+		button.mouse_entered.connect(
+			func() -> void:
+				_hovered = i
+				Powers.select(i)
+				_refresh()
+		)
+		button.mouse_exited.connect(
+			func() -> void:
+				if _hovered == i:
+					_hovered = -1
+					_refresh()
+		)
 		button.add_child(_make_cost_bars(power.energy_cost))
 		add_child(button)
 		_apply_styles(button)
@@ -114,9 +127,11 @@ func _refresh() -> void:
 		var button := _buttons[i]
 		button.disabled = not GameState.can_afford(powers[i].energy_cost)
 		button.text = powers[i].display_name
-		var chosen := i == Powers.selected
-		button.add_theme_stylebox_override(&"normal", _styles[&"selected"] if chosen else _styles[&"normal"])
-		button.add_theme_stylebox_override(&"disabled", _styles[&"selected"] if chosen else _styles[&"disabled"])
+		var focus := _hovered if GameState.is_in_room() else Powers.selected
+		var look: StyleBox = _styles[&"selected"] if i == focus else _styles[&"normal"]
+		for state: StringName in [&"normal", &"hover", &"pressed", &"focus"]:
+			button.add_theme_stylebox_override(state, look)
+		button.add_theme_stylebox_override(&"disabled", _styles[&"selected"] if i == focus else _styles[&"disabled"])
 
 func _apply_styles(button: Button) -> void:
 	if _styles.is_empty():
@@ -134,8 +149,6 @@ func _apply_styles(button: Button) -> void:
 		selected.content_margin_top = _styles[&"normal"].content_margin_top
 		selected.content_margin_bottom = _styles[&"normal"].content_margin_bottom
 		_styles[&"selected"] = selected
-	for state: StringName in [&"hover", &"pressed"]:
-		button.add_theme_stylebox_override(state, _styles[state])
 
 func _make_cost_bars(cost: float) -> Control:
 	var holder := Control.new()

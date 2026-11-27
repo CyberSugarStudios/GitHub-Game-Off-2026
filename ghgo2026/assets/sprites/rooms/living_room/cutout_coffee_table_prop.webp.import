@@ -3,28 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmrrswsb2y6n2"
-path.s3tc="res://.godot/imported/cutout_coffee_table_prop.webp-c0c4211fd62ee2e1b87fa235be11fe68.s3tc.ctex"
+path="res://.godot/imported/cutout_coffee_table_prop.webp-c0c4211fd62ee2e1b87fa235be11fe68.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/sprites/rooms/living_room/cutout_coffee_table_prop.webp"
-dest_files=["res://.godot/imported/cutout_coffee_table_prop.webp-c0c4211fd62ee2e1b87fa235be11fe68.s3tc.ctex"]
+dest_files=["res://.godot/imported/cutout_coffee_table_prop.webp-c0c4211fd62ee2e1b87fa235be11fe68.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

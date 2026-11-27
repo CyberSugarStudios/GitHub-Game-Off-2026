@@ -5,7 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://cxgom7xmxqllf" path="res://assets/textures/rooms/bathroom.webp" id="2_muy8a"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_muy8a"]
+[ext_resource type="SpriteFrames" uid="uid://c6xon0nrtetoq" path="res://assets/sprites/Animations/frames/rooms/shower_frames.tres" id="5_juav1"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_nc0wo"]
+[ext_resource type="Texture2D" uid="uid://c2526y3nlppl3" path="res://assets/textures/rooms/bathroom_shower_mask.webp" id="6_nwfs6"]
+[ext_resource type="Script" uid="uid://0plsv4v7klij" path="res://scripts/rooms/event_animation.gd" id="6_xflxt"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_won8x"]
 [ext_resource type="AudioStream" uid="uid://c2rk045w2kehh" path="res://assets/audio/sfx/varied/Shower.wav" id="8_nc0wo"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="9_t60wq"]
@@ -37,6 +40,19 @@ script = ExtResource("2_e0elq")
 
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
+
+[node name="ShowerWater" type="AnimatedSprite2D" parent="BackProps" unique_id=1396176049]
+visible = false
+position = Vector2(2974, 595)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("5_juav1")
+frame_progress = 0.9759
+script = ExtResource("6_xflxt")
+
+[node name="ShowerMask" type="Sprite2D" parent="BackProps" unique_id=2073630277]
+position = Vector2(3340, 594.50006)
+scale = Vector2(0.7382811, 0.7410027)
+texture = ExtResource("6_nwfs6")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
@@ -81,6 +97,7 @@ use_sound = ExtResource("8_nc0wo")
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
 [node name="BathroomLight" type="PointLight2D" parent="." unique_id=175878522]
+visible = false
 position = Vector2(2052, -31)
 color = Color(1, 0.93333334, 0.8392157, 1)
 texture = ExtResource("9_t60wq")

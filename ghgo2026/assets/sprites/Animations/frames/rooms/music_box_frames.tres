@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cmgvhajewhmh3"]
+
+[ext_resource type="Texture2D" uid="uid://dcn6cjfkes322" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_001.png" id="1_rpc0s"]
+[ext_resource type="Texture2D" uid="uid://dvh524ofss8q2" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_002.png" id="2_nvj5l"]
+[ext_resource type="Texture2D" uid="uid://c4r4500sja8bl" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_003.png" id="3_bdjwp"]
+[ext_resource type="Texture2D" uid="uid://bhv5y8msthku4" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_004.png" id="4_y32is"]
+[ext_resource type="Texture2D" uid="uid://bmwt8gvxsybq0" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_005.png" id="5_ytp8c"]
+[ext_resource type="Texture2D" uid="uid://8q2a8wdahx7d" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_006.png" id="6_l1rfy"]
+[ext_resource type="Texture2D" uid="uid://c3v7315v71365" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_007.png" id="7_6x1sw"]
+[ext_resource type="Texture2D" uid="uid://cy1ytv2qxh8xl" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_008.png" id="8_xs5qr"]
+[ext_resource type="Texture2D" uid="uid://b261fyp54p7tr" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_009.png" id="9_r7uwi"]
+[ext_resource type="Texture2D" uid="uid://bttddctg8qtii" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_010.png" id="10_otbyd"]
+[ext_resource type="Texture2D" uid="uid://cbia0gcwhjtb1" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_011.png" id="11_klpod"]
+[ext_resource type="Texture2D" uid="uid://ds6m6kmyiq2iv" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_012.png" id="12_m34y6"]
+[ext_resource type="Texture2D" uid="uid://tuxtscrjjeh0" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_013.png" id="13_uq7ie"]
+[ext_resource type="Texture2D" uid="uid://50k68q5ks2dh" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_014.png" id="14_dmgf2"]
+[ext_resource type="Texture2D" uid="uid://d02r1ggdkdbi7" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_015.png" id="15_56o0v"]
+[ext_resource type="Texture2D" uid="uid://1ycl0fevhwhv" path="res://assets/sprites/Animations/rooms/living_room/Music-box/Music-box_016.png" id="16_chh4c"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rpc0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nvj5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bdjwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y32is")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ytp8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l1rfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6x1sw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xs5qr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r7uwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_otbyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_klpod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m34y6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uq7ie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_dmgf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_56o0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_chh4c")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
