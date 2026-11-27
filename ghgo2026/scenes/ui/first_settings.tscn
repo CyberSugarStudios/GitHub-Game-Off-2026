@@ -1,10 +1,115 @@
 [gd_scene format=3 uid="uid://dnxaay7p8j4ju"]
 
 [ext_resource type="Script" uid="uid://bt5lkdnjjeepo" path="res://scripts/ui/first_settings.gd" id="1_dd5l6"]
+[ext_resource type="Theme" uid="uid://d36exa7tunr3n" path="res://resources/interim_theme.tres" id="2_theme"]
 [ext_resource type="Texture2D" uid="uid://c355btreawcvp" path="res://assets/sprites/settings_example.png" id="2_vkp2m"]
+[ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="3_allura"]
+[ext_resource type="PackedScene" uid="uid://b713spnah4skw" path="res://scenes/ui/OptionsPanel.tscn" id="5_panel"]
 
 [node name="FirstSettings" type="Control" unique_id=880927422]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
 script = ExtResource("1_dd5l6")
-reference_image = ExtResource("2_vkp2m")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1597304822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1820475539]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 40
+
+[node name="Columns" type="HBoxContainer" parent="Margin" unique_id=642017385]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Preview" type="VBoxContainer" parent="Margin/Columns" unique_id=1349907261]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Heading" type="Label" parent="Margin/Columns/Preview" unique_id=1913386402]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
+theme_override_fonts/font = ExtResource("3_allura")
+theme_override_font_sizes/font_size = 96
+text = "Before you begin"
+horizontal_alignment = 1
+
+[node name="Reference" type="TextureRect" parent="Margin/Columns/Preview" unique_id=1112650498]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_vkp2m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GammaBox" type="ColorRect" parent="Margin/Columns/Preview" unique_id=875309217]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GammaWord" type="Label" parent="Margin/Columns/Preview/GammaBox" unique_id=1530964078]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.05, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_allura")
+theme_override_font_sizes/font_size = 80
+text = "Interim"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GammaHint" type="Label" parent="Margin/Columns/Preview" unique_id=1269384715]
+custom_minimum_size = Vector2(0.01, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Raise Gamma until the word above is only just visible."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Ramp" type="HBoxContainer" parent="Margin/Columns/Preview" unique_id=1987025163]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="RampHint" type="Label" parent="Margin/Columns/Preview" unique_id=1046291837]
+custom_minimum_size = Vector2(0.01, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Set Brightness and Contrast so all ten steps look different."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="OptionsPanel" parent="Margin/Columns" unique_id=1738204659 instance=ExtResource("5_panel")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.2
+section_layout = 1
+close_text = "CONTINUE"

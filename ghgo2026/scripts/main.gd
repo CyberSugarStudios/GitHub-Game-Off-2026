@@ -138,7 +138,7 @@ func _add_intro_prompts() -> void:
 	column.add_theme_constant_override("separation", 12)
 	_video_screen.add_child(column)
 	_pin_bottom_right(column)
-	var options := _make_prompt(_options_key(), "Options")
+	var options := _make_prompt(_options_key(), "Settings")
 	column.add_child(options)
 	var skip := _make_prompt("E", "Skip", "Hold")
 	column.add_child(skip)

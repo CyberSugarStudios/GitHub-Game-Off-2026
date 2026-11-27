@@ -3,6 +3,8 @@ extends VBoxContainer
 
 signal closed
 
+enum SectionLayout { COLUMNS, TABS }
+
 const VOLUME_SLIDERS := {
 	&"Master": "MasterVolume",
 	&"Music": "MusicVolume",
@@ -17,9 +19,13 @@ const TAP_GAP_MS := 200
 const HOLD_MS := 1500
 const PREVIEW_FADE := 0.6
 
+@export var section_layout: SectionLayout = SectionLayout.COLUMNS
 @export var font_size: int = 26
-@export var previews: Dictionary[StringName, AudioStream] = {}
 @export var close_text: String = ""
+@export var previews: Dictionary[StringName, AudioStream] = {}
+
+@onready var _tabs: TabBar = %Tabs
+@onready var _sections: Array[Control] = [%SoundSection, %DisplaySection, %ControlsSection]
 
 var _players: Dictionary[StringName, AudioStreamPlayer] = {}
 var _fades: Dictionary[StringName, Tween] = {}
@@ -28,6 +34,7 @@ var _last_tap_ms := 0
 
 func _ready() -> void:
 	_apply_font_size()
+	_apply_layout()
 	_load_values()
 	for bus: StringName in VOLUME_SLIDERS:
 		var row := get_node("%" + VOLUME_SLIDERS[bus]) as SettingSlider
@@ -47,6 +54,26 @@ func _ready() -> void:
 	if close_text != "":
 		close_button.text = close_text
 	close_button.pressed.connect(save_and_close)
+
+func _apply_layout() -> void:
+	var tabbed := section_layout == SectionLayout.TABS
+	_tabs.visible = tabbed
+	if not tabbed:
+		return
+	for heading in find_children("*Heading", "Label", true, false):
+		(heading as Control).visible = false
+	var tallest := 0.0
+	for section in _sections:
+		tallest = maxf(tallest, section.get_combined_minimum_size().y)
+	(%Columns as Control).custom_minimum_size.y = tallest
+	_tabs.tab_changed.connect(_show_tab)
+	_show_tab(_tabs.current_tab)
+
+func _show_tab(index: int) -> void:
+	for i in _sections.size():
+		_sections[i].visible = i == index
+	(%LeftColumn as Control).visible = index == 0
+	(%RightColumn as Control).visible = index != 0
 
 func _load_values() -> void:
 	for bus: StringName in VOLUME_SLIDERS:

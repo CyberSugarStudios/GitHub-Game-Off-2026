@@ -12,10 +12,22 @@
 [ext_resource type="AudioStream" uid="uid://c4qath6yi0kb6" path="res://assets/audio/Emily Voicelines/intro/intro_garage_handle2.wav" id="6_wasor"]
 [ext_resource type="AudioStream" uid="uid://btycl8jacpeuw" path="res://assets/audio/MP3_music/Joe Leytrick - I Don't Know (Acoustic).mp3" id="7_0qnn8"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tab"]
+content_margin_left = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tab_on"]
+content_margin_left = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 6.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0.4392157, 0.6862745, 0.6392157, 0.8)
+
 [node name="OptionsPanel" type="VBoxContainer" unique_id=815701727]
-custom_minimum_size = Vector2(680, 0)
 theme = ExtResource("2_theme")
-theme_override_constants/separation = 14
+theme_override_constants/separation = 24
 script = ExtResource("1_ksq0f")
 previews = Dictionary[StringName, AudioStream]({
 &"Ambience": ExtResource("4_0qnn8"),
@@ -26,51 +38,99 @@ previews = Dictionary[StringName, AudioStream]({
 &"Voices": ExtResource("6_wasor")
 })
 
-[node name="SoundHeading" type="Label" parent="." unique_id=1307568338]
+[node name="Tabs" type="TabBar" parent="." unique_id=1428571903]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
+theme_override_colors/font_hovered_color = Color(0.72156864, 0.8745098, 0.84705883, 1)
+theme_override_colors/font_unselected_color = Color(0.4392157, 0.6862745, 0.6392157, 0.45)
+theme_override_fonts/font = ExtResource("2_allura")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_tab")
+theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_tab")
+theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_tab")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_tab_on")
+tab_alignment = 1
+tab_count = 3
+tab_0/title = "Sound"
+tab_1/title = "Display"
+tab_2/title = "Controls"
+
+[node name="Columns" type="HBoxContainer" parent="." unique_id=2047381652]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="LeftColumn" type="VBoxContainer" parent="Columns" unique_id=1663920487]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 24
+
+[node name="SoundSection" type="VBoxContainer" parent="Columns/LeftColumn" unique_id=988120754]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="SoundHeading" type="Label" parent="Columns/LeftColumn/SoundSection" unique_id=1307568338]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 theme_override_fonts/font = ExtResource("2_allura")
 theme_override_font_sizes/font_size = 60
 text = "Sound"
 
-[node name="MasterVolume" parent="." unique_id=1210454132 instance=ExtResource("2_slider")]
+[node name="MasterVolume" parent="Columns/LeftColumn/SoundSection" unique_id=1210454132 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Master volume"
 
-[node name="MusicVolume" parent="." unique_id=1941489925 instance=ExtResource("2_slider")]
+[node name="MusicVolume" parent="Columns/LeftColumn/SoundSection" unique_id=1941489925 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Music"
 
-[node name="Mp3Volume" parent="." unique_id=1102117271 instance=ExtResource("2_slider")]
+[node name="Mp3Volume" parent="Columns/LeftColumn/SoundSection" unique_id=1102117271 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Emily's music"
 
-[node name="VoicesVolume" parent="." unique_id=99545545 instance=ExtResource("2_slider")]
+[node name="VoicesVolume" parent="Columns/LeftColumn/SoundSection" unique_id=99545545 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Voices"
 
-[node name="SfxVolume" parent="." unique_id=568429344 instance=ExtResource("2_slider")]
+[node name="SfxVolume" parent="Columns/LeftColumn/SoundSection" unique_id=568429344 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Sound effects"
 
-[node name="AmbienceVolume" parent="." unique_id=1339998150 instance=ExtResource("2_slider")]
+[node name="AmbienceVolume" parent="Columns/LeftColumn/SoundSection" unique_id=1339998150 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Ambience"
 
-[node name="DisplayHeading" type="Label" parent="." unique_id=501787221]
+[node name="RightColumn" type="VBoxContainer" parent="Columns" unique_id=1772093316]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 24
+
+[node name="DisplaySection" type="VBoxContainer" parent="Columns/RightColumn" unique_id=1205839471]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="DisplayHeading" type="Label" parent="Columns/RightColumn/DisplaySection" unique_id=501787221]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 theme_override_fonts/font = ExtResource("2_allura")
 theme_override_font_sizes/font_size = 60
 text = "Display"
 
-[node name="Brightness" parent="." unique_id=1579303545 instance=ExtResource("2_slider")]
+[node name="Brightness" parent="Columns/RightColumn/DisplaySection" unique_id=1579303545 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Brightness"
@@ -78,7 +138,7 @@ min_value = 0.5
 max_value = 1.6
 step = 0.05
 
-[node name="Contrast" parent="." unique_id=1374927007 instance=ExtResource("2_slider")]
+[node name="Contrast" parent="Columns/RightColumn/DisplaySection" unique_id=1374927007 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Contrast"
@@ -86,7 +146,7 @@ min_value = 0.7
 max_value = 1.4
 step = 0.05
 
-[node name="Gamma" parent="." unique_id=879423324 instance=ExtResource("2_slider")]
+[node name="Gamma" parent="Columns/RightColumn/DisplaySection" unique_id=879423324 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Gamma"
@@ -95,19 +155,24 @@ max_value = 1.8
 step = 0.05
 format = 1
 
-[node name="ReduceFlashing" type="CheckBox" parent="." unique_id=119337692]
+[node name="ReduceFlashing" type="CheckBox" parent="Columns/RightColumn/DisplaySection" unique_id=119337692]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Reduce flashing lights"
 
-[node name="ControlsHeading" type="Label" parent="." unique_id=290463902]
+[node name="ControlsSection" type="VBoxContainer" parent="Columns/RightColumn" unique_id=734920186]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="ControlsHeading" type="Label" parent="Columns/RightColumn/ControlsSection" unique_id=290463902]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4392157, 0.6862745, 0.6392157, 1)
 theme_override_fonts/font = ExtResource("2_allura")
 theme_override_font_sizes/font_size = 60
 text = "Controls"
 
-[node name="Sensitivity" parent="." unique_id=319019995 instance=ExtResource("2_slider")]
+[node name="Sensitivity" parent="Columns/RightColumn/ControlsSection" unique_id=319019995 instance=ExtResource("2_slider")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "Mouse sensitivity"
@@ -116,18 +181,20 @@ max_value = 2.0
 step = 0.05
 format = 2
 
-[node name="InvertY" type="CheckBox" parent="." unique_id=381074066]
+[node name="InvertY" type="CheckBox" parent="Columns/RightColumn/ControlsSection" unique_id=381074066]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Invert mouse Y"
 
-[node name="HoldToStruggle" type="CheckBox" parent="." unique_id=965102104]
+[node name="HoldToStruggle" type="CheckBox" parent="Columns/RightColumn/ControlsSection" unique_id=965102104]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Hold to struggle (hold Space instead of tapping)"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1794597348]
 layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
 
 [node name="ResetButton" parent="HBoxContainer" unique_id=1903885636 instance=ExtResource("2_button")]
 unique_name_in_owner = true
