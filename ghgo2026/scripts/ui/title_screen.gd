@@ -20,6 +20,7 @@ const HOVER_FADE := 0.12
 #region - VARS
 @onready var version_number_label = $VersionNumberLabel
 
+@onready var title = $Title
 @onready var title_and_buttons = $GameTitleAndButtons
 @onready var options_menu = $OptionsMenu
 @onready var credits_menu = $CreditsMenu
@@ -134,22 +135,27 @@ func _make_load_bar() -> PillBar:
 	return bar
 
 func on_options_menu_button_pressed() -> void:
+	title.visible = false
 	options_menu.visible = true
 	title_and_buttons.visible = false
 
 func on_close_options_button_pressed() -> void:
+	title.visible = true
 	options_menu.visible = false
 	title_and_buttons.visible = true
 
 func on_credits_menu_button_pressed() -> void:
+	title.visible = false
 	credits_menu.visible = true
 	title_and_buttons.visible = false
 
 func on_close_credits_button_pressed() -> void:
+	title.visible = true
 	credits_menu.visible = false
 	title_and_buttons.visible = true
 
 func on_quit_button_pressed() -> void:
+	title.visible = false
 	confirm_close_menu.visible = true
 	title_and_buttons.visible = false
 
@@ -157,6 +163,7 @@ func on_confirm_close_button_pressed() -> void:
 	get_tree().quit()
 
 func on_cancel_close_button_pressed() -> void:
+	title.visible = true
 	confirm_close_menu.visible = false
 	title_and_buttons.visible = true
 
