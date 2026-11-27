@@ -135,7 +135,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "RESET TO DEFAULTS"
 
-[node name="SaveAndCloseButton" parent="HBoxContainer" unique_id=619476330 instance=ExtResource("2_button")]
+[node name="CloseOptionsButton" parent="HBoxContainer" unique_id=619476330 instance=ExtResource("2_button")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

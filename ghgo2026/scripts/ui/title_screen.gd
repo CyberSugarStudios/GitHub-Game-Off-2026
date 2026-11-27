@@ -31,8 +31,8 @@ const HOVER_FADE := 0.12
 @onready var credits_button = $GameTitleAndButtons/TitleButtons/CreditsButton
 @onready var quit_button = $GameTitleAndButtons/TitleButtons/QuitButton
 
-@onready var close_options_button = $OptionsMenu/CloseOptionsButton
 @onready var close_credits_button = $CreditsMenu/CloseCreditsButton
+@onready var close_options_button = $OptionsMenu/OptionsPanel/HBoxContainer/CloseOptionsButton
 
 @onready var confirm_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/ConfirmCloseButton
 @onready var cancel_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/CancelCloseButton
