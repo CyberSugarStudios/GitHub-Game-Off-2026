@@ -15,6 +15,7 @@ const THOUGHT_BED_FADE := 0.8
 }
 @export var chill_minutes: int = 15
 @export var conversation_player: ConversationPlayer
+@export var night_hours := Vector2(23.0, 6.0)
 
 var _bed: AudioStreamPlayer
 var _bed_line := ""
@@ -50,6 +51,7 @@ func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
 			if destination != &"" and household:
 				household.send(parent_id, destination, chill_minutes)
 		&"hug":
+			GameState.set_flag(StringName("hugged_%s" % parent_id))
 			var hug_cue := "hug_%s" % parent_id
 			if _has_cue(HUGS, hug_cue):
 				Events.conversation_requested.emit(HUGS, hug_cue, false)
@@ -60,6 +62,15 @@ func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
 
 func _thought_cue(parent_id: StringName) -> String:
 	var general := "thoughts_%s" % parent_id
+	var asleep := "%s_night" % general
+	if _is_asleep(parent_id) and _has_cue(THOUGHTS, asleep):
+		return asleep
+	var hugged := "thoughts_after_hug_%s" % parent_id
+	if GameState.has_flag(StringName("hugged_%s" % parent_id)) and _has_cue(THOUGHTS, hugged):
+		return hugged
+	var forgiven := "thoughts_after_forgiving_%s" % parent_id
+	if GameState.has_flag(&"creature_accepted") and _has_cue(THOUGHTS, forgiven):
+		return forgiven
 	var hall_parent := household.get_hall_parent(parent_id) if household else null
 	if hall_parent and hall_parent.current_linger:
 		var specific := "%s_%s" % [general, hall_parent.current_linger.mark_id]
@@ -73,6 +84,15 @@ func _thought_cue(parent_id: StringName) -> String:
 	if _has_cue(THOUGHTS, for_stage):
 		return for_stage
 	return general if _has_cue(THOUGHTS, general) else ""
+
+func _is_asleep(parent_id: StringName) -> bool:
+	var activity := String(GameState.get_parent_activity(parent_id))
+	if activity == "sleeping":
+		return true
+	if not activity.contains("sleep"):
+		return false
+	var hour := GameClock.get_day_fraction() * 24.0
+	return hour >= night_hours.x or hour < night_hours.y
 
 func _on_linger_started(parent_id: StringName, mark_id: StringName) -> void:
 	var cue := "%s_linger_%s" % [parent_id, mark_id]
