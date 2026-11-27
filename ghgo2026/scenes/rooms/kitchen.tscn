@@ -126,8 +126,18 @@ z_index = 20
 [node name="Leanne" parent="Actors" unique_id=1712821977 node_paths=PackedStringArray("spots") instance=ExtResource("6_m75iv")]
 position = Vector2(1821, 1044)
 scale = Vector2(0.52, 0.52)
+parent_id = null
 frames = ExtResource("7_78330")
 spots = NodePath("../../RoomSpots")
+height = null
+walk_speed = null
+side_faces_right = null
+idle_faces_right = null
+walk_animation = null
+idle_animation = null
+step_stride = null
+step_volume_db = null
+animation_heights = null
 
 [node name="ClickArea2" type="TextureButton" parent="Actors/Leanne" unique_id=1550962528]
 grow_horizontal = 2
@@ -147,6 +157,15 @@ scale = Vector2(0.55, 0.55)
 parent_id = &"david"
 frames = ExtResource("8_fiuqx")
 spots = NodePath("../../RoomSpots")
+height = null
+walk_speed = null
+side_faces_right = null
+idle_faces_right = null
+walk_animation = null
+idle_animation = null
+step_stride = null
+step_volume_db = null
+animation_heights = null
 
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
@@ -187,6 +206,10 @@ prompt_text = "Look at pamphlet"
 story_id = &"memorial_pamphlet"
 requires_flag = &"read_mom_thoughts"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/Pamphlet" unique_id=1011152832]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(18, 3, 1, 30, 98, 36, 101, 31, 143, 31, 185, 26, 135, 22, 111, 6)
 
 [node name="CoffeeMakerProp" type="TextureButton" parent="Hotspots" unique_id=1598904164 node_paths=PackedStringArray("art")]
 anchors_preset = 15

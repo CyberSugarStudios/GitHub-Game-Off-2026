@@ -191,6 +191,7 @@ func _animate(anim: StringName, flip: float) -> void:
 		var anim_height := _height_for(anim)
 		sprite.scale = Vector2.ONE * (anim_height / texture.get_height())
 		sprite.position.y = -anim_height * 0.5
+	_fit_click_areas()
 
 func is_walking() -> bool:
 	return _walking
@@ -230,10 +231,19 @@ func _standing_flip(activity: StringName) -> bool:
 	return randf() < 0.5
 
 func _fit_click_areas() -> void:
-	var width := height * 0.35
+	var rect := _drawn_rect()
 	for child in get_children():
 		var area := child as RoomHotspot
 		if area:
 			area.set_anchors_preset(Control.PRESET_TOP_LEFT)
-			area.position =  Vector2(-width * 0.5, -height)
-			area.size = Vector2(width, height)
+			area.position = rect.position
+			area.size = rect.size
+
+func _drawn_rect() -> Rect2:
+	var texture: Texture2D = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame) \
+		if sprite.sprite_frames else null
+	if texture == null:
+		var width := height * 0.35
+		return Rect2(-width * 0.5, -height, width, height)
+	var size := texture.get_size() * sprite.scale
+	return Rect2(sprite.position - size * 0.5, size)
