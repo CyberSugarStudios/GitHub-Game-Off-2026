@@ -66,6 +66,7 @@ var exit_locked := false:
 
 func _ready() -> void:
 	room_ui.visible = false
+	fade_rect.color = Settings.fade_color()
 	fade_rect.color.a = 0.0
 	Events.door_opened.connect(enter_room)
 	Events.room_door_opened.connect(change_room)

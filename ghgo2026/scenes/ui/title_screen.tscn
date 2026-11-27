@@ -6,6 +6,7 @@
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="3_a4ium"]
 [ext_resource type="PackedScene" uid="uid://b713spnah4skw" path="res://scenes/ui/OptionsPanel.tscn" id="3_w8uqo"]
 [ext_resource type="PackedScene" uid="uid://bc8avv3u5fuci" path="res://scenes/ui/title_button.tscn" id="6_cfe2f"]
+[ext_resource type="Script" uid="uid://rlniu33cw05e" path="res://scripts/ui/link_list.gd" id="7_6ik4u"]
 
 [sub_resource type="Gradient" id="Gradient_r23qo"]
 offsets = PackedFloat32Array(0, 0.45528457, 1)
@@ -203,8 +204,9 @@ anchor_bottom = 0.15400001
 offset_bottom = 0.20799255
 grow_horizontal = 2
 theme_type_variation = &"TitleText"
+theme_override_colors/default_color = Color(0.63529414, 0.8627451, 0.79607844, 1)
 theme_override_font_sizes/normal_font_size = 80
-text = "Options"
+text = "Settings"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -244,13 +246,40 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsText" type="RichTextLabel" parent="CreditsMenu" unique_id=1275839695]
-anchors_preset = 9
+[node name="CloseCreditsButton" parent="CreditsMenu" unique_id=1314221325 instance=ExtResource("6_cfe2f")]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 163.0
-offset_right = 800.0
+offset_left = -186.0
+offset_top = -72.46002
+offset_right = 186.0
+offset_bottom = -16.460022
+grow_horizontal = 2
+grow_vertical = 0
+text = "CLOSE"
+
+[node name="CreditsLayout" type="MarginContainer" parent="CreditsMenu" unique_id=767803622]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 170
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 90
+
+[node name="CreditsColumn" type="HBoxContainer" parent="CreditsMenu/CreditsLayout" unique_id=83978472]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="CreditsText" type="RichTextLabel" parent="CreditsMenu/CreditsLayout/CreditsColumn" unique_id=1275839695]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = SubResource("Theme_cfe2f")
 bbcode_enabled = true
 text = "
@@ -311,19 +340,20 @@ text = "
 [/font_size]"
 horizontal_alignment = 1
 
-[node name="CloseCreditsButton" parent="CreditsMenu" unique_id=1314221325 instance=ExtResource("6_cfe2f")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 221.0
-offset_top = -81.0
-offset_right = 593.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "CLOSE"
+[node name="LinksSide" type="VBoxContainer" parent="CreditsMenu/CreditsLayout/CreditsColumn" unique_id=920812653]
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LinksScroll" type="ScrollContainer" parent="CreditsMenu/CreditsLayout/CreditsColumn/LinksSide" unique_id=773137487]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LinkList" type="VBoxContainer" parent="CreditsMenu/CreditsLayout/CreditsColumn/LinksSide/LinksScroll" unique_id=1666778191]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+script = ExtResource("7_6ik4u")
 
 [node name="ConfirmClosePopUp" type="CanvasLayer" parent="." unique_id=1987680131]
 visible = false
@@ -341,7 +371,7 @@ offset_right = 150.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.24269372, 0.32086813, 0.25)
+color = Color(1, 1, 1, 0)
 
 [node name="PausedLabel" type="RichTextLabel" parent="ConfirmClosePopUp/ConfirmCloseBackground" unique_id=946412153]
 custom_minimum_size = Vector2(0, 100)

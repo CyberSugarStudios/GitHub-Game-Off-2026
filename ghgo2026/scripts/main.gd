@@ -120,7 +120,7 @@ func _start_intro_video() -> void:
 	layer.layer = 128
 	add_child(layer)
 	_video_screen = ColorRect.new()
-	_video_screen.color = Color.BLACK
+	_video_screen.color = Settings.fade_color()
 	layer.add_child(_video_screen)
 	_video_screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_video_box = AspectRatioContainer.new()

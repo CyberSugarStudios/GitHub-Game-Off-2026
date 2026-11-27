@@ -78,6 +78,7 @@ func _rebuild() -> void:
 			func() -> void:
 				Powers.select(i)
 				Powers.use_selected())
+		button.mouse_entered.connect(func() -> void: Powers.select(i))
 		button.add_child(_make_cost_bars(power.energy_cost))
 		add_child(button)
 		_apply_styles(button)

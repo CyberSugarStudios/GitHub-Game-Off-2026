@@ -77,7 +77,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var fight_gap: float = 1.4
 @export var fight_stagger: float = 1.0
 @export var fight_min_apart: float = 1.6
-@export var fight_keep_away: float = 1.2
+@export var fight_keep_away: float = 1.6
 @export var fight_walk_timeout: float = 6.0
 
 @export_group("Puzzle 2")
@@ -672,6 +672,11 @@ func arrange_fight(leanne_mark: StringName, david_mark: StringName) -> Vector3:
 		sight = -camera.global_basis.z if camera else Vector3.FORWARD
 		sight.y = 0.0
 	sight = sight.normalized()
+	var flat_offset := center - player.global_position
+	flat_offset.y = 0.0
+	var min_center := fight_keep_away + fight_gap * 0.5
+	if flat_offset.length() < min_center:
+		center = _on_floor(player.global_position + sight * min_center)
 	var across := Vector3(-sight.z, 0.0, sight.x) * fight_gap * 0.5
 	var spots: Array[Vector3] = []
 	var stagger := fight_stagger
@@ -705,9 +710,14 @@ func _fight_spot(spot: Vector3, center: Vector3, keep_away: float) -> Vector3:
 		spot = player.global_position + push * keep_away
 	for step in FIGHT_PULL_STEPS + 1:
 		var tried := _on_floor(center.lerp(spot, 1.0 - float(step) / FIGHT_PULL_STEPS))
-		if _in_sight(center, tried):
+		if _in_sight(center, tried) and _far_from_player(tried, keep_away):
 			return tried
 	return _on_floor(center)
+
+func _far_from_player(spot: Vector3, keep_away: float) -> bool:
+	var offset := spot - player.global_position
+	offset.y = 0.0
+	return offset.length() >= keep_away * 0.9
 
 func _on_floor(point: Vector3) -> Vector3:
 	var on_floor := NavigationServer3D.map_get_closest_point(player.get_world_3d().navigation_map, point)

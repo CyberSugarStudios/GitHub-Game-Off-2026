@@ -32,7 +32,7 @@ const HOVER_FADE := 0.12
 @onready var credits_button = $GameTitleAndButtons/TitleButtons/CreditsButton
 @onready var quit_button = $GameTitleAndButtons/TitleButtons/QuitButton
 
-@onready var close_credits_button = $CreditsMenu/CloseCreditsButton
+@onready var close_credits_button = %CloseCreditsButton
 @onready var options_panel: OptionsPanel = $OptionsMenu/OptionsPanel
 
 @onready var confirm_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/ConfirmCloseButton
@@ -112,7 +112,8 @@ func _enter_game(pressed: BaseButton) -> void:
 
 func _fade_out() -> void:
 	var black := ColorRect.new()
-	black.color = Color(0.0, 0.0, 0.0, 0.0)
+	black.color = Settings.fade_color()
+	black.color.a = 0.0
 	black.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(black)
 	black.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

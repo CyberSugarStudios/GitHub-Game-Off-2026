@@ -57,6 +57,9 @@ func _apply_volume(bus: StringName) -> void:
 	AudioServer.set_bus_volume_db(index, linear_to_db(maxf(value, 0.0001)))
 	AudioServer.set_bus_mute(index, value <= 0.001)
 
+func fade_color() -> Color:
+	return ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color", Color.BLACK)
+
 func struggle_hint() -> String:
 	return "[HOLD SPACE]" if hold_to_struggle else "[SPACE]"
 

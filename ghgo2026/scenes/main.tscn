@@ -53,7 +53,6 @@
 [ext_resource type="PackedScene" uid="uid://djn85cwfw380d" path="res://scenes/rooms/parent_bedroom.tscn" id="31_j8jky"]
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
 [ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
-[ext_resource type="FontFile" uid="uid://ck20mjju8iqx7" path="res://assets/fonts/Allura-Regular.ttf" id="37_5poiv"]
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="37_dnhof"]
 [ext_resource type="FontVariation" uid="uid://nbgtuufo4x15" path="res://assets/fonts/josefin_bold.tres" id="38_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://bpyjxvjn83tjr" path="res://scenes/ui/diary_book.tscn" id="39_bjg73"]
@@ -85,6 +84,7 @@
 [ext_resource type="AudioStream" uid="uid://bq6c3r18nglg8" path="res://assets/audio/music/hall_music_astral.mp3" id="67_y57op"]
 [ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="69_fjhjs"]
 [ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="70_bfu41"]
+[ext_resource type="Texture2D" uid="uid://fl3slmy3jame" path="res://assets/textures/Title_Text.png" id="73_bfu41"]
 [ext_resource type="Script" uid="uid://bxs7xdlwwl1ov" path="res://scripts/ui/cupboard_keypad.gd" id="77_ksmap"]
 [ext_resource type="PackedScene" uid="uid://bocgap0btqaff" path="res://scenes/ui/mirror_view.tscn" id="78_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://8kuxv6n1o1p0" path="res://scenes/ui/PamphletView.tscn" id="79_2s0kr"]
@@ -1005,6 +1005,7 @@ stretch_mode = 5
 
 [node name="FadeLayer" type="CanvasLayer" parent="RoomView" unique_id=646292699]
 layer = 5
+visible = false
 
 [node name="Fade" type="ColorRect" parent="RoomView/FadeLayer" unique_id=852270854]
 anchors_preset = 15
@@ -1015,17 +1016,16 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TitleCard" type="Label" parent="RoomView/FadeLayer" unique_id=2062382100]
+[node name="TitleCard" type="TextureRect" parent="RoomView/FadeLayer" unique_id=820982957]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("37_5poiv")
-theme_override_font_sizes/font_size = 96
-text = "Interim"
-horizontal_alignment = 1
-vertical_alignment = 1
+mouse_filter = 2
+texture = ExtResource("73_bfu41")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ConversationPlayer" type="Node" parent="." unique_id=1163992845]
 script = ExtResource("13_trceg")
@@ -1054,7 +1054,7 @@ wake_doorway = NodePath("../Hall/RoomEntrances/LivingRoomDoorway")
 garage_voice = NodePath("../Hall/RoomEntrances/GarageDoor/GarageVoice")
 living_room_voice = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/LivingRoomVoice")
 front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSound")
-title_card = NodePath("../RoomView/FadeLayer/TitleCard")
+title_card = NodePath("")
 pamphlet = NodePath("../PamphletView")
 
 [node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player", "prompt_label")]

@@ -116,7 +116,8 @@ func _back_to_title() -> void:
 		return
 	_leaving = true
 	var black := ColorRect.new()
-	black.color = Color(0.0, 0.0, 0.0, 0.0)
+	black.color = Settings.fade_color()
+	black.color.a = 0.0
 	black.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(black)
 	black.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
