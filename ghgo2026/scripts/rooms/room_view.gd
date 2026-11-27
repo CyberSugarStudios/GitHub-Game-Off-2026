@@ -78,7 +78,7 @@ func _on_controls_locked_changed(locked: bool) -> void:
 
 func _exit_tree() -> void:
 	get_viewport().disable_3d = false
-	GameState.leave_room()
+	GameState.current_room = &""
 
 #region - SHIFTING IN AND OUT OF ROOMS
 func enter_room(room_id: StringName, exit_spot: Transform3D) -> void:

@@ -214,8 +214,6 @@ func _run_intro() -> void:
 	await wait(clock_reveal_seconds)
 	await say("intro_clock")
 	room_view.exit_locked = false
-	await say("intro_clock")
-	room_view.exit_locked = false
 	
 	await wait_room(&"")
 	say_in_background("intro_david_garage")
