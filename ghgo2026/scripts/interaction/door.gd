@@ -49,6 +49,11 @@ const ACTIVITY_TEXT: Dictionary[StringName, String] = {
 @export var enter_after_unlock_delay: float = 0.45
 @export var closed_after_flag: StringName
 @export var closed_until_flag: StringName
+@export var closed_text: String = "Not now..."
+@export var closed_story_id: StringName
+@export var closed_story_prompt: String = ""
+@export var closed_story_requires_flag: StringName
+@export var closed_story_hidden_after_flag: StringName
 
 @export_group("Living Plane")
 @export var observe_in_living: bool = true
@@ -71,6 +76,7 @@ var lock: DoorLock
 
 var _bar_materials: Array[ShaderMaterial] = []
 var _icon_rest_position: Vector3
+var _player_inside := false
 #endregion
 
 func _ready() -> void:
@@ -81,6 +87,8 @@ func _ready() -> void:
 	lock.progress_changed.connect(_show_progress)
 	lock.unlocked.connect(_on_unlocked)
 	lock.failed.connect(_play_fail_shake)
+	_player_inside = GameState.current_room == room_id
+	GameState.room_changed.connect(_on_player_room_changed)
 	if lock_icon == null:
 		return
 	_icon_rest_position = lock_icon.position
@@ -102,6 +110,8 @@ func is_locked() -> bool:
 
 #region - INTERACT OVERRIDES
 func get_prompt_text() -> String:
+	if _closed_story_open():
+		return closed_story_prompt
 	return _with_who_is_inside(_bold_room(room_label if _observing() else prompt_text))
 
 func _bold_room(text: String) -> String:
@@ -115,6 +125,8 @@ func _bold_room(text: String) -> String:
 	return "%s[b]%s[/b]%s" % [text.left(at), text.substr(at, length), text.substr(at + length)]
 
 func get_block_reason() -> String:
+	if _closed_story_open():
+		return ""
 	if _observing():
 		return "" if _observe_cue() != "" else _with_who_is_inside(room_label)
 	var reason := _entry_block_reason()
@@ -124,7 +136,7 @@ func _entry_block_reason() -> String:
 	if not enterable:
 		return room_label
 	if _closed_by_flags():
-		return ""
+		return closed_text
 	if GameState.guarded_room == room_id:
 		return "It won't let me near..."
 	if lock.transferring:
@@ -141,10 +153,24 @@ func _closed_by_flags() -> bool:
 		return false
 	return closed_until_flag == &"" or not GameState.has_flag(closed_until_flag)
 
+func _closed_story_open() -> bool:
+	return closed_story_id != &"" and _closed_by_flags() \
+		and InteractionRules.story_open(closed_story_requires_flag, closed_story_hidden_after_flag)
+
+func _on_player_room_changed(new_room: StringName) -> void:
+	if new_room == room_id:
+		_player_inside = true
+	elif _player_inside:
+		_player_inside = false
+		GameState.set_flag(StringName("left_%s" % room_id))
+
 func get_living_label() -> String:
 	return room_label
 
 func _on_interacted() -> void:
+	if _closed_story_open():
+		Events.story_event.emit(closed_story_id)
+		return
 	if _observing():
 		Events.conversation_requested.emit(DoorLock.DOOR_LINES, _observe_cue(), false)
 		return
