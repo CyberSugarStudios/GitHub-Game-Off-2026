@@ -1,24 +1,32 @@
 [gd_scene format=3 uid="uid://cpggs5yrbbe4x"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_nl2ye"]
-[ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_371gr"]
+[ext_resource type="Texture2D" uid="uid://cp6o32bgd1n1v" path="res://assets/textures/rooms/garage.webp" id="2_5wwcc"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_371gr"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_lynjs"]
+[ext_resource type="Texture2D" uid="uid://c3kqbg65wuu51" path="res://assets/sprites/rooms/garage/garage_light.webp" id="6_4fcy8"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_lynjs"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_o0bpy"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_0yego"]
+[ext_resource type="Texture2D" uid="uid://dllpmh8ghsq10" path="res://assets/sprites/rooms/garage/tool_chest.webp" id="7_5f4xn"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="7_o0bpy"]
+[ext_resource type="Texture2D" uid="uid://ci5j31rh0i3hu" path="res://assets/sprites/rooms/garage/garage_shelf.webp" id="8_5f4xn"]
+[ext_resource type="Texture2D" uid="uid://fm6xpx7gq42w" path="res://assets/sprites/rooms/garage/washer_and_dryer.webp" id="8_qq1up"]
 [ext_resource type="AudioStream" uid="uid://cbp766hev1hwj" path="res://assets/audio/sfx/varied/box_fall.wav" id="9_lynjs"]
+[ext_resource type="Texture2D" uid="uid://bikhsh51vor6f" path="res://assets/sprites/rooms/garage/breaker_closed.webp" id="9_phlef"]
 [ext_resource type="AudioStream" uid="uid://qsp0q274avfm" path="res://assets/audio/sfx/varied/chest_rattle.wav" id="10_0yego"]
+[ext_resource type="Texture2D" uid="uid://cqwk61f6vg0hl" path="res://assets/sprites/rooms/garage/breaker_open.webp" id="10_5qhiu"]
+[ext_resource type="Texture2D" uid="uid://fr24s46f5fb1" path="res://assets/sprites/rooms/garage/keepsakes_box.webp" id="11_iwi2r"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="11_kq0ux"]
+[ext_resource type="Texture2D" uid="uid://cih0yygxympx3" path="res://assets/sprites/rooms/garage/garage_door.webp" id="11_qq1up"]
+[ext_resource type="Texture2D" uid="uid://bd313norirfxg" path="res://assets/sprites/rooms/garage/keepsakes_spilled_empty_box.webp" id="12_nnbf1"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="12_ydii2"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
-
-[sub_resource type="Gradient" id="Gradient_8pl6i"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8pl6i"]
-gradient = SubResource("Gradient_8pl6i")
+[ext_resource type="Texture2D" uid="uid://dowp5wcsrcj1w" path="res://assets/sprites/rooms/garage/keepsakes_spilled_binocs.webp" id="15_iwi2r"]
+[ext_resource type="Texture2D" uid="uid://ik3bt7od8ud" path="res://assets/sprites/rooms/garage/keepsakes_spilled_lid.webp" id="15_phlef"]
+[ext_resource type="Texture2D" uid="uid://dtol8mvoeo45r" path="res://assets/sprites/rooms/garage/keepsakes_spilled_hunting_cap.webp" id="16_nnbf1"]
+[ext_resource type="Texture2D" uid="uid://bxc4qqotwqej3" path="res://assets/sprites/rooms/garage/keepsakes_spilled_rope.webp" id="17_y2trn"]
+[ext_resource type="Texture2D" uid="uid://cwff4d0qky6yx" path="res://assets/sprites/rooms/garage/keepsakes_spilled_compass.webp" id="18_fpmw2"]
+[ext_resource type="Texture2D" uid="uid://d316knkkslni5" path="res://assets/sprites/rooms/garage/keepsakes_spilled_flashlight.webp" id="19_qqx7w"]
 
 [node name="Garage" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_nl2ye")
@@ -26,19 +34,16 @@ room_id = &"garage"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
-texture = ExtResource("2_371gr")
+texture = ExtResource("2_5wwcc")
 centered = false
 
 [node name="AstralLight" type="DirectionalLight2D" parent="." unique_id=1121189894]
-position = Vector2(0, 19)
-scale = Vector2(6, 6)
 energy = 0.0
 script = ExtResource("3_371gr")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-visible = false
 scale = Vector2(2, 2)
-texture = ExtResource("2_371gr")
+texture = ExtResource("2_5wwcc")
 centered = false
 
 [node name="Node" type="Node" parent="AstralBackground" unique_id=1658040930]
@@ -48,29 +53,85 @@ script = ExtResource("4_lynjs")
 z_index = 10
 
 [node name="GarageLight" type="Sprite2D" parent="BackProps" unique_id=1697325592]
-position = Vector2(1978.0004, 90)
-scale = Vector2(180.24995, 180.75)
-texture = SubResource("CanvasTexture_53m36")
+position = Vector2(2038.5, 88)
+scale = Vector2(0.07978715, 0.083333336)
+texture = ExtResource("6_4fcy8")
 
-[node name="ToolShelf" type="Sprite2D" parent="BackProps" unique_id=858577032]
-position = Vector2(3796.75, 608.7499)
-scale = Vector2(465.5, 937.49976)
-texture = SubResource("CanvasTexture_53m36")
+[node name="ToolRack" type="Sprite2D" parent="BackProps" unique_id=858577032]
+position = Vector2(559, 762)
+scale = Vector2(0.7941176, 0.81510425)
+texture = ExtResource("7_5f4xn")
 
-[node name="BreakerBox" type="Sprite2D" parent="BackProps" unique_id=1659593059]
-position = Vector2(3392.4998, 443)
-scale = Vector2(212.9998, 247.00002)
-texture = SubResource("CanvasTexture_53m36")
+[node name="Shelf" type="Sprite2D" parent="BackProps" unique_id=71626607]
+position = Vector2(1361.5, 560)
+scale = Vector2(1.2327585, 1.2369791)
+texture = ExtResource("8_5f4xn")
+
+[node name="WasherAndDryer" type="Sprite2D" parent="BackProps" unique_id=1238180462]
+position = Vector2(2241.5, 578)
+scale = Vector2(1.1509184, 1.1510416)
+texture = ExtResource("8_qq1up")
+
+[node name="BreakerBox" type="Node2D" parent="BackProps" unique_id=1447422165]
+
+[node name="BreakerBoxClosed" type="Sprite2D" parent="BackProps/BreakerBox" unique_id=1659593059]
+position = Vector2(2976.5, 494)
+scale = Vector2(0.9000005, 0.9010417)
+texture = ExtResource("9_phlef")
+
+[node name="BreakerBoxOpen" type="Sprite2D" parent="BackProps/BreakerBox" unique_id=1358600376]
+visible = false
+position = Vector2(3070.5, 501.5)
+scale = Vector2(0.9252333, 0.91796875)
+texture = ExtResource("10_5qhiu")
+
+[node name="GarageDoorMechanism" type="Sprite2D" parent="BackProps" unique_id=1285388124]
+position = Vector2(3237.5, 537.5)
+scale = Vector2(2.2408853, 2.2368972)
+texture = ExtResource("11_qq1up")
 
 [node name="KeepsakeBox" type="Sprite2D" parent="BackProps" unique_id=815889840]
-position = Vector2(696.3751, 162.625)
-scale = Vector2(351.24973, 326.75)
-texture = SubResource("CanvasTexture_53m36")
+position = Vector2(1585.5, 148)
+scale = Vector2(0.33463538, 0.34013605)
+texture = ExtResource("11_iwi2r")
 
-[node name="KeepsakeBoxSpilled" type="Sprite2D" parent="BackProps" unique_id=1938192627]
-position = Vector2(737, 228)
-scale = Vector2(433.24973, 196.74998)
-texture = SubResource("CanvasTexture_53m36")
+[node name="Keepsakes" type="Node2D" parent="BackProps" unique_id=2108978291]
+visible = false
+
+[node name="KeepsakeBoxSpilled" type="Sprite2D" parent="BackProps/Keepsakes" unique_id=1938192627]
+position = Vector2(1552.5, 968.5)
+scale = Vector2(0.42057297, 0.42708337)
+texture = ExtResource("12_nnbf1")
+
+[node name="KeepsakeBoxSpilledLid" type="Sprite2D" parent="BackProps/Keepsakes" unique_id=1551302000]
+position = Vector2(1071.5, 1079.0521)
+scale = Vector2(0.436198, 0.44305015)
+texture = ExtResource("15_phlef")
+
+[node name="KeepsakeBinocs" type="Sprite2D" parent="BackProps/Keepsakes" unique_id=2142424552]
+position = Vector2(1302.5, 1049.5001)
+scale = Vector2(0.087239556, 0.08734932)
+texture = ExtResource("15_iwi2r")
+
+[node name="KeepsakeHuntingHat" type="Sprite2D" parent="BackProps/Keepsakes" unique_id=1520625444]
+position = Vector2(1389.7499, 1063.9999)
+scale = Vector2(0.14908841, 0.14613786)
+texture = ExtResource("16_nnbf1")
+
+[node name="KeepsakeRope" type="Sprite2D" parent="BackProps/Keepsakes" unique_id=1738376736]
+position = Vector2(1529.375, 1029.5)
+scale = Vector2(0.18912756, 0.20557496)
+texture = ExtResource("17_y2trn")
+
+[node name="KeepsakeCompass" type="Sprite2D" parent="BackProps/Keepsakes" unique_id=2099312273]
+position = Vector2(1569.5, 1106.5001)
+scale = Vector2(0.066406146, 0.06707315)
+texture = ExtResource("18_fpmw2")
+
+[node name="KeepsakeFlashlight" type="Sprite2D" parent="BackProps/Keepsakes" unique_id=1835939867]
+position = Vector2(1504.5, 1109)
+scale = Vector2(0.11067705, 0.10914467)
+texture = ExtResource("19_qqx7w")
 
 [node name="Actors" type="Node2D" parent="." unique_id=843174555]
 z_index = 20
@@ -88,21 +149,28 @@ parent_id = &"david"
 [node name="FrontProps" type="Node2D" parent="." unique_id=373642652]
 z_index = 30
 
-[node name="TestCounter" type="Sprite2D" parent="FrontProps" unique_id=855732908]
-position = Vector2(503, 791.99994)
-scale = Vector2(1.7998046, 474.9376)
-texture = SubResource("GradientTexture1D_8pl6i")
-
 [node name="RoomSpots" type="Node2D" parent="." unique_id=1047220437]
 
 [node name="FightBoxLeanne" type="Marker2D" parent="RoomSpots" unique_id=632896223]
-position = Vector2(1070, 1012)
+position = Vector2(1778, 1061)
 script = ExtResource("7_o0bpy")
-facing = 2
+facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
 [node name="FightBoxDavid" type="Marker2D" parent="RoomSpots" unique_id=2038087898]
-position = Vector2(1666, 1008)
+position = Vector2(2251, 1071)
+script = ExtResource("7_o0bpy")
+facing = 1
+metadata/_custom_type_script = "uid://26eyobriow6j"
+
+[node name="BreakerBox" type="Marker2D" parent="RoomSpots" unique_id=1992953986]
+position = Vector2(3175, 1068)
+script = ExtResource("7_o0bpy")
+facing = 1
+metadata/_custom_type_script = "uid://26eyobriow6j"
+
+[node name="Laundry" type="Marker2D" parent="RoomSpots" unique_id=637603182]
+position = Vector2(2256, 1071)
 script = ExtResource("7_o0bpy")
 facing = 1
 metadata/_custom_type_script = "uid://26eyobriow6j"
@@ -114,10 +182,6 @@ z_index = 40
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3556.75
-offset_top = -0.75
-offset_right = 3556.75
-offset_bottom = -0.75
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_o0bpy")
@@ -132,14 +196,14 @@ art = NodePath("../../BackProps/GarageLight")
 prompt_text = "Flicker"
 realm = 2
 
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/GarageLightProp" unique_id=242645786]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(2033, 58, 2040, 57, 2047, 58, 2048, 67, 2056, 85, 2060, 93, 2059, 103, 2054, 113, 2044, 119, 2038, 120, 2032, 119, 2024, 114, 2020, 107, 2017, 97, 2019, 88, 2025, 79, 2030, 70, 2032, 65)
+
 [node name="KeepsakeBoxProp" type="TextureButton" parent="Hotspots" unique_id=430818175 node_paths=PackedStringArray("art", "done_reveal")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 520.75024
-offset_top = -0.75
-offset_right = 520.75024
-offset_bottom = -0.75
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_o0bpy")
@@ -148,21 +212,22 @@ accepts = Array[StringName]([&"nudge"])
 needs_parents = Array[StringName]([&"david", &"leanne"])
 success_event = &"keepsake_box_fell"
 done_flag = &"keepsake_box_fell"
+success_anim = 4
 art = NodePath("../../BackProps/KeepsakeBox")
-done_reveal = NodePath("../../BackProps/KeepsakeBoxSpilled")
+done_reveal = NodePath("../../BackProps/Keepsakes/KeepsakeBoxSpilled")
 hint_stage = 2
 success_sound = ExtResource("9_lynjs")
 prompt_text = "Nudge"
 realm = 2
 
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/KeepsakeBoxProp" unique_id=236138693]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(1461, 81, 1648, 74, 1709, 80, 1714, 205, 1650, 212, 1464, 216)
+
 [node name="ToolShelfProp" type="TextureButton" parent="Hotspots" unique_id=187279762 node_paths=PackedStringArray("art")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 520.75024
-offset_top = -0.75
-offset_right = 520.75024
-offset_bottom = -0.75
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_o0bpy")
@@ -170,62 +235,23 @@ target_id = &"tool_shelf"
 accepts = Array[StringName]([&"nudge"])
 success_event = &"night_noise"
 success_anim = 1
-art = NodePath("../../BackProps/ToolShelf")
+art = NodePath("../../BackProps/ToolRack")
 hint_stage = 3
 success_sound = ExtResource("10_0yego")
 near_miss_sound = ExtResource("10_0yego")
 prompt_text = "Nudge"
 realm = 2
 
-[node name="TEMP_LABELS" type="Node2D" parent="." unique_id=1458415549]
-z_index = 100
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/ToolShelfProp" unique_id=422724581]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(316, 451, 291, 464, 339, 610, 350, 604, 349, 1056, 497, 1073, 806, 1035, 807, 594, 810, 589, 804, 583, 690, 580, 623, 529, 594, 451)
 
-[node name="KEEPSAKES_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1061116701]
-offset_left = 524.0
-offset_top = 120.0
-offset_right = 866.0
-offset_bottom = 219.0
-theme_override_font_sizes/font_size = 48
-text = "BOX OF
-KEEPSAKES"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LIGHT_BULB_LABEL" type="Label" parent="TEMP_LABELS" unique_id=1826186135]
-offset_left = 1769.0
-offset_top = 42.0
-offset_right = 2201.0
-offset_bottom = 141.0
-theme_override_font_sizes/font_size = 48
-text = "LIGHT
-BULB"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TOOL_RACK_LABEL" type="Label" parent="TEMP_LABELS" unique_id=902967891]
-offset_left = 3580.0
-offset_top = 477.0
-offset_right = 4012.0
-offset_bottom = 576.0
-theme_override_font_sizes/font_size = 48
-text = "RACK OF
-LOOSE TOOLS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BREAKER_BOX_LABEL" type="Label" parent="TEMP_LABELS" unique_id=683441206]
-offset_left = 3176.0
-offset_top = 398.0
-offset_right = 3608.0
-offset_bottom = 497.0
-theme_override_font_sizes/font_size = 48
-text = "BREAKER
-BOX"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="OutlineCutout" type="Polygon2D" parent="Hotspots/ToolShelfProp" unique_id=1969024250]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(628, 541, 641, 579, 678, 581)
 
 [node name="GarageLight" type="PointLight2D" parent="." unique_id=1040723345]
-position = Vector2(1985, -31)
+position = Vector2(2048, 97)
 color = Color(1, 0.93333334, 0.8392157, 1)
 texture = ExtResource("11_kq0ux")
 texture_scale = 16.0
