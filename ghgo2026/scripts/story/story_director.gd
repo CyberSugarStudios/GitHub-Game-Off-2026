@@ -333,6 +333,8 @@ func _run_puzzle_2() -> void:
 	GameState.parent_location_changed.connect(_on_puzzle_2_parent_moved)
 	await wait_event(&"keepsake_box_fell")
 	GameState.parent_location_changed.disconnect(_on_puzzle_2_parent_moved)
+	Events.parents_staged.emit(MOM, &"fight_box_leanne")
+	Events.parents_staged.emit(DAD, &"fight_box_david")
 	await say_fight("p2_box_fight", PUZZLE_2)
 	household.get_hall_parent(DAD).speed_scale = p1_storm_pace
 	household.send(DAD, p2_storms_to, p2_apart_minutes)

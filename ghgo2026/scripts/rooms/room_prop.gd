@@ -28,6 +28,7 @@ enum Anim { NONE, WOBBLE, TIP_OVER, FLICKER, FALL }
 @export var fit_to_art: bool = true
 @export var art_always_visible: bool = false
 @export var active_texture: Texture2D
+@export var hide_art_when_done: bool = false
 
 @export_group("Hints")
 @export var hint_stage: int = -1
@@ -43,6 +44,7 @@ var _sound: AudioStreamPlayer
 var _done_shown := false
 var _tipped := false
 var _base_texture: Texture2D
+var _art_gone := false
 
 func _ready() -> void:
 	realm = InteractionRules.Realm.ASTRAL_ONLY
@@ -70,8 +72,7 @@ func _ready() -> void:
 	if _is_done():
 		_done_shown = true
 		_animate(success_anim, true)
-		if done_reveal:
-			done_reveal.visible = true
+		_show_done()
 	GameState.parent_activity_changed.connect(_on_parent_changed)
 	GameState.parent_location_changed.connect(_on_parent_changed)
 	_update_art()
@@ -109,8 +110,7 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 		if done_flag != &"":
 			GameState.set_flag(done_flag)
 		await _animate(success_anim, false)
-		if done_reveal:
-			done_reveal.visible = true
+		_show_done()
 		if success_event != &"":
 			Events.story_event.emit(success_event)
 	else:
@@ -131,8 +131,14 @@ func _on_flag_set(id: StringName) -> void:
 		return
 	_done_shown = true
 	await _animate(success_anim, false)
+	_show_done()
+
+func _show_done() -> void:
 	if done_reveal:
 		done_reveal.visible = true
+	if hide_art_when_done:
+		_art_gone = true
+		_update_art()
 
 func _on_flag_cleared(id: StringName) -> void:
 	if id != done_flag or not _done_shown:
@@ -143,6 +149,7 @@ func _on_flag_cleared(id: StringName) -> void:
 		art.rotation = _rest_rotation
 		art.modulate = Color.WHITE
 		_tipped = false
+		_art_gone = false
 		_update_art()
 	if done_reveal:
 		done_reveal.visible = false
@@ -194,7 +201,7 @@ func _exists() -> bool:
 func _update_art() -> void:
 	if art == null:
 		return
-	art.visible = art_always_visible or _exists()
+	art.visible = (art_always_visible or _exists()) and not _art_gone
 	var sprite := art as Sprite2D
 	if sprite and active_texture:
 		if _base_texture == null:

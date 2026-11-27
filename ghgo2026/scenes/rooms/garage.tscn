@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cqwk61f6vg0hl" path="res://assets/sprites/rooms/garage/breaker_open.webp" id="10_5qhiu"]
 [ext_resource type="Texture2D" uid="uid://fr24s46f5fb1" path="res://assets/sprites/rooms/garage/keepsakes_box.webp" id="11_iwi2r"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="11_kq0ux"]
+[ext_resource type="Script" uid="uid://bq86sevfxulm7" path="res://scripts/rooms/activity_swap.gd" id="11_nnbf1"]
 [ext_resource type="Texture2D" uid="uid://cih0yygxympx3" path="res://assets/sprites/rooms/garage/garage_door.webp" id="11_qq1up"]
 [ext_resource type="Texture2D" uid="uid://bd313norirfxg" path="res://assets/sprites/rooms/garage/keepsakes_spilled_empty_box.webp" id="12_nnbf1"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="12_ydii2"]
@@ -51,6 +52,7 @@ script = ExtResource("4_lynjs")
 
 [node name="BackProps" type="Node2D" parent="." unique_id=1912370079]
 z_index = 10
+texture_filter = 4
 
 [node name="GarageLight" type="Sprite2D" parent="BackProps" unique_id=1697325592]
 position = Vector2(2038.5, 88)
@@ -84,6 +86,13 @@ visible = false
 position = Vector2(3070.5, 501.5)
 scale = Vector2(0.9252333, 0.91796875)
 texture = ExtResource("10_5qhiu")
+
+[node name="BreakerSwap" type="Node" parent="BackProps/BreakerBox" unique_id=834339663 node_paths=PackedStringArray("actor", "shown_during", "hidden_during")]
+script = ExtResource("11_nnbf1")
+actor = NodePath("../../../Actors/David")
+shown_during = [NodePath("../BreakerBoxOpen")]
+hidden_during = [NodePath("../BreakerBoxClosed")]
+metadata/_custom_type_script = "uid://bq86sevfxulm7"
 
 [node name="GarageDoorMechanism" type="Sprite2D" parent="BackProps" unique_id=1285388124]
 position = Vector2(3237.5, 537.5)
@@ -167,6 +176,7 @@ metadata/_custom_type_script = "uid://26eyobriow6j"
 position = Vector2(3175, 1068)
 script = ExtResource("7_o0bpy")
 facing = 1
+spot_id = "checking_breaker"
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
 [node name="Laundry" type="Marker2D" parent="RoomSpots" unique_id=637603182]
@@ -214,7 +224,9 @@ success_event = &"keepsake_box_fell"
 done_flag = &"keepsake_box_fell"
 success_anim = 4
 art = NodePath("../../BackProps/KeepsakeBox")
-done_reveal = NodePath("../../BackProps/Keepsakes/KeepsakeBoxSpilled")
+done_reveal = NodePath("../../BackProps/Keepsakes")
+fall_distance = 820.0
+hide_art_when_done = true
 hint_stage = 2
 success_sound = ExtResource("9_lynjs")
 prompt_text = "Nudge"
@@ -251,9 +263,8 @@ color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(628, 541, 641, 579, 678, 581)
 
 [node name="GarageLight" type="PointLight2D" parent="." unique_id=1040723345]
-position = Vector2(2048, 97)
+position = Vector2(2040, 101)
 color = Color(1, 0.93333334, 0.8392157, 1)
 texture = ExtResource("11_kq0ux")
 texture_scale = 16.0
 script = ExtResource("12_ydii2")
-lit_hours = Vector2(17, 23.5)

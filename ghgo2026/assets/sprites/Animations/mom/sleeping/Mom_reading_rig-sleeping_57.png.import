@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy4qoqovdwe30"
-path="res://.godot/imported/TEMP_garage_item_template.webp-2cfa63dc27fba9cde88bc3d5354e44a8.ctex"
+uid="uid://dy16flao2rh2y"
+path="res://.godot/imported/Mom_reading_rig-sleeping_57.png-25fcf43fba8b7bed81bbb56801f978ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/rooms/TEMP_garage_item_template.webp"
-dest_files=["res://.godot/imported/TEMP_garage_item_template.webp-2cfa63dc27fba9cde88bc3d5354e44a8.ctex"]
+source_file="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_57.png"
+dest_files=["res://.godot/imported/Mom_reading_rig-sleeping_57.png-25fcf43fba8b7bed81bbb56801f978ee.ctex"]
 
 [params]
 
@@ -36,5 +36,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=2048
+process/size_limit=512
 detect_3d/compress_to=1
