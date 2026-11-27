@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bxkrafaoguc4x"
+uid="uid://ciimv5lyo35jd"
 path="res://.godot/imported/creature_consumed2.wav-4888e7157da2cf7c1282af0adafbb20e.sample"
 
 [deps]
@@ -17,7 +17,7 @@ force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
-edit/normalize=true
+edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
