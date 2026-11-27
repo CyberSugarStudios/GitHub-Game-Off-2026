@@ -26,7 +26,7 @@ extends CanvasLayer
 @onready var creature_art: AnimatedSprite2D = $Root/Creature
 @onready var fog: TextureRect = $Root/Fog
 @onready var night_tint: CanvasModulate = $NightTint
-@onready var mirror_light: PointLight2D = $MirrorLight
+@onready var mirror_light: PointLight2D = $BathroomLight
 
 var _fogged_at := -100000
 var _run := 0

@@ -1,6 +1,8 @@
 class_name RoomActor
 extends Node2D
 
+signal arrived
+
 const PARENT_SCALES := {&"david": 0.55, &"leanne": 0.52}
 const STEPS: Dictionary[StringName, AudioStream] = {
 	&"leanne": preload("res://assets/audio/sfx/footsteps/leanne_steps.tres"),
@@ -99,6 +101,7 @@ func _process(delta: float) -> void:
 		position = _target
 		_walking = false
 		_stand()
+		arrived.emit()
 		return
 	position += to_target.normalized() * step
 	_count_step(step)
@@ -142,6 +145,16 @@ func _animate(anim: StringName, flip: float) -> void:
 	if texture:
 		sprite.scale = Vector2.ONE * (height / texture.get_height())
 		sprite.position.y = -height * 0.5
+
+func is_walking() -> bool:
+	return _walking
+
+func walk_to(spot_name: StringName) -> void:
+	_target = _spot(spot_name, position)
+	_walking = position.distance_to(_target) > 1.0
+	if not _walking:
+		_stand()
+		arrived.emit()
 
 func _spot_node(spot_name: StringName) -> Node2D:
 	if spots == null or spot_name == &"":

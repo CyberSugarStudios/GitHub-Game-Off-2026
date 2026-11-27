@@ -132,6 +132,7 @@ var _accept_progress := -1.0
 var _p3_medicated := false
 var _p3_last_minute := -1
 var _p3_drinks := 0
+var _mom_activity: StringName = &""
 var _sfx: AudioStreamPlayer
 #endregion
 
@@ -143,6 +144,8 @@ func _ready() -> void:
 	GameState.story_stage_changed.connect(_on_story_stage_changed)
 	GameState.parent_location_changed.connect(seen_parent_moved.emit)
 	Events.story_event.connect(_on_any_story_event)
+	GameState.parent_activity_changed.connect(_on_coffee_activity)
+	GameClock.hour_changed.connect(_on_coffee_hour)
 	_sfx = AudioStreamPlayer.new()
 	_sfx.bus = &"SFX"
 	add_child(_sfx)
@@ -338,8 +341,27 @@ func _run_puzzle_2() -> void:
 
 func _on_puzzle_2_parent_moved(parent_id: StringName, location: StringName) -> void:
 	if parent_id == DAD and location == &"garage" and _leanne_free_for_coffee():
+		_send_leanne_for_coffee()
+
+func _send_leanne_for_coffee() -> void:
+	if GameState.has_flag(CoffeeStation.FULL_FLAG):
+		household.send(MOM, &"kitchen", p2_coffee_drink_minutes, [], &"drinking_coffee")
+	else:
 		household.send(MOM, &"kitchen", p2_coffee_make_minutes, [[&"kitchen", \
 			p2_coffee_drink_minutes, &"drinking_coffee"]], &"making_coffee")
+
+func _on_coffee_activity(parent_id: StringName, activity: StringName) -> void:
+	if parent_id != MOM:
+		return
+	if _mom_activity == &"making_coffee" and activity == &"drinking_coffee":
+		GameState.set_flag(CoffeeStation.FULL_FLAG)
+	elif _mom_activity == &"drinking_coffee" and activity != &"drinking_coffee":
+		GameState.clear_flag(CoffeeStation.FULL_FLAG)
+	_mom_activity = activity
+
+func _on_coffee_hour(_day: int, hour: int) -> void:
+	if hour == 5:
+		GameState.clear_flag(CoffeeStation.FULL_FLAG)
 
 func _leanne_free_for_coffee() -> bool:
 	return GameState.get_parent_location(MOM) == &"parent_bedroom" \
@@ -541,7 +563,10 @@ func _on_any_story_event(id: StringName) -> void:
 			_ask_wait()
 		&"lose_hour":
 			_skip_hour()
+		&"coffee_spilled":
+			GameState.clear_flag(CoffeeStation.FULL_FLAG)
 		&"coffee_on_leanne":
+			GameState.clear_flag(CoffeeStation.FULL_FLAG)
 			say_in_background("p2_leanne_coffee", PUZZLE_2)
 			household.send(MOM, &"parent_bedroom", p2_change_minutes, [[&"garage", \
 				p2_laundry_minutes, &"laundry"]], &"changing")
