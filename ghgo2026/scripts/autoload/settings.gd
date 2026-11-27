@@ -27,6 +27,8 @@ var gamma := DEFAULT_GAMMA
 var reduce_flashing := DEFAULT_REDUCE_FLASHING
 var always_show_hints := DEFAULT_ALWAYS_SHOW_HINTS
 var onboarding_seen := 0
+var game_completed := false
+var lullaby_unlocked := false
 
 var _struggling := false
 var _struggle_held := false
@@ -91,6 +93,8 @@ func save_settings() -> void:
 	config.set_value("controls", "hold_to_struggle", hold_to_struggle)
 	config.set_value("controls", "always_show_hints", always_show_hints)
 	config.set_value("general", "onboarding_seen", onboarding_seen)
+	config.set_value("unlocks", "game_completed", game_completed)
+	config.set_value("unlocks", "lullaby_unlocked", lullaby_unlocked)
 	config.set_value("display", "brightness", brightness)
 	config.set_value("display", "contrast", contrast)
 	config.set_value("display", "gamma", gamma)
@@ -108,6 +112,8 @@ func load_settings() -> void:
 	hold_to_struggle = config.get_value("controls", "hold_to_struggle", DEFAULT_HOLD_TO_STRUGGLE)
 	always_show_hints = config.get_value("controls", "always_show_hints", DEFAULT_ALWAYS_SHOW_HINTS)
 	onboarding_seen = config.get_value("general", "onboarding_seen", 0)
+	game_completed = config.get_value("unlocks", "game_completed", false)
+	lullaby_unlocked = config.get_value("unlocks", "lullaby_unlocked", false)
 	brightness = config.get_value("display", "brightness", DEFAULT_BRIGHTNESS)
 	contrast = config.get_value("display", "contrast", DEFAULT_CONTRAST)
 	gamma = config.get_value("display", "gamma", DEFAULT_GAMMA)

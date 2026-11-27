@@ -2,6 +2,8 @@ class_name MP3Player
 extends CanvasLayer
 
 @export var tracks: Array[MP3Track] = []
+@export var playlist: MP3Playlist
+@export var lullaby_track: MP3Track
 @export var open_event: StringName = &"listen_mp3"
 @export var restart_after: float = 3.0
 @export_range(0.0, 1.0) var start_volume: float = 0.8
@@ -52,6 +54,10 @@ func _ready() -> void:
 	for button in [back_button, play_button, skip_button]:
 		button.focus_mode = Control.FOCUS_NONE
 		button.pressed.connect(_click.play)
+	if tracks.is_empty() and playlist:
+		tracks = playlist.tracks.duplicate()
+	if lullaby_track and Settings.lullaby_unlocked and not tracks.has(lullaby_track):
+		tracks.append(lullaby_track)
 	_show_track()
 
 func _on_story_event(id: StringName) -> void:

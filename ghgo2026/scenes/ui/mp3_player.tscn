@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cvbp0nfglxkyt"]
 
 [ext_resource type="Script" uid="uid://cq4ft3ogr2m6j" path="res://scripts/ui/mp3_player.gd" id="1_unlxu"]
+[ext_resource type="Resource" uid="uid://bdpq68d07mq6k" path="res://data/mp3_playlist.tres" id="2_7vfk4"]
 [ext_resource type="FontFile" uid="uid://cuf6mi06fmdlq" path="res://assets/fonts/JosefinSans-VariableFont_wght.ttf" id="2_gftdv"]
 [ext_resource type="Texture2D" uid="uid://b0g6o2go5gvy5" path="res://assets/sprites/rooms/bedroom/MP3.webp" id="2_ple03"]
+[ext_resource type="Resource" uid="uid://tfvdyxdmamrn" path="res://data/lullaby_track.tres" id="3_j8a30"]
 [ext_resource type="Texture2D" uid="uid://bjybkf1jor05o" path="res://assets/sprites/rooms/bedroom/MP3_back_button.webp" id="4_rpydq"]
 [ext_resource type="BitMap" uid="uid://c4q1dbwtyuox0" path="res://assets/sprites/rooms/bedroom/MP3_back_button_mask.webp" id="5_3g7s7"]
 [ext_resource type="Texture2D" uid="uid://bfsrlwv5ga3l2" path="res://assets/sprites/rooms/bedroom/MP3_next_button.webp" id="5_kndek"]
@@ -15,6 +17,8 @@
 
 [node name="MP3Player" type="CanvasLayer" unique_id=548456274]
 script = ExtResource("1_unlxu")
+playlist = ExtResource("2_7vfk4")
+lullaby_track = ExtResource("3_j8a30")
 
 [node name="Audio" type="AudioStreamPlayer" parent="." unique_id=686417565]
 

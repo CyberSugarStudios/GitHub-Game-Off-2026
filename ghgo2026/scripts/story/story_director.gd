@@ -528,6 +528,8 @@ func _accept_creature() -> void:
 	GameState.set_controls_locked(false)
 
 func _play_ending() -> void:
+	Settings.game_completed = true
+	Settings.save_settings()
 	GameState.clear_checkpoint()
 	GameState.set_controls_locked(true)
 	if ending_song:

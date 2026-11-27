@@ -64,6 +64,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_unlocked() -> void:
 	GameState.set_flag(unlocked_flag)
+	Settings.lullaby_unlocked = true
+	Settings.save_settings()
 	await get_tree().create_timer(unlock_pause).timeout
 	close()
 	_music_box.open()

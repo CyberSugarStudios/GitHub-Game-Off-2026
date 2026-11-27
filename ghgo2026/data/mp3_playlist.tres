@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="MP3Playlist" format=3 uid="uid://bdpq68d07mq6k"]
+
+[ext_resource type="Script" uid="uid://brbt5wftu4hrk" path="res://scripts/ui/mp3_playlist.gd" id="1_fpfid"]
+[ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="2_wme67"]
+[ext_resource type="Texture2D" uid="uid://d1fxqa1udrj6b" path="res://assets/sprites/rooms/bedroom/CardTowers_Cover.png" id="3_ikior"]
+[ext_resource type="AudioStream" uid="uid://b0wiaqutmoxn2" path="res://assets/audio/MP3_music/Anathema.mp3" id="4_kele6"]
+[ext_resource type="Texture2D" uid="uid://d30xs04ws05qg" path="res://assets/sprites/rooms/bedroom/InTheDark_Cover.png" id="5_wwsg3"]
+[ext_resource type="AudioStream" uid="uid://1tttq4djvtjq" path="res://assets/audio/MP3_music/Joe Leytrick - In The Dark.mp3" id="6_hwf2k"]
+[ext_resource type="AudioStream" uid="uid://l3ggeppsujhg" path="res://assets/audio/MP3_music/Card Towers.mp3" id="7_fd4op"]
+[ext_resource type="Texture2D" uid="uid://wms8dnwpdhor" path="res://assets/sprites/rooms/bedroom/IDontKnow_Cover.png" id="8_g2cgq"]
+[ext_resource type="AudioStream" uid="uid://btycl8jacpeuw" path="res://assets/audio/MP3_music/Joe Leytrick - I Don't Know (Acoustic).mp3" id="9_ws55q"]
+[ext_resource type="Texture2D" uid="uid://bgrufsmfroeb" path="res://assets/sprites/rooms/bedroom/Swallowtail_Cover.png" id="10_5iu1g"]
+[ext_resource type="AudioStream" uid="uid://re335n35lw6n" path="res://assets/audio/MP3_music/Swallowtail.mp3" id="11_jhp44"]
+[ext_resource type="Texture2D" uid="uid://cxkqss7nj0iwk" path="res://assets/sprites/rooms/bedroom/ForgetTheDay_Cover.png" id="12_8xrw5"]
+[ext_resource type="AudioStream" uid="uid://dehuotf0kjjg3" path="res://assets/audio/MP3_music/Joe Leytrick - Forget The Day.mp3" id="13_jiaf4"]
+[ext_resource type="Texture2D" uid="uid://bekbcgp23boq1" path="res://assets/sprites/rooms/bedroom/Luna_Cover.png" id="14_fvrgf"]
+[ext_resource type="AudioStream" uid="uid://px0ggwvj5t3w" path="res://assets/audio/MP3_music/Luna.mp3" id="15_cltxg"]
+
+[sub_resource type="Resource" id="Resource_kycw1"]
+script = ExtResource("2_wme67")
+title = "Anathema"
+artist = "Faye Ophelia"
+stream = ExtResource("4_kele6")
+cover = ExtResource("3_ikior")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_fxi2g"]
+script = ExtResource("2_wme67")
+title = "In the Dark"
+artist = "Joe Leytrick"
+stream = ExtResource("6_hwf2k")
+cover = ExtResource("5_wwsg3")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_l8cm0"]
+script = ExtResource("2_wme67")
+title = "Card Towers"
+artist = "Faye Ophelia"
+stream = ExtResource("7_fd4op")
+cover = ExtResource("3_ikior")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_4mwkl"]
+script = ExtResource("2_wme67")
+title = "I Don't Know (Acoustic)"
+artist = "Joe Leytrick"
+stream = ExtResource("9_ws55q")
+cover = ExtResource("8_g2cgq")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_v0bc0"]
+script = ExtResource("2_wme67")
+title = "Swallowtail"
+artist = "Faye Ophelia"
+stream = ExtResource("11_jhp44")
+cover = ExtResource("10_5iu1g")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_6fmp2"]
+script = ExtResource("2_wme67")
+title = "Forget the Day"
+artist = "Joe Leytrick"
+stream = ExtResource("13_jiaf4")
+cover = ExtResource("12_8xrw5")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[sub_resource type="Resource" id="Resource_gcjdw"]
+script = ExtResource("2_wme67")
+title = "Luna"
+artist = "Faye Ophelia"
+stream = ExtResource("15_cltxg")
+cover = ExtResource("14_fvrgf")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
+
+[resource]
+script = ExtResource("1_fpfid")
+tracks = Array[ExtResource("2_wme67")]([SubResource("Resource_kycw1"), SubResource("Resource_fxi2g"), SubResource("Resource_l8cm0"), SubResource("Resource_4mwkl"), SubResource("Resource_v0bc0"), SubResource("Resource_6fmp2"), SubResource("Resource_gcjdw")])
+metadata/_custom_type_script = "uid://brbt5wftu4hrk"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MP3Track" format=3 uid="uid://tfvdyxdmamrn"]
+
+[ext_resource type="Script" uid="uid://bcfxldeo6nrs7" path="res://scripts/audio/mp3_track.gd" id="1_ravlj"]
+[ext_resource type="AudioStream" uid="uid://dnebdejpb68r2" path="res://assets/audio/music/lullaby.mp3" id="2_7ibgv"]
+
+[resource]
+script = ExtResource("1_ravlj")
+title = "I Dream For You"
+artist = "Rhys Cassidy"
+stream = ExtResource("2_7ibgv")
+metadata/_custom_type_script = "uid://bcfxldeo6nrs7"
