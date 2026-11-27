@@ -130,7 +130,7 @@ func _split_layers(view_scale: float) -> void:
 	var light_sheet := ColorRect.new()
 	light_sheet.color = Color.WHITE
 	light_sheet.size = _room_size
-	light_sheet.z_index = -4096
+	light_sheet.z_index = -1024
 	light_sheet.visibility_layer = LAYER_LIGHT
 	light_sheet.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_room.add_child(light_sheet)

@@ -32,6 +32,7 @@ var _players: Dictionary[StringName, AudioStreamPlayer] = {}
 var _fades: Dictionary[StringName, Tween] = {}
 var _hold_until: Dictionary[StringName, int] = {}
 var _last_tap_ms := 0
+var _seen_tabs: Dictionary[int, bool] = {}
 
 func _ready() -> void:
 	_apply_font_size()
@@ -56,7 +57,7 @@ func _ready() -> void:
 	var close_button := %CloseOptionsButton as TitleButton
 	if close_text != "":
 		close_button.text = close_text
-	close_button.pressed.connect(save_and_close)
+	close_button.pressed.connect(_on_close_pressed)
 
 func _apply_layout() -> void:
 	var tabbed := section_layout == SectionLayout.TABS
@@ -73,6 +74,7 @@ func _apply_layout() -> void:
 	_show_tab(_tabs.current_tab)
 
 func _show_tab(index: int) -> void:
+	_seen_tabs[index] = true
 	for i in _sections.size():
 		_sections[i].visible = i == index
 	var column := _sections[index].get_parent()
@@ -114,6 +116,16 @@ func _open_guide() -> void:
 	guide.next_scene = ""
 	layer.add_child(guide)
 	guide.closed.connect(layer.queue_free)
+
+func _on_close_pressed() -> void:
+	if section_layout == SectionLayout.TABS:
+		for step in range(1, _sections.size()):
+			var index := (_tabs.current_tab + step) % _sections.size()
+			if not _seen_tabs.has(index):
+				_tabs.current_tab = index
+				_show_tab(index)
+				return
+	save_and_close()
 
 func save_and_close() -> void:
 	Settings.save_settings()

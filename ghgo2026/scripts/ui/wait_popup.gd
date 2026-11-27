@@ -16,8 +16,8 @@ func _ready() -> void:
 	back_button.pressed.connect(func() -> void: answered.emit(&""))
 
 func ask(night_time: String, morning_time: String) -> StringName:
-	night_button.text = "...until Night (%s)" % to_12_hour(night_time)
-	morning_button.text = "...until Morning (%s)" % to_12_hour(morning_time)
+	night_button.text = "...UNTIL NIGHT (%s)" % to_12_hour(night_time)
+	morning_button.text = "...UNTIL MORNING (%s)" % to_12_hour(morning_time)
 	visible = true
 	GameState.set_controls_locked(true)
 	var choice: StringName = await answered
