@@ -42,6 +42,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var household: Household
 @export var fade: ColorRect
 @export var wake_doorway: Door
+@export var clock_reveal_seconds: float = 2.3
 @export var garage_voice: Speaker
 @export var living_room_voice: Speaker
 @export var front_door_sound: DoorSound
@@ -209,6 +210,10 @@ func _run_intro() -> void:
 	GameState.set_controls_locked(false)
 	
 	await wait_event(&"living_room_clock")
+	GameState.set_flag(&"clock_shown")
+	await wait(clock_reveal_seconds)
+	await say("intro_clock")
+	room_view.exit_locked = false
 	await say("intro_clock")
 	room_view.exit_locked = false
 	

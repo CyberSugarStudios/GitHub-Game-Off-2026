@@ -18,6 +18,9 @@ const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
 @export var swipe_frames: int = 25
 @export var swipe_fps: float = 12.0
 @export var move_hint_seconds: float = 7.0
+@export var reveal_scale: float = 2.5
+@export var reveal_hold: float = 1.0
+@export var reveal_fly: float = 0.7
 @export var astral_enter_sound: AudioStream = preload("res://assets/audio/sfx/varied2/Interim - Breath SFX 1.wav")
 @export var astral_leave_sound: AudioStream = preload("res://assets/audio/sfx/varied2/Interim - Breath SFX 2.wav")
 
@@ -41,6 +44,7 @@ const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
 @onready var crosshair: ColorRect = $Crosshair
 @onready var interaction_prompt: KeyPrompt = $InteractionPrompt
 @onready var subtitle: RichTextLabel = $Subtitle
+@onready var clock: Control = $Clock
 @onready var letterbox_top: ColorRect = $LetterboxTop
 @onready var letterbox_bottom: ColorRect = $LetterboxBottom
 @onready var story_prompt: KeyPrompt = $StoryPrompt
@@ -89,6 +93,8 @@ func _ready() -> void:
 	Events.story_prompt_changed.connect(_on_story_prompt_changed)
 	Events.struggle_changed.connect(_on_struggle_changed)
 	GameState.room_changed.connect(_on_room_changed_for_hints)
+	clock.visible = GameState.has_flag(&"clock_shown") or GameState.has_flag(&"intro_done")
+	GameState.flag_set.connect(_on_flag_set_for_clock)
 	
 	#current state instantly on load
 	_on_energy_changed(GameState.energy, GameState.max_bars)
@@ -318,6 +324,30 @@ func _wasd_cluster() -> VBoxContainer:
 		bottom.add_child(_hint_prompt(letter, ""))
 	cluster.add_child(bottom)
 	return cluster
+
+func _on_flag_set_for_clock(id: StringName) -> void:
+	if id == &"clock_shown":
+		_reveal(clock)
+	elif id == &"intro_done":
+		clock.visible = true
+
+func _reveal(item: Control) -> void:
+	var rest_position := item.position
+	var rest_scale := item.scale
+	item.pivot_offset = item.size * 0.5
+	item.position = get_viewport().get_visible_rect().size * 0.5 - item.pivot_offset
+	item.scale = rest_scale * reveal_scale * 1.15
+	item.modulate.a = 0.0
+	item.visible = true
+	var tween := create_tween()
+	tween.tween_property(item, "modulate:a", 1.0, 0.4)
+	tween.parallel().tween_property(item, "scale", rest_scale * reveal_scale, 0.6) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_interval(reveal_hold)
+	tween.tween_property(item, "position", rest_position, reveal_fly) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(item, "scale", rest_scale, reveal_fly) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
 func _hint_prompt(key: String, text: String) -> KeyPrompt:
 	var prompt := KEY_PROMPT.instantiate() as KeyPrompt

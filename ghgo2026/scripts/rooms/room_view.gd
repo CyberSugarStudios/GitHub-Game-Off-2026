@@ -27,10 +27,14 @@ extends Node
 
 @export var intro_room: StringName = &"living_room"
 
+@export var exit_fade: float = 1.2
+@export var exit_reveal_scale: float = 3.0
+@export var exit_reveal_hold: float = 0.8
+@export var exit_reveal_fly: float = 0.7
+
 static var _hinted_rooms: Dictionary = {}
 var _key_tween: Tween
 var _hold_hints := false
-@export var exit_fade: float = 1.2
 var _exit_tween: Tween
 
 var _room: Room = null
@@ -47,8 +51,13 @@ var _hold_this_line := false
 var _exit_spot := Transform3D.IDENTITY
 var exit_locked := false:
 	set(value):
+		var was_locked := exit_locked
 		exit_locked = value
-		if exit_button:
+		if exit_button == null:
+			return
+		if was_locked and not value and room_ui.visible:
+			_reveal_exit()
+		else:
 			_show_exit(not value)
 
 func _ready() -> void:
@@ -65,7 +74,7 @@ func _ready() -> void:
 
 func _on_controls_locked_changed(locked: bool) -> void:
 	input_blocker.visible = locked
-	key_hints.visible = not locked
+	key_hints.visible = not locked or _hold_hints
 
 func _exit_tree() -> void:
 	get_viewport().disable_3d = false
@@ -131,6 +140,43 @@ func _show_exit(shown: bool, instant: bool = false) -> void:
 	_exit_tween = create_tween().set_parallel()
 	_exit_tween.tween_property(exit_button, "modulate:a", 1.0, exit_fade)
 	_exit_tween.tween_property(exit_arrow, "modulate:a", 1.0, exit_fade)
+
+func _reveal_exit() -> void:
+	if _exit_tween:
+		_exit_tween.kill()
+	var parts: Array[Control] = [exit_button, exit_arrow]
+	var group := Rect2(exit_button.global_position, exit_button.size) \
+		.merge(Rect2(exit_arrow.global_position, exit_arrow.size))
+	var holder := Control.new()
+	holder.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	room_ui.add_child(holder)
+	holder.size = group.size
+	holder.pivot_offset = group.size * 0.5
+	for part in parts:
+		part.visible = true
+		var copy := part.duplicate() as Control
+		holder.add_child(copy)
+		copy.set_anchors_preset(Control.PRESET_TOP_LEFT)
+		copy.size = part.size
+		copy.position = part.global_position - group.position
+		copy.modulate.a = 1.0
+		part.modulate.a = 0.0
+	holder.position = get_viewport().get_visible_rect().size * 0.5 - holder.pivot_offset
+	holder.scale = Vector2.ONE * exit_reveal_scale * 1.15
+	holder.modulate.a = 0.0
+	var tween := create_tween()
+	tween.tween_property(holder, "modulate:a", 1.0, 0.4)
+	tween.parallel().tween_property(holder, "scale", Vector2.ONE * exit_reveal_scale, 0.6) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_interval(exit_reveal_hold)
+	tween.tween_property(holder, "position", group.position, exit_reveal_fly) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(holder, "scale", Vector2.ONE, exit_reveal_fly) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+	for part in parts:
+		part.modulate.a = 1.0
+	holder.queue_free()
 
 func _show_key_hints(room_id: StringName) -> void:
 	if _key_tween:
