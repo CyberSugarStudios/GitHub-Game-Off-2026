@@ -4,8 +4,218 @@
 [ext_resource type="Texture2D" uid="uid://d4d5fnifsaw64" path="res://assets/textures/house/hall/hallway_1.webp" id="1_twpwp"]
 [ext_resource type="Texture2D" uid="uid://cxldrekaa0rha" path="res://assets/textures/house/doors/door_frame.webp" id="2_vgyvs"]
 [ext_resource type="Texture2D" uid="uid://bmybhllukh5yy" path="res://assets/textures/house/doors/door_1_int.webp" id="3_pydi4"]
-[ext_resource type="Texture2D" uid="uid://dvcry7x4xh60a" path="res://assets/sprites/intro_emily_hand.png" id="4_k26hr"]
-[ext_resource type="Texture2D" uid="uid://bp80757jx1aho" path="res://assets/textures/house/doors/door_handle.webp" id="5_vgyvs"]
+[ext_resource type="Texture2D" uid="uid://c0hjvsimhfoo2" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0000.png" id="5_ladsv"]
+[ext_resource type="Texture2D" uid="uid://dkvfs6i5w1p4x" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0001.png" id="6_0j4rp"]
+[ext_resource type="Texture2D" uid="uid://c55186ao432ct" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0002.png" id="7_btoxh"]
+[ext_resource type="Texture2D" uid="uid://bde3erqtcks3c" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0003.png" id="8_s6335"]
+[ext_resource type="Texture2D" uid="uid://ysgbwv0740ps" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0004.png" id="9_yo6kr"]
+[ext_resource type="Texture2D" uid="uid://b1f7p34w825a7" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0005.png" id="10_editw"]
+[ext_resource type="Texture2D" uid="uid://dnwbek1sljvhb" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0006.png" id="11_njpqb"]
+[ext_resource type="Texture2D" uid="uid://k06ihataljc7" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0007.png" id="12_o8s8u"]
+[ext_resource type="Texture2D" uid="uid://dhhfh8a5qp652" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0008.png" id="13_obx57"]
+[ext_resource type="Texture2D" uid="uid://0rayatn78qd8" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0009.png" id="14_81dla"]
+[ext_resource type="Texture2D" uid="uid://cbnv7lgxggft4" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0010.png" id="15_33iyr"]
+[ext_resource type="Texture2D" uid="uid://v27qkolaku8u" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0011.png" id="16_hjhy1"]
+[ext_resource type="Texture2D" uid="uid://de17osylfha73" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0012.png" id="17_slyme"]
+[ext_resource type="Texture2D" uid="uid://3ys207x0q17j" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0013.png" id="18_jxdfx"]
+[ext_resource type="Texture2D" uid="uid://chra4vqsuvxhm" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0014.png" id="19_kq04e"]
+[ext_resource type="Texture2D" uid="uid://dvsql44fko1g4" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0015.png" id="20_8emh3"]
+[ext_resource type="Texture2D" uid="uid://dyptb8qm3v3jo" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0016.png" id="21_wtbby"]
+[ext_resource type="Texture2D" uid="uid://cb75b51ofr6kr" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0017.png" id="22_ikll6"]
+[ext_resource type="Texture2D" uid="uid://dhrrj7fbuju2p" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0018.png" id="23_7rcdm"]
+[ext_resource type="Texture2D" uid="uid://dnrjaj0vsfidv" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0019.png" id="24_kxesi"]
+[ext_resource type="Texture2D" uid="uid://dyp75cex2orja" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0020.png" id="25_jp1qf"]
+[ext_resource type="Texture2D" uid="uid://2t34nftlmiee" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0021.png" id="26_8rfh6"]
+[ext_resource type="Texture2D" uid="uid://c4i7sh0vq48f3" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0022.png" id="27_qai4n"]
+[ext_resource type="Texture2D" uid="uid://b7mmtihh2spj5" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0023.png" id="28_i60ot"]
+[ext_resource type="Texture2D" uid="uid://bth5fthgyahoe" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0024.png" id="29_k3fq6"]
+[ext_resource type="Texture2D" uid="uid://bgfj544564pij" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0025.png" id="30_aqljo"]
+[ext_resource type="Texture2D" uid="uid://cml7aq76jag33" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0026.png" id="31_bcv43"]
+[ext_resource type="Texture2D" uid="uid://mb33fvko0xa2" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0027.png" id="32_8dfrh"]
+[ext_resource type="Texture2D" uid="uid://dhvbwt3jryn2a" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0028.png" id="33_ph7vm"]
+[ext_resource type="Texture2D" uid="uid://d4gax31wwd2w5" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0029.png" id="34_rb3sy"]
+[ext_resource type="Texture2D" uid="uid://ccog2a1c3lgt0" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0030.png" id="35_6v2vq"]
+[ext_resource type="Texture2D" uid="uid://bm8tu8hrgbaqo" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0031.png" id="36_ly3ex"]
+[ext_resource type="Texture2D" uid="uid://3ur22jw13y3f" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0032.png" id="37_jeirt"]
+[ext_resource type="Texture2D" uid="uid://beh0h4txxki8f" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0033.png" id="38_ceerw"]
+[ext_resource type="Texture2D" uid="uid://bcqv56oyfenlj" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0034.png" id="39_uhs3v"]
+[ext_resource type="Texture2D" uid="uid://i23wqbos1kee" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0035.png" id="40_6b5qp"]
+[ext_resource type="Texture2D" uid="uid://f2a1yrbryl7g" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0036.png" id="41_n3n8s"]
+[ext_resource type="Texture2D" uid="uid://bw3vy36qyr2vr" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0037.png" id="42_ifa03"]
+[ext_resource type="Texture2D" uid="uid://dmykym78ng02y" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0038.png" id="43_pyp0a"]
+[ext_resource type="Texture2D" uid="uid://bhhybteudac22" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0039.png" id="44_u6bnu"]
+[ext_resource type="Texture2D" uid="uid://bcn5y324dnl2q" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0040.png" id="45_d4q7p"]
+[ext_resource type="Texture2D" uid="uid://do0u632ct2qlv" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0041.png" id="46_o3ly8"]
+[ext_resource type="Texture2D" uid="uid://56akvdswepdn" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0042.png" id="47_pcpis"]
+[ext_resource type="Texture2D" uid="uid://dw4phyqfd01g3" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0043.png" id="48_a78j3"]
+[ext_resource type="Texture2D" uid="uid://bvbmgwj0d68st" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0044.png" id="49_td130"]
+[ext_resource type="Texture2D" uid="uid://bnmlrqaredthb" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0045.png" id="50_7lwyp"]
+[ext_resource type="Texture2D" uid="uid://cmqfsyn706w53" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0046.png" id="51_p805n"]
+[ext_resource type="Texture2D" uid="uid://bwaacx2d860i" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0047.png" id="52_dby41"]
+[ext_resource type="Texture2D" uid="uid://bxobrvlcv61vk" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0048.png" id="53_bgr8y"]
+[ext_resource type="Texture2D" uid="uid://dru8ontr6hwx3" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0049.png" id="54_urm0f"]
+[ext_resource type="Texture2D" uid="uid://b2go8sa4flhmo" path="res://assets/sprites/Animations/intro/Door-phase-alpha/frame0050.png" id="55_1p708"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53m36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ladsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0j4rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_btoxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s6335")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yo6kr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_editw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_njpqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_o8s8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_obx57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_81dla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_33iyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hjhy1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_slyme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jxdfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_kq04e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_8emh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_wtbby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ikll6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_7rcdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_kxesi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jp1qf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_8rfh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_qai4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_i60ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_k3fq6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_aqljo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_bcv43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_8dfrh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ph7vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_rb3sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_6v2vq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_ly3ex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_jeirt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_ceerw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_uhs3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_6b5qp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_n3n8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ifa03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_pyp0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_u6bnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_d4q7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_o3ly8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_pcpis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_a78j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_td130")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_7lwyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_p805n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_dby41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_bgr8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_urm0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_1p708")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 48.0
+}]
 
 [node name="HandThroughDoorIntro" type="CanvasLayer" unique_id=2020070984]
 layer = 10
@@ -56,33 +266,23 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -8.0
 offset_top = -900.0
+offset_right = -8.0
 offset_bottom = 202.93408
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.0128016, 1)
 texture = ExtResource("3_pydi4")
 expand_mode = 5
 stretch_mode = 6
 
-[node name="Hand" type="Sprite2D" parent="Root" unique_id=1721246285]
-position = Vector2(1378, 624.5)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_k26hr")
-
-[node name="DoorHandle" type="TextureRect" parent="Root" unique_id=1819312939]
-visible = false
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -900.0
-offset_bottom = 202.93408
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_vgyvs")
-expand_mode = 5
-stretch_mode = 6
+[node name="Hand" type="AnimatedSprite2D" parent="Root" unique_id=1589596613]
+position = Vector2(1167, 330)
+scale = Vector2(0.68, 0.68)
+sprite_frames = SubResource("SpriteFrames_53m36")
+frame = 50
+frame_progress = 1.0
 
 [node name="LetterboxTop" type="ColorRect" parent="." unique_id=958107815]
 custom_minimum_size = Vector2(0, 90)
