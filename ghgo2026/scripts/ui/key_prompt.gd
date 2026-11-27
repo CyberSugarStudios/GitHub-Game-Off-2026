@@ -28,6 +28,8 @@ const INK_SHADER := preload("res://shaders/ink_tint.gdshader")
 		font_size = value
 		_refresh()
 @export var key_color := Color(0.8, 0.804, 0.769)
+@export var scaled_keys: PackedStringArray = ["Space"]
+@export var scaled_key_size: float = 1.12
 
 @export_group("Animated Icon")
 @export var icon_sheet: Texture2D:
@@ -99,7 +101,8 @@ func _refresh() -> void:
 		key_rect.material = null
 		key_rect.texture = WIDE_KEY_ART if wide else KEY_ART
 		var art := key_rect.texture
-		key_rect.custom_minimum_size = Vector2(key_height * art.get_width() / art.get_height(), key_height)
+		var height := key_height * (scaled_key_size if key in scaled_keys else 1.0)
+		key_rect.custom_minimum_size = Vector2(height * art.get_width() / art.get_height(), height)
 
 	key_label.text = "" if icon_sheet else key
 	key_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

@@ -46,7 +46,7 @@ const ACTIVITY_TEXT: Dictionary[StringName, String] = {
 @export var exit_distance: float = 0.6
 @export var pass_cost: float = 0.0
 @export var enter_after_unlock: bool = true
-@export var enter_after_unlock_delay: float = 1.0
+@export var enter_after_unlock_delay: float = 0.45
 
 @export_group("Living Plane")
 @export var observe_in_living: bool = true

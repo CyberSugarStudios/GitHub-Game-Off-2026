@@ -12,7 +12,7 @@ func get_prompt_text() -> String:
 	var power := Powers.get_selected()
 	if power == null:
 		return "No powers yet"
-	return "%s (%s bars)" % [power.display_name, str(power.energy_cost)]
+	return power.display_name
 
 func get_block_reason() -> String:
 	var reason := super()
