@@ -38,4 +38,6 @@ func _continue() -> void:
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(TITLE_SCENE) as PackedScene)
 
 static func _first_run() -> bool:
+	if Settings.onboarding_seen < Settings.ONBOARDING_VERSION:
+		return true
 	return not FileAccess.file_exists(Settings.PATH) and not GameState.has_checkpoint()

@@ -6,6 +6,9 @@ extends Node
 @export_group("Panning")
 @export var pan_speed: float = 900.0
 @export var pan_acceleration: float = 4000.0
+@export_range(0.0, 0.5) var edge_zone: float = 1.0 / 6.0
+@export_range(0.0, 0.5) var fast_edge_zone: float = 1.0 / 18.0
+@export var fast_edge_multiplier: float = 2.0
 
 @export_group("Transition")
 @export var fade_time: float = 0.35
@@ -43,6 +46,7 @@ var _room_width := 0.0
 var _max_pan := 0.0
 var _pan_x := 0.0
 var _pan_velocity := 0.0
+var _mouse_in_window := true
 var _pan_tween: Tween
 var _following := false
 var _speaker := ""
@@ -69,6 +73,8 @@ func _ready() -> void:
 	Events.subtitle_changed.connect(_on_subtitle_changed)
 	_show_exit(not exit_locked, true)
 	get_viewport().size_changed.connect(_fit_room)
+	get_window().mouse_entered.connect(func() -> void: _mouse_in_window = true)
+	get_window().mouse_exited.connect(func() -> void: _mouse_in_window = false)
 	GameState.controls_locked_changed.connect(_on_controls_locked_changed)
 	_on_controls_locked_changed(GameState.controls_locked)
 
@@ -250,12 +256,29 @@ func _process(delta: float) -> void:
 		return
 	
 	var direction := Input.get_axis("move_left", "move_right") # A/D keys
+	if direction == 0.0:
+		direction = _mouse_pan_direction()
 	
 	_pan_velocity = move_toward(_pan_velocity, direction * pan_speed, pan_acceleration * delta)
 	_pan_x = clampf(_pan_x + _pan_velocity * delta, 0.0, _max_pan)
 	if (_pan_x <= 0.0 and _pan_velocity < 0.0) or (_pan_x >= _max_pan and _pan_velocity > 0.0):
 		_pan_velocity = 0.0
 	_apply_pan()
+
+func _mouse_pan_direction() -> float:
+	if not _mouse_in_window or Input.mouse_mode != Input.MOUSE_MODE_VISIBLE or Powers.target != &"":
+		return 0.0
+	var width := get_viewport().get_visible_rect().size.x
+	var x := get_viewport().get_mouse_position().x
+	if x < width * fast_edge_zone:
+		return -fast_edge_multiplier
+	if x < width * edge_zone:
+		return -1.0
+	if x > width * (1.0 - fast_edge_zone):
+		return fast_edge_multiplier
+	if x > width * (1.0 - edge_zone):
+		return 1.0
+	return 0.0
 
 func set_pan(ratio: float) -> void:
 	_set_pan_x(_max_pan * clampf(ratio,  0.0, 1.0))

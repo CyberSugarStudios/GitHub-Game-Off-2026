@@ -48,7 +48,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	_title_start = size.y - (gap * 2)
 	_credits_start = _title_start + credits_title.size.y - (gap * 1.5)
-	_help_start = _credits_start + credits_text.size.y - (gap * 1.5)
+	_help_start = _credits_start + credits_text.get_content_height() + gap
 	_help_rest = (size.y - help_text.size.y) * 0.5
 	_set_scrolled(0.0)
 

@@ -75,8 +75,9 @@ func _apply_layout() -> void:
 func _show_tab(index: int) -> void:
 	for i in _sections.size():
 		_sections[i].visible = i == index
-	(%LeftColumn as Control).visible = index == 0
-	(%RightColumn as Control).visible = index != 0
+	var column := _sections[index].get_parent()
+	(%LeftColumn as Control).visible = column == %LeftColumn
+	(%RightColumn as Control).visible = column == %RightColumn
 
 func _load_values() -> void:
 	for bus: StringName in VOLUME_SLIDERS:

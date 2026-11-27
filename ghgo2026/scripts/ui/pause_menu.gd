@@ -9,6 +9,7 @@ const TITLE_SCENE_PATH := "res://scenes/ui/title_screen.tscn"
 @onready var buttons: Control = $Buttons
 @onready var options_page: Control = $OptionsPage
 @onready var options_panel: OptionsPanel = $OptionsPage/OptionsPanel
+@onready var paused_label: Control = $PausedLabel
 
 var _had_mouse_capture := false
 
@@ -66,11 +67,13 @@ func resume() -> void:
 
 func _on_settings_pressed() -> void:
 	buttons.visible = false
+	paused_label.visible = false
 	options_page.visible = true
 	options_panel.focus_close()
 
 func _close_options() -> void:
 	options_page.visible = false
+	paused_label.visible = true
 	buttons.visible = true
 	settings_button.grab_focus()
 

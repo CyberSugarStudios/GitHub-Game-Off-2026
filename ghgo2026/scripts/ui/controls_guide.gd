@@ -117,14 +117,30 @@ func _control_row(line: String) -> HBoxContainer:
 	keys.alignment = BoxContainer.ALIGNMENT_END
 	keys.add_theme_constant_override("separation", 6)
 	row.add_child(keys)
-	for token in parts[0].split(" ", false):
-		keys.add_child(_key(token))
+	if parts[0].strip_edges() == "W A S D":
+		keys.add_child(_wasd())
+	else:
+		for token in parts[0].split(" ", false):
+			keys.add_child(_key(token))
 	var action := Label.new()
 	action.text = parts[1] if parts.size() > 1 else ""
 	action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	action.add_theme_font_size_override("font_size", font_size)
 	row.add_child(action)
 	return row
+
+func _wasd() -> VBoxContainer:
+	var cluster := VBoxContainer.new()
+	cluster.add_theme_constant_override("separation", 4)
+	var top := _key("W")
+	top.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	cluster.add_child(top)
+	var bottom := HBoxContainer.new()
+	bottom.add_theme_constant_override("separation", 4)
+	for letter in ["A", "S", "D"]:
+		bottom.add_child(_key(letter))
+	cluster.add_child(bottom)
+	return cluster
 
 func _key(token: String) -> Control:
 	if token == "or":
@@ -179,6 +195,8 @@ func _leave() -> void:
 		closed.emit()
 		queue_free()
 		return
+	Settings.onboarding_seen = Settings.ONBOARDING_VERSION
+	Settings.save_settings()
 	if ResourceLoader.load_threaded_get_status(next_scene) == ResourceLoader.THREAD_LOAD_LOADED:
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(next_scene) as PackedScene)
 	else:

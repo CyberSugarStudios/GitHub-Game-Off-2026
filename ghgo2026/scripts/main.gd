@@ -12,6 +12,8 @@ const KEY_PROMPT := preload("res://scenes/ui/key_prompt.tscn")
 @export var skip_hold_seconds: float = 1.5
 @export var options_prompt_seconds: float = 8.0
 @export var skip_prompt_linger: float = 1.0
+@export var video_to_black: float = 0.8
+@export var black_hold: float = 0.3
 
 @onready var fade: ColorRect = $RoomView/FadeLayer/Fade
 @onready var astral_filter: ColorRect = $UI/AstralRealmColorFilter
@@ -106,6 +108,8 @@ func _warm_up() -> void:
 		fade.color.a = 0.0
 		music_director.end_intro(reveal_time)
 		tween = create_tween()
+		tween.tween_property(_video_box, "modulate:a", 0.0, video_to_black)
+		tween.tween_interval(black_hold)
 		tween.tween_property(screen, "modulate:a", 0.0, reveal_time)
 		tween.tween_callback(screen.get_parent().queue_free)
 	await tween.finished

@@ -15,6 +15,7 @@ var _minutes := 0
 var _offered := 1
 var _heard := 0
 var _presses := 0
+var _solution_open := false
 var _stage := ""
 var _popup: SolutionPopup
 var _prompt_tween: Tween
@@ -51,20 +52,27 @@ func _unhandled_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	_check_stage()
 	_show_prompt(false)
+	if _solution_open:
+		_show_solution()
+		return
 	_presses += 1
 	if not _has_hints():
 		if _presses >= presses_per_level:
 			_presses = 0
-			_popup.show_solution("solution_" + _stage_key())
+			_show_solution()
 		return
 	if _offered >= GameState.MAX_HINT_LEVEL and _heard >= _offered and _presses > presses_per_level:
 		_presses = 0
-		_popup.show_solution("solution_" + _stage_key())
+		_show_solution()
 		return
 	if _presses % presses_per_level == 0:
 		GameState.raise_hint_level()
 	if _play_hint(_offered):
 		_heard = maxi(_heard, _offered)
+
+func _show_solution() -> void:
+	_solution_open = true
+	_popup.show_solution("solution_" + _stage_key())
 
 func _play_hint(level: int) -> bool:
 	var cue := ""
@@ -91,6 +99,7 @@ func _check_stage() -> void:
 	_offered = 1
 	_heard = 0
 	_presses = 0
+	_solution_open = false
 	_show_prompt(false)
 
 func _show_prompt(on: bool) -> void:
