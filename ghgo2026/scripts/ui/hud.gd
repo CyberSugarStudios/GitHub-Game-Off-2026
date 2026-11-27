@@ -266,13 +266,15 @@ func _on_room_changed_for_hints(room_id: StringName) -> void:
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 6)
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for letter in ["W", "A", "S", "D"]:
-		row.add_child(_hint_prompt(letter, ""))
-	row.add_child(_hint_prompt("", "Move"))
+	row.add_child(_wasd_cluster())
+	var move := _hint_prompt("", "Move")
+	move.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(move)
 	var gap := Control.new()
 	gap.custom_minimum_size = Vector2(40.0, 0.0)
 	row.add_child(gap)
 	var look := _hint_prompt("", "Look around")
+	look.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	look.icon_frames = swipe_frames
 	look.icon_fps = swipe_fps
 	look.icon_sheet = swipe_sheet
@@ -289,6 +291,21 @@ func _on_room_changed_for_hints(room_id: StringName) -> void:
 	tween.tween_interval(move_hint_seconds)
 	tween.tween_property(row, "modulate:a", 0.0, 1.5)
 	tween.tween_callback(row.queue_free)
+
+func _wasd_cluster() -> VBoxContainer:
+	var cluster := VBoxContainer.new()
+	cluster.add_theme_constant_override("separation", 4)
+	cluster.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var top := _hint_prompt("W", "")
+	top.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	cluster.add_child(top)
+	var bottom := HBoxContainer.new()
+	bottom.add_theme_constant_override("separation", 4)
+	bottom.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for letter in ["A", "S", "D"]:
+		bottom.add_child(_hint_prompt(letter, ""))
+	cluster.add_child(bottom)
+	return cluster
 
 func _hint_prompt(key: String, text: String) -> KeyPrompt:
 	var prompt := KEY_PROMPT.instantiate() as KeyPrompt

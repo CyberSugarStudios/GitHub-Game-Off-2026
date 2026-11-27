@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://b8wbmitimj2iw"]
+
+[ext_resource type="Texture2D" uid="uid://5b6iqo78woix" path="res://assets/sprites/rooms/living_room/MusicBox.png" id="1_i7827"]
+[ext_resource type="Script" uid="uid://cp77nvs6w0ox5" path="res://scripts/ui/music_box.gd" id="1_y600p"]
+[ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="2_6tulq"]
+[ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="3_y600p"]
+[ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="4_u3e0i"]
+
+[node name="MusicBox" type="CanvasLayer" unique_id=1984333667]
+script = ExtResource("1_y600p")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1069231858]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1241906040]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1424.5
+offset_top = -1609.98
+offset_right = 1424.5
+offset_bottom = 1485.02
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(1424, 1547)
+mouse_filter = 2
+texture = ExtResource("1_i7827")
+stretch_mode = 5
+
+[node name="BackButton" type="TextureRect" parent="." unique_id=1954208818]
+anchors_preset = -1
+anchor_left = 0.483125
+anchor_top = 0.86722225
+anchor_right = 0.5146875
+anchor_bottom = 0.92333335
+offset_top = -88.40997
+offset_bottom = -88.40997
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_6tulq")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitArrow" type="TextureRect" parent="BackButton" unique_id=857190519]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34013605
+anchor_top = 1.4217687
+anchor_right = 0.6802721
+anchor_bottom = 1.989017
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_y600p")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SKey" type="Label" parent="BackButton" unique_id=865877212]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.15405944
+anchor_right = 0.80300003
+anchor_bottom = 0.787406
+offset_left = -0.03650093
+offset_top = -0.024001122
+offset_right = -0.020503998
+offset_bottom = -0.008003235
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8039216, 0.76862746, 1)
+theme_override_fonts/font = ExtResource("4_u3e0i")
+theme_override_font_sizes/font_size = 25
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
