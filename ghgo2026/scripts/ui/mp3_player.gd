@@ -4,6 +4,8 @@ extends CanvasLayer
 @export var tracks: Array[MP3Track] = []
 @export var playlist: MP3Playlist
 @export var lullaby_track: MP3Track
+@export var embedded: bool = false
+@export var music_fade: float = 1.5
 @export var open_event: StringName = &"listen_mp3"
 @export var restart_after: float = 3.0
 @export_range(0.0, 1.0) var start_volume: float = 0.8
@@ -170,7 +172,10 @@ func _play_index(index: int) -> void:
 	_after_change()
 
 func _after_change() -> void:
-	Music.duck(is_playing())
+	if embedded:
+		Music.step_aside(is_playing(), music_fade)
+	else:
+		Music.duck(is_playing())
 	_show_track()
 
 func _show_track() -> void:
@@ -192,7 +197,7 @@ static func _clock(seconds: float) -> String:
 	return "%d:%02d" % [floori(seconds / 60.0), int(seconds) % 60]
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not visible:
+	if not visible or embedded:
 		return
 	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause") \
 		or event.is_action_pressed("move_backward"):

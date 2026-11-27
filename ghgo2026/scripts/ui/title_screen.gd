@@ -37,6 +37,8 @@ const HOVER_FADE := 0.12
 
 @onready var confirm_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/ConfirmCloseButton
 @onready var cancel_close_button = $ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons/CancelCloseButton
+
+@onready var mp3_player: MP3Player = $MP3Player
 #endregion
 var _hover_sound: AudioStreamPlayer
 var _select_sound: AudioStreamPlayer
@@ -57,6 +59,8 @@ func _ready() -> void:
 	continue_game_button.pressed.connect(on_continue_pressed)
 	
 	quit_button.visible = not OS.has_feature("web")
+	
+	mp3_player.visible = Settings.game_completed
 	
 	options_button.pressed.connect(on_options_menu_button_pressed)
 	options_panel.closed.connect(on_close_options_button_pressed)

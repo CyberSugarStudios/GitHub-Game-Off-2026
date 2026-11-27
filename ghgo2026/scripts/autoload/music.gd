@@ -8,6 +8,7 @@ const DUCK_EFFECT := 1
 const DUCK_DB := -80.0
 const BED_BUS := &"MusicBed"
 
+var _volume := 1.0
 var _players: Array[AudioStreamPlayer] = []
 var _active := 0
 var _fade_tween: Tween
@@ -50,6 +51,7 @@ func play(stream: AudioStream, fade_time: float = DEFAULT_FADE, from_position: f
 	if _fade_tween:
 		_fade_tween.kill()
 	
+	_volume = volume
 	var next := _players[1 - _active]
 	next.stop()
 	next.stream = stream
@@ -98,7 +100,7 @@ func step_aside(on: bool, fade_time: float = 0.5) -> void:
 	if _aside_tween:
 		_aside_tween.kill()
 	_aside_tween = create_tween()
-	_aside_tween.tween_property(_players[_active], "volume_linear", 0.0 if on else 1.0, fade_time)
+	_aside_tween.tween_property(_players[_active], "volume_linear", 0.0 if on else _volume, fade_time)
 
 func _on_player_finished(player: AudioStreamPlayer) -> void:
 	if player == _players[_active]:

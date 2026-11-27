@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bc8avv3u5fuci" path="res://scenes/ui/title_button.tscn" id="6_cfe2f"]
 [ext_resource type="Script" uid="uid://rlniu33cw05e" path="res://scripts/ui/link_list.gd" id="7_6ik4u"]
 [ext_resource type="PackedScene" uid="uid://cvbp0nfglxkyt" path="res://scenes/ui/mp3_player.tscn" id="8_aqu7r"]
+[ext_resource type="Resource" uid="uid://tfvdyxdmamrn" path="res://data/lullaby_track.tres" id="9_jsbfx"]
 
 [sub_resource type="Gradient" id="Gradient_r23qo"]
 offsets = PackedFloat32Array(0, 0.45528457, 1)
@@ -401,6 +402,8 @@ text = "CANCEL"
 
 [node name="MP3Player" parent="." unique_id=548456274 instance=ExtResource("8_aqu7r")]
 visible = false
+lullaby_track = ExtResource("9_jsbfx")
+embedded = true
 
 [node name="Dim" parent="MP3Player" index="1" unique_id=1267292442]
 visible = false
