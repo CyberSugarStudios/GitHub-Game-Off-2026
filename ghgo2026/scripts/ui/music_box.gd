@@ -10,15 +10,10 @@ const REACTIONS := preload("res://dialogue/reactions.dialogue")
 @export var opened_flag: StringName = &"music_box_seen"
 @export var closed_flag: StringName = &"music_box_left"
 
-@export var frames: SpriteFrames = preload("res://assets/sprites/Animations/frames/rooms/music_box_frames.tres")
-@export var frames_fps: float = 8.0
-
 @onready var art: AnimatedSprite2D = $TextureRect
 
 var _lullaby: AudioStreamPlayer
 var _fade: Tween
-var _frame_time := 0.0
-var _frame := 0
 
 func _ready() -> void:
 	visible = false
@@ -69,17 +64,13 @@ func _say_once(cue: String, flag: StringName) -> void:
 	GameState.set_flag(flag)
 	Events.conversation_requested.emit(REACTIONS, cue, false)
 
-func _process(delta: float) -> void:
-	if not visible or frames == null or not _lullaby.playing:
+func _process(_delta: float) -> void:
+	if not visible:
 		return
-	var count := frames.get_frame_count(&"default")
-	if count == 0:
-		return
-	_frame_time += delta * frames_fps
-	while _frame_time >= 1.0:
-		_frame_time -= 1.0
-		_frame = (_frame + 1) % count
-	art.texture = frames.get_frame_texture(&"default", _frame)
+	if _lullaby.playing and not art.is_playing():
+		art.play()
+	elif not _lullaby.playing and art.is_playing():
+		art.pause()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:

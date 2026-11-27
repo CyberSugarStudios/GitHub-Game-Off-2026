@@ -18,10 +18,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.5)
 
 [node name="TextureRect" type="AnimatedSprite2D" parent="." unique_id=662130177]
-position = Vector2(800, 350)
-scale = Vector2(1.25, 1.25)
+position = Vector2(798, 391)
 sprite_frames = ExtResource("2_y600p")
-frame_progress = 0.31283265
+frame_progress = 0.091468334
 
 [node name="BackButton" type="TextureRect" parent="." unique_id=1954208818]
 anchors_preset = -1
