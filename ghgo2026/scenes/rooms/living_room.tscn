@@ -27,6 +27,10 @@
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="14_eokjc"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="15_mnsc7"]
 [ext_resource type="Script" uid="uid://c8mgegcpjhxpp" path="res://scripts/rooms/door_light.gd" id="17_8mmjm"]
+[ext_resource type="Script" uid="uid://b76k2cuuruw1m" path="res://scripts/rooms/activity_sounds.gd" id="28_x2u51"]
+[ext_resource type="AudioStream" uid="uid://dmdaio4iqtyap" path="res://assets/audio/sfx/varied2/Can sip 2.wav" id="29_e3ptr"]
+[ext_resource type="AudioStream" uid="uid://ut1fobxnlk84" path="res://assets/audio/sfx/varied2/Can sip 3.wav" id="30_bqn76"]
+[ext_resource type="AudioStream" uid="uid://qart6dupwej8" path="res://assets/audio/sfx/varied2/Can sip 4.wav" id="31_cs0md"]
 
 [node name="LivingRoom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_oy7wu")
@@ -407,3 +411,9 @@ z_index = 35
 position = Vector2(150, 555)
 polygon = PackedVector2Array(-148.89, -493.53, 144.305, -479.92, 140.74, 480.815, -151.93, 591.095)
 script = ExtResource("17_8mmjm")
+
+[node name="CanSips" type="Node" parent="." unique_id=315449322]
+script = ExtResource("28_x2u51")
+activity_excludes = "coffee"
+sounds = Array[AudioStream]([ExtResource("29_e3ptr"), ExtResource("30_bqn76"), ExtResource("31_cs0md")])
+metadata/_custom_type_script = "uid://b76k2cuuruw1m"

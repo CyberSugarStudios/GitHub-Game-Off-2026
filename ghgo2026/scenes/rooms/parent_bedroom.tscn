@@ -12,6 +12,11 @@
 [ext_resource type="Resource" uid="uid://bpg8n3y2anpik" path="res://dialogue/puzzle_3.dialogue" id="9_lgaq2"]
 [ext_resource type="AudioStream" uid="uid://mx4vryx3viow" path="res://assets/audio/sfx/varied/pill_bottle.wav" id="10_crhs2"]
 [ext_resource type="Resource" uid="uid://dps2dkhdur8ec" path="res://dialogue/objects.dialogue" id="10_crvc2"]
+[ext_resource type="Script" uid="uid://b76k2cuuruw1m" path="res://scripts/rooms/activity_sounds.gd" id="13_h4mvv"]
+[ext_resource type="AudioStream" uid="uid://bolr0ngsupdki" path="res://assets/audio/sfx/varied/Pin number 1.wav" id="14_m4iab"]
+[ext_resource type="AudioStream" uid="uid://bq5t1fvnrwydh" path="res://assets/audio/sfx/varied/Pin number 2.wav" id="15_ir5sm"]
+[ext_resource type="AudioStream" uid="uid://dg5srhslowp7l" path="res://assets/audio/sfx/varied/Pin number 3.wav" id="16_j4kdq"]
+[ext_resource type="AudioStream" uid="uid://5ksm87lmob2o" path="res://assets/audio/sfx/varied/Pin number 4.wav" id="17_fisxk"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_53m36"]
 
@@ -160,3 +165,10 @@ text = "PILL
 BOTTLE"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SafePins" type="Node" parent="." unique_id=1610032624]
+script = ExtResource("13_h4mvv")
+activity_contains = "opening_safe"
+sounds = Array[AudioStream]([ExtResource("14_m4iab"), ExtResource("15_ir5sm"), ExtResource("16_j4kdq"), ExtResource("17_fisxk")])
+gap_seconds = Vector2(0.3, 0.7)
+metadata/_custom_type_script = "uid://b76k2cuuruw1m"
