@@ -369,7 +369,7 @@ func _make_seat_plane(art: CanvasItem, left: Vector2, right: Vector2) -> MeshIns
 	seat_material.set_shader_parameter("plane_map", to_uv * plane_map)
 	var plane := MeshInstance3D.new()
 	plane.mesh = _plane_mesh(_floor_point(left), _floor_point(right), lo, hi)
-	plane.position.z += child_plane_offset * 2.0
+	plane.position.z += child_plane_offset * 0.5
 	plane.material_override = seat_material
 	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(plane)
