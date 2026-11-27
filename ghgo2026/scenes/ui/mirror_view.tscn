@@ -15,6 +15,7 @@
 layer = 10
 script = ExtResource("1_fu0bm")
 room_light_name = &"BathroomLight"
+light_boost = 1.75
 
 [node name="Root" type="Control" parent="." unique_id=1370310671]
 clip_contents = true
@@ -127,9 +128,8 @@ metadata/_edit_use_anchors_ = true
 [node name="NightTint" type="CanvasModulate" parent="." unique_id=2081958262]
 
 [node name="BathroomLight" type="PointLight2D" parent="." unique_id=1820625853]
-position = Vector2(819, -10)
+position = Vector2(993, -106)
 color = Color(1, 0.93333334, 0.8392157, 1)
-energy = 10.0
 range_layer_min = 10
 range_layer_max = 10
 texture = ExtResource("10_f5hwt")
