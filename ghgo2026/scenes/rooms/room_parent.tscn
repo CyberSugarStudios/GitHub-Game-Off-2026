@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://rkutgkwxtwju"]
 
 [ext_resource type="Script" uid="uid://cl44tb5df5lb3" path="res://scripts/rooms/room_actor.gd" id="1_vcdkt"]
+[ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="2_ibhj4"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="2_rre6o"]
 
 [node name="RoomParent" type="Node2D" unique_id=1712821977]
 script = ExtResource("1_vcdkt")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1828615581]
+sprite_frames = ExtResource("2_ibhj4")
 animation = &"idle"
 
 [node name="ClickArea" type="TextureButton" parent="." unique_id=716037555]
