@@ -439,6 +439,11 @@ opening_size = Vector2(1.4, 2.04)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.848764, 0, -4.982)
 room_id = &"living_room"
 room_label = "Living Room"
+closed_after_flag = &"left_living_room"
+closed_until_flag = &"mom_ignored"
+closed_story_id = &"talk_to_mom"
+closed_story_requires_flag = &"leanne_home"
+closed_story_hidden_after_flag = &"mom_ignored"
 prompt_text = "Enter living room"
 
 [node name="DoorwayView" parent="Hall/RoomEntrances/LivingRoomDoorway" index="2" unique_id=1184228109]
