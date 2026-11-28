@@ -121,7 +121,7 @@ grow_horizontal = 0
 grow_vertical = 2
 text = ">"
 
-[node name="CombinationLock" type="Control" parent="." unique_id=1714371820]
+[node name="Keypad" type="Control" parent="." unique_id=1714371820]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
