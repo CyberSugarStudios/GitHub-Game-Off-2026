@@ -175,7 +175,7 @@ func _after_change() -> void:
 	if embedded:
 		Music.step_aside(is_playing(), music_fade)
 	else:
-		Music.duck(is_playing())
+		Music.duck(is_playing(), 0.8, -80.0)
 	_show_track()
 
 func _show_track() -> void:

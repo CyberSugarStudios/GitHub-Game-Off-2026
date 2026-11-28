@@ -61,13 +61,13 @@ func _add(hotspot: RoomHotspot) -> void:
 	var outline := Outline.new()
 	outline.button = hotspot
 	var shape := hotspot.get_node_or_null(SHAPE_NAME) as Polygon2D
-	var actor := hotspot.get_parent() as RoomActor
+	var body: Variant = hotspot.get_parent().get("sprite")
 	var art: Variant = hotspot.get("art")
 	if shape:
 		outline.source = shape
 		outline.node = _make_lines(_cut_outline(hotspot, shape))
-	elif actor and actor.sprite:
-		outline.source = actor.sprite
+	elif body is AnimatedSprite2D:
+		outline.source = body
 		outline.node = _make_sprite()
 	elif art is Sprite2D and (art as Sprite2D).texture and not (art as Sprite2D).region_enabled:
 		outline.source = art

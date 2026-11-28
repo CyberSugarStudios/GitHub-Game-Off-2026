@@ -2,9 +2,9 @@ extends Node
 
 const FORM_ID := "1FAIpQLSfatGLctTLhUCTkvCQmdYIMcUE2KsamTFjJ7h2SW3QfrAiRWw"
 const DEBUG_ENTRY := "entry.2135919735"
-const HITCH_SECONDS := 0.25
+const HITCH_SECONDS := 0.1
 const BACKGROUND_SECONDS := 3.0
-const MAX_HITCHES := 8
+const MAX_HITCHES := 12
 const RENDERER_JS := """
 	(function () {
 		try {

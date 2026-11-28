@@ -203,7 +203,7 @@ position = Vector2(-256, 42.4)
 z_index = 20
 
 [node name="Leanne" parent="Actors" unique_id=1712821977 instance=ExtResource("6_0vv3f")]
-position = Vector2(1039, 1015)
+position = Vector2(1502, 1005)
 scale = Vector2(0.5, 0.5)
 frames = ExtResource("7_e86kh")
 
@@ -215,7 +215,7 @@ parent_id = &"david"
 frames = ExtResource("7_a5o1a")
 
 [node name="RoomCreature" parent="Actors" unique_id=964999695 node_paths=PackedStringArray("blocks") instance=ExtResource("8_7cjtg")]
-position = Vector2(208, 1112)
+position = Vector2(197, 1150)
 scale = Vector2(0.5, 0.5)
 blocks = NodePath("../../Hotspots/FrontDoor")
 
@@ -415,8 +415,14 @@ night_animation = &"sleeping"
 seat = NodePath("../../BackProps/Recliner")
 metadata/_custom_type_script = "uid://26eyobriow6j"
 
-[node name="ArrivingHome" type="Marker2D" parent="RoomSpots" unique_id=459147660]
+[node name="ArrivingHomeFinish" type="Marker2D" parent="RoomSpots" unique_id=459147660]
 position = Vector2(1928, 980)
+script = ExtResource("12_8llds")
+facing = 2
+metadata/_custom_type_script = "uid://26eyobriow6j"
+
+[node name="ArrivingHomeStart" type="Marker2D" parent="RoomSpots" unique_id=1117142889]
+position = Vector2(412, 1084)
 script = ExtResource("12_8llds")
 facing = 2
 metadata/_custom_type_script = "uid://26eyobriow6j"

@@ -44,6 +44,7 @@ func _ready() -> void:
 	continue_prompt.modulate.a = 0.0
 	if music:
 		Music.play(music, music_fade, 0.0, db_to_linear(music_db))
+		Music.finished.connect(_back_to_title)
 	await get_tree().process_frame
 	await get_tree().process_frame
 	_title_start = size.y - (gap * 2)
@@ -110,6 +111,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_cancel") and _tween and _tween.is_running():
 		_tween.custom_step(9999.0)
 		get_viewport().set_input_as_handled()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		_hold(true)
+	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
+		_hold(false)
+
+func _hold(on: bool) -> void:
+	if _leaving:
+		return
+	get_tree().paused = on
+	Music.set_paused(on)
 
 func _back_to_title() -> void:
 	if _leaving:

@@ -152,3 +152,8 @@ func _fade_bed(db: float, fade_time: float) -> void:
 		func(value: float) -> void: AudioServer.set_bus_volume_db(index, value),
 		AudioServer.get_bus_volume_db(index), db, fade_time)
 #endregion
+
+func set_paused(on: bool) -> void:
+	for player in _players:
+		player.stream_paused = on
+	_layer.stream_paused = on
