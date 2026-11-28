@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bfpl0o3x32jci"
+path="res://.godot/imported/p3_safe_alone2.wav-5308404a8a9724c31f730badf57c9659.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/p3_safe_alone2.wav"
+dest_files=["res://.godot/imported/p3_safe_alone2.wav-5308404a8a9724c31f730badf57c9659.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

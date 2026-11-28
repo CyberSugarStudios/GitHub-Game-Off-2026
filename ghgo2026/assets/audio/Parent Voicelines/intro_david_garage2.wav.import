@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckv5o0gwpq3yh"
+path="res://.godot/imported/intro_david_garage2.wav-dc7b4dc9c6c14a7fb2d27da8f5c08c06.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/intro_david_garage2.wav"
+dest_files=["res://.godot/imported/intro_david_garage2.wav-dc7b4dc9c6c14a7fb2d27da8f5c08c06.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

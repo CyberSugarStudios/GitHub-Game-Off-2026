@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://irdxdo2gov7n"
+path="res://.godot/imported/david_linger_school_photo.wav-953ce8ea412079d92817c537c7da3dc1.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/david_linger_school_photo.wav"
+dest_files=["res://.godot/imported/david_linger_school_photo.wav-953ce8ea412079d92817c537c7da3dc1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

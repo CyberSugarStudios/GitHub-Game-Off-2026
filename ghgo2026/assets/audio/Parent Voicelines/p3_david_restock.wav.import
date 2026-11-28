@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://sn0qhqg5dnv7"
+path="res://.godot/imported/p3_david_restock.wav-a59d78be830645c7c9005098ee931895.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/p3_david_restock.wav"
+dest_files=["res://.godot/imported/p3_david_restock.wav-a59d78be830645c7c9005098ee931895.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

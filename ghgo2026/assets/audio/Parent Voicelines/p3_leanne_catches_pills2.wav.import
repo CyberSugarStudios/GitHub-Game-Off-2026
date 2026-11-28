@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://brfywewpxc38p"
+path="res://.godot/imported/p3_leanne_catches_pills2.wav-bfa33da7560158657d52c551ba54167f.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/p3_leanne_catches_pills2.wav"
+dest_files=["res://.godot/imported/p3_leanne_catches_pills2.wav-bfa33da7560158657d52c551ba54167f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

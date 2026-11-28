@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c88jw8v121dqp"
+path="res://.godot/imported/p1_painting_fight.mp3-d9bab8a45a4572e3b02959856c30922f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/p1_painting_fight.mp3"
+dest_files=["res://.godot/imported/p1_painting_fight.mp3-d9bab8a45a4572e3b02959856c30922f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
