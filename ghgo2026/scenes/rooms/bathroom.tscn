@@ -11,8 +11,45 @@
 [ext_resource type="Script" uid="uid://0plsv4v7klij" path="res://scripts/rooms/event_animation.gd" id="6_xflxt"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_won8x"]
 [ext_resource type="AudioStream" uid="uid://c2rk045w2kehh" path="res://assets/audio/sfx/varied/Shower.wav" id="8_nc0wo"]
+[ext_resource type="Shader" uid="uid://b6ks4g2l88j1c" path="res://shaders/steam.gdshader" id="8_ylyxw"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="9_t60wq"]
 [ext_resource type="Script" uid="uid://byaff13r4lxs2" path="res://scripts/rooms/room_light.gd" id="10_juav1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2fl2y"]
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ylyxw"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_2fl2y")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xflxt"]
+shader = ExtResource("8_ylyxw")
+shader_parameter/noise = SubResource("NoiseTexture2D_ylyxw")
+shader_parameter/noise_scale = 0.004
+shader_parameter/drift = Vector2(0.01, -0.04)
+shader_parameter/wispiness = 0.50000002375
+
+[sub_resource type="Gradient" id="Gradient_xflxt"]
+offsets = PackedFloat32Array(0, 0.45, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_53m36"]
+gradient = SubResource("Gradient_xflxt")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Curve" id="Curve_2lwwf"]
+_data = [Vector2(0, 0.3820225), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ebaq1"]
+offsets = PackedFloat32Array(0, 0.15, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.45000002, 1, 1, 1, 0.3, 1, 1, 1, 0)
 
 [node name="Bathroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_y5w4s")
@@ -46,8 +83,30 @@ visible = false
 position = Vector2(2974, 595)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("5_juav1")
-frame_progress = 0.9759
+frame_progress = 0.83421177
 script = ExtResource("6_xflxt")
+
+[node name="ShowerSteam" type="CPUParticles2D" parent="BackProps" unique_id=1920722902]
+material = SubResource("ShaderMaterial_xflxt")
+position = Vector2(2514, 872)
+amount = 60
+texture = SubResource("GradientTexture2D_53m36")
+lifetime = 6.0
+randomness = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(80, 30)
+direction = Vector2(-0.105, -1)
+spread = 20.0
+gravity = Vector2(8, -30)
+initial_velocity_min = 60.0
+initial_velocity_max = 110.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+angle_max = 360.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_2lwwf")
+color_ramp = SubResource("Gradient_ebaq1")
 
 [node name="ShowerMask" type="Sprite2D" parent="BackProps" unique_id=2073630277]
 position = Vector2(3340, 594.50006)

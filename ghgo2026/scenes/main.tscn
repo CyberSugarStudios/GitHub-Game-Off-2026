@@ -49,10 +49,17 @@
 [ext_resource type="Resource" uid="uid://ho2y34hkaur" path="res://data/schedules/david_stage2.tres" id="27_vc5cj"]
 [ext_resource type="Resource" uid="uid://dcg0fmjpspw6b" path="res://data/schedules/leanne_stage3.tres" id="28_nvyfr"]
 [ext_resource type="Resource" uid="uid://b515ujda0udwp" path="res://data/schedules/david_stage3.tres" id="29_ty1g6"]
+[ext_resource type="Texture2D" uid="uid://dqq3hchn3j6p7" path="res://assets/sprites/rooms/broken_glass.webp" id="29_v0wtd"]
 [ext_resource type="PackedScene" uid="uid://iurbh1d578i1" path="res://scenes/rooms/emily_bedroom.tscn" id="30_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://djn85cwfw380d" path="res://scenes/rooms/parent_bedroom.tscn" id="31_j8jky"]
+[ext_resource type="Texture2D" uid="uid://divvnorir6yu7" path="res://assets/textures/house/wall_decor/solais_painting.webp" id="31_sgvw8"]
+[ext_resource type="Texture2D" uid="uid://bl3b7n7lqjox" path="res://assets/textures/house/hall/decals/cut_out_vent_small.webp" id="32_6nfnn"]
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
+[ext_resource type="Texture2D" uid="uid://cvgr8rk4l7vqq" path="res://assets/textures/house/hall/decals/cut_out_outlet.webp" id="33_4ue30"]
+[ext_resource type="Texture2D" uid="uid://bbydww3a3plgw" path="res://assets/sprites/rooms/lights/base_light.webp" id="34_673bd"]
+[ext_resource type="Texture2D" uid="uid://cl6o72nby23l" path="res://assets/sprites/rooms/lights/base_light_on.webp" id="35_akjxb"]
 [ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
+[ext_resource type="Texture2D" uid="uid://beyyj1qguskqv" path="res://assets/sprites/rooms/lights/base_light_broken_astral.webp" id="36_vrx01"]
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="37_dnhof"]
 [ext_resource type="FontVariation" uid="uid://nbgtuufo4x15" path="res://assets/fonts/josefin_bold.tres" id="38_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://bpyjxvjn83tjr" path="res://scenes/ui/diary_book.tscn" id="39_bjg73"]
@@ -171,6 +178,48 @@ height = 0.03
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebaq1"]
 albedo_color = Color(0.5219002, 0.49219245, 0.41544694, 1)
 
+[sub_resource type="QuadMesh" id="QuadMesh_y64hh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scacj"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("31_sgvw8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6nfnn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgvw8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("32_6nfnn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ue30"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("33_4ue30")
+
+[sub_resource type="QuadMesh" id="QuadMesh_scacj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rfo0"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("34_673bd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uevf"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("35_akjxb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc087"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("36_vrx01")
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_53m36"]
 vertices = PackedVector3Array(-0.7293253, 1.5174143, -5.462395, -0.7293253, 1.5174143, -5.212395, -0.4793253, 1.5174143, -5.212395, 0.2706747, 1.5174143, -6.212395, -0.4793253, 1.5174143, 0.5376048, 0.2706747, 1.5174143, 0.5376048, -8.229325, 1.5174143, -6.212395, -8.229325, 1.5174143, -5.462395, -8.729325, 1.5174143, -4.462395, -8.729325, 1.5174143, 1.0376048, -1.2293253, 1.5174143, 1.0376048, -1.2293253, 1.5174143, -4.462395)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(7, 6, 0), PackedInt32Array(0, 6, 3), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9)]
@@ -276,15 +325,31 @@ surface_material_override/0 = SubResource("StandardMaterial3D_gcjdw")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Hall/Lights" unique_id=10455811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003976822, 1.5908678, -3.3724892)
+visible = false
 light_color = Color(1, 0.851, 0.659, 1)
 light_energy = 0.5
 omni_range = 4.7829776
 
 [node name="UnderTone" type="OmniLight3D" parent="Hall/Lights" unique_id=2107431311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003976822, 1.5908678, -3.3724892)
+visible = false
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
 light_energy = 0.8
 omni_range = 4.7829776
+
+[node name="OmniLight3DClose" type="OmniLight3D" parent="Hall/Lights" unique_id=1076382119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.71094704, 1.5908678, -3.3724892)
+visible = false
+light_color = Color(1, 0.851, 0.659, 1)
+light_energy = 0.25
+omni_range = 1.0
+
+[node name="UnderToneClose" type="OmniLight3D" parent="Hall/Lights" unique_id=1982852316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.71094704, 1.5908678, -3.3724892)
+visible = false
+light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
+light_energy = 0.25
+omni_range = 1.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Hall/Lights" unique_id=634529625]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -5.7531343)
@@ -294,9 +359,34 @@ omni_range = 5.551603
 
 [node name="UnderTone2" type="OmniLight3D" parent="Hall/Lights" unique_id=2070479431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -5.7531343)
+visible = false
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
 light_energy = 0.8
 omni_range = 5.551603
+
+[node name="OmniLight3DClose2" type="OmniLight3D" parent="Hall/Lights" unique_id=840029966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -6.461142)
+visible = false
+light_color = Color(1, 0.8509804, 0.65882355, 1)
+light_energy = 0.25
+omni_range = 1.0
+
+[node name="UnderToneClose2" type="OmniLight3D" parent="Hall/Lights" unique_id=152666738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -6.461142)
+visible = false
+light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
+light_energy = 0.25
+omni_range = 1.0
+
+[node name="KitchenSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=496321759]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 1.0050659, -6.496216)
+area_range = 7.5
+area_size = Vector2(1, 2.015503)
+
+[node name="LivingRoomSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=556209478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8861065, 1.0050659, -4.847534)
+area_range = 2.0
+area_size = Vector2(1.0537653, 1.9770875)
 
 [node name="LeanneHall" parent="Hall" unique_id=865967836 instance=ExtResource("15_jkv2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.447056, 0, -6.144673)
@@ -475,7 +565,7 @@ mark_id = &"linen_closet"
 look_target = NodePath("../../RoomEntrances/ClosetDoor")
 
 [node name="LingerPumpkinPhoto" type="Marker3D" parent="Hall/HallMarks" unique_id=859201201 node_paths=PackedStringArray("look_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7813568, 0, -5.5777636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7813568, 0, -5.8601427)
 script = ExtResource("5_gqmmt")
 mark_id = &"pumpkin_photo"
 linger_chance = 1.0
@@ -497,7 +587,7 @@ look_target = NodePath("../FightPaintingLeanne")
 [node name="HallDecor" type="Node" parent="Hall" unique_id=1302355487]
 
 [node name="CentralAirIntake" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=1223813579]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.117724, 1.0054932)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.9086914, 1.117724, -4.994751)
 mesh = SubResource("QuadMesh_53m36")
 surface_material_override/0 = SubResource("StandardMaterial3D_2lwwf")
 
@@ -527,7 +617,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7624941, 1.8053758, -4.985
 shape = SubResource("BoxShape3D_2lwwf")
 
 [node name="BrokenGlass" type="MeshInstance3D" parent="Hall/HallDecor/HallPainting" unique_id=1175863201]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.735, 0.01, -5.26)
+transform = Transform3D(0.99769545, 0.06785183, 2.965897e-09, 0, -4.371139e-08, 1, 0.06785183, -0.99769545, -4.361065e-08, -1.735, 0.01, -5.267996)
 mesh = SubResource("QuadMesh_2lwwf")
 surface_material_override/0 = SubResource("StandardMaterial3D_kh4kc")
 
@@ -542,6 +632,10 @@ outline_size = 0
 script = ExtResource("25_xrs0c")
 hint_stage = 4
 pulse_from_hint_level = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="Hall/HallDecor/HallPainting/BrokenGlass" unique_id=293491963]
+transform = Transform3D(-0.03834884, -0.01666822, -5.68559e-10, 0.011873561, -0.053834468, -3.7586307e-09, 5.1900984e-10, -4.816571e-09, 0.0439775, 0, 0.2915039, -0.005249011)
+texture = ExtResource("29_v0wtd")
 
 [node name="Sound" type="AudioStreamPlayer3D" parent="Hall/HallDecor/HallPainting" unique_id=565091145]
 
@@ -576,6 +670,71 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ebaq1")
 
 [node name="Sound" type="AudioStreamPlayer3D" parent="Hall/HallDecor/Thermostat" unique_id=1605260099]
 bus = &"SFX"
+
+[node name="LightHousePainting" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=655115667]
+transform = Transform3D(-1.015, 0, -1.509958e-07, 0, 1.345, 0, 1.5326074e-07, 0, -1, 0.04, 1.82, 1)
+mesh = SubResource("QuadMesh_y64hh")
+surface_material_override/0 = SubResource("StandardMaterial3D_scacj")
+
+[node name="Vent1" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=1734800276]
+transform = Transform3D(-7.6057816e-08, 0, 1.08, 0, 2.475, 0, -1.74, 0, -4.72083e-08, -0.7349186, 1.2629724, -2.129364)
+mesh = SubResource("QuadMesh_6nfnn")
+surface_material_override/0 = SubResource("StandardMaterial3D_sgvw8")
+
+[node name="Vent2" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=1302993566]
+transform = Transform3D(1.74, 0, 0, 0, 2.475, 0, 0, 0, 1.08, -3.4549046, 1.2629724, -6.509735)
+mesh = SubResource("QuadMesh_6nfnn")
+surface_material_override/0 = SubResource("StandardMaterial3D_sgvw8")
+
+[node name="Outlet1" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=32551042]
+transform = Transform3D(1.74, 0, 0, 0, 2.475, 0, 0, 0, 1.08, -2.7459126, 1.2629724, -6.5125732)
+mesh = SubResource("QuadMesh_6nfnn")
+surface_material_override/0 = SubResource("StandardMaterial3D_4ue30")
+
+[node name="Outlet2" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=108027648]
+transform = Transform3D(-7.6057816e-08, 0, -1.08, 0, 2.475, 0, 1.74, 0, -4.72083e-08, 0.72971153, 1.2629724, -4.649765)
+mesh = SubResource("QuadMesh_6nfnn")
+surface_material_override/0 = SubResource("StandardMaterial3D_4ue30")
+
+[node name="HallLight" type="Node3D" parent="Hall/HallDecor" unique_id=205749178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7529297, 1.5999912, -3.3738976)
+
+[node name="HallLightOff" type="MeshInstance3D" parent="Hall/HallDecor/HallLight" unique_id=968594424]
+transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_scacj")
+surface_material_override/0 = SubResource("StandardMaterial3D_7rfo0")
+
+[node name="HallLightOn" type="MeshInstance3D" parent="Hall/HallDecor/HallLight" unique_id=35680368]
+transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_scacj")
+surface_material_override/0 = SubResource("StandardMaterial3D_1uevf")
+
+[node name="HallLightAstral" type="MeshInstance3D" parent="Hall/HallDecor/HallLight" unique_id=1709112410]
+transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_scacj")
+surface_material_override/0 = SubResource("StandardMaterial3D_tc087")
+
+[node name="HallLight2" type="Node3D" parent="Hall/HallDecor" unique_id=726953728]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.417876, 1.611969, -6.51025)
+
+[node name="HallLightOff" type="MeshInstance3D" parent="Hall/HallDecor/HallLight2" unique_id=258979794]
+transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_scacj")
+surface_material_override/0 = SubResource("StandardMaterial3D_7rfo0")
+
+[node name="HallLightOn" type="MeshInstance3D" parent="Hall/HallDecor/HallLight2" unique_id=667499188]
+transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_scacj")
+surface_material_override/0 = SubResource("StandardMaterial3D_1uevf")
+
+[node name="HallLightAstral" type="MeshInstance3D" parent="Hall/HallDecor/HallLight2" unique_id=1068635544]
+transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_scacj")
+surface_material_override/0 = SubResource("StandardMaterial3D_tc087")
 
 [node name="Creature" parent="Hall" unique_id=275844227 node_paths=PackedStringArray("player", "spots", "respawn_spot", "fade", "guard_spot") instance=ExtResource("19_2cjbq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.012436)
