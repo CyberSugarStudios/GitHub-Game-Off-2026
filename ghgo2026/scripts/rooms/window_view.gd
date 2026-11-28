@@ -17,17 +17,16 @@ const MASK_WIDTH := 96
 @export var pane_mask: Texture2D
 @export var patch_energy: float = 1.2
 @export var sun_hours := Vector2(6.25, 18.25)
-@export var patch_swing: float = 200.0
-@export var patch_drop := Vector2(260.0, 420.0)
-@export var patch_squash := Vector2(0.45, 0.75)
-@export var patch_skew_degrees: float = 25.0
+@export var patch_lean: float = 0.9
+@export var patch_length := Vector2(0.45, 1.1)
 
 @onready var sky: CanvasItem = get_node_or_null("Sky")
 @onready var window_light: PointLight2D = get_node_or_null("Light")
 
 var _scenery := ShaderMaterial.new()
 var _patch: PointLight2D
-var _patch_home := Vector2.ZERO
+var _patch_center := Vector2.ZERO
+var _sill: float = 0.0
 
 func _ready() -> void:
 	z_index = -1
@@ -65,16 +64,31 @@ func _build_patch() -> void:
 	var area := room_space * backdrop.get_global_transform() * backdrop.get_rect()
 	var px := Vector2(mask.get_size()) / room.get_room_size()
 	var region := Rect2i(Rect2(area.position * px, area.size * px)).intersection(Rect2i(Vector2i.ZERO, mask.get_size()))
+	region = _lit_rect(mask, region)
 	if region.size.x <= 0 or region.size.y <= 0:
 		return
 	_patch = PointLight2D.new()
 	_patch.name = "SunPatch"
 	_patch.texture = ImageTexture.create_from_image(mask.get_region(region))
 	_patch.texture_scale = 1.0 / px.x
-	var center := (Vector2(region.position) + Vector2(region.size) * 0.5) / px
-	_patch_home = (get_global_transform().affine_inverse() * room.get_global_transform()) * center
-	_patch.position = _patch_home
+	var _to_local := get_global_transform().affine_inverse() * room.get_global_transform()
+	_patch_center = _to_local * ((Vector2(region.position) + Vector2(region.size) * 0.5) / px)
+	_sill = (_to_local * (Vector2(region.end) / px)).y
 	add_child(_patch)
+
+func _lit_rect(mask: Image, region: Rect2i) -> Rect2i:
+	var found := Rect2i()
+	var started := false
+	for y in range(region.position.y, region.end.y):
+		for x in range(region.position.x, region.end.x):
+			if mask.get_pixel(x, y).v < 0.5:
+				continue
+			if started:
+				found = found.expand(Vector2i(x, y))
+			else:
+				found = Rect2i(x, y, 0, 0)
+				started = true
+	return Rect2i(found.position, found.size + Vector2i.ONE) if started else Rect2i()
 
 func _find_room() -> Room:
 	var node := get_parent()
@@ -113,6 +127,7 @@ func _process(_delta: float) -> void:
 		_patch.color = sunlight
 		_patch.energy = patch_energy * daylight * (1.0 - astral)
 		_patch.visible = _patch.energy > 0.001
-		_patch.position = _patch_home + Vector2(lerpf(patch_swing, -patch_swing, phase), lerpf(patch_drop.x, patch_drop.y, low))
-		_patch.scale = Vector2(1.0, lerpf(patch_squash.x, patch_squash.y, low))
-		_patch.skew = deg_to_rad(lerpf(-patch_skew_degrees, patch_skew_degrees, phase))
+		var lean := lerpf(patch_lean, -patch_lean, phase)
+		var length := lerpf(patch_length.x, patch_length.y, low)
+		var rise := _sill - _patch_center.y
+		_patch.transform = Transform2D(Vector2.RIGHT, Vector2(-lean, -length), Vector2(_patch_center.x + lean * rise, _sill + length * rise))
