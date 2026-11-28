@@ -50,6 +50,7 @@ const ACTIVITY_TEXT: Dictionary[StringName, String] = {
 @export var closed_after_flag: StringName
 @export var closed_until_flag: StringName
 @export var closed_text: String = "Not now..."
+@export var too_weak_text: String = "I'm not strong enough yet..."
 @export var closed_story_id: StringName
 @export var closed_story_prompt: String = ""
 @export var closed_story_requires_flag: StringName
@@ -141,6 +142,8 @@ func _entry_block_reason() -> String:
 		return "It won't let me near..."
 	if lock.transferring:
 		return "Using energy..."
+	if is_locked() and GameState.max_bars < lock.lock_bars:
+		return too_weak_text
 	var reason := super.get_block_reason()
 	if reason != "":
 		return reason

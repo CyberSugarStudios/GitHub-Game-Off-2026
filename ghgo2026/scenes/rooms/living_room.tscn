@@ -478,6 +478,7 @@ day_strength = 0.9
 needs_activity = "watching_tv"
 tv_flicker = true
 power_target = &"tv"
+off_when_asleep_sober = true
 on_sound = ExtResource("27_bqn76")
 off_sound = ExtResource("28_cs0md")
 

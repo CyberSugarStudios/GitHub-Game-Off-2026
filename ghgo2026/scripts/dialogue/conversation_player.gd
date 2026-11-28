@@ -16,7 +16,8 @@ const STAGED_PARENTS: Array[String] = ["leanne", "david"]
 @export var gap_after_line: float = 0.25
 @export var seconds_per_character: float = 0.06
 @export var min_line_time: float = 1.5
-@export var uninterruptible_prefixes: Array[String] = ["emily_stage"]
+@export var interruptible_prefixes: Array[String] = ["near_miss", "creature_"]
+@export var queue_seconds: float = 6.0
 #endregion
 @onready var flat_voice: AudioStreamPlayer = $FlatVoice
 
@@ -30,6 +31,7 @@ var _last_clarity := -1.0
 var _title := ""
 var _dialogue: DialogueResource = null
 var _protected := false
+var _queued: Array = []
 var _started_frame := -1
 #endregion
 
@@ -48,6 +50,7 @@ func is_running() -> bool:
 	return _running
 
 func interrupt() -> void:
+	_clear_queue()
 	if _running and not _frozen and _started_frame != Engine.get_process_frames():
 		_stop_current()
 
@@ -62,14 +65,13 @@ func _on_creature_moment(kind: StringName) -> void:
 		interrupt()
 
 func play(dialogue: DialogueResource, title: String, frozen: bool) -> void:
-	if _running and _frozen:
-		return
-	if _running and _protected and not frozen:
+	if _running and (_frozen or (_protected and not frozen)):
+		_queue(dialogue, title, frozen)
 		return
 	_stop_current()
 	_title = title
 	_dialogue = dialogue
-	_protected = uninterruptible_prefixes.any(func(prefix: String) -> bool: return title.begins_with(prefix))
+	_protected = not interruptible_prefixes.any(func(prefix: String) -> bool: return title.begins_with(prefix))
 	_started_frame = Engine.get_process_frames()
 	_run_id += 1
 	var my_id := _run_id
@@ -97,9 +99,11 @@ func _play_line(line: DialogueLine, my_id: int) -> void:
 	if voice:
 		_time_left = voice.get_length() + gap_after_line
 		if _speaker:
+			_speaker.set_muffled(GameState.is_in_room() and not _in_same_room(line.character))
 			_speaker.voice.stream = voice
 			_speaker.voice.play()
 		else:
+			flat_voice.bus = Speaker.muffled_bus() if _through_wall(line) else &"Voices"
 			flat_voice.stream = voice
 			flat_voice.play()
 	else:
@@ -134,6 +138,28 @@ func _finish(title: String) -> void:
 	_frozen = false
 	Events.subtitle_changed.emit("", "", 1.0, false)
 	Events.conversation_finished.emit(title)
+	if not _queued.is_empty():
+		var next: Array = _queued
+		_queued = []
+		if next[2] or Time.get_ticks_msec() - next[3] <= queue_seconds * 1000.0:
+			play.call_deferred(next[0], next[1], next[2])
+		else:
+			_drop(next[1])
+
+func _queue(dialogue: DialogueResource, title: String, frozen: bool) -> void:
+	if not _queued.is_empty() and _queued[2] and not frozen:
+		_drop(title)
+		return
+	_clear_queue()
+	_queued = [dialogue, title, frozen, Time.get_ticks_msec()]
+
+func _clear_queue() -> void:
+	if not _queued.is_empty():
+		_drop(_queued[1])
+	_queued = []
+
+func _drop(title: String) -> void:
+	Events.conversation_finished.emit.call_deferred(title)
 
 func _stage(line: DialogueLine) -> void:
 	for parent_id in STAGED_PARENTS:
@@ -198,6 +224,9 @@ static func parent_voice_path(dialogue: DialogueResource, line: DialogueLine) ->
 	var names: Array[String] = [cue + str(count)]
 	if count == 1:
 		names.append(cue)
+	var tagged := line.get_tag_value("voice")
+	if tagged != "":
+		names.push_front(tagged)
 	if cue.begins_with("thoughts_"):
 		for file_name in names.duplicate():
 			names.append(file_name.trim_prefix("thoughts_"))
@@ -240,6 +269,15 @@ func _get_clarity() -> float:
 		return 1.0
 	var distance := camera.global_position.distance_to(_speaker.global_position)
 	return clampf(inverse_lerp(lost_distance, clear_distance, distance), 0.0, 1.0)
+
+func _through_wall(line: DialogueLine) -> bool:
+	if _frozen or line.has_tag("thought"):
+		return false
+	var parent_id := StringName(line.character.to_lower())
+	if not GameState.parent_locations.has(parent_id):
+		return false
+	var here := GameState.current_room if GameState.is_in_room() else GameState.HALL
+	return GameState.get_parent_location(parent_id) != here
 
 func _in_same_room(character: String) -> bool:
 	if not GameState.is_in_room():

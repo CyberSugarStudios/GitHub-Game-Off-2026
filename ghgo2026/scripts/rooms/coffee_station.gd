@@ -75,6 +75,12 @@ func _on_actor_arrived() -> void:
 		_coffee_ready = false
 		_sips = 0
 
+func _player_here() -> bool:
+	var node := get_parent()
+	while node and not node is Room:
+		node = node.get_parent()
+	return node != null and not (node as Room).is_preview and GameState.current_room == (node as Room).room_id
+
 func _process(delta: float) -> void:
 	var full := GameState.has_flag(FULL_FLAG)
 	if cup:
@@ -87,7 +93,7 @@ func _process(delta: float) -> void:
 	_process_sips(delta, full)
 
 func _process_sips(delta: float, full: bool) -> void:
-	var drinking := _activity() == &"drinking_coffee" and not (actor and actor.is_walking())
+	var drinking := _activity() == &"drinking_coffee" and not (actor and actor.is_walking()) and _player_here()
 	if not full or _cup_held or not drinking:
 		_sip_wait = randf_range(1.0, sip_gap.x)
 		return

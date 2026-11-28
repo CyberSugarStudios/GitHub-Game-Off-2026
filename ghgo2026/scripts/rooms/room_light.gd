@@ -22,6 +22,7 @@ const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 @export var shot_seconds := Vector2(0.6, 3.0)
 @export var power_target: StringName
 @export var cut_by_power: StringName = &"static"
+@export var off_when_asleep_sober: bool = false
 @export var on_sound: AudioStream
 @export var off_sound: AudioStream
 
@@ -78,9 +79,16 @@ func _is_switched_on() -> bool:
 		return true
 	for parent_id in GameState.parent_activities:
 		if GameState.get_parent_location(parent_id) == _room_id \
-			and String(GameState.get_parent_activity(parent_id)).contains(needs_activity):
+			and String(GameState.get_parent_activity(parent_id)).contains(needs_activity) \
+			and not _dozed_off(parent_id):
 				return true
 	return false
+
+func _dozed_off(parent_id: StringName) -> bool:
+	if not off_when_asleep_sober or not GameState.is_parent_asleep(parent_id):
+		return false
+	var drank := String(GameState.get_parent_activity(parent_id)).contains("drinking")
+	return not drank or GameState.has_flag(StringName("%s_sober_tonight" % parent_id))
 
 func _play_switch(switched_on: bool) -> void:
 	var stream := on_sound if switched_on else off_sound

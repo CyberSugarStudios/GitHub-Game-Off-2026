@@ -249,7 +249,6 @@ func _escape() -> void:
 
 func _consume() -> void:
 	GameState.regen_paused = false
-	Events.creature_moment.emit(&"consumed")
 	_vanish(_cooldown(escape_cooldown))
 	_play(consume_sound)
 	Events.story_prompt_changed.emit("")
@@ -261,6 +260,7 @@ func _consume() -> void:
 	GameState.refill_energy()
 	player.place_at(respawn_spot.global_transform)
 	Events.story_event.emit(&"lose_hour")
+	Events.creature_moment.emit(&"consumed")
 	await  create_tween().tween_interval(1.0).finished
 	tween = create_tween()
 	tween.tween_property(fade, "color:a", 0.0, 0.8)

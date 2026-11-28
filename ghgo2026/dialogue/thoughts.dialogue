@@ -7,11 +7,11 @@ David: Thermostat's acting up again. [#thought]
 => END
 
 ~ thoughts_leanne_night
-Leanne: Zzz
+Leanne: Zzz [#thought]
 => END
 
 ~ thoughts_david_night
-David: Zzz
+David: Zzz [#voice=p3_david_passed_out]
 => END
 
 ~ thoughts_leanne_pumpkin_photo

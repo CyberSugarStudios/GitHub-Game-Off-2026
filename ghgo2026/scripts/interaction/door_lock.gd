@@ -54,6 +54,7 @@ func start() -> void:
 	if is_locked():
 		if _drain:
 			_drain.kill()
+			_refund_to(0.0)
 		transferring = true
 		_play_sound()
 

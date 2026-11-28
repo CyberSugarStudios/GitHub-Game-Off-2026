@@ -13,6 +13,7 @@ const TAUGHT_FLAG := &"power_click_taught"
 @export var text_margin: float = 18.0
 @export var highlight_color := Color(0.4392157, 0.6862745, 0.6392157, 0.3)
 @export var highlight_border := Color(0.72156864, 0.8745098, 0.84705883, 0.9)
+@export var no_powers_text: String = "No powers yet"
 
 var _home: Array[float] = []
 var _buttons: Array[Button] = []
@@ -60,6 +61,12 @@ func _rebuild() -> void:
 	var in_room := GameState.is_in_room()
 	var powers := Powers.get_usable()
 	_buttons.clear()
+	if powers.is_empty():
+		var none := Label.new()
+		none.text = no_powers_text
+		none.add_theme_font_size_override("font_size", 22)
+		add_child(none)
+		return
 	if in_room and not GameState.has_flag(TAUGHT_FLAG):
 		var hint := KEY_PROMPT.instantiate() as KeyPrompt
 		hint.font_size = 22

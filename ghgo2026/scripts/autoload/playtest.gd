@@ -5,6 +5,7 @@ const DEBUG_ENTRY := "entry.2135919735"
 const HITCH_SECONDS := 0.1
 const BACKGROUND_SECONDS := 3.0
 const MAX_HITCHES := 12
+const MAX_RECENT := 20
 const RENDERER_JS := """
 	(function () {
 		try {
@@ -108,6 +109,7 @@ var _errors := ErrorLog.new()
 var _started_at := 0
 var _hitches := PackedStringArray()
 var _hitch_count := 0
+var _recent := PackedStringArray()
 var _last_event := "start"
 var _last_event_at := 0
 var _fps_total := 0.0
@@ -151,6 +153,8 @@ func _ready() -> void:
 		_note("event %s" % id))
 	Events.conversation_requested.connect(func(_dialogue: DialogueResource, title: String, _frozen: bool) -> void:
 		_note("line %s" % title))
+	Events.power_used.connect(func(power: StringName, target: StringName) -> void:
+		_note("power %s on %s" % [power, target]))
 	Events.creature_moment.connect(func(kind: StringName) -> void:
 		_note("creature %s" % kind))
 
@@ -182,6 +186,9 @@ func mark_load(what: String) -> void:
 func _note(what: String) -> void:
 	_last_event = what
 	_last_event_at = Time.get_ticks_msec()
+	_recent.append("%.1f min (%s): %s" % [(_last_event_at - _started_at) / 60000.0, GameClock.get_time_text(), what])
+	if _recent.size() > MAX_RECENT:
+		_recent.remove_at(0)
 
 func _record_hitch(delta: float) -> void:
 	_hitch_count += 1
@@ -209,8 +216,10 @@ func _check_renderer() -> void:
 	var parts := str(JavaScriptBridge.eval(RENDERER_JS, true)).split("|")
 	_renderer = parts[0]
 	var lower := _renderer.to_lower()
-	_software = (parts.size() > 1 and parts[1] == "1") or "swiftshader" in lower \
-		or "llvmpipe" in lower or "software" in lower or "basic render" in lower
+	var masked := lower in ["brave", "unknown", ""] or lower.begins_with("webkit")
+	var named_software := "swiftshader" in lower or "llvmpipe" in lower or "software" in lower \
+		or "basic render" in lower
+	_software = named_software or (parts.size() > 1 and parts[1] == "1" and not masked)
 
 func _client_info() -> Dictionary:
 	if _client.is_empty() and OS.has_feature("web"):
@@ -271,6 +280,10 @@ func build_report() -> String:
 		lines.append("Engine errors/warnings: %d" % _errors.total)
 		for error in _errors.kept():
 			lines.append("  " + error)
+	if not _recent.is_empty():
+		lines.append("Recent events:")
+		for event in _recent:
+			lines.append("  " + event)
 	lines.append("Progress: stage %d, %d bars, day %d %s, in %s" % [GameState.story_stage, GameState.max_bars,
 			GameClock.day, GameClock.get_time_text(), String(GameState.current_room) if GameState.is_in_room() else "hall"])
 	lines.append("Flags: %s" % ", ".join(PackedStringArray(GameState.flags.keys())))

@@ -79,6 +79,8 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var fight_min_apart: float = 1.6
 @export var fight_keep_away: float = 1.6
 @export var fight_walk_timeout: float = 6.0
+@export var painting_fight_spot: Node3D
+@export var fight_move_fade: float = 0.35
 
 @export_group("Puzzle 2")
 @export var p2_coffee_make_minutes: int = 45
@@ -108,7 +110,7 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p3_night_ends: String = "06:00"
 @export var p3_safe_minutes: int = 240
 @export var p3_wake_delay: float = 1.5
-@export var p3_awake_minutes: int = 90
+@export var p3_awake_minutes: int = 60
 @export var p3_after_pause: float = 3.0
 @export var p3_fight_music_db: float = -14.0
 @export var p3_fight_music_fade: float = 2.0
@@ -132,6 +134,7 @@ const INTRO_FLAGS: Array[StringName] = [
 #endregion
 var _finished: Dictionary[String, bool] = {}
 var _waiting := false
+var _skipping := false
 var _wait_popup: WaitPopup
 var _accept_progress := -1.0
 var _p3_medicated := false
@@ -314,7 +317,7 @@ func _run_story() -> void:
 func _run_puzzle_1()  -> void:
 	_teach_waiting()
 	await wait_event(&"hall_painting_fell")
-	await stage_fight(&"fight_painting_leanne", &"fight_painting_david")
+	await stage_fight(&"fight_painting_leanne", &"fight_painting_david", painting_fight_spot)
 	await say_fight("p1_painting_fight", PUZZLE_1)
 	household.get_hall_parent(MOM).speed_scale = p1_storm_pace
 	household.send(MOM, p1_storms_to, p1_apart_minutes)
@@ -412,9 +415,13 @@ func _p3_drink_time(at: int) -> void:
 		if not GameState.has_flag(can):
 			GameState.set_flag(can)
 			_p3_drinks += 1
+			if _p3_drinks >= p3_drunk_at:
+				GameState.set_flag(&"david_sedated")
 			_play_beer_can()
 			return
-	say_in_background("p3_david_no_beer", PUZZLE_3)
+	GameState.set_flag(&"david_sober_tonight")
+	if not _skipping:
+		say_in_background("p3_david_no_beer", PUZZLE_3)
 
 func _play_beer_can() -> void:
 	if GameState.controls_locked:
@@ -429,14 +436,18 @@ func _p3_pill_time(at: int) -> void:
 	if household.scheduled_location_at(MOM, at) != &"parent_bedroom":
 		return
 	if GameState.has_flag(&"pills_hidden"):
-		say_in_background("p3_leanne_no_pills", PUZZLE_3)
+		if not _skipping:
+			say_in_background("p3_leanne_no_pills", PUZZLE_3)
 	else:
 		_p3_medicated = true
+		GameState.set_flag(&"leanne_sedated")
 
 func _p3_new_day(_at: int = 0) -> void:
 	_p3_medicated = false
 	_p3_drinks = 0
 	GameState.clear_flag(&"pills_hidden")
+	for flag in [&"leanne_sedated", &"david_sedated", &"david_sober_tonight"]:
+		GameState.clear_flag(flag)
 	for can in p3_beer_cans:
 		GameState.clear_flag(can)
 
@@ -456,19 +467,21 @@ func _p3_try_night() -> bool:
 	household.send(DAD, &"parent_bedroom", p3_safe_minutes, [], &"opening_safe")
 	await wait_parent(DAD, &"parent_bedroom")
 	await wait_room(&"parent_bedroom")
-	if _p3_medicated and not GameState.has_flag(&"pills_hidden"):
+	if _p3_medicated:
 		await say("p3_safe_alone", true, PUZZLE_3)
 		GameState.add_near_miss()
 		household.send(DAD, &"living_room", 60)
 		return false
 	GameState.set_story_stage(4)
 	Music.duck(true, p3_fight_music_fade, p3_fight_music_db)
-	Events.parents_staged.emit(MOM, &"fight_gun_leanne")
+	var mom_in_bed := GameState.get_parent_location(MOM) == &"parent_bedroom"
+	if mom_in_bed:
+		Events.parents_staged.emit(MOM, &"fight_gun_leanne")
 	await say_fight("p3_safe_fight", PUZZLE_3)
-	GameState.keep_awake(MOM, p3_awake_minutes)
+	if mom_in_bed:
+		GameState.set_parent_activity(MOM, &"sleeping")
 	GameState.keep_awake(DAD, p3_awake_minutes)
 	household.send(DAD, &"living_room", p3_awake_minutes, [], &"watching_tv")
-	household.send(MOM, &"parent_bedroom", p3_awake_minutes, [], &"reading_and_sleeping")
 	await wait(p3_after_pause)
 	Music.duck(false, p3_fight_music_fade)
 	GameState.restore_memory()
@@ -634,7 +647,9 @@ func _skip_hour() -> void:
 
 func _skip_minutes(minutes: int) -> void:
 	Events.dialogue_interrupt_requested.emit()
+	_skipping = true
 	GameClock.set_time(GameClock.day, GameClock.minute + minutes)
+	_skipping = false
 	household.settle_everyone()
 	Events.time_skipped.emit()
 #endregion
@@ -661,13 +676,18 @@ func say_fight(cue: String, dialogue: DialogueResource) -> void:
 	player.watch({})
 	room_view.follow_speakers(false)
 
-func stage_fight(leanne_mark: StringName, david_mark: StringName) -> void:
+func stage_fight(leanne_mark: StringName, david_mark: StringName, player_spot: Node3D = null) -> void:
 	GameState.exit_astral()
 	GameState.set_controls_locked(true)
-	var middle := arrange_fight(leanne_mark, david_mark)
-	player.face_toward(middle + Vector3.UP * FIGHT_EYE_HEIGHT, 0.6)
+	var marks: Array[HallMark] = [_find_mark(leanne_mark), _find_mark(david_mark)]
+	var middle := player.global_position
+	if marks[0] and marks[1]:
+		middle = (marks[0].global_position + marks[1].global_position) * 0.5
 	Events.parents_staged.emit(MOM, leanne_mark)
 	Events.parents_staged.emit(DAD, david_mark)
+	if player_spot:
+		await _move_player(player_spot)
+	player.face_toward(middle + Vector3.UP * FIGHT_EYE_HEIGHT, 0.6)
 	var mom := household.get_hall_parent(MOM)
 	var dad := household.get_hall_parent(DAD)
 	var waited := 0.0
@@ -675,52 +695,19 @@ func stage_fight(leanne_mark: StringName, david_mark: StringName) -> void:
 		await get_tree().process_frame
 		waited += get_process_delta_time()
 
+func _move_player(spot: Node3D) -> void:
+	var tween := create_tween()
+	tween.tween_property(fade, "color:a", 1.0, fight_move_fade)
+	await tween.finished
+	player.place_at(spot.global_transform)
+	tween = create_tween()
+	tween.tween_property(fade, "color:a", 0.0, fight_move_fade)
+	await tween.finished
+
 func _stands_at(parent: HallParent, mark_id: StringName) -> bool:
 	if parent == null or not parent.visible:
 		return true
 	return parent.standing_at != null and parent.standing_at.mark_id == mark_id
-
-func arrange_fight(leanne_mark: StringName, david_mark: StringName) -> Vector3:
-	var marks: Array[HallMark] = [_find_mark(leanne_mark), _find_mark(david_mark)]
-	if marks[0] == null or marks[1] == null:
-		return player.global_position
-	var center := (marks[0].global_position + marks[1].global_position) * 0.5
-	var sight := center - player.global_position
-	sight.y = 0.0
-	if sight.length() < fight_keep_away:
-		var camera := player.get_viewport().get_camera_3d()
-		sight = -camera.global_basis.z if camera else Vector3.FORWARD
-		sight.y = 0.0
-	sight = sight.normalized()
-	var flat_offset := center - player.global_position
-	flat_offset.y = 0.0
-	var min_center := fight_keep_away + fight_gap * 0.5
-	if flat_offset.length() < min_center:
-		center = _clear_push(center, sight, min_center)
-	var across := Vector3(-sight.z, 0.0, sight.x) * fight_gap * 0.5
-	var spots: Array[Vector3] = []
-	var stagger := fight_stagger
-	for attempt in 6:
-		var ahead := sight * stagger * 0.5
-		var tried: Array[Vector3] = [
-			_fight_spot(center + across + ahead, center, fight_keep_away),
-			_fight_spot(center - across - ahead, center, fight_keep_away)
-		]
-		if spots.is_empty() or tried[0].distance_to(tried[1]) > spots[0].distance_to(spots[1]):
-			spots = tried
-		if spots[0].distance_to(spots[1]) >= fight_min_apart:
-			break
-		stagger += 0.4
-	var mom := household.get_hall_parent(MOM)
-	var dad := household.get_hall_parent(DAD)
-	if mom and dad and mom.global_position.distance_to(spots[1]) + dad.global_position.distance_to(spots[0]) \
-			< mom.global_position.distance_to(spots[0]) + dad.global_position.distance_to(spots[1]):
-		spots.reverse()
-	for i in marks.size():
-		var spot := spots[i]
-		spot.y = marks[i].global_position.y
-		marks[i].global_position = spot
-	return (spots[0] + spots[1]) * 0.5
 
 func _fight_spot(spot: Vector3, center: Vector3, keep_away: float) -> Vector3:
 	var away := spot - player.global_position

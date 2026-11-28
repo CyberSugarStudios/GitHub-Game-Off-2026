@@ -497,6 +497,7 @@ requires_flag = &""
 [node name="GarageVoice" parent="Hall/RoomEntrances/GarageDoor" unique_id=467822995 instance=ExtResource("9_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
 character_name = "David"
+behind_door = true
 
 [node name="GarageDoorTrigger" type="Area3D" parent="Hall/RoomEntrances/GarageDoor" unique_id=1481515878]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.030388355, 1.1511819, -1.3283172e-09)
@@ -588,6 +589,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3295288, 0, -5.5777636)
 script = ExtResource("5_gqmmt")
 linger_activity = &""
 look_target = NodePath("../FightPaintingLeanne")
+
+[node name="PaintingFightSpot" type="Marker3D" parent="Hall/HallMarks" unique_id=1012857306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74, 0, -6.2700562)
 
 [node name="HallDecor" type="Node" parent="Hall" unique_id=1302355487]
 
@@ -1221,7 +1225,7 @@ conversation_player = NodePath("../ConversationPlayer")
 [node name="AstralShift" type="Node" parent="." unique_id=1708356995]
 script = ExtResource("36_kmb1v")
 
-[node name="StoryDirector" type="Node" parent="." unique_id=441234710 node_paths=PackedStringArray("player", "room_view", "astral_shift", "household", "fade", "wake_doorway", "garage_voice", "living_room_voice", "front_door_sound", "title_card", "pamphlet")]
+[node name="StoryDirector" type="Node" parent="." unique_id=441234710 node_paths=PackedStringArray("player", "room_view", "astral_shift", "household", "fade", "wake_doorway", "garage_voice", "living_room_voice", "front_door_sound", "title_card", "pamphlet", "painting_fight_spot")]
 script = ExtResource("41_5poiv")
 player = NodePath("../Emily")
 room_view = NodePath("../RoomView")
@@ -1234,6 +1238,7 @@ living_room_voice = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/LivingRoom
 front_door_sound = NodePath("../Hall/RoomEntrances/LivingRoomDoorway/FrontDoorSound")
 title_card = NodePath("../RoomView/FadeLayer/TitleCard")
 pamphlet = NodePath("../PamphletView")
+painting_fight_spot = NodePath("../Hall/HallMarks/PaintingFightSpot")
 
 [node name="HintBarks" type="Node" parent="." unique_id=666209787 node_paths=PackedStringArray("household", "conversation_player", "prompt_label")]
 script = ExtResource("44_cjqg0")

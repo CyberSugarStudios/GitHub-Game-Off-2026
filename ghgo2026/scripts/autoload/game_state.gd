@@ -24,6 +24,7 @@ const ASTRAL_REGEN_PER_SECOND := 0.05 #slow tricking in the astral
 const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
 const ENERGY_EPSILON := 0.001
 const HALL := &"hall"
+const BUS_LAYOUT := preload("res://data/default_bus_layout.tres")
 const HINT_HOURS_PER_LEVEL := 3.0
 const MAX_HINT_LEVEL := 3
 const HINT_PER_NEAR_MISS := 0.5
@@ -53,6 +54,10 @@ var guarded_room: StringName = &""
 #endregion
 #endregion
 #endregion
+
+func _enter_tree() -> void:
+	if AudioServer.get_bus_index(&"Music") == -1:
+		AudioServer.set_bus_layout(BUS_LAYOUT)
 
 func _process(delta: float) -> void:
 	if energy >= max_bars or regen_paused:
@@ -247,6 +252,17 @@ func reset() -> void:
 
 func keep_awake(parent_id: StringName, minutes: int) -> void:
 	_awake_until[parent_id] = GameClock.get_total_minutes() + minutes
+
+func is_parent_asleep(parent_id: StringName) -> bool:
+	if is_kept_awake(parent_id) or get_parent_location(parent_id) == HALL:
+		return false
+	var activity := String(get_parent_activity(parent_id))
+	if activity == "sleeping":
+		return true
+	if not activity.contains("sleep"):
+		return false
+	var hour := GameClock.get_day_fraction() * 24.0
+	return hour >= 23.0 or hour < 6.0
 
 func is_kept_awake(parent_id: StringName) -> bool:
 	if has_flag(StringName("hugged_%s" % parent_id)):

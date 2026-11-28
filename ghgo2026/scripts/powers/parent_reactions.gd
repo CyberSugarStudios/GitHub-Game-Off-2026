@@ -44,9 +44,15 @@ func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
 				return
 			Events.conversation_requested.emit(THOUGHTS, cue, false)
 		&"chill":
+			if GameState.is_parent_asleep(parent_id) and GameState.has_flag(StringName("%s_sedated" % parent_id)):
+				var snore := "thoughts_%s_night" % parent_id
+				if _has_cue(THOUGHTS, snore):
+					Events.conversation_requested.emit(THOUGHTS, snore, false)
+				return
 			var bark := "%s_chilled" % parent_id
 			if _has_cue(BARKS, bark):
 				Events.conversation_requested.emit(BARKS, bark, false)
+			GameState.keep_awake(parent_id, chill_minutes)
 			var destination: StringName = chill_destinations.get(parent_id, &"")
 			if destination != &"" and household:
 				household.send(parent_id, destination, chill_minutes)
@@ -86,15 +92,7 @@ func _thought_cue(parent_id: StringName) -> String:
 	return general if _has_cue(THOUGHTS, general) else ""
 
 func _is_asleep(parent_id: StringName) -> bool:
-	if GameState.is_kept_awake(parent_id):
-		return false
-	var activity := String(GameState.get_parent_activity(parent_id))
-	if activity == "sleeping":
-		return true
-	if not activity.contains("sleep"):
-		return false
-	var hour := GameClock.get_day_fraction() * 24.0
-	return hour >= night_hours.x or hour < night_hours.y
+	return GameState.is_parent_asleep(parent_id)
 
 func _on_linger_started(parent_id: StringName, mark_id: StringName) -> void:
 	var cue := "%s_linger_%s" % [parent_id, mark_id]
