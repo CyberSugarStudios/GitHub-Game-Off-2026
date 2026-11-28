@@ -2,6 +2,7 @@ class_name CombinationLock
 extends Control
 
 signal unlocked
+@warning_ignore("unused_signal")
 signal close_requested
 
 @export var code: String = "2611"
