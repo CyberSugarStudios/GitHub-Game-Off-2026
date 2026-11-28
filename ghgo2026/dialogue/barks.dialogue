@@ -6,7 +6,7 @@
 
 ~ david_chilled
 % David: Christ, it's cold.
-% David: Leanne needs to stop touching the thermostat.
+% David: Leanne needs to stop touching my thermostat.
 % David: Jesus, is the thermostat broken too?
 => END
 
@@ -31,7 +31,6 @@ Leanne: Every time I walk past that photo, I can't breathe.
 => END
 
 ~ leanne_linger_pumpkin_photo_broken
-% Leanne: ...
 % Leanne: Don't. Just keep walking.
 => END
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dthx1tlg33bb1"
+path="res://.godot/imported/leanne_stage1_hint1.wav-9b7f6f4dc35b706f05dd63a1cdabba0a.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/leanne_stage1_hint1.wav"
+dest_files=["res://.godot/imported/leanne_stage1_hint1.wav-9b7f6f4dc35b706f05dd63a1cdabba0a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

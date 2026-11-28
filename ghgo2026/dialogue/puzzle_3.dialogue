@@ -13,8 +13,8 @@ David: Running low on beer. I'll grab a few more for tonight.
 => END
 
 ~ p3_david_no_beer
-% David: Oh, what the hell? Are you kidding me? I can't catch a fucking break. Guess I'm not getting any sleep tonight.
-% David: At least I'll be awake if anything happens.
+% David: Ah, what the hell? Are you kidding me? I can't catch a fucking break. Guess I'm not getting any sleep tonight.
+% David: Well, at least I'll be awake if anything happens.
 => END
 
 ~ p3_leanne_no_pills
@@ -25,7 +25,7 @@ David: Running low on beer. I'll grab a few more for tonight.
 ~ p3_noise_daytime
 ## A crash from the garage, in daylight. David barely looks up.
 % David: What the hell was that? House settling... Probably.
-% David: Hear that at night and I'd be reaching for the safe.
+% David: If I hear that at night, I'd be reaching for the safe.
 => END
 
 ~ p3_david_passed_out
@@ -41,7 +41,6 @@ David: Lee didn't even stir... Those pills.
 ~ p3_david_wakes
 ## Night. The crash wakes him. Heard as he gets up off the couch.
 David: Who's there? ...Lee? Somebody's in the garage.
-David: Hang on. Hang on.
 => END
 
 ~ p3_safe_fight
@@ -52,7 +51,7 @@ David: Someone's in the house. I heard the garage. [#leanne=fight_gun_leanne]
 Leanne: David... I can't do this anymore. We need to move. Or... I need to move.
 David: Yeah... I know. I know. Things can't stay like this.
 Leanne: I don't know how everything got like this. I... I'm so sorry.
-David: It's not you, I just... I couldn't handle all of it. It's too fucking hard to live. It doesn't matter how much we work. We couldn't catch up.
+David: It's not you, I just... I couldn't handle all of it. It's too fucking hard to live. It doesn't matter how much we worked. We couldn't catch up.
 Leanne: No, no... I was completely despondent. She wouldn't even talk to me anymore and I didn't do anything about it.
 David: We um... We didn't do a very good job did we?
 Leanne: No. No we didn't.

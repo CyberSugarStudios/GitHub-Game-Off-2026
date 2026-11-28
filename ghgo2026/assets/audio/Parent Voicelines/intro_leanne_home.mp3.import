@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ev07hcf5dk1q"
+path="res://.godot/imported/intro_leanne_home.mp3-d077f54e0aac7ef227446f6bafdb8bd7.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/intro_leanne_home.mp3"
+dest_files=["res://.godot/imported/intro_leanne_home.mp3-d077f54e0aac7ef227446f6bafdb8bd7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

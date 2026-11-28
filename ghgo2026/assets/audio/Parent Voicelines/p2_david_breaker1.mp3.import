@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctfjn7e6mudod"
+path="res://.godot/imported/p2_david_breaker1.mp3-7804866f969172a1a295380477740206.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/p2_david_breaker1.mp3"
+dest_files=["res://.godot/imported/p2_david_breaker1.mp3-7804866f969172a1a295380477740206.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

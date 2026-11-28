@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ct23op3ayrsdg"
+path="res://.godot/imported/p2_leanne_coffee2.wav-a2a0e3f55e3d4220a117aa81888c7951.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/p2_leanne_coffee2.wav"
+dest_files=["res://.godot/imported/p2_leanne_coffee2.wav-a2a0e3f55e3d4220a117aa81888c7951.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

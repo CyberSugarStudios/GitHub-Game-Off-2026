@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7k1cby6kfp1h"
+path="res://.godot/imported/p3_safe_fight5.wav-ee6a4e16132b216887dc4223e9266f70.sample"
+
+[deps]
+
+source_file="res://assets/audio/Parent Voicelines/p3_safe_fight5.wav"
+dest_files=["res://.godot/imported/p3_safe_fight5.wav-ee6a4e16132b216887dc4223e9266f70.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
