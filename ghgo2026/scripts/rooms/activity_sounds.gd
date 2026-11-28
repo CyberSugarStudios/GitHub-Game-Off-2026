@@ -9,6 +9,8 @@ extends Node
 @export var plays_per_activity: int = 0
 @export var volume_db: float = 0.0
 @export var bus: StringName = &"SFX"
+@export var actor: RoomActor
+@export var quiet_animations: Array[StringName] = [&"sleeping"]
 
 var _room_id: StringName
 var _player: AudioStreamPlayer
@@ -54,6 +56,8 @@ func _is_active() -> bool:
 		return false
 	var activity := String(GameState.get_parent_activity(parent_id))
 	if not activity.contains(activity_contains):
+		return false
+	if actor and actor.sprite.animation in quiet_animations:
 		return false
 	return activity_excludes == "" or not activity.contains(activity_excludes)
 

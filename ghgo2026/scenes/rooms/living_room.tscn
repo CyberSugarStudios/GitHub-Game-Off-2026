@@ -39,6 +39,12 @@
 [ext_resource type="AudioStream" uid="uid://ut1fobxnlk84" path="res://assets/audio/sfx/varied2/Can sip 3.wav" id="30_bqn76"]
 [ext_resource type="AudioStream" uid="uid://qart6dupwej8" path="res://assets/audio/sfx/varied2/Can sip 4.wav" id="31_cs0md"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qm7tj"]
+polygon = PackedVector2Array(-232, 119, -234, 138, 67, 137, 67, 113)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_53m36"]
+polygon = PackedVector2Array(-170, -90, -159, -89, -157, 333, -171, 333)
+
 [node name="LivingRoom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_oy7wu")
 room_id = &"living_room"
@@ -54,6 +60,16 @@ position = Vector2(172, 599)
 
 [node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
 position = Vector2(219, 17)
+
+[node name="Ocluders" type="Node2D" parent="WindowView" unique_id=299615645]
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="WindowView/Ocluders" unique_id=133753363]
+position = Vector2(277, 131)
+occluder = SubResource("OccluderPolygon2D_qm7tj")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="WindowView/Ocluders" unique_id=558012367]
+position = Vector2(277, 131)
+occluder = SubResource("OccluderPolygon2D_53m36")
 
 [node name="WindowView2" parent="." unique_id=612398654 instance=ExtResource("2_qm7tj")]
 position = Vector2(2479, 176)
@@ -457,7 +473,7 @@ script = ExtResource("15_mnsc7")
 lit_hours = Vector2(17, 23.5)
 
 [node name="TVGlow" type="PointLight2D" parent="RoomLights" unique_id=827338684]
-position = Vector2(806, 550)
+position = Vector2(773, 553)
 color = Color(0.51584375, 0.85105014, 0.6591482, 1)
 energy = 2.0
 texture = ExtResource("14_eokjc")
@@ -477,10 +493,11 @@ position = Vector2(150, 555)
 polygon = PackedVector2Array(-148.89, -493.53, 144.305, -479.92, 140.74, 480.815, -151.93, 591.095)
 script = ExtResource("17_8mmjm")
 
-[node name="CanSips" type="Node" parent="." unique_id=315449322]
+[node name="CanSips" type="Node" parent="." unique_id=315449322 node_paths=PackedStringArray("actor")]
 script = ExtResource("28_x2u51")
 activity_excludes = "coffee"
 sounds = Array[AudioStream]([ExtResource("29_e3ptr"), ExtResource("30_bqn76"), ExtResource("31_cs0md")])
+actor = NodePath("../Actors/David")
 metadata/_custom_type_script = "uid://b76k2cuuruw1m"
 
 [editable path="WindowView"]
