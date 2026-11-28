@@ -81,14 +81,13 @@ func _build_patch() -> void:
 	_patch.texture_scale = 1.0 / px.x
 	if not patch_lights_actors:
 		_patch.range_z_max = ACTORS_Z - 1
-	var to_local := get_global_transform().affine_inverse() * room.get_global_transform()
 	var center_px := Vector2(lit.position) + Vector2(lit.size) * 0.5
 	var fit := _fit_sill(columns, center_px.x)
-	_center = to_local * (center_px / px)
-	_sill = (to_local * (Vector2(center_px.x, fit.x + 1.0) / px)).y
+	_center = center_px / px
+	_sill = (fit.x + 1.0) / px.y
 	_slope = fit.y
-	_height = _sill - (to_local * (Vector2(lit.position) / px)).y
-	add_child(_patch)
+	_height = _sill - lit.position.y / px.y
+	room.add_child(_patch)
 
 func _lit_columns(mask: Image, region: Rect2i) -> Array[Vector3i]:
 	var columns: Array[Vector3i] = []

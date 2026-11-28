@@ -56,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://divvnorir6yu7" path="res://assets/textures/house/wall_decor/solais_painting.webp" id="31_sgvw8"]
 [ext_resource type="Texture2D" uid="uid://bl3b7n7lqjox" path="res://assets/textures/house/hall/decals/cut_out_vent_small.webp" id="32_6nfnn"]
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
+[ext_resource type="Texture2D" uid="uid://bqnbl0q0dysc4" path="res://assets/textures/house/wall_decor/solais_painting_emission_map.webp" id="33_1uevf"]
 [ext_resource type="Texture2D" uid="uid://cvgr8rk4l7vqq" path="res://assets/textures/house/hall/decals/cut_out_outlet.webp" id="33_4ue30"]
 [ext_resource type="Texture2D" uid="uid://bbydww3a3plgw" path="res://assets/sprites/rooms/lights/base_light.webp" id="34_673bd"]
 [ext_resource type="Script" uid="uid://bf4ep78l74abm" path="res://scripts/rooms/hall_light_fixture.gd" id="34_akjxb"]
@@ -187,6 +188,10 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("31_sgvw8")
+emission_enabled = true
+emission = Color(0.4392157, 0.6862745, 0.6392157, 1)
+emission_operator = 1
+emission_texture = ExtResource("33_1uevf")
 
 [sub_resource type="QuadMesh" id="QuadMesh_6nfnn"]
 
@@ -675,6 +680,10 @@ bus = &"SFX"
 transform = Transform3D(-1.015, 0, -1.509958e-07, 0, 1.345, 0, 1.5326074e-07, 0, -1, 0.04, 1.82, 1)
 mesh = SubResource("QuadMesh_y64hh")
 surface_material_override/0 = SubResource("StandardMaterial3D_scacj")
+
+[node name="AstralGlow" type="Node" parent="Hall/HallDecor/LightHousePainting" unique_id=812483498]
+script = ExtResource("14_tel4y")
+metadata/_custom_type_script = "uid://cyejh6mcmid73"
 
 [node name="Vent1" type="MeshInstance3D" parent="Hall/HallDecor" unique_id=1734800276]
 transform = Transform3D(-7.6057816e-08, 0, 1.08, 0, 2.475, 0, -1.74, 0, -4.72083e-08, -0.7349186, 1.2629724, -2.129364)
