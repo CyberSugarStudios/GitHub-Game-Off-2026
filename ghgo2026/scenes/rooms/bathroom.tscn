@@ -68,7 +68,6 @@ energy = 0.0
 script = ExtResource("3_muy8a")
 
 [node name="AstralBackground" type="Sprite2D" parent="." unique_id=928275133]
-position = Vector2(0, 19)
 scale = Vector2(2, 2)
 texture = ExtResource("2_muy8a")
 centered = false
@@ -145,6 +144,11 @@ prompt_text = "Look in the mirror"
 story_id = &"bathroom_mirror"
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
 
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/Mirror" unique_id=140000726]
+position = Vector2(-1, -17)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-2, 688, 22, 675, 47, 668, 55, 668, 64, 674, 78, 691, 82, 697, 85, 711, 97, 700, 109, 688, 125, 662, 137, 642, 147, 617, 162, 566, 173, 515, 179, 471, 182, 440, 184, 357, 179, 296, 171, 228, 153, 150, 130, 87, 108, 47, 84, 15, 52, -11, 20, -22, -2, -23)
+
 [node name="Faucet" type="TextureButton" parent="Hotspots" unique_id=851927085]
 offset_left = 2337.0
 offset_top = 653.0
@@ -157,6 +161,11 @@ energy_cost = 0.25
 story_id = &"bathroom_shower_faucet"
 use_sound = ExtResource("8_nc0wo")
 metadata/_custom_type_script = "uid://d2uq5ra7ypen1"
+
+[node name="OutlineShape" type="Polygon2D" parent="Hotspots/Faucet" unique_id=67316886]
+position = Vector2(1, -17)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(37, 7, 34, 16, 35, 26, 36, 41, 30, 43, 24, 46, 15, 51, 8, 58, 3, 67, 0, 80, 3, 97, 8, 105, 19, 114, 36, 118, 49, 118, 49, 111, 49, 106, 53, 102, 59, 101, 66, 101, 72, 102, 75, 96, 79, 88, 80, 79, 79, 71, 76, 61, 71, 53, 66, 47, 59, 44, 53, 43, 55, 25, 55, 15, 52, 7, 45, 4)
 
 [node name="BathroomLight" type="PointLight2D" parent="." unique_id=175878522]
 visible = false
