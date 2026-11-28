@@ -18,7 +18,8 @@ const SELECT_SOUND := preload("res://assets/audio/ui/select_noise.mp3")
 @export var hover_alpha: float = 1.5
 @export var press_alpha: float = 1.8
 @export var fade: float = 0.12
-@export var select_volume_db: float = 6.0
+@export var select_volume_db: float = 2.0
+@export var hover_volume_db: float = -12.0
 
 var _hovered := false
 var _was_disabled := false
@@ -59,7 +60,7 @@ func _set_hover(on: bool) -> void:
 	_hovered = on
 	_fade_to(hover_alpha if on else 1.0)
 	if on:
-		_play(HOVER_SOUND, 0.0)
+		_play(HOVER_SOUND, hover_volume_db)
 	var label := $Label as Label
 	label.add_theme_font_override("font", HOVER_FONT if on else FONT)
 	var target := hover_color if on else color

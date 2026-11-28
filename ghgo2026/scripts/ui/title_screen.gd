@@ -73,8 +73,8 @@ func _ready() -> void:
 	if ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH) == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 		ResourceLoader.load_threaded_request(GAME_SCENE_PATH, "", true)
 	_warn_if_software_rendering()
-	_hover_sound = _make_sound(HOVER_SOUND, 0.0)
-	_select_sound = _make_sound(SELECT_SOUND, SELECT_VOLUME_DB * 2.5)
+	_hover_sound = _make_sound(HOVER_SOUND, -12.0)
+	_select_sound = _make_sound(SELECT_SOUND, SELECT_VOLUME_DB)
 	for button in [continue_game_button, new_game_button, options_button, credits_button, quit_button]:
 		_add_hover_effect(button)
 
@@ -147,30 +147,32 @@ func _make_load_bar() -> PillBar:
 	return bar
 
 func on_options_menu_button_pressed() -> void:
-	title.visible = true
-	_show_mp3(true)
+	title.visible = false
+	_show_mp3(false)
 	options_menu.visible = true
 	title_and_buttons.visible = false
 
 func on_close_options_button_pressed() -> void:
 	title.visible = true
+	_show_mp3(true)
 	options_menu.visible = false
 	title_and_buttons.visible = true
 
 func on_credits_menu_button_pressed() -> void:
-	title.visible = true
-	_show_mp3(true)
+	title.visible = false
+	_show_mp3(false)
 	credits_menu.visible = true
 	title_and_buttons.visible = false
 
 func on_close_credits_button_pressed() -> void:
 	title.visible = true
+	_show_mp3(true)
 	credits_menu.visible = false
 	title_and_buttons.visible = true
 
 func on_quit_button_pressed() -> void:
-	title.visible = true
-	_show_mp3(true)
+	title.visible = false
+	_show_mp3(false)
 	confirm_close_menu.visible = true
 	title_and_buttons.visible = false
 
@@ -179,6 +181,7 @@ func on_confirm_close_button_pressed() -> void:
 
 func on_cancel_close_button_pressed() -> void:
 	title.visible = true
+	_show_mp3(true)
 	confirm_close_menu.visible = false
 	title_and_buttons.visible = true
 
