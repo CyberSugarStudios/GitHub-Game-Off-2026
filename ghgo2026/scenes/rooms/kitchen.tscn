@@ -41,7 +41,7 @@ room_id = &"kitchen"
 [node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_nievg")]
 position = Vector2(1516, 13)
 pane_mask = ExtResource("3_t325g")
-patch_energy = 0.4
+patch_energy = 0.2
 patch_lights_actors = false
 
 [node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
@@ -53,11 +53,14 @@ position = Vector2(517, 150)
 [node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
 position = Vector2(-11, 11)
 
+[node name="Light" parent="WindowView" index="3" unique_id=1003653027]
+energy = 0.75
+
 [node name="WindowView2" parent="." unique_id=1243607560 instance=ExtResource("2_nievg")]
 position = Vector2(3657, 41)
 scale = Vector2(1.0994995, 1.663166)
 pane_mask = ExtResource("3_t325g")
-patch_energy = 0.4
+patch_energy = 0.2
 patch_lights_actors = false
 
 [node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
@@ -72,6 +75,9 @@ sprite_frames = ExtResource("4_t325g")
 [node name="Tree2" parent="WindowView2" index="2" unique_id=242444124]
 position = Vector2(29.104141, 24.65178)
 rotation = 2.6477501
+
+[node name="Light" parent="WindowView2" index="3" unique_id=1003653027]
+energy = 0.75
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
@@ -254,6 +260,11 @@ metadata/_edit_use_anchors_ = true
 color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(1074, 406, 1182, 409, 1181, 469, 1176, 475, 1176, 481, 1178, 483, 1179, 490, 1198, 490, 1202, 496, 1205, 525, 1201, 566, 1194, 573, 1180, 577, 1174, 579, 1185, 594, 1186, 600, 1078, 602, 1078, 596, 1079, 588, 1086, 574, 1077, 551, 1072, 525, 1072, 502, 1074, 490, 1076, 484, 1072, 480, 1072, 477, 1069, 472, 1070, 410)
 
+[node name="OutlineCutout" type="Polygon2D" parent="Hotspots/CoffeeMakerProp" unique_id=2079591648]
+position = Vector2(540, -44)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(642, 549, 643, 565, 642, 579, 640, 592, 635, 609, 642, 610, 643, 611, 645, 611, 649, 610, 652, 607, 654, 602, 655, 595, 655, 582, 656, 569, 655, 556, 655, 552, 653, 548, 651, 546, 649, 546, 649, 548)
+
 [node name="CoffeeCupProp" type="TextureButton" parent="Hotspots" unique_id=805160077 node_paths=PackedStringArray("art")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -324,6 +335,7 @@ color = Color(1, 0.93333334, 0.8392157, 1)
 texture = ExtResource("26_re2ba")
 texture_scale = 16.0
 script = ExtResource("27_w4lih")
+on_energy = 0.5
 lit_hours = Vector2(17, 23.5)
 
 [node name="CoffeeMachineOffLight" type="PointLight2D" parent="KitchenLights" unique_id=1633441719]
