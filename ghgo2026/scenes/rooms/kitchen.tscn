@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://10wjy22x0k12" path="res://scenes/rooms/window_view.tscn" id="2_nievg"]
 [ext_resource type="Texture2D" uid="uid://c1l5wfttekud5" path="res://assets/sprites/Animations/background/image2.png" id="3_0357s"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_581re"]
+[ext_resource type="Texture2D" uid="uid://d2ei10oge6fla" path="res://assets/textures/rooms/kitchen_light_panes.webp" id="3_t325g"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_m75iv"]
 [ext_resource type="SpriteFrames" uid="uid://doxk8gba02egv" path="res://assets/sprites/Animations/frames/windows/leaves02_frames.tres" id="4_t325g"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_fiuqx"]
@@ -39,6 +40,7 @@ room_id = &"kitchen"
 
 [node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_nievg")]
 position = Vector2(1516, 13)
+pane_mask = ExtResource("3_t325g")
 
 [node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
 scale = Vector2(1.3014803, 0.96881604)
@@ -52,6 +54,7 @@ position = Vector2(-11, 11)
 [node name="WindowView2" parent="." unique_id=1243607560 instance=ExtResource("2_nievg")]
 position = Vector2(3657, 41)
 scale = Vector2(1.0994995, 1.663166)
+pane_mask = ExtResource("3_t325g")
 
 [node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
 scale = Vector2(1.3014803, 0.96881604)

@@ -14,19 +14,19 @@ const MASK_WIDTH := 96
 @export var light_energy: float = 1.0
 
 @export_group("Sun Patch")
+@export var pane_mask: Texture2D
 @export var patch_energy: float = 1.2
 @export var sun_hours := Vector2(6.25, 18.25)
-@export var patch_swing: float = 200.0
-@export var patch_drop := Vector2(260.0, 420.0)
-@export var patch_squash := Vector2(0.45, 0.75)
-@export var patch_skew_degrees: float = 25.0
+@export var patch_lean: float = 0.9
+@export var patch_length := Vector2(0.45, 1.1)
 
 @onready var sky: CanvasItem = get_node_or_null("Sky")
 @onready var window_light: PointLight2D = get_node_or_null("Light")
 
 var _scenery := ShaderMaterial.new()
 var _patch: PointLight2D
-var _patch_home := Vector2.ZERO
+var _patch_center := Vector2.ZERO
+var _sill: float = 0.0
 
 func _ready() -> void:
 	z_index = -1
@@ -38,7 +38,7 @@ func _ready() -> void:
 	unlit.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED
 	for child in get_children():
 		var item := child as CanvasItem
-		if item == null or item is Light2D or item.name == "Panes":
+		if item == null or item is Light2D:
 			continue
 		item.visibility_layer = WALL_LAYER
 		var look: Material = _scenery
@@ -49,48 +49,52 @@ func _ready() -> void:
 		if animated and animated.sprite_frames:
 			animated.play()
 			animated.frame = randi() % animated.sprite_frames.get_frame_count(animated.animation)
-	var panes := get_node_or_null("Panes") as CanvasItem
-	if panes:
-		panes.visible = false
-		_build_patch(panes)
+	if pane_mask:
+		_build_patch.call_deferred()
 
-func _build_patch(panes: Node) -> void:
-	var polygons: Array[PackedVector2Array] = []
-	var bounds := Rect2()
-	var started := false
-	for child in panes.get_children():
-		var pane := child as Polygon2D
-		if pane == null or pane.polygon.is_empty():
-			continue
-		var points := PackedVector2Array()
-		for point in pane.polygon:
-			points.append(pane.transform * (point + pane.offset))
-		polygons.append(points)
-		for point in points:
-			if started:
-				bounds = bounds.expand(point)
-			else:
-				bounds = Rect2(point, Vector2.ZERO)
-				started = true
-	if polygons.is_empty() or bounds.size.x <= 0.0 or bounds.size.y <= 0.0:
+func _build_patch() -> void:
+	var room := _find_room()
+	var backdrop := get_node_or_null("Backdrop") as Sprite2D
+	var mask := pane_mask.get_image()
+	if room == null or backdrop == null or mask == null:
 		return
-	var width := MASK_WIDTH
-	var height := maxi(int(round(MASK_WIDTH * bounds.size.y / bounds.size.x)), 1)
-	var mask := Image.create(width, height, false, Image.FORMAT_RGBA8)
-	for y in height:
-		for x in width:
-			var at := bounds.position + Vector2(x + 0.5, y + 0.5) * bounds.size / Vector2(width, height)
-			for points in polygons:
-				if Geometry2D.is_point_in_polygon(at, points):
-					mask.set_pixel(x, y, Color.WHITE)
-					break
+	if mask.is_compressed():
+		mask.decompress()
+	var room_space := room.get_global_transform().affine_inverse()
+	var area := room_space * backdrop.get_global_transform() * backdrop.get_rect()
+	var px := Vector2(mask.get_size()) / room.get_room_size()
+	var region := Rect2i(Rect2(area.position * px, area.size * px)).intersection(Rect2i(Vector2i.ZERO, mask.get_size()))
+	region = _lit_rect(mask, region)
+	if region.size.x <= 0 or region.size.y <= 0:
+		return
 	_patch = PointLight2D.new()
 	_patch.name = "SunPatch"
-	_patch.texture = ImageTexture.create_from_image(mask)
-	_patch.texture_scale = bounds.size.x / width
-	_patch_home = bounds.get_center()
-	_patch.position = _patch_home
+	_patch.texture = ImageTexture.create_from_image(mask.get_region(region))
+	_patch.texture_scale = 1.0 / px.x
+	var _to_local := get_global_transform().affine_inverse() * room.get_global_transform()
+	_patch_center = _to_local * ((Vector2(region.position) + Vector2(region.size) * 0.5) / px)
+	_sill = (_to_local * (Vector2(region.end) / px)).y
 	add_child(_patch)
+
+func _lit_rect(mask: Image, region: Rect2i) -> Rect2i:
+	var found := Rect2i()
+	var started := false
+	for y in range(region.position.y, region.end.y):
+		for x in range(region.position.x, region.end.x):
+			if mask.get_pixel(x, y).v < 0.5:
+				continue
+			if started:
+				found = found.expand(Vector2i(x, y))
+			else:
+				found = Rect2i(x, y, 0, 0)
+				started = true
+	return Rect2i(found.position, found.size + Vector2i.ONE) if started else Rect2i()
+
+func _find_room() -> Room:
+	var node := get_parent()
+	while node and not node is Room:
+		node = node.get_parent()
+	return node as Room
 
 func _default_sky() -> Gradient:
 	var night := Color(0.04, 0.06, 0.13)
@@ -123,6 +127,7 @@ func _process(_delta: float) -> void:
 		_patch.color = sunlight
 		_patch.energy = patch_energy * daylight * (1.0 - astral)
 		_patch.visible = _patch.energy > 0.001
-		_patch.position = _patch_home + Vector2(lerpf(patch_swing, -patch_swing, phase), lerpf(patch_drop.x, patch_drop.y, low))
-		_patch.scale = Vector2(1.0, lerpf(patch_squash.x, patch_squash.y, low))
-		_patch.skew = deg_to_rad(lerpf(-patch_skew_degrees, patch_skew_degrees, phase))
+		var lean := lerpf(patch_lean, -patch_lean, phase)
+		var length := lerpf(patch_length.x, patch_length.y, low)
+		var rise := _sill - _patch_center.y
+		_patch.transform = Transform2D(Vector2.RIGHT, Vector2(-lean, -length), Vector2(_patch_center.x + lean * rise, _sill + length * rise))

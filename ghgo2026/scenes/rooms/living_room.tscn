@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_e86kh"]
 [ext_resource type="PackedScene" uid="uid://10wjy22x0k12" path="res://scenes/rooms/window_view.tscn" id="2_qm7tj"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_2cxqs"]
+[ext_resource type="Texture2D" uid="uid://dgtoibmm1aorh" path="res://assets/textures/rooms/living_room_light_panes.webp" id="3_6wjnl"]
 [ext_resource type="Texture2D" uid="uid://bhccnfjlns8kt" path="res://assets/sprites/Animations/background/image1.png" id="3_c4g5n"]
 [ext_resource type="SpriteFrames" uid="uid://xts37pidwy5o" path="res://assets/sprites/Animations/frames/windows/leaves04_frames.tres" id="4_6wjnl"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_g005p"]
@@ -45,6 +46,7 @@ room_id = &"living_room"
 
 [node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_qm7tj")]
 position = Vector2(1036, 171)
+pane_mask = ExtResource("3_6wjnl")
 
 [node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
 texture = ExtResource("3_c4g5n")
@@ -55,10 +57,9 @@ position = Vector2(172, 599)
 [node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
 position = Vector2(219, 17)
 
-[node name="Panes" type="Node2D" parent="WindowView" unique_id=299615645]
-
 [node name="WindowView2" parent="." unique_id=612398654 instance=ExtResource("2_qm7tj")]
 position = Vector2(2479, 176)
+pane_mask = ExtResource("3_6wjnl")
 
 [node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
 position = Vector2(-96, -12)
