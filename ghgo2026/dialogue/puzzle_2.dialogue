@@ -5,7 +5,10 @@ Leanne: I'll just throw this in the laundry machine now.
 
 ~ p2_david_breaker
 David: Again? This whole house is falling apart.
-David: Breaker. Again.
+=> END
+
+~ p2_david_breaker_b
+David: Breaker. Again. [#voice=p2_david_breaker2]
 => END
 
 ~ p2_box_fight

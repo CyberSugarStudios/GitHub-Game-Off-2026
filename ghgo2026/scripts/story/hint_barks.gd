@@ -60,20 +60,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _solution_open:
 		_show_solution()
 		return
-	_presses += 1
-	if not _has_hints():
-		if _presses >= presses_per_level:
-			_presses = 0
-			_show_solution()
-		return
-	if _offered >= GameState.MAX_HINT_LEVEL and _heard >= _offered and _presses > presses_per_level:
-		_presses = 0
+	if not _has_hints() or _heard >= GameState.MAX_HINT_LEVEL:
 		_show_solution()
 		return
-	if _presses % presses_per_level == 0:
-		GameState.raise_hint_level()
-	if _play_hint(_offered):
-		_heard = maxi(_heard, _offered)
+	var level := _heard + 1
+	GameState.raise_hint_level()
+	_offered = maxi(_offered, level)
+	if _play_hint(level):
+		_heard = level
 
 func _show_solution() -> void:
 	_solution_open = true

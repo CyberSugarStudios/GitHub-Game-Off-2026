@@ -25,6 +25,7 @@ var _bed_tween: Tween
 func _ready() -> void:
 	Events.power_used.connect(_on_power_used)
 	Events.subtitle_changed.connect(_on_subtitle_changed)
+	Events.conversation_finished.connect(_on_conversation_finished)
 	_bed = AudioStreamPlayer.new()
 	_bed.stream = THOUGHT_BED
 	_bed.bus = &"SFX"
@@ -60,11 +61,16 @@ func _on_power_used(power_id: StringName, parent_id: StringName) -> void:
 			GameState.set_flag(StringName("hugged_%s" % parent_id))
 			var hug_cue := "hug_%s" % parent_id
 			if _has_cue(HUGS, hug_cue):
+				GameState.hold_parent(parent_id, true)
 				Events.conversation_requested.emit(HUGS, hug_cue, false)
 			else:
 				push_warning("ParentReactions: no hug written for %s" % parent_id)
 		_:
 			push_warning("ParentReactions: no reaction for power '%s'" % power_id)
+
+func _on_conversation_finished(title: String) -> void:
+	if title.begins_with("hug_"):
+		GameState.hold_parent(StringName(title.trim_prefix("hug_")), false)
 
 func _thought_cue(parent_id: StringName) -> String:
 	var general := "thoughts_%s" % parent_id

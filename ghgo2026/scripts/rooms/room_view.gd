@@ -52,6 +52,8 @@ var _following := false
 var _speaker := ""
 var _follow_held := false
 var _hold_this_line := false
+var _pan_locked := false
+var _pending_pan := -1.0
 var _exit_spot := Transform3D.IDENTITY
 var exit_locked := false:
 	set(value):
@@ -71,6 +73,7 @@ func _ready() -> void:
 	Events.door_opened.connect(enter_room)
 	Events.room_door_opened.connect(change_room)
 	Events.room_pan_requested.connect(_on_pan_requested)
+	Events.conversation_finished.connect(func(_title: String) -> void: _pan_locked = false)
 	Events.subtitle_changed.connect(_on_subtitle_changed)
 	_show_exit(not exit_locked, true)
 	get_viewport().size_changed.connect(_fit_room)
@@ -253,7 +256,12 @@ func _fade_to(alpha: float) -> void:
 func _process(delta: float) -> void:
 	if _following and _room and not _busy:
 		_follow(delta)
-	if not _room or _busy or GameState.controls_locked:
+	if not _room or _busy:
+		return
+	if _pending_pan >= 0.0:
+		pan_to(_pending_pan, staged_pan_time)
+		_pending_pan = -1.0
+	if GameState.controls_locked or _pan_locked:
 		return
 	
 	var direction := Input.get_axis("move_left", "move_right") # A/D keys
@@ -328,6 +336,10 @@ func follow_speakers(on: bool) -> void:
 func _on_pan_requested(ratio: float) -> void:
 	_follow_held = true
 	_hold_this_line = true
+	_pan_locked = true
+	if _busy or not _room:
+		_pending_pan = ratio
+		return
 	pan_to(ratio, staged_pan_time)
 
 func _on_subtitle_changed(character: String, _text: String, _clarity: float, _is_thought: bool) -> void:

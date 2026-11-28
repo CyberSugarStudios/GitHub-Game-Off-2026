@@ -1041,8 +1041,10 @@ color = Color(1, 1, 1, 0)
 [node name="InteractOutlines" type="Node2D" parent="RoomView/RoomUI" unique_id=1391920876 node_paths=PackedStringArray("room_view")]
 script = ExtResource("71_r4ag1")
 room_view = NodePath("../..")
-near_px = 10.0
-far_px = 50.0
+outline_px = 3.0
+near_px = 40.0
+far_px = 300.0
+fade_speed = 10.0
 metadata/_custom_type_script = "uid://dior8lrsnkf18"
 
 [node name="KeyHints" type="Control" parent="RoomView/RoomUI" unique_id=1413872877]

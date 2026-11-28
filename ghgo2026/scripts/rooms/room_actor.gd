@@ -36,6 +36,7 @@ const STEPS: Dictionary[StringName, AudioStream] = {
 var _room_id: StringName
 var _target := Vector2.ZERO
 var _walking := false
+var _shown_awake := false
 var _room: Room
 var _steps: AudioStreamPlayer
 var _walked := 0.0
@@ -110,7 +111,14 @@ func _refresh(walk_in: bool) -> void:
 		_stand()
 
 func _process(delta: float) -> void:
-	if not visible or not _walking:
+	if not visible:
+		return
+	if not _walking:
+		if GameState.is_kept_awake(parent_id) != _shown_awake:
+			_stand()
+		return
+	if GameState.is_parent_held(parent_id):
+		_animate(idle_animation, sprite.flip_h)
 		return
 	var to_target := _target - position
 	var step := walk_speed * GameClock.world_speed * delta
@@ -140,6 +148,7 @@ func _count_step(distance: float) -> void:
 
 func _stand() -> void:
 	var activity := GameState.get_parent_activity(parent_id)
+	_shown_awake = GameState.is_kept_awake(parent_id)
 	var anim := _spot_animation(activity)
 	if anim == &"" or frames == null or not frames.has_animation(anim):
 		anim = activity if frames and frames.has_animation(activity) else idle_animation

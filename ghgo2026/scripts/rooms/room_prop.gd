@@ -20,6 +20,7 @@ enum Anim { NONE, WOBBLE, TIP_OVER, FLICKER, FALL }
 @export var caught_anim: Anim = Anim.WOBBLE
 @export var caught_dialogue: DialogueResource
 @export var caught_cue: String
+@export var caught_awake_minutes: int = 10
 
 @export_group("Art")
 @export var art: Node2D
@@ -97,6 +98,7 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 	if get_viewport() != get_tree().root:
 		return
 	if _guarded():
+		_wake_guards()
 		_play(near_miss_sound)
 		GameState.add_near_miss()
 		if caught_dialogue and caught_cue != "":
@@ -119,6 +121,11 @@ func _on_power_used(power_id: StringName, id: StringName) -> void:
 		if near_miss_event != &"":
 			Events.story_event.emit(near_miss_event)
 		await _animate(near_miss_anim, false)
+
+func _wake_guards() -> void:
+	for parent_id in guarded_by:
+		if GameState.get_parent_location(parent_id) == _room_id and GameState.is_parent_asleep(parent_id):
+			GameState.keep_awake(parent_id, caught_awake_minutes)
 
 func _guarded() -> bool:
 	for parent_id in guarded_by:

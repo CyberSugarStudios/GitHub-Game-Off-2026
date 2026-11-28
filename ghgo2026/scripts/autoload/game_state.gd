@@ -24,7 +24,7 @@ const ASTRAL_REGEN_PER_SECOND := 0.05 #slow tricking in the astral
 const MIN_ENERGY_TO_ENTER_ASTRAL := 0.25 #a quarter bar recharge required
 const ENERGY_EPSILON := 0.001
 const HALL := &"hall"
-const BUS_LAYOUT := preload("res://data/default_bus_layout.tres")
+const BUS_LAYOUT := preload("res://default_bus_layout.tres")
 const HINT_HOURS_PER_LEVEL := 3.0
 const MAX_HINT_LEVEL := 3
 const HINT_PER_NEAR_MISS := 0.5
@@ -37,6 +37,7 @@ var energy: float = STARTING_BARS #powers and astral drains this
 var in_astral: bool = false
 var flags: Dictionary[StringName, bool]  = {}
 var _awake_until: Dictionary[StringName, int] = {}
+var _held: Dictionary[StringName, bool] = {}
 var current_room: StringName = &""
 var controls_locked := false
 var parent_locations: Dictionary[StringName, StringName] = {}
@@ -249,9 +250,19 @@ func reset() -> void:
 	regen_paused = false
 	guarded_room = &""
 	_awake_until.clear()
+	_held.clear()
 
 func keep_awake(parent_id: StringName, minutes: int) -> void:
 	_awake_until[parent_id] = GameClock.get_total_minutes() + minutes
+
+func hold_parent(parent_id: StringName, on: bool) -> void:
+	if on:
+		_held[parent_id] = true
+	else:
+		_held.erase(parent_id)
+
+func is_parent_held(parent_id: StringName) -> bool:
+	return _held.has(parent_id)
 
 func is_parent_asleep(parent_id: StringName) -> bool:
 	if is_kept_awake(parent_id) or get_parent_location(parent_id) == HALL:

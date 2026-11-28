@@ -18,6 +18,10 @@ const STAGED_PARENTS: Array[String] = ["leanne", "david"]
 @export var min_line_time: float = 1.5
 @export var interruptible_prefixes: Array[String] = ["near_miss", "creature_"]
 @export var queue_seconds: float = 6.0
+
+@export_group("Soft Voices")
+@export var soft_voices: Dictionary[String, float] = {"p3_david_passed_out": -8.0}
+@export var soft_fade_seconds: float = 0.5
 #endregion
 @onready var flat_voice: AudioStreamPlayer = $FlatVoice
 
@@ -32,6 +36,7 @@ var _title := ""
 var _dialogue: DialogueResource = null
 var _protected := false
 var _queued: Array = []
+var _voice_tween: Tween
 var _started_frame := -1
 #endregion
 
@@ -101,10 +106,12 @@ func _play_line(line: DialogueLine, my_id: int) -> void:
 		if _speaker:
 			_speaker.set_muffled(GameState.is_in_room() and not _in_same_room(line.character))
 			_speaker.voice.stream = voice
+			_soften(_speaker.voice, voice)
 			_speaker.voice.play()
 		else:
 			flat_voice.bus = Speaker.muffled_bus() if _through_wall(line) else &"Voices"
 			flat_voice.stream = voice
+			_soften(flat_voice, voice)
 			flat_voice.play()
 	else:
 		_time_left = maxf(min_line_time, line.text.length() * seconds_per_character)
@@ -179,6 +186,22 @@ func _stop_current() -> void:
 		Events.conversation_finished.emit.call_deferred(_title)
 	_running = false
 
+func _soften(player: Node, voice: AudioStream) -> void:
+	if _voice_tween:
+		_voice_tween.kill()
+	if not player.has_meta(&"base_db"):
+		player.set_meta(&"base_db", player.get("volume_db"))
+	var base: float = player.get_meta(&"base_db")
+	var file := voice.resource_path.get_file().get_basename()
+	if not soft_voices.has(file):
+		player.set("volume_db", base)
+		return
+	var soft := base + soft_voices[file]
+	player.set("volume_db", soft)
+	_voice_tween = create_tween()
+	_voice_tween.tween_interval(maxf(voice.get_length() - soft_fade_seconds, 0.0))
+	_voice_tween.tween_property(player, "volume_db", soft - 30.0, soft_fade_seconds)
+
 func _stop_audio() -> void:
 	flat_voice.stop()
 	if is_instance_valid(_speaker):
@@ -194,6 +217,8 @@ func _find_speaker(character: String) -> Speaker:
 	return null
 
 func _load_voice(line: DialogueLine) -> AudioStream:
+	if line.character != "Emily" and line.has_tag("thought") and line.get_tag_value("voice") == "":
+		return null
 	var path := VOICE_FOLDER + line.static_id + ".ogg"
 	if line.static_id == "" or not ResourceLoader.exists(path):
 		path = emily_voice_path(_dialogue, line)
@@ -209,9 +234,13 @@ static func emily_voice_path(dialogue: DialogueResource, line: DialogueLine) -> 
 	var place := _cue_place(dialogue, line, "Emily")
 	if place.is_empty():
 		return ""
+	var cue: String = place[0]
 	var count: int = place[1]
-	var file_name: String = place[0] if count <= 1 else place[0] + str(count)
-	return EMILY_VOICE_FOLDER + dialogue.resource_path.get_file().get_basename() + "/" + file_name + ".wav"
+	var folder := EMILY_VOICE_FOLDER + dialogue.resource_path.get_file().get_basename() + "/"
+	var path := folder + cue + str(count) + ".wav"
+	if count <= 1 and not ResourceLoader.exists(path):
+		path = folder + cue + ".wav"
+	return path
 
 static func parent_voice_path(dialogue: DialogueResource, line: DialogueLine) -> String:
 	if line.character == "Emily":
