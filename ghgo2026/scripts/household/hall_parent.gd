@@ -89,6 +89,8 @@ func walk(from: Node3D, to: Node3D, to_id: StringName, stay_visible: bool) -> vo
 
 func _physics_process(delta: float) -> void:
 	is_moving = false
+	if GameState.is_parent_held(parent_id):
+		return
 	if _stage_target:
 		var point := agent.get_next_path_position()
 		if agent.is_navigation_finished():

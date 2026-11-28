@@ -194,6 +194,8 @@ func _find_speaker(character: String) -> Speaker:
 	return null
 
 func _load_voice(line: DialogueLine) -> AudioStream:
+	if line.character != "Emily" and line.has_tag("thought") and line.get_tag_value("voice") == "":
+		return null
 	var path := VOICE_FOLDER + line.static_id + ".ogg"
 	if line.static_id == "" or not ResourceLoader.exists(path):
 		path = emily_voice_path(_dialogue, line)
@@ -209,9 +211,13 @@ static func emily_voice_path(dialogue: DialogueResource, line: DialogueLine) -> 
 	var place := _cue_place(dialogue, line, "Emily")
 	if place.is_empty():
 		return ""
+	var cue: String = place[0]
 	var count: int = place[1]
-	var file_name: String = place[0] if count <= 1 else place[0] + str(count)
-	return EMILY_VOICE_FOLDER + dialogue.resource_path.get_file().get_basename() + "/" + file_name + ".wav"
+	var folder := EMILY_VOICE_FOLDER + dialogue.resource_path.get_file().get_basename() + "/"
+	var path := folder + cue + str(count) + ".wav"
+	if count <= 1 and not ResourceLoader.exists(path):
+		path = folder + cue + ".wav"
+	return path
 
 static func parent_voice_path(dialogue: DialogueResource, line: DialogueLine) -> String:
 	if line.character == "Emily":

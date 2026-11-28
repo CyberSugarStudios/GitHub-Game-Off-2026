@@ -42,8 +42,8 @@ func _ready() -> void:
 	_wind_prompt.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	_wind_prompt.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_wind_prompt.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	_wind_prompt.offset_top = -110.0
-	_wind_prompt.offset_bottom = -110.0
+	_wind_prompt.offset_top = -190.0
+	_wind_prompt.offset_bottom = -190.0
 
 func open() -> void:
 	if visible:

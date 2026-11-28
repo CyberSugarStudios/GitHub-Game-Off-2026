@@ -115,6 +115,8 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p3_fight_music_db: float = -14.0
 @export var p3_fight_music_fade: float = 2.0
 @export var p3_new_day_hour: int = 7
+@export var p3_mom_awake_minutes: int = 15
+@export var p3_code_delay: float = 3.2
 
 @export_group("Puzzle 4")
 @export var p4_lights_settle: float = 2.0
@@ -135,6 +137,9 @@ const INTRO_FLAGS: Array[StringName] = [
 var _finished: Dictionary[String, bool] = {}
 var _waiting := false
 var _skipping := false
+var _p3_running := false
+var _p3_pills_missed := false
+var _breaker_lines := 0
 var _wait_popup: WaitPopup
 var _accept_progress := -1.0
 var _p3_medicated := false
@@ -153,6 +158,9 @@ func _ready() -> void:
 	GameState.parent_location_changed.connect(seen_parent_moved.emit)
 	Events.story_event.connect(_on_any_story_event)
 	GameState.parent_activity_changed.connect(_on_coffee_activity)
+	GameState.parent_activity_changed.connect(_on_sedated_woke)
+	_p3_last_minute = GameClock.minute
+	GameClock.minute_changed.connect(_on_puzzle_3_minute)
 	GameClock.hour_changed.connect(_on_coffee_hour)
 	_sfx = AudioStreamPlayer.new()
 	_sfx.bus = &"SFX"
@@ -387,13 +395,12 @@ func _leanne_free_for_coffee() -> bool:
 
 #region - PUZZLE 3
 func _run_puzzle_3() -> void:
-	_p3_last_minute = GameClock.minute
-	GameClock.minute_changed.connect(_on_puzzle_3_minute)
+	_p3_running = true
 	while true:
 		await wait_event(&"night_noise")
 		if await _p3_try_night():
 			break
-	GameClock.minute_changed.disconnect(_on_puzzle_3_minute)
+	_p3_running = false
 	GameState.set_story_stage(4)
 
 func _on_puzzle_3_minute(_day: int, minute: int) -> void:
@@ -410,6 +417,11 @@ func _on_puzzle_3_minute(_day: int, minute: int) -> void:
 
 func _p3_drink_time(at: int) -> void:
 	if household.scheduled_location_at(DAD, at) != &"living_room":
+		return
+	if not _p3_running:
+		_p3_drinks += 1
+		if _p3_drinks >= p3_drunk_at:
+			GameState.set_flag(&"david_sedated")
 		return
 	for can in p3_beer_cans:
 		if not GameState.has_flag(can):
@@ -435,7 +447,8 @@ func _play_beer_can() -> void:
 func _p3_pill_time(at: int) -> void:
 	if household.scheduled_location_at(MOM, at) != &"parent_bedroom":
 		return
-	if GameState.has_flag(&"pills_hidden"):
+	if _p3_running and GameState.has_flag(&"pills_hidden"):
+		_p3_pills_missed = true
 		if not _skipping:
 			say_in_background("p3_leanne_no_pills", PUZZLE_3)
 	else:
@@ -445,11 +458,18 @@ func _p3_pill_time(at: int) -> void:
 func _p3_new_day(_at: int = 0) -> void:
 	_p3_medicated = false
 	_p3_drinks = 0
-	GameState.clear_flag(&"pills_hidden")
-	for flag in [&"leanne_sedated", &"david_sedated", &"david_sober_tonight"]:
-		GameState.clear_flag(flag)
+	if _p3_pills_missed:
+		GameState.clear_flag(&"pills_hidden")
+	_p3_pills_missed = false
+	GameState.clear_flag(&"david_sober_tonight")
 	for can in p3_beer_cans:
 		GameState.clear_flag(can)
+
+func _on_sedated_woke(parent_id: StringName, activity: StringName) -> void:
+	var hour := GameClock.minute / 60
+	if hour < 5 or hour >= 17 or String(activity).contains("sleep"):
+		return
+	GameState.clear_flag(StringName("%s_sedated" % parent_id))
 
 func _p3_try_night() -> bool:
 	if not _is_night():
@@ -468,6 +488,8 @@ func _p3_try_night() -> bool:
 	await wait_parent(DAD, &"parent_bedroom")
 	await wait_room(&"parent_bedroom")
 	if _p3_medicated:
+		GameState.set_controls_locked(true)
+		await wait(p3_code_delay)
 		await say("p3_safe_alone", true, PUZZLE_3)
 		GameState.add_near_miss()
 		household.send(DAD, &"living_room", 60)
@@ -479,7 +501,8 @@ func _p3_try_night() -> bool:
 		Events.parents_staged.emit(MOM, &"fight_gun_leanne")
 	await say_fight("p3_safe_fight", PUZZLE_3)
 	if mom_in_bed:
-		GameState.set_parent_activity(MOM, &"sleeping")
+		GameState.keep_awake(MOM, p3_mom_awake_minutes)
+		GameState.set_parent_activity(MOM, &"reading_and_sleeping")
 	GameState.keep_awake(DAD, p3_awake_minutes)
 	household.send(DAD, &"living_room", p3_awake_minutes, [], &"watching_tv")
 	await wait(p3_after_pause)
@@ -607,7 +630,9 @@ func _on_any_story_event(id: StringName) -> void:
 			household.send(MOM, &"parent_bedroom", p2_change_minutes, [[&"garage", \
 				p2_laundry_minutes, &"laundry"]], &"changing")
 		&"david_checks_breaker":
-			say_in_background("p2_david_breaker", PUZZLE_2)
+			var breaker_cue := "p2_david_breaker_b" if _breaker_lines % 2 == 1 else "p2_david_breaker"
+			_breaker_lines += 1
+			say_in_background(breaker_cue if breaker_cue in PUZZLE_2.get_cues() else "p2_david_breaker", PUZZLE_2)
 			household.send(DAD,  &"garage", p2_breaker_minutes, [], &"checking_breaker")
 
 func _ask_wait() -> void:
