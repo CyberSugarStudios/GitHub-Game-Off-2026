@@ -22,7 +22,7 @@ void fragment() {
 		discard;
 	}
 	vec4 art = texture(art_texture, art_uv) * tint;
-	ALBEDO = art.rgb * texture(light_view, room_uv).rgb;
+	ALBEDO = art.rgb * texture(light_view, room_uv).rgb * 2.0;
 	ALPHA = art.a;
 	ALPHA_SCISSOR_THRESHOLD = 0.5;
 }
