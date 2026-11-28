@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://f1ve1w0pkx8e" path="res://scripts/ui/combination_lock.gd" id="5_rfvuo"]
 [ext_resource type="Texture2D" uid="uid://d4hrlh7l2tyt7" path="res://assets/sprites/rooms/living_room/cupboard_lock_bottom.webp" id="6_578vc"]
 [ext_resource type="Texture2D" uid="uid://cg1o3x5lkksn" path="res://assets/sprites/letter_key.png" id="6_bi3yv"]
+[ext_resource type="Texture2D" uid="uid://d0j7oawqvrrii" path="res://assets/sprites/rooms/bedroom/journal.webp" id="7_rfvuo"]
 [ext_resource type="Texture2D" uid="uid://bg5ww6eelyqp6" path="res://assets/sprites/arrow.png" id="7_vphis"]
 [ext_resource type="FontVariation" uid="uid://r2y7ofg1yun4" path="res://assets/fonts/josefin_semibold.tres" id="8_rfvuo"]
 
@@ -124,12 +125,21 @@ text = ">"
 [node name="Keypad" type="Control" parent="." unique_id=1714371820]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 88.0
+offset_top = 63.0
+offset_right = 128.0
+offset_bottom = 103.0
+scale = Vector2(0.8912045, 0.8912045)
 script = ExtResource("5_rfvuo")
 body_texture = ExtResource("6_578vc")
 dim_color = Color(0, 0, 0, 0)
 metadata/_custom_type_script = "uid://f1ve1w0pkx8e"
+
+[node name="KeypadBackground" type="Sprite2D" parent="Keypad" unique_id=422610980]
+position = Vector2(-460.05154, 149.23624)
+rotation = 1.0337442
+scale = Vector2(10.334873, 15.583861)
+texture = ExtResource("7_rfvuo")
 
 [node name="CloseButton" type="TextureRect" parent="." unique_id=576244897]
 anchors_preset = -1

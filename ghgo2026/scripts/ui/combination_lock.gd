@@ -26,8 +26,8 @@ signal close_requested
 @export var swing_time: float = 0.45
 
 @export_group("Sounds")
-@export var turn_sound: AudioStream = preload("res://assets/audio/sfx/varied/mp3_button.wav")
-@export var open_sound: AudioStream = preload("res://assets/audio/sfx/unlocking/Unlocking.wav")
+@export var turn_sound: AudioStream = preload("res://assets/audio/sfx/lock_dial_turn.mp3")
+@export var open_sound: AudioStream = preload("res://assets/audio/sfx/lock_open.mp3")
 
 var _digits: Array[int] = []
 var _labels: Array[Label] = []
