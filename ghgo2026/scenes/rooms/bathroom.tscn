@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="2_e0elq"]
 [ext_resource type="Texture2D" uid="uid://cxgom7xmxqllf" path="res://assets/textures/rooms/bathroom.webp" id="2_muy8a"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
+[ext_resource type="Texture2D" uid="uid://b586p1y022k3" path="res://assets/textures/rooms/bathroom_light_panes.webp" id="3_d8jk2"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_muy8a"]
 [ext_resource type="SpriteFrames" uid="uid://c6xon0nrtetoq" path="res://assets/sprites/Animations/frames/rooms/shower_frames.tres" id="5_juav1"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_nc0wo"]
@@ -60,6 +61,7 @@ room_id = &"bathroom"
 [node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_7nrtv")]
 position = Vector2(1284, 226)
 scale = Vector2(1.3149887, 1.2392912)
+pane_mask = ExtResource("3_d8jk2")
 
 [node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
 position = Vector2(-34.220825, 3.2276514)
