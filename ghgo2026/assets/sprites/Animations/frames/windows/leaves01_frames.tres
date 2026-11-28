@@ -1,0 +1,154 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bm1mim6kiyxen"]
+
+[ext_resource type="Texture2D" uid="uid://drwaa382glvry" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_00.png" id="1_j268n"]
+[ext_resource type="Texture2D" uid="uid://cjo1bgqhncu1i" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_02.png" id="2_cc57o"]
+[ext_resource type="Texture2D" uid="uid://b7embv1uqiyjb" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_04.png" id="3_4r0f6"]
+[ext_resource type="Texture2D" uid="uid://ddmu3y4dw42fn" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_06.png" id="4_k84n1"]
+[ext_resource type="Texture2D" uid="uid://bhjhjqvrug1f6" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_08.png" id="5_t38wy"]
+[ext_resource type="Texture2D" uid="uid://pyldggjvkxfh" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_10.png" id="6_asekl"]
+[ext_resource type="Texture2D" uid="uid://boe501sultsk0" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_12.png" id="7_0lp50"]
+[ext_resource type="Texture2D" uid="uid://1cjbd44ongl6" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_14.png" id="8_ncll2"]
+[ext_resource type="Texture2D" uid="uid://clcws31j1u3cu" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_16.png" id="9_uogff"]
+[ext_resource type="Texture2D" uid="uid://1mggfkv1x64c" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_18.png" id="10_6yf5i"]
+[ext_resource type="Texture2D" uid="uid://bn6h1o5v5ulmf" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_20.png" id="11_54avk"]
+[ext_resource type="Texture2D" uid="uid://dbr8iacnijmit" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_22.png" id="12_3h7bi"]
+[ext_resource type="Texture2D" uid="uid://djfl0qong3xjf" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_24.png" id="13_m4vix"]
+[ext_resource type="Texture2D" uid="uid://byim7d6at8utv" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_26.png" id="14_ei0vl"]
+[ext_resource type="Texture2D" uid="uid://nmxwu4gqnylx" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_28.png" id="15_wysmr"]
+[ext_resource type="Texture2D" uid="uid://b78qvw36gqfl" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_30.png" id="16_tpbhd"]
+[ext_resource type="Texture2D" uid="uid://bwuploypa5wy4" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_32.png" id="17_w8kiv"]
+[ext_resource type="Texture2D" uid="uid://du20srt08ibou" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_34.png" id="18_awvvk"]
+[ext_resource type="Texture2D" uid="uid://clpgyxq10n6pq" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_36.png" id="19_m1gvl"]
+[ext_resource type="Texture2D" uid="uid://dgnor3hlg353w" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_38.png" id="20_7e1on"]
+[ext_resource type="Texture2D" uid="uid://vvwd4tqlapqj" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_40.png" id="21_auty4"]
+[ext_resource type="Texture2D" uid="uid://bt6mfjame1aml" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_42.png" id="22_8ghaj"]
+[ext_resource type="Texture2D" uid="uid://tvil8s5jfys7" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_44.png" id="23_ho267"]
+[ext_resource type="Texture2D" uid="uid://dgd86olo0eh2l" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_46.png" id="24_p36r4"]
+[ext_resource type="Texture2D" uid="uid://rm7bd4ab2hko" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_48.png" id="25_58v8p"]
+[ext_resource type="Texture2D" uid="uid://d1j1ud0o85lrn" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_50.png" id="26_6i0vo"]
+[ext_resource type="Texture2D" uid="uid://cs7kmlrvdttyo" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_52.png" id="27_27lc6"]
+[ext_resource type="Texture2D" uid="uid://5epwb7c7nut5" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_54.png" id="28_ttvbk"]
+[ext_resource type="Texture2D" uid="uid://cndrsu1v0nq8a" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_56.png" id="29_qu33n"]
+[ext_resource type="Texture2D" uid="uid://d1b4k8v23qy12" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_58.png" id="30_l0hkc"]
+[ext_resource type="Texture2D" uid="uid://cv1i8yd8v6xd" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_60.png" id="31_gbv5h"]
+[ext_resource type="Texture2D" uid="uid://xd0533tneshq" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_62.png" id="32_tt70r"]
+[ext_resource type="Texture2D" uid="uid://b0bwgjjiudmat" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_64.png" id="33_x8aqc"]
+[ext_resource type="Texture2D" uid="uid://cqxcd2l1252tq" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_66.png" id="34_s67qo"]
+[ext_resource type="Texture2D" uid="uid://cpx8i50gir1fm" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_68.png" id="35_ck7no"]
+[ext_resource type="Texture2D" uid="uid://dnyhvr1nhll47" path="res://assets/sprites/Animations/background/Leaves01/Window_A-Tree-wind1_70.png" id="36_h08d6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j268n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cc57o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4r0f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k84n1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t38wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_asekl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0lp50")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ncll2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uogff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6yf5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_54avk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3h7bi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_m4vix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ei0vl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_wysmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_tpbhd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_w8kiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_awvvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_m1gvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7e1on")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_auty4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_8ghaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ho267")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_p36r4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_58v8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_6i0vo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_27lc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_ttvbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_qu33n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_l0hkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_gbv5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_tt70r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_x8aqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_s67qo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ck7no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_h08d6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]

@@ -298,13 +298,15 @@ transform = Transform3D(0.49999997, -0.43301272, 0.75000006, 0, 0.8660254, 0.500
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=508525629]
 environment = SubResource("Environment_53m36")
 
-[node name="DayNight" type="Node" parent="." unique_id=1737477729 node_paths=PackedStringArray("sun", "world_environment", "hall_lamps", "astral_only_lights")]
+[node name="DayNight" type="Node" parent="." unique_id=1737477729 node_paths=PackedStringArray("sun", "world_environment", "bounce_lights", "hall_lamps", "lamp_glows", "astral_only_lights")]
 script = ExtResource("14_jkv2x")
 sun = NodePath("../Sun")
 world_environment = NodePath("../WorldEnvironment")
 max_sun_energy = 0.0
+bounce_lights = [NodePath("../Hall/Lights/OmniLight3D"), NodePath("../Hall/Lights/OmniLight3D2"), NodePath("../Hall/Lights/KitchenSpillLight"), NodePath("../Hall/Lights/LivingRoomSpillLight")]
 hall_lamps = [NodePath("../Hall/Lights/OmniLight3D"), NodePath("../Hall/Lights/OmniLight3D2"), NodePath("../Hall/Lights/OmniLight3DClose2"), NodePath("../Hall/Lights/OmniLight3DClose")]
 lamps_in_living_plane = true
+lamp_glows = [NodePath("../Hall/Lights/OmniLight3DClose"), NodePath("../Hall/Lights/OmniLight3DClose2")]
 astral_fog_color = Color(0.09019608, 0.36078432, 0.4, 1)
 astral_fog_density = 0.18
 astral_lamp_color = Color(0.24705882, 0.8784314, 0.8235294, 1)
@@ -376,14 +378,12 @@ omni_range = 1.0
 
 [node name="KitchenSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=496321759 node_paths=PackedStringArray("doorway")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 1.0050659, -6.496216)
-area_range = 2.0
 area_size = Vector2(1, 2.015503)
 script = ExtResource("7_vrx01")
 doorway = NodePath("../../RoomEntrances/KitchenDoorway/DoorwayView")
 
 [node name="LivingRoomSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=556209478 node_paths=PackedStringArray("doorway")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8861065, 1.0050659, -4.847534)
-area_range = 2.0
 area_size = Vector2(1.0537653, 1.9770875)
 script = ExtResource("7_vrx01")
 doorway = NodePath("../../RoomEntrances/LivingRoomDoorway/DoorwayView")

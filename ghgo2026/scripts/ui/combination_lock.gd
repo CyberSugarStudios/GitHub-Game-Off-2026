@@ -2,6 +2,7 @@ class_name CombinationLock
 extends Control
 
 signal unlocked
+@warning_ignore("unused_signal")
 signal close_requested
 
 @export var code: String = "2611"
@@ -26,8 +27,8 @@ signal close_requested
 @export var swing_time: float = 0.45
 
 @export_group("Sounds")
-@export var turn_sound: AudioStream = preload("res://assets/audio/sfx/varied/mp3_button.wav")
-@export var open_sound: AudioStream = preload("res://assets/audio/sfx/unlocking/Unlocking.wav")
+@export var turn_sound: AudioStream = preload("res://assets/audio/sfx/lock_dial_turn.mp3")
+@export var open_sound: AudioStream = preload("res://assets/audio/sfx/lock_open.mp3")
 
 var _digits: Array[int] = []
 var _labels: Array[Label] = []
@@ -105,6 +106,7 @@ func _make_dial(index: int, at: Vector2) -> Button:
 	for style in ["hover", "pressed", "hover_pressed"]:
 		dial.add_theme_stylebox_override(style, hover)
 	dial.pressed.connect(_turn.bind(index))
+	dial.gui_input.connect(_on_dial_input.bind(index))
 	var label := Label.new()
 	label.size = dial_size
 	label.text = "0"
@@ -119,14 +121,20 @@ func _make_dial(index: int, at: Vector2) -> Button:
 	_labels.append(label)
 	return dial
 
-func _turn(index: int) -> void:
+func _on_dial_input(event: InputEvent, index: int) -> void:
+	var mouse := event as InputEventMouseButton
+	if mouse and mouse.pressed and mouse.button_index == MOUSE_BUTTON_RIGHT:
+		_turn(index, -1)
+		accept_event()
+
+func _turn(index: int, step: int = 1) -> void:
 	if _opening:
 		return
-	_digits[index] = (_digits[index] + 1) % 10
+	_digits[index] = posmod(_digits[index] + step, 10)
 	_play(turn_sound)
 	var label := _labels[index]
 	label.text = str(_digits[index])
-	label.position.y = dial_size.y * 0.35
+	label.position.y = dial_size.y * 0.35 * step
 	label.modulate.a = 0.0
 	var roll := label.create_tween().set_parallel()
 	roll.tween_property(label, "position:y", 0.0, 0.12).set_ease(Tween.EASE_OUT)

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://10wjy22x0k12"]
+
+[ext_resource type="Script" uid="uid://cby3x6y8g1soj" path="res://scripts/rooms/window_view.gd" id="1_uxnmh"]
+[ext_resource type="Texture2D" uid="uid://d31sl2quba14l" path="res://assets/sprites/Animations/background/image0.png" id="2_40gwf"]
+[ext_resource type="SpriteFrames" uid="uid://bm1mim6kiyxen" path="res://assets/sprites/Animations/frames/windows/leaves01_frames.tres" id="3_fmkjj"]
+[ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="4_iletg"]
+
+[node name="WindowView" type="Node2D" unique_id=388747037]
+script = ExtResource("1_uxnmh")
+
+[node name="Backdrop" type="Sprite2D" parent="." unique_id=1525624591]
+texture = ExtResource("2_40gwf")
+centered = false
+
+[node name="Tree1" type="AnimatedSprite2D" parent="." unique_id=1026848651]
+sprite_frames = ExtResource("3_fmkjj")
+
+[node name="Tree2" type="AnimatedSprite2D" parent="." unique_id=242444124]
+sprite_frames = ExtResource("3_fmkjj")
+
+[node name="Light" type="PointLight2D" parent="." unique_id=1003653027]
+position = Vector2(204.5, 256)
+texture = ExtResource("4_iletg")
+texture_scale = 8.0

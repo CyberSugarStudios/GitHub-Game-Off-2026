@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_oy7wu"]
 [ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_e86kh"]
+[ext_resource type="PackedScene" uid="uid://10wjy22x0k12" path="res://scenes/rooms/window_view.tscn" id="2_qm7tj"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_2cxqs"]
+[ext_resource type="Texture2D" uid="uid://bhccnfjlns8kt" path="res://assets/sprites/Animations/background/image1.png" id="3_c4g5n"]
+[ext_resource type="SpriteFrames" uid="uid://xts37pidwy5o" path="res://assets/sprites/Animations/frames/windows/leaves04_frames.tres" id="4_6wjnl"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_g005p"]
 [ext_resource type="Texture2D" uid="uid://dp3ro3imlywoh" path="res://assets/sprites/rooms/living_room/cutout_tv_prop.webp" id="5_16llt"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_0vv3f"]
@@ -39,6 +42,33 @@
 [node name="LivingRoom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_oy7wu")
 room_id = &"living_room"
+
+[node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_qm7tj")]
+position = Vector2(1036, 171)
+
+[node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
+texture = ExtResource("3_c4g5n")
+
+[node name="Tree1" parent="WindowView" index="1" unique_id=1026848651]
+position = Vector2(172, 599)
+
+[node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
+position = Vector2(219, 17)
+
+[node name="WindowView2" parent="." unique_id=612398654 instance=ExtResource("2_qm7tj")]
+position = Vector2(2479, 176)
+
+[node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
+position = Vector2(-96, -12)
+flip_h = true
+
+[node name="Tree1" parent="WindowView2" index="1" unique_id=1026848651]
+visible = false
+position = Vector2(113, 203)
+sprite_frames = ExtResource("4_6wjnl")
+
+[node name="Tree2" parent="WindowView2" index="2" unique_id=242444124]
+position = Vector2(-31, 74)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
@@ -452,3 +482,6 @@ script = ExtResource("28_x2u51")
 activity_excludes = "coffee"
 sounds = Array[AudioStream]([ExtResource("29_e3ptr"), ExtResource("30_bqn76"), ExtResource("31_cs0md")])
 metadata/_custom_type_script = "uid://b76k2cuuruw1m"
+
+[editable path="WindowView"]
+[editable path="WindowView2"]

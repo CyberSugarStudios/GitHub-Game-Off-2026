@@ -8,7 +8,11 @@ const PALETTE := preload("res://resources/day_night_palette.tres")
 @export var window_material: StandardMaterial3D
 @export var max_sun_energy: float = 1.5
 @export var max_window_glow: float = 2.0
-@export var hall_ambient_energy: float = 0.0
+
+@export_group("Bounce")
+@export var bounce_lights: Array[Light3D] = []
+@export var bounce_strength: float = 0.06
+@export var bounce_floor := Color(0.035, 0.04, 0.055)
 
 @export_group("Lamps")
 @export var hall_lamps: Array[Light3D] = []
@@ -80,8 +84,12 @@ func _process(delta: float) -> void:
 	if world_environment and world_environment.environment:
 		var environment := world_environment.environment
 		var night_ambient := PALETTE.ambient_color.sample(0.0)
-		environment.ambient_light_color = PALETTE.ambient_color.sample(t).lerp(night_ambient, _astral)
-		environment.ambient_light_energy = lerpf(hall_ambient_energy, astral_ambient_energy, _astral)
+		var bounce := bounce_floor
+		for light in bounce_lights:
+			if is_instance_valid(light) and light.visible:
+				bounce += light.light_color * light.light_energy * bounce_strength
+		environment.ambient_light_color = bounce.lerp(night_ambient, _astral)
+		environment.ambient_light_energy = lerpf(1.0, astral_ambient_energy, _astral)
 		environment.fog_enabled = _astral > 0.001
 		environment.fog_light_color = astral_fog_color
 		environment.fog_light_energy = astral_fog_energy
