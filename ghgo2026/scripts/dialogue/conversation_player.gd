@@ -4,6 +4,8 @@ extends Node
 #region - INIT
 const VOICE_FOLDER := "res://audio/voice/"
 const EMILY_VOICE_FOLDER := "res://assets/audio/Emily Voicelines/"
+const PARENT_VOICE_FOLDER := "res://assets/audio/Parent Voicelines/"
+const VOICE_EXTENSIONS: Array[String] = ["wav", "mp3", "ogg"]
 const STAGED_PARENTS: Array[String] = ["leanne", "david"]
 #region - EXPORTS
 @export_group("Live Listening")
@@ -170,13 +172,46 @@ func _load_voice(line: DialogueLine) -> AudioStream:
 	if line.static_id == "" or not ResourceLoader.exists(path):
 		path = emily_voice_path(_dialogue, line)
 	if path == "" or not ResourceLoader.exists(path):
+		path = parent_voice_path(_dialogue, line)
+	if path == "" or not ResourceLoader.exists(path):
 		return null
 	return load(path) as AudioStream
 
 static func emily_voice_path(dialogue: DialogueResource, line: DialogueLine) -> String:
-	var local_id := line.id.get_slice("@", line.id.get_slice_count("@") - 1)
-	if dialogue == null or line.character != "Emily" or not local_id.is_valid_int():
+	if line.character != "Emily":
 		return ""
+	var place := _cue_place(dialogue, line, "Emily")
+	if place.is_empty():
+		return ""
+	var count: int = place[1]
+	var file_name: String = place[0] if count <= 1 else place[0] + str(count)
+	return EMILY_VOICE_FOLDER + dialogue.resource_path.get_file().get_basename() + "/" + file_name + ".wav"
+
+static func parent_voice_path(dialogue: DialogueResource, line: DialogueLine) -> String:
+	if line.character == "Emily":
+		return ""
+	var place := _cue_place(dialogue, line, "")
+	if place.is_empty():
+		return ""
+	var cue: String = place[0]
+	var count: int = place[1]
+	var names: Array[String] = [cue + str(count)]
+	if count == 1:
+		names.append(cue)
+	if cue.begins_with("thoughts_"):
+		for file_name in names.duplicate():
+			names.append(file_name.trim_prefix("thoughts_"))
+	for file_name in names:
+		for extension in VOICE_EXTENSIONS:
+			var path := PARENT_VOICE_FOLDER + file_name + "." + extension
+			if ResourceLoader.exists(path):
+				return path
+	return ""
+
+static func _cue_place(dialogue: DialogueResource, line: DialogueLine, only_character: String) -> Array:
+	var local_id := line.id.get_slice("@", line.id.get_slice_count("@") - 1)
+	if dialogue == null or not local_id.is_valid_int():
+		return []
 	var line_id := local_id.to_int()
 	var cue := ""
 	var cue_start := -1
@@ -186,14 +221,13 @@ static func emily_voice_path(dialogue: DialogueResource, line: DialogueLine) -> 
 			cue = cue_name
 			cue_start = start
 	if cue == "":
-		return ""
+		return []
 	var count := 0
 	for id in range(cue_start, line_id + 1):
 		var info: Dictionary = dialogue.lines.get(str(id), {})
-		if info.get("type") == "dialogue" and info.get("character") == "Emily":
+		if info.get("type") == "dialogue" and (only_character == "" or info.get("character") == only_character):
 			count += 1
-	var file_name := cue if count <= 1 else cue + str(count)
-	return EMILY_VOICE_FOLDER + dialogue.resource_path.get_file().get_basename() + "/" + file_name + ".wav"
+	return [cue, count]
 
 # 1 = readble, 0 = lost
 func _get_clarity() -> float:

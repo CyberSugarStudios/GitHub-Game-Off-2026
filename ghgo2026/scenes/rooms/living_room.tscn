@@ -39,12 +39,6 @@
 [ext_resource type="AudioStream" uid="uid://ut1fobxnlk84" path="res://assets/audio/sfx/varied2/Can sip 3.wav" id="30_bqn76"]
 [ext_resource type="AudioStream" uid="uid://qart6dupwej8" path="res://assets/audio/sfx/varied2/Can sip 4.wav" id="31_cs0md"]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qm7tj"]
-polygon = PackedVector2Array(-232, 119, -234, 138, 67, 137, 67, 113)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_53m36"]
-polygon = PackedVector2Array(-170, -90, -159, -89, -157, 333, -171, 333)
-
 [node name="LivingRoom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_oy7wu")
 room_id = &"living_room"
@@ -61,15 +55,7 @@ position = Vector2(172, 599)
 [node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
 position = Vector2(219, 17)
 
-[node name="Ocluders" type="Node2D" parent="WindowView" unique_id=299615645]
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="WindowView/Ocluders" unique_id=133753363]
-position = Vector2(277, 131)
-occluder = SubResource("OccluderPolygon2D_qm7tj")
-
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="WindowView/Ocluders" unique_id=558012367]
-position = Vector2(277, 131)
-occluder = SubResource("OccluderPolygon2D_53m36")
+[node name="Panes" type="Node2D" parent="WindowView" unique_id=299615645]
 
 [node name="WindowView2" parent="." unique_id=612398654 instance=ExtResource("2_qm7tj")]
 position = Vector2(2479, 176)

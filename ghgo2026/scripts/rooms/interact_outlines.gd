@@ -3,6 +3,7 @@ extends Node2D
 
 const OUTLINE_SHADER := preload("res://shaders/interact_outline.gdshader")
 const SHAPE_NAME := "OutlineShape"
+const CUTOUT_PREFIX := "OutlineCutout"
 
 class Outline:
 	var button: Control
@@ -64,10 +65,7 @@ func _add(hotspot: RoomHotspot) -> void:
 	var art: Variant = hotspot.get("art")
 	if shape:
 		outline.source = shape
-		var points := PackedVector2Array()
-		for point in shape.polygon:
-			points.append(point + shape.offset)
-		outline.node = _make_lines(points)
+		outline.node = _make_lines(_cut_outline(hotspot, shape))
 	elif actor and actor.sprite:
 		outline.source = actor.sprite
 		outline.node = _make_sprite()
@@ -77,22 +75,43 @@ func _add(hotspot: RoomHotspot) -> void:
 	else:
 		outline.source = hotspot
 		var size := hotspot.size
-		outline.node = _make_lines(PackedVector2Array([Vector2.ZERO, Vector2(size.x, 0.0), size, Vector2(0.0, size.y)]))
+		outline.node = _make_lines([PackedVector2Array([Vector2.ZERO, Vector2(size.x, 0.0), size, Vector2(0.0, size.y)])])
 	outline.node.visible = false
 	add_child(outline.node)
 	_outlines.append(outline)
 
-func _make_lines(points: PackedVector2Array) -> Node2D:
+func _cut_outline(hotspot: Node, shape: Polygon2D) -> Array[PackedVector2Array]:
+	var pieces: Array[PackedVector2Array] = [_points_in(shape, shape)]
+	for child in hotspot.get_children():
+		var cutout := child as Polygon2D
+		if cutout == null or not String(cutout.name).begins_with(CUTOUT_PREFIX):
+			continue
+		var hole := _points_in(cutout, shape)
+		var next: Array[PackedVector2Array] = []
+		for piece in pieces:
+			next.append_array(Geometry2D.clip_polygons(piece, hole))
+		pieces = next
+	return pieces
+
+func _points_in(polygon: Polygon2D, space: Polygon2D) -> PackedVector2Array:
+	var to_space := space.transform.affine_inverse() * polygon.transform
+	var points := PackedVector2Array()
+	for point in polygon.polygon:
+		points.append(to_space * (point + polygon.offset))
+	return points
+
+func _make_lines(polygons: Array[PackedVector2Array]) -> Node2D:
 	var holder := Node2D.new()
 	for layer in [[3.0, 0.25], [1.0, 1.0]]:
-		var line := Line2D.new()
-		line.points = points
-		line.closed = true
-		line.joint_mode = Line2D.LINE_JOINT_ROUND
-		line.antialiased = true
-		line.default_color = Color(glow_color, glow_color.a * float(layer[1]))
-		line.set_meta("width_scale", float(layer[0]))
-		holder.add_child(line)
+		for points in polygons:
+			var line := Line2D.new()
+			line.points = points
+			line.closed = true
+			line.joint_mode = Line2D.LINE_JOINT_ROUND
+			line.antialiased = true
+			line.default_color = Color(glow_color, glow_color.a * float(layer[1]))
+			line.set_meta("width_scale", float(layer[0]))
+			holder.add_child(line)
 	return holder
 
 func _make_sprite() -> Sprite2D:
