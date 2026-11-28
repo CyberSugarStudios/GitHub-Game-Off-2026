@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://iurbh1d578i1"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_kdc1v"]
+[ext_resource type="PackedScene" uid="uid://10wjy22x0k12" path="res://scenes/rooms/window_view.tscn" id="2_4jrkt"]
 [ext_resource type="Texture2D" uid="uid://cs78elmrh0fk8" path="res://assets/textures/rooms/emily_room.webp" id="2_6ri0t"]
+[ext_resource type="Texture2D" uid="uid://bhccnfjlns8kt" path="res://assets/sprites/Animations/background/image1.png" id="3_ewtuq"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_fa2v7"]
+[ext_resource type="SpriteFrames" uid="uid://d0h845u6bektr" path="res://assets/sprites/Animations/frames/windows/leaves03_frames.tres" id="4_587sn"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_n0mbq"]
 [ext_resource type="Texture2D" uid="uid://d0j7oawqvrrii" path="res://assets/sprites/rooms/bedroom/journal.webp" id="5_n0mbq"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_0hvy4"]
@@ -13,6 +16,20 @@
 [node name="EmilyBedroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_kdc1v")
 room_id = &"emily_bedroom"
+
+[node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_4jrkt")]
+position = Vector2(1020, 79)
+
+[node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
+texture = ExtResource("3_ewtuq")
+
+[node name="Tree1" parent="WindowView" index="1" unique_id=1026848651]
+position = Vector2(193, 183)
+sprite_frames = ExtResource("4_587sn")
+
+[node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
+visible = false
+position = Vector2(219, 17)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
@@ -481,3 +498,5 @@ scale = Vector2(2, 0.5625)
 energy = 0.0
 texture = ExtResource("7_n0mbq")
 texture_scale = 8.0
+
+[editable path="WindowView"]

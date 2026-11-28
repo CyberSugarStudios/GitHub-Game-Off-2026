@@ -1,0 +1,166 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://xts37pidwy5o"]
+
+[ext_resource type="Texture2D" uid="uid://ck3jgteb8c115" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_01.png" id="1_rkvdc"]
+[ext_resource type="Texture2D" uid="uid://5q88e5t38fvh" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_03.png" id="2_v4r2o"]
+[ext_resource type="Texture2D" uid="uid://vw58opn3ux17" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_05.png" id="3_xa2w6"]
+[ext_resource type="Texture2D" uid="uid://dqi1xwvb5idwx" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_07.png" id="4_cxt0a"]
+[ext_resource type="Texture2D" uid="uid://b5i3c7xi203se" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_09.png" id="5_x58g7"]
+[ext_resource type="Texture2D" uid="uid://dtdnj07rk347j" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_13.png" id="6_8scpg"]
+[ext_resource type="Texture2D" uid="uid://crqq018yfr80s" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_15.png" id="7_nm7pj"]
+[ext_resource type="Texture2D" uid="uid://c4i0bh2iemwlm" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_17.png" id="8_vtpqo"]
+[ext_resource type="Texture2D" uid="uid://dqkc2j2j2bdjw" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_19.png" id="9_bx3p4"]
+[ext_resource type="Texture2D" uid="uid://cq7ryt3r7mreb" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_21.png" id="10_q86h5"]
+[ext_resource type="Texture2D" uid="uid://cesf0ui8dnwpd" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_23.png" id="11_aur80"]
+[ext_resource type="Texture2D" uid="uid://hoem6delwfca" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_25.png" id="12_anmto"]
+[ext_resource type="Texture2D" uid="uid://ccuyfqgxkqvtd" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_27.png" id="13_m8ae5"]
+[ext_resource type="Texture2D" uid="uid://bbn548w1e7utb" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_29.png" id="14_a10bq"]
+[ext_resource type="Texture2D" uid="uid://c3sg3yjxhmb20" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_31.png" id="15_lskjd"]
+[ext_resource type="Texture2D" uid="uid://crat5klhlmdtk" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_33.png" id="16_2h3im"]
+[ext_resource type="Texture2D" uid="uid://lfy0y5j58cpl" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_35.png" id="17_ef2uo"]
+[ext_resource type="Texture2D" uid="uid://ceo4nlo5saujm" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_37.png" id="18_wig7a"]
+[ext_resource type="Texture2D" uid="uid://bqh6kau82lwi3" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_39.png" id="19_pbhsg"]
+[ext_resource type="Texture2D" uid="uid://bwlmm62ch0aqs" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_41.png" id="20_adid4"]
+[ext_resource type="Texture2D" uid="uid://dluclrggngov1" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_43.png" id="21_gtg7o"]
+[ext_resource type="Texture2D" uid="uid://bphhyhpm1e8vt" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_45.png" id="22_di5mw"]
+[ext_resource type="Texture2D" uid="uid://cih7h5jghtj0q" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_47.png" id="23_s342a"]
+[ext_resource type="Texture2D" uid="uid://c0vxef5q11na6" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_49.png" id="24_6s7s8"]
+[ext_resource type="Texture2D" uid="uid://cun2y5l6eep4o" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_51.png" id="25_i1p3m"]
+[ext_resource type="Texture2D" uid="uid://rkcb4cw7yjf" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_53.png" id="26_gitor"]
+[ext_resource type="Texture2D" uid="uid://birxvjst7ta4s" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_55.png" id="27_4tmwc"]
+[ext_resource type="Texture2D" uid="uid://y7dr0ijh41vk" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_57.png" id="28_1wo71"]
+[ext_resource type="Texture2D" uid="uid://u0aln8cyuq5x" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_59.png" id="29_ginwr"]
+[ext_resource type="Texture2D" uid="uid://uxxu6w8hsc1y" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_61.png" id="30_3kbbr"]
+[ext_resource type="Texture2D" uid="uid://dvlct76wu8p2t" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_63.png" id="31_hkvam"]
+[ext_resource type="Texture2D" uid="uid://copn3ay7f4kbg" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_65.png" id="32_tc5x4"]
+[ext_resource type="Texture2D" uid="uid://bqr68ilgxgmbw" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_67.png" id="33_ygfl5"]
+[ext_resource type="Texture2D" uid="uid://dotjlpt06qkbd" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_69.png" id="34_kfx64"]
+[ext_resource type="Texture2D" uid="uid://bm3oyqvdbhui7" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_71.png" id="35_gnppe"]
+[ext_resource type="Texture2D" uid="uid://3oqsd7c5gd1l" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_73.png" id="36_reog4"]
+[ext_resource type="Texture2D" uid="uid://bmhb0e53lyktw" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_75.png" id="37_1mwck"]
+[ext_resource type="Texture2D" uid="uid://ce0o37877f6pk" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_77.png" id="38_ugc3e"]
+[ext_resource type="Texture2D" uid="uid://oi43d5thsi6q" path="res://assets/sprites/Animations/background/Leaves04/Window_A-Tree-wind_79.png" id="39_shy76"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rkvdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v4r2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xa2w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cxt0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x58g7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8scpg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nm7pj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vtpqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bx3p4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q86h5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_aur80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_anmto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_m8ae5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_a10bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_lskjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_2h3im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ef2uo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_wig7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pbhsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_adid4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gtg7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_di5mw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_s342a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_6s7s8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_i1p3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_gitor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_4tmwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_1wo71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ginwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_3kbbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_hkvam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_tc5x4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ygfl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_kfx64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_gnppe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_reog4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_1mwck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_ugc3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_shy76")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]

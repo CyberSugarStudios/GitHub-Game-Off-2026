@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_dymt4"]
 [ext_resource type="Texture2D" uid="uid://ckrq4ynuv5i03" path="res://assets/textures/rooms/living_room.webp" id="2_1y1r8"]
+[ext_resource type="PackedScene" uid="uid://10wjy22x0k12" path="res://scenes/rooms/window_view.tscn" id="2_fttc2"]
+[ext_resource type="Texture2D" uid="uid://d185n8adsjssb" path="res://assets/sprites/Animations/background/image3.png" id="3_23rnn"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_db7fa"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_1y1r8"]
+[ext_resource type="SpriteFrames" uid="uid://d0h845u6bektr" path="res://assets/sprites/Animations/frames/windows/leaves03_frames.tres" id="4_y68l3"]
+[ext_resource type="SpriteFrames" uid="uid://xts37pidwy5o" path="res://assets/sprites/Animations/frames/windows/leaves04_frames.tres" id="5_s6lrv"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_1y1r8"]
 [ext_resource type="Script" uid="uid://26eyobriow6j" path="res://scripts/rooms/room_spot.gd" id="7_jpf7g"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_lgaq2"]
@@ -30,6 +34,35 @@ gradient = SubResource("Gradient_8pl6i")
 [node name="ParentBedroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_dymt4")
 room_id = &"parent_bedroom"
+
+[node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_fttc2")]
+position = Vector2(1036, 171)
+
+[node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
+texture = ExtResource("3_23rnn")
+
+[node name="Tree1" parent="WindowView" index="1" unique_id=1026848651]
+position = Vector2(172, 599)
+rotation = -1.579065
+
+[node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
+position = Vector2(-71, 62)
+sprite_frames = ExtResource("4_y68l3")
+
+[node name="WindowView2" parent="." unique_id=2065648462 instance=ExtResource("2_fttc2")]
+position = Vector2(2479, 176)
+
+[node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
+position = Vector2(-96, -12)
+flip_h = true
+
+[node name="Tree1" parent="WindowView2" index="1" unique_id=1026848651]
+position = Vector2(273, 398)
+rotation = -0.053069115
+sprite_frames = ExtResource("5_s6lrv")
+
+[node name="Tree2" parent="WindowView2" index="2" unique_id=242444124]
+position = Vector2(-31, 74)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
@@ -192,3 +225,6 @@ texture = ExtResource("18_ir5sm")
 texture_scale = 16.0
 script = ExtResource("19_j4kdq")
 lit_hours = Vector2(17, 23.5)
+
+[editable path="WindowView"]
+[editable path="WindowView2"]

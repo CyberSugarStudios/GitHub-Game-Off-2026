@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_njvo0"]
 [ext_resource type="Texture2D" uid="uid://chf2l6rwcwco8" path="res://assets/textures/rooms/kitchen.webp" id="2_33dcn"]
+[ext_resource type="PackedScene" uid="uid://10wjy22x0k12" path="res://scenes/rooms/window_view.tscn" id="2_nievg"]
+[ext_resource type="Texture2D" uid="uid://c1l5wfttekud5" path="res://assets/sprites/Animations/background/image2.png" id="3_0357s"]
 [ext_resource type="Script" uid="uid://h2hcrihrr4pv" path="res://scripts/rooms/astral_light_2d.gd" id="3_581re"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="4_m75iv"]
+[ext_resource type="SpriteFrames" uid="uid://doxk8gba02egv" path="res://assets/sprites/Animations/frames/windows/leaves02_frames.tres" id="4_t325g"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="6_fiuqx"]
 [ext_resource type="PackedScene" uid="uid://rkutgkwxtwju" path="res://scenes/rooms/room_parent.tscn" id="6_m75iv"]
 [ext_resource type="Script" uid="uid://s44jyorguux" path="res://scripts/rooms/room_prop.gd" id="6_n5en3"]
@@ -33,6 +36,35 @@
 [node name="Kitchen" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_njvo0")
 room_id = &"kitchen"
+
+[node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_nievg")]
+position = Vector2(1516, 13)
+
+[node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
+scale = Vector2(1.3014803, 0.96881604)
+
+[node name="Tree1" parent="WindowView" index="1" unique_id=1026848651]
+position = Vector2(517, 150)
+
+[node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
+position = Vector2(-11, 11)
+
+[node name="WindowView2" parent="." unique_id=1243607560 instance=ExtResource("2_nievg")]
+position = Vector2(3657, 41)
+scale = Vector2(1.0994995, 1.663166)
+
+[node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
+scale = Vector2(1.3014803, 0.96881604)
+texture = ExtResource("3_0357s")
+
+[node name="Tree1" parent="WindowView2" index="1" unique_id=1026848651]
+position = Vector2(527.5126, 82.974266)
+rotation = -0.35011905
+sprite_frames = ExtResource("4_t325g")
+
+[node name="Tree2" parent="WindowView2" index="2" unique_id=242444124]
+position = Vector2(29.104141, 24.65178)
+rotation = 2.6477501
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
@@ -311,3 +343,6 @@ red_light = NodePath("../KitchenLights/CoffeeMachineOffLight")
 green_light = NodePath("../KitchenLights/CoffeeMachineOnLight")
 sip_sound = ExtResource("15_avos5")
 metadata/_custom_type_script = "uid://dqk1lqxh354dl"
+
+[editable path="WindowView"]
+[editable path="WindowView2"]

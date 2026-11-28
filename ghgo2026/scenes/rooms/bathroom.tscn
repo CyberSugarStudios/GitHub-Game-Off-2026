@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b0npf7klgodos"]
 
 [ext_resource type="Script" uid="uid://b4u0dgp0y53p6" path="res://scripts/rooms/room.gd" id="1_y5w4s"]
+[ext_resource type="PackedScene" uid="uid://10wjy22x0k12" path="res://scenes/rooms/window_view.tscn" id="2_7nrtv"]
 [ext_resource type="Script" uid="uid://bco1cx2o1f3lt" path="res://scripts/interaction/astral_visibility.gd" id="2_e0elq"]
 [ext_resource type="Texture2D" uid="uid://cxgom7xmxqllf" path="res://assets/textures/rooms/bathroom.webp" id="2_muy8a"]
 [ext_resource type="Script" uid="uid://d2uq5ra7ypen1" path="res://scripts/rooms/room_hotspot.gd" id="3_8pl6i"]
@@ -55,6 +56,20 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.45000002, 1, 1, 1, 0.3, 1, 1, 1
 [node name="Bathroom" type="Node2D" unique_id=1374467056]
 script = ExtResource("1_y5w4s")
 room_id = &"bathroom"
+
+[node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_7nrtv")]
+position = Vector2(1284, 226)
+scale = Vector2(1.3149887, 1.2392912)
+
+[node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
+position = Vector2(-34.220825, 3.2276514)
+
+[node name="Tree1" parent="WindowView" index="1" unique_id=1026848651]
+visible = false
+position = Vector2(172, 599)
+
+[node name="Tree2" parent="WindowView" index="2" unique_id=242444124]
+position = Vector2(192.39708, 224.32178)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2045962123]
 scale = Vector2(2, 2)
@@ -174,3 +189,5 @@ color = Color(1, 0.93333334, 0.8392157, 1)
 texture = ExtResource("9_t60wq")
 texture_scale = 16.0
 script = ExtResource("10_juav1")
+
+[editable path="WindowView"]
