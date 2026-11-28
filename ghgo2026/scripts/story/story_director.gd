@@ -466,7 +466,7 @@ func _p3_new_day(_at: int = 0) -> void:
 		GameState.clear_flag(can)
 
 func _on_sedated_woke(parent_id: StringName, activity: StringName) -> void:
-	var hour := GameClock.minute / 60
+	var hour := GameClock.minute / 60.0
 	if hour < 5 or hour >= 17 or String(activity).contains("sleep"):
 		return
 	GameState.clear_flag(StringName("%s_sedated" % parent_id))
