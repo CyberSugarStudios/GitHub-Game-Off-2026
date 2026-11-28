@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c2526y3nlppl3" path="res://assets/textures/rooms/bathroom_shower_mask.webp" id="6_nwfs6"]
 [ext_resource type="Script" uid="uid://0plsv4v7klij" path="res://scripts/rooms/event_animation.gd" id="6_xflxt"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="7_won8x"]
+[ext_resource type="Script" uid="uid://dvuvxuhbco0bc" path="res://scripts/rooms/event_particles.gd" id="8_2fl2y"]
 [ext_resource type="AudioStream" uid="uid://c2rk045w2kehh" path="res://assets/audio/sfx/varied/Shower.wav" id="8_nc0wo"]
 [ext_resource type="Shader" uid="uid://b6ks4g2l88j1c" path="res://shaders/steam.gdshader" id="8_ylyxw"]
 [ext_resource type="Texture2D" uid="uid://cb36ouwmoyceb" path="res://assets/textures/light_mask.webp" id="9_t60wq"]
@@ -89,6 +90,7 @@ script = ExtResource("6_xflxt")
 [node name="ShowerSteam" type="CPUParticles2D" parent="BackProps" unique_id=1920722902]
 material = SubResource("ShaderMaterial_xflxt")
 position = Vector2(2514, 872)
+emitting = false
 amount = 60
 texture = SubResource("GradientTexture2D_53m36")
 lifetime = 6.0
@@ -107,9 +109,10 @@ scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_2lwwf")
 color_ramp = SubResource("Gradient_ebaq1")
+script = ExtResource("8_2fl2y")
 
 [node name="ShowerMask" type="Sprite2D" parent="BackProps" unique_id=2073630277]
-position = Vector2(3340, 594.50006)
+position = Vector2(3333.9998, 579)
 scale = Vector2(0.7382811, 0.7410027)
 texture = ExtResource("6_nwfs6")
 

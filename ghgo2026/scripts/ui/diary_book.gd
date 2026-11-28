@@ -23,8 +23,7 @@ const LOCKED_LINES := preload("res://dialogue/puzzle_4.dialogue")
 @onready var page_number: Label = $Book/PageNumber
 @onready var prev_button: Button = $Book/PrevButton
 @onready var next_button: Button = $Book/NextButton
-#@onready var close_button: TextureRect = $Book/CloseButton
-@onready var keypad: DiaryKeypad = $Keypad
+@onready var keypad: CombinationLock = $Keypad
 
 var _spread := 0
 var _reached_end := false

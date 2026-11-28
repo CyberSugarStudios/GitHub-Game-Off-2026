@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://pa3sidr7c6sy" path="res://data/schedules/leanne_stage1.tres" id="7_gqmmt"]
 [ext_resource type="Script" uid="uid://y87d6ngaan1" path="res://scripts/interaction/interactable.gd" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://dgjlh3m243b5g" path="res://assets/textures/house/hall/decals/cut_out_vent.webp" id="7_og1vs"]
+[ext_resource type="Script" uid="uid://dlvk0q6upvwk" path="res://scripts/rooms/spill_light.gd" id="7_vrx01"]
 [ext_resource type="PackedScene" uid="uid://vnb6bjdisn6w" path="res://scenes/rooms/kitchen.tscn" id="8_2f3dj"]
 [ext_resource type="SpriteFrames" uid="uid://cat3yg2pfgcyb" path="res://assets/sprites/Animations/frames/mom/leanne_frames.tres" id="8_j2jfr"]
 [ext_resource type="Resource" uid="uid://bge0dqt1b63w8" path="res://data/schedules/david_stage1.tres" id="8_yc10j"]
@@ -57,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://cpggs5yrbbe4x" path="res://scenes/rooms/garage.tscn" id="32_kmb1v"]
 [ext_resource type="Texture2D" uid="uid://cvgr8rk4l7vqq" path="res://assets/textures/house/hall/decals/cut_out_outlet.webp" id="33_4ue30"]
 [ext_resource type="Texture2D" uid="uid://bbydww3a3plgw" path="res://assets/sprites/rooms/lights/base_light.webp" id="34_673bd"]
+[ext_resource type="Script" uid="uid://bf4ep78l74abm" path="res://scripts/rooms/hall_light_fixture.gd" id="34_akjxb"]
 [ext_resource type="Texture2D" uid="uid://cl6o72nby23l" path="res://assets/sprites/rooms/lights/base_light_on.webp" id="35_akjxb"]
 [ext_resource type="Script" uid="uid://b6c4vuii6sumg" path="res://scripts/player/astral_shift.gd" id="36_kmb1v"]
 [ext_resource type="Texture2D" uid="uid://beyyj1qguskqv" path="res://assets/sprites/rooms/lights/base_light_broken_astral.webp" id="36_vrx01"]
@@ -212,6 +214,7 @@ albedo_texture = ExtResource("34_673bd")
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
+shading_mode = 0
 albedo_texture = ExtResource("35_akjxb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc087"]
@@ -299,15 +302,15 @@ environment = SubResource("Environment_53m36")
 script = ExtResource("14_jkv2x")
 sun = NodePath("../Sun")
 world_environment = NodePath("../WorldEnvironment")
-max_sun_energy = 0.35
-hall_lamps = [NodePath("../Hall/Lights/OmniLight3D"), NodePath("../Hall/Lights/OmniLight3D2")]
+max_sun_energy = 0.0
+hall_lamps = [NodePath("../Hall/Lights/OmniLight3D"), NodePath("../Hall/Lights/OmniLight3D2"), NodePath("../Hall/Lights/OmniLight3DClose2"), NodePath("../Hall/Lights/OmniLight3DClose")]
 lamps_in_living_plane = true
 astral_fog_color = Color(0.09019608, 0.36078432, 0.4, 1)
 astral_fog_density = 0.18
 astral_lamp_color = Color(0.24705882, 0.8784314, 0.8235294, 1)
 astral_lamp_energy = 0.9
 astral_fog_energy = 1.2
-astral_only_lights = [NodePath("../Hall/Lights/UnderTone"), NodePath("../Hall/Lights/UnderTone2")]
+astral_only_lights = [NodePath("../Hall/Lights/UnderTone"), NodePath("../Hall/Lights/UnderTone2"), NodePath("../Hall/Lights/UnderToneClose"), NodePath("../Hall/Lights/UnderToneClose2")]
 
 [node name="Hall" parent="." unique_id=499633457 groups=["navigation_mesh_source_group"] instance=ExtResource("1_o5qli")]
 
@@ -325,28 +328,24 @@ surface_material_override/0 = SubResource("StandardMaterial3D_gcjdw")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Hall/Lights" unique_id=10455811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003976822, 1.5908678, -3.3724892)
-visible = false
 light_color = Color(1, 0.851, 0.659, 1)
 light_energy = 0.5
 omni_range = 4.7829776
 
 [node name="UnderTone" type="OmniLight3D" parent="Hall/Lights" unique_id=2107431311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003976822, 1.5908678, -3.3724892)
-visible = false
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
 light_energy = 0.8
 omni_range = 4.7829776
 
 [node name="OmniLight3DClose" type="OmniLight3D" parent="Hall/Lights" unique_id=1076382119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.71094704, 1.5908678, -3.3724892)
-visible = false
 light_color = Color(1, 0.851, 0.659, 1)
 light_energy = 0.25
 omni_range = 1.0
 
 [node name="UnderToneClose" type="OmniLight3D" parent="Hall/Lights" unique_id=1982852316]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.71094704, 1.5908678, -3.3724892)
-visible = false
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
 light_energy = 0.25
 omni_range = 1.0
@@ -359,34 +358,35 @@ omni_range = 5.551603
 
 [node name="UnderTone2" type="OmniLight3D" parent="Hall/Lights" unique_id=2070479431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -5.7531343)
-visible = false
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
 light_energy = 0.8
 omni_range = 5.551603
 
 [node name="OmniLight3DClose2" type="OmniLight3D" parent="Hall/Lights" unique_id=840029966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -6.461142)
-visible = false
 light_color = Color(1, 0.8509804, 0.65882355, 1)
 light_energy = 0.25
 omni_range = 1.0
 
 [node name="UnderToneClose2" type="OmniLight3D" parent="Hall/Lights" unique_id=152666738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.417591, 1.5966384, -6.461142)
-visible = false
 light_color = Color(0.6126972, 0.27171242, 0.73869425, 1)
 light_energy = 0.25
 omni_range = 1.0
 
-[node name="KitchenSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=496321759]
+[node name="KitchenSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=496321759 node_paths=PackedStringArray("doorway")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 1.0050659, -6.496216)
-area_range = 7.5
+area_range = 2.0
 area_size = Vector2(1, 2.015503)
+script = ExtResource("7_vrx01")
+doorway = NodePath("../../RoomEntrances/KitchenDoorway/DoorwayView")
 
-[node name="LivingRoomSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=556209478]
+[node name="LivingRoomSpillLight" type="AreaLight3D" parent="Hall/Lights" unique_id=556209478 node_paths=PackedStringArray("doorway")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8861065, 1.0050659, -4.847534)
 area_range = 2.0
 area_size = Vector2(1.0537653, 1.9770875)
+script = ExtResource("7_vrx01")
+doorway = NodePath("../../RoomEntrances/LivingRoomDoorway/DoorwayView")
 
 [node name="LeanneHall" parent="Hall" unique_id=865967836 instance=ExtResource("15_jkv2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.447056, 0, -6.144673)
@@ -698,6 +698,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4ue30")
 
 [node name="HallLight" type="Node3D" parent="Hall/HallDecor" unique_id=205749178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7529297, 1.5999912, -3.3738976)
+script = ExtResource("34_akjxb")
 
 [node name="HallLightOff" type="MeshInstance3D" parent="Hall/HallDecor/HallLight" unique_id=968594424]
 transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)
@@ -718,6 +719,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tc087")
 
 [node name="HallLight2" type="Node3D" parent="Hall/HallDecor" unique_id=726953728]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.417876, 1.611969, -6.51025)
+script = ExtResource("34_akjxb")
 
 [node name="HallLightOff" type="MeshInstance3D" parent="Hall/HallDecor/HallLight2" unique_id=258979794]
 transform = Transform3D(-9.703928e-09, 0, -0.325, 0, 0.325, 0, 0.222, 0, -1.4206201e-08, 0, 0, 0)

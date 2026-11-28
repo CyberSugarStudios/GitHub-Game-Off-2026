@@ -173,6 +173,24 @@ theme_override_font_sizes/font_size = 26
 text = "QUIT"
 vertical_alignment = 1
 
+[node name="MP3Player" parent="." unique_id=548456274 instance=ExtResource("8_aqu7r")]
+visible = false
+lullaby_track = ExtResource("9_jsbfx")
+embedded = true
+
+[node name="Dim" parent="MP3Player" index="1" unique_id=1267292442]
+visible = false
+mouse_filter = 2
+
+[node name="DeviceArt" parent="MP3Player" index="2" unique_id=264117268]
+offset_left = 204.0
+offset_top = -420.0
+offset_right = 856.0
+offset_bottom = 604.0
+
+[node name="CloseButton" parent="MP3Player" index="3" unique_id=1842796959]
+visible = false
+
 [node name="OptionsMenu" type="CanvasLayer" parent="." unique_id=833037058]
 visible = false
 
@@ -399,23 +417,5 @@ text = "CONFIRM"
 [node name="CancelCloseButton" parent="ConfirmClosePopUp/ConfirmCloseBackground/ConfirmCloseButtons" unique_id=825685830 instance=ExtResource("6_cfe2f")]
 layout_mode = 2
 text = "CANCEL"
-
-[node name="MP3Player" parent="." unique_id=548456274 instance=ExtResource("8_aqu7r")]
-visible = false
-lullaby_track = ExtResource("9_jsbfx")
-embedded = true
-
-[node name="Dim" parent="MP3Player" index="1" unique_id=1267292442]
-visible = false
-mouse_filter = 2
-
-[node name="DeviceArt" parent="MP3Player" index="2" unique_id=264117268]
-offset_left = 204.0
-offset_top = -420.0
-offset_right = 856.0
-offset_bottom = 604.0
-
-[node name="CloseButton" parent="MP3Player" index="3" unique_id=1842796959]
-visible = false
 
 [editable path="MP3Player"]

@@ -82,6 +82,8 @@ texture_scale = 12.5
 range_layer_min = 10
 range_layer_max = 10
 script = ExtResource("7_tcvd1")
+day_energy = 1.2
+night_energy = 0.6
 
 [node name="Controls" type="CanvasLayer" parent="." unique_id=1905085372]
 layer = 11

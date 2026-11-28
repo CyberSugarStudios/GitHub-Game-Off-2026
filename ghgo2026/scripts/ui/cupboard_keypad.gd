@@ -6,19 +6,21 @@ const MUSIC_BOX_VIEW := preload("res://scenes/ui/music_box.tscn")
 
 @export var open_event: StringName = &"tv_cupboard"
 @export var code: String = "2184"
-@export var caption_text: String = "Locked"
+@export var lock_body: Texture2D = preload("res://assets/sprites/rooms/living_room/cupboard_lock_bottom.webp")
+@export var lock_shackle: Texture2D = preload("res://assets/sprites/rooms/living_room/cupboard_lock_top.webp")
 @export var unlocked_flag: StringName = &"tv_cupboard_unlocked"
 @export var unlock_pause: float = 0.6
 
-var _keypad: DiaryKeypad
+var _keypad: CombinationLock
 var _leave_prompt: KeyPrompt
 var _music_box: MusicBoxView
 
 func _ready() -> void:
 	layer = 10
-	_keypad = DiaryKeypad.new()
+	_keypad = CombinationLock.new()
 	_keypad.code = code
-	_keypad.caption_text = caption_text
+	_keypad.body_texture = lock_body
+	_keypad.shackle_texture = lock_shackle
 	add_child(_keypad)
 	_keypad.unlocked.connect(_on_unlocked)
 	_keypad.close_requested.connect(close)

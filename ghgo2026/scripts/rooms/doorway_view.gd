@@ -81,6 +81,9 @@ func _ready() -> void:
 	_split_layers(view_scale)
 	_build_cards()
 
+func get_room() -> Room:
+	return _room
+
 func _process(_delta: float) -> void:
 	if _room == null:
 		return
