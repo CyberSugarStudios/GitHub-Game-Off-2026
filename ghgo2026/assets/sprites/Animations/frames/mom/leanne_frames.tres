@@ -85,26 +85,66 @@
 [ext_resource type="Texture2D" uid="uid://cre2opjlmf7mn" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_28.png" id="89_d0o4f"]
 [ext_resource type="Texture2D" uid="uid://o8dxwu5ovxja" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_76.png" id="89_ougyc"]
 [ext_resource type="Texture2D" uid="uid://dosfjwakvji0i" path="res://assets/sprites/Animations/mom/Reading/Mom_reading_rig-Reading_78.png" id="90_20cll"]
+[ext_resource type="Texture2D" uid="uid://dxxf0lavsb2hb" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_00.png" id="91_56unf"]
 [ext_resource type="Texture2D" uid="uid://bd1jh8bpb7vmv" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_30.png" id="91_vtmt1"]
+[ext_resource type="Texture2D" uid="uid://duj3pn2bf1mqd" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_02.png" id="92_mj27i"]
 [ext_resource type="Texture2D" uid="uid://fl6mrhk34cyq" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_32.png" id="93_n06mk"]
+[ext_resource type="Texture2D" uid="uid://dthac5efjf6kf" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_04.png" id="93_t8f15"]
+[ext_resource type="Texture2D" uid="uid://cwsqrjsi8u550" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_06.png" id="94_ygurv"]
+[ext_resource type="Texture2D" uid="uid://v4lf7mm5ydlk" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_08.png" id="95_86crh"]
 [ext_resource type="Texture2D" uid="uid://dslh0ebqt0ken" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_34.png" id="95_wpg8o"]
+[ext_resource type="Texture2D" uid="uid://bwq2cs82hecer" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_10.png" id="96_axc1g"]
+[ext_resource type="Texture2D" uid="uid://5vcn0qt7pe4k" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_12.png" id="97_hm48a"]
 [ext_resource type="Texture2D" uid="uid://dcrbnggt72gvq" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_36.png" id="97_vb8qr"]
+[ext_resource type="Texture2D" uid="uid://dicnk4knomr4x" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_14.png" id="98_48nq3"]
 [ext_resource type="Texture2D" uid="uid://gvghy6jrxd8f" path="res://assets/sprites/Animations/mom/Picture-Fall/Mum_angle_rig-Picture fall_38.png" id="99_oidfq"]
+[ext_resource type="Texture2D" uid="uid://ddlk03ipp4tf1" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_16.png" id="99_s42hy"]
+[ext_resource type="Texture2D" uid="uid://b67jxnirv4ju8" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_18.png" id="100_gftg4"]
+[ext_resource type="Texture2D" uid="uid://cqhd6kv56ckyi" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_20.png" id="101_hwc4a"]
 [ext_resource type="Texture2D" uid="uid://cfk3quvkgegbr" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_00.png" id="101_vfnd2"]
+[ext_resource type="Texture2D" uid="uid://brm5logmgs334" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_22.png" id="102_gi65s"]
+[ext_resource type="Texture2D" uid="uid://ka3ufxcoq3tp" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_24.png" id="103_05t2m"]
 [ext_resource type="Texture2D" uid="uid://nb5yxdbps57y" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_02.png" id="103_c6c0h"]
+[ext_resource type="Texture2D" uid="uid://b1ghu2mn72oxx" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_26.png" id="104_8482v"]
+[ext_resource type="Texture2D" uid="uid://cteug1jbl561e" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_28.png" id="105_8anp0"]
 [ext_resource type="Texture2D" uid="uid://dt7iuwu7knskb" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_04.png" id="105_xl7k1"]
+[ext_resource type="Texture2D" uid="uid://cmomgx1qrk85j" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_30.png" id="106_shx7b"]
 [ext_resource type="Texture2D" uid="uid://bpyx54nu2ydta" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_06.png" id="107_cccen"]
+[ext_resource type="Texture2D" uid="uid://m301wasvmojy" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_32.png" id="107_mxbrk"]
+[ext_resource type="Texture2D" uid="uid://c71qcefphcdo5" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_34.png" id="108_u1ofe"]
 [ext_resource type="Texture2D" uid="uid://cyceuepne5080" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_08.png" id="109_rnw8h"]
+[ext_resource type="Texture2D" uid="uid://ddxwm3eyh5d3i" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_36.png" id="109_ugsrl"]
+[ext_resource type="Texture2D" uid="uid://dyesnxmr4e1nt" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_38.png" id="110_gfa4v"]
 [ext_resource type="Texture2D" uid="uid://c8feu43wf8ejt" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_10.png" id="111_12k3d"]
+[ext_resource type="Texture2D" uid="uid://bxhqxk0a1acr0" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_40.png" id="111_exl2x"]
+[ext_resource type="Texture2D" uid="uid://boi2crdd5xirg" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_42.png" id="112_p6hjc"]
 [ext_resource type="Texture2D" uid="uid://kv8s4qmp6c31" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_12.png" id="113_cv1lr"]
+[ext_resource type="Texture2D" uid="uid://01n5gh0y1x14" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_44.png" id="113_uiv7l"]
+[ext_resource type="Texture2D" uid="uid://067v6vijhsir" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_46.png" id="114_hicbo"]
+[ext_resource type="Texture2D" uid="uid://bysb0eyd7y53a" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_48.png" id="115_40f2y"]
 [ext_resource type="Texture2D" uid="uid://cxhf0prj8xw7e" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_14.png" id="115_ouq4o"]
+[ext_resource type="Texture2D" uid="uid://0v7a50tqn136" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_50.png" id="116_6hsub"]
+[ext_resource type="Texture2D" uid="uid://dc5jwj34qkrc7" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_52.png" id="117_dm0rm"]
 [ext_resource type="Texture2D" uid="uid://cny5v8c3g230s" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_16.png" id="117_pyjm5"]
+[ext_resource type="Texture2D" uid="uid://wesdh6i0mmot" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_54.png" id="118_5vlfs"]
+[ext_resource type="Texture2D" uid="uid://cbyhij7xhk7x4" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_56.png" id="119_666lt"]
 [ext_resource type="Texture2D" uid="uid://0i57h3yny10w" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_18.png" id="119_xm87s"]
+[ext_resource type="Texture2D" uid="uid://cuyhods8cf7gl" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_58.png" id="120_yqp2w"]
 [ext_resource type="Texture2D" uid="uid://bun14qedkuw6p" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_20.png" id="121_7uono"]
+[ext_resource type="Texture2D" uid="uid://dflln2165xibu" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_60.png" id="121_8ey4k"]
+[ext_resource type="Texture2D" uid="uid://bb34yy3kib4c0" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_62.png" id="122_1p6ne"]
 [ext_resource type="Texture2D" uid="uid://cmei2afo58plc" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_22.png" id="123_2j5ef"]
+[ext_resource type="Texture2D" uid="uid://d227k0btddugh" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_64.png" id="123_o1ksg"]
+[ext_resource type="Texture2D" uid="uid://14fm1x3t13dn" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_66.png" id="124_bn2it"]
 [ext_resource type="Texture2D" uid="uid://d2esmteax621i" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_24.png" id="125_miv6m"]
+[ext_resource type="Texture2D" uid="uid://domqic7j8uwj4" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_68.png" id="125_mjaoi"]
+[ext_resource type="Texture2D" uid="uid://k46l0ijmchuv" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_70.png" id="126_g08go"]
+[ext_resource type="Texture2D" uid="uid://cj6ytpdba5vaf" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_72.png" id="127_3pynh"]
 [ext_resource type="Texture2D" uid="uid://dqvwl0caqrtik" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_26.png" id="127_j8pxp"]
+[ext_resource type="Texture2D" uid="uid://gyvag73y2cv2" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_74.png" id="128_5hesb"]
+[ext_resource type="Texture2D" uid="uid://c1vxdey2iawru" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_76.png" id="129_djrhr"]
 [ext_resource type="Texture2D" uid="uid://dw76ml8tgocbw" path="res://assets/sprites/Animations/mom/Walk-away/Mum_back_rig-walk-away_28.png" id="129_s136a"]
+[ext_resource type="Texture2D" uid="uid://cxietaiyl2pk6" path="res://assets/sprites/Animations/mom/sleeping/Mom_reading_rig-sleeping_78.png" id="130_gvvqk"]
 [ext_resource type="Texture2D" uid="uid://dndkfgwh7quya" path="res://assets/sprites/Animations/mom/Walk-Front/walk-front_00.png" id="131_dxfhc"]
 [ext_resource type="Texture2D" uid="uid://bhidf07ttrma3" path="res://assets/sprites/Animations/mom/Walk-Front/walk-front_02.png" id="133_6km22"]
 [ext_resource type="Texture2D" uid="uid://dnswnv0fhtlbh" path="res://assets/sprites/Animations/mom/Walk-Front/walk-front_04.png" id="135_hxyi2"]
@@ -421,6 +461,131 @@ animations = [{
 }],
 "loop": 1,
 "name": &"reading",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("91_56unf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_mj27i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_t8f15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_ygurv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_86crh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_axc1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_hm48a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_48nq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_s42hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_gftg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_hwc4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_gi65s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_05t2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_8482v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_8anp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_shx7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_mxbrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_u1ofe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_ugsrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_gfa4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_exl2x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_p6hjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_uiv7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_hicbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_40f2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_6hsub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_dm0rm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_5vlfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_666lt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_yqp2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_8ey4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_1p6ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_o1ksg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_bn2it")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_mjaoi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_g08go")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_3pynh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_5hesb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_djrhr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_gvvqk")
+}],
+"loop": 1,
+"name": &"sleeping",
 "speed": 12.0
 }, {
 "frames": [{
