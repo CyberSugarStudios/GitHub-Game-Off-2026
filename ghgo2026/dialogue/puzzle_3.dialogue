@@ -4,7 +4,7 @@ David: Running low on beer. I'll grab a few more for tonight.
 
 ~ p3_david_catches_can
 % David: Whoa, caught it. That was close.
-% David: Jeez, what's wrong with me. I gotta watch my step. Good thing I was here or it would have spilled.
+% David: Jeez, what's wrong with me. I gotta watch my step. Good thing I was here or else it would have spilled.
 => END
 
 ~ p3_leanne_catches_pills
@@ -46,8 +46,8 @@ David: Who's there? ...Lee? Somebody's in the garage.
 ~ p3_safe_fight
 Emily: Zero... four... one... seven. [#thought, #pan=0]
 Emily: That's my birthday. [#thought]
-Leanne: David? What are you... is that... put that away! You told me you'd get rid of it. How could you?!
-David: Someone's in the house. I heard the garage. [#leanne=fight_gun_leanne]
+Leanne: David? What are you... is that... put that away! You told me you're gonna get rid of it. How could you?!
+David: Someone's in the house. I heard them in the garage. [#leanne=fight_gun_leanne]
 Leanne: David... I can't do this anymore. We need to move. Or... I need to move.
 David: Yeah... I know. I know. Things can't stay like this.
 Leanne: I don't know how everything got like this. I... I'm so sorry.
