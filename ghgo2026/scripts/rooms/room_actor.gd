@@ -47,6 +47,9 @@ func _ready() -> void:
 	GameClock.hour_changed.connect(func(_day: int, _hour: int) -> void:
 		if visible and not _walking:
 			_stand())
+	GameState.flag_set.connect(func(id: StringName) -> void:
+		if id == StringName("hugged_%s" % parent_id) and visible and not _walking:
+			_stand())
 	var node := get_parent()
 	while node and not node is Room:
 		node = node.get_parent()
@@ -140,6 +143,8 @@ func _stand() -> void:
 	var anim := _spot_animation(activity)
 	if anim == &"" or frames == null or not frames.has_animation(anim):
 		anim = activity if frames and frames.has_animation(activity) else idle_animation
+	if GameState.is_kept_awake(parent_id) and String(anim).contains("sleep"):
+		anim = idle_animation
 	_animate(anim, _standing_flip(activity))
 	_place_doorway_base(activity)
 
@@ -172,7 +177,11 @@ func _spot_animation(activity: StringName) -> StringName:
 	var spot := _spot_node(activity)
 	if spot == null:
 		spot = _spot_node(&"default")
-	return (spot as RoomSpot).animation_now() if spot is RoomSpot else &""
+	if not spot is RoomSpot:
+		return &""
+	if GameState.is_kept_awake(parent_id):
+		return (spot as RoomSpot).animation
+	return (spot as RoomSpot).animation_now()
 
 func _animate(anim: StringName, flip: float) -> void:
 	if frames == null:

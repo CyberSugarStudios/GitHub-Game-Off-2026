@@ -108,6 +108,10 @@ const INTRO_FLAGS: Array[StringName] = [
 @export var p3_night_ends: String = "06:00"
 @export var p3_safe_minutes: int = 240
 @export var p3_wake_delay: float = 1.5
+@export var p3_awake_minutes: int = 90
+@export var p3_after_pause: float = 3.0
+@export var p3_fight_music_db: float = -14.0
+@export var p3_fight_music_fade: float = 2.0
 @export var p3_new_day_hour: int = 7
 
 @export_group("Puzzle 4")
@@ -458,8 +462,15 @@ func _p3_try_night() -> bool:
 		household.send(DAD, &"living_room", 60)
 		return false
 	GameState.set_story_stage(4)
+	Music.duck(true, p3_fight_music_fade, p3_fight_music_db)
+	Events.parents_staged.emit(MOM, &"fight_gun_leanne")
 	await say_fight("p3_safe_fight", PUZZLE_3)
-	household.send(DAD, &"living_room", 120)
+	GameState.keep_awake(MOM, p3_awake_minutes)
+	GameState.keep_awake(DAD, p3_awake_minutes)
+	household.send(DAD, &"living_room", p3_awake_minutes, [], &"watching_tv")
+	household.send(MOM, &"parent_bedroom", p3_awake_minutes, [], &"reading_and_sleeping")
+	await wait(p3_after_pause)
+	Music.duck(false, p3_fight_music_fade)
 	GameState.restore_memory()
 	say_in_background("p3_after", PUZZLE_3)
 	return true

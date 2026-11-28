@@ -35,6 +35,7 @@ var max_bars := STARTING_BARS #door check
 var energy: float = STARTING_BARS #powers and astral drains this
 var in_astral: bool = false
 var flags: Dictionary[StringName, bool]  = {}
+var _awake_until: Dictionary[StringName, int] = {}
 var current_room: StringName = &""
 var controls_locked := false
 var parent_locations: Dictionary[StringName, StringName] = {}
@@ -242,6 +243,15 @@ func reset() -> void:
 	shift_allowed = true
 	regen_paused = false
 	guarded_room = &""
+	_awake_until.clear()
+
+func keep_awake(parent_id: StringName, minutes: int) -> void:
+	_awake_until[parent_id] = GameClock.get_total_minutes() + minutes
+
+func is_kept_awake(parent_id: StringName) -> bool:
+	if has_flag(StringName("hugged_%s" % parent_id)):
+		return true
+	return GameClock.get_total_minutes() < _awake_until.get(parent_id, -1)
 
 #region - SAVING
 func save_checkpoint() -> void:

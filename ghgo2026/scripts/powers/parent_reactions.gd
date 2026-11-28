@@ -86,6 +86,8 @@ func _thought_cue(parent_id: StringName) -> String:
 	return general if _has_cue(THOUGHTS, general) else ""
 
 func _is_asleep(parent_id: StringName) -> bool:
+	if GameState.is_kept_awake(parent_id):
+		return false
 	var activity := String(GameState.get_parent_activity(parent_id))
 	if activity == "sleeping":
 		return true

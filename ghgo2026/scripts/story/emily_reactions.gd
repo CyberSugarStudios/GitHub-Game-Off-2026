@@ -19,8 +19,15 @@ func _on_near_missed(source: StringName) -> void:
 func _on_creature_moment(kind: StringName) -> void:
 	var stage := GameState.story_stage
 	var once := StringName("reacted_creature_%s_stage%d" % [kind, stage])
-	if not GameState.has_flag(once):
-		_say.call_deferred(["creature_%s_stage%d" % [kind, stage], "creature_%s" % kind], once)
+	if GameState.has_flag(once):
+		return
+	var step := stage
+	if kind == &"grabbed" or kind == &"escaped":
+		step = 1
+		for earlier in range(0, stage):
+			if GameState.has_flag(StringName("reacted_creature_%s_stage%d" % [kind, earlier])):
+				step += 1
+	_say.call_deferred(["creature_%s_stage%d" % [kind, step], "creature_%s" % kind], once)
 
 func _on_conversation_finished(title: String) -> void:
 	if title.begins_with("thoughts_") and not GameState.has_flag(&"reacted_read_thoughts"):

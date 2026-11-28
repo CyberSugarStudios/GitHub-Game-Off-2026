@@ -123,7 +123,13 @@ func _fade_out() -> void:
 	add_child(black)
 	black.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	Music.stop(LEAVE_FADE)
+	var mp3_fade := create_tween().set_parallel()
+	mp3_fade.tween_property(mp3_player.get_node("DeviceArt"), "modulate:a", 0.0, LEAVE_FADE)
+	mp3_fade.tween_property(mp3_player.audio, "volume_linear", 0.0, LEAVE_FADE)
 	await create_tween().tween_property(black, "color:a", 1.0, LEAVE_FADE).finished
+
+func _show_mp3(shown: bool) -> void:
+	mp3_player.visible = shown and Settings.game_completed
 
 func _make_load_bar() -> PillBar:
 	var bar := PillBar.new()
@@ -141,7 +147,8 @@ func _make_load_bar() -> PillBar:
 	return bar
 
 func on_options_menu_button_pressed() -> void:
-	title.visible = false
+	title.visible = true
+	_show_mp3(true)
 	options_menu.visible = true
 	title_and_buttons.visible = false
 
@@ -151,7 +158,8 @@ func on_close_options_button_pressed() -> void:
 	title_and_buttons.visible = true
 
 func on_credits_menu_button_pressed() -> void:
-	title.visible = false
+	title.visible = true
+	_show_mp3(true)
 	credits_menu.visible = true
 	title_and_buttons.visible = false
 
@@ -161,7 +169,8 @@ func on_close_credits_button_pressed() -> void:
 	title_and_buttons.visible = true
 
 func on_quit_button_pressed() -> void:
-	title.visible = false
+	title.visible = true
+	_show_mp3(true)
 	confirm_close_menu.visible = true
 	title_and_buttons.visible = false
 
