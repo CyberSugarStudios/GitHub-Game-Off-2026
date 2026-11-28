@@ -62,6 +62,7 @@ room_id = &"bathroom"
 position = Vector2(1284, 226)
 scale = Vector2(1.3149887, 1.2392912)
 pane_mask = ExtResource("3_d8jk2")
+patch_lights_actors = false
 
 [node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
 position = Vector2(-34.220825, 3.2276514)

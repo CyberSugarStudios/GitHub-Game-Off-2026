@@ -134,7 +134,7 @@ func _split_layers(view_scale: float) -> void:
 	_actors_viewport = _make_view(LAYER_ACTORS, view_scale)
 
 	var light_sheet := ColorRect.new()
-	light_sheet.color = Color.WHITE
+	light_sheet.color = Color(0.5, 0.5, 0.5)
 	light_sheet.size = _room_size
 	light_sheet.z_index = -1024
 	light_sheet.visibility_layer = LAYER_LIGHT

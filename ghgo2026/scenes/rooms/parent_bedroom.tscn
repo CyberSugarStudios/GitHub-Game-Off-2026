@@ -54,6 +54,7 @@ sprite_frames = ExtResource("4_y68l3")
 [node name="WindowView2" parent="." unique_id=2065648462 instance=ExtResource("2_fttc2")]
 position = Vector2(2479, 176)
 pane_mask = ExtResource("3_y68l3")
+patch_lights_actors = false
 
 [node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
 position = Vector2(-96, -12)

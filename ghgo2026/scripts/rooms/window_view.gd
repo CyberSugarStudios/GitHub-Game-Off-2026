@@ -4,7 +4,7 @@ extends Node2D
 const DAY_NIGHT := preload("res://resources/day_night_palette.tres")
 const SCENERY_SHADER := preload("res://shaders/window_scenery.gdshader")
 const WALL_LAYER := 4
-const MASK_WIDTH := 96
+const ACTORS_Z := 20
 
 @export var sky_gradient: Gradient
 @export var day_glow: float = 1.1
@@ -19,14 +19,18 @@ const MASK_WIDTH := 96
 @export var sun_hours := Vector2(6.25, 18.25)
 @export var patch_lean: float = 0.9
 @export var patch_length := Vector2(0.45, 1.1)
+@export var patch_reach: float = 0.0
+@export var patch_lights_actors: bool = true
 
 @onready var sky: CanvasItem = get_node_or_null("Sky")
 @onready var window_light: PointLight2D = get_node_or_null("Light")
 
 var _scenery := ShaderMaterial.new()
 var _patch: PointLight2D
-var _patch_center := Vector2.ZERO
+var _center := Vector2.ZERO
 var _sill: float = 0.0
+var _slope: float = 0.0
+var _height: float = 0.0
 
 func _ready() -> void:
 	z_index = -1
@@ -64,31 +68,62 @@ func _build_patch() -> void:
 	var area := room_space * backdrop.get_global_transform() * backdrop.get_rect()
 	var px := Vector2(mask.get_size()) / room.get_room_size()
 	var region := Rect2i(Rect2(area.position * px, area.size * px)).intersection(Rect2i(Vector2i.ZERO, mask.get_size()))
-	region = _lit_rect(mask, region)
-	if region.size.x <= 0 or region.size.y <= 0:
+	var columns := _lit_columns(mask, region)
+	if columns.is_empty():
 		return
+	var lit := Rect2i(columns[0].x, region.end.y, 0, 0)
+	for column in columns:
+		lit = lit.expand(Vector2i(column.x, column.y)).expand(Vector2i(column.x, column.z))
+	lit.size += Vector2i.ONE
 	_patch = PointLight2D.new()
 	_patch.name = "SunPatch"
-	_patch.texture = ImageTexture.create_from_image(mask.get_region(region))
+	_patch.texture = ImageTexture.create_from_image(mask.get_region(lit))
 	_patch.texture_scale = 1.0 / px.x
-	var _to_local := get_global_transform().affine_inverse() * room.get_global_transform()
-	_patch_center = _to_local * ((Vector2(region.position) + Vector2(region.size) * 0.5) / px)
-	_sill = (_to_local * (Vector2(region.end) / px)).y
+	if not patch_lights_actors:
+		_patch.range_z_max = ACTORS_Z - 1
+	var to_local := get_global_transform().affine_inverse() * room.get_global_transform()
+	var center_px := Vector2(lit.position) + Vector2(lit.size) * 0.5
+	var fit := _fit_sill(columns, center_px.x)
+	_center = to_local * (center_px / px)
+	_sill = (to_local * (Vector2(center_px.x, fit.x + 1.0) / px)).y
+	_slope = fit.y
+	_height = _sill - (to_local * (Vector2(lit.position) / px)).y
 	add_child(_patch)
 
-func _lit_rect(mask: Image, region: Rect2i) -> Rect2i:
-	var found := Rect2i()
-	var started := false
-	for y in range(region.position.y, region.end.y):
-		for x in range(region.position.x, region.end.x):
-			if mask.get_pixel(x, y).v < 0.5:
-				continue
-			if started:
-				found = found.expand(Vector2i(x, y))
-			else:
-				found = Rect2i(x, y, 0, 0)
-				started = true
-	return Rect2i(found.position, found.size + Vector2i.ONE) if started else Rect2i()
+func _lit_columns(mask: Image, region: Rect2i) -> Array[Vector3i]:
+	var columns: Array[Vector3i] = []
+	var tallest := 0
+	for x in range(region.position.x, region.end.x):
+		var top := -1
+		var bottom := -1
+		var count := 0
+		for y in range(region.position.y, region.end.y):
+			if mask.get_pixel(x, y).v >= 0.5:
+				if top < 0:
+					top = y
+				bottom = y
+				count += 1
+		if count > 0:
+			columns.append(Vector3i(x, top, bottom))
+			tallest = maxi(tallest, count)
+	return columns.filter(func(column: Vector3i) -> bool: return column.z - column.y + 1 >= tallest * 0.25)
+
+func _fit_sill(columns: Array[Vector3i], at_x: float) -> Vector2:
+	var n := float(columns.size())
+	var sum_x := 0.0
+	var sum_y := 0.0
+	var sum_xx := 0.0
+	var sum_xy := 0.0
+	for column in columns:
+		sum_x += column.x
+		sum_y += column.z
+		sum_xx += column.x * column.x
+		sum_xy += column.x * column.z
+	var spread := n * sum_xx - sum_x * sum_x
+	var slope := 0.0 if absf(spread) < 0.001 else (n * sum_xy - sum_x * sum_y) / spread
+	var mean_y := sum_y / n
+	var mean_x := sum_x / n
+	return Vector2(mean_y + slope * (at_x - mean_x), slope)
 
 func _find_room() -> Room:
 	var node := get_parent()
@@ -129,5 +164,8 @@ func _process(_delta: float) -> void:
 		_patch.visible = _patch.energy > 0.001
 		var lean := lerpf(patch_lean, -patch_lean, phase)
 		var length := lerpf(patch_length.x, patch_length.y, low)
-		var rise := _sill - _patch_center.y
-		_patch.transform = Transform2D(Vector2.RIGHT, Vector2(-lean, -length), Vector2(_patch_center.x + lean * rise, _sill + length * rise))
+		if patch_reach > 0.0 and _height > 0.0:
+			length = minf(length, patch_reach / _height)
+		var rise := _sill - _center.y
+		var x_axis := Vector2(1.0 + _slope * lean, _slope * (1.0 + length))
+		_patch.transform = Transform2D(x_axis, Vector2(-lean, -length), Vector2(_center.x + lean * rise, _sill + length * rise))

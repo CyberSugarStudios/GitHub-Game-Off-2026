@@ -21,6 +21,7 @@ room_id = &"emily_bedroom"
 [node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_4jrkt")]
 position = Vector2(1020, 79)
 pane_mask = ExtResource("3_587sn")
+patch_reach = 120.0
 
 [node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
 texture = ExtResource("3_ewtuq")

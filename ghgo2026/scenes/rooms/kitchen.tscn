@@ -41,6 +41,8 @@ room_id = &"kitchen"
 [node name="WindowView" parent="." unique_id=388747037 instance=ExtResource("2_nievg")]
 position = Vector2(1516, 13)
 pane_mask = ExtResource("3_t325g")
+patch_energy = 0.4
+patch_lights_actors = false
 
 [node name="Backdrop" parent="WindowView" index="0" unique_id=1525624591]
 scale = Vector2(1.3014803, 0.96881604)
@@ -55,6 +57,8 @@ position = Vector2(-11, 11)
 position = Vector2(3657, 41)
 scale = Vector2(1.0994995, 1.663166)
 pane_mask = ExtResource("3_t325g")
+patch_energy = 0.4
+patch_lights_actors = false
 
 [node name="Backdrop" parent="WindowView2" index="0" unique_id=1525624591]
 scale = Vector2(1.3014803, 0.96881604)
